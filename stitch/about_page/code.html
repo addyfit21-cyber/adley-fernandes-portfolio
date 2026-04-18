@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#dadada",
+                    "on-background": "#1a1c1c",
+                    "surface-container-low": "#f3f3f4",
+                    "on-tertiary-container": "#ffffff",
+                    "inverse-on-surface": "#f0f1f1",
+                    "primary": "#000000",
+                    "surface-bright": "#f9f9f9",
+                    "secondary": "#5e5e5e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#ffffff",
+                    "inverse-surface": "#2f3131",
+                    "surface-container-highest": "#e2e2e2",
+                    "outline-variant": "#c6c6c6",
+                    "surface-tint": "#5e5e5e",
+                    "on-surface": "#1a1c1c",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#d4d4d4",
+                    "on-primary": "#e2e2e2",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "surface-container": "#eeeeee",
+                    "surface": "#f9f9f9",
+                    "outline": "#777777",
+                    "on-error-container": "#410002",
+                    "surface-container-high": "#e8e8e8",
+                    "tertiary-container": "#747474",
+                    "on-surface-variant": "#474747",
+                    "primary-container": "#3b3b3b",
+                    "on-tertiary-fixed-variant": "#e2e2e2",
+                    "on-primary-fixed-variant": "#e2e2e2",
+                    "background": "#f9f9f9",
+                    "on-primary-container": "#ffffff",
+                    "on-secondary-fixed": "#1b1b1b",
+                    "tertiary-fixed": "#5e5e5e",
+                    "tertiary-fixed-dim": "#474747",
+                    "inverse-primary": "#c6c6c6",
+                    "on-tertiary-fixed": "#ffffff",
+                    "tertiary": "#3b3b3b",
+                    "on-tertiary": "#e2e2e2",
+                    "primary-fixed": "#5e5e5e",
+                    "on-secondary-container": "#1b1b1b",
+                    "on-error": "#ffffff",
+                    "primary-fixed-dim": "#474747",
+                    "secondary-fixed-dim": "#ababab",
+                    "secondary-fixed": "#c6c6c6",
+                    "on-secondary-fixed-variant": "#3b3b3b",
+                    "surface-variant": "#e2e2e2"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-offset { margin-left: 15%; }
+        @media (max-width: 768px) { .editorial-offset { margin-left: 0; } }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-12 md:px-24 bg-white/70 backdrop-blur-xl h-24 no-border tonal-shift">
+<div class="text-2xl font-bold tracking-tighter text-black">STUDIO_ARCH</div>
+<nav class="hidden md:flex items-center gap-12">
+<a class="font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 hover:text-black transition-colors duration-300 hover:opacity-70" href="#">Home</a>
+<a class="font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 hover:text-black transition-colors duration-300 hover:opacity-70" href="#">Portfolio</a>
+<a class="font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 hover:text-black transition-colors duration-300 hover:opacity-70" href="#">Services</a>
+<a class="font-manrope text-sm tracking-[0.1em] uppercase text-black border-b border-black pb-1 hover:opacity-70" href="#">About</a>
+<a class="font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 hover:text-black transition-colors duration-300 hover:opacity-70" href="#">Contact</a>
+</nav>
+<button class="bg-primary text-on-primary px-8 py-3 font-manrope text-sm tracking-[0.1em] uppercase transition-all duration-300 hover:bg-primary-container">
+            Get in Touch
+        </button>
+</header>
+<main class="pt-24">
+<!-- Hero / Personal Introduction -->
+<section class="px-12 md:px-24 py-24 grid grid-cols-1 md:grid-cols-12 gap-12 items-end">
+<div class="md:col-span-7">
+<h2 class="font-manrope text-[10px] tracking-widest uppercase text-outline mb-8">Architectural Perspective</h2>
+<h1 class="font-bold text-6xl md:text-8xl tracking-tighter leading-none text-black mb-12">
+                    Defining Space<br/>Through Void.
+                </h1>
+<p class="font-manrope text-xl md:text-2xl font-light text-on-surface-variant max-w-2xl leading-relaxed">
+                    A multi-disciplinary studio led by Alex Chen, dedicated to the intersection of structural integrity and minimal aesthetics.
+                </p>
+</div>
+<div class="md:col-span-5 aspect-[3/4] bg-surface-container-low relative overflow-hidden group">
+<img alt="Professional Portrait" class="w-full h-full object-cover transition-transform duration-[800ms] group-hover:scale-105" data-alt="Minimalist professional portrait of a male architect in a black turtleneck against a clean, white architectural concrete background with soft shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKP6IU3c5-0oE4czZ-IjITxWrffYAGbm-2axw0lkDHn7SuXMAef7ntPOv2aHC4DXv2DPyDewvPFJhpwenuaAAr6JG4Y1VBjIC15zMqfp2llxgPavS3kETb-fWF5yRo90wILwOvZyTaKSrnUI9AT1c0P_NvYTHbyLQq0WO7YOwZ-pgzXDeNnTkkmQJTWrjStasR2AfEFlBGsb9qoN4HtXXCQyLoB_sFNA0msBKAH2x-J5nEL0e5MWS65Rlxh-QETxwnf_bSBKYOxaRT"/>
+<div class="absolute inset-0 bg-primary/5 mix-blend-multiply transition-opacity duration-500 group-hover:opacity-0"></div>
+</div>
+</section>
+<!-- Narrative Section -->
+<section class="bg-surface-container-low px-12 md:px-24 py-32">
+<div class="max-w-6xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-16">
+<div class="md:col-span-4">
+<h3 class="font-manrope text-[10px] tracking-widest uppercase text-outline sticky top-32">The Narrative</h3>
+</div>
+<div class="md:col-span-8">
+<div class="space-y-12">
+<p class="text-3xl font-light leading-snug text-black">
+                                Architecture is not merely the construction of walls, but the curation of movement and light. Founded in 2014, Studio Arch began as an exploration of how digital environments can mimic the tactile weight of physical structures.
+                            </p>
+<div class="editorial-offset space-y-8">
+<p class="text-lg text-on-surface-variant leading-relaxed">
+                                    With a background in both classical masonry and modern interaction design, I bridge the gap between the permanent and the ephemeral. Every project starts with a single line—a commitment to precision that rejects the decorative in favor of the essential. 
+                                </p>
+<p class="text-lg text-on-surface-variant leading-relaxed">
+                                    I believe that luxury is found in the pauses between elements. My work seeks to provide those pauses, creating interfaces and environments that breathe, inviting the user to stay longer, think deeper, and move with intent.
+                                </p>
+<div class="pt-8 flex items-center gap-4 text-black group cursor-pointer">
+<span class="text-sm font-bold tracking-widest uppercase border-b border-black/20 pb-1 group-hover:border-black transition-all duration-300">Read the Full Manifesto</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Skills & Tools / Bento Grid -->
+<section class="px-12 md:px-24 py-32">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-px bg-outline-variant/30">
+<!-- Header Cell -->
+<div class="md:col-span-12 bg-background py-16">
+<h3 class="font-manrope text-[10px] tracking-widest uppercase text-outline mb-4">Core Competencies</h3>
+<h4 class="text-4xl font-bold tracking-tight text-black">The Toolkit of Precision</h4>
+</div>
+<!-- Skill Block 1 -->
+<div class="md:col-span-4 bg-background p-12 hover:bg-surface-container-lowest transition-colors duration-500">
+<span class="material-symbols-outlined text-4xl mb-8 text-primary">architecture</span>
+<h5 class="text-xl font-bold mb-4">Spatial Logic</h5>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-8">Structural planning for digital systems, ensuring scalability and visual balance through grid-based discipline.</p>
+<ul class="text-[10px] tracking-widest uppercase text-outline space-y-2">
+<li>— Grid Systems</li>
+<li>— Information Architecture</li>
+<li>— Responsive Frameworks</li>
+</ul>
+</div>
+<!-- Skill Block 2 -->
+<div class="md:col-span-4 bg-background p-12 hover:bg-surface-container-lowest transition-colors duration-500">
+<span class="material-symbols-outlined text-4xl mb-8 text-primary">text_fields</span>
+<h5 class="text-xl font-bold mb-4">Editorial Typography</h5>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-8">Type as architecture. Selecting and scaling letterforms to command attention and drive narrative flow.</p>
+<ul class="text-[10px] tracking-widest uppercase text-outline space-y-2">
+<li>— Variable Fonts</li>
+<li>— Readability Audits</li>
+<li>— Custom Type Pairing</li>
+</ul>
+</div>
+<!-- Skill Block 3 -->
+<div class="md:col-span-4 bg-background p-12 hover:bg-surface-container-lowest transition-colors duration-500">
+<span class="material-symbols-outlined text-4xl mb-8 text-primary">layers</span>
+<h5 class="text-xl font-bold mb-4">Visual Stacking</h5>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-8">Creating depth through tonal layering and atmospheric shifts, eliminating the need for decorative lines.</p>
+<ul class="text-[10px] tracking-widest uppercase text-outline space-y-2">
+<li>— Depth Mapping</li>
+<li>— Tonal Hierarchy</li>
+<li>— Glassmorphism</li>
+</ul>
+</div>
+<!-- Image Break Cell -->
+<div class="md:col-span-8 aspect-[16/6] bg-surface-container-high relative overflow-hidden group">
+<img alt="Architectural Texture" class="w-full h-full object-cover transition-transform duration-[1000ms] group-hover:scale-110" data-alt="Cinematic wide shot of a modern brutalist skyscraper corner reflecting a clear blue sky, emphasizing sharp angles and steel texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOx-OWFkyHuw4hyfk24m9-b2Ik56QMYe_XhVHmC4rbmaZQLQhrK-QDuTr-Vz3CB6ilYMuNJLW9SXFclPcnEdhpFt3iOeg8YuR-mv3zRFlNv6neaNJyHkoc8EIaRZ-tSo-MmZauoLjgivE_ZUuPKvLKMfq2zJFhU99b7y01n7FavC0oDDdRDqwvRInFtYqecbuiCfW7IdgX5eoYE_325dE-EFI_0rWh-C5XHJaRaCHsCPG4qnfXwonss1KLJwqb3qxR0pkFfpHUXdaA"/>
+</div>
+<!-- Tools List Cell -->
+<div class="md:col-span-4 bg-surface-container-highest p-12">
+<h5 class="text-sm font-bold tracking-widest uppercase mb-8">Selected Tools</h5>
+<div class="flex flex-wrap gap-x-8 gap-y-6">
+<span class="text-2xl font-light text-black/40 hover:text-black cursor-default transition-colors">Figma</span>
+<span class="text-2xl font-light text-black/40 hover:text-black cursor-default transition-colors">Webflow</span>
+<span class="text-2xl font-light text-black/40 hover:text-black cursor-default transition-colors">Blender</span>
+<span class="text-2xl font-light text-black/40 hover:text-black cursor-default transition-colors">After Effects</span>
+<span class="text-2xl font-light text-black/40 hover:text-black cursor-default transition-colors">React</span>
+<span class="text-2xl font-light text-black/40 hover:text-black cursor-default transition-colors">VS Code</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Recognition / Achievements -->
+<section class="px-12 md:px-24 py-32 bg-white">
+<div class="flex flex-col md:flex-row justify-between items-start border-b border-black/5 pb-24">
+<div class="max-w-md">
+<h3 class="font-manrope text-[10px] tracking-widest uppercase text-outline mb-8">Awards &amp; Exhibitions</h3>
+<p class="text-xl font-light leading-relaxed text-black">
+                        Recognized globally for pushing the boundaries of minimalist digital design and structural interaction.
+                    </p>
+</div>
+<div class="mt-12 md:mt-0 w-full md:w-1/2 space-y-12">
+<div class="flex justify-between items-end border-b border-black/5 pb-4 group cursor-pointer">
+<div>
+<span class="text-[10px] tracking-widest uppercase text-outline">2023</span>
+<h6 class="text-lg font-bold">Site of the Year</h6>
+</div>
+<span class="text-[10px] tracking-widest uppercase text-outline mb-1 group-hover:text-black transition-colors">Awwwards</span>
+</div>
+<div class="flex justify-between items-end border-b border-black/5 pb-4 group cursor-pointer">
+<div>
+<span class="text-[10px] tracking-widest uppercase text-outline">2022</span>
+<h6 class="text-lg font-bold">Design Excellence Gold</h6>
+</div>
+<span class="text-[10px] tracking-widest uppercase text-outline mb-1 group-hover:text-black transition-colors">ID Architecture</span>
+</div>
+<div class="flex justify-between items-end border-b border-black/5 pb-4 group cursor-pointer">
+<div>
+<span class="text-[10px] tracking-widest uppercase text-outline">2021</span>
+<h6 class="text-lg font-bold">Visual Language Award</h6>
+</div>
+<span class="text-[10px] tracking-widest uppercase text-outline mb-1 group-hover:text-black transition-colors">Webby Awards</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-gray-50 flex flex-col md:flex-row justify-between items-center px-12 md:px-24 py-16 w-full tonal-layering no-lines">
+<div class="flex flex-col gap-2 mb-8 md:mb-0">
+<div class="text-lg font-bold text-black">STUDIO_ARCH</div>
+<p class="font-manrope text-[10px] tracking-widest uppercase text-gray-500">© 2024 STUDIO ARCH. ALL RIGHTS RESERVED.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8 md:gap-12">
+<a class="font-manrope text-[10px] tracking-widest uppercase text-gray-500 hover:text-black underline-offset-4 hover:underline transition-all duration-400" href="#">LinkedIn</a>
+<a class="font-manrope text-[10px] tracking-widest uppercase text-gray-500 hover:text-black underline-offset-4 hover:underline transition-all duration-400" href="#">Twitter</a>
+<a class="font-manrope text-[10px] tracking-widest uppercase text-gray-500 hover:text-black underline-offset-4 hover:underline transition-all duration-400" href="#">GitHub</a>
+<a class="font-manrope text-[10px] tracking-widest uppercase text-gray-500 hover:text-black underline-offset-4 hover:underline transition-all duration-400" href="#">Instagram</a>
+<a class="font-manrope text-[10px] tracking-widest uppercase text-black underline-offset-4 hover:underline transition-all duration-400" href="#">Back to top</a>
+</div>
+</footer>
+</body></html>

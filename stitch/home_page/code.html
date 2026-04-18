@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#dadada",
+                    "on-background": "#1a1c1c",
+                    "surface-container-low": "#f3f3f4",
+                    "on-tertiary-container": "#ffffff",
+                    "inverse-on-surface": "#f0f1f1",
+                    "primary": "#000000",
+                    "surface-bright": "#f9f9f9",
+                    "secondary": "#5e5e5e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#ffffff",
+                    "inverse-surface": "#2f3131",
+                    "surface-container-highest": "#e2e2e2",
+                    "outline-variant": "#c6c6c6",
+                    "surface-tint": "#5e5e5e",
+                    "on-surface": "#1a1c1c",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#d4d4d4",
+                    "on-primary": "#e2e2e2",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "surface-container": "#eeeeee",
+                    "surface": "#f9f9f9",
+                    "outline": "#777777",
+                    "on-error-container": "#410002",
+                    "surface-container-high": "#e8e8e8",
+                    "tertiary-container": "#747474",
+                    "on-surface-variant": "#474747",
+                    "primary-container": "#3b3b3b",
+                    "on-tertiary-fixed-variant": "#e2e2e2",
+                    "on-primary-fixed-variant": "#e2e2e2",
+                    "background": "#f9f9f9",
+                    "on-primary-container": "#ffffff",
+                    "on-secondary-fixed": "#1b1b1b",
+                    "tertiary-fixed": "#5e5e5e",
+                    "tertiary-fixed-dim": "#474747",
+                    "inverse-primary": "#c6c6c6",
+                    "on-tertiary-fixed": "#ffffff",
+                    "tertiary": "#3b3b3b",
+                    "on-tertiary": "#e2e2e2",
+                    "primary-fixed": "#5e5e5e",
+                    "on-secondary-container": "#1b1b1b",
+                    "on-error": "#ffffff",
+                    "primary-fixed-dim": "#474747",
+                    "secondary-fixed-dim": "#ababab",
+                    "secondary-fixed": "#c6c6c6",
+                    "on-secondary-fixed-variant": "#3b3b3b",
+                    "surface-variant": "#e2e2e2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0px",
+                    "lg": "0px",
+                    "xl": "0px",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-12 md:px-24 bg-white/70 backdrop-blur-xl h-24 no-border tonal-shift">
+<div class="text-2xl font-bold tracking-tighter text-black uppercase">STUDIO_ARCH</div>
+<!-- Desktop Links -->
+<div class="hidden md:flex items-center space-x-12">
+<a class="font-manrope text-sm tracking-[0.1em] uppercase text-black border-b border-black pb-1 transition-colors duration-300" href="#">Home</a>
+<a class="font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 hover:text-black transition-colors duration-300" href="#">Portfolio</a>
+<a class="font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 hover:text-black transition-colors duration-300" href="#">Services</a>
+<a class="font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 hover:text-black transition-colors duration-300" href="#">About</a>
+<a class="font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 hover:text-black transition-colors duration-300" href="#">Contact</a>
+</div>
+<button class="bg-primary text-on-primary px-8 py-3 font-manrope text-[10px] tracking-widest uppercase hover:opacity-70 transition-opacity duration-500">
+            Get in Touch
+        </button>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex flex-col justify-center pt-32 px-12 md:px-24">
+<div class="max-w-5xl">
+<span class="inline-block label-md tracking-[0.2em] uppercase text-outline mb-8">Creative Practice — 2024</span>
+<h1 class="text-[3.5rem] md:text-[6rem] leading-[0.95] font-extrabold tracking-[-0.04em] text-primary mb-12">
+                    I design and build high-converting websites and visual identities.
+                </h1>
+<div class="flex flex-col md:flex-row md:items-start gap-12">
+<p class="text-lg md:text-xl text-on-surface-variant max-w-xl leading-relaxed">
+                        Bridging the gap between architectural precision and digital performance. We curate bespoke experiences for brands that demand a higher standard of aesthetic and technical excellence.
+                    </p>
+<div class="flex-shrink-0 pt-2">
+<button class="bg-primary text-on-primary px-10 py-5 text-xs tracking-widest uppercase hover:bg-primary-container transition-colors duration-500 flex items-center gap-4">
+                            Start a project
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Hero Visual Offset -->
+<div class="absolute right-0 bottom-0 w-1/3 h-1/2 bg-surface-container-low -z-10 hidden lg:block"></div>
+</section>
+<!-- Featured Work Section (Bento Inspired Grid) -->
+<section class="py-32 px-12 md:px-24 bg-surface-container-low">
+<div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+<div>
+<h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">Featured Work</h2>
+<p class="text-outline uppercase text-[10px] tracking-[0.2em]">Selected Case Studies (01—04)</p>
+</div>
+<div class="text-on-surface-variant max-w-sm text-sm">
+                    A collection of projects where strategy meets high-end execution. Each piece is a testament to functional minimalism.
+                </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Project 1 (Large) -->
+<div class="md:col-span-8 group cursor-pointer">
+<div class="relative overflow-hidden bg-surface-container-highest h-[600px]">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="monochrome architectural photography of a minimal concrete building with sharp shadows and clear geometric lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-W_M6Nl-TJKRSd_BSNsBxdKpsIcR9eM2QbCbsJDCjgYVFDKmRTT_Bl187V9U59jVwxk7Miud-hdK_HtZEZ14hlB3Yw19uv3pJgS-mhqPGtUDkwPBf5C9SVaaSENhV1asLV6Z2oU4A2CwNEoA4d1iDeBU6pUlCSwUd1gj_l8D0WnGw71KMrL5ssReoBd5X2Le3XFcG4LytsVLdCwtmg_SyjR0tNZjDtdN4METJQU5mTkAot5ES7pV24_NAUkpAD59JpMlF_ScNrCEy"/>
+<div class="absolute inset-0 bg-black/10 transition-opacity duration-500 opacity-0 group-hover:opacity-100"></div>
+</div>
+<div class="mt-8 flex justify-between items-start">
+<div>
+<h3 class="text-2xl font-bold uppercase tracking-tight">KONTRAST STUDIO</h3>
+<p class="text-[10px] tracking-widest uppercase text-outline mt-2">Visual Identity • E-Commerce</p>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">north_east</span>
+</div>
+</div>
+<!-- Project 2 (Medium) -->
+<div class="md:col-span-4 group cursor-pointer pt-0 md:pt-24">
+<div class="relative overflow-hidden bg-surface-container-highest h-[450px]">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="minimalist watch photography on a textured stone surface with dramatic overhead lighting and high contrast" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYSxYR65nErQSo_vn-xivxrk-XT1CuE3ouU9T9zLcnpef40p8_mUbsuWdrQSR7FblEy-g-yy7_Eu3CHL39V95Yg51vBZB7HHsYleMP5zFofEQlyu-r0kNtYKBiw6R1tWI3MLw1IJsxJtFipblcPQL41wURFbP3FE_zUY1bC3a_JEdWAxN-u8BBk95n7vhZUWZ5iBPZEc6DRyG2PsspVXPkYSq8Uzya8aBAyMqVNOtkliEUWR6dffmOYHVSmbUORu2rkcKe8Abud2PO"/>
+</div>
+<div class="mt-8">
+<h3 class="text-xl font-bold uppercase tracking-tight">ELEVATE HOROLOGY</h3>
+<p class="text-[10px] tracking-widest uppercase text-outline mt-2">Digital Flagship</p>
+</div>
+</div>
+<!-- Project 3 (Medium) -->
+<div class="md:col-span-5 group cursor-pointer">
+<div class="relative overflow-hidden bg-surface-container-highest h-[500px]">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="abstract editorial layout with bold black serif typography on white paper texture and soft shadow depth" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbLDoto7Y7Eks-uO0bJ8cfP8LvnewmGr1XlMmgGKlw9MOx7VrIgNeZNSOl_Kh4yrZr7H3H_gbqLP6QHaX4ZfVqlvgzQbDrBRcUnO9adKRjnONnr20wQ9hZXiU_72Y2QjYgvvjYem5SK2NwticBG29jebJVRJZzegm5p2mdHmWBQx5Hdu1hpjhP2MW3Ira5Tw-aNv0Ww0QN6gesjbw3VFCb2HxMKhnnXn8VKcpboidEiAl_TeMShIXsJUOsMcc4KatYpYyZO1tizkFd"/>
+</div>
+<div class="mt-8">
+<h3 class="text-xl font-bold uppercase tracking-tight">ARCHIVE MAGAZINE</h3>
+<p class="text-[10px] tracking-widest uppercase text-outline mt-2">Creative Direction</p>
+</div>
+</div>
+<!-- Project 4 (Large) -->
+<div class="md:col-span-7 group cursor-pointer -mt-0 md:-mt-12">
+<div class="relative overflow-hidden bg-surface-container-highest h-[550px]">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="contemporary interior design with minimal furniture, large glass windows, and a palette of warm grey and charcoal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgDZFItlLGJbLOGc7XcpAezx53INTv0IhF-dZuo6q2GeK7QT-e50ZPVtNZMnrMBmU_T3P1Yg1zix8dNnDZMehkLDEsTn9rxtonh_QLgm6CJGPX9MhHqcj8YtE-lZ4n1O-p1Wi8fUCYgVDGoSqlQNvUlQWYKoIbIykLfJNrE7nohSy9dFNEB-Gzia1_1GkjJgz1UN6hSWfsyXe35lQ1-hMCpVqfz4gDAitC_KeSpUpMp4Th92KlnpbvlbZcs7Xfsf-BZ7S8AEAduHYz"/>
+</div>
+<div class="mt-8">
+<h3 class="text-xl font-bold uppercase tracking-tight">SPATIAL RESIDENCY</h3>
+<p class="text-[10px] tracking-widest uppercase text-outline mt-2">Platform Design • UX</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Overview -->
+<section class="py-32 px-12 md:px-24 bg-white">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-24 items-start">
+<div>
+<h2 class="text-[3.5rem] font-extrabold leading-[1] tracking-tighter mb-12">
+                        Holistic Digital <br/> Craftsmanship.
+                    </h2>
+<p class="text-on-surface-variant text-lg leading-relaxed mb-12 max-w-md">
+                        We don't just build websites; we engineer visual narratives. By combining rigorous design logic with modern development standards, we ensure your brand resonates and performs.
+                    </p>
+<a class="inline-flex items-center gap-4 text-[10px] tracking-[0.3em] uppercase font-bold border-b border-outline pb-2 hover:border-primary transition-all duration-300" href="#">
+                        View all capabilities
+                    </a>
+</div>
+<div class="space-y-1">
+<div class="group border-b border-outline-variant/30 py-8 transition-all hover:pl-4">
+<div class="flex justify-between items-center">
+<h4 class="text-2xl font-bold uppercase">Design Systems</h4>
+<span class="text-[10px] text-outline tracking-widest">01</span>
+</div>
+<p class="mt-4 text-on-surface-variant text-sm max-w-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500">Scalable components and visual guidelines that ensure consistency across every digital touchpoint.</p>
+</div>
+<div class="group border-b border-outline-variant/30 py-8 transition-all hover:pl-4">
+<div class="flex justify-between items-center">
+<h4 class="text-2xl font-bold uppercase">Front-End Dev</h4>
+<span class="text-[10px] text-outline tracking-widest">02</span>
+</div>
+<p class="mt-4 text-on-surface-variant text-sm max-w-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500">Pixel-perfect implementation using modern stacks like Tailwind, React, and high-performance animations.</p>
+</div>
+<div class="group border-b border-outline-variant/30 py-8 transition-all hover:pl-4">
+<div class="flex justify-between items-center">
+<h4 class="text-2xl font-bold uppercase">Art Direction</h4>
+<span class="text-[10px] text-outline tracking-widest">03</span>
+</div>
+<p class="mt-4 text-on-surface-variant text-sm max-w-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500">Curating the mood, tone, and visual language that separates your brand from the commodity market.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="py-32 px-12 md:px-24 bg-surface-container">
+<div class="flex justify-center mb-24">
+<span class="label-md tracking-[0.2em] uppercase text-outline">What partners say</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-surface p-12 flex flex-col h-full border-t-2 border-primary">
+<span class="material-symbols-outlined text-4xl mb-8 text-outline">format_quote</span>
+<p class="text-xl italic font-light leading-relaxed mb-12">"The level of detail and architectural precision brought to our rebranding was transformative. A true partner in every sense."</p>
+<div class="mt-auto">
+<p class="font-bold uppercase tracking-tight text-sm">Marcus Chen</p>
+<p class="text-[10px] tracking-widest uppercase text-outline mt-1">Founder, ARCH Lab</p>
+</div>
+</div>
+<div class="bg-surface p-12 flex flex-col h-full">
+<span class="material-symbols-outlined text-4xl mb-8 text-outline">format_quote</span>
+<p class="text-xl italic font-light leading-relaxed mb-12">"Studio Arch understood our need for high-conversion without sacrificing luxury aesthetics. The results exceeded all KPIs."</p>
+<div class="mt-auto">
+<p class="font-bold uppercase tracking-tight text-sm">Elena Voss</p>
+<p class="text-[10px] tracking-widest uppercase text-outline mt-1">Marketing Director, VOSS</p>
+</div>
+</div>
+<div class="bg-surface p-12 flex flex-col h-full">
+<span class="material-symbols-outlined text-4xl mb-8 text-outline">format_quote</span>
+<p class="text-xl italic font-light leading-relaxed mb-12">"Technical excellence combined with an editorial eye. Our site performance improved by 140% post-launch."</p>
+<div class="mt-auto">
+<p class="font-bold uppercase tracking-tight text-sm">Julian Grant</p>
+<p class="text-[10px] tracking-widest uppercase text-outline mt-1">CEO, NEXUS Digital</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA Section -->
+<section class="py-48 px-12 md:px-24 bg-primary text-on-primary text-center">
+<div class="max-w-4xl mx-auto">
+<h2 class="text-4xl md:text-7xl font-extrabold tracking-tighter mb-16 leading-[1.1]">
+                    Let's redefine your <br/> digital presence.
+                </h2>
+<div class="flex flex-col md:flex-row justify-center gap-8">
+<button class="bg-white text-black px-12 py-6 font-bold uppercase tracking-widest text-xs hover:bg-surface-container-high transition-colors duration-300">
+                        Work with us
+                    </button>
+<button class="border border-white/30 text-white px-12 py-6 font-bold uppercase tracking-widest text-xs hover:bg-white hover:text-black transition-all duration-300">
+                        View Portfolio
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-gray-50 flex flex-col md:flex-row justify-between items-center px-12 md:px-24 w-full py-16 tonal-layering no-lines">
+<div class="mb-8 md:mb-0">
+<div class="text-lg font-bold text-black uppercase tracking-widest mb-4">STUDIO ARCH</div>
+<p class="font-manrope text-[10px] tracking-widest uppercase text-gray-500">© 2024 STUDIO ARCH. ALL RIGHTS RESERVED.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-manrope text-[10px] tracking-widest uppercase text-gray-500 hover:text-black transition-all duration-400 underline-offset-4 hover:underline" href="#">LinkedIn</a>
+<a class="font-manrope text-[10px] tracking-widest uppercase text-gray-500 hover:text-black transition-all duration-400 underline-offset-4 hover:underline" href="#">Twitter</a>
+<a class="font-manrope text-[10px] tracking-widest uppercase text-gray-500 hover:text-black transition-all duration-400 underline-offset-4 hover:underline" href="#">GitHub</a>
+<a class="font-manrope text-[10px] tracking-widest uppercase text-gray-500 hover:text-black transition-all duration-400 underline-offset-4 hover:underline" href="#">Instagram</a>
+<a class="font-manrope text-[10px] tracking-widest uppercase text-black font-bold flex items-center gap-2" href="#top">
+                Back to top
+                <span class="material-symbols-outlined text-xs">arrow_upward</span>
+</a>
+</div>
+</footer>
+</body></html>

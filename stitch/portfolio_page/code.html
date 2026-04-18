@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Portfolio | STUDIO_ARCH</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#dadada",
+                    "on-background": "#1a1c1c",
+                    "surface-container-low": "#f3f3f4",
+                    "on-tertiary-container": "#ffffff",
+                    "inverse-on-surface": "#f0f1f1",
+                    "primary": "#000000",
+                    "surface-bright": "#f9f9f9",
+                    "secondary": "#5e5e5e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#ffffff",
+                    "inverse-surface": "#2f3131",
+                    "surface-container-highest": "#e2e2e2",
+                    "outline-variant": "#c6c6c6",
+                    "surface-tint": "#5e5e5e",
+                    "on-surface": "#1a1c1c",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#d4d4d4",
+                    "on-primary": "#e2e2e2",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "surface-container": "#eeeeee",
+                    "surface": "#f9f9f9",
+                    "outline": "#777777",
+                    "on-error-container": "#410002",
+                    "surface-container-high": "#e8e8e8",
+                    "tertiary-container": "#747474",
+                    "on-surface-variant": "#474747",
+                    "primary-container": "#3b3b3b",
+                    "on-tertiary-fixed-variant": "#e2e2e2",
+                    "on-primary-fixed-variant": "#e2e2e2",
+                    "background": "#f9f9f9",
+                    "on-primary-container": "#ffffff",
+                    "on-secondary-fixed": "#1b1b1b",
+                    "tertiary-fixed": "#5e5e5e",
+                    "tertiary-fixed-dim": "#474747",
+                    "inverse-primary": "#c6c6c6",
+                    "on-tertiary-fixed": "#ffffff",
+                    "tertiary": "#3b3b3b",
+                    "on-tertiary": "#e2e2e2",
+                    "primary-fixed": "#5e5e5e",
+                    "on-secondary-container": "#1b1b1b",
+                    "on-error": "#ffffff",
+                    "primary-fixed-dim": "#474747",
+                    "secondary-fixed-dim": "#ababab",
+                    "secondary-fixed": "#c6c6c6",
+                    "on-secondary-fixed-variant": "#3b3b3b",
+                    "surface-variant": "#e2e2e2"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for editorial feel */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f9f9f9; }
+        ::-webkit-scrollbar-thumb { background: #000000; }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased selection:bg-primary selection:text-white">
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-12 md:px-24 bg-white/70 backdrop-blur-xl h-24 no-border tonal-shift">
+<div class="text-2xl font-bold tracking-tighter text-black">STUDIO_ARCH</div>
+<nav class="hidden md:flex items-center space-x-12">
+<a class="font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 hover:text-black transition-colors duration-300" href="#">Home</a>
+<a class="font-manrope text-sm tracking-[0.1em] uppercase text-black border-b border-black pb-1" href="#">Portfolio</a>
+<a class="font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 hover:text-black transition-colors duration-300" href="#">Services</a>
+<a class="font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 hover:text-black transition-colors duration-300" href="#">About</a>
+<a class="font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 hover:text-black transition-colors duration-300" href="#">Contact</a>
+</nav>
+<button class="bg-primary text-on-primary-container px-8 py-3 font-manrope text-sm tracking-[0.1em] uppercase transition-opacity duration-500 hover:opacity-70">
+            Get in Touch
+        </button>
+</header>
+<main class="pt-48 pb-24">
+<!-- Hero Section: Editorial Statement -->
+<section class="px-12 md:px-24 mb-32">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<div class="md:col-span-8">
+<h1 class="text-[clamp(3rem,8vw,5.5rem)] font-extrabold tracking-[-0.04em] leading-[0.9] text-primary mb-12">
+                        SELECTED <br/>WORKS <span class="text-outline-variant">22—24</span>
+</h1>
+</div>
+<div class="md:col-span-4 flex flex-col justify-end pb-4">
+<p class="text-on-surface-variant font-body text-lg leading-relaxed max-w-sm">
+                        A curation of architectural digital experiences and visual identities crafted with surgical precision.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Filter Categories -->
+<section class="px-12 md:px-24 mb-16">
+<div class="flex flex-wrap gap-x-12 gap-y-6 border-b border-outline-variant/30 pb-8">
+<button class="font-manrope text-[10px] tracking-widest uppercase text-black border-b border-black pb-2">All Projects</button>
+<button class="font-manrope text-[10px] tracking-widest uppercase text-gray-400 hover:text-black transition-colors duration-300">Web Design</button>
+<button class="font-manrope text-[10px] tracking-widest uppercase text-gray-400 hover:text-black transition-colors duration-300">Branding</button>
+<button class="font-manrope text-[10px] tracking-widest uppercase text-gray-400 hover:text-black transition-colors duration-300">Graphics</button>
+</div>
+</section>
+<!-- Project Grid: Asymmetric Layout -->
+<section class="px-12 md:px-24">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-y-24 gap-x-12">
+<!-- Project 1: Featured Large -->
+<div class="md:col-span-12 group cursor-pointer">
+<div class="bg-surface-container-low aspect-[21/9] overflow-hidden mb-8">
+<img alt="Commercial Architecture" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105" data-alt="monochrome architectural photography of a modern skyscraper with sharp glass angles reflecting a cloudy sky, high contrast dramatic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOd_xxswRtCGaFfktQbMQJ3lSmAjBHErrAhvILTjOY7iZVKYyGO5QehrxiC8pr2e5phkbG1p7tGXnQ8VIeq44DaTBiTN-mIm9aNhwS_8723wLRv3fNc4sCpUgQwaDL6tvWTiXs7yll8hhnBP1H0c1qYKYwPvLfgQ9r-5RtZBPAwCahgh8EOEUODMNJfBbgpipJaE7Z4dQLmPnXzF89fAtqcVotWI3Yw2e5G5yWr0-NQPHbfH0B7tz0VvE1gH9mdyGnjq27qVM9r81O"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<span class="font-manrope text-[10px] tracking-widest uppercase text-on-surface-variant mb-2 block">Branding / Web Design</span>
+<h2 class="text-3xl font-bold tracking-tight text-primary">MONOLITH OS</h2>
+</div>
+<div class="text-right">
+<span class="font-manrope text-[10px] tracking-widest uppercase text-on-surface-variant">2024</span>
+</div>
+</div>
+</div>
+<!-- Project 2: Column Left -->
+<div class="md:col-span-5 group cursor-pointer">
+<div class="bg-surface-container-low aspect-[4/5] overflow-hidden mb-8">
+<img alt="Interior Design" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105" data-alt="minimalist interior of a brutalist concrete building with a single wooden chair and a sharp beam of sunlight hitting the floor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsA42QXbvbjBwJtkX8vO1TvNeuHK3xwD_QClto7jaBXv8RuTHMPPijxXMwLWNYTGES4mM7saoHk5mqnF0mGu6D9MomDH3tkwqP-IyBQAMow9wyyqvLjorDdQR32cz9ljdWe6NSzx3tO73NrjxFDpJcBsdogny6tDSPtu0sn0t7P7b9IBwkIGSvcAeQgnp6HikSX5e6kotaPIlbu0XA__LN2iDGtkxJiSLawdfpp2NnnC-HaipY2xqeAnk9kT3k9Y3OGVHlJmAmYgX0"/>
+</div>
+<div class="flex flex-col">
+<span class="font-manrope text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Graphics</span>
+<h2 class="text-2xl font-bold tracking-tight text-primary">KINETIC SPACES</h2>
+</div>
+</div>
+<!-- Project 3: Column Right Offset -->
+<div class="md:col-span-6 md:col-start-7 mt-24 group cursor-pointer">
+<div class="bg-surface-container-low aspect-square overflow-hidden mb-8">
+<img alt="Graphic Identity" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105" data-alt="abstract black and white graphic design featuring geometric shapes and high contrast typography in a grid system" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAt2LYVaPMTEsAfEISzOBXzbr4JsfhbUtaI-2RejTTUjL1-x70Vzv9YyQc_bwX7wrJz2q7enukrU4uwkysQyVq_G8PN0sfeQ0mEZ26L_K_KbPg1pxaIg3LOVhFgR1qgBBzfjFD1Bw2K87Jef4Y5GFOgDBbn6xFrSBNGnnUjDMiZcAurYVUZpzkvGa9xISmvPbJ_49ZcP7fG2SO4UVNdkTXSuo-ma_xSpp4XeuhjidBqfNdFsxIHGWEF3RBu6ydnq6Q-PipE1AL-Ry0M"/>
+</div>
+<div class="flex flex-col">
+<span class="font-manrope text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Web Design / Branding</span>
+<h2 class="text-2xl font-bold tracking-tight text-primary">VOID COLLECTIVE</h2>
+</div>
+</div>
+<!-- Project 4: Full Width Minimal -->
+<div class="md:col-span-8 group cursor-pointer">
+<div class="bg-surface-container-low aspect-[16/9] overflow-hidden mb-8">
+<img alt="Digital Product" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105" data-alt="close-up of a high-end designer watch or technical instrument with metallic textures and precise industrial details" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVzDuLIhmWoFpzwRElgP2fWSoPkgd7EJphuPiSD5gmIzFaW9vY8r073LouLXhj3edrfgVOpRvz-Xq7yI-L5nd7r4M_Z9b0BKcYEKxIk9y56_zlJt7M6fnp7IwSpTJrdphBam1RXgt_BfKnmHR1CTmCvvK4VGqSRdKW-pnMlU9sgUJDEa4v0xkSdIS4OwteVqeWAZpYfVWsNcZm5ehXDSaDwV3VaFxI8K6D1f_EaIxn6jith6q3RaD94E4K5pGC8LxvMvSor3eVAn0L"/>
+</div>
+<div class="flex flex-col">
+<span class="font-manrope text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Digital Product</span>
+<h2 class="text-2xl font-bold tracking-tight text-primary">AERO INTERFACE</h2>
+</div>
+</div>
+<!-- Project 5: Small Detail -->
+<div class="md:col-span-4 flex items-end group cursor-pointer">
+<div class="w-full">
+<div class="bg-surface-container-low aspect-[3/4] overflow-hidden mb-8">
+<img alt="Branding Detail" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105" data-alt="macro shot of premium textured paper with a deep embossed logo and elegant sans-serif typography in black ink" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaGNX7YZCqzieETgL2E6ny_Kz1n1zc-pnSBk3sGBfgfRn_MAWwIpGKBAB02b93DKqeI8bEFR_1w71YGy8OIRG8f31LV5bnkcS4EubfTbmTu4m1LbQGkS3nMXcta9sjVJQMxz5U-SjDqvbOYB5zSjMrteGOxmhWYr-PiZiW69F1Am7TtBgTMEM72-c9Z-gnluFZtnnPQB2mONUlepWaZHfXFp14tuVfTv-ylxRxFvyEnO6DZm16RRP-YkXhM52sDtMMLevGeJSLbiYJ"/>
+</div>
+<div class="flex flex-col">
+<span class="font-manrope text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Branding</span>
+<h2 class="text-2xl font-bold tracking-tight text-primary">THE ARCHIVE</h2>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="mt-48 px-12 md:px-24 bg-surface-container-low py-32 flex flex-col items-center text-center">
+<span class="font-manrope text-[12px] tracking-[0.2em] uppercase text-on-surface-variant mb-6">Have a vision?</span>
+<h2 class="text-[clamp(2.5rem,5vw,4rem)] font-extrabold tracking-tight text-primary mb-12 max-w-4xl leading-tight">
+                LET'S CONSTRUCT SOMETHING EXTRAORDINARY TOGETHER.
+            </h2>
+<button class="border border-primary px-12 py-5 font-manrope text-sm tracking-[0.2em] uppercase hover:bg-primary hover:text-white transition-all duration-400">
+                START A PROJECT
+            </button>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="bg-gray-50 flex flex-col md:flex-row justify-between items-center px-12 md:px-24 py-16 w-full tonal-layering no-lines">
+<div class="mb-8 md:mb-0">
+<div class="text-lg font-bold text-black mb-2 uppercase tracking-tighter">STUDIO ARCH</div>
+<p class="font-manrope text-[10px] tracking-widest text-gray-500 uppercase">© 2024 STUDIO ARCH. ALL RIGHTS RESERVED.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-x-8 gap-y-4">
+<a class="font-manrope text-[10px] tracking-widest uppercase text-gray-500 hover:text-black underline-offset-4 hover:underline transition-all duration-400" href="#">LinkedIn</a>
+<a class="font-manrope text-[10px] tracking-widest uppercase text-gray-500 hover:text-black underline-offset-4 hover:underline transition-all duration-400" href="#">Twitter</a>
+<a class="font-manrope text-[10px] tracking-widest uppercase text-gray-500 hover:text-black underline-offset-4 hover:underline transition-all duration-400" href="#">GitHub</a>
+<a class="font-manrope text-[10px] tracking-widest uppercase text-gray-500 hover:text-black underline-offset-4 hover:underline transition-all duration-400" href="#">Instagram</a>
+<a class="font-manrope text-[10px] tracking-widest uppercase text-black hover:text-black underline-offset-4 hover:underline transition-all duration-400 flex items-center" href="#">
+                Back to top <span class="material-symbols-outlined ml-1 text-sm">arrow_upward</span>
+</a>
+</div>
+</footer>
+</body></html>

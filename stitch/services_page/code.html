@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#dadada",
+                    "on-background": "#1a1c1c",
+                    "surface-container-low": "#f3f3f4",
+                    "on-tertiary-container": "#ffffff",
+                    "inverse-on-surface": "#f0f1f1",
+                    "primary": "#000000",
+                    "surface-bright": "#f9f9f9",
+                    "secondary": "#5e5e5e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#ffffff",
+                    "inverse-surface": "#2f3131",
+                    "surface-container-highest": "#e2e2e2",
+                    "outline-variant": "#c6c6c6",
+                    "surface-tint": "#5e5e5e",
+                    "on-surface": "#1a1c1c",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#d4d4d4",
+                    "on-primary": "#e2e2e2",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "surface-container": "#eeeeee",
+                    "surface": "#f9f9f9",
+                    "outline": "#777777",
+                    "on-error-container": "#410002",
+                    "surface-container-high": "#e8e8e8",
+                    "tertiary-container": "#747474",
+                    "on-surface-variant": "#474747",
+                    "primary-container": "#3b3b3b",
+                    "on-tertiary-fixed-variant": "#e2e2e2",
+                    "on-primary-fixed-variant": "#e2e2e2",
+                    "background": "#f9f9f9",
+                    "on-primary-container": "#ffffff",
+                    "on-secondary-fixed": "#1b1b1b",
+                    "tertiary-fixed": "#5e5e5e",
+                    "tertiary-fixed-dim": "#474747",
+                    "inverse-primary": "#c6c6c6",
+                    "on-tertiary-fixed": "#ffffff",
+                    "tertiary": "#3b3b3b",
+                    "on-tertiary": "#e2e2e2",
+                    "primary-fixed": "#5e5e5e",
+                    "on-secondary-container": "#1b1b1b",
+                    "on-error": "#ffffff",
+                    "primary-fixed-dim": "#474747",
+                    "secondary-fixed-dim": "#ababab",
+                    "secondary-fixed": "#c6c6c6",
+                    "on-secondary-fixed-variant": "#3b3b3b",
+                    "surface-variant": "#e2e2e2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0px",
+                    "lg": "0px",
+                    "xl": "0px",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+        }
+        .glass-nav {
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(24px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-12 md:px-24 bg-white/70 backdrop-blur-xl h-24 no-border tonal-shift font-manrope text-sm tracking-[0.1em] uppercase">
+<div class="text-2xl font-bold tracking-tighter text-black">STUDIO_ARCH</div>
+<nav class="hidden md:flex items-center space-x-12">
+<a class="text-gray-400 hover:text-black transition-colors duration-300" href="#">Home</a>
+<a class="text-gray-400 hover:text-black transition-colors duration-300" href="#">Portfolio</a>
+<a class="text-black border-b border-black pb-1" href="#">Services</a>
+<a class="text-gray-400 hover:text-black transition-colors duration-300" href="#">About</a>
+<a class="text-gray-400 hover:text-black transition-colors duration-300" href="#">Contact</a>
+</nav>
+<button class="bg-primary text-on-primary px-8 py-3 text-xs tracking-widest hover:opacity-70 transition-opacity duration-500 uppercase font-semibold">
+            Get in Touch
+        </button>
+</header>
+<main class="pt-48 pb-24">
+<!-- Hero Header -->
+<section class="px-12 md:px-24 mb-32">
+<div class="editorial-grid">
+<div class="col-span-12 md:col-span-8">
+<span class="label-md uppercase tracking-[0.2em] text-secondary mb-6 block">Capabilities</span>
+<h1 class="text-6xl md:text-8xl font-bold tracking-tighter leading-none mb-12">
+                        Defining the <br/>Digital Edge.
+                    </h1>
+</div>
+<div class="col-span-12 md:col-start-7 md:col-span-5 self-end">
+<p class="text-xl text-on-surface-variant leading-relaxed">
+                        We operate at the intersection of architectural precision and digital fluidity, crafting bespoke experiences that command attention.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Service Section 1: Website Design & Development -->
+<section class="px-12 md:px-24 py-32 bg-surface-container-low">
+<div class="editorial-grid gap-y-16">
+<div class="col-span-12 md:col-span-5">
+<div class="aspect-[4/5] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" data-alt="Minimalist luxury website design displayed on a clean metallic laptop in a bright architect studio with soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvLz3t8UMnQ7utR7o5g4UXVHPLHC2u1yEKD-caabNlOK0uMq1Hi9i9ZqgDBvUG6bQ-AVaICd5Qpyj-VzQR8WY2b-fnGsvJVwtus1tHL0RTHZtfaNerc03aiCp5-LNPiw9CFKbfCIz7w2IpsS87QgHvvnL9jQRLnh1EyLFpi4NsQOrL15Jqe2UGpu3jht_cbjesVnbR-i2w9Lpil_QhTqjPatLuDWgktjkIAys1Vfg3sqPhLyIQLQfyjN0BxGJ0OjTe1YC0EFZL2ipo"/>
+</div>
+</div>
+<div class="col-span-12 md:col-start-7 md:col-span-6 flex flex-col justify-center">
+<span class="label-sm uppercase tracking-widest text-outline mb-4">Service 01</span>
+<h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-8">Website Design &amp; Development</h2>
+<p class="text-lg text-on-surface-variant mb-12 max-w-lg">
+                        We build high-performance digital foundations. Our approach prioritizes technical excellence and visual narrative, ensuring your online presence is as structurally sound as it is beautiful.
+                    </p>
+<div class="mb-12">
+<h4 class="label-md uppercase tracking-widest font-bold mb-6 text-primary">What's included</h4>
+<ul class="space-y-4">
+<li class="flex items-center space-x-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">arrow_forward</span>
+<span>Custom UI/UX Architecture</span>
+</li>
+<li class="flex items-center space-x-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">arrow_forward</span>
+<span>Responsive Component Frameworks</span>
+</li>
+<li class="flex items-center space-x-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">arrow_forward</span>
+<span>Advanced Animation &amp; Micro-interactions</span>
+</li>
+<li class="flex items-center space-x-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">arrow_forward</span>
+<span>SEO &amp; Performance Optimization</span>
+</li>
+</ul>
+</div>
+<div class="flex items-baseline space-x-4 mb-8">
+<span class="label-sm text-outline uppercase tracking-tighter">Starting from</span>
+<span class="text-3xl font-bold tracking-tighter">$4,500</span>
+</div>
+<div class="flex">
+<button class="bg-primary text-on-primary px-10 py-4 text-sm tracking-widest hover:opacity-70 transition-opacity duration-500 uppercase font-bold">
+                            Inquire Now
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Service Section 2: Graphic Design & Branding -->
+<section class="px-12 md:px-24 py-32 bg-surface">
+<div class="editorial-grid gap-y-16">
+<div class="col-span-12 md:col-span-6 flex flex-col justify-center order-2 md:order-1">
+<span class="label-sm uppercase tracking-widest text-outline mb-4">Service 02</span>
+<h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-8">Graphic Design &amp; Branding</h2>
+<p class="text-lg text-on-surface-variant mb-12 max-w-lg">
+                        Visual identity is the soul of your enterprise. We distill your brand's essence into a cohesive visual language that resonates across every touchpoint, from physical print to digital pixels.
+                    </p>
+<div class="mb-12">
+<h4 class="label-md uppercase tracking-widest font-bold mb-6 text-primary">What's included</h4>
+<ul class="space-y-4">
+<li class="flex items-center space-x-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">arrow_forward</span>
+<span>Identity Strategy &amp; Positioning</span>
+</li>
+<li class="flex items-center space-x-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">arrow_forward</span>
+<span>Logo Systems &amp; Mark Design</span>
+</li>
+<li class="flex items-center space-x-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">arrow_forward</span>
+<span>Editorial &amp; Print Design</span>
+</li>
+<li class="flex items-center space-x-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">arrow_forward</span>
+<span>Brand Style Guidelines</span>
+</li>
+</ul>
+</div>
+<div class="flex items-baseline space-x-4 mb-8">
+<span class="label-sm text-outline uppercase tracking-tighter">Starting from</span>
+<span class="text-3xl font-bold tracking-tighter">$3,200</span>
+</div>
+<div class="flex">
+<button class="bg-primary text-on-primary px-10 py-4 text-sm tracking-widest hover:opacity-70 transition-opacity duration-500 uppercase font-bold">
+                            Elevate Branding
+                        </button>
+</div>
+</div>
+<div class="col-span-12 md:col-start-8 md:col-span-5 order-1 md:order-2">
+<div class="aspect-[4/5] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" data-alt="Collection of premium branded stationary and business cards with sharp edges on a textured light grey stone surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpMtl9q9cL3JrTcPOUeI92VrigJCHE6BzT_KlPsRNHU4GNdbPgpunnmamIjJCkijqQugTAHlsuRenCOmkG0rrqIJUo-WiEU1k_zG-hfLbj0ebaCxf_VcBDAWroK8lV7QVsvOdKt_0TTN-7JxlU4VXvRSgw6bcpQzXj4U1HstPEUgPP7Ljqrhgq_YFoJwNDz-G2YO8TQS6qeVmypl_PgRF7rTYX51gOJ2L2tFGMd1Vy_IbMlBnapW3t9YdkdWv_24ExwOugYHdqjLCC"/>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="px-12 md:px-24 py-40 border-t border-outline-variant/15">
+<div class="text-center">
+<h3 class="text-5xl md:text-7xl font-bold tracking-tighter mb-12">Let's build <br/>something iconic.</h3>
+<a class="text-lg font-bold border-b-2 border-primary pb-2 hover:opacity-50 transition-all duration-300" href="#">Start your project</a>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="flex flex-col md:flex-row justify-between items-center px-12 md:px-24 w-full bg-gray-50 py-16 tonal-layering no-lines font-manrope text-[10px] tracking-widest uppercase">
+<div class="text-lg font-bold text-black mb-8 md:mb-0">STUDIO ARCH</div>
+<div class="flex flex-wrap justify-center gap-8 mb-8 md:mb-0">
+<a class="text-gray-500 hover:text-black underline-offset-4 hover:underline transition-all duration-400" href="#">LinkedIn</a>
+<a class="text-gray-500 hover:text-black underline-offset-4 hover:underline transition-all duration-400" href="#">Twitter</a>
+<a class="text-gray-500 hover:text-black underline-offset-4 hover:underline transition-all duration-400" href="#">GitHub</a>
+<a class="text-gray-500 hover:text-black underline-offset-4 hover:underline transition-all duration-400" href="#">Instagram</a>
+<a class="text-gray-500 hover:text-black underline-offset-4 hover:underline transition-all duration-400" href="#">Back to top</a>
+</div>
+<div class="text-gray-500">
+            © 2024 STUDIO ARCH. ALL RIGHTS RESERVED.
+        </div>
+</footer>
+</body></html>
