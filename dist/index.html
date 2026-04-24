@@ -3,7 +3,7 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Adley Fernandes — Design & Development Studio</title>
+<title>Adley Fernandes | Design & Development Studio</title>
 <meta name="description" content="Adley Fernandes bridges architectural precision and digital performance. Bespoke website design, branding, and art direction for brands that demand a higher standard."/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;500;700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap" rel="stylesheet"/>
@@ -11,6 +11,7 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
 
 <!-- Preload the critical above-the-fold case studies for instantaneous display -->
 <link rel="preload" as="image" href="/assets/mockup%2003-DOw2xred.png" fetchpriority="high" />
@@ -36,6 +37,7 @@
 <style>
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
   body { font-family: 'Manrope', sans-serif; }
+  h1, h2, h3, h4, h5, h6 { font-family: Helvetica, Arial, sans-serif; }
   #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
   #mobile-menu.open { max-height: 400px; }
   ::-webkit-scrollbar { width: 6px; }
@@ -232,6 +234,25 @@
       drop-shadow(2px  6px  8px  rgba(0,0,0,.25));
   }
   #scroll-pen .pen-shadow-el { display: none; }
+  /* CTA Shine/Flash Animation */
+  @keyframes button-shine {
+    0% { left: -100%; }
+    20% { left: 100%; }
+    100% { left: 100%; }
+  }
+  .btn-shine-trigger { position: relative; overflow: hidden; }
+  .btn-shine-trigger::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+    transform: skewX(-25deg);
+    animation: button-shine 4s infinite linear;
+    pointer-events: none;
+  }
   /* Hero pen col transition */
   #hero-pen-col { transition: opacity 0.4s ease; }
 </style>
@@ -248,7 +269,7 @@
     <a class="font-manrope text-sm tracking-[0.1em] uppercase text-zinc-900 border-b border-black pb-1 transition-colors duration-300" href="index.html">Home</a>
     <a class="font-manrope text-sm tracking-[0.1em] uppercase text-zinc-400 hover:text-zinc-900 transition-colors duration-300" href="portfolio.html">Portfolio</a>
     <a class="font-manrope text-sm tracking-[0.1em] uppercase text-zinc-400 hover:text-zinc-900 transition-colors duration-300" href="services.html">Services</a>
-    <a class="font-manrope text-sm tracking-[0.1em] uppercase text-zinc-400 hover:text-zinc-900 transition-colors duration-300" href="about.html">About</a>
+    <a class="font-manrope text-sm tracking-[0.1em] uppercase text-zinc-400 hover:text-zinc-900 transition-colors duration-300" href="#about" onclick="gsap.to(window, {duration: 1.5, scrollTo: '#about', ease: 'power4.inOut'}); return false;">About</a>
     <a class="font-manrope text-sm tracking-[0.1em] uppercase text-zinc-400 hover:text-zinc-900 transition-colors duration-300" href="contact.html">Contact</a>
   </div>
   <a href="contact.html" class="hidden md:block bg-black text-white border border-zinc-200 px-8 py-3 font-manrope text-[10px] tracking-widest uppercase hover:bg-zinc-800 transition-colors duration-500">
@@ -267,7 +288,7 @@
   <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-black font-bold" href="index.html">Home</a>
   <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="portfolio.html">Portfolio</a>
   <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="services.html">Services</a>
-  <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="about.html">About</a>
+  <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="#about" onclick="document.getElementById('hamburger').click(); gsap.to(window, {duration: 1.5, scrollTo: '#about', ease: 'power4.inOut'}); return false;">About</a>
   <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="contact.html">Contact</a>
   <a class="py-6 mt-4 bg-black text-white text-center font-manrope text-sm tracking-[0.2em] uppercase font-bold" href="contact.html">
     Get in Touch
@@ -280,17 +301,24 @@
   <section id="hero" class="min-h-screen grid grid-cols-1 lg:grid-cols-2 border-b border-white/20">
 
     <!-- LEFT — Text -->
-    <div class="flex flex-col justify-center px-6 md:px-24 pt-24 pb-48 relative">
+    <div class="flex flex-col justify-center px-6 md:px-24 pt-24 pb-20 relative">
 
       <!-- Overline -->
       <p class="hero-slide-right text-xs tracking-[0.3em] uppercase text-zinc-500 mb-10">Creative Practice — 2024</p>
 
       <!-- Headline -->
-      <h1 class="hero-slide-right text-[clamp(2.5rem,7vw,7rem)] leading-[1.05] font-bold tracking-[-0.03em] text-zinc-900 mb-10" style="font-family: 'DM Sans', sans-serif;">
-        Creative design meets<br/>
-        strategic development<br/>
-        for brands that demand<br/>
-        more than average.
+      <h1 id="hero-headline" class="text-[clamp(2.75rem,8.5vw,9.5rem)] leading-[0.95] font-bold tracking-[-0.04em] text-zinc-900 mb-12">
+        <span class="block mb-4">Creative design meets</span>
+        <span class="block mb-6">strategic development</span>
+        <div class="flex flex-wrap gap-x-[0.3em] gap-y-2">
+          <span class="reveal-word inline-block opacity-0 -translate-x-12 transition-all duration-1000 ease-out">for</span>
+          <span class="reveal-word inline-block opacity-0 -translate-x-12 transition-all duration-1000 ease-out">brands</span>
+          <span class="reveal-word inline-block opacity-0 -translate-x-12 transition-all duration-1000 ease-out">that</span>
+          <span class="reveal-word inline-block opacity-0 -translate-x-12 transition-all duration-1000 ease-out">demand</span>
+          <span class="reveal-word inline-block opacity-0 -translate-x-12 transition-all duration-1000 ease-out">more</span>
+          <span class="reveal-word inline-block opacity-0 -translate-x-12 transition-all duration-1000 ease-out">than</span>
+          <span class="reveal-word inline-block opacity-0 -translate-x-12 transition-all duration-1000 ease-out">average.</span>
+        </div>
       </h1>
 
       <!-- Descriptor -->
@@ -300,7 +328,7 @@
 
       <!-- CTAs -->
       <div class="hero-slide-right flex flex-wrap items-center gap-6 mb-20">
-        <a href="contact.html" class="group bg-black text-white border border-white/20 px-10 py-5 text-xs tracking-[0.2em] uppercase font-bold hover:bg-zinc-900 transition-colors duration-500 inline-flex items-center gap-3">
+        <a href="contact.html" class="group bg-black text-white border border-white/20 px-10 py-5 text-xs tracking-[0.2em] uppercase font-bold hover:bg-zinc-900 transition-colors duration-500 inline-flex items-center gap-3 btn-shine-trigger">
           Start a Project
           <div class="relative w-4 h-4 flex items-center justify-center overflow-hidden flex-shrink-0">
             <span class="material-symbols-outlined absolute transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-x-6" style="font-size:16px;">arrow_forward</span>
@@ -354,37 +382,168 @@
 
   </section>
 
+  <!-- About Me Section -->
+  <section id="about" class="bg-white border-b border-zinc-100 overflow-hidden">
+    <!-- Narrative Summary -->
+    <div class="px-6 md:px-24 py-24 md:py-32 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
+      <div class="lg:col-span-7">
+        <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-400 font-bold mb-8 block">Architectural Perspective</span>
+        <h2 class="text-[clamp(2.5rem,6vw,5.5rem)] font-bold tracking-tighter leading-none text-zinc-900 mb-12">
+          Defining Space<br/>Through Void.
+        </h2>
+        <div class="space-y-8 max-w-2xl">
+          <p class="text-xl md:text-2xl font-light text-zinc-600 leading-relaxed">
+            Architecture is not merely the construction of walls, but the curation of movement and light. A multi-disciplinary studio led by <span class="text-zinc-900 font-medium">Adley Fernandes</span>, dedicated to the intersection of structural integrity and minimal aesthetics.
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 pt-8">
+            <div>
+              <h3 class="text-xs tracking-widest uppercase font-bold text-zinc-900 mb-4">The Narrative</h3>
+              <p class="text-sm text-zinc-500 leading-relaxed">
+                Founded on the exploration of how digital environments can mimic the tactile weight of physical structures. I bridge the gap between the permanent and the ephemeral.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-xs tracking-widest uppercase font-bold text-zinc-900 mb-4">The Commitment</h3>
+              <p class="text-sm text-zinc-500 leading-relaxed">
+                Every project starts with a single line—a commitment to precision that rejects the decorative in favor of the absolute essential.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-5 relative group">
+        <div class="aspect-[4/5] overflow-hidden bg-zinc-50 border border-zinc-200">
+          <img alt="Adley Fernandes Portrait" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" src="/assets/profile-portrait-D1UnlxvO.jpeg"/>
+        </div>
+        <!-- Ornamental element -->
+        <div class="absolute -bottom-6 -right-6 w-32 h-32 border-r border-b border-zinc-200 pointer-events-none"></div>
+      </div>
+    </div>
 
+    <!-- Toolkit Section -->
+    <div class="bg-zinc-50 border-y border-zinc-100">
+      <div class="px-6 md:px-24 py-24">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          <div class="lg:col-span-4">
+            <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-400 font-bold mb-6 block">Core Competencies</span>
+            <h3 class="text-4xl font-bold tracking-tight text-zinc-900 mb-8">The Toolkit of Precision</h3>
+            <p class="text-zinc-500 text-sm leading-relaxed mb-12">
+              Combining rigorous architectural logic with modern interface design to create digital environments that breathe and function with intent.
+            </p>
+            
+            <!-- Software Icons Grid -->
+            <div class="grid grid-cols-3 gap-6 pt-8 border-t border-zinc-200">
+              <div class="group flex flex-col items-center gap-3">
+                <div class="w-12 h-12 bg-transparent rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Adobe_Illustrator_CC_icon.svg" class="w-9 h-9 object-contain transition-all" alt="Adobe Illustrator">
+                </div>
+                <span class="text-[8px] tracking-widest uppercase text-zinc-400 group-hover:text-zinc-900 transition-colors">Illustrator</span>
+              </div>
+              <div class="group flex flex-col items-center gap-3">
+                <div class="w-12 h-12 bg-transparent rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg" class="w-9 h-9 object-contain transition-all" alt="Adobe Photoshop">
+                </div>
+                <span class="text-[8px] tracking-widest uppercase text-zinc-400 group-hover:text-zinc-900 transition-colors">Photoshop</span>
+              </div>
+              <div class="group flex flex-col items-center gap-3">
+                <div class="w-12 h-12 bg-transparent rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" class="w-9 h-9 object-contain transition-all" alt="Figma">
+                </div>
+                <span class="text-[8px] tracking-widest uppercase text-zinc-400 group-hover:text-zinc-900 transition-colors">Figma</span>
+              </div>
+              <!-- Google Stitch -->
+              <div class="group flex flex-col items-center gap-3">
+                <div class="w-12 h-12 bg-transparent rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110">
+                  <img src="/assets/Google-Stitch-Logo-hEp_EGG7.png" class="w-9 h-9 object-contain" alt="Google Stitch">
+                </div>
+                <span class="text-[8px] tracking-widest uppercase text-zinc-400 group-hover:text-zinc-900 transition-colors">Stitch</span>
+              </div>
+              <!-- Google Antigravity -->
+              <div class="group flex flex-col items-center gap-3">
+                <div class="w-12 h-12 bg-transparent rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 overflow-hidden">
+                  <img src="/assets/Screenshot%202026-04-20%20121058-CR4mTm9E.png" class="w-9 h-9 object-contain" alt="Google Antigravity">
+                </div>
+                <span class="text-[8px] tracking-widest uppercase text-zinc-400 group-hover:text-zinc-900 transition-colors">Antigravity</span>
+              </div>
+              <!-- Trae -->
+              <div class="group flex flex-col items-center gap-3">
+                <div class="w-12 h-12 bg-transparent rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110">
+                  <img src="data:image/png;base64,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" class="w-9 h-9 object-contain" alt="Trae IDE">
+                </div>
+                <span class="text-[8px] tracking-widest uppercase text-zinc-400 group-hover:text-zinc-900 transition-colors">Trae</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-1px bg-zinc-200 border border-zinc-200">
+            <!-- Skill Block 1 -->
+            <div class="bg-white p-10 hover:bg-zinc-50 transition-colors duration-500">
+              <span class="material-symbols-outlined text-4xl mb-8 text-black">architecture</span>
+              <h5 class="text-lg font-bold mb-4 uppercase">Spatial Logic</h5>
+              <p class="text-zinc-500 text-sm leading-relaxed mb-6">Structural planning for digital systems, ensuring scalability through grid-based discipline.</p>
+              <ul class="text-[9px] tracking-widest uppercase text-zinc-400 space-y-2">
+                <li>— Grid Systems</li>
+                <li>— Architecture</li>
+                <li>— Frameworks</li>
+              </ul>
+            </div>
+            <!-- Skill Block 2 -->
+            <div class="bg-white p-10 hover:bg-zinc-50 transition-colors duration-500">
+              <span class="material-symbols-outlined text-4xl mb-8 text-black">text_fields</span>
+              <h5 class="text-lg font-bold mb-4 uppercase">Typography</h5>
+              <p class="text-zinc-500 text-sm leading-relaxed mb-6">Type as architecture. Scaling letterforms to command attention and drive narrative.</p>
+              <ul class="text-[9px] tracking-widest uppercase text-zinc-400 space-y-2">
+                <li>— Variable Fonts</li>
+                <li>— Hierarchy</li>
+                <li>— Legibility</li>
+              </ul>
+            </div>
+            <!-- Skill Block 3 -->
+            <div class="bg-white p-10 hover:bg-zinc-50 transition-colors duration-500">
+              <span class="material-symbols-outlined text-4xl mb-8 text-black">layers</span>
+              <h5 class="text-lg font-bold mb-4 uppercase">Visual Stacking</h5>
+              <p class="text-zinc-500 text-sm leading-relaxed mb-6">Creating depth through tonal layering and atmosphere, eliminating decorative static.</p>
+              <ul class="text-[9px] tracking-widest uppercase text-zinc-400 space-y-2">
+                <li>— Glassmorphism</li>
+                <li>— Tonal Depth</li>
+                <li>— Layering</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Featured Work Section -->
-  <section class="section-work py-32 bg-white overflow-hidden">
+  <section class="section-work py-16 bg-white overflow-hidden transition-all duration-700 ease-in-out lg:hover:bg-black lg:hover:text-white group/contrast">
     <div class="px-6 md:px-24 mb-20 flex flex-col md:flex-row justify-between md:items-end gap-12 w-full">
-      <div class="w-full md:w-3/5">
-        <p class="text-zinc-500 text-outline uppercase text-[10px] tracking-[0.2em] mb-6">Selected Case Studies (01—04)</p>
-        <h2 class="text-[2.5rem] md:text-[8rem] font-bold tracking-tighter leading-[0.9] text-zinc-900">Featured Work</h2>
+      <div class="w-full md:w-3/5 text-zinc-900 transition-colors duration-700 group-hover/contrast:text-white">
+        <p class="text-zinc-500 text-outline uppercase text-[10px] tracking-[0.2em] mb-6 transition-colors duration-700 group-hover/contrast:text-zinc-400">Selected Case Studies (01—04)</p>
+        <h2 class="text-[2.5rem] md:text-[8rem] font-bold tracking-tighter leading-[0.9] transition-colors duration-700 group-hover/contrast:text-white">Featured Work</h2>
       </div>
-      <div class="text-zinc-500 text-sm leading-relaxed w-full md:w-[30%] text-left md:text-right">
+      <div class="text-zinc-500 text-sm leading-relaxed w-full md:w-[30%] text-left md:text-right transition-colors duration-700 group-hover/contrast:text-zinc-400">
         A collection of projects where strategy meets high-end execution. Each piece is a testament to functional minimalism.
       </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-12 w-full">
       <!-- Project 1 (Large) -->
-      <a href="portfolio.html" class="fade-enter-card md:col-span-8 group cursor-pointer relative block">
+      <div onclick="openGuidelines()" class="fade-enter-card md:col-span-8 group cursor-pointer relative block">
         <div class="relative overflow-hidden bg-zinc-50 border border-zinc-100 h-[500px] md:h-[700px] w-full">
           <img decoding="async" fetchpriority="high" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 will-change-transform" alt="BENNER TEA CO. REBRANDING" src="/assets/mockup%2003-DOw2xred.png"/>
           <div class="absolute inset-0 bg-black/40 transition-opacity duration-500 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 flex flex-col justify-end p-10">
-            <h3 class="text-3xl font-bold uppercase tracking-tight text-zinc-900 translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500">BENNER TEA CO. REBRANDING</h3>
-            <p class="text-xs tracking-widest uppercase text-zinc-900/80 mt-2 translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500 delay-75">Visual Identity • E-Commerce</p>
+            <h3 class="text-3xl font-bold uppercase tracking-tight text-white translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500">BENNER TEA CO. REBRANDING</h3>
+            <p class="text-xs tracking-widest uppercase text-white/80 mt-2 translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500 delay-75">Visual Identity • E-Commerce</p>
           </div>
         </div>
-      </a>
+      </div>
       <!-- Project 2 (Medium) -->
       <a href="portfolio.html" class="fade-enter-card md:col-span-4 group cursor-pointer relative block">
         <div class="relative overflow-hidden bg-zinc-50 border border-zinc-100 h-[500px] md:h-[700px] w-full">
           <img decoding="async" fetchpriority="high" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105 will-change-transform" alt="ELEVATE HOROLOGY — Digital Flagship" src="/assets/Coppola%20-%20Movie%20and%20Film%20Production%20Theme-BqFTpLuz.jpg"/>
           <div class="absolute inset-0 bg-black/40 transition-opacity duration-500 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 flex flex-col justify-end p-10">
-            <h3 class="text-3xl font-bold uppercase tracking-tight text-zinc-900 translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500">ELEVATE HOROLOGY</h3>
-            <p class="text-xs tracking-widest uppercase text-zinc-900/80 mt-2 translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500 delay-75">Digital Flagship</p>
+            <h3 class="text-3xl font-bold uppercase tracking-tight text-white translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500">ELEVATE HOROLOGY</h3>
+            <p class="text-xs tracking-widest uppercase text-white/80 mt-2 translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500 delay-75">Digital Flagship</p>
           </div>
         </div>
       </a>
@@ -393,39 +552,39 @@
         <div class="relative overflow-hidden bg-zinc-50 border border-zinc-100 h-[500px] md:h-[700px] w-full">
           <img decoding="async" fetchpriority="high" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105 will-change-transform" alt="ARCHIVE MAGAZINE — Creative Direction" src="/assets/experiencewelcome.com-hQXpFSx3.png"/>
           <div class="absolute inset-0 bg-black/40 transition-opacity duration-500 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 flex flex-col justify-end p-10">
-            <h3 class="text-3xl font-bold uppercase tracking-tight text-zinc-900 translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500">ARCHIVE MAGAZINE</h3>
-            <p class="text-xs tracking-widest uppercase text-zinc-900/80 mt-2 translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500 delay-75">Creative Direction</p>
+            <h3 class="text-3xl font-bold uppercase tracking-tight text-white translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500">ARCHIVE MAGAZINE</h3>
+            <p class="text-xs tracking-widest uppercase text-white/80 mt-2 translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500 delay-75">Creative Direction</p>
           </div>
         </div>
       </a>
       <!-- Project 4 (Large) -->
-      <a href="portfolio.html" class="fade-enter-card md:col-span-7 group cursor-pointer relative block">
+      <div onclick="openGuidelines()" class="fade-enter-card md:col-span-7 group cursor-pointer relative block">
         <div class="relative overflow-hidden bg-zinc-50 border border-zinc-100 h-[500px] md:h-[700px] w-full">
-          <img decoding="async" fetchpriority="high" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 will-change-transform" alt="BENNER TEA CO. REBRANDING" src="/assets/IMG_3641-C6kBDw48.PNG"/>
+          <img decoding="async" fetchpriority="high" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 will-change-transform" alt="BENNER TEA CO. REBRANDING" src="/assets/Mockup%2001-Dg3BN2TT.png"/>
           <div class="absolute inset-0 bg-black/40 transition-opacity duration-500 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 flex flex-col justify-end p-10">
-            <h3 class="text-3xl font-bold uppercase tracking-tight text-zinc-900 translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500">BENNER TEA CO. REBRANDING</h3>
-            <p class="text-xs tracking-widest uppercase text-zinc-900/80 mt-2 translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500 delay-75">Platform Design • UX</p>
+            <h3 class="text-3xl font-bold uppercase tracking-tight text-white translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500">BENNER TEA CO. REBRANDING</h3>
+            <p class="text-xs tracking-widest uppercase text-white/80 mt-2 translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500 delay-75">Platform Design • UX</p>
           </div>
         </div>
-      </a>
+      </div>
     </div>
     <!-- View All CTA -->
     <div class="mt-16 flex justify-center">
-      <a href="portfolio.html" class="inline-flex items-center gap-4 text-[10px] tracking-[0.3em] uppercase font-bold border-b border-outline pb-2 hover:border-primary transition-all duration-300">
+      <a href="portfolio.html" class="inline-flex items-center gap-4 text-[10px] tracking-[0.3em] uppercase font-bold border-b border-black pb-2 hover:border-primary transition-all duration-700 text-zinc-900 group-hover/contrast:text-white group-hover/contrast:border-white">
         View all work
         <span class="material-symbols-outlined text-sm">arrow_forward</span>
       </a>
     </div>
   </section>
 
-  <!-- Art Work Section -->
-  <section class="section-artwork py-32 bg-white text-zinc-900 overflow-hidden">
-    <div class="px-6 md:px-24 mb-20 flex flex-col md:flex-row justify-between md:items-end gap-12 w-full">
-      <div class="w-full md:w-3/5">
-        <p class="uppercase text-[10px] tracking-[0.2em] text-zinc-500 mb-6">Freelance Sketch Artist</p>
-        <h2 class="text-[2.5rem] md:text-[8rem] font-bold tracking-tighter leading-[0.9]">Projects for McLaren Mumbai</h2>
+  <!-- Art Work Section (McLaren) -->
+  <section class="section-artwork bg-white text-zinc-900 overflow-hidden">
+    <div class="px-6 md:px-24 pb-12 flex flex-col md:flex-row justify-between md:items-end gap-12 w-full transition-all duration-700 ease-in-out lg:hover:bg-black lg:hover:text-white group/contrast">
+      <div class="w-full md:w-3/5 py-4">
+        <p class="uppercase text-[10px] tracking-[0.2em] text-zinc-500 mb-6 transition-colors duration-700 group-hover/contrast:text-zinc-400">Freelance Sketch Artist</p>
+        <h2 class="text-[2.5rem] md:text-[8rem] font-bold tracking-tighter leading-[0.9] text-zinc-900 transition-colors duration-700 group-hover/contrast:text-white">Projects for McLaren Mumbai</h2>
       </div>
-      <div class="text-zinc-500 text-sm leading-relaxed w-full md:w-[30%] text-left md:text-right">
+      <div class="text-zinc-500 text-sm leading-relaxed w-full md:w-[30%] text-left md:text-right pb-12 transition-colors duration-700 group-hover/contrast:text-zinc-400">
         Collaborating directly with McLaren Mumbai as a freelance sketch artist, I explored automotive form and aerodynamic tension. This commissioned series captures raw mechanical performance through a lens of artistic precision and structural geometry.
       </div>
     </div>
@@ -435,38 +594,10 @@
           <div class="w-full md:w-3/5 h-[400px] md:h-full relative overflow-hidden">
             <img decoding="async" fetchpriority="high" class="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-105 will-change-transform" src="/assets/IMG_0213%20(2)-O_ibQh68.jpg" alt="Study 01"/>
           </div>
-          <div class="w-full md:w-2/5 flex flex-col justify-center p-10 md:p-16 bg-white border-t md:border-t-0 md:border-l border-zinc-100 transition-colors duration-500 group-hover:bg-white/5">
-            <span class="text-zinc-500 font-manrope text-[10px] tracking-[0.2em] uppercase mb-4 block">Concept Sketch</span>
-            <h3 class="text-3xl md:text-4xl font-bold uppercase tracking-tight text-zinc-900 mb-6 leading-tight">STUDY 01: <br/> FORM & VELOCITY</h3>
-            <span class="inline-flex items-center gap-4 text-[10px] tracking-[0.3em] uppercase font-bold text-zinc-900 mt-8 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
-              View Project <span class="material-symbols-outlined text-sm">arrow_forward</span>
-            </span>
-          </div>
-        </div>
-      </a>
-      <a href="portfolio.html" class="fade-enter-card md:col-span-12 group cursor-pointer block border border-zinc-100 bg-zinc-50">
-        <div class="flex flex-col md:flex-row w-full h-auto md:h-[600px]">
-          <div class="w-full md:w-3/5 h-[400px] md:h-full relative overflow-hidden">
-            <img decoding="async" fetchpriority="high" class="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-105 will-change-transform" src="/assets/IMG_9606%20(2)-DaaiG8IQ.jpg" alt="Study 02"/>
-          </div>
-          <div class="w-full md:w-2/5 flex flex-col justify-center p-10 md:p-16 bg-white border-t md:border-t-0 md:border-l border-zinc-100 transition-colors duration-500 group-hover:bg-white/5">
-            <span class="text-zinc-500 font-manrope text-[10px] tracking-[0.2em] uppercase mb-4 block">Detail Extraction</span>
-            <h3 class="text-3xl md:text-4xl font-bold uppercase tracking-tight text-zinc-900 mb-6 leading-tight">STUDY 02: <br/> TENSION</h3>
-            <span class="inline-flex items-center gap-4 text-[10px] tracking-[0.3em] uppercase font-bold text-zinc-900 mt-8 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
-              View Project <span class="material-symbols-outlined text-sm">arrow_forward</span>
-            </span>
-          </div>
-        </div>
-      </a>
-      <a href="portfolio.html" class="fade-enter-card md:col-span-12 group cursor-pointer block border border-zinc-100 bg-zinc-50">
-        <div class="flex flex-col md:flex-row w-full h-auto md:h-[600px]">
-          <div class="w-full md:w-3/5 h-[400px] md:h-full relative overflow-hidden">
-            <img decoding="async" fetchpriority="high" class="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-105 will-change-transform" src="/assets/IMG_9844%20(2)-C2WzHGvm.jpg" alt="Study 03"/>
-          </div>
-          <div class="w-full md:w-2/5 flex flex-col justify-center p-10 md:p-16 bg-white border-t md:border-t-0 md:border-l border-zinc-100 transition-colors duration-500 group-hover:bg-white/5">
-            <span class="text-zinc-500 font-manrope text-[10px] tracking-[0.2em] uppercase mb-4 block">Master Illustration</span>
-            <h3 class="text-3xl md:text-4xl font-bold uppercase tracking-tight text-zinc-900 mb-6 leading-tight">STUDY 03: <br/> APEX</h3>
-            <span class="inline-flex items-center gap-4 text-[10px] tracking-[0.3em] uppercase font-bold text-zinc-900 mt-8 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
+          <div class="w-full md:w-2/5 flex flex-col justify-center p-10 md:p-16 bg-white border-t md:border-t-0 md:border-l border-zinc-100 transition-all duration-500 group-hover:bg-black group-hover:text-white">
+            <span class="text-zinc-400 font-manrope text-[10px] tracking-[0.2em] uppercase mb-4 block">Concept Sketch</span>
+            <h3 class="text-3xl md:text-4xl font-bold uppercase tracking-tight mb-6 leading-tight transition-colors duration-500 group-hover:text-white">STUDY 01: <br/> FORM & VELOCITY</h3>
+            <span class="inline-flex items-center gap-4 text-[10px] tracking-[0.3em] uppercase font-bold mt-8 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
               View Project <span class="material-symbols-outlined text-sm">arrow_forward</span>
             </span>
           </div>
@@ -476,13 +607,13 @@
   </section>
 
   <!-- Porsche Mumbai Section -->
-  <section class="section-porsche py-32 bg-white text-zinc-900 overflow-hidden">
-    <div class="px-6 md:px-24 mb-20 flex flex-col md:flex-row justify-between md:items-end gap-12 w-full">
-      <div class="w-full md:w-3/5">
-        <p class="uppercase text-[10px] tracking-[0.2em] text-zinc-500 mb-6">Freelance Sketch Artist</p>
-        <h2 class="text-[2.5rem] md:text-[8rem] font-bold tracking-tighter leading-[0.9]">Projects for Porsche Mumbai</h2>
+  <section class="section-porsche bg-white text-zinc-900 overflow-hidden">
+    <div class="px-6 md:px-24 pb-12 flex flex-col md:flex-row justify-between md:items-end gap-12 w-full transition-all duration-700 ease-in-out lg:hover:bg-black lg:hover:text-white group/contrast">
+      <div class="w-full md:w-3/5 py-4">
+        <p class="uppercase text-[10px] tracking-[0.2em] text-zinc-500 mb-6 transition-colors duration-700 group-hover/contrast:text-zinc-400">Freelance Sketch Artist</p>
+        <h2 class="text-[2.5rem] md:text-[8rem] font-bold tracking-tighter leading-[0.9] text-zinc-900 transition-colors duration-700 group-hover/contrast:text-white">Projects for Porsche Mumbai</h2>
       </div>
-      <div class="text-zinc-500 text-sm leading-relaxed w-full md:w-[30%] text-left md:text-right">
+      <div class="text-zinc-500 text-sm leading-relaxed w-full md:w-[30%] text-left md:text-right pb-12 transition-colors duration-700 group-hover/contrast:text-zinc-400">
         Collaborating with Porsche Mumbai, I translated the iconic silhouettes and engineering heritage of the brand into dynamic visual sketches. This series emphasizes the timeless aesthetic and precision synonymous with Porsche.
       </div>
     </div>
@@ -492,24 +623,10 @@
           <div class="w-full md:w-3/5 h-[400px] md:h-full relative overflow-hidden">
             <img decoding="async" fetchpriority="high" class="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-105 will-change-transform" src="/assets/IMG_0498-D9KFs1X0.jpg" alt="Porsche Study 01"/>
           </div>
-          <div class="w-full md:w-2/5 flex flex-col justify-center p-10 md:p-16 bg-white border-t md:border-t-0 md:border-l border-zinc-100 transition-colors duration-500 group-hover:bg-white/5">
-            <span class="text-zinc-500 font-manrope text-[10px] tracking-[0.2em] uppercase mb-4 block">Concept Sketch</span>
-            <h3 class="text-3xl md:text-4xl font-bold uppercase tracking-tight text-zinc-900 mb-6 leading-tight">STUDY 01: <br/> HERITAGE</h3>
-            <span class="inline-flex items-center gap-4 text-[10px] tracking-[0.3em] uppercase font-bold text-zinc-900 mt-8 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
-              View Project <span class="material-symbols-outlined text-sm">arrow_forward</span>
-            </span>
-          </div>
-        </div>
-      </a>
-      <a href="portfolio.html" class="fade-enter-card md:col-span-12 group cursor-pointer block border border-zinc-100 bg-zinc-50">
-        <div class="flex flex-col md:flex-row w-full h-auto md:h-[600px]">
-          <div class="w-full md:w-3/5 h-[400px] md:h-full relative overflow-hidden">
-            <img decoding="async" fetchpriority="high" class="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-105 will-change-transform" src="/assets/IMG_1390-oSBKZrYy.jpg" alt="Porsche Study 02"/>
-          </div>
-          <div class="w-full md:w-2/5 flex flex-col justify-center p-10 md:p-16 bg-white border-t md:border-t-0 md:border-l border-zinc-100 transition-colors duration-500 group-hover:bg-white/5">
-            <span class="text-zinc-500 font-manrope text-[10px] tracking-[0.2em] uppercase mb-4 block">Detail Extraction</span>
-            <h3 class="text-3xl md:text-4xl font-bold uppercase tracking-tight text-zinc-900 mb-6 leading-tight">STUDY 02: <br/> SILHOUETTE</h3>
-            <span class="inline-flex items-center gap-4 text-[10px] tracking-[0.3em] uppercase font-bold text-zinc-900 mt-8 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
+          <div class="w-full md:w-2/5 flex flex-col justify-center p-10 md:p-16 bg-white border-t md:border-t-0 md:border-l border-zinc-100 transition-all duration-500 group-hover:bg-black group-hover:text-white">
+            <span class="text-zinc-500 font-manrope text-[10px] tracking-[0.2em] uppercase mb-4 block transition-colors duration-500 group-hover:text-zinc-400">Concept Sketch</span>
+            <h3 class="text-3xl md:text-4xl font-bold uppercase tracking-tight text-zinc-900 mb-6 leading-tight transition-colors duration-500 group-hover:text-white">STUDY 01: <br/> HERITAGE</h3>
+            <span class="inline-flex items-center gap-4 text-[10px] tracking-[0.3em] uppercase font-bold text-zinc-900 mt-8 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 group-hover:text-white">
               View Project <span class="material-symbols-outlined text-sm">arrow_forward</span>
             </span>
           </div>
@@ -518,127 +635,210 @@
     </div>
   </section>
 
-  <!-- Services Overview -->
-  <section class="section-services py-32 px-6 md:px-24 bg-white">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-24 items-start">
-      <div>
-        <h2 class="text-[3.5rem] font-extrabold leading-[1] tracking-tighter mb-12 text-zinc-900">
-          Holistic Digital <br/> Craftsmanship.
-        </h2>
-        <p class="text-zinc-500 text-lg leading-relaxed mb-12 max-w-md">
-          We don't just build websites; we engineer visual narratives. By combining rigorous design logic with modern development standards, we ensure your brand resonates and performs.
-        </p>
-        <a class="inline-flex items-center gap-4 text-[10px] tracking-[0.3em] uppercase font-bold border-b border-white pb-2 hover:border-primary transition-all duration-300 text-zinc-900" href="services.html">
-          View all capabilities
-        </a>
-      </div>
-      <div class="space-y-1">
-        <a href="services.html" class="group border-b border-white/30 py-8 transition-all hover:pl-4 block text-zinc-900">
-          <div class="flex justify-between items-center">
-            <h4 class="text-2xl font-bold uppercase">Design Systems</h4>
-            <span class="text-[10px] text-zinc-500 tracking-widest">01</span>
-          </div>
-          <p class="mt-4 text-zinc-500 text-sm max-w-sm opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500">Scalable components and visual guidelines that ensure consistency across every digital touchpoint.</p>
-        </a>
-        <a href="services.html" class="group border-b border-white/30 py-8 transition-all hover:pl-4 block text-zinc-900">
-          <div class="flex justify-between items-center">
-            <h4 class="text-2xl font-bold uppercase">Front-End Dev</h4>
-            <span class="text-[10px] text-zinc-500 tracking-widest">02</span>
-          </div>
-          <p class="mt-4 text-zinc-500 text-sm max-w-sm opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500">Pixel-perfect implementation using modern stacks like Tailwind, React, and high-performance animations.</p>
-        </a>
-        <a href="services.html" class="group border-b border-white/30 py-8 transition-all hover:pl-4 block text-zinc-900">
-          <div class="flex justify-between items-center">
-            <h4 class="text-2xl font-bold uppercase">Art Direction</h4>
-            <span class="text-[10px] text-zinc-500 tracking-widest">03</span>
-          </div>
-          <p class="mt-4 text-zinc-500 text-sm max-w-sm opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500">Curating the mood, tone, and visual language that separates your brand from the commodity market.</p>
-        </a>
+  <!-- Capabilities & Services -->
+  <section class="section-services bg-white border-t border-zinc-100">
+
+    <!-- Capabilities Header -->
+    <div class="px-6 md:px-24 pt-24 pb-16">
+      <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-400 font-bold mb-6 block">Capabilities</span>
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+        <div class="md:col-span-8">
+          <h2 class="text-[clamp(3rem,8vw,8rem)] font-bold tracking-tighter leading-none mb-12">
+            Defining the<br/>Digital Edge.
+          </h2>
+        </div>
+        <div class="md:col-start-7 md:col-span-6 self-end pb-4">
+          <p class="text-xl text-zinc-500 leading-relaxed max-w-md">
+            We operate at the intersection of architectural precision and digital fluidity, crafting bespoke experiences that command attention and perform with intent.
+          </p>
+        </div>
       </div>
     </div>
+
+    <!-- Service 01: Website Design & Development -->
+    <div class="px-6 md:px-24 py-24 bg-zinc-50">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20 items-center">
+        <div class="md:col-span-5">
+          <div class="aspect-[4/5] overflow-hidden bg-zinc-100">
+            <img class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" alt="Website Design &amp; Development" src="/assets/monochrome_bg-Cq4ZAq9S.png"/>
+          </div>
+        </div>
+        <div class="md:col-start-7 md:col-span-6 flex flex-col justify-center">
+          <span class="text-[10px] tracking-widest uppercase text-zinc-400 font-bold mb-6">Service 01</span>
+          <h3 class="text-4xl md:text-5xl font-bold tracking-tight mb-8">Website Design &amp;<br/>Development</h3>
+          <p class="text-lg text-zinc-500 mb-12 max-w-lg leading-relaxed">
+            We build high-performance digital foundations. Our approach prioritizes technical excellence and visual narrative, ensuring your online presence is as structurally sound as it is beautiful.
+          </p>
+          <div class="mb-12">
+            <h4 class="text-[10px] uppercase tracking-widest font-bold mb-6 text-zinc-900">What's included</h4>
+            <ul class="space-y-4">
+              <li class="flex items-center gap-3 text-zinc-500 text-sm">
+                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Custom UI/UX Architecture
+              </li>
+              <li class="flex items-center gap-3 text-zinc-500 text-sm">
+                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Responsive Component Frameworks
+              </li>
+              <li class="flex items-center gap-3 text-zinc-500 text-sm">
+                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Advanced Animation &amp; Micro-interactions
+              </li>
+              <li class="flex items-center gap-3 text-zinc-500 text-sm">
+                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>SEO &amp; Performance Optimization
+              </li>
+            </ul>
+          </div>
+          <div class="flex items-baseline gap-4 mb-10 border-t border-zinc-200 pt-8">
+            <span class="text-[10px] text-zinc-400 uppercase tracking-widest">Starting from</span>
+            <span class="text-4xl font-bold tracking-tighter text-zinc-900">$4,500</span>
+          </div>
+          <a href="contact.html?service=web" class="group bg-black text-white px-10 py-5 text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-zinc-800 transition-colors duration-500 inline-flex items-center gap-3 self-start">
+            Inquire Now
+            <span class="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-1" style="font-size:14px;">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Service 02: Graphic Design & Branding -->
+    <div class="px-6 md:px-24 py-24 bg-white">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20 items-center">
+        <div class="md:col-span-6 flex flex-col justify-center order-2 md:order-1">
+          <span class="text-[10px] tracking-widest uppercase text-zinc-400 font-bold mb-6">Service 02</span>
+          <h3 class="text-4xl md:text-5xl font-bold tracking-tight mb-8">Graphic Design &amp;<br/>Branding</h3>
+          <p class="text-lg text-zinc-500 mb-12 max-w-lg leading-relaxed">
+            Visual identity is the soul of your enterprise. We distill your brand's essence into a cohesive visual language that resonates across every touchpoint, from physical print to digital pixels.
+          </p>
+          <div class="mb-12">
+            <h4 class="text-[10px] uppercase tracking-widest font-bold mb-6 text-zinc-900">What's included</h4>
+            <ul class="space-y-4">
+              <li class="flex items-center gap-3 text-zinc-500 text-sm">
+                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Identity Strategy &amp; Positioning
+              </li>
+              <li class="flex items-center gap-3 text-zinc-500 text-sm">
+                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Logo Systems &amp; Mark Design
+              </li>
+              <li class="flex items-center gap-3 text-zinc-500 text-sm">
+                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Editorial &amp; Print Design
+              </li>
+              <li class="flex items-center gap-3 text-zinc-500 text-sm">
+                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Brand Style Guidelines
+              </li>
+            </ul>
+          </div>
+          <div class="flex items-baseline gap-4 mb-10 border-t border-zinc-200 pt-8">
+            <span class="text-[10px] text-zinc-400 uppercase tracking-widest">Starting from</span>
+            <span class="text-4xl font-bold tracking-tighter text-zinc-900">$3,200</span>
+          </div>
+          <a href="contact.html?service=branding" class="group bg-black text-white px-10 py-5 text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-zinc-800 transition-colors duration-500 inline-flex items-center gap-3 self-start">
+            Elevate Branding
+            <span class="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-1" style="font-size:14px;">arrow_forward</span>
+          </a>
+        </div>
+        <div class="md:col-start-8 md:col-span-5 order-1 md:order-2">
+          <div class="aspect-[4/5] overflow-hidden bg-zinc-100">
+            <img class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" alt="Graphic Design &amp; Branding" src="Images/mockup 03.png"/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Services CTA Strip -->
+    <div class="px-6 md:px-24 py-24 border-t border-zinc-100 bg-zinc-50 text-center">
+      <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-400 font-bold mb-6 block">Start a Project</span>
+      <h3 class="text-[clamp(2.5rem,6vw,5rem)] font-bold tracking-tighter mb-12 text-zinc-900">Let's build<br/>something iconic.</h3>
+      <a class="inline-flex items-center gap-4 text-[10px] tracking-[0.3em] uppercase font-bold border-b-2 border-black pb-2 hover:opacity-50 transition-all duration-300" href="contact.html">
+        Start your project
+        <span class="material-symbols-outlined" style="font-size:14px;">arrow_forward</span>
+      </a>
+    </div>
+
   </section>
 
-  <!-- Testimonials -->
-  <section class="section-testimonials py-32 px-6 md:px-24 bg-white border-t border-zinc-100">
-    <div class="flex justify-center mb-20">
-      <span class="label-md tracking-[0.2em] uppercase text-zinc-500">What partners say</span>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      
-      <div class="bg-zinc-50 border border-zinc-100 p-10 flex flex-col justify-between hover:shadow-2xl transition-shadow duration-500 translate-y-0 hover:-translate-y-2 relative overflow-hidden text-zinc-900">
-        <div class="absolute top-0 right-0 p-6 opacity-10">
-            <span class="material-symbols-outlined text-[100px]">format_quote</span>
-        </div>
-        <div class="mb-8 flex gap-1 text-yellow-500 text-sm">
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-        </div>
-        <p class="text-lg italic font-light mb-10 leading-relaxed relative z-10">"The level of detail and architectural precision brought to our rebranding was transformative. His keen eye for subtle interactions elevated our platform beyond expectations. Truly a hallmark of modern web design."</p>
-        <div class="flex items-center gap-4 relative z-10">
-          <img src="https://i.pravatar.cc/100?img=11" alt="Marcus Chen" class="w-12 h-12 rounded-full object-cover">
-          <div>
-            <p class="font-bold uppercase tracking-tight text-sm">Marcus Chen</p>
-            <p class="text-[10px] tracking-widest uppercase text-zinc-500 mt-0.5">Founder, ARCH Lab</p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="bg-zinc-50 border border-zinc-100 p-10 flex flex-col justify-between hover:shadow-2xl transition-shadow duration-500 translate-y-0 hover:-translate-y-2 relative overflow-hidden text-zinc-900">
-        <div class="absolute top-0 right-0 p-6 opacity-10">
-            <span class="material-symbols-outlined text-[100px]">format_quote</span>
-        </div>
-        <div class="mb-8 flex gap-1 text-yellow-500 text-sm">
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-        </div>
-        <p class="text-lg italic font-light mb-10 leading-relaxed relative z-10">"We needed a digital experience that could seamlessly align with our high-end automotive brand standards. The result was a sleek, perfectly optimized, and breath-taking portfolio layout that drove sales."</p>
-        <div class="flex items-center gap-4 relative z-10">
-          <img src="https://i.pravatar.cc/100?img=5" alt="Elena Voss" class="w-12 h-12 rounded-full object-cover grayscale">
-          <div>
-            <p class="font-bold uppercase tracking-tight text-sm">Elena Voss</p>
-            <p class="text-[10px] tracking-widest uppercase text-zinc-500 mt-0.5">Marketing Director, VOSS</p>
-          </div>
-        </div>
+  <!-- Premium Testimonials Slider -->
+  <section class="section-testimonials py-24 px-6 md:px-24 bg-white border-t border-zinc-100 overflow-hidden">
+    <div class="max-w-7xl mx-auto relative">
+      <div class="flex flex-col items-center mb-16">
+        <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-400 font-bold mb-4">Client Perspectives</span>
+        <h2 class="text-4xl font-bold tracking-tight text-zinc-900">Kind Words</h2>
       </div>
 
-      <div class="bg-zinc-50 border border-zinc-100 p-10 flex flex-col justify-between hover:shadow-2xl transition-shadow duration-500 translate-y-0 hover:-translate-y-2 relative overflow-hidden text-zinc-900">
-        <div class="absolute top-0 right-0 p-6 opacity-10">
-            <span class="material-symbols-outlined text-[100px]">format_quote</span>
-        </div>
-        <div class="mb-8 flex gap-1 text-yellow-500 text-sm">
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-        </div>
-        <p class="text-lg italic font-light mb-10 leading-relaxed relative z-10">"Technical excellence combined with an editorial eye. Our site's load speed improved drastically while preserving high-definition assets. Highly responsive, detailed, and utterly precise working flow."</p>
-        <div class="flex items-center gap-4 relative z-10">
-          <img src="https://i.pravatar.cc/100?img=12" alt="Julian Grant" class="w-12 h-12 rounded-full object-cover">
-          <div>
-            <p class="font-bold uppercase tracking-tight text-sm">Julian Grant</p>
-            <p class="text-[10px] tracking-widest uppercase text-zinc-500 mt-0.5">CEO, NEXUS Digital</p>
+      <!-- Slider Container -->
+      <div class="relative testimonial-slider-wrap h-[500px] md:h-[400px]">
+        
+        <!-- Testimonial 1 -->
+        <div class="testimonial-slide absolute inset-0 flex flex-col items-center text-center opacity-0 pointer-events-none translate-x-20">
+          <p class="text-2xl md:text-4xl font-light italic leading-relaxed text-zinc-800 max-w-4xl mb-12">
+            "Adley doesn't just design; he architects digital experiences. The level of structural discipline and minimal elegance he brought to our project was unparalleled. A masterclass in modern digital craftsmanship."
+          </p>
+          <div class="flex flex-col items-center">
+            <div class="w-12 h-12 bg-zinc-100 border border-zinc-200 rounded-full mb-4 flex items-center justify-center overflow-hidden">
+              <span class="material-symbols-outlined text-zinc-400">person</span>
+            </div>
+            <h5 class="text-xs tracking-[0.2em] font-bold uppercase text-zinc-900">Marcus Thorne</h5>
+            <p class="text-[10px] tracking-widest uppercase text-zinc-400 mt-1">Creative Director @ Elevate</p>
           </div>
         </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-slide absolute inset-0 flex flex-col items-center text-center opacity-0 pointer-events-none translate-x-20">
+          <p class="text-2xl md:text-4xl font-light italic leading-relaxed text-zinc-800 max-w-4xl mb-12">
+            "The precision is what hits you first. We needed a digital home that felt as tangible and high-end as our print publication, and Adley delivered a masterpiece. Every interaction feels intentional."
+          </p>
+          <div class="flex flex-col items-center">
+            <div class="w-12 h-12 bg-zinc-100 border border-zinc-200 rounded-full mb-4 flex items-center justify-center overflow-hidden">
+              <span class="material-symbols-outlined text-zinc-400">person</span>
+            </div>
+            <h5 class="text-xs tracking-[0.2em] font-bold uppercase text-zinc-900">Elena Rossi</h5>
+            <p class="text-[10px] tracking-widest uppercase text-zinc-400 mt-1">Founder @ Archive Magazine</p>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-slide absolute inset-0 flex flex-col items-center text-center opacity-0 pointer-events-none translate-x-20">
+          <p class="text-2xl md:text-4xl font-light italic leading-relaxed text-zinc-800 max-w-4xl mb-12">
+            "Adley bridges the gap between high-concept art and high-performance development seamlessly. Working with him is a masterclass in collaboration. The results always exceed our expectations."
+          </p>
+          <div class="flex flex-col items-center">
+            <div class="w-12 h-12 bg-zinc-100 border border-zinc-200 rounded-full mb-4 flex items-center justify-center overflow-hidden">
+              <span class="material-symbols-outlined text-zinc-400">person</span>
+            </div>
+            <h5 class="text-xs tracking-[0.2em] font-bold uppercase text-zinc-900">Julian Vane</h5>
+            <p class="text-[10px] tracking-widest uppercase text-zinc-400 mt-1">Lead Engineer @ Flux Digital</p>
+          </div>
+        </div>
+
       </div>
-      
+
+      <!-- Navigation -->
+      <div class="flex justify-center gap-12 mt-4 relative z-10">
+        <button id="prev-testimonial" class="w-14 h-14 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-black hover:text-white transition-all duration-300 group">
+          <span class="material-symbols-outlined transition-transform group-hover:-translate-x-1">west</span>
+        </button>
+        <button id="next-testimonial" class="w-14 h-14 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-black hover:text-white transition-all duration-300 group">
+          <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">east</span>
+        </button>
+      </div>
     </div>
   </section>
 
   <!-- Final CTA Section -->
-  <section class="section-cta py-48 px-6 md:px-24 bg-white border-t border-white/20 text-zinc-900 text-center">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-4xl md:text-7xl font-extrabold tracking-tighter mb-16 leading-[1.1]">
-        Let's redefine your <br/> digital presence.
-      </h2>
-      <div class="flex flex-col md:flex-row justify-center gap-8">
-        <a href="contact.html" class="bg-white text-black px-12 py-6 font-bold uppercase tracking-widest text-xs hover:bg-zinc-200 transition-colors duration-300 inline-block">
-          Work with us
-        </a>
-        <a href="portfolio.html" class="border border-white/30 text-zinc-900 px-12 py-6 font-bold uppercase tracking-widest text-xs hover:bg-white hover:text-black transition-all duration-300 inline-block">
-          View Portfolio
-        </a>
-      </div>
+  <section class="px-6 md:px-24 bg-[#0a0a0a] py-20 flex flex-col items-center text-center">
+    <span class="font-manrope text-[12px] tracking-[0.2em] uppercase text-zinc-500 mb-6">Have a vision?</span>
+    <h2 class="text-[2.2rem] md:text-[clamp(2.5rem,5vw,4rem)] font-extrabold tracking-tight text-white mb-12 max-w-4xl leading-tight">
+      LET'S CONSTRUCT SOMETHING EXTRAORDINARY TOGETHER.
+    </h2>
+    <div class="flex flex-wrap justify-center gap-6">
+      <a href="contact.html" class="bg-white text-black px-12 py-6 font-bold uppercase tracking-widest text-xs hover:bg-zinc-200 transition-all duration-300 inline-block btn-shine-trigger">
+        Work with us
+      </a>
+      <a href="portfolio.html" class="border border-white/30 text-white px-12 py-6 font-bold uppercase tracking-widest text-xs hover:bg-white hover:text-black transition-all duration-300 inline-block">
+        View Portfolio
+      </a>
     </div>
   </section>
 </main>
 
 <!-- Footer -->
-<footer class="bg-white flex flex-col md:flex-row justify-between items-center px-6 md:px-24 w-full py-16 text-zinc-900 border-t border-white/20" id="top">
+<footer class="bg-white flex flex-col md:flex-row justify-between items-center px-6 md:px-24 w-full py-16 text-zinc-900 border-t border-white/20">
   <div class="mb-8 md:mb-0">
     <a href="index.html" class="text-lg font-bold text-black tracking-widest mb-4 block">Adley Fernandes</a>
     <p class="font-manrope text-[10px] tracking-widest uppercase text-gray-400">© 2024 Adley Fernandes. ALL RIGHTS RESERVED.</p>
@@ -657,6 +857,14 @@
 
 
 <script>
+  /* -- Startup Scroll Fix -- */
+  window.addEventListener('load', () => {
+    // Force scroll to top on page load to ensure hero entry
+    if (!window.location.hash) {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    }
+  });
+
   /* ── Hamburger ───────────────────────────────────────────── */
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobile-menu');
@@ -692,6 +900,160 @@
     </div>
   </div>
 </div>
+
+<script>
+  /* -- Premium Testimonial Slider Logic -- */
+  const slides = document.querySelectorAll('.testimonial-slide');
+  const nextBtn = document.getElementById('next-testimonial');
+  const prevBtn = document.getElementById('prev-testimonial');
+  let currentSlide = 0;
+  let isAnimating = false;
+
+  function showSlide(index, direction) {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    const outX = direction === 'next' ? -50 : 50;
+    const inX = direction === 'next' ? 50 : -50;
+
+    // Outgoing
+    gsap.to(slides[currentSlide], {
+      opacity: 0,
+      x: outX,
+      duration: 0.8,
+      ease: "power2.inOut",
+      onComplete: () => {
+        slides[currentSlide].style.pointerEvents = 'none';
+        currentSlide = index;
+        
+        // Incoming
+        gsap.fromTo(slides[currentSlide], 
+          { opacity: 0, x: inX },
+          { opacity: 1, x: 0, duration: 0.8, ease: "power2.out", onComplete: () => {
+            slides[currentSlide].style.pointerEvents = 'auto';
+            isAnimating = false;
+          }}
+        );
+      }
+    });
+  }
+
+  // Init first slide
+  if (slides.length > 0) {
+    gsap.set(slides[0], { opacity: 1, x: 0, pointerEvents: 'auto' });
+  }
+
+  nextBtn.addEventListener('click', () => {
+    let nextIdx = (currentSlide + 1) % slides.length;
+    showSlide(nextIdx, 'next');
+  });
+
+  /* -- Brand Guidelines Modal Logic -- */
+  function openGuidelines() {
+    const modal = document.getElementById('guidelines-modal');
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    gsap.fromTo(modal, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" });
+  }
+
+  function closeGuidelines() {
+    const modal = document.getElementById('guidelines-modal');
+    gsap.to(modal, { opacity: 0, duration: 0.5, ease: "power2.in", onComplete: () => {
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }});
+  }
+  prevBtn.addEventListener('click', () => {
+    let prevIdx = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(prevIdx, 'prev');
+  });
+
+  /* -- Staggered Word Reveal for Hero Text (Desktop Only) -- */
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && window.innerWidth >= 1024) {
+    gsap.to(".reveal-word", {
+      scrollTrigger: {
+        trigger: "#hero",
+        start: "top+=300 top", // Strictly triggers only after 300px of scrolling down
+        toggleActions: "play none none reverse"
+      },
+      opacity: 1,
+      x: 0,
+      duration: 1.5,
+      stagger: 0.2, // Slightly more stagger for a deliberate entry
+      ease: "power2.out"
+    });
+  }
+</script>
+
+<!-- Brand Guidelines Modal -->
+<div id="guidelines-modal" class="fixed inset-0 z-[100] bg-black hidden flex flex-col overflow-y-auto no-scrollbar">
+  <!-- Close Button -->
+  <button onclick="closeGuidelines()" class="fixed top-8 right-8 z-[110] w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all group">
+    <span class="material-symbols-outlined transition-transform group-hover:rotate-90">close</span>
+  </button>
+
+  <!-- Guidelines Content -->
+  <div class="w-full flex flex-col items-center py-20 px-4 md:px-0">
+    <!-- Brand Guidelines Pages 01-45 -->
+    <div id="guidelines-container" class="w-full max-w-5xl space-y-4">
+      <!-- Pages will be generated or manually added here -->
+      <img src="/assets/Brand%20guidelines%20_Recovered_-01-ck3j26D3.png" class="w-full h-auto shadow-2xl" alt="Page 01">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-02-Bz7OC1Qk.png" class="w-full h-auto shadow-2xl" alt="Page 02">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-03-Bd7brO2K.png" class="w-full h-auto shadow-2xl" alt="Page 03">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-04-P43kSfVC.png" class="w-full h-auto shadow-2xl" alt="Page 04">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-05-BDhPbKsz.png" class="w-full h-auto shadow-2xl" alt="Page 05">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-06-YBrXdmWl.png" class="w-full h-auto shadow-2xl" alt="Page 06">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-07-Beq1SrTv.png" class="w-full h-auto shadow-2xl" alt="Page 07">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-08-B4woPK7C.png" class="w-full h-auto shadow-2xl" alt="Page 08">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-09-DwSzX7sN.png" class="w-full h-auto shadow-2xl" alt="Page 09">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-10-CTgGbGot.png" class="w-full h-auto shadow-2xl" alt="Page 10">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-11-BLMOt3bt.png" class="w-full h-auto shadow-2xl" alt="Page 11">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-12-Bb2Rc6XT.png" class="w-full h-auto shadow-2xl" alt="Page 12">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-13-BjagVFOm.png" class="w-full h-auto shadow-2xl" alt="Page 13">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-14-Ct69w9XX.png" class="w-full h-auto shadow-2xl" alt="Page 14">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-15-DdhLxlr6.png" class="w-full h-auto shadow-2xl" alt="Page 15">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-16-o4OdMyay.png" class="w-full h-auto shadow-2xl" alt="Page 16">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-17-BvGxrzzY.png" class="w-full h-auto shadow-2xl" alt="Page 17">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-18-Bn45e5_A.png" class="w-full h-auto shadow-2xl" alt="Page 18">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-19-F0zm1aPE.png" class="w-full h-auto shadow-2xl" alt="Page 19">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-20-BhS_u5xg.png" class="w-full h-auto shadow-2xl" alt="Page 20">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-21-BZZZ0JMl.png" class="w-full h-auto shadow-2xl" alt="Page 21">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-22-DE35QOF4.png" class="w-full h-auto shadow-2xl" alt="Page 22">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-23-Bl4deGB5.png" class="w-full h-auto shadow-2xl" alt="Page 23">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-24-Qr2LIPAd.png" class="w-full h-auto shadow-2xl" alt="Page 24">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-25-BMd-sVu-.png" class="w-full h-auto shadow-2xl" alt="Page 25">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-26-B_48ZnPi.png" class="w-full h-auto shadow-2xl" alt="Page 26">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-45-Dy_cT8N2.png" class="w-full h-auto shadow-2xl" alt="Page 27">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-25-BMd-sVu-.png" class="w-full h-auto shadow-2xl" alt="Page 28">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-29-torylmY9.png" class="w-full h-auto shadow-2xl" alt="Page 29">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-30-ElKtCVnj.png" class="w-full h-auto shadow-2xl" alt="Page 30">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-31-Dy2QjN22.png" class="w-full h-auto shadow-2xl" alt="Page 31">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-29-torylmY9.png" class="w-full h-auto shadow-2xl" alt="Page 32">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-30-ElKtCVnj.png" class="w-full h-auto shadow-2xl" alt="Page 33">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-31-Dy2QjN22.png" class="w-full h-auto shadow-2xl" alt="Page 34">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-29-torylmY9.png" class="w-full h-auto shadow-2xl" alt="Page 35">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-36-B8hyIewL.png" class="w-full h-auto shadow-2xl" alt="Page 36">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-40-_D3DxvM9.png" class="w-full h-auto shadow-2xl" alt="Page 37">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-38-uBQL01EJ.png" class="w-full h-auto shadow-2xl" alt="Page 38">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-36-B8hyIewL.png" class="w-full h-auto shadow-2xl" alt="Page 39">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-40-_D3DxvM9.png" class="w-full h-auto shadow-2xl" alt="Page 40">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-38-uBQL01EJ.png" class="w-full h-auto shadow-2xl" alt="Page 41">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-36-B8hyIewL.png" class="w-full h-auto shadow-2xl" alt="Page 42">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-25-BMd-sVu-.png" class="w-full h-auto shadow-2xl" alt="Page 43">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-26-B_48ZnPi.png" class="w-full h-auto shadow-2xl" alt="Page 44">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-45-Dy_cT8N2.png" class="w-full h-auto shadow-2xl" alt="Page 45">
+    </div>
+
+    <!-- Final Mockups -->
+    <div class="w-full max-w-5xl mt-4 space-y-4">
+      <img src="/assets/Mockup%2001-Dg3BN2TT.png" class="w-full h-auto shadow-2xl" alt="Mockup 1">
+      <img src="/assets/Mockup%2002-C6kBDw48.PNG" class="w-full h-auto shadow-2xl" alt="Mockup 2">
+      <img src="/assets/mockup%2003-DOw2xred.png" class="w-full h-auto shadow-2xl" alt="Mockup 3">
+      <img src="/assets/mockup%2004-BE35QyIx.jpg" class="w-full h-auto shadow-2xl" alt="Mockup 4">
+    </div>
+  </div>
+</div>
+
 
 <script>
 (function () {

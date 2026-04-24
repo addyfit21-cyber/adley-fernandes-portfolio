@@ -7,8 +7,6 @@ export default defineConfig({
       input: {
         main: resolve(process.cwd(), 'index.html'),
         portfolio: resolve(process.cwd(), 'portfolio.html'),
-        about: resolve(process.cwd(), 'about.html'),
-        services: resolve(process.cwd(), 'services.html'),
         contact: resolve(process.cwd(), 'contact.html'),
       },
     },

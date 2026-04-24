@@ -30,13 +30,17 @@
   }
 </script>
 <style>
-  body { font-family: 'Manrope', sans-serif; }
+  body { font-family: 'Manrope', sans-serif; scroll-behavior: smooth; }
+  h1, h2, h3, h4, h5, h6 { font-family: Helvetica, Arial, sans-serif; }
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: #f9f9f9; }
   ::-webkit-scrollbar-thumb { background: #000000; }
-  .project-card { transition: opacity 0.4s ease, transform 0.4s ease; }
-  .project-card.hidden-filter { opacity: 0; pointer-events: none; transform: scale(0.97); }
+  /* Sticky category nav */
+  .category-nav { position: sticky; top: 0; z-index: 40; background: rgba(253,253,253,0.8); backdrop-blur: 10px; border-bottom: 1px solid rgba(0,0,0,0.05); }
+  /* Fade enter effects */
+  .reveal-section { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
+  .reveal-section.visible { opacity: 1; transform: translateY(0); }
   /* Mobile menu */
   #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
   #mobile-menu.open { max-height: 400px; }
@@ -44,342 +48,334 @@
 </head>
 <body class="bg-[#fdfdfd] text-zinc-900 antialiased selection:bg-primary selection:text-white">
 
-<!-- Glassmorphism Container (The 'Tab') -->
-
 <!-- TopNavBar -->
 <header class="absolute top-0 w-full z-50 flex justify-between items-center px-6 md:px-24 bg-white h-24">
   <a href="index.html" class="text-2xl font-bold tracking-tighter text-zinc-900">Adley Fernandes</a>
   <nav class="hidden md:flex items-center space-x-12">
-    <a class="font-manrope text-sm tracking-[0.1em] uppercase text-zinc-400 hover:text-white transition-colors duration-300" href="index.html">Home</a>
+    <a class="font-manrope text-sm tracking-[0.1em] uppercase text-zinc-400 hover:text-black transition-colors duration-300" href="index.html">Home</a>
     <a class="font-manrope text-sm tracking-[0.1em] uppercase text-black border-b border-black pb-1" href="portfolio.html">Portfolio</a>
-    <a class="font-manrope text-sm tracking-[0.1em] uppercase text-zinc-400 hover:text-white transition-colors duration-300" href="services.html">Services</a>
-    <a class="font-manrope text-sm tracking-[0.1em] uppercase text-zinc-400 hover:text-white transition-colors duration-300" href="about.html">About</a>
-    <a class="font-manrope text-sm tracking-[0.1em] uppercase text-zinc-400 hover:text-white transition-colors duration-300" href="contact.html">Contact</a>
+    <a class="font-manrope text-sm tracking-[0.1em] uppercase text-zinc-400 hover:text-black transition-colors duration-300" href="services.html">Services</a>
+    <a class="font-manrope text-sm tracking-[0.1em] uppercase text-zinc-400 hover:text-black transition-colors duration-300" href="index.html#about">About</a>
+    <a class="font-manrope text-sm tracking-[0.1em] uppercase text-zinc-400 hover:text-black transition-colors duration-300" href="contact.html">Contact</a>
   </nav>
   <a href="contact.html" class="hidden md:block bg-black text-white border border-zinc-200 px-8 py-3 font-manrope text-[10px] tracking-widest uppercase hover:bg-zinc-800 transition-colors duration-500">
     Get in Touch
   </a>
-  <!-- Mobile hamburger -->
   <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Open menu">
-    <span class="block w-6 h-0.5 bg-white transition-all duration-300" id="ham-1"></span>
-    <span class="block w-6 h-0.5 bg-black transition-all duration-300" id="ham-2"></span>
-    <span class="block w-6 h-0.5 bg-black transition-all duration-300" id="ham-3"></span>
+    <span class="block w-6 h-0.5 bg-black" id="ham-1"></span>
+    <span class="block w-6 h-0.5 bg-black" id="ham-2"></span>
+    <span class="block w-6 h-0.5 bg-black" id="ham-3"></span>
   </button>
 </header>
 
 <!-- Mobile Menu -->
-<div id="mobile-menu" class="fixed top-24 left-0 w-full z-40 bg-white/98 shadow-2xl backdrop-blur-xl px-12 py-0 flex flex-col gap-0 transition-all duration-400">
+<div id="mobile-menu" class="fixed top-24 left-0 w-full z-40 bg-white/98 shadow-2xl backdrop-blur-xl px-6 py-0 flex flex-col gap-0 transition-all duration-400">
   <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="index.html">Home</a>
   <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-black font-bold" href="portfolio.html">Portfolio</a>
   <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="services.html">Services</a>
-  <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="about.html">About</a>
+  <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="index.html#about">About</a>
   <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="contact.html">Contact</a>
-  <a class="py-6 mt-4 bg-black text-white text-center font-manrope text-sm tracking-[0.2em] uppercase font-bold" href="contact.html">
-    Get in Touch
-  </a>
+  <a class="py-6 mt-4 bg-black text-white text-center font-manrope text-sm tracking-[0.2em] uppercase font-bold" href="contact.html">Get in Touch</a>
 </div>
 
-<main class="pt-48 pb-24">
+<main>
   <!-- Hero Section -->
-  <section class="px-6 md:px-24 mb-48">
+  <section class="pt-32 pb-16 px-6 md:px-24">
     <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
       <div class="md:col-span-8">
-        <h1 class="text-[clamp(2.5rem,9vw,7rem)] font-bold tracking-[-0.04em] leading-[0.9] text-zinc-900 mb-12" style="font-family: 'DM Sans', sans-serif;">
-          SELECTED <br/>WORKS <span class="text-outline-variant">22—24</span>
+        <h1 class="text-[clamp(2.5rem,9vw,7rem)] font-bold tracking-[-0.04em] leading-[0.9] text-zinc-900 mb-12">
+          SELECTED <br/>WORKS <span class="text-zinc-200">22—24</span>
         </h1>
       </div>
       <div class="md:col-span-4 flex flex-col justify-end pb-4">
         <p class="text-zinc-500 font-body text-lg leading-relaxed max-w-sm">
-          A curation of architectural digital experiences and visual identities crafted with surgical precision.
+          A high-fidelity curation of project work, ranging from automotive studies to full-scale digital rebrands.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- Filter Categories -->
-  <section class="px-6 md:px-24 mb-16">
-    <div class="flex flex-wrap gap-x-12 gap-y-6 border-b border-white/20 pb-8">
-      <button data-filter="all" class="filter-btn font-manrope text-[10px] tracking-widest uppercase text-black border-b border-black pb-2">All Projects</button>
-      <button data-filter="web" class="filter-btn font-manrope text-[10px] tracking-widest uppercase text-zinc-500 hover:text-white transition-colors duration-300">Web Design</button>
-      <button data-filter="branding" class="filter-btn font-manrope text-[10px] tracking-widest uppercase text-zinc-500 hover:text-white transition-colors duration-300">Branding</button>
-      <button data-filter="graphics" class="filter-btn font-manrope text-[10px] tracking-widest uppercase text-zinc-500 hover:text-white transition-colors duration-300">Graphics</button>
+  <!-- Categorical Nav (Sticky) -->
+  <nav class="category-nav h-20 flex items-center px-6 md:px-24 overflow-x-auto no-scrollbar gap-12 mb-24">
+    <a href="#branding" class="text-[10px] tracking-[0.25em] uppercase font-bold text-zinc-400 hover:text-black transition-all">Branding</a>
+    <a href="#mclaren" class="text-[10px] tracking-[0.25em] uppercase font-bold text-zinc-400 hover:text-black transition-all">McLaren</a>
+    <a href="#porsche" class="text-[10px] tracking-[0.25em] uppercase font-bold text-zinc-400 hover:text-black transition-all">Porsche</a>
+    <a href="#web" class="text-[10px] tracking-[0.25em] uppercase font-bold text-zinc-400 hover:text-black transition-all">Web Design</a>
+    <a href="#logos" class="text-[10px] tracking-[0.25em] uppercase font-bold text-zinc-400 hover:text-black transition-all">Logo Design</a>
+  </nav>
+
+  <!-- 01 Branding & Rebranding -->
+  <section id="branding" class="reveal-section px-6 md:px-24 mb-24">
+    <div class="flex flex-col md:flex-row justify-between items-start mb-16 gap-8">
+      <div class="max-w-xl">
+        <span class="text-[10px] tracking-widest uppercase text-zinc-400 font-bold block mb-4">01 — Category</span>
+        <h2 class="text-5xl md:text-7xl font-bold tracking-tighter mb-8">Branding & Rebranding</h2>
+        <p class="text-zinc-500 text-lg leading-relaxed italic">Restructuring visual identities to align with modern structural logic and engineering principles.</p>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-1">
+      <div onclick="openGuidelines()" class="md:col-span-12 group cursor-pointer relative overflow-hidden bg-zinc-50 h-[600px] border border-zinc-100">
+        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="/assets/mockup%2003-DOw2xred.png" alt="Benner Tea branding">
+        <div class="absolute inset-0 bg-black/40 flex flex-col justify-end p-12 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <h4 class="text-3xl font-bold text-white uppercase tracking-tight">Benner Tea Co.</h4>
+            <p class="text-white/70 text-[10px] tracking-[0.3em] uppercase mt-2">Visual Identity System</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Project Grid -->
-  <section class="max-w-none px-0">
-    <div class="grid grid-cols-1 md:grid-cols-12 w-full mt-12 gap-4 md:gap-0 overflow-hidden">
-      <!-- 1 -->
-      <a href="portfolio.html" class="project-card md:col-span-8 group cursor-pointer relative block" data-category="branding web">
-        <div class="relative overflow-hidden bg-zinc-50 border border-white/10 h-[500px] md:h-[700px] w-full border border-white/5">
-          <img decoding="async" fetchpriority="high" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 will-change-transform" alt="BENNER TEA CO. REBRANDING" src="/assets/mockup%2003-DOw2xred.png"/>
-          <div class="absolute inset-0 bg-black/40 transition-opacity duration-500 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 flex flex-col justify-end p-10">
-            <h3 class="text-3xl font-bold uppercase tracking-tight text-zinc-900 translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500">BENNER TEA CO. REBRANDING</h3>
-            <p class="text-xs tracking-widest uppercase text-zinc-700/80 mt-2 translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500 delay-75">Visual Identity • E-Commerce</p>
-          </div>
-        </div>
-      </a>
-      <!-- 2 -->
-      <a href="portfolio.html" class="project-card md:col-span-4 group cursor-pointer relative block" data-category="web">
-        <div class="relative overflow-hidden bg-zinc-50 border border-white/10 h-[500px] md:h-[700px] w-full border border-white/5">
-          <img decoding="async" fetchpriority="high" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105 will-change-transform" alt="ELEVATE HOROLOGY" src="/assets/Coppola%20-%20Movie%20and%20Film%20Production%20Theme-BqFTpLuz.jpg"/>
-          <div class="absolute inset-0 bg-black/40 transition-opacity duration-500 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 flex flex-col justify-end p-10">
-            <h3 class="text-3xl font-bold uppercase tracking-tight text-zinc-900 translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500">ELEVATE HOROLOGY</h3>
-            <p class="text-xs tracking-widest uppercase text-zinc-700/80 mt-2 translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500 delay-75">Digital Flagship</p>
-          </div>
-        </div>
-      </a>
-      <!-- 3 -->
-      <a href="portfolio.html" class="project-card md:col-span-5 group cursor-pointer relative block" data-category="graphics branding">
-        <div class="relative overflow-hidden bg-zinc-50 border border-white/10 h-[500px] md:h-[700px] w-full border border-white/5">
-          <img decoding="async" fetchpriority="high" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105 will-change-transform" alt="ARCHIVE MAGAZINE" src="/assets/experiencewelcome.com-hQXpFSx3.png"/>
-          <div class="absolute inset-0 bg-black/40 transition-opacity duration-500 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 flex flex-col justify-end p-10">
-            <h3 class="text-3xl font-bold uppercase tracking-tight text-zinc-900 translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500">ARCHIVE MAGAZINE</h3>
-            <p class="text-xs tracking-widest uppercase text-zinc-700/80 mt-2 translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500 delay-75">Creative Direction</p>
-          </div>
-        </div>
-      </a>
-      <!-- 4 -->
-      <a href="portfolio.html" class="project-card md:col-span-7 group cursor-pointer relative block" data-category="web">
-        <div class="relative overflow-hidden bg-zinc-50 border border-white/10 h-[500px] md:h-[700px] w-full border border-white/5">
-          <img decoding="async" fetchpriority="high" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 will-change-transform" alt="BENNER TEA CO. REBRANDING" src="/assets/IMG_3641-C6kBDw48.PNG"/>
-          <div class="absolute inset-0 bg-black/40 transition-opacity duration-500 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 flex flex-col justify-end p-10">
-            <h3 class="text-3xl font-bold uppercase tracking-tight text-zinc-900 translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500">BENNER TEA CO. REBRANDING</h3>
-            <p class="text-xs tracking-widest uppercase text-zinc-700/80 mt-2 translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500 delay-75">Platform Design • UX</p>
-          </div>
-        </div>
-      </a>
-
-      <!-- 5 McLaren Study 1 -->
-      <a href="portfolio.html" class="project-card md:col-span-12 group cursor-pointer block border border-white/5 bg-white text-white" data-category="graphics">
-        <div class="flex flex-col md:flex-row w-full h-auto md:h-[600px]">
-          <div class="w-full md:w-3/5 h-[400px] md:h-full relative overflow-hidden">
-            <img decoding="async" fetchpriority="high" class="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-105 will-change-transform" src="/assets/IMG_0213%20(2)-O_ibQh68.jpg" alt="Study 01"/>
-          </div>
-          <div class="w-full md:w-2/5 flex flex-col justify-center p-10 md:p-16 bg-white text-white transition-colors duration-500 group-hover:bg-black">
-            <span class="text-zinc-500 font-manrope text-[10px] tracking-[0.2em] uppercase mb-4 block">Concept Sketch</span>
-            <h3 class="text-3xl md:text-4xl font-bold uppercase tracking-tight text-white mb-6 leading-tight">STUDY 01: <br/> FORM & VELOCITY</h3>
-            <span class="inline-flex items-center gap-4 text-[10px] tracking-[0.3em] uppercase font-bold text-white mt-8 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
-              View Project <span class="material-symbols-outlined text-sm">arrow_forward</span>
-            </span>
-          </div>
-        </div>
-      </a>
-
-      <!-- 6 McLaren Study 2 -->
-      <a href="portfolio.html" class="project-card md:col-span-12 group cursor-pointer block border border-white/5 bg-white text-white" data-category="graphics">
-        <div class="flex flex-col md:flex-row w-full h-auto md:h-[600px]">
-          <div class="w-full md:w-3/5 h-[400px] md:h-full relative overflow-hidden">
-            <img decoding="async" fetchpriority="high" class="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-105 will-change-transform" src="/assets/IMG_9606%20(2)-DaaiG8IQ.jpg" alt="Study 02"/>
-          </div>
-          <div class="w-full md:w-2/5 flex flex-col justify-center p-10 md:p-16 bg-white text-white transition-colors duration-500 group-hover:bg-black">
-            <span class="text-zinc-500 font-manrope text-[10px] tracking-[0.2em] uppercase mb-4 block">Detail Extraction</span>
-            <h3 class="text-3xl md:text-4xl font-bold uppercase tracking-tight text-white mb-6 leading-tight">STUDY 02: <br/> TENSION</h3>
-            <span class="inline-flex items-center gap-4 text-[10px] tracking-[0.3em] uppercase font-bold text-white mt-8 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
-              View Project <span class="material-symbols-outlined text-sm">arrow_forward</span>
-            </span>
-          </div>
-        </div>
-      </a>
-
-      <!-- 7 McLaren Study 3 -->
-      <a href="portfolio.html" class="project-card md:col-span-12 group cursor-pointer block border border-white/5 bg-white text-white" data-category="graphics">
-        <div class="flex flex-col md:flex-row w-full h-auto md:h-[600px]">
-          <div class="w-full md:w-3/5 h-[400px] md:h-full relative overflow-hidden">
-            <img decoding="async" fetchpriority="high" class="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-105 will-change-transform" src="/assets/IMG_9844%20(2)-C2WzHGvm.jpg" alt="Study 03"/>
-          </div>
-          <div class="w-full md:w-2/5 flex flex-col justify-center p-10 md:p-16 bg-white text-white transition-colors duration-500 group-hover:bg-black">
-            <span class="text-zinc-500 font-manrope text-[10px] tracking-[0.2em] uppercase mb-4 block">Master Illustration</span>
-            <h3 class="text-3xl md:text-4xl font-bold uppercase tracking-tight text-white mb-6 leading-tight">STUDY 03: <br/> APEX</h3>
-            <span class="inline-flex items-center gap-4 text-[10px] tracking-[0.3em] uppercase font-bold text-white mt-8 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
-              View Project <span class="material-symbols-outlined text-sm">arrow_forward</span>
-            </span>
-          </div>
-        </div>
-      </a>
-
-      <!-- 8 Porsche 1 -->
-      <a href="portfolio.html" class="project-card md:col-span-12 group cursor-pointer block border border-white/5 bg-white text-white" data-category="graphics branding">
-        <div class="flex flex-col md:flex-row w-full h-auto md:h-[600px]">
-          <div class="w-full md:w-3/5 h-[400px] md:h-full relative overflow-hidden">
-            <img decoding="async" fetchpriority="high" class="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-105 will-change-transform" src="/assets/IMG_0498-D9KFs1X0.jpg" alt="Porsche Study 01"/>
-          </div>
-          <div class="w-full md:w-2/5 flex flex-col justify-center p-10 md:p-16 bg-white text-white transition-colors duration-500 group-hover:bg-black">
-            <span class="text-zinc-500 font-manrope text-[10px] tracking-[0.2em] uppercase mb-4 block">Concept Sketch</span>
-            <h3 class="text-3xl md:text-4xl font-bold uppercase tracking-tight text-white mb-6 leading-tight">STUDY 01: <br/> HERITAGE</h3>
-            <span class="inline-flex items-center gap-4 text-[10px] tracking-[0.3em] uppercase font-bold text-white mt-8 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
-              View Project <span class="material-symbols-outlined text-sm">arrow_forward</span>
-            </span>
-          </div>
-        </div>
-      </a>
-
-      <!-- 9 Porsche 2 -->
-      <a href="portfolio.html" class="project-card md:col-span-12 group cursor-pointer block border border-white/5 bg-white text-white" data-category="graphics branding">
-        <div class="flex flex-col md:flex-row w-full h-auto md:h-[600px]">
-          <div class="w-full md:w-3/5 h-[400px] md:h-full relative overflow-hidden">
-            <img decoding="async" fetchpriority="high" class="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-105 will-change-transform" src="/assets/IMG_1390-oSBKZrYy.jpg" alt="Porsche Study 02"/>
-          </div>
-          <div class="w-full md:w-2/5 flex flex-col justify-center p-10 md:p-16 bg-white text-white transition-colors duration-500 group-hover:bg-black">
-            <span class="text-zinc-500 font-manrope text-[10px] tracking-[0.2em] uppercase mb-4 block">Detail Extraction</span>
-            <h3 class="text-3xl md:text-4xl font-bold uppercase tracking-tight text-white mb-6 leading-tight">STUDY 02: <br/> SILHOUETTE</h3>
-            <span class="inline-flex items-center gap-4 text-[10px] tracking-[0.3em] uppercase font-bold text-white mt-8 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
-              View Project <span class="material-symbols-outlined text-sm">arrow_forward</span>
-            </span>
-          </div>
-        </div>
-      </a>
-
+  <!-- 02 McLaren -->
+  <section id="mclaren" class="reveal-section px-0 mb-24 bg-zinc-50 py-24">
+    <div class="px-6 md:px-24 mb-16">
+      <span class="text-[10px] tracking-widest uppercase text-zinc-400 font-bold block mb-4">02 — Category</span>
+      <h2 class="text-5xl md:text-7xl font-bold tracking-tighter mb-8">McLaren Studies</h2>
+      <p class="text-zinc-500 text-lg leading-relaxed max-w-2xl">Exploring the intersection of tension, velocity, and apex-driven design through high-fidelity automotive sketches.</p>
     </div>
-
-    <!-- No results message -->
-    <div id="no-results" class="hidden text-center py-32 text-zinc-500">
-      <p class="text-lg uppercase tracking-widest">No projects in this category yet.</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-zinc-200">
+      <div class="h-[500px] relative group overflow-hidden bg-white">
+        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="/assets/IMG_0213%20(2)-O_ibQh68.jpg" alt="Study 01">
+        <div class="absolute bottom-0 left-0 p-10">
+          <p class="text-[10px] tracking-widest uppercase text-white/50 mb-2">Study 01</p>
+          <h5 class="text-xl font-bold text-white uppercase">Form & Velocity</h5>
+        </div>
+      </div>
+      <div class="h-[500px] relative group overflow-hidden bg-white">
+        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="/assets/IMG_9606%20(2)-DaaiG8IQ.jpg" alt="Study 02">
+        <div class="absolute bottom-0 left-0 p-10">
+          <p class="text-[10px] tracking-widest uppercase text-white/50 mb-2">Study 02</p>
+          <h5 class="text-xl font-bold text-white uppercase">Aerodynamic Tension</h5>
+        </div>
+      </div>
+      <div class="h-[500px] relative group overflow-hidden bg-white">
+        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="/assets/IMG_9844%20(2)-C2WzHGvm.jpg" alt="Study 03">
+        <div class="absolute bottom-0 left-0 p-10">
+          <p class="text-[10px] tracking-widest uppercase text-white/50 mb-2">Study 03</p>
+          <h5 class="text-xl font-bold text-white uppercase">The Apex Point</h5>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Testimonials Section -->
-  <section class="mt-40 mb-24 px-6 md:px-24 w-full max-w-[1400px] mx-auto">
-    <div class="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-white/20 pb-6 gap-6">
-      <div>
-        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white">Client Feedback</h2>
-        <p class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 mt-3">Partnerships & Experiences</p>
-      </div>
-      <a href="contact.html" class="inline-flex items-center gap-3 text-xs tracking-[0.2em] uppercase font-bold text-zinc-900 border-zinc-900 pb-1 hover:opacity-50 transition-all duration-300">
-        See All Testimonials <span class="material-symbols-outlined text-sm">arrow_forward</span>
-      </a>
+  <!-- 03 Porsche -->
+  <section id="porsche" class="reveal-section px-6 md:px-24 mb-24">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+       <div>
+         <span class="text-[10px] tracking-widest uppercase text-zinc-400 font-bold block mb-4">03 — Category</span>
+         <h2 class="text-5xl md:text-7xl font-bold tracking-tighter">Porsche Heritage</h2>
+       </div>
+       <p class="text-zinc-500 text-lg max-w-sm text-right leading-relaxed italic">A tribute to the timeless silhouette and engineering precision of 911 iterations.</p>
     </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="h-[600px] relative group overflow-hidden border border-zinc-100 bg-zinc-50">
+        <img class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105" src="/assets/IMG_0498-D9KFs1X0.jpg" alt="Porsche 01">
+        <div class="absolute top-0 left-0 p-10 bg-gradient-to-b from-black/20 to-transparent w-full">
+            <h5 class="text-xl font-bold text-white uppercase">Study 01: Heritage</h5>
+        </div>
+      </div>
+      <div class="h-[600px] relative group overflow-hidden border border-zinc-100 bg-zinc-50">
+        <img class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105" src="/assets/IMG_1390-oSBKZrYy.jpg" alt="Porsche 02">
+        <div class="absolute top-0 left-0 p-10 bg-gradient-to-b from-black/20 to-transparent w-full">
+            <h5 class="text-xl font-bold text-white uppercase">Study 02: Silhouette</h5>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div class="bg-surface-container-low border border-outline-variant/50 p-10 flex flex-col justify-between hover:shadow-2xl transition-shadow duration-500 translate-y-0 hover:-translate-y-2 relative overflow-hidden">
-        <div class="absolute top-0 right-0 p-6 opacity-5">
-            <span class="material-symbols-outlined text-[100px]">format_quote</span>
+  <!-- 04 Web -->
+  <section id="web" class="reveal-section px-6 md:px-24 mb-24">
+    <div class="max-w-4xl mb-16">
+      <span class="text-[10px] tracking-widest uppercase text-zinc-400 font-bold block mb-4">04 — Category</span>
+      <h2 class="text-5xl md:text-7xl font-bold tracking-tighter mb-8">Web Design &<br/> Development</h2>
+    </div>
+    <div class="space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 h-auto md:h-[600px]">
+        <div class="md:col-span-8 bg-zinc-50 overflow-hidden relative group border border-zinc-100">
+           <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="/assets/Coppola%20-%20Movie%20and%20Film%20Production%20Theme-BqFTpLuz.jpg" alt="Web 01">
+           <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-center items-center text-center p-12">
+             <h4 class="text-white text-4xl font-bold uppercase tracking-tighter">Elevate Horology</h4>
+             <p class="text-white/60 text-xs tracking-widest uppercase mt-4">High-End E-Commerce Strategy</p>
+           </div>
         </div>
-        <div class="mb-8 flex gap-1 text-yellow-500 text-sm">
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-        </div>
-        <p class="text-lg italic font-light text-on-surface mb-10 leading-relaxed relative z-10">"The level of detail and architectural precision brought to our rebranding was transformative. His keen eye for subtle interactions elevated our platform beyond expectations. Truly a hallmark of modern web design."</p>
-        <div class="flex items-center gap-4 relative z-10">
-          <img src="https://i.pravatar.cc/100?img=11" alt="Marcus Chen" class="w-12 h-12 rounded-full object-cover">
-          <div>
-            <p class="font-bold uppercase tracking-tight text-sm">Marcus Chen</p>
-            <p class="text-[10px] tracking-widest uppercase text-zinc-500 mt-0.5">Founder, ARCH Lab</p>
+        <div class="md:col-span-4 bg-zinc-50 overflow-hidden relative group border border-zinc-100">
+          <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="/assets/experiencewelcome.com-hQXpFSx3.png" alt="Web 02">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-center items-center text-center p-12">
+            <h4 class="text-white text-3xl font-bold uppercase tracking-tighter">Archive Magazine</h4>
+            <p class="text-white/60 text-xs tracking-widest uppercase mt-4">Editorial Digital Design</p>
           </div>
         </div>
       </div>
-      
-      <div class="bg-surface-container-low border border-outline-variant/50 p-10 flex flex-col justify-between hover:shadow-2xl transition-shadow duration-500 translate-y-0 hover:-translate-y-2 relative overflow-hidden">
-        <div class="absolute top-0 right-0 p-6 opacity-5">
-            <span class="material-symbols-outlined text-[100px]">format_quote</span>
-        </div>
-        <div class="mb-8 flex gap-1 text-yellow-500 text-sm">
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-        </div>
-        <p class="text-lg italic font-light text-on-surface mb-10 leading-relaxed relative z-10">"We needed a digital experience that could seamlessly align with our high-end automotive brand standards. The result was a sleek, perfectly optimized, and breath-taking portfolio layout that drove sales."</p>
-        <div class="flex items-center gap-4 relative z-10">
-          <img src="https://i.pravatar.cc/100?img=5" alt="Elena Voss" class="w-12 h-12 rounded-full object-cover grayscale">
-          <div>
-            <p class="font-bold uppercase tracking-tight text-sm">Elena Voss</p>
-            <p class="text-[10px] tracking-widest uppercase text-zinc-500 mt-0.5">Marketing Director, VOSS</p>
-          </div>
-        </div>
-      </div>
+    </div>
+  </section>
 
-      <div class="bg-surface-container-low border border-outline-variant/50 p-10 flex flex-col justify-between hover:shadow-2xl transition-shadow duration-500 translate-y-0 hover:-translate-y-2 relative overflow-hidden">
-        <div class="absolute top-0 right-0 p-6 opacity-5">
-            <span class="material-symbols-outlined text-[100px]">format_quote</span>
-        </div>
-        <div class="mb-8 flex gap-1 text-yellow-500 text-sm">
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-        </div>
-        <p class="text-lg italic font-light text-on-surface mb-10 leading-relaxed relative z-10">"Technical excellence combined with an editorial eye. Our site's load speed improved drastically while preserving high-definition assets. Highly responsive, detailed, and utterly precise working flow."</p>
-        <div class="flex items-center gap-4 relative z-10">
-          <img src="https://i.pravatar.cc/100?img=12" alt="Julian Grant" class="w-12 h-12 rounded-full object-cover">
-          <div>
-            <p class="font-bold uppercase tracking-tight text-sm">Julian Grant</p>
-            <p class="text-[10px] tracking-widest uppercase text-zinc-500 mt-0.5">CEO, NEXUS Digital</p>
-          </div>
-        </div>
+  <!-- 05 Logos -->
+  <section id="logos" class="reveal-section px-6 md:px-24 mb-24">
+    <div class="text-center mb-16">
+      <span class="text-[10px] tracking-widest uppercase text-zinc-400 font-bold block mb-4">05 — Category</span>
+      <h2 class="text-5xl md:text-7xl font-bold tracking-tighter">Identity Marks</h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="aspect-square bg-zinc-50 flex flex-col items-center justify-center border border-zinc-100 group transition-all hover:bg-black hover:text-white">
+        <span class="text-xs tracking-[0.4em] uppercase font-light text-zinc-400 group-hover:text-zinc-500 mb-2">Mark 01</span>
+        <h6 class="text-3xl font-bold tracking-tighter">STRATUM</h6>
+      </div>
+      <div class="aspect-square bg-white flex flex-col items-center justify-center border border-zinc-100 group transition-all hover:bg-black hover:text-white">
+        <span class="text-xs tracking-[0.4em] uppercase font-light text-zinc-400 group-hover:text-zinc-500 mb-2">Mark 02</span>
+        <h6 class="text-3xl font-bold tracking-tighter">LUMINA</h6>
+      </div>
+      <div class="aspect-square bg-zinc-50 flex flex-col items-center justify-center border border-zinc-100 group transition-all hover:bg-black hover:text-white">
+        <span class="text-xs tracking-[0.4em] uppercase font-light text-zinc-400 group-hover:text-zinc-500 mb-2">Mark 03</span>
+        <h6 class="text-3xl font-bold tracking-tighter">VOID.</h6>
+      </div>
+      <div class="aspect-square bg-white flex flex-col items-center justify-center border border-zinc-100 group transition-all hover:bg-black hover:text-white">
+        <span class="text-xs tracking-[0.4em] uppercase font-light text-zinc-400 group-hover:text-zinc-500 mb-2">Mark 04</span>
+        <h6 class="text-3xl font-bold tracking-tighter">STARK</h6>
       </div>
     </div>
   </section>
 
   <!-- CTA Section -->
-  <section class="mt-48 px-6 md:px-24 bg-surface-container-low py-32 flex flex-col items-center text-center">
-    <span class="font-manrope text-[12px] tracking-[0.2em] uppercase text-zinc-500 mb-6">Have a vision?</span>
-    <h2 class="text-[2.2rem] md:text-[clamp(2.5rem,5vw,4rem)] font-extrabold tracking-tight text-white mb-12 max-w-4xl leading-tight">
-      LET'S CONSTRUCT SOMETHING EXTRAORDINARY TOGETHER.
-    </h2>
-    <a href="contact.html" class="border border-white/30 text-white px-12 py-5 font-manrope text-sm tracking-[0.2em] uppercase hover:bg-white hover:text-black transition-all duration-400 inline-block">
-      START A PROJECT
-    </a>
+  <section class="px-6 md:px-24 bg-black py-32 text-center text-white">
+    <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-8 block">Project Inquiry</span>
+    <h2 class="text-5xl md:text-8xl font-bold tracking-tighter mb-16">BUILD THE FUTURE.</h2>
+    <a href="contact.html" class="inline-block bg-white text-black px-16 py-6 font-bold uppercase tracking-widest text-xs hover:bg-zinc-200 transition-all">Start Collaboration</a>
   </section>
 </main>
 
 <!-- Footer -->
-<footer class="bg-gray-50 flex flex-col md:flex-row justify-between items-center px-6 md:px-24 py-16 w-full">
+<footer class="bg-white flex flex-col md:flex-row justify-between items-center px-6 md:px-24 py-16 border-t border-zinc-100">
   <div class="mb-8 md:mb-0">
-    <a href="index.html" class="text-lg font-bold text-white mb-2 uppercase tracking-tighter block">Adley Fernandes</a>
-    <p class="font-manrope text-[10px] tracking-widest text-zinc-500 uppercase">© 2024 Adley Fernandes. ALL RIGHTS RESERVED.</p>
+    <a href="index.html" class="text-lg font-bold text-zinc-900 uppercase tracking-tighter block mb-2">Adley Fernandes</a>
+    <p class="text-[10px] tracking-widest text-zinc-400 uppercase">© 2024. ALL RIGHTS RESERVED.</p>
   </div>
-  <div class="flex flex-wrap justify-center gap-x-8 gap-y-4">
-    <a class="font-manrope text-[10px] tracking-widest uppercase text-zinc-500 hover:text-white underline-offset-4 hover:underline transition-all duration-400" href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
-    <a class="font-manrope text-[10px] tracking-widest uppercase text-zinc-500 hover:text-white underline-offset-4 hover:underline transition-all duration-400" href="https://twitter.com" target="_blank" rel="noopener">Twitter</a>
-    <a class="font-manrope text-[10px] tracking-widest uppercase text-zinc-500 hover:text-white underline-offset-4 hover:underline transition-all duration-400" href="https://github.com" target="_blank" rel="noopener">GitHub</a>
-    <a class="font-manrope text-[10px] tracking-widest uppercase text-zinc-500 hover:text-white underline-offset-4 hover:underline transition-all duration-400" href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
-    <a class="font-manrope text-[10px] tracking-widest uppercase text-white hover:text-white underline-offset-4 hover:underline transition-all duration-400 flex items-center gap-1" href="#top">
-      Back to top <span class="material-symbols-outlined" style="font-size:12px;">arrow_upward</span>
-    </a>
+  <div class="flex gap-12">
+    <a class="text-[10px] tracking-widest uppercase text-zinc-400 hover:text-black transition-all" href="#">LinkedIn</a>
+    <a class="text-[10px] tracking-widest uppercase text-zinc-400 hover:text-black transition-all" href="#">Dribbble</a>
+    <a class="text-[10px] tracking-widest uppercase text-zinc-900 font-bold hover:text-black transition-all" href="#top">Top ↑</a>
   </div>
 </footer>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script>
-  // Mobile menu toggle
+  // Mobile Menu
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobile-menu');
-  const ham1 = document.getElementById('ham-1');
-  const ham2 = document.getElementById('ham-2');
-  const ham3 = document.getElementById('ham-3');
-  let menuOpen = false;
+  let open = false;
   hamburger.addEventListener('click', () => {
-    menuOpen = !menuOpen;
-    mobileMenu.classList.toggle('open', menuOpen);
-    ham2.style.opacity = menuOpen ? '0' : '1';
-    ham1.style.transform = menuOpen ? 'translateY(8px) rotate(45deg)' : '';
-    ham3.style.transform = menuOpen ? 'translateY(-8px) rotate(-45deg)' : '';
+    open = !open;
+    mobileMenu.classList.toggle('open', open);
   });
 
-  // Portfolio filter
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('.project-card');
-  const noResults = document.getElementById('no-results');
+  // Reveal Sections on scroll
+  const observerOptions = { threshold: 0.1 };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const filter = btn.dataset.filter;
-      // Update button styles
-      filterBtns.forEach(b => {
-        b.classList.remove('text-black', 'border-b', 'border-black', 'pb-2');
-        b.classList.add('text-zinc-500');
-      });
-      btn.classList.remove('text-zinc-500');
-      btn.classList.add('text-black', 'border-b', 'border-black', 'pb-2');
+  document.querySelectorAll('.reveal-section').forEach(section => {
+    observer.observe(section);
+  });
 
-      // Filter cards
-      let visible = 0;
-      cards.forEach(card => {
-        const cats = card.dataset.category || '';
-        if (filter === 'all' || cats.includes(filter)) {
-          card.classList.remove('hidden-filter');
-          visible++;
-        } else {
-          card.classList.add('hidden-filter');
-        }
+  // Smooth scroll for anchor menu
+  document.querySelectorAll('.category-nav a').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
       });
-      noResults.classList.toggle('hidden', visible > 0);
+      // Update active state
+      document.querySelectorAll('.category-nav a').forEach(a => a.classList.replace('text-black', 'text-zinc-400'));
+      this.classList.replace('text-zinc-400', 'text-black');
     });
   });
+
+  /* -- Brand Guidelines Modal Logic -- */
+  function openGuidelines() {
+    const modal = document.getElementById('guidelines-modal');
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    gsap.fromTo(modal, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" });
+  }
+
+  function closeGuidelines() {
+    const modal = document.getElementById('guidelines-modal');
+    gsap.to(modal, { opacity: 0, duration: 0.5, ease: "power2.in", onComplete: () => {
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }});
+  }
 </script>
+
+<!-- Brand Guidelines Modal -->
+<div id="guidelines-modal" class="fixed inset-0 z-[100] bg-black hidden flex flex-col overflow-y-auto no-scrollbar">
+  <!-- Close Button -->
+  <button onclick="closeGuidelines()" class="fixed top-8 right-8 z-[110] w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all group">
+    <span class="material-symbols-outlined transition-transform group-hover:rotate-90">close</span>
+  </button>
+
+  <!-- Guidelines Content -->
+  <div class="w-full flex flex-col items-center py-20 px-4 md:px-0">
+    <!-- Brand Guidelines Pages 01-45 -->
+    <div id="guidelines-container" class="w-full max-w-5xl space-y-4">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-01-ck3j26D3.png" class="w-full h-auto shadow-2xl" alt="Page 01">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-02-Bz7OC1Qk.png" class="w-full h-auto shadow-2xl" alt="Page 02">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-03-Bd7brO2K.png" class="w-full h-auto shadow-2xl" alt="Page 03">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-04-P43kSfVC.png" class="w-full h-auto shadow-2xl" alt="Page 04">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-05-BDhPbKsz.png" class="w-full h-auto shadow-2xl" alt="Page 05">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-06-YBrXdmWl.png" class="w-full h-auto shadow-2xl" alt="Page 06">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-07-Beq1SrTv.png" class="w-full h-auto shadow-2xl" alt="Page 07">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-08-B4woPK7C.png" class="w-full h-auto shadow-2xl" alt="Page 08">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-09-DwSzX7sN.png" class="w-full h-auto shadow-2xl" alt="Page 09">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-10-CTgGbGot.png" class="w-full h-auto shadow-2xl" alt="Page 10">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-11-BLMOt3bt.png" class="w-full h-auto shadow-2xl" alt="Page 11">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-12-Bb2Rc6XT.png" class="w-full h-auto shadow-2xl" alt="Page 12">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-13-BjagVFOm.png" class="w-full h-auto shadow-2xl" alt="Page 13">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-14-Ct69w9XX.png" class="w-full h-auto shadow-2xl" alt="Page 14">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-15-DdhLxlr6.png" class="w-full h-auto shadow-2xl" alt="Page 15">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-16-o4OdMyay.png" class="w-full h-auto shadow-2xl" alt="Page 16">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-17-BvGxrzzY.png" class="w-full h-auto shadow-2xl" alt="Page 17">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-18-Bn45e5_A.png" class="w-full h-auto shadow-2xl" alt="Page 18">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-19-F0zm1aPE.png" class="w-full h-auto shadow-2xl" alt="Page 19">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-20-BhS_u5xg.png" class="w-full h-auto shadow-2xl" alt="Page 20">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-21-BZZZ0JMl.png" class="w-full h-auto shadow-2xl" alt="Page 21">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-22-DE35QOF4.png" class="w-full h-auto shadow-2xl" alt="Page 22">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-23-Bl4deGB5.png" class="w-full h-auto shadow-2xl" alt="Page 23">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-24-Qr2LIPAd.png" class="w-full h-auto shadow-2xl" alt="Page 24">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-25-BMd-sVu-.png" class="w-full h-auto shadow-2xl" alt="Page 25">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-26-B_48ZnPi.png" class="w-full h-auto shadow-2xl" alt="Page 26">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-45-Dy_cT8N2.png" class="w-full h-auto shadow-2xl" alt="Page 27">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-25-BMd-sVu-.png" class="w-full h-auto shadow-2xl" alt="Page 28">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-29-torylmY9.png" class="w-full h-auto shadow-2xl" alt="Page 29">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-30-ElKtCVnj.png" class="w-full h-auto shadow-2xl" alt="Page 30">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-31-Dy2QjN22.png" class="w-full h-auto shadow-2xl" alt="Page 31">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-29-torylmY9.png" class="w-full h-auto shadow-2xl" alt="Page 32">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-30-ElKtCVnj.png" class="w-full h-auto shadow-2xl" alt="Page 33">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-31-Dy2QjN22.png" class="w-full h-auto shadow-2xl" alt="Page 34">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-29-torylmY9.png" class="w-full h-auto shadow-2xl" alt="Page 35">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-36-B8hyIewL.png" class="w-full h-auto shadow-2xl" alt="Page 36">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-40-_D3DxvM9.png" class="w-full h-auto shadow-2xl" alt="Page 37">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-38-uBQL01EJ.png" class="w-full h-auto shadow-2xl" alt="Page 38">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-36-B8hyIewL.png" class="w-full h-auto shadow-2xl" alt="Page 39">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-40-_D3DxvM9.png" class="w-full h-auto shadow-2xl" alt="Page 40">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-38-uBQL01EJ.png" class="w-full h-auto shadow-2xl" alt="Page 41">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-36-B8hyIewL.png" class="w-full h-auto shadow-2xl" alt="Page 42">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-25-BMd-sVu-.png" class="w-full h-auto shadow-2xl" alt="Page 43">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-26-B_48ZnPi.png" class="w-full h-auto shadow-2xl" alt="Page 44">
+      <img src="/assets/Brand%20guidelines%20_Recovered_-45-Dy_cT8N2.png" class="w-full h-auto shadow-2xl" alt="Page 45">
+    </div>
+
+    <!-- Final Mockups -->
+    <div class="w-full max-w-5xl mt-4 space-y-4">
+      <img src="/assets/Mockup%2001-Dg3BN2TT.png" class="w-full h-auto shadow-2xl" alt="Mockup 1">
+      <img src="/assets/Mockup%2002-C6kBDw48.PNG" class="w-full h-auto shadow-2xl" alt="Mockup 2">
+      <img src="/assets/mockup%2003-DOw2xred.png" class="w-full h-auto shadow-2xl" alt="Mockup 3">
+      <img src="/assets/mockup%2004-BE35QyIx.jpg" class="w-full h-auto shadow-2xl" alt="Mockup 4">
+    </div>
+  </div>
+</div>
 </body></html>
 

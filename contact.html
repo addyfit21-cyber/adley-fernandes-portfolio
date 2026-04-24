@@ -24,6 +24,7 @@
 <style>
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
   body { font-family: 'Manrope', sans-serif; }
+  h1, h2, h3, h4, h5, h6 { font-family: Helvetica, Arial, sans-serif; }
   #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
   #mobile-menu.open { max-height: 400px; }
   ::-webkit-scrollbar { width: 6px; }
@@ -39,23 +40,36 @@
   .floating-label-group textarea:focus ~ label {
     top: -1.5rem; font-size: 0.65rem; color: #000;
   }
+  /* Scroll-Pen Visibility */
+  @media (max-width: 1024px) {
+    #scroll-pen-wrap { display: none !important; }
+  }
 </style>
 </head>
 <body class="bg-[#fdfdfd] text-zinc-900 selection:bg-primary selection:text-on-primary">
 
 <!-- TopNavBar -->
-<nav class="absolute top-0 w-full z-50 flex justify-between items-center px-6 md:px-24 bg-transparent h-24">
-  <a href="index.html" class="text-2xl font-bold tracking-tighter text-black">Adley Fernandes</a>
-  <div class="hidden md:flex space-x-12">
-    <a class="font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 hover:text-black transition-colors duration-300" href="index.html">Home</a>
-    <a class="font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 hover:text-black transition-colors duration-300" href="portfolio.html">Portfolio</a>
-    <a class="font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 hover:text-black transition-colors duration-300" href="services.html">Services</a>
-    <a class="font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 hover:text-black transition-colors duration-300" href="about.html">About</a>
-    <a class="font-manrope text-sm tracking-[0.1em] uppercase text-black border-b border-black pb-1" href="contact.html">Contact</a>
+<nav class="fixed top-8 left-1/2 -translate-x-1/2 z-[100] flex items-center justify-between px-6 py-3 bg-white/80 backdrop-blur-xl border border-white/50 shadow-2xl w-[95%] md:w-max md:min-w-[800px]">
+  <!-- Logo -->
+  <a href="index.html" class="text-lg md:text-xl font-bold tracking-tighter text-black z-10">Adley Fernandes</a>
+  
+  <!-- Desktop Links (Absolutely Centered) -->
+  <div class="hidden md:flex items-center space-x-8 absolute left-1/2 -translate-x-1/2">
+    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="index.html">Home</a>
+    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="portfolio.html">Portfolio</a>
+    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="index.html#services">Services</a>
+    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="index.html#about">About</a>
+    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-900 border-b border-black pb-0.5 transition-colors duration-300" href="contact.html">Contact</a>
   </div>
-  <a href="#contact-form" class="hidden md:block font-manrope text-sm tracking-[0.1em] uppercase px-8 py-3 bg-primary text-on-primary hover:opacity-70 transition-opacity duration-500">
-    Get in Touch
-  </a>
+
+  <!-- CTA -->
+  <div class="hidden md:flex items-center z-10">
+    <a href="contact.html" class="bg-black text-white px-5 py-2 font-manrope text-[10px] tracking-[0.2em] uppercase hover:bg-zinc-800 transition-colors duration-500">
+      Get in Touch
+    </a>
+  </div>
+
+  <!-- Mobile hamburger -->
   <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Open menu">
     <span class="block w-6 h-0.5 bg-black transition-all duration-300" id="ham-1"></span>
     <span class="block w-6 h-0.5 bg-black transition-all duration-300" id="ham-2"></span>
@@ -64,13 +78,13 @@
 </nav>
 
 <!-- Mobile Menu -->
-<div id="mobile-menu" class="fixed top-24 left-0 w-full z-40 bg-white/95 backdrop-blur-xl px-6 py-0 flex flex-col gap-0">
-  <a class="py-4 border-b border-outline-variant/30 font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 hover:text-black" href="index.html">Home</a>
-  <a class="py-4 border-b border-outline-variant/30 font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 hover:text-black" href="portfolio.html">Portfolio</a>
-  <a class="py-4 border-b border-outline-variant/30 font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 hover:text-black" href="services.html">Services</a>
-  <a class="py-4 border-b border-outline-variant/30 font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 hover:text-black" href="about.html">About</a>
-  <a class="py-4 border-b border-outline-variant/30 font-manrope text-sm tracking-[0.1em] uppercase text-black font-bold" href="contact.html">Contact</a>
-  <a class="py-4 font-manrope text-sm tracking-[0.1em] uppercase text-black font-bold" href="#contact-form">Get in Touch →</a>
+<div id="mobile-menu" class="fixed top-24 left-0 w-full z-40 bg-white/98 shadow-2xl backdrop-blur-xl px-6 py-0 flex flex-col gap-0 transition-all duration-400">
+  <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="index.html">Home</a>
+  <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="portfolio.html">Portfolio</a>
+  <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="index.html#services">Services</a>
+  <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="index.html#about">About</a>
+  <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-black font-bold" href="contact.html">Contact</a>
+  <a class="py-6 mt-4 bg-black text-white text-center font-manrope text-sm tracking-[0.2em] uppercase font-bold" href="contact.html">Get in Touch</a>
 </div>
 
 <main class="pt-32 pb-24 px-6 md:px-24 min-h-screen">

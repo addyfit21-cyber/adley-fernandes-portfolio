@@ -24,6 +24,7 @@
 <style>
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; font-size: 20px; }
   body { font-family: 'Manrope', sans-serif; }
+  h1, h2, h3, h4, h5, h6 { font-family: Helvetica, Arial, sans-serif; }
   .editorial-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem; }
   #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
   #mobile-menu.open { max-height: 400px; }
@@ -35,13 +36,13 @@
 <body class="bg-[#fdfdfd] text-zinc-900 font-body selection:bg-primary selection:text-on-primary">
 
 <!-- TopNavBar -->
-<header class="absolute top-0 w-full z-50 flex justify-between items-center px-12 md:px-24 bg-transparent h-24 font-manrope text-sm tracking-[0.1em] uppercase">
+<header class="absolute top-0 w-full z-50 flex justify-between items-center px-6 md:px-24 bg-transparent h-24 font-manrope text-sm tracking-[0.1em] uppercase">
   <a href="index.html" class="text-2xl font-bold tracking-tighter text-black normal-case">Adley Fernandes</a>
   <nav class="hidden md:flex items-center space-x-12">
     <a class="text-gray-400 hover:text-black transition-colors duration-300" href="index.html">Home</a>
     <a class="text-gray-400 hover:text-black transition-colors duration-300" href="portfolio.html">Portfolio</a>
     <a class="text-black border-b border-black pb-1" href="services.html">Services</a>
-    <a class="text-gray-400 hover:text-black transition-colors duration-300" href="about.html">About</a>
+    <a class="text-gray-400 hover:text-black transition-colors duration-300" href="index.html#about">About</a>
     <a class="text-gray-400 hover:text-black transition-colors duration-300" href="contact.html">Contact</a>
   </nav>
   <a href="contact.html" class="hidden md:block bg-primary text-on-primary px-8 py-3 text-xs tracking-widest hover:opacity-70 transition-opacity duration-500 uppercase font-semibold">
@@ -55,18 +56,18 @@
 </header>
 
 <!-- Mobile Menu -->
-<div id="mobile-menu" class="fixed top-24 left-0 w-full z-40 bg-white/95 backdrop-blur-xl px-12 py-0 flex flex-col gap-0">
+<div id="mobile-menu" class="fixed top-24 left-0 w-full z-40 bg-white/95 backdrop-blur-xl px-6 py-0 flex flex-col gap-0">
   <a class="py-4 border-b border-outline-variant/30 font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 hover:text-black" href="index.html">Home</a>
   <a class="py-4 border-b border-outline-variant/30 font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 hover:text-black" href="portfolio.html">Portfolio</a>
   <a class="py-4 border-b border-outline-variant/30 font-manrope text-sm tracking-[0.1em] uppercase text-black font-bold" href="services.html">Services</a>
-  <a class="py-4 border-b border-outline-variant/30 font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 hover:text-black" href="about.html">About</a>
+  <a class="py-4 border-b border-outline-variant/30 font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 hover:text-black" href="index.html#about">About</a>
   <a class="py-4 border-b border-outline-variant/30 font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 hover:text-black" href="contact.html">Contact</a>
   <a class="py-4 font-manrope text-sm tracking-[0.1em] uppercase text-black font-bold" href="contact.html">Get in Touch →</a>
 </div>
 
-<main class="pt-48 pb-24">
+<main class="pt-32 pb-24">
   <!-- Hero Header -->
-  <section class="px-12 md:px-24 mb-32">
+  <section class="px-6 md:px-24 mb-24">
     <div class="editorial-grid">
       <div class="col-span-12 md:col-span-8">
         <span class="text-sm uppercase tracking-[0.2em] text-secondary mb-6 block">Capabilities</span>
@@ -83,11 +84,11 @@
   </section>
 
   <!-- Service Section 1: Website Design & Development -->
-  <section class="px-12 md:px-24 py-32 bg-zinc-50">
+  <section class="px-6 md:px-24 py-24 bg-zinc-50">
     <div class="editorial-grid items-center">
       <div class="col-span-12 md:col-span-5">
         <div class="aspect-[4/5] overflow-hidden">
-          <img class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" alt="Website Design & Development" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvLz3t8UMnQ7utR7o5g4UXVHPLHC2u1yEKD-caabNlOK0uMq1Hi9i9ZqgDBvUG6bQ-AVaICd5Qpyj-VzQR8WY2b-fnGsvJVwtus1tHL0RTHZtfaNerc03aiCp5-LNPiw9CFKbfCIz7w2IpsS87QgHvvnL9jQRLnh1EyLFpi4NsQOrL15Jqe2UGpu3jht_cbjesVnbR-i2w9Lpil_QhTqjPatLuDWgktjkIAys1Vfg3sqPhLyIQLQfyjN0BxGJ0OjTe1YC0EFZL2ipo"/>
+          <img class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" alt="Website Design & Development" src="/assets/monochrome_bg-Cq4ZAq9S.png"/>
         </div>
       </div>
       <div class="col-span-12 md:col-start-7 md:col-span-6 flex flex-col justify-center">
@@ -131,7 +132,7 @@
   </section>
 
   <!-- Service Section 2: Graphic Design & Branding -->
-  <section class="px-12 md:px-24 py-32 bg-surface">
+  <section class="px-6 md:px-24 py-24 bg-surface">
     <div class="editorial-grid items-center">
       <div class="col-span-12 md:col-span-6 flex flex-col justify-center order-2 md:order-1">
         <span class="text-xs uppercase tracking-widest text-outline mb-4">Service 02</span>
@@ -172,14 +173,14 @@
       </div>
       <div class="col-span-12 md:col-start-8 md:col-span-5 order-1 md:order-2">
         <div class="aspect-[4/5] overflow-hidden">
-          <img class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" alt="Graphic Design & Branding" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpMtl9q9cL3JrTcPOUeI92VrigJCHE6BzT_KlPsRNHU4GNdbPgpunnmamIjJCkijqQugTAHlsuRenCOmkG0rrqIJUo-WiEU1k_zG-hfLbj0ebaCxf_VcBDAWroK8lV7QVsvOdKt_0TTN-7JxlU4VXvRSgw6bcpQzXj4U1HstPEUgPP7Ljqrhgq_YFoJwNDz-G2YO8TQS6qeVmypl_PgRF7rTYX51gOJ2L2tFGMd1Vy_IbMlBnapW3t9YdkdWv_24ExwOugYHdqjLCC"/>
+          <img class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" alt="Graphic Design & Branding" src="Images/mockup 03.png"/>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CTA Section -->
-  <section class="px-12 md:px-24 py-40 border-t border-outline-variant/15">
+  <section class="px-6 md:px-24 py-24 border-t border-outline-variant/15">
     <div class="text-center">
       <h3 class="text-5xl md:text-7xl font-bold tracking-tighter mb-12">Let's build <br/>something iconic.</h3>
       <a class="text-lg font-bold border-b-2 border-primary pb-2 hover:opacity-50 transition-all duration-300 inline-block" href="contact.html">Start your project</a>
@@ -188,7 +189,7 @@
 </main>
 
 <!-- Footer -->
-<footer class="flex flex-col md:flex-row justify-between items-center px-12 md:px-24 w-full bg-gray-50 py-16 font-manrope text-[10px] tracking-widest uppercase">
+<footer class="flex flex-col md:flex-row justify-between items-center px-6 md:px-24 w-full bg-gray-50 py-16 font-manrope text-[10px] tracking-widest uppercase">
   <div class="mb-8 md:mb-0">
     <a href="index.html" class="text-lg font-bold text-black block mb-1">Adley Fernandes</a>
     <p class="text-gray-500">© 2024 Adley Fernandes. ALL RIGHTS RESERVED.</p>
