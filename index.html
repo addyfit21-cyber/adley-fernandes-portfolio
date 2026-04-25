@@ -1288,14 +1288,6 @@
     const textEl = document.getElementById("intro-text");
     const cursorEl = document.getElementById("intro-cursor");
 
-    // Use localStorage so it doesn't reappear on refresh or home button clicks
-    if (localStorage.getItem('introPlayed')) {
-      if (preloader) preloader.style.display = "none";
-      document.body.classList.remove("overflow-hidden");
-      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
-      return;
-    }
-
     const textStr = "welcome to the space of|design and emotion.";
     
     // Safety check
@@ -1326,9 +1318,6 @@
             onComplete: () => {
               preloader.style.display = "none";
               document.body.classList.remove("overflow-hidden");
-              
-              // Mark as played in localStorage
-              localStorage.setItem('introPlayed', 'true');
 
               if(typeof ScrollTrigger !== 'undefined') {
                 ScrollTrigger.refresh();
