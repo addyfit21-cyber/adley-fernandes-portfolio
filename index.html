@@ -1658,7 +1658,7 @@
     const content = document.getElementById('case-study-content');
 
     const solutionMedia = (mediaPath, type) => {
-      const fitClass = type === 'mobile' ? 'object-cover object-top' : 'object-contain bg-black';
+      const fitClass = type === 'mobile' ? 'object-contain bg-[#050505]' : 'object-contain bg-black';
       const media = data.isVideo
         ? `<video src="${mediaPath}" autoplay muted loop playsinline class="w-full h-full ${fitClass}"></video>`
         : `<img src="${mediaPath}" class="w-full h-full ${fitClass}" />`;
@@ -1767,7 +1767,7 @@
                ${solutionMedia(data.solution.visuals.desktop, 'desktop')}
             </div>
             <!-- Mobile Mockup Container -->
-            <div class="w-full lg:w-[22%] max-w-[220px]">
+            <div class="w-full lg:w-[22%] max-w-[280px] md:max-w-[220px]">
                ${solutionMedia(data.solution.visuals.mobile, 'mobile')}
             </div>
           </div>
