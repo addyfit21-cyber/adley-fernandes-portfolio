@@ -14,12 +14,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
 
-<!-- Preload the critical above-the-fold case studies for instantaneous display -->
-<link rel="preload" as="image" href="/assets/mockup%2003-DOw2xred.png" fetchpriority="high" />
-<link rel="preload" as="image" href="/assets/Coppola%20-%20Movie%20and%20Film%20Production%20Theme-BqFTpLuz.jpg" fetchpriority="high" />
-<link rel="preload" as="image" href="/assets/experiencewelcome.com-hQXpFSx3.png" fetchpriority="high" />
-<link rel="preload" as="image" href="/assets/LUKES%20ICED%20COFFEE-BFtstABI.jpg" fetchpriority="high" />
-<link rel="preload" as="image" href="/assets/Copilot_20260417_151459-Dz_lVyYS.png" fetchpriority="high" />
+<!-- DNS prefetch / preconnect for faster resource loading -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+<!-- Preload critical videos so cards show instantly -->
+<link rel="preload" as="video" href="/Images/Branding/Rebranding_Product_Video_Generation.mp4">
+<link rel="preload" as="video" href="/Images/web_dev/img_3693.mp4">
+<link rel="preload" as="video" href="/Images/web_dev/img_3691.mp4">
 
 <script id="tailwind-config">
   tailwind.config = {
@@ -264,15 +267,41 @@
   @media (max-width: 768px) {
     #hero { padding-top: 60px; }
     #scroll-pen-wrap { display: none !important; }
+
+    /* Tighten hero typography on small screens */
+    #hero-headline { font-size: clamp(2.2rem, 11vw, 4rem) !important; line-height: 1.0 !important; }
+    #hero p.hero-slide-right { font-size: 1rem !important; line-height: 1.6 !important; }
+    #hero .hero-slide-right a { font-size: 0.65rem !important; padding: 0.8rem 1.5rem !important; }
+
+    /* Section headings — prevent bleed on narrow screens */
+    h2.text-\[7rem\], h2.text-\[2\.5rem\] { font-size: clamp(2rem, 10vw, 3.5rem) !important; }
+
+    /* Cards: comfortable height on phones */
+    .fade-enter-card .relative.h-\[500px\] { height: 280px !important; }
+    .fade-enter-card .h-\[650px\] { height: 300px !important; }
+
+    /* About portrait — limit height on mobile */
+    #about .aspect-\[4\/5\] { aspect-ratio: 1/1 !important; }
+
+    /* Case study modal scrolling fix on iOS */
+    #case-study-modal { -webkit-overflow-scrolling: touch; overflow-y: scroll; }
+    #case-study-content { -webkit-overflow-scrolling: touch; overflow-y: scroll; }
+
+    /* Toolkit grid: 2 columns on mobile */
+    #about .grid-cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+
+    /* Mockup sizing: ensure iPhone fits on screen */
+    .max-w-\[280px\] { max-width: 180px !important; }
+
+    /* Touch targets: minimum 44px */
+    button, a { min-height: 44px; }
+    nav a { min-height: 44px; display: flex; align-items: center; }
   }
 
-  /* Preloader typing cursor blink */
-  @keyframes blink-cursor {
-    0%, 100% { opacity: 0; }
-    50% { opacity: 1; }
-  }
-  .animate-pulse-cursor {
-    animation: blink-cursor 0.8s step-end infinite;
+  /* Very small screens (iPhone SE, 375px) */
+  @media (max-width: 390px) {
+    #hero-headline { font-size: clamp(1.9rem, 10vw, 2.5rem) !important; }
+    .fade-enter-card .relative.h-\[500px\] { height: 240px !important; }
   }
 </style>
 </head>
@@ -357,7 +386,7 @@
       </h1>
 
       <!-- Descriptor -->
-      <p class="hero-slide-right text-2xl text-zinc-500 leading-relaxed max-w-xl mb-14">
+      <p class="hero-slide-right text-base md:text-2xl text-zinc-500 leading-relaxed max-w-xl mb-14">
         Websites and brand identities engineered to convert — not just impress.
       </p>
 
@@ -429,7 +458,7 @@
       </div>
       <div class="lg:col-span-5 relative group">
         <div class="aspect-[4/5] overflow-hidden bg-zinc-50 border border-zinc-200">
-          <img alt="Adley Fernandes Portrait" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" src="Images/profile-portrait.jpeg"/>
+          <img alt="Adley Fernandes Portrait" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" src="/Images/profile-portrait.jpeg" loading="lazy"/>
         </div>
         <!-- Ornamental element -->
         <div class="absolute -bottom-6 -right-6 w-32 h-32 border-r border-b border-zinc-200 pointer-events-none"></div>
@@ -545,13 +574,13 @@
     
     <div class="grid grid-cols-1 md:grid-cols-12 w-full gap-px bg-zinc-100 transition-colors duration-700">
       <div id="benner-video-card" class="fade-enter-card md:col-span-7 group cursor-pointer relative block" onclick="openBrandingCaseStudy(); event.stopPropagation();">
-        <div class="relative overflow-hidden bg-zinc-50 h-[500px] md:h-[650px] w-full">
+        <div class="relative overflow-hidden bg-zinc-50 h-[260px] md:h-[650px] w-full">
           <!-- Volume Toggle -->
           <button id="volume-toggle" class="absolute top-6 left-6 z-30 w-10 h-10 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all duration-500 hover:bg-white/20" title="Toggle Audio" onclick="event.stopPropagation();">
             <span class="material-symbols-outlined" style="font-size: 18px;" id="volume-icon">volume_off</span>
           </button>
 
-          <video id="benner-video" autoplay muted loop playsinline class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105 will-change-transform">
+          <video id="benner-video" autoplay muted loop playsinline preload="auto" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105 will-change-transform">
             <source src="/Images/Branding/Rebranding_Product_Video_Generation.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
@@ -563,8 +592,8 @@
         </div>
       </div>
       <div onclick="openBrandingCaseStudy(); event.stopPropagation();" class="fade-enter-card md:col-span-5 group cursor-pointer relative block">
-        <div class="relative overflow-hidden bg-zinc-50 h-[500px] md:h-[650px] w-full">
-          <img decoding="async" fetchpriority="high" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 will-change-transform" alt="BENNER TEA CO. — Packaging" src="/Images/Branding/Mockup 01.png"/>
+        <div class="relative overflow-hidden bg-zinc-50 h-[260px] md:h-[650px] w-full">
+          <img decoding="async" fetchpriority="high" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 will-change-transform" alt="BENNER TEA CO. — Packaging" src="/Images/Branding/Mockup 01.png"/>
           <div class="absolute inset-0 bg-black/40 transition-opacity duration-500 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 flex flex-col justify-end p-10">
             <h3 class="text-3xl font-bold uppercase tracking-tight text-white translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500">Benner Tea Co.</h3>
             <p class="text-xs tracking-widest uppercase text-white/80 mt-2 translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500 delay-75">Visual Identity System</p>
@@ -589,8 +618,8 @@
     <div class="grid grid-cols-1 md:grid-cols-12 w-full gap-px bg-zinc-100 transition-colors duration-700">
       <!-- Web Card 1 (IMG_3693) -->
       <div onclick="openCaseStudy('blogging-site')" class="fade-enter-card md:col-span-5 group cursor-pointer relative block">
-        <div class="relative overflow-hidden bg-zinc-50 h-[500px] md:h-[650px] w-full">
-          <video autoplay muted loop playsinline class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105 will-change-transform">
+        <div class="relative overflow-hidden bg-zinc-50 h-[260px] md:h-[650px] w-full">
+          <video autoplay muted loop playsinline preload="auto" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105 will-change-transform">
             <source src="/Images/web_dev/img_3693.mp4" type="video/mp4">
           </video>
           <div class="absolute inset-0 bg-black/40 transition-opacity duration-500 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 flex flex-col justify-end p-10 pointer-events-none">
@@ -601,8 +630,8 @@
       </div>
       <!-- Web Card 2 (IMG_3691) -->
       <div onclick="openCaseStudy('digital-narrative')" class="fade-enter-card md:col-span-7 group cursor-pointer relative block">
-        <div class="relative overflow-hidden bg-zinc-50 h-[500px] md:h-[650px] w-full">
-          <video autoplay muted loop playsinline class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105 will-change-transform">
+        <div class="relative overflow-hidden bg-zinc-50 h-[260px] md:h-[650px] w-full">
+          <video autoplay muted loop playsinline preload="auto" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105 will-change-transform">
             <source src="/Images/web_dev/img_3691.mp4" type="video/mp4">
           </video>
           <div class="absolute inset-0 bg-black/40 transition-opacity duration-500 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 flex flex-col justify-end p-10 pointer-events-none">
