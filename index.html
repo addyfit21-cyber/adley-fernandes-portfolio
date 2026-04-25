@@ -1654,7 +1654,7 @@
     const content = document.getElementById('case-study-content');
 
     const solutionMedia = (mediaPath, type) => {
-      const fitClass = type === 'mobile' ? 'object-contain bg-[#050505]' : 'object-contain bg-black';
+      const fitClass = type === 'mobile' ? 'object-contain bg-[#050505]' : 'object-cover bg-black';
       const media = data.isVideo
         ? `<video src="${mediaPath}" autoplay muted loop playsinline class="w-full h-full ${fitClass}"></video>`
         : `<img src="${mediaPath}" class="w-full h-full ${fitClass}" />`;
