@@ -1459,7 +1459,7 @@
 
   // ─── Shared helper: renders the iMac or iPhone mockup shell ──────────────
   function solutionMedia(mediaPath, type, isVideo = true) {
-    const fitClass = type === 'mobile' ? 'object-contain bg-[#050505]' : 'object-cover bg-black';
+    const fitClass = 'object-cover bg-black';
     const media = isVideo
       ? `<video src="${mediaPath}" autoplay muted loop playsinline class="w-full h-full ${fitClass}"></video>`
       : `<img src="${mediaPath}" class="w-full h-full ${fitClass}" />`;
