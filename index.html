@@ -5,24 +5,23 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Adley Fernandes | Design & Development Studio</title>
 <meta name="description" content="Adley Fernandes bridges architectural precision and digital performance. Bespoke website design, branding, and art direction for brands that demand a higher standard."/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;500;700;800&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
-
-<!-- DNS prefetch / preconnect for faster resource loading -->
+<!-- Preconnect first — must come before any external resource requests -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
-<!-- Preload critical videos so cards show instantly -->
-<link rel="preload" as="video" href="/Images/Branding/Rebranding_Product_Video_Generation.mp4">
-<link rel="preload" as="video" href="/Images/web_dev/img_3693.mp4">
-<link rel="preload" as="video" href="/Images/web_dev/img_3691.mp4">
+<!-- Material Symbols (icons only — body/heading fonts are Arial/Helvetica, no Google Font needed) -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"></noscript>
+
+<!-- Tailwind CDN (synchronous — required for first paint) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<!-- GSAP deferred — animations start after HTML is visible -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
+
 
 <script id="tailwind-config">
   tailwind.config = {
@@ -575,9 +574,10 @@
     <div class="grid grid-cols-1 md:grid-cols-12 w-full gap-px bg-zinc-100 transition-colors duration-700">
       <div id="benner-video-card" class="fade-enter-card md:col-span-7 group cursor-pointer relative block" onclick="openBrandingCaseStudy(); event.stopPropagation();">
         <div class="relative overflow-hidden bg-zinc-50 h-[260px] md:h-[650px] w-full">
-          <video id="benner-video" autoplay muted loop playsinline preload="auto" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105 will-change-transform">
-            <source src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4" media="(max-width: 768px)" type="video/mp4">
-            <source src="/Images/Branding/Rebranding_Product_Video_Generation.mp4" type="video/mp4">
+          <video id="benner-video" class="card-video w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105 will-change-transform"
+            muted loop playsinline preload="none"
+            data-src="/Images/Branding/Rebranding_Product_Video_Generation.mp4"
+            data-mobile-src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4">
           </video>
           
           <div class="absolute inset-0 bg-black/40 transition-opacity duration-500 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 flex flex-col justify-end p-10 cursor-pointer">
@@ -614,9 +614,10 @@
       <!-- Web Card 1 (IMG_3693) -->
       <div onclick="openCaseStudy('blogging-site')" class="fade-enter-card md:col-span-5 group cursor-pointer relative block">
         <div class="relative overflow-hidden bg-zinc-50 h-[260px] md:h-[650px] w-full">
-          <video autoplay muted loop playsinline preload="auto" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105 will-change-transform">
-            <source src="/Images/web_dev/img_3693_mobile.mp4" media="(max-width: 768px)" type="video/mp4">
-            <source src="/Images/web_dev/img_3693.mp4" type="video/mp4">
+          <video class="card-video w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105 will-change-transform"
+            muted loop playsinline preload="none"
+            data-src="/Images/web_dev/img_3693.mp4"
+            data-mobile-src="/Images/web_dev/img_3693_mobile.mp4">
           </video>
           <div class="absolute inset-0 bg-black/40 transition-opacity duration-500 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 flex flex-col justify-end p-10 pointer-events-none">
             <h3 class="text-3xl font-bold uppercase tracking-tight text-white translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500">The ExecuVision</h3>
@@ -627,9 +628,10 @@
       <!-- Web Card 2 (IMG_3691) -->
       <div onclick="openCaseStudy('digital-narrative')" class="fade-enter-card md:col-span-7 group cursor-pointer relative block">
         <div class="relative overflow-hidden bg-zinc-50 h-[260px] md:h-[650px] w-full">
-          <video autoplay muted loop playsinline preload="auto" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105 will-change-transform">
-            <source src="/Images/web_dev/img_3691_mobile.mp4" media="(max-width: 768px)" type="video/mp4">
-            <source src="/Images/web_dev/img_3691.mp4" type="video/mp4">
+          <video class="card-video w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105 will-change-transform"
+            muted loop playsinline preload="none"
+            data-src="/Images/web_dev/img_3691.mp4"
+            data-mobile-src="/Images/web_dev/img_3691_mobile.mp4">
           </video>
           <div class="absolute inset-0 bg-black/40 transition-opacity duration-500 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 flex flex-col justify-end p-10 pointer-events-none">
             <h3 class="text-3xl font-bold uppercase tracking-tight text-white translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500">Nexzy</h3>
@@ -1888,6 +1890,47 @@
     document.body.style.overflow = '';
     document.body.classList.remove('overflow-hidden');
   }
+</script>
+
+<!-- ─── Lazy Video Loader ─────────────────────────────────────────────────────
+     Detects mobile, assigns the right src, and only loads each card video
+     when it scrolls into view. Fixes the broken <source media> approach and
+     prevents 3 videos competing for bandwidth on page load.
+──────────────────────────────────────────────────────────────────────────── -->
+<script>
+(function() {
+  const isMobile = window.innerWidth <= 768;
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      const video = entry.target;
+      if (entry.isIntersecting) {
+        // Only assign src once
+        if (!video.src || video.src === window.location.href) {
+          const src = isMobile
+            ? (video.dataset.mobileSrc || video.dataset.src)
+            : video.dataset.src;
+          video.src = src;
+          video.load();
+        }
+        video.play().catch(function() {});
+      } else {
+        // Pause off-screen videos to save battery/bandwidth
+        if (!video.paused) video.pause();
+      }
+    });
+  }, {
+    rootMargin: '200px 0px',  // start loading 200px before card enters view
+    threshold: 0.1
+  });
+
+  // Observe all card videos on DOM ready
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('video.card-video').forEach(function(v) {
+      observer.observe(v);
+    });
+  });
+})();
 </script>
 
 </body></html>
