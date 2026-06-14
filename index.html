@@ -60,6 +60,14 @@
     will-change: transform, opacity;
   }
 
+  /* Aggressively hide native video controls (Safari Low Power Mode overlays) */
+  video::-webkit-media-controls { display: none !important; }
+  video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+  video::-webkit-media-controls-play-button { display: none !important; }
+
+  /* Force pointer-events none on project videos */
+  .mockup-video { pointer-events: none; }
+
   /* ═══════════════════════════════════════
      CSS 3D PEN — no image, no background
   ═══════════════════════════════════════ */
@@ -1007,7 +1015,7 @@
             <div class="flex flex-col items-center w-full">
               <div class="relative w-full aspect-[16/9] bg-[#1a1a1a] rounded-t-2xl p-[1%] shadow-[0_60px_100px_-20px_rgba(0,0,0,0.6)] border-x-[4px] border-t-[4px] border-[#2a2a2a]">
                 <div class="relative w-full h-full bg-black rounded-sm overflow-hidden">
-                  <video src="/Images/web_dev/img_3693.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black"></video>
+                  <video src="/Images/web_dev/img_3693.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black pointer-events-none"></video>
                   <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.04] to-white/[0.12] pointer-events-none"></div>
                 </div>
               </div>
@@ -1027,7 +1035,7 @@
                 <div class="relative w-full h-full bg-black rounded-[2.2rem] p-[3%] overflow-hidden shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]">
                   <div class="absolute top-[3.5%] left-1/2 -translate-x-1/2 w-[32%] h-[2.4%] bg-[#050505] rounded-full z-20"></div>
                   <div class="relative w-full h-full bg-black rounded-[1.8rem] overflow-hidden">
-                    <video src="/Images/web_dev/whatsapp_2_mobile.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black"></video>
+                    <video src="/Images/web_dev/whatsapp_2_mobile.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black pointer-events-none"></video>
                   </div>
                 </div>
                 <div class="absolute -left-[4px] top-[18%] w-[5px] h-[40px] bg-gradient-to-r from-[#d1d5db] to-[#9ca3af] rounded-l-md"></div>
@@ -1132,7 +1140,7 @@
             <div class="flex flex-col items-center w-full">
               <div class="relative w-full aspect-[16/9] bg-[#1a1a1a] rounded-t-2xl p-[1%] shadow-[0_60px_100px_-20px_rgba(0,0,0,0.9)] border-x-[4px] border-t-[4px] border-[#2a2a2a]">
                 <div class="relative w-full h-full bg-black rounded-sm overflow-hidden">
-                  <video src="/Images/web_dev/img_3691.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black"></video>
+                  <video src="/Images/web_dev/img_3691.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black pointer-events-none"></video>
                   <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.04] to-white/[0.12] pointer-events-none"></div>
                 </div>
               </div>
@@ -1152,7 +1160,7 @@
                 <div class="relative w-full h-full bg-black rounded-[2.2rem] p-[3%] overflow-hidden shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]">
                   <div class="absolute top-[3.5%] left-1/2 -translate-x-1/2 w-[32%] h-[2.4%] bg-[#050505] rounded-full z-20"></div>
                   <div class="relative w-full h-full bg-black rounded-[1.8rem] overflow-hidden">
-                    <video src="/Images/web_dev/whatsapp_1_mobile.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black"></video>
+                    <video src="/Images/web_dev/whatsapp_1_mobile.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black pointer-events-none"></video>
                   </div>
                 </div>
                 <div class="absolute -left-[4px] top-[18%] w-[5px] h-[40px] bg-gradient-to-r from-[#444] to-[#222] rounded-l-md"></div>
