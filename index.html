@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html class="light scroll-smooth" lang="en"><head>
+<html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Adley Fernandes | Design & Development Studio</title>
@@ -309,10 +309,20 @@
   }
 </style>
 </head>
-<body id="top" class="bg-[#fdfdfd] text-zinc-900 antialiased selection:bg-primary selection:text-white overflow-hidden">
+<body id="top" class="bg-[#fdfdfd] text-zinc-900 antialiased selection:bg-primary selection:text-white overflow-hidden overflow-x-hidden w-full relative">
+<script>
+  if (sessionStorage.getItem('introPlayed')) {
+    document.body.classList.remove('overflow-hidden');
+  }
+</script>
 
 <!-- Intro Preloader -->
 <div id="intro-preloader" class="fixed inset-0 z-[9999] bg-white flex flex-col items-center justify-center">
+  <script>
+    if (sessionStorage.getItem('introPlayed')) {
+      document.getElementById('intro-preloader').style.display = 'none';
+    }
+  </script>
   <div class="px-6 w-full max-w-5xl text-center">
     <div class="text-lg md:text-2xl font-light text-black tracking-widest uppercase inline-block">
       <span id="intro-text"></span><span id="intro-cursor" class="inline-block w-[2px] h-[1em] bg-black ml-1 align-middle animate-pulse-cursor"></span>
@@ -330,15 +340,30 @@
   <!-- Desktop Links (Absolutely Centered) -->
   <div class="hidden md:flex items-center space-x-8 absolute left-1/2 -translate-x-1/2">
     <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-900 border-b border-black pb-0.5 transition-colors duration-300" href="index.html">Home</a>
-    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="portfolio.html">Portfolio</a>
-    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="index.html#services" onclick="gsap.to(window, {duration: 1.5, scrollTo: '#services', ease: 'power4.inOut'}); return false;">Services</a>
-    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="index.html#about" onclick="gsap.to(window, {duration: 1.5, scrollTo: '#about', ease: 'power4.inOut'}); return false;">About</a>
+
+    
+    <!-- Projects Dropdown -->
+    <div class="relative group">
+      <button class="bg-transparent text-zinc-500 hover:text-zinc-900 px-0 py-2 font-manrope text-[10px] tracking-[0.2em] uppercase transition-colors duration-300 flex items-center gap-1 cursor-pointer">
+        Projects
+        <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover:rotate-180">expand_more</span>
+      </button>
+      <!-- Dropdown Menu -->
+      <div class="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-48 bg-white border border-zinc-100 shadow-2xl opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 flex flex-col p-2 z-[101]">
+        <a href="#visual-identity" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#visual-identity', offsetY: 120}, ease: 'power3.inOut'}); return false;" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-black hover:bg-zinc-50 transition-colors text-left border-b border-zinc-50 last:border-0">Branding</a>
+        <a href="#work" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#work', offsetY: 120}, ease: 'power3.inOut'}); return false;" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-black hover:bg-zinc-50 transition-colors text-left border-b border-zinc-50 last:border-0">Web Design</a>
+        <a href="#mclaren" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#mclaren', offsetY: 120}, ease: 'power3.inOut'}); return false;" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-black hover:bg-zinc-50 transition-colors text-left border-b border-zinc-50 last:border-0">McLaren</a>
+        <a href="#porsche" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#porsche', offsetY: 120}, ease: 'power3.inOut'}); return false;" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-black hover:bg-zinc-50 transition-colors text-left border-b border-zinc-50 last:border-0">Porsche</a>
+      </div>
+    </div>
+    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="index.html#services" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#services', offsetY: 120}, ease: 'power3.inOut'}); return false;">Services</a>
+    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="index.html#about" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#about', offsetY: 120}, ease: 'power3.inOut'}); return false;">About</a>
     <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="contact.html">Contact</a>
   </div>
 
   <!-- CTA -->
   <div class="hidden md:flex items-center z-10">
-    <a href="contact.html" class="bg-black text-white px-5 py-2 font-manrope text-[10px] tracking-[0.2em] uppercase hover:bg-zinc-800 transition-colors duration-500">
+    <a href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener" class="bg-black text-white px-5 py-2 font-manrope text-[10px] tracking-[0.2em] uppercase hover:bg-zinc-800 transition-colors duration-500">
       Get in Touch
     </a>
   </div>
@@ -354,14 +379,15 @@
 <!-- Mobile Menu -->
 <div id="mobile-menu" class="fixed top-24 left-0 w-full z-40 bg-white/98 shadow-2xl backdrop-blur-xl px-6 py-0 flex flex-col gap-0 transition-all duration-400">
   <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-black font-bold" href="index.html">Home</a>
-  <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="portfolio.html">Portfolio</a>
   <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="index.html#services" onclick="document.getElementById('hamburger').click(); gsap.to(window, {duration: 1.5, scrollTo: '#services', ease: 'power4.inOut'}); return false;">Services</a>
   <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="#about" onclick="document.getElementById('hamburger').click(); gsap.to(window, {duration: 1.5, scrollTo: '#about', ease: 'power4.inOut'}); return false;">About</a>
   <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="contact.html">Contact</a>
-  <a class="py-6 mt-4 bg-black text-white text-center font-manrope text-sm tracking-[0.2em] uppercase font-bold" href="contact.html">
+  <a class="py-6 mt-4 bg-black text-white text-center font-manrope text-sm tracking-[0.2em] uppercase font-bold" href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener">
     Get in Touch
   </a>
 </div>
+
+
 
 <main>
 
@@ -396,7 +422,7 @@
 
       <!-- View Work Link -->
       <div class="hero-slide-right flex items-center gap-10 mt-12">
-        <a href="portfolio.html" class="group bg-black text-white border border-white/20 px-10 py-5 text-xs tracking-[0.2em] uppercase font-bold hover:bg-zinc-900 transition-colors duration-500 inline-flex items-center gap-3 btn-shine-trigger">
+        <a href="#visual-identity" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#visual-identity', offsetY: 120}, ease: 'power3.inOut'}); return false;" class="group bg-black text-white border border-white/20 px-10 py-5 text-xs tracking-[0.2em] uppercase font-bold hover:bg-zinc-900 transition-colors duration-500 inline-flex items-center gap-3 btn-shine-trigger">
           View Selected Works
           <div class="relative w-4 h-4 flex items-center justify-center overflow-hidden flex-shrink-0">
             <span class="material-symbols-outlined absolute transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-x-6" style="font-size:16px;">arrow_forward</span>
@@ -623,127 +649,94 @@
     ═══════════════════════════════════════════════ -->
     <div class="w-full bg-white text-zinc-900 overflow-x-hidden">
 
-      <!-- Hero Media -->
-      <div class="grid grid-cols-1 md:grid-cols-12 w-full gap-px bg-zinc-100">
-        <div class="md:col-span-7 relative overflow-hidden bg-zinc-50 h-[300px] md:h-[700px]">
-          <video id="benner-video" class="card-video w-full h-full object-cover object-center will-change-transform"
-            muted loop playsinline preload="none"
-            data-src="/Images/Branding/Rebranding_Product_Video_Generation.mp4"
-            data-mobile-src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4">
-          </video>
-        </div>
-        <div class="md:col-span-5 relative overflow-hidden bg-zinc-50 h-[300px] md:h-[700px]">
-          <img decoding="async" loading="lazy" class="w-full h-full object-cover will-change-transform" alt="BENNER TEA CO. — Packaging" src="/Images/Branding/Mockup 01.png"/>
-        </div>
-      </div>
 
-      <!-- Project Intro -->
-      <div class="px-6 md:px-24 py-24 md:py-32 max-w-[1400px] mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+
+      <!-- Project Title + Tags + Description — all in one tight row -->
+      <div class="px-6 md:px-24 py-10 border-b border-zinc-100">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
           <div class="md:col-span-4">
-            <p class="text-[10px] uppercase tracking-[0.5em] text-zinc-400 font-bold mb-6">01 — Project</p>
-            <h3 class="text-5xl md:text-8xl font-bold tracking-tighter leading-[0.85]">Benner<br/>Tea Co.</h3>
+            <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-3">01 — Project</p>
+            <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.9] text-black">Benner<br/>Tea Co.</h3>
           </div>
-          <div class="md:col-span-8 flex flex-col justify-end pt-0 md:pt-16">
-            <p class="text-xl md:text-2xl font-light leading-relaxed text-zinc-500 italic max-w-2xl mb-12">A rebrand focused on making everyday tea feel modern, minimal, and emotionally relevant.</p>
-            <div class="flex flex-wrap gap-3">
-              <span class="px-6 py-2 bg-zinc-50 border border-zinc-100 text-[9px] font-bold tracking-[0.2em] uppercase text-zinc-600">Visual Identity</span>
-              <span class="px-6 py-2 bg-zinc-50 border border-zinc-100 text-[9px] font-bold tracking-[0.2em] uppercase text-zinc-600">Motion System</span>
-              <span class="px-6 py-2 bg-zinc-50 border border-zinc-100 text-[9px] font-bold tracking-[0.2em] uppercase text-zinc-600">Modern Ritual</span>
-            </div>
+          <div class="md:col-span-8">
+            <p class="text-base md:text-lg font-medium leading-snug text-black">Full brand identity redesign — logo, colour palette, typography, and packaging system.</p>
           </div>
         </div>
       </div>
 
-      <!-- Editorial Sections -->
-      <div class="px-6 md:px-24 max-w-[1400px] mx-auto space-y-24 pb-24">
+      <!-- Editorial Content — Dense Grid -->
+      <div class="px-6 md:px-24 py-0 max-w-[1400px] mx-auto divide-y divide-zinc-100">
 
-        <!-- The Gap -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-16 border-t border-zinc-100 pt-16">
-          <div class="md:col-span-4">
-            <h4 class="text-[10px] tracking-[0.3em] uppercase font-black text-zinc-300">02 / The Gap</h4>
+        <!-- Gap + Opportunity — side by side -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
+          <div class="py-10 md:pr-16">
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">02 / Problem</p>
+            <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">No clear visual identity.<br/>No brand recognition.</h3>
+            <p class="text-xs leading-relaxed text-black font-normal">The existing brand had no consistent colour system, no defined typeface, and packaging that looked like every other tea on the shelf. It needed a complete visual overhaul.</p>
           </div>
-          <div class="md:col-span-8 space-y-10">
-            <h3 class="text-4xl md:text-6xl font-bold tracking-tighter leading-tight">The product was good.<br/><span class="text-zinc-300">The perception wasn't.</span></h3>
-            <p class="text-lg md:text-xl text-zinc-500 leading-relaxed font-light max-w-xl">Benner Tea Co. existed in a crowded category — but visually, it blended in instead of standing out. The brand lacked clarity, identity, and a reason for younger consumers to choose it.</p>
+          <div class="py-10 md:pl-16">
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">03 / Direction</p>
+            <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">Clean. Minimal.<br/>Built to stand out.</h3>
+            <p class="text-xs leading-relaxed text-black font-normal">The goal was a restrained visual system — flat layout, earthy palette, strong type hierarchy — that feels premium without being loud.</p>
           </div>
         </div>
 
-        <!-- The Opportunity -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-16 border-t border-zinc-100 pt-16">
-          <div class="md:col-span-4">
-            <h4 class="text-[10px] tracking-[0.3em] uppercase font-black text-zinc-300">03 / The Opportunity</h4>
-          </div>
-          <div class="md:col-span-8">
-            <h3 class="text-4xl md:text-7xl font-bold tracking-tighter leading-[0.9] mb-10 italic">
-              Tea is no longer just a beverage—<br/>
-              it's part of a daily ritual.<br/>
-              A moment of pause.<br/>
-              A lifestyle choice.
-            </h3>
-            <p class="text-xl text-zinc-400 font-light max-w-xl">The opportunity was to reposition Benner from a product on the shelf to a brand people connect with.</p>
-          </div>
-        </div>
-
-        <!-- The Objective -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-16 border-t border-zinc-100 pt-16">
-          <div class="md:col-span-4">
-            <h4 class="text-[10px] tracking-[0.3em] uppercase font-black text-zinc-300">04 / The Objective</h4>
-          </div>
-          <div class="md:col-span-8">
-            <h3 class="text-3xl md:text-5xl font-bold tracking-tighter leading-tight mb-16">Create a brand that feels:</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-l-2 border-zinc-100 pl-10">
-              <p class="text-2xl font-light italic">Calm,<br/><span class="text-zinc-300 not-italic text-xl">but not boring</span></p>
-              <p class="text-2xl font-light italic">Premium,<br/><span class="text-zinc-300 not-italic text-xl">but still accessible</span></p>
-              <p class="text-2xl font-light italic">Minimal,<br/><span class="text-zinc-300 not-italic text-xl">yet emotionally warm</span></p>
+        <!-- Objective + Approach — side by side -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
+          <div class="py-10 md:pr-16">
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-6">04 / Design Decisions</p>
+            <h3 class="text-base font-bold tracking-tight mb-6 text-black">What the system needed:</h3>
+            <div class="grid grid-cols-3 gap-4 border-l-2 border-zinc-900 pl-6">
+              <div>
+                <p class="text-sm font-bold text-black mb-1">Logo</p>
+                <p class="text-xs text-black font-normal leading-relaxed">Wordmark with clean geometry. Timeless, not trendy.</p>
+              </div>
+              <div>
+                <p class="text-sm font-bold text-black mb-1">Colour</p>
+                <p class="text-xs text-black font-normal leading-relaxed">Earthy neutrals. Warm tones that read as natural and premium.</p>
+              </div>
+              <div>
+                <p class="text-sm font-bold text-black mb-1">Type</p>
+                <p class="text-xs text-black font-normal leading-relaxed">Serif for personality. Sans-serif for body. Clear hierarchy.</p>
+              </div>
             </div>
-            <p class="text-xs uppercase tracking-[0.3em] text-zinc-900 font-bold mt-16">Built for Gen Z and millennials without alienating existing consumers.</p>
+            <p class="text-[10px] uppercase tracking-[0.3em] text-black font-bold mt-6 max-w-xs">Target: younger audience without losing existing customers.</p>
+          </div>
+          <div class="py-10 md:pl-16">
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">05 / Approach</p>
+            <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">Strip it back.<br/>Make it count.</h3>
+            <p class="text-xs leading-relaxed text-black font-normal">Removed all visual clutter. Every element — layout, spacing, colour, type — was chosen with purpose. Nothing decorative that doesn't serve the brand.</p>
           </div>
         </div>
 
-        <!-- The Approach -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-16 border-t border-zinc-100 pt-16">
-          <div class="md:col-span-4">
-            <h4 class="text-[10px] tracking-[0.3em] uppercase font-black text-zinc-300">05 / The Approach</h4>
-          </div>
-          <div class="md:col-span-8">
-            <h3 class="text-5xl md:text-8xl font-bold tracking-tighter leading-tight mb-10 italic">Reduce noise.<br/>Increase meaning.</h3>
-            <p class="text-lg md:text-xl text-zinc-500 leading-relaxed font-light max-w-2xl">Every decision — from layout to color to typography — was made to simplify the experience and strengthen emotional connection.</p>
-          </div>
-        </div>
-
-        <!-- Strategic Details -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-16 border-t border-zinc-100 pt-16">
-          <div class="md:col-span-4">
-            <h4 class="text-[10px] tracking-[0.3em] uppercase font-black text-zinc-300">06 / Strategic Details</h4>
-          </div>
-          <div class="md:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div class="space-y-4">
-              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold">Minimal Structure</p>
-              <p class="text-sm leading-relaxed text-zinc-500 font-light">Clear hierarchy and generous spacing to improve readability and shelf impact.</p>
-            </div>
-            <div class="space-y-4">
-              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold">Earthy Color Language</p>
-              <p class="text-sm leading-relaxed text-zinc-500 font-light">Oat beige and natural tones to evoke warmth, calm, and authenticity.</p>
-            </div>
-            <div class="space-y-4">
-              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold">Balanced Typography</p>
-              <p class="text-sm leading-relaxed text-zinc-500 font-light">A refined serif for personality, paired with a clean sans-serif for clarity.</p>
+        <!-- Strategic Details + Transformation — side by side -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
+          <div class="py-10 md:pr-16">
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-6">06 / Deliverables</p>
+            <div class="grid grid-cols-3 gap-4">
+              <div>
+                <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-2">Logo System</p>
+                <p class="text-xs leading-relaxed text-black">Primary mark, secondary lockup, and monogram. Light and dark versions.</p>
+              </div>
+              <div>
+                <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-2">Colour Palette</p>
+                <p class="text-xs leading-relaxed text-black">6-colour system. Primary, secondary, and neutral tones with usage rules.</p>
+              </div>
+              <div>
+                <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-2">Type System</p>
+                <p class="text-xs leading-relaxed text-black">2 typefaces. Heading, subheading, and body styles defined across all formats.</p>
+              </div>
             </div>
           </div>
+          <div class="py-10 md:pl-16">
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">07 / Result</p>
+            <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-black mb-3">A complete brand system — ready across print, packaging, and digital.</h3>
+            <p class="text-sm font-medium text-black">29-page brand guidelines document. Full mockup set included.</p>
+          </div>
         </div>
 
-        <!-- Transformation -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-16 border-t border-zinc-100 pt-16">
-          <div class="md:col-span-4">
-            <h4 class="text-[10px] tracking-[0.3em] uppercase font-black text-zinc-300">07 / Transformation</h4>
-          </div>
-          <div class="md:col-span-8">
-            <h3 class="text-3xl md:text-6xl font-bold tracking-tighter leading-tight mb-8">From a brand that felt generic and forgettable<br/><span class="text-zinc-300">to one that feels intentional, modern, and distinct.</span></h3>
-            <p class="text-xl font-light text-zinc-400 leading-tight">A system that not only looks better — but communicates better.</p>
-          </div>
-        </div>
       </div>
+
 
       <!-- Brand Guidelines — Full 2-Column Grid (all pages + mockups) -->
       <div class="py-16 md:py-20">
@@ -754,7 +747,7 @@
           </div>
           <span class="text-[10px] uppercase tracking-[0.3em] font-bold text-zinc-400 hidden md:block">Visual Identity System — 29 Pages</span>
         </div>
-        <div class="grid grid-cols-1 gap-px bg-zinc-100">
+        <div class="grid grid-cols-2 gap-px bg-zinc-100">
           <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-01.png" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 01" loading="lazy"></div>
           <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-02.png" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 02" loading="lazy"></div>
           <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-03.png" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 03" loading="lazy"></div>
@@ -781,15 +774,22 @@
           <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-24.png" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 24" loading="lazy"></div>
           <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-25.png" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 25" loading="lazy"></div>
           <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-26.png" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 26" loading="lazy"></div>
-          <!-- Mockup images — after page 26 -->
-          <div class="group overflow-hidden bg-zinc-50"><img src="/Images/Branding/Mockup 01.png" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Mockup 01" loading="lazy"></div>
-          <div class="group overflow-hidden bg-zinc-50"><img src="/Images/Branding/Mockup 02.png" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Mockup 02" loading="lazy"></div>
-          <div class="group overflow-hidden bg-zinc-50"><img src="/Images/Branding/mockup 03.png" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Mockup 03" loading="lazy"></div>
-          <div class="group overflow-hidden bg-zinc-50"><img src="/Images/Branding/mockup 04.jpg" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Mockup 04" loading="lazy"></div>
-          <!-- Pages 27–29 -->
+          <!-- Mockup images — full width (col-span-2) -->
+          <div class="col-span-2 group overflow-hidden bg-zinc-50"><img src="/Images/Branding/Mockup 01.png" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Mockup 01" loading="lazy"></div>
+          <div class="col-span-2 group overflow-hidden bg-zinc-50"><img src="/Images/Branding/Mockup 02.png" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Mockup 02" loading="lazy"></div>
+          <!-- Video between Mockup 02 and Mockup 03 -->
+          <div class="col-span-2 bg-black">
+            <video autoplay muted loop playsinline class="w-full h-auto block">
+              <source src="/Images/Branding/Rebranding_Product_Video_Generation.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="col-span-2 group overflow-hidden bg-zinc-50"><img src="/Images/Branding/mockup 03.png" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Mockup 03" loading="lazy"></div>
+          <div class="col-span-2 group overflow-hidden bg-zinc-50"><img src="/Images/Branding/mockup 04.jpg" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Mockup 04" loading="lazy"></div>
+          <!-- Pages 27–28: 2 per row -->
           <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-27.png" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 27" loading="lazy"></div>
           <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-28.png" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 28" loading="lazy"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-29.png" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 29" loading="lazy"></div>
+          <!-- Page 29: full width -->
+          <div class="col-span-2 group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-29.png" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 29" loading="lazy"></div>
         </div>
       </div>
     </div>
@@ -798,105 +798,133 @@
     <!-- ═══════════════════════════════════════════════
          CASE STUDY 02 — LUKE'S ICED COFFEE
     ═══════════════════════════════════════════════ -->
-    <div class="w-full bg-[#fcfcfc] text-zinc-900 overflow-x-hidden border-t-[6px] border-zinc-900">
+    <div class="w-full bg-white text-zinc-900 overflow-x-hidden border-t border-zinc-100">
 
-      <!-- Project Intro Hero -->
-      <div class="px-6 md:px-24 py-24 md:py-40 flex flex-col items-center text-center">
-        <p class="text-[9px] md:text-[10px] uppercase tracking-[0.6em] text-zinc-400 font-bold mb-8">Case Study 2024</p>
-        <h3 class="text-5xl md:text-[9rem] font-bold tracking-tight leading-[0.85] text-zinc-900 mb-8 uppercase">Luke's<br/>Iced Coffee</h3>
-        <div class="h-px w-24 bg-zinc-900/10 mb-8"></div>
-        <p class="text-lg md:text-xl font-light text-zinc-400 max-w-xl italic">A youth-focused identity designed for the modern coffee experience.</p>
-      </div>
-
-      <!-- Brand Strategy Section -->
-      <div class="px-6 md:px-24 pb-32 grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center max-w-[1400px] mx-auto">
-        <div class="space-y-12">
-          <div class="space-y-6">
-            <p class="text-[10px] uppercase tracking-[0.5em] text-zinc-300 font-black">02 / BRAND STRATEGY</p>
-            <h3 class="text-5xl md:text-7xl font-bold tracking-tighter leading-tight uppercase">Modern<br/><span class="text-zinc-200">Ritual.</span></h3>
+      <!-- Project Title Row -->
+      <div class="px-6 md:px-24 py-10 border-b border-zinc-100">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          <div class="md:col-span-4">
+            <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-3">02 — Project</p>
+            <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.9] text-black">Luke's<br/>Iced Coffee</h3>
           </div>
-          <div class="space-y-6 text-zinc-500 font-light">
-            <p class="text-xl leading-relaxed max-w-lg">The core objective was to bridge the gap between premium coffee craftsmanship and the vibrant, energetic lifestyle of a younger generation.</p>
-            <p class="text-sm leading-relaxed max-w-md">We moved away from traditional, dark "coffee shop" aesthetics towards a brighter, more transparent visual language that reflects the refreshing nature of iced beverages.</p>
-            <div class="grid grid-cols-2 gap-10 pt-6 border-t border-zinc-100">
-              <div class="space-y-2">
-                <p class="text-[9px] uppercase tracking-widest text-zinc-400 font-bold">Industry</p>
-                <p class="text-sm font-bold uppercase tracking-tight text-zinc-900">Food &amp; Beverage</p>
-              </div>
-              <div class="space-y-2">
-                <p class="text-[9px] uppercase tracking-widest text-zinc-400 font-bold">Audience</p>
-                <p class="text-sm font-bold uppercase tracking-tight text-zinc-900">Gen-Z / Students</p>
-              </div>
-            </div>
+          <div class="md:col-span-8">
+            <p class="text-base md:text-lg font-medium leading-snug text-black">Targeted collateral design — logo, menu layout, business cards, and packaging system.</p>
           </div>
-        </div>
-        <div class="relative w-full overflow-hidden">
-          <img src="/Images/Brands/lukes%20iced%20coffee/LUKES%20ICED%20COFFEE.jpg" class="w-full h-auto transition-all duration-[2s] hover:scale-105" alt="Luke's Iced Coffee Strategy Visual">
         </div>
       </div>
 
-      <!-- Logo Guidelines -->
-      <div class="px-6 md:px-24 pb-32 max-w-[1400px] mx-auto">
-        <p class="text-[10px] uppercase tracking-[0.5em] text-zinc-300 font-black mb-6">03 / LOGO GUIDELINES</p>
-        <h3 class="text-3xl md:text-5xl font-bold tracking-tighter uppercase mb-16">The Mark Integrity.</h3>
-        <div class="space-y-16">
-          <!-- Correct Usage -->
-          <div class="space-y-8">
-            <div class="flex items-center gap-3 text-emerald-500 font-black text-[9px] tracking-[0.3em] uppercase">
-              <span class="material-symbols-outlined text-sm">check_circle</span> Approved Usage
+      <!-- Editorial Content — Dense Grid -->
+      <div class="px-6 md:px-24 py-0 max-w-[1400px] mx-auto divide-y divide-zinc-100">
+
+        <!-- Problem + Direction -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
+          <div class="py-10 md:pr-16">
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">02 / Problem</p>
+            <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">Outdated collateral.<br/>Low shelf impact.</h3>
+            <p class="text-xs leading-relaxed text-black font-normal">Luke's had a great product, but their touchpoints — packaging, menus, and business cards — failed to communicate what made them unique. The logo lacked legibility, and the physical items didn't feel cohesive.</p>
+          </div>
+          <div class="py-10 md:pl-16">
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">03 / Direction</p>
+            <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">Young. Bold.<br/>High contrast.</h3>
+            <p class="text-xs leading-relaxed text-black font-normal">The goal was to redesign specific core assets to appeal to a Gen-Z and student demographic. Every delivered piece needed to feel punchy, modern, and instantly recognizable.</p>
+          </div>
+        </div>
+
+        <!-- Design Decisions + Approach -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
+          <div class="py-10 md:pr-16">
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-6">04 / Design Decisions</p>
+            <h3 class="text-base font-bold tracking-tight mb-6 text-black">What the system needed:</h3>
+            <div class="grid grid-cols-3 gap-4 border-l-2 border-zinc-900 pl-6">
+              <div>
+                <p class="text-sm font-bold text-black mb-1">Logo</p>
+                <p class="text-xs text-black font-normal leading-relaxed">Bold wordmark. Confident and legible on small labels.</p>
+              </div>
+              <div>
+                <p class="text-sm font-bold text-black mb-1">Menu &amp; Print</p>
+                <p class="text-xs text-black font-normal leading-relaxed">Clear typographic hierarchy. Functional business cards.</p>
+              </div>
+              <div>
+                <p class="text-sm font-bold text-black mb-1">Packaging</p>
+                <p class="text-xs text-black font-normal leading-relaxed">High-impact layout rules that work across cups and cans.</p>
+              </div>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-zinc-200 border border-zinc-200">
-              <div class="aspect-square flex items-center justify-center bg-white p-8 relative">
-                <span class="absolute top-3 left-3 text-[8px] font-black tracking-[0.2em] uppercase text-zinc-300">01 Primary</span>
-                <img src="/Images/Brands/Copilot_20260426_132635.png" class="h-16 w-auto object-contain" alt="Logo Primary">
+            <p class="text-[10px] uppercase tracking-[0.3em] text-black font-bold mt-6 max-w-xs">Target: Gen-Z and students. Everyday product, premium feel.</p>
+          </div>
+          <div class="py-10 md:pl-16">
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">05 / Approach</p>
+            <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">High contrast.<br/>High energy.</h3>
+            <p class="text-xs leading-relaxed text-black font-normal">Kept the design expressive but controlled. Strong type hierarchy, a two-tone palette, and clean layout rules that work across cups, packaging, and digital.</p>
+          </div>
+        </div>
+
+        <!-- Deliverables + Result -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
+          <div class="py-10 md:pr-16">
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-6">06 / Deliverables</p>
+            <div class="grid grid-cols-3 gap-4">
+              <div>
+                <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-2">Logo Design</p>
+                <p class="text-xs leading-relaxed text-black">Primary wordmark and lockup variations.</p>
               </div>
-              <div class="aspect-square flex items-center justify-center bg-zinc-900 p-8 relative">
-                <span class="absolute top-3 left-3 text-[8px] font-black tracking-[0.2em] uppercase text-white/20">02 Inverted</span>
-                <img src="/Images/Brands/Copilot_20260426_132635.png" class="h-16 w-auto object-contain invert" alt="Logo Inverted">
+              <div>
+                <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-2">Print Assets</p>
+                <p class="text-xs leading-relaxed text-black">Menu layout and two-sided business cards.</p>
               </div>
-              <div class="aspect-square flex items-center justify-center bg-[#C0D6E4] p-8 relative">
-                <span class="absolute top-3 left-3 text-[8px] font-black tracking-[0.2em] uppercase text-zinc-900/20">03 Brand Color</span>
-                <img src="/Images/Brands/Copilot_20260426_132635.png" class="h-16 w-auto object-contain grayscale brightness-0" alt="Logo Brand Color">
-              </div>
-              <div class="aspect-square flex items-center justify-center bg-white p-8 relative">
-                <span class="absolute top-3 left-3 text-[8px] font-black tracking-[0.2em] uppercase text-zinc-300">04 Icon Only</span>
-                <img src="/Images/Brands/Copilot_20260426_132635.png" class="h-14 w-auto object-contain" style="clip-path: inset(0 0 20% 0);" alt="Logo Icon Only">
+              <div>
+                <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-2">Packaging</p>
+                <p class="text-xs leading-relaxed text-black">Cup designs and retail product packaging.</p>
               </div>
             </div>
           </div>
-          <!-- Restricted Usage -->
-          <div class="space-y-8">
-            <div class="flex items-center gap-3 text-rose-500 font-black text-[9px] tracking-[0.3em] uppercase">
-              <span class="material-symbols-outlined text-sm">cancel</span> Restricted Usage
+          <div class="py-10 md:pl-16">
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">07 / Result</p>
+            <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-black mb-3">Targeted deliverables ready for production.</h3>
+            <p class="text-xs font-medium text-black">Logo files, print-ready menus, business cards, and packaging mechanicals delivered.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Colour Story -->
+      <div class="px-6 md:px-24 py-12 border-t border-zinc-100">
+        <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <div>
+            <p class="text-[10px] uppercase tracking-[0.5em] text-black font-black mb-4">Colour Palette</p>
+            <h3 class="text-3xl md:text-5xl font-bold tracking-tighter leading-tight text-black mb-4">Warmth &amp; Cold.</h3>
+            <p class="text-xs leading-relaxed text-black max-w-sm">Two opposing tones — coffee brown and iced blue — create the core tension of the brand. Minimal palette, maximum recognition.</p>
+          </div>
+          <div class="grid grid-cols-1 gap-px bg-zinc-100 shadow-sm">
+            <div class="bg-[#4B3621] h-24 flex items-end p-6 relative">
+              <div>
+                <p class="text-[10px] font-black tracking-[0.3em] text-white/40 uppercase mb-1">Primary</p>
+                <h4 class="text-base font-bold text-white uppercase tracking-tighter">Coffee Brown</h4>
+              </div>
+              <div class="absolute top-4 right-4 text-white/30 text-xs font-mono">#4B3621</div>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-zinc-200 border border-zinc-200">
-              <div class="aspect-square flex items-center justify-center bg-white p-8 relative">
-                <span class="absolute top-3 left-3 text-[8px] font-black tracking-[0.2em] uppercase text-rose-300">01 Distort</span>
-                <img src="/Images/Brands/Copilot_20260426_132635.png" class="h-16 w-auto object-contain scale-x-150" alt="Incorrect Distort">
+            <div class="bg-[#C0D6E4] h-24 flex items-end p-6 relative">
+              <div>
+                <p class="text-[10px] font-black tracking-[0.3em] text-zinc-900/40 uppercase mb-1">Accent</p>
+                <h4 class="text-base font-bold text-zinc-900 uppercase tracking-tighter">Iced Blue</h4>
               </div>
-              <div class="aspect-square flex items-center justify-center bg-white p-8 relative">
-                <span class="absolute top-3 left-3 text-[8px] font-black tracking-[0.2em] uppercase text-rose-300">02 Drop Shadow</span>
-                <img src="/Images/Brands/Copilot_20260426_132635.png" class="h-16 w-auto object-contain shadow-2xl" alt="Incorrect Shadow">
+              <div class="absolute top-4 right-4 text-zinc-900/30 text-xs font-mono">#C0D6E4</div>
+            </div>
+            <div class="bg-white h-24 flex items-end p-6 relative border border-zinc-100">
+              <div>
+                <p class="text-[10px] font-black tracking-[0.3em] text-zinc-300 uppercase mb-1">Neutral</p>
+                <h4 class="text-base font-bold text-zinc-900 uppercase tracking-tighter">Pure White</h4>
               </div>
-              <div class="aspect-square flex items-center justify-center bg-white p-8 relative overflow-hidden">
-                <span class="absolute top-3 left-3 text-[8px] font-black tracking-[0.2em] uppercase text-rose-300 z-10">03 Busy BG</span>
-                <div class="absolute inset-0 opacity-40" style="background-image: url('/Images/Brands/lukes iced coffee/Gemini_Generated_Image_81wcsr81wcsr81wc.png'); background-size: cover;"></div>
-                <img src="/Images/Brands/Copilot_20260426_132635.png" class="h-14 w-auto object-contain relative z-10" alt="Incorrect BG">
-              </div>
-              <div class="aspect-square flex items-center justify-center bg-white p-8 relative">
-                <span class="absolute top-3 left-3 text-[8px] font-black tracking-[0.2em] uppercase text-rose-300">04 Color Tint</span>
-                <img src="/Images/Brands/Copilot_20260426_132635.png" class="h-16 w-auto object-contain hue-rotate-90" alt="Incorrect Tint">
-              </div>
+              <div class="absolute top-4 right-4 text-zinc-300 text-xs font-mono">#FFFFFF</div>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Applications Image Grid -->
-      <div class="w-full">
-        <div class="px-6 md:px-24 mb-10 max-w-[1400px] mx-auto">
-          <p class="text-[10px] uppercase tracking-[0.5em] text-zinc-300 font-black mb-4">04 / APPLICATIONS</p>
-          <h3 class="text-2xl md:text-5xl font-bold tracking-tighter uppercase">The Visual Ecosystem</h3>
+      <div class="w-full border-t border-zinc-100">
+        <div class="px-6 md:px-24 py-8 max-w-[1400px] mx-auto border-b border-zinc-100">
+          <p class="text-[10px] uppercase tracking-[0.5em] text-black font-black mb-2">Brand Applications</p>
+          <h3 class="text-2xl md:text-4xl font-bold tracking-tighter text-black">In context.</h3>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 w-full gap-px bg-zinc-200">
           <div class="md:col-span-2 overflow-hidden bg-zinc-50 h-[300px] md:h-[600px] group">
@@ -920,57 +948,10 @@
         </div>
       </div>
 
-      <!-- Color Story -->
-      <div class="px-6 md:px-24 py-24 md:py-32 bg-[#fbfbfb] border-t border-zinc-100">
-        <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32 items-center">
-          <div class="space-y-12">
-            <div>
-              <p class="text-[10px] uppercase tracking-[0.6em] text-zinc-300 font-black mb-6">05 / COLOR STORY</p>
-              <h3 class="text-5xl md:text-7xl font-bold tracking-tighter leading-tight mb-6 uppercase">Warmth<br/>&amp; Cold.</h3>
-            </div>
-            <div class="space-y-8">
-              <p class="text-xl font-light text-zinc-500 leading-relaxed italic max-w-lg">"A dialogue between the comfort of coffee culture and the refreshing nature of iced beverages."</p>
-              <div class="h-px w-20 bg-zinc-200"></div>
-              <p class="text-xs uppercase tracking-widest text-zinc-400 leading-loose max-w-sm font-light">Minimal, purposeful, and instantly recognizable. The palette bridges the gap between traditional warmth and modern coolness.</p>
-            </div>
-          </div>
-          <div class="grid grid-cols-1 gap-px bg-zinc-100 shadow-xl">
-            <div class="bg-[#4B3621] h-40 md:h-52 flex items-end p-8 relative transition-all duration-700 hover:h-64">
-              <div>
-                <p class="text-[10px] font-black tracking-[0.3em] text-white/40 uppercase mb-1">Primary</p>
-                <h4 class="text-xl font-bold text-white uppercase tracking-tighter">Coffee Brown</h4>
-              </div>
-              <div class="absolute top-6 right-6 text-white/20 text-xs font-mono">HEX #4B3621</div>
-            </div>
-            <div class="bg-[#C0D6E4] h-40 md:h-52 flex items-end p-8 relative transition-all duration-700 hover:h-64">
-              <div>
-                <p class="text-[10px] font-black tracking-[0.3em] text-zinc-900/40 uppercase mb-1">Accent</p>
-                <h4 class="text-xl font-bold text-zinc-900 uppercase tracking-tighter">Iced Blue</h4>
-              </div>
-              <div class="absolute top-6 right-6 text-zinc-900/20 text-xs font-mono">HEX #C0D6E4</div>
-            </div>
-            <div class="bg-white h-40 md:h-52 flex items-end p-8 relative border border-zinc-100 transition-all duration-700 hover:h-64">
-              <div>
-                <p class="text-[10px] font-black tracking-[0.3em] text-zinc-300 uppercase mb-1">Neutral</p>
-                <h4 class="text-xl font-bold text-zinc-900 uppercase tracking-tighter">Pure White</h4>
-              </div>
-              <div class="absolute top-6 right-6 text-zinc-300 text-xs font-mono">HEX #FFFFFF</div>
-            </div>
-          </div>
-          </div>
-        </div>
-      </div>
-      <!-- Outcome CTA -->
-      <div class="w-full py-32 text-center bg-zinc-50 border-y border-zinc-100">
-        <div class="px-6 md:px-24">
-          <p class="text-[10px] uppercase tracking-[0.6em] text-zinc-300 font-black mb-10">06 / OUTCOME</p>
-          <h3 class="text-4xl md:text-7xl font-bold tracking-tighter leading-none mb-12 uppercase">Built For Scale.</h3>
-          <a href="contact.html" class="inline-flex items-center gap-5 bg-black text-white px-10 py-5 font-bold uppercase tracking-widest text-[11px] hover:bg-zinc-800 transition-all hover:scale-105 duration-500">
-            Start a Project
-            <span class="material-symbols-outlined text-lg">north_east</span>
-          </a>
-        </div>
-      </div>
+    </div>
+    <!-- END: Luke's Iced Coffee -->
+
+
     </div>
     <!-- END: Luke's Iced Coffee -->
 
@@ -983,8 +964,8 @@
   <section id="work" class="bg-white overflow-hidden border-t border-zinc-100">
     <div class="px-6 md:px-24 pt-16 mb-16 flex flex-col md:flex-row-reverse justify-between md:items-end gap-12 w-full">
       <div class="w-full md:w-3/5 text-zinc-900 md:text-right">
-        <p class="text-zinc-500 uppercase text-[10px] tracking-[0.2em] mb-6">Section 02 — Development</p>
-        <h2 class="text-[2.5rem] md:text-[7rem] font-bold tracking-tighter leading-[0.9]">Web Engineering</h2>
+        <p class="text-zinc-500 uppercase text-[10px] tracking-[0.2em] mb-6">Section 02 — Design &amp; Development</p>
+        <h2 class="text-[2.5rem] md:text-[7rem] font-bold tracking-tighter leading-[0.9]">Web Design &amp; Development</h2>
       </div>
       <div class="text-zinc-500 text-sm leading-relaxed w-full md:w-[30%] text-left">
         Architecting high-performance digital foundations. Where creative fluidity meets surgical technical execution.
@@ -996,17 +977,17 @@
     ═══════════════════════════════════════════════ -->
     <div class="w-full bg-white text-zinc-900 overflow-x-hidden">
 
-      <!-- Hero Video -->
-      <div class="w-full h-[300px] md:h-[80vh] overflow-hidden bg-zinc-900 relative">
-        <video class="card-video w-full h-full object-cover object-top will-change-transform"
-          muted loop playsinline preload="none"
-          data-src="/Images/web_dev/img_3693.mp4"
-          data-mobile-src="/Images/web_dev/img_3693_mobile.mp4">
-        </video>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-10 md:p-20">
-          <p class="text-[10px] uppercase tracking-[0.5em] text-white/60 font-bold mb-4">01 / PROJECT</p>
-          <h3 class="text-4xl md:text-8xl font-bold tracking-tighter leading-[0.85] text-white">The ExecuVision</h3>
-          <p class="text-xs tracking-widest uppercase text-white/60 mt-4">Re-design &amp; Development</p>
+
+      <!-- Project Title Row -->
+      <div class="px-6 md:px-24 py-10 border-b border-zinc-100">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          <div class="md:col-span-4">
+            <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-3">01 — Project</p>
+            <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.9] text-black">The ExecuVision</h3>
+          </div>
+          <div class="md:col-span-8">
+            <p class="text-base md:text-lg font-medium leading-snug text-black">Corporate identity re-design &amp; custom high-performance web development.</p>
+          </div>
         </div>
       </div>
 
@@ -1055,91 +1036,61 @@
         </div>
       </div>
 
-      <!-- Case Study Details -->
-      <div class="px-6 md:px-24 max-w-[1400px] mx-auto space-y-20 pb-24">
-        <!-- Overview -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-16 border-t border-zinc-100 pt-16">
-          <div class="md:col-span-4">
-            <h4 class="text-[10px] tracking-[0.3em] uppercase font-black text-zinc-300">01 / Overview</h4>
+      <!-- Editorial Content — Dense Grid -->
+      <div class="px-6 md:px-24 py-0 max-w-[1400px] mx-auto divide-y divide-zinc-100 border-t border-zinc-100">
+
+        <!-- Challenge + Concept -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
+          <div class="py-10 md:pr-16">
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">01 / The Challenge</p>
+            <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">Legacy code.<br/>High latency.</h3>
+            <p class="text-xs leading-relaxed text-black font-normal">Transforming a low-quality, buggy legacy site into a structured, high-speed platform. The existing site suffered from extreme latency and a complete lack of visual hierarchy.</p>
           </div>
-          <div class="md:col-span-8 space-y-10">
-            <div>
-              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold mb-4">Client &amp; Concept</p>
-              <p class="text-2xl md:text-4xl font-medium tracking-tight leading-tight text-zinc-800">ExecuVision Collective — A surgical re-imagining of corporate identity through high-performance digital architecture.</p>
-            </div>
-            <div class="max-w-2xl">
-              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold mb-4">The Challenge</p>
-              <p class="text-lg md:text-xl text-zinc-500 leading-relaxed font-light">Transform a low-quality, buggy legacy site into a structured, high-speed platform with surgical design precision.</p>
-            </div>
+          <div class="py-10 md:pl-16">
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">02 / Concept</p>
+            <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">Surgical.<br/>High-performance.</h3>
+            <p class="text-xs leading-relaxed text-black font-normal">A surgical re-imagining of corporate identity through high-performance digital architecture. Focused on a content-first philosophy, stripping away noise for a minimal aesthetic.</p>
           </div>
         </div>
 
         <!-- Transformation Before/After -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-16 border-t border-zinc-100 pt-16">
-          <div class="md:col-span-4">
-            <h4 class="text-[10px] tracking-[0.3em] uppercase font-black text-zinc-300">02 / Transformation</h4>
-          </div>
-          <div class="md:col-span-8 space-y-16">
-            <div class="space-y-6">
-              <div class="flex items-center gap-4">
-                <span class="w-8 h-px bg-zinc-200"></span>
-                <p class="text-[10px] uppercase tracking-[0.3em] text-zinc-400 font-bold">Legacy State</p>
-              </div>
-              <div class="bg-zinc-50 p-4 md:p-8 overflow-hidden border border-zinc-100">
+        <div class="py-10 border-b border-zinc-100">
+          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-6">03 / Transformation</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="space-y-4">
+              <p class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold">Legacy State</p>
+              <div class="bg-zinc-50 p-4 border border-zinc-100">
                 <video src="/Images/web_dev/img_3692.mp4" controls autoplay muted loop playsinline class="w-full h-auto"></video>
               </div>
             </div>
-            <div class="space-y-6">
-              <div class="flex items-center gap-4">
-                <span class="w-8 h-px bg-zinc-800"></span>
-                <p class="text-[10px] uppercase tracking-[0.3em] text-zinc-900 font-bold">New Vision</p>
-              </div>
-              <div class="bg-white p-4 md:p-8 border border-zinc-100 shadow-2xl">
+            <div class="space-y-4">
+              <p class="text-[10px] uppercase tracking-[0.3em] text-black font-bold">New Vision</p>
+              <div class="bg-white p-4 border border-zinc-100 shadow-md">
                 <video src="/Images/web_dev/img_3693.mp4" controls autoplay muted loop playsinline class="w-full h-auto"></video>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Process -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-16 border-t border-zinc-100 pt-16">
-          <div class="md:col-span-4">
-            <h4 class="text-[10px] tracking-[0.3em] uppercase font-black text-zinc-300">03 / Process</h4>
-          </div>
-          <div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-16">
-            <div class="space-y-4">
-              <div class="flex items-center gap-3"><span class="text-[10px] font-bold text-zinc-900">01</span><p class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold">Research</p></div>
-              <p class="text-base text-zinc-500 leading-relaxed font-light">Identified core pain points: extreme latency, frequent technical bugs, and a complete lack of visual hierarchy.</p>
-            </div>
-            <div class="space-y-4">
-              <div class="flex items-center gap-3"><span class="text-[10px] font-bold text-zinc-900">02</span><p class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold">Planning</p></div>
-              <p class="text-base text-zinc-500 leading-relaxed font-light">Architected a new data structure to eliminate lagging. Created a 12-column grid system to bring order to content-heavy pages.</p>
-            </div>
-            <div class="space-y-4">
-              <div class="flex items-center gap-3"><span class="text-[10px] font-bold text-zinc-900">03</span><p class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold">Design Decisions</p></div>
-              <p class="text-base text-zinc-500 leading-relaxed font-light">Focused on a 'Content-First' philosophy. Stripped away unnecessary visual noise to create a clean, minimalist aesthetic.</p>
-            </div>
-            <div class="space-y-4">
-              <div class="flex items-center gap-3"><span class="text-[10px] font-bold text-zinc-900">04</span><p class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold">Development</p></div>
-              <p class="text-base text-zinc-500 leading-relaxed font-light">Rebuilt the entire tech stack for maximum responsiveness. Fixed all legacy bugs and optimized performance for zero-lag interactions.</p>
+        <!-- Process + Result -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
+          <div class="py-10 md:pr-16">
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-6">04 / Process</p>
+            <div class="space-y-6">
+              <div>
+                <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-1">Architecture</p>
+                <p class="text-xs leading-relaxed text-black">Built a new data structure to eliminate lagging. Implemented a strict 12-column grid system.</p>
+              </div>
+              <div>
+                <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-1">Development</p>
+                <p class="text-xs leading-relaxed text-black">Rebuilt the tech stack for maximum responsiveness. Fixed legacy bugs for zero-lag interactions.</p>
+              </div>
             </div>
           </div>
-        </div>
-
-        <!-- Results -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-16 border-t border-zinc-100 pt-16">
-          <div class="md:col-span-4">
-            <h4 class="text-[10px] tracking-[0.3em] uppercase font-black text-zinc-300">05 / Results</h4>
-          </div>
-          <div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div>
-              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold mb-4">Metrics</p>
-              <p class="text-xl font-medium tracking-tight text-zinc-800 leading-tight">Drastic speed improvements and 100% bug-free deployment. Significant increase in user clarity and usability.</p>
-            </div>
-            <div>
-              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold mb-4">Strategic Outcome</p>
-              <p class="text-xl font-medium tracking-tight text-zinc-800 leading-tight">Shifted the user experience from a high-friction environment to a seamless, high-quality digital narrative.</p>
-            </div>
+          <div class="py-10 md:pl-16">
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">05 / Results</p>
+            <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-black mb-3">100% bug-free deployment.</h3>
+            <p class="text-xs font-medium text-black">Drastic speed improvements. Shifted the experience from a high-friction environment to a seamless, high-quality digital narrative.</p>
           </div>
         </div>
       </div>
@@ -1151,17 +1102,17 @@
     ═══════════════════════════════════════════════ -->
     <div class="w-full bg-zinc-950 text-white overflow-x-hidden border-t-[6px] border-zinc-900">
 
-      <!-- Hero Video -->
-      <div class="w-full h-[300px] md:h-[80vh] overflow-hidden relative">
-        <video class="card-video w-full h-full object-cover object-top will-change-transform"
-          muted loop playsinline preload="none"
-          data-src="/Images/web_dev/img_3691.mp4"
-          data-mobile-src="/Images/web_dev/img_3691_mobile.mp4">
-        </video>
-        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 to-transparent flex flex-col justify-end p-10 md:p-20">
-          <p class="text-[10px] uppercase tracking-[0.5em] text-white/40 font-bold mb-4">02 / PROJECT</p>
-          <h3 class="text-4xl md:text-8xl font-bold tracking-tighter leading-[0.85] text-white">Nexzy</h3>
-          <p class="text-xs tracking-widest uppercase text-white/40 mt-4">Growth &amp; Tech Solutions — UI/UX &amp; Development</p>
+
+      <!-- Project Title Row -->
+      <div class="px-6 md:px-24 py-10 border-b border-zinc-800">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          <div class="md:col-span-4">
+            <p class="text-[10px] uppercase tracking-[0.5em] text-white font-bold mb-3">02 — Project</p>
+            <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.9] text-white">Nexzy</h3>
+          </div>
+          <div class="md:col-span-8">
+            <p class="text-base md:text-lg font-medium leading-snug text-white/80">Growth &amp; Tech Solutions — UI/UX design &amp; advanced web development.</p>
+          </div>
         </div>
       </div>
 
@@ -1210,124 +1161,218 @@
         </div>
       </div>
 
-      <!-- Case Study Details -->
-      <div class="px-6 md:px-24 max-w-[1400px] mx-auto space-y-20 pb-24">
-        <!-- Overview -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-16 border-t border-white/10 pt-16">
-          <div class="md:col-span-4">
-            <h4 class="text-[10px] tracking-[0.3em] uppercase font-black text-white/20">01 / Overview</h4>
+      <!-- Editorial Content — Dense Grid -->
+      <div class="px-6 md:px-24 py-0 max-w-[1400px] mx-auto divide-y divide-zinc-800 border-t border-zinc-800">
+
+        <!-- Challenge + Concept -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-800">
+          <div class="py-10 md:pr-16">
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white/40 mb-4">01 / The Challenge</p>
+            <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-white mb-4">Low visibility.<br/>Low conversions.</h3>
+            <p class="text-xs leading-relaxed text-white/60 font-normal">Elevating the brand's digital presence to attract high-tier clients. The old site lacked a sophisticated technical portfolio and a clear conversion funnel.</p>
           </div>
-          <div class="md:col-span-8 space-y-10">
-            <div>
-              <p class="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold mb-4">Client &amp; Concept</p>
-              <p class="text-2xl md:text-4xl font-medium tracking-tight leading-tight text-white/90">Nexzy Growth &amp; Tech Solutions — A cutting-edge agency flagship designed to serve as a high-conversion lead generation engine.</p>
-            </div>
-            <div class="max-w-2xl">
-              <p class="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold mb-4">The Challenge</p>
-              <p class="text-lg md:text-xl text-white/50 leading-relaxed font-light">Elevate the brand's digital presence to attract high-tier clients and showcase a sophisticated technical portfolio.</p>
-            </div>
+          <div class="py-10 md:pl-16">
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white/40 mb-4">02 / Concept</p>
+            <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-white mb-4">High-conversion.<br/>Lead-generation.</h3>
+            <p class="text-xs leading-relaxed text-white/60 font-normal">A cutting-edge agency flagship designed to serve as a high-conversion engine. Balancing technical depth with visual impact to convey innovation.</p>
           </div>
         </div>
 
-        <!-- Process -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-16 border-t border-white/10 pt-16">
-          <div class="md:col-span-4">
-            <h4 class="text-[10px] tracking-[0.3em] uppercase font-black text-white/20">02 / Process</h4>
+        <!-- Process + Result -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-800">
+          <div class="py-10 md:pr-16">
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white/40 mb-6">03 / Process</p>
+            <div class="space-y-6">
+              <div>
+                <p class="text-[10px] uppercase tracking-[0.2em] text-white font-bold mb-1">Architecture</p>
+                <p class="text-xs leading-relaxed text-white/60">Architected a lead-centric user journey. Pioneered a 'Future-Forward' aesthetic with geometric spacing.</p>
+              </div>
+              <div>
+                <p class="text-[10px] uppercase tracking-[0.2em] text-white font-bold mb-1">Development</p>
+                <p class="text-xs leading-relaxed text-white/60">Engineered a high-performance 'Tech Sea' animation. Leveraged hardware acceleration for fluid motion.</p>
+              </div>
+            </div>
           </div>
-          <div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-16">
-            <div class="space-y-4">
-              <div class="flex items-center gap-3"><span class="text-[10px] font-bold text-white/60">01</span><p class="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold">Research</p></div>
-              <p class="text-base text-white/40 leading-relaxed font-light">Analyzed the B2B tech landscape to identify key conversion drivers and ensure the portfolio section remains the focal point.</p>
-            </div>
-            <div class="space-y-4">
-              <div class="flex items-center gap-3"><span class="text-[10px] font-bold text-white/60">02</span><p class="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold">Planning</p></div>
-              <p class="text-base text-white/40 leading-relaxed font-light">Architected a lead-centric user journey. Developed a content strategy balancing technical depth with visual impact.</p>
-            </div>
-            <div class="space-y-4">
-              <div class="flex items-center gap-3"><span class="text-[10px] font-bold text-white/60">03</span><p class="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold">Design Decisions</p></div>
-              <p class="text-base text-white/40 leading-relaxed font-light">Pioneered a 'Future-Forward' aesthetic. High-contrast palette and geometric spacing to convey innovation and reliability.</p>
-            </div>
-            <div class="space-y-4">
-              <div class="flex items-center gap-3"><span class="text-[10px] font-bold text-white/60">04</span><p class="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold">Development</p></div>
-              <p class="text-base text-white/40 leading-relaxed font-light">Engineered a high-performance 'Tech Sea' animation for the hero. Leveraged hardware acceleration for fluid motion and rapid response.</p>
-            </div>
+          <div class="py-10 md:pl-16">
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white/40 mb-4">04 / Results</p>
+            <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-white mb-3">100% improvement in portfolio visibility.</h3>
+            <p class="text-xs font-medium text-white/60">Significant increase in inbound inquiries. Positioned Nexzy as a market leader in tech solutions through superior UI/UX.</p>
           </div>
         </div>
 
-        <!-- Results -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-16 border-t border-white/10 pt-16">
-          <div class="md:col-span-4">
-            <h4 class="text-[10px] tracking-[0.3em] uppercase font-black text-white/20">03 / Results</h4>
-          </div>
-          <div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div>
-              <p class="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold mb-4">Metrics</p>
-              <p class="text-xl font-medium tracking-tight text-white/80 leading-tight">Significant increase in inbound inquiries and client engagement. 100% improvement in portfolio visibility.</p>
-            </div>
-            <div>
-              <p class="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold mb-4">Strategic Outcome</p>
-              <p class="text-xl font-medium tracking-tight text-white/80 leading-tight">Successfully positioned Nexzy as a market leader in tech solutions through superior UI/UX and motion-driven storytelling.</p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
     <!-- END: Nexzy -->
-
-    <!-- View Full Portfolio CTA -->
-    <div class="py-20 flex justify-center bg-white border-t border-zinc-100">
-      <a href="portfolio.html" class="inline-flex items-center gap-4 text-[10px] tracking-[0.3em] uppercase font-bold border-b border-black pb-2 hover:opacity-50 transition-all duration-700 text-zinc-900">
-        View full portfolio
-        <span class="material-symbols-outlined text-sm">arrow_forward</span>
-      </a>
-    </div>
   </section>
 
   <!-- Art Work Section (McLaren) -->
-  <section class="section-artwork py-16 bg-white text-zinc-900 overflow-hidden">
-    <div class="px-6 md:px-24 pb-12 flex flex-col md:flex-row justify-between md:items-end gap-12 w-full">
-      <div class="w-full md:w-3/5 py-4">
-        <p class="uppercase text-[10px] tracking-[0.2em] text-zinc-500 mb-6">Freelance Sketch Artist</p>
-        <h2 class="text-[2.5rem] md:text-[8rem] font-bold tracking-tighter leading-[0.9] text-zinc-900">Projects for McLaren Mumbai</h2>
-      </div>
-      <div class="text-zinc-500 text-sm leading-relaxed w-full md:w-[30%] text-left md:text-right pb-12">
-        Collaborating directly with McLaren Mumbai as a freelance sketch artist, I explored automotive form and aerodynamic tension. This commissioned series captures raw mechanical performance through a lens of artistic precision and structural geometry.
+  <section id="mclaren" class="w-full bg-white text-zinc-900 overflow-x-hidden border-t border-zinc-100">
+    <!-- Project Title Row -->
+    <div class="px-6 md:px-24 py-10 border-b border-zinc-100">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+        <div class="md:col-span-4">
+          <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-3">03 — Project</p>
+          <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.9] text-black">McLaren</h3>
+        </div>
+        <div class="md:col-span-8">
+          <p class="text-base md:text-lg font-medium leading-snug text-black">Freelance Sketch Artist — Custom automotive artwork and concept studies.</p>
+        </div>
       </div>
     </div>
-    <!-- Card removed per user request -->
+
+    <!-- Image Showcase -->
+    <div class="px-6 md:px-24 py-10 md:py-20 max-w-[1400px] mx-auto text-center">
+      <div class="w-full h-auto bg-zinc-50 overflow-hidden border border-zinc-100 p-4 md:p-10 mb-8">
+        <img src="Images/IMG_0213 (2).jpg" class="w-full h-auto object-contain" alt="McLaren Sketch">
+      </div>
+      <button onclick="document.getElementById('mclaren-modal').showModal()" class="inline-flex items-center gap-4 bg-black text-white px-8 py-4 text-[10px] uppercase font-bold tracking-widest hover:bg-zinc-800 transition-colors">
+        View All Sketches
+        <span class="material-symbols-outlined text-sm">open_in_full</span>
+      </button>
+
+      <dialog id="mclaren-modal" class="backdrop:bg-black/95 w-[95vw] max-w-[1800px] h-[95vh] bg-transparent border-0 p-0 m-auto focus:outline-none overflow-y-auto">
+        <div class="sticky top-0 right-0 flex justify-end p-4 pointer-events-none">
+          <button onclick="document.getElementById('mclaren-modal').close()" class="bg-white/10 hover:bg-white/20 text-white p-3 rounded-full backdrop-blur-md pointer-events-auto transition-colors focus:outline-none">
+            <span class="material-symbols-outlined text-xl block">close</span>
+          </button>
+        </div>
+        <div class="flex flex-col gap-12 p-2 md:p-6 pb-24 items-center">
+          <img src="Images/IMG_0213 (2).jpg" class="w-full max-w-none h-auto object-contain" alt="McLaren Sketch 1">
+          <img src="Images/IMG_9606 (2).jpg" class="w-full max-w-none h-auto object-contain" alt="McLaren Sketch 2">
+          <img src="Images/IMG_9844 (2).jpg" class="w-full max-w-none h-auto object-contain" alt="McLaren Sketch 3">
+        </div>
+      </dialog>
+    </div>
+
+    <!-- Editorial Content — Dense Grid -->
+    <div class="px-6 md:px-24 py-0 max-w-[1400px] mx-auto divide-y divide-zinc-100 border-t border-zinc-100">
+      <!-- Challenge + Concept -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
+        <div class="py-10 md:pr-16">
+          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">01 / The Project</p>
+          <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">Contract-based.<br/>Client-focused.</h3>
+          <p class="text-xs leading-relaxed text-black font-normal">This was a contract-based project for McLaren Mumbai. The primary objective was to create highly customised sketches tailored precisely to the client's specific needs and vision.</p>
+        </div>
+        <div class="py-10 md:pl-16">
+          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">02 / Approach</p>
+          <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">Strict detailing.<br/>Commitment.</h3>
+          <p class="text-xs leading-relaxed text-black font-normal">My approach centered entirely on meticulous detailing and reliable delivery. I maintained a strong commitment to producing high-quality artwork that met the client's exact standards.</p>
+        </div>
+      </div>
+      <!-- Output + Result -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
+        <div class="py-10 md:pr-16">
+          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-6">03 / Output</p>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-1">Deliverables</p>
+              <p class="text-xs leading-relaxed text-black">Custom automotive sketches created on large A1 size charts.</p>
+            </div>
+            <div>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-1">Medium</p>
+              <p class="text-xs leading-relaxed text-black">Traditional sketching on A1 charts.</p>
+            </div>
+          </div>
+        </div>
+        <div class="py-10 md:pl-16">
+          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">04 / Results</p>
+          <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-black mb-3">Professional delivery.</h3>
+          <p class="text-xs font-medium text-black">Successfully delivered detailed custom sketches on schedule, demonstrating professionalism, accuracy, and a strong commitment to the client's requirements.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- Porsche Mumbai Section -->
-  <section class="section-porsche py-16 bg-white text-zinc-900 overflow-hidden">
-    <div class="px-6 md:px-24 pb-12 flex flex-col md:flex-row justify-between md:items-end gap-12 w-full">
-      <div class="w-full md:w-3/5 py-4">
-        <p class="uppercase text-[10px] tracking-[0.2em] text-zinc-500 mb-6">Freelance Sketch Artist</p>
-        <h2 class="text-[2.5rem] md:text-[8rem] font-bold tracking-tighter leading-[0.9] text-zinc-900">Projects for Porsche Mumbai</h2>
-      </div>
-      <div class="text-zinc-500 text-sm leading-relaxed w-full md:w-[30%] text-left md:text-right pb-12">
-        Collaborating with Porsche Mumbai, I translated the iconic silhouettes and engineering heritage of the brand into dynamic visual sketches. This series emphasizes the timeless aesthetic and precision synonymous with Porsche.
+  <section id="porsche" class="w-full bg-white text-zinc-900 overflow-x-hidden border-t border-zinc-100">
+    <!-- Project Title Row -->
+    <div class="px-6 md:px-24 py-10 border-b border-zinc-100">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+        <div class="md:col-span-4">
+          <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-3">04 — Project</p>
+          <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.9] text-black">Porsche</h3>
+        </div>
+        <div class="md:col-span-8">
+          <p class="text-base md:text-lg font-medium leading-snug text-black">Freelance Sketch Artist — Custom automotive artwork and concept studies.</p>
+        </div>
       </div>
     </div>
-    <!-- Card removed per user request -->
+
+    <!-- Image Showcase -->
+    <div class="px-6 md:px-24 py-10 md:py-20 max-w-[1400px] mx-auto text-center">
+      <div class="w-full h-auto bg-zinc-50 overflow-hidden border border-zinc-100 p-4 md:p-10 mb-8">
+        <img src="Images/IMG_0498.jpg" class="w-full h-auto object-contain" alt="Porsche Sketch">
+      </div>
+      <button onclick="document.getElementById('porsche-modal').showModal()" class="inline-flex items-center gap-4 bg-black text-white px-8 py-4 text-[10px] uppercase font-bold tracking-widest hover:bg-zinc-800 transition-colors">
+        View All Sketches
+        <span class="material-symbols-outlined text-sm">open_in_full</span>
+      </button>
+
+      <dialog id="porsche-modal" class="backdrop:bg-black/95 w-[95vw] max-w-[1800px] h-[95vh] bg-transparent border-0 p-0 m-auto focus:outline-none overflow-y-auto">
+        <div class="sticky top-0 right-0 flex justify-end p-4 pointer-events-none">
+          <button onclick="document.getElementById('porsche-modal').close()" class="bg-white/10 hover:bg-white/20 text-white p-3 rounded-full backdrop-blur-md pointer-events-auto transition-colors focus:outline-none">
+            <span class="material-symbols-outlined text-xl block">close</span>
+          </button>
+        </div>
+        <div class="flex flex-col gap-12 p-2 md:p-6 pb-24 items-center">
+          <img src="Images/IMG_0498.jpg" class="w-full max-w-none h-auto object-contain" alt="Porsche Sketch 1">
+          <img src="Images/IMG_1390.jpg" class="w-full max-w-none h-auto object-contain" alt="Porsche Sketch 2">
+        </div>
+      </dialog>
+    </div>
+
+    <!-- Editorial Content — Dense Grid -->
+    <div class="px-6 md:px-24 py-0 max-w-[1400px] mx-auto divide-y divide-zinc-100 border-t border-zinc-100">
+      <!-- Challenge + Concept -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
+        <div class="py-10 md:pr-16">
+          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">01 / The Project</p>
+          <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">Contracted work.<br/>Tailored vision.</h3>
+          <p class="text-xs leading-relaxed text-black font-normal">A contract-based commission for Porsche Mumbai. The project required customising automotive sketches to align perfectly with the client's specific requests and expectations.</p>
+        </div>
+        <div class="py-10 md:pl-16">
+          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">02 / Approach</p>
+          <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">High detailing.<br/>Timely delivery.</h3>
+          <p class="text-xs leading-relaxed text-black font-normal">I focused heavily on intricate detailing and professionalism. A strong commitment to deadlines and quality ensured the artwork met the high standards of the client.</p>
+        </div>
+      </div>
+      <!-- Output + Result -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
+        <div class="py-10 md:pr-16">
+          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-6">03 / Output</p>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-1">Deliverables</p>
+              <p class="text-xs leading-relaxed text-black">Bespoke automotive sketches executed on large A1 size charts.</p>
+            </div>
+            <div>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-1">Medium</p>
+              <p class="text-xs leading-relaxed text-black">Traditional hand-drawn sketches on A1 charts.</p>
+            </div>
+          </div>
+        </div>
+        <div class="py-10 md:pl-16">
+          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">04 / Results</p>
+          <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-black mb-3">Client satisfaction.</h3>
+          <p class="text-xs font-medium text-black">The project was completed with a focus on timely delivery and precision, resulting in highly detailed A1 sketches that fulfilled the contract requirements.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- Capabilities & Services -->
   <section id="services" class="py-16 bg-white">
 
     <!-- Capabilities Header -->
-    <div class="px-6 md:px-24 pt-24 pb-16">
+    <div class="px-6 md:px-24 pt-24 pb-16 relative z-10">
       <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-400 font-bold mb-6 block">Capabilities</span>
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
-        <div class="md:col-span-8">
-          <h2 class="text-[clamp(3rem,8vw,8rem)] font-bold tracking-tighter leading-none mb-12">
-            Defining the<br/>Digital Edge.
-          </h2>
-        </div>
-        <div class="md:col-start-7 md:col-span-6 self-end pb-4">
-          <p class="text-xl text-zinc-500 leading-relaxed max-w-md">
-            We operate at the intersection of architectural precision and digital fluidity, crafting bespoke experiences that command attention and perform with intent.
-          </p>
-        </div>
+      <div class="max-w-4xl">
+        <h2 class="text-[clamp(3rem,8vw,8rem)] font-bold tracking-tighter leading-none mb-8 text-black">
+          Defining the<br/>Digital Edge.
+        </h2>
+        <p class="text-xl text-zinc-500 leading-relaxed max-w-xl">
+          I provide professional web design, development, and graphic design services to help your business stand out and grow online.
+        </p>
       </div>
     </div>
 
@@ -1343,22 +1388,22 @@
           <span class="text-[10px] tracking-widest uppercase text-zinc-400 font-bold mb-6">Service 01</span>
           <h3 class="text-4xl md:text-5xl font-bold tracking-tight mb-8">Website Design &amp;<br/>Development</h3>
           <p class="text-lg text-zinc-500 mb-12 max-w-lg leading-relaxed">
-            We build high-performance digital foundations. Our approach prioritizes technical excellence and visual narrative, ensuring your online presence is as structurally sound as it is beautiful.
+            I design and build fast, responsive, and easy-to-use websites. From the initial layout to the final code, I make sure your website looks great and works perfectly on all devices.
           </p>
           <div class="mb-12">
             <h4 class="text-[10px] uppercase tracking-widest font-bold mb-6 text-zinc-900">What's included</h4>
             <ul class="space-y-4">
               <li class="flex items-center gap-3 text-zinc-500 text-sm">
-                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Custom UI/UX Architecture
+                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Custom Website Design
               </li>
               <li class="flex items-center gap-3 text-zinc-500 text-sm">
-                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Responsive Component Frameworks
+                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Mobile-Friendly Development
               </li>
               <li class="flex items-center gap-3 text-zinc-500 text-sm">
-                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Advanced Animation &amp; Micro-interactions
+                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Smooth Animations
               </li>
               <li class="flex items-center gap-3 text-zinc-500 text-sm">
-                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>SEO &amp; Performance Optimization
+                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Search Engine Optimization (SEO)
               </li>
             </ul>
           </div>
@@ -1377,22 +1422,22 @@
           <span class="text-[10px] tracking-widest uppercase text-zinc-400 font-bold mb-6">Service 02</span>
           <h3 class="text-4xl md:text-5xl font-bold tracking-tight mb-8">Graphic Design &amp;<br/>Branding</h3>
           <p class="text-lg text-zinc-500 mb-12 max-w-lg leading-relaxed">
-            Visual identity is the soul of your enterprise. We distill your brand's essence into a cohesive visual language that resonates across every touchpoint, from physical print to digital pixels.
+            I create clean, professional, and memorable branding for your business. Whether you need a new logo, business cards, or full brand guidelines, I deliver designs that connect with your audience.
           </p>
           <div class="mb-12">
             <h4 class="text-[10px] uppercase tracking-widest font-bold mb-6 text-zinc-900">What's included</h4>
             <ul class="space-y-4">
               <li class="flex items-center gap-3 text-zinc-500 text-sm">
-                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Identity Strategy &amp; Positioning
+                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Brand Identity Design
               </li>
               <li class="flex items-center gap-3 text-zinc-500 text-sm">
-                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Logo Systems &amp; Mark Design
+                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Custom Logos
               </li>
               <li class="flex items-center gap-3 text-zinc-500 text-sm">
-                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Editorial &amp; Print Design
+                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Print &amp; Packaging Design
               </li>
               <li class="flex items-center gap-3 text-zinc-500 text-sm">
-                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Brand Style Guidelines
+                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Brand Guidelines
               </li>
             </ul>
           </div>
@@ -1708,50 +1753,58 @@
 
   <!-- Guidelines Content -->
   <div class="w-full flex flex-col items-center py-20 px-4 md:px-0">
-    <div id="guidelines-container" class="w-full max-w-7xl flex flex-col shadow-2xl">
-      <img src="/Images/Branding/Brand guidelines-01.png" class="w-full h-auto block" alt="Page 01">
-      <img src="/Images/Branding/Brand guidelines-02.png" class="w-full h-auto block" alt="Page 02">
-      <img src="/Images/Branding/Brand guidelines-03.png" class="w-full h-auto block" alt="Page 03">
-      <img src="/Images/Branding/Brand guidelines-04.png" class="w-full h-auto block" alt="Page 04">
-      <img src="/Images/Branding/Brand guidelines-05.png" class="w-full h-auto block" alt="Page 05">
-      <img src="/Images/Branding/Brand guidelines-06.png" class="w-full h-auto block" alt="Page 06">
-      <img src="/Images/Branding/Brand guidelines-07.png" class="w-full h-auto block" alt="Page 07">
-      <img src="/Images/Branding/Brand guidelines-08.png" class="w-full h-auto block" alt="Page 08">
-      <img src="/Images/Branding/Brand guidelines-09.png" class="w-full h-auto block" alt="Page 09">
-      <img src="/Images/Branding/Brand guidelines-10.png" class="w-full h-auto block" alt="Page 10">
-      <img src="/Images/Branding/Brand guidelines-11.png" class="w-full h-auto block" alt="Page 11">
-      <img src="/Images/Branding/Brand guidelines-12.png" class="w-full h-auto block" alt="Page 12">
-      <img src="/Images/Branding/Brand guidelines-13.png" class="w-full h-auto block" alt="Page 13">
-      <img src="/Images/Branding/Brand guidelines-14.png" class="w-full h-auto block" alt="Page 14">
-      <img src="/Images/Branding/Brand guidelines-15.png" class="w-full h-auto block" alt="Page 15">
-      <img src="/Images/Branding/Brand guidelines-16.png" class="w-full h-auto block" alt="Page 16">
-      <img src="/Images/Branding/Brand guidelines-17.png" class="w-full h-auto block" alt="Page 17">
-      <img src="/Images/Branding/Brand guidelines-18.png" class="w-full h-auto block" alt="Page 18">
-      <img src="/Images/Branding/Brand guidelines-19.png" class="w-full h-auto block" alt="Page 19">
-      <img src="/Images/Branding/Brand guidelines-20.png" class="w-full h-auto block" alt="Page 20">
-      <img src="/Images/Branding/Brand guidelines-21.png" class="w-full h-auto block" alt="Page 21">
-      <img src="/Images/Branding/Brand guidelines-22.png" class="w-full h-auto block" alt="Page 22">
-      <img src="/Images/Branding/Brand guidelines-23.png" class="w-full h-auto block" alt="Page 23">
-      <img src="/Images/Branding/Brand guidelines-24.png" class="w-full h-auto block" alt="Page 24">
-      <img src="/Images/Branding/Brand guidelines-25.png" class="w-full h-auto block" alt="Page 25">
-      <img src="/Images/Branding/Brand guidelines-26.png" class="w-full h-auto block" alt="Page 26">
+    <div id="guidelines-container" class="w-full max-w-7xl shadow-2xl">
+
+      <!-- Brand Guideline Pages 01–26: 2 per row -->
+      <div class="grid grid-cols-2 gap-0">
+        <img src="/Images/Branding/Brand guidelines-01.png" class="w-full h-auto block" alt="Page 01">
+        <img src="/Images/Branding/Brand guidelines-02.png" class="w-full h-auto block" alt="Page 02">
+        <img src="/Images/Branding/Brand guidelines-03.png" class="w-full h-auto block" alt="Page 03">
+        <img src="/Images/Branding/Brand guidelines-04.png" class="w-full h-auto block" alt="Page 04">
+        <img src="/Images/Branding/Brand guidelines-05.png" class="w-full h-auto block" alt="Page 05">
+        <img src="/Images/Branding/Brand guidelines-06.png" class="w-full h-auto block" alt="Page 06">
+        <img src="/Images/Branding/Brand guidelines-07.png" class="w-full h-auto block" alt="Page 07">
+        <img src="/Images/Branding/Brand guidelines-08.png" class="w-full h-auto block" alt="Page 08">
+        <img src="/Images/Branding/Brand guidelines-09.png" class="w-full h-auto block" alt="Page 09">
+        <img src="/Images/Branding/Brand guidelines-10.png" class="w-full h-auto block" alt="Page 10">
+        <img src="/Images/Branding/Brand guidelines-11.png" class="w-full h-auto block" alt="Page 11">
+        <img src="/Images/Branding/Brand guidelines-12.png" class="w-full h-auto block" alt="Page 12">
+        <img src="/Images/Branding/Brand guidelines-13.png" class="w-full h-auto block" alt="Page 13">
+        <img src="/Images/Branding/Brand guidelines-14.png" class="w-full h-auto block" alt="Page 14">
+        <img src="/Images/Branding/Brand guidelines-15.png" class="w-full h-auto block" alt="Page 15">
+        <img src="/Images/Branding/Brand guidelines-16.png" class="w-full h-auto block" alt="Page 16">
+        <img src="/Images/Branding/Brand guidelines-17.png" class="w-full h-auto block" alt="Page 17">
+        <img src="/Images/Branding/Brand guidelines-18.png" class="w-full h-auto block" alt="Page 18">
+        <img src="/Images/Branding/Brand guidelines-19.png" class="w-full h-auto block" alt="Page 19">
+        <img src="/Images/Branding/Brand guidelines-20.png" class="w-full h-auto block" alt="Page 20">
+        <img src="/Images/Branding/Brand guidelines-21.png" class="w-full h-auto block" alt="Page 21">
+        <img src="/Images/Branding/Brand guidelines-22.png" class="w-full h-auto block" alt="Page 22">
+        <img src="/Images/Branding/Brand guidelines-23.png" class="w-full h-auto block" alt="Page 23">
+        <img src="/Images/Branding/Brand guidelines-24.png" class="w-full h-auto block" alt="Page 24">
+        <img src="/Images/Branding/Brand guidelines-25.png" class="w-full h-auto block" alt="Page 25">
+        <img src="/Images/Branding/Brand guidelines-26.png" class="w-full h-auto block" alt="Page 26">
+      </div>
+
+      <!-- Video: full width, as-is -->
       <div class="w-full bg-white">
         <video autoplay muted loop playsinline class="w-full h-auto block">
           <source src="/Images/Branding/Rebranding_Product_Video_Generation.mp4" type="video/mp4">
         </video>
       </div>
-      
-      <!-- Mockups after 26th slide -->
+
+      <!-- Mockups: full width, as-is -->
       <img src="/Images/Branding/Mockup 01.png" class="w-full h-auto block" alt="Mockup 1">
       <img src="/Images/Branding/Mockup 02.png" class="w-full h-auto block" alt="Mockup 2">
       <img src="/Images/Branding/mockup 03.png" class="w-full h-auto block" alt="Mockup 3">
       <img src="/Images/Branding/mockup 04.jpg" class="w-full h-auto block" alt="Mockup 4">
 
-      <!-- Slides 27, 28 -->
-      <img src="/Images/Branding/Brand guidelines-27.png" class="w-full h-auto block" alt="Page 27">
-      <img src="/Images/Branding/Brand guidelines-28.png" class="w-full h-auto block" alt="Page 28">
+      <!-- Brand Guideline Pages 27–28: 2 per row -->
+      <div class="grid grid-cols-2 gap-0">
+        <img src="/Images/Branding/Brand guidelines-27.png" class="w-full h-auto block" alt="Page 27">
+        <img src="/Images/Branding/Brand guidelines-28.png" class="w-full h-auto block" alt="Page 28">
+      </div>
 
-      <!-- Slide 29 at the end -->
+      <!-- Thank You / Last Page: full width -->
       <img src="/Images/Branding/Brand guidelines-29.png" class="w-full h-auto block" alt="Page 29">
     </div>
   </div>
