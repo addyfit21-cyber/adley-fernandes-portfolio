@@ -60,6 +60,69 @@
     will-change: transform, opacity;
   }
 
+  /* Custom scroll cursor */
+  #scroll-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    background: #000;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+    transition: opacity 0.3s ease;
+  }
+  #scroll-cursor.active {
+    opacity: 1;
+  }
+  .hero-marquee-wrapper {
+    cursor: none;
+  }
+  .stroke-text {
+    -webkit-text-stroke: 1px #18181b;
+    color: transparent;
+  }
+  :root {
+    --cube-size: clamp(200px, min(45vw, 60vh), 500px);
+  }
+  .rainbow-text {
+    background: linear-gradient(90deg, #ffea00, #ff9100, #ffea00, #ff9100, #ffea00);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: rainbow 3s linear infinite;
+  }
+  .rainbow-glow {
+    filter: drop-shadow(0 0 10px rgba(255, 234, 0, 0.6)) drop-shadow(0 0 20px rgba(255, 145, 0, 0.4));
+  }
+  @keyframes rainbow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: -200% 50%; }
+  }
+  .cube-mask {
+    -webkit-mask-image: url('dist/Images/Copilot_20260615_130809.png');
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-image: url('dist/Images/Copilot_20260615_130809.png');
+    mask-position: center;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: var(--cube-size) auto;
+    mask-size: var(--cube-size) auto;
+  }
+
   /* Aggressively hide native video controls (Safari Low Power Mode overlays) */
   video::-webkit-media-controls { display: none !important; }
   video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
@@ -401,66 +464,64 @@
 <main>
 
   <!-- Hero Section -->
-  <section id="hero" class="min-h-screen grid grid-cols-1 lg:grid-cols-2 border-b border-white/20 overflow-hidden">
+  <section id="hero" class="w-full min-h-[100svh] flex flex-col justify-center border-b border-zinc-100 overflow-hidden relative pt-32 pb-20">
 
-    <!-- LEFT — Text -->
-    <div class="flex flex-col justify-center px-6 md:px-24 pt-32 md:pt-24 pb-20 relative z-10">
+    <!-- Overline -->
+    <div class="w-full px-6 md:px-24">
+      <p class="hero-slide-right relative z-10 text-xs tracking-[0.3em] uppercase text-zinc-500 mb-12 md:mb-16 text-left">Creative Studio — 2024</p>
+    </div>
 
-      <!-- Overline -->
-      <p class="hero-slide-right text-xs tracking-[0.3em] uppercase text-zinc-500 mb-10">Creative Practice — 2024</p>
+    <!-- Marquee & Cube Container (The Sandwich) -->
+    <div class="relative w-full flex items-center justify-center">
 
-      <!-- Headline -->
-      <h1 id="hero-headline" class="text-[clamp(2.75rem,8.5vw,9.5rem)] leading-[0.95] font-bold tracking-[-0.04em] text-zinc-900 mb-12">
-        <span class="block mb-4">Creative design meets</span>
-        <span class="block mb-6">strategic development</span>
-        <div class="flex flex-wrap gap-x-[0.3em] gap-y-2">
-          <span class="reveal-word inline-block opacity-0 -translate-x-12">for</span>
-          <span class="reveal-word inline-block opacity-0 -translate-x-12">brands</span>
-          <span class="reveal-word inline-block opacity-0 -translate-x-12">that</span>
-          <span class="reveal-word inline-block opacity-0 -translate-x-12">demand</span>
-          <span class="reveal-word inline-block opacity-0 -translate-x-12">more</span>
-          <span class="reveal-word inline-block opacity-0 -translate-x-12">than</span>
-          <span class="reveal-word inline-block opacity-0 -translate-x-12">average.</span>
+      <!-- 1. BACK TEXT (Solid) -->
+      <div class="hero-marquee-wrapper w-full flex whitespace-nowrap overflow-hidden py-4 md:py-6 relative z-10">
+        <div class="hero-marquee flex items-center min-w-max">
+          <h1 class="text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-[-0.04em] text-zinc-900 m-0 pr-12">
+            Creative design meets strategic development for brands that demand more than average. •
+          </h1>
+          <h1 class="text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-[-0.04em] text-zinc-900 m-0 pr-12" aria-hidden="true">
+            Creative design meets strategic development for brands that demand more than average. •
+          </h1>
         </div>
-      </h1>
+      </div>
 
+      <!-- 2. CUBE (Middle) -->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">
+        <img src="dist/Images/Copilot_20260615_130809.png" alt="3D Cube" class="h-auto object-contain opacity-90 hero-slide-right" style="width: var(--cube-size);">
+      </div>
+
+      <!-- 3. FRONT TEXT (Glowing Rainbow Mask) -->
+      <div class="hero-marquee-wrapper absolute inset-0 w-full flex whitespace-nowrap overflow-hidden py-4 md:py-6 z-30 pointer-events-none cube-mask">
+        <div class="hero-marquee flex items-center min-w-max rainbow-glow">
+          <h1 class="text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-[-0.04em] rainbow-text m-0 pr-12">
+            Creative design meets strategic development for brands that demand more than average. •
+          </h1>
+          <h1 class="text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-[-0.04em] rainbow-text m-0 pr-12" aria-hidden="true">
+            Creative design meets strategic development for brands that demand more than average. •
+          </h1>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Descriptor & CTA -->
+    <div class="w-full px-6 md:px-24 flex flex-col items-start text-left mt-12 md:mt-16">
       <!-- Descriptor -->
-      <p class="hero-slide-right text-base md:text-2xl text-zinc-500 leading-relaxed max-w-xl mb-14">
-        Websites and brand identities engineered to convert — not just impress.
+      <p class="hero-slide-right relative z-10 text-xs tracking-[0.3em] uppercase text-zinc-500 leading-relaxed max-w-xl mb-14">
+        Websites and brand identities engineered to convert <br/>
+        — not just impress.
       </p>
 
       <!-- View Work Link -->
-      <div class="hero-slide-right flex items-center gap-10 mt-12">
-        <a href="#visual-identity" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#visual-identity', offsetY: 120}, ease: 'power3.inOut'}); return false;" class="group bg-black text-white border border-white/20 px-10 py-5 text-xs tracking-[0.2em] uppercase font-bold hover:bg-zinc-900 transition-colors duration-500 inline-flex items-center gap-3 btn-shine-trigger">
+      <div class="hero-slide-right relative z-10 flex items-center justify-start gap-10">
+        <a href="#visual-identity" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#visual-identity', offsetY: 120}, ease: 'power3.inOut'}); return false;" class="group bg-black text-white border border-white/20 px-10 py-5 text-xs tracking-[0.2em] uppercase font-bold hover:bg-[#ffea00] hover:text-black hover:border-[#ffea00] hover:shadow-[0_0_20px_rgba(255,234,0,0.6)] transition-all duration-500 inline-flex items-center gap-3 btn-shine-trigger">
           View Selected Works
           <div class="relative w-4 h-4 flex items-center justify-center overflow-hidden flex-shrink-0">
             <span class="material-symbols-outlined absolute transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-x-6" style="font-size:16px;">arrow_forward</span>
             <span class="material-symbols-outlined absolute -translate-x-6 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-x-0" style="font-size:16px;">arrow_forward</span>
           </div>
         </a>
-      </div>
-    </div>
-
-    <!-- RIGHT — CSS 3D Pen (no image, no background) -->
-    <div id="hero-pen-col" class="hidden lg:flex items-center justify-center relative">
-      <div class="pen-scene">
-        <div class="pen-floater">
-          <div class="pen-assembly">
-            <div class="p-cap"></div>
-            <div class="p-barrel"></div>
-            <div class="p-grip">
-              <div class="p-btn-indent">
-                <div class="p-btn-rocker">
-                  <div class="p-btn-divider"></div>
-                </div>
-              </div>
-            </div>
-            <div class="p-ring"></div>
-            <div class="p-taper"></div>
-            <div class="p-tip"></div>
-          </div>
-          <div class="pen-shadow-el"></div>
-        </div>
       </div>
     </div>
 
@@ -2633,6 +2694,73 @@ document.addEventListener('DOMContentLoaded', function() {
         ham3.style.transform = 'translateY(0) rotate(0)';
       });
     });
+  }
+});
+
+// Interactive Hero Marquee & Custom Cursor
+document.addEventListener('DOMContentLoaded', () => {
+  const marquees = document.querySelectorAll('.hero-marquee');
+  const marqueeWrapper = document.querySelector('.hero-marquee-wrapper');
+  
+  if (marquees.length > 0 && marqueeWrapper) {
+    // 1. Setup infinite GSAP loop
+    const marqueeTween = gsap.to(marquees, {
+      xPercent: -50,
+      repeat: -1,
+      duration: 40,
+      ease: "none"
+    });
+
+    // 2. Custom Cursor Logic
+    const scrollCursor = document.createElement('div');
+    scrollCursor.id = 'scroll-cursor';
+    scrollCursor.textContent = 'Scroll';
+    document.body.appendChild(scrollCursor);
+
+    // Initial position using gsap setter for better performance
+    gsap.set(scrollCursor, { xPercent: -50, yPercent: -50 });
+    const xTo = gsap.quickTo(scrollCursor, "x", {duration: 0.2, ease: "power3"});
+    const yTo = gsap.quickTo(scrollCursor, "y", {duration: 0.2, ease: "power3"});
+    const scaleTo = gsap.quickTo(scrollCursor, "scale", {duration: 0.3, ease: "back.out(1.7)"});
+
+    marqueeWrapper.addEventListener('mouseenter', (e) => {
+      scrollCursor.classList.add('active');
+      xTo(e.clientX);
+      yTo(e.clientY);
+      scaleTo(1);
+    });
+
+    marqueeWrapper.addEventListener('mouseleave', () => {
+      scrollCursor.classList.remove('active');
+      scaleTo(0.5);
+    });
+
+    marqueeWrapper.addEventListener('mousemove', (e) => {
+      xTo(e.clientX);
+      yTo(e.clientY);
+    });
+
+    // 3. Speed up on scroll and lock page scroll
+    let scrollTimeout;
+    const handleScrollSpeed = (e) => {
+      // Lock page scrolling while hovering over the marquee
+      if (e.cancelable) e.preventDefault();
+
+      // Calculate a multiplier based on scroll intensity
+      let velocity = 1;
+      if (e.type === 'wheel') velocity = Math.abs(e.deltaY) * 0.05;
+      const speedMultiplier = Math.min(Math.max(velocity, 2), 12);
+      
+      gsap.to(marqueeTween, { timeScale: speedMultiplier, duration: 0.2, overwrite: true });
+      
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        gsap.to(marqueeTween, { timeScale: 1, duration: 0.5 });
+      }, 150);
+    };
+
+    marqueeWrapper.addEventListener('wheel', handleScrollSpeed, { passive: false });
+    marqueeWrapper.addEventListener('touchmove', handleScrollSpeed, { passive: false });
   }
 });
 </script>
