@@ -86,6 +86,11 @@
   #scroll-cursor.active {
     opacity: 1;
   }
+  .hero-marquee {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
   .hero-marquee-wrapper {
     cursor: none;
   }
@@ -113,6 +118,9 @@
     100% { background-position: -200% 50%; }
   }
   .cube-mask {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden; /* mask-accel */
     -webkit-mask-image: url('Images/Copilot_20260615_130809.png');
     -webkit-mask-position: center;
     -webkit-mask-repeat: no-repeat;
@@ -849,7 +857,7 @@
           <div class="col-span-2 group overflow-hidden bg-zinc-50"><img src="/Images/Branding/Mockup 02.png" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Mockup 02" loading="lazy" decoding="async"></div>
           <!-- Video between Mockup 02 and Mockup 03 -->
           <div class="col-span-2 bg-black">
-            <video autoplay muted loop playsinline class="w-full h-auto block">
+            <video preload="auto" autoplay muted loop playsinline class="w-full h-auto block">
               <source src="/Images/Branding/Rebranding_Product_Video_Generation.mp4" type="video/mp4">
             </video>
           </div>
@@ -1076,7 +1084,7 @@
             <div class="flex flex-col items-center w-full">
               <div class="relative w-full aspect-[16/9] bg-[#1a1a1a] rounded-t-2xl p-[1%] shadow-[0_60px_100px_-20px_rgba(0,0,0,0.6)] border-x-[4px] border-t-[4px] border-[#2a2a2a]">
                 <div class="relative w-full h-full bg-black rounded-sm overflow-hidden">
-                  <video src="/Images/web_dev/img_3693.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black pointer-events-none"></video>
+                  <video preload="auto" src="/Images/web_dev/img_3693.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black pointer-events-none"></video>
                   <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.04] to-white/[0.12] pointer-events-none"></div>
                 </div>
               </div>
@@ -1096,7 +1104,7 @@
                 <div class="relative w-full h-full bg-black rounded-[2.2rem] p-[3%] overflow-hidden shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]">
                   <div class="absolute top-[3.5%] left-1/2 -translate-x-1/2 w-[32%] h-[2.4%] bg-[#050505] rounded-full z-20"></div>
                   <div class="relative w-full h-full bg-black rounded-[1.8rem] overflow-hidden">
-                    <video src="/Images/web_dev/whatsapp_2_mobile.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black pointer-events-none"></video>
+                    <video preload="auto" src="/Images/web_dev/whatsapp_2_mobile.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black pointer-events-none"></video>
                   </div>
                 </div>
                 <div class="absolute -left-[4px] top-[18%] w-[5px] h-[40px] bg-gradient-to-r from-[#d1d5db] to-[#9ca3af] rounded-l-md"></div>
@@ -1137,13 +1145,13 @@
             <div class="space-y-4">
               <p class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold">Legacy State</p>
               <div class="bg-zinc-50 p-4 border border-zinc-100">
-                <video src="/Images/web_dev/img_3692.mp4" autoplay muted loop playsinline class="w-full h-auto"></video>
+                <video preload="auto" src="/Images/web_dev/img_3692.mp4" autoplay muted loop playsinline class="w-full h-auto"></video>
               </div>
             </div>
             <div class="space-y-4">
               <p class="text-[10px] uppercase tracking-[0.3em] text-black font-bold">New Vision</p>
               <div class="bg-white p-4 border border-zinc-100 shadow-md">
-                <video src="/Images/web_dev/img_3693.mp4" autoplay muted loop playsinline class="w-full h-auto"></video>
+                <video preload="auto" src="/Images/web_dev/img_3693.mp4" autoplay muted loop playsinline class="w-full h-auto"></video>
               </div>
             </div>
           </div>
@@ -1201,7 +1209,7 @@
             <div class="flex flex-col items-center w-full">
               <div class="relative w-full aspect-[16/9] bg-[#1a1a1a] rounded-t-2xl p-[1%] shadow-[0_60px_100px_-20px_rgba(0,0,0,0.9)] border-x-[4px] border-t-[4px] border-[#2a2a2a]">
                 <div class="relative w-full h-full bg-black rounded-sm overflow-hidden">
-                  <video src="/Images/web_dev/img_3691.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black pointer-events-none"></video>
+                  <video preload="auto" src="/Images/web_dev/img_3691.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black pointer-events-none"></video>
                   <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.04] to-white/[0.12] pointer-events-none"></div>
                 </div>
               </div>
@@ -1221,7 +1229,7 @@
                 <div class="relative w-full h-full bg-black rounded-[2.2rem] p-[3%] overflow-hidden shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]">
                   <div class="absolute top-[3.5%] left-1/2 -translate-x-1/2 w-[32%] h-[2.4%] bg-[#050505] rounded-full z-20"></div>
                   <div class="relative w-full h-full bg-black rounded-[1.8rem] overflow-hidden">
-                    <video src="/Images/web_dev/whatsapp_1_mobile.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black pointer-events-none"></video>
+                    <video preload="auto" src="/Images/web_dev/whatsapp_1_mobile.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black pointer-events-none"></video>
                   </div>
                 </div>
                 <div class="absolute -left-[4px] top-[18%] w-[5px] h-[40px] bg-gradient-to-r from-[#444] to-[#222] rounded-l-md"></div>
@@ -1864,7 +1872,7 @@
 
       <!-- Video: full width, as-is -->
       <div class="w-full bg-white">
-        <video autoplay muted loop playsinline class="w-full h-auto block">
+        <video preload="auto" autoplay muted loop playsinline class="w-full h-auto block">
           <source src="/Images/Branding/Rebranding_Product_Video_Generation.mp4" type="video/mp4">
         </video>
       </div>
@@ -2199,7 +2207,7 @@
   function solutionMedia(mediaPath, type, isVideo = true) {
     const fitClass = 'object-cover bg-black';
     const media = isVideo
-      ? `<video src="${mediaPath}" autoplay muted loop playsinline class="w-full h-full ${fitClass}"></video>`
+      ? `<video preload="auto" src="${mediaPath}" autoplay muted loop playsinline class="w-full h-full ${fitClass}"></video>`
       : `<img src="${mediaPath}" class="w-full h-full ${fitClass}" / loading="lazy" decoding="async">`;
 
     if (type === 'desktop') {
@@ -2527,7 +2535,7 @@
                   <p class="text-[10px] uppercase tracking-[0.3em] text-zinc-400 font-bold">Legacy State</p>
                 </div>
                 <div class="bg-zinc-50 p-4 md:p-8 rounded-[2rem] overflow-hidden border border-zinc-100 transition-all duration-700 group-hover:shadow-xl">
-                  <video src="${data.transformation.before}" autoplay muted loop playsinline class="w-full h-auto rounded-2xl"></video>
+                  <video preload="auto" src="${data.transformation.before}" autoplay muted loop playsinline class="w-full h-auto rounded-2xl"></video>
                 </div>
               </div>
               <div class="space-y-8 group">
@@ -2536,7 +2544,7 @@
                   <p class="text-[10px] uppercase tracking-[0.3em] text-zinc-900 font-bold">New Vision</p>
                 </div>
                 <div class="bg-white p-4 md:p-8 border border-zinc-100 rounded-[2rem] overflow-hidden shadow-2xl transition-all duration-700 group-hover:scale-[1.01]">
-                  <video src="${data.transformation.after}" autoplay muted loop playsinline class="w-full h-auto rounded-2xl"></video>
+                  <video preload="auto" src="${data.transformation.after}" autoplay muted loop playsinline class="w-full h-auto rounded-2xl"></video>
                 </div>
               </div>
             </div>
@@ -2716,7 +2724,8 @@ document.addEventListener('DOMContentLoaded', () => {
       xPercent: -50,
       repeat: -1,
       duration: 40,
-      ease: "none"
+      ease: "none",
+      force3D: true
     });
 
     // 2. Custom Cursor Logic
