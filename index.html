@@ -47,8 +47,7 @@
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
   body { font-family: Arial, sans-serif; }
   h1, h2, h3, h4, h5, h6 { font-family: Helvetica, Arial, sans-serif; }
-  #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-  #mobile-menu.open { max-height: 400px; }
+
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: #f9f9f9; }
   ::-webkit-scrollbar-thumb { background: #000000; }
@@ -405,12 +404,12 @@
 <!-- Glassmorphism Container (The 'Tab') -->
 
 <!-- TopNavBar -->
-<nav class="fixed top-8 left-1/2 -translate-x-1/2 z-[100] flex items-center justify-between px-6 py-3 bg-white/80 backdrop-blur-xl border border-white/50 shadow-2xl w-[95%] md:w-max md:min-w-[800px]">
+<nav class="absolute md:fixed top-6 md:top-8 left-0 md:left-1/2 md:-translate-x-1/2 z-[100] flex items-center justify-between px-6 md:px-6 py-3 md:bg-white/80 md:backdrop-blur-xl md:border md:border-white/50 md:shadow-2xl w-full md:w-max md:min-w-[800px] bg-transparent pointer-events-none">
   <!-- Logo -->
-  <a href="index.html" class="text-lg md:text-xl font-bold tracking-tighter text-black z-10">Adley Fernandes</a>
+  <a href="index.html" id="mobile-logo" class="text-lg md:text-xl font-bold tracking-tighter text-black z-10 pointer-events-auto">Adley Fernandes</a>
   
   <!-- Desktop Links (Absolutely Centered) -->
-  <div class="hidden md:flex items-center space-x-8 absolute left-1/2 -translate-x-1/2">
+  <div class="hidden md:flex items-center space-x-8 absolute left-1/2 -translate-x-1/2 pointer-events-auto">
     <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-900 border-b border-black pb-0.5 transition-colors duration-300" href="index.html">Home</a>
 
     
@@ -434,22 +433,22 @@
   </div>
 
   <!-- CTA -->
-  <div class="hidden md:flex items-center z-10">
+  <div class="hidden md:flex items-center z-10 pointer-events-auto">
     <a href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener" class="bg-black text-white px-5 py-2 font-manrope text-[10px] tracking-[0.2em] uppercase hover:bg-zinc-800 transition-colors duration-500">
       Get in Touch
     </a>
   </div>
 
   <!-- Mobile hamburger -->
-  <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Open menu">
-    <span class="block w-6 h-0.5 bg-black transition-all duration-300" id="ham-1"></span>
-    <span class="block w-6 h-0.5 bg-black transition-all duration-300" id="ham-2"></span>
-    <span class="block w-6 h-0.5 bg-black transition-all duration-300" id="ham-3"></span>
+  <button id="hamburger" class="md:hidden fixed top-6 right-6 z-[110] flex flex-col gap-1 p-2 pointer-events-auto" aria-label="Open menu">
+    <span class="block w-5 h-[2px] bg-black transition-all duration-300" id="ham-1"></span>
+    <span class="block w-5 h-[2px] bg-black transition-all duration-300" id="ham-2"></span>
+    <span class="block w-5 h-[2px] bg-black transition-all duration-300" id="ham-3"></span>
   </button>
 </nav>
 
 <!-- Mobile Menu -->
-<div id="mobile-menu" class="fixed top-24 left-0 w-full z-40 bg-white/98 shadow-2xl backdrop-blur-xl px-6 py-0 flex flex-col gap-0 transition-all duration-400">
+<div id="mobile-menu" class="fixed top-[4.5rem] left-0 w-full z-40 bg-white/98 shadow-2xl backdrop-blur-xl px-6 py-0 flex flex-col gap-0 transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] opacity-0 invisible -translate-y-4">
   <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-black font-bold" href="index.html">Home</a>
   <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="index.html#services" onclick="document.getElementById('hamburger').click(); gsap.to(window, {duration: 1.5, scrollTo: '#services', ease: 'power4.inOut'}); return false;">Services</a>
   <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="#about" onclick="document.getElementById('hamburger').click(); gsap.to(window, {duration: 1.5, scrollTo: '#about', ease: 'power4.inOut'}); return false;">About</a>
@@ -467,12 +466,12 @@
   <section id="hero" class="w-full min-h-[100svh] flex flex-col justify-center border-b border-zinc-100 overflow-hidden relative pt-32 pb-20">
 
     <!-- Overline -->
-    <div class="w-full px-6 md:px-24">
-      <p class="hero-slide-right relative z-10 text-xs tracking-[0.3em] uppercase text-zinc-500 mb-12 md:mb-16 text-left">Creative Studio — 2024</p>
+    <div class="w-full px-6 md:px-12 lg:px-24">
+      <p class="hero-slide-right relative z-10 text-[10px] md:text-xs tracking-[0.3em] uppercase text-zinc-500 mb-6 md:mb-8 text-left">Creative Studio — 2024</p>
     </div>
 
     <!-- Marquee & Cube Container (The Sandwich) -->
-    <div class="relative w-full flex items-center justify-center">
+    <div class="relative w-full flex items-center justify-center" style="min-height: calc(var(--cube-size) + 2rem);">
 
       <!-- 1. BACK TEXT (Solid) -->
       <div class="hero-marquee-wrapper w-full flex whitespace-nowrap overflow-hidden py-4 md:py-6 relative z-10">
@@ -506,16 +505,16 @@
     </div>
 
     <!-- Descriptor & CTA -->
-    <div class="w-full px-6 md:px-24 flex flex-col items-start text-left mt-12 md:mt-16">
+    <div class="w-full px-6 md:px-12 lg:px-24 flex flex-col items-start text-left mt-6 md:mt-8">
       <!-- Descriptor -->
-      <p class="hero-slide-right relative z-10 text-xs tracking-[0.3em] uppercase text-zinc-500 leading-relaxed max-w-xl mb-14">
+      <p class="hero-slide-right relative z-10 text-[9px] md:text-xs tracking-[0.2em] md:tracking-[0.3em] uppercase text-zinc-500 leading-relaxed max-w-xl mb-8 md:mb-12">
         Websites and brand identities engineered to convert <br/>
         — not just impress.
       </p>
 
       <!-- View Work Link -->
       <div class="hero-slide-right relative z-10 flex items-center justify-start gap-10">
-        <a href="#visual-identity" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#visual-identity', offsetY: 120}, ease: 'power3.inOut'}); return false;" class="group bg-black text-white border border-white/20 px-10 py-5 text-xs tracking-[0.2em] uppercase font-bold hover:bg-[#ffea00] hover:text-black hover:border-[#ffea00] hover:shadow-[0_0_20px_rgba(255,234,0,0.6)] transition-all duration-500 inline-flex items-center gap-3 btn-shine-trigger">
+        <a href="#visual-identity" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#visual-identity', offsetY: 120}, ease: 'power3.inOut'}); return false;" class="group bg-black text-white border border-white/20 px-5 md:px-10 py-3.5 md:py-5 text-[9px] md:text-xs tracking-[0.2em] uppercase font-bold hover:bg-[#ffea00] hover:text-black hover:border-[#ffea00] hover:shadow-[0_0_20px_rgba(255,234,0,0.6)] transition-all duration-500 inline-flex items-center gap-3 btn-shine-trigger">
           View Selected Works
           <div class="relative w-4 h-4 flex items-center justify-center overflow-hidden flex-shrink-0">
             <span class="material-symbols-outlined absolute transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-x-6" style="font-size:16px;">arrow_forward</span>
@@ -2664,20 +2663,27 @@
 document.addEventListener('DOMContentLoaded', function() {
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobile-menu');
+  const mobileLogo = document.getElementById('mobile-logo');
+
+
   const ham1 = document.getElementById('ham-1');
   const ham2 = document.getElementById('ham-2');
   const ham3 = document.getElementById('ham-3');
 
   if (hamburger && mobileMenu) {
     hamburger.addEventListener('click', function() {
-      mobileMenu.classList.toggle('open');
+      const isOpen = mobileMenu.classList.contains('opacity-100');
       
-      // Animate hamburger icon into an X
-      if (mobileMenu.classList.contains('open')) {
-        ham1.style.transform = 'translateY(8px) rotate(45deg)';
+      // Animate hamburger icon and menu dropdown
+      if (!isOpen) {
+        mobileMenu.classList.remove('opacity-0', 'invisible', '-translate-y-4');
+        mobileMenu.classList.add('opacity-100', 'visible', 'translate-y-0');
+        ham1.style.transform = 'translateY(5px) rotate(45deg)';
         ham2.style.opacity = '0';
-        ham3.style.transform = 'translateY(-8px) rotate(-45deg)';
+        ham3.style.transform = 'translateY(-5px) rotate(-45deg)';
       } else {
+        mobileMenu.classList.remove('opacity-100', 'visible', 'translate-y-0');
+        mobileMenu.classList.add('opacity-0', 'invisible', '-translate-y-4');
         ham1.style.transform = 'translateY(0) rotate(0)';
         ham2.style.opacity = '1';
         ham3.style.transform = 'translateY(0) rotate(0)';
@@ -2688,7 +2694,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileLinks = mobileMenu.querySelectorAll('a');
     mobileLinks.forEach(link => {
       link.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
+        mobileMenu.classList.remove('opacity-100', 'visible', 'translate-y-0');
+        mobileMenu.classList.add('opacity-0', 'invisible', '-translate-y-4');
         ham1.style.transform = 'translateY(0) rotate(0)';
         ham2.style.opacity = '1';
         ham3.style.transform = 'translateY(0) rotate(0)';
