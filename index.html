@@ -60,30 +60,58 @@
     will-change: transform, opacity;
   }
 
-  /* Custom scroll cursor */
-  #scroll-cursor {
+  /* Global Custom Cursor - Optimized for Performance */
+  @media (pointer: fine) {
+    body { cursor: none; }
+    a, button, [role="button"], input, select, textarea, .cursor-pointer { cursor: none !important; }
+  }
+  #custom-cursor {
     position: fixed;
     top: 0;
     left: 0;
-    width: 80px;
-    height: 80px;
-    background: #000;
-    color: #fff;
+    width: 14px;
+    height: 14px;
+    background: #fff; /* Solid white */
+    color: #000; /* Black text for when it expands */
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 10px;
-    font-weight: bold;
+    font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 99999;
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.5);
-    transition: opacity 0.3s ease;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference; /* Restored the cool inversion effect */
+    will-change: transform, width, height;
+    transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1), height 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s ease;
   }
-  #scroll-cursor.active {
+  
+  @media (pointer: fine) {
+    #custom-cursor { opacity: 1; }
+  }
+  /* Variations */
+  #custom-cursor.view-mode,
+  #custom-cursor.scroll-mode {
+    width: 80px;
+    height: 80px;
+  }
+  #custom-cursor.magnetic-mode {
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.5);
+  }
+  #custom-cursor span {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  #custom-cursor.view-mode span,
+  #custom-cursor.scroll-mode span {
     opacity: 1;
   }
   .hero-marquee {
@@ -99,7 +127,12 @@
     color: transparent;
   }
   :root {
-    --cube-size: clamp(200px, min(45vw, 60vh), 500px);
+    --cube-size: clamp(140px, min(45vw, 50vh), 400px);
+  }
+  @media (min-width: 768px) {
+    :root {
+      --cube-size: clamp(300px, min(55vw, 75vh), 750px);
+    }
   }
   .rainbow-text {
     background: linear-gradient(90deg, #ffea00, #ff9100, #ffea00, #ff9100, #ffea00);
@@ -116,6 +149,11 @@
   @keyframes rainbow {
     0% { background-position: 0% 50%; }
     100% { background-position: -200% 50%; }
+  }
+  .hero-marquee {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
   .cube-mask {
     transform: translateZ(0);
@@ -138,216 +176,7 @@
 
   /* Force pointer-events none on project videos */
   .mockup-video { pointer-events: none; }
-
-  /* ═══════════════════════════════════════
-     CSS 3D PEN — no image, no background
-  ═══════════════════════════════════════ */
-  .pen-scene {
-    perspective: 1100px;
-    perspective-origin: 50% 35%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-  }
-
-  @keyframes pen-float-3d {
-    0%   { transform: rotateZ(38deg) rotateX(18deg) rotateY(8deg)   translateY(0px);  }
-    30%  { transform: rotateZ(36deg) rotateX(15deg) rotateY(5deg)   translateY(-22px); }
-    65%  { transform: rotateZ(40deg) rotateX(20deg) rotateY(10deg)  translateY(-11px); }
-    100% { transform: rotateZ(38deg) rotateX(18deg) rotateY(8deg)   translateY(0px);  }
-  }
-  @keyframes pen-shadow-pulse {
-    0%,100% { transform: scaleX(1)    translateX(-50%); opacity:.22; }
-    30%      { transform: scaleX(.76)  translateX(-50%); opacity:.12; }
-    65%      { transform: scaleX(.88)  translateX(-50%); opacity:.17; }
-  }
-
-  .pen-floater {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transform-style: preserve-3d;
-  }
-  .pen-assembly {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transform-style: preserve-3d;
-    animation: pen-float-3d 5.5s ease-in-out infinite;
-    filter:
-      drop-shadow(6px 24px 28px rgba(0,0,0,.28))
-      drop-shadow(0  6px  8px  rgba(0,0,0,.18));
-    will-change: transform;
-  }
-
-  /* — Wacom Pen Style — */
-  /* Top Cap */
-  .p-cap {
-    width: 24px; height: 10px;
-    background: linear-gradient(90deg, #111 0%, #4a4a4a 15%, #888 35%, #999 45%, #333 75%, #050505 100%);
-    border-radius: 4px 4px 0 0;
-    box-shadow: inset 0 -3px 4px rgba(0,0,0,0.8);
-    z-index: 10;
-  }
-  /* Silver Barrel */
-  .p-barrel {
-    position: relative;
-    width: 24px; height: 195px;
-    background: linear-gradient(90deg,
-      #35383f 0%, #9ba1a8 15%, #c8cdd4 28%, #ffffff 35%, #e1e5eb 45%, 
-      #7b818a 80%, #2a2c30 100%);
-    border-bottom: 1px solid rgba(0,0,0,0.6);
-  }
-  /* Silver Barrel Reflection line */
-  .p-barrel::before {
-    content: '';
-    position: absolute;
-    left: 7.5px; top: 0;
-    width: 3px; height: 100%;
-    background: linear-gradient(180deg,
-      rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 20%,
-      rgba(255,255,255,1) 50%, rgba(255,255,255,0.8) 80%,
-      rgba(255,255,255,0) 100%);
-    box-shadow: 0 0 5px rgba(255,255,255,0.6);
-  }
-  /* Black Rubber Grip */
-  .p-grip {
-    position: relative;
-    width: 26px; height: 145px;
-    background: linear-gradient(90deg,
-      #050505 0%, #1a1a1a 12%, #3a3a3a 30%, #444 35%, #2a2a2a 55%, 
-      #111 85%, #000 100%);
-    border-radius: 3px 3px 0 0;
-    margin-top: -2px; /* Pull up to hide seam */
-    z-index: 5;
-    display: flex;
-    justify-content: center;
-  }
-  /* Rubber Grip Reflection line */
-  .p-grip::before {
-    content: '';
-    position: absolute;
-    left: 8.5px;
-    width: 2px; height: 100%;
-    background: linear-gradient(180deg,
-      transparent 0%, rgba(255,255,255,0.15) 30%, rgba(255,255,255,0.15) 70%, transparent 100%);
-    filter: blur(0.5px);
-  }
-  /* Pill Button Indent */
-  .p-btn-indent {
-    position: absolute;
-    top: 30px;
-    width: 14px; height: 68px;
-    background: #030303;
-    border-radius: 10px;
-    box-shadow: inset 4px 0 8px rgba(0,0,0,1), inset -2px 0 4px rgba(255,255,255,0.06), 0 1px 1px rgba(255,255,255,0.08); /* directional inset shadow */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 6;
-  }
-  /* Silver Rocker Switch */
-  .p-btn-rocker {
-    width: 10px; height: 58px;
-    background: linear-gradient(90deg, #333, #8a8f96 20%, #d1d5db 35%, #ffffff 42%, #8a8f96 70%, #222);
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.8), inset 0 1px 2px rgba(255,255,255,0.9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  /* Rocker Center Groove */
-  .p-btn-divider {
-    width: 100%; height: 2px;
-    background: #111;
-    box-shadow: 0 1px 0px rgba(255,255,255,0.5);
-  }
-  /* Thin Silver Ring Below Grip */
-  .p-ring {
-    width: 24px; height: 5px;
-    background: linear-gradient(90deg, #333 0%, #aaafb5 20%, #ffffff 35%, #e1e5eb 45%, #7b818a 80%, #222 100%);
-    margin-top: -1px;
-    z-index: 4;
-  }
-  /* Small Black Conical Taper */
-  .p-taper {
-    width: 24px; height: 28px;
-    background: linear-gradient(90deg,
-      #050505 0%, #222 20%, #444 35%, #4a4a4a 45%, 
-      #2a2a2a 60%, #111 85%, #000 100%);
-    clip-path: polygon(0% 0%, 100% 0%, 60% 100%, 40% 100%);
-  }
-  /* Protruding Nib Tip */
-  .p-tip {
-    width: 5px; height: 12px;
-    background: linear-gradient(90deg, #000 0%, #444 35%, #666 45%, #222 80%, #000 100%);
-    border-radius: 2px 2px 4px 4px;
-    margin-top: -2px; /* Pull up to sit inside taper */
-  }
-
-  /* — Floating shadow on plane below pen — */
-  .pen-shadow-el {
-    position: absolute;
-    bottom: -60px;
-    left: 50%;
-    width: 120px; height: 28px;
-    background: rgba(0,0,0,.2);
-    border-radius: 50%;
-    filter: blur(16px);
-    animation: pen-shadow-pulse 5.5s ease-in-out infinite;
-  }
-  /* ── Fixed Scroll Pen overlay ──────────────────────── */
-  #scroll-pen-wrap {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 25;
-    perspective: 1200px;
-    perspective-origin: 50% 40%;
-    overflow: hidden;
-  }
-  #scroll-pen {
-    position: absolute;
-    transform-style: preserve-3d;
-    will-change: transform, opacity;
-    opacity: 0;
-    top: 0; left: 0;
-  }
-  /* Override idle 3d-float on scroll-pen — GSAP handles 3D;
-     only a gentle translateY bob remains for organic feel */
-  #scroll-pen .pen-assembly {
-    animation: none !important;
-    filter:
-      drop-shadow(14px 22px 28px rgba(0,0,0,.45))
-      drop-shadow(2px  6px  8px  rgba(0,0,0,.25));
-  }
-  #scroll-pen .pen-shadow-el { display: none; }
-  /* CTA Shine/Flash Animation */
-  @keyframes button-shine {
-    0% { left: -100%; }
-    20% { left: 100%; }
-    100% { left: 100%; }
-  }
-  .btn-shine-trigger { position: relative; overflow: hidden; }
-  .btn-shine-trigger::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
-    transform: skewX(-25deg);
-    animation: button-shine 4s infinite linear;
-    pointer-events: none;
-  }
-  /* Hero pen col transition */
-  #hero-pen-col { transition: opacity 0.4s ease; }
   
-  /* Mobile optimization for floating navbar clearance */
   @media (max-width: 768px) {
     #hero { padding-top: 60px; }
     #scroll-pen-wrap { display: none !important; }
@@ -480,15 +309,15 @@
     </div>
 
     <!-- Marquee & Cube Container (The Sandwich) -->
-    <div class="relative w-full flex items-center justify-center" style="min-height: calc(var(--cube-size) + 2rem);">
+    <div class="relative w-full flex items-center justify-center -translate-y-10 md:-translate-y-16" style="min-height: calc(var(--cube-size) + 2rem);">
 
       <!-- 1. BACK TEXT (Solid) -->
       <div class="hero-marquee-wrapper w-full flex whitespace-nowrap overflow-hidden py-4 md:py-6 relative z-10">
         <div class="hero-marquee flex items-center min-w-max">
-          <h1 class="text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-[-0.04em] text-zinc-900 m-0 pr-12">
+          <h1 class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-[-0.04em] text-zinc-900 m-0 pr-12">
             Creative design meets strategic development for brands that demand more than average. •
           </h1>
-          <h1 class="text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-[-0.04em] text-zinc-900 m-0 pr-12" aria-hidden="true">
+          <h1 class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-[-0.04em] text-zinc-900 m-0 pr-12" aria-hidden="true">
             Creative design meets strategic development for brands that demand more than average. •
           </h1>
         </div>
@@ -502,10 +331,10 @@
       <!-- 3. FRONT TEXT (Glowing Rainbow Mask) -->
       <div class="hero-marquee-wrapper absolute inset-0 w-full flex whitespace-nowrap overflow-hidden py-4 md:py-6 z-30 pointer-events-none cube-mask">
         <div class="hero-marquee flex items-center min-w-max rainbow-glow">
-          <h1 class="text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-[-0.04em] rainbow-text m-0 pr-12">
+          <h1 class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-[-0.04em] rainbow-text m-0 pr-12">
             Creative design meets strategic development for brands that demand more than average. •
           </h1>
-          <h1 class="text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-[-0.04em] rainbow-text m-0 pr-12" aria-hidden="true">
+          <h1 class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-[-0.04em] rainbow-text m-0 pr-12" aria-hidden="true">
             Creative design meets strategic development for brands that demand more than average. •
           </h1>
         </div>
@@ -536,9 +365,9 @@
   </section>
 
   <!-- About Me Section -->
-  <section id="about" class="py-16 bg-zinc-50 border-y border-zinc-100 overflow-hidden">
+  <section id="about" class="py-10 md:py-16 bg-zinc-50 border-y border-zinc-100 overflow-hidden">
     <!-- Narrative Summary -->
-    <div class="px-6 md:px-24 py-24 md:py-32 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
+    <div class="px-6 md:px-24 py-16 md:py-32 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-24 items-center">
       <div class="lg:col-span-7">
         <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-400 font-bold mb-8 block">My Story</span>
         <h2 class="text-[clamp(2.5rem,6vw,5.5rem)] font-bold tracking-tighter leading-none text-zinc-900 mb-12">
@@ -548,7 +377,7 @@
           <p class="text-xl md:text-2xl font-light text-zinc-600 leading-relaxed">
             I’ve always loved making things look good. Even when I was younger, I naturally noticed <span class="text-zinc-900 font-medium">shapes, balance, and how things fit together</span> before I even knew what graphic design was.
           </p>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 pt-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 pt-6 md:pt-8">
             <div>
               <h3 class="text-xs tracking-widest uppercase font-bold text-zinc-900 mb-4">How I started</h3>
               <p class="text-sm text-zinc-500 leading-relaxed">
@@ -575,8 +404,8 @@
 
     <!-- Toolkit Section -->
     <div class="bg-zinc-50 border-y border-zinc-100">
-      <div class="px-6 md:px-24 py-24">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+      <div class="px-6 md:px-24 py-16 md:py-24">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16">
           <div class="lg:col-span-4">
             <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-400 font-bold mb-6 block">My Skills</span>
             <h3 class="text-4xl font-bold tracking-tight text-zinc-900 mb-8">Tools I use</h3>
@@ -628,9 +457,9 @@
             </div>
           </div>
 
-          <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-1px bg-zinc-200 border border-zinc-200">
+          <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-1px bg-zinc-200 border border-zinc-200 mt-10 md:mt-0">
             <!-- Skill Block 1 -->
-            <div class="bg-white p-10 hover:bg-zinc-50 transition-colors duration-500">
+            <div class="bg-white p-6 md:p-10 hover:bg-zinc-50 transition-colors duration-500">
               <span class="material-symbols-outlined text-4xl mb-8 text-black">auto_awesome</span>
               <h5 class="text-lg font-bold mb-4 uppercase">Visual Identity</h5>
               <p class="text-zinc-500 text-sm leading-relaxed mb-6">Crafting brand systems that resonate through narrative and natural aesthetic intuition.</p>
@@ -641,7 +470,7 @@
               </ul>
             </div>
             <!-- Skill Block 2 -->
-            <div class="bg-white p-10 hover:bg-zinc-50 transition-colors duration-500">
+            <div class="bg-white p-6 md:p-10 hover:bg-zinc-50 transition-colors duration-500">
               <span class="material-symbols-outlined text-4xl mb-8 text-black">terminal</span>
               <h5 class="text-lg font-bold mb-4 uppercase">Web Engineering</h5>
               <p class="text-zinc-500 text-sm leading-relaxed mb-6">Building high-performance digital foundations with a focus on speed and structure.</p>
@@ -652,7 +481,7 @@
               </ul>
             </div>
             <!-- Skill Block 3 -->
-            <div class="bg-white p-10 hover:bg-zinc-50 transition-colors duration-500">
+            <div class="bg-white p-6 md:p-10 hover:bg-zinc-50 transition-colors duration-500">
               <span class="material-symbols-outlined text-4xl mb-8 text-black">grid_view</span>
               <h5 class="text-lg font-bold mb-4 uppercase">Interface Design</h5>
               <p class="text-zinc-500 text-sm leading-relaxed mb-6">Curation of movement within digital spaces to create seamless user journeys.</p>
@@ -669,24 +498,15 @@
   </section>
 
   <!-- Brand Carousel Section -->
-  <section class="py-[2px] border-t border-zinc-100 bg-white overflow-hidden relative w-full flex items-center">
-    <style>
-      @keyframes marquee-left-to-right {
-        0% { transform: translateX(-50%); }
-        100% { transform: translateX(0%); }
-      }
-      .animate-marquee {
-        display: flex;
-        width: max-content;
-        animation: marquee-left-to-right 15s linear infinite;
-      }
-    </style>
+  <section id="brand-carousel-section" class="py-[2px] border-t border-zinc-100 bg-white overflow-hidden relative w-full flex items-center group">
+    <!-- Custom Cursor hint -->
+    <div class="absolute inset-0 z-20 hover-view" data-cursor-text="SCROLL"></div>
     
     <!-- We create a gradient overlay to blend the edges of the carousel -->
     <div class="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
     <div class="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
 
-    <div class="animate-marquee items-center gap-32 md:gap-64 pr-32 md:pr-64">
+    <div id="brand-carousel-track" class="flex w-max items-center gap-32 md:gap-64 pr-32 md:pr-64" style="will-change: transform; transform: translateZ(0); backface-visibility: hidden;">
       <!-- Set 1 -->
       <img src="/Images/Brands/Copilot_20260426_132635.png" alt="Luke's Iced Coffee" class="h-20 md:h-36 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
       <img src="/Images/Brands/Nexzy logo.png" alt="Nexzy" class="h-5 md:h-8 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
@@ -1185,18 +1005,18 @@
     <!-- ═══════════════════════════════════════════════
          PROJECT 02 — NEXZY
     ═══════════════════════════════════════════════ -->
-    <div class="w-full bg-zinc-950 text-white overflow-x-hidden border-t-[6px] border-zinc-900">
+    <div class="w-full bg-white text-zinc-900 overflow-x-hidden border-t-[6px] border-zinc-100">
 
 
       <!-- Project Title Row -->
-      <div class="px-6 md:px-24 py-10 border-b border-zinc-800">
+      <div class="px-6 md:px-24 py-10 border-b border-zinc-100">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
           <div class="md:col-span-4">
-            <p class="text-[10px] uppercase tracking-[0.5em] text-white font-bold mb-3">02 — Project</p>
-            <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.9] text-white">Nexzy</h3>
+            <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-3">02 — Project</p>
+            <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.9] text-black">Nexzy</h3>
           </div>
           <div class="md:col-span-8">
-            <p class="text-base md:text-lg font-medium leading-snug text-white/80">Growth &amp; Tech Solutions — UI/UX design &amp; advanced web development.</p>
+            <p class="text-base md:text-lg font-medium leading-snug text-black">Growth &amp; Tech Solutions — UI/UX design &amp; advanced web development.</p>
           </div>
         </div>
       </div>
@@ -1239,49 +1059,49 @@
           </div>
         </div>
         <div class="flex flex-wrap justify-center gap-3 pb-8">
-          <span class="px-6 py-2 bg-white/5 border border-white/10 text-[9px] font-bold tracking-[0.2em] uppercase text-white/60">Tech Sea Motion Hero</span>
-          <span class="px-6 py-2 bg-white/5 border border-white/10 text-[9px] font-bold tracking-[0.2em] uppercase text-white/60">Clear CTA Infrastructure</span>
-          <span class="px-6 py-2 bg-white/5 border border-white/10 text-[9px] font-bold tracking-[0.2em] uppercase text-white/60">Dynamic Portfolio Grid</span>
-          <span class="px-6 py-2 bg-white/5 border border-white/10 text-[9px] font-bold tracking-[0.2em] uppercase text-white/60">High-Conversion Lead Funnel</span>
+          <span class="px-6 py-2 bg-black/5 border border-black/10 text-[9px] font-bold tracking-[0.2em] uppercase text-black/60">Tech Sea Motion Hero</span>
+          <span class="px-6 py-2 bg-black/5 border border-black/10 text-[9px] font-bold tracking-[0.2em] uppercase text-black/60">Clear CTA Infrastructure</span>
+          <span class="px-6 py-2 bg-black/5 border border-black/10 text-[9px] font-bold tracking-[0.2em] uppercase text-black/60">Dynamic Portfolio Grid</span>
+          <span class="px-6 py-2 bg-black/5 border border-black/10 text-[9px] font-bold tracking-[0.2em] uppercase text-black/60">High-Conversion Lead Funnel</span>
         </div>
       </div>
 
       <!-- Editorial Content — Dense Grid -->
-      <div class="px-6 md:px-24 py-0 max-w-[1400px] mx-auto divide-y divide-zinc-800 border-t border-zinc-800">
+      <div class="px-6 md:px-24 py-0 max-w-[1400px] mx-auto divide-y divide-zinc-100 border-t border-zinc-100">
 
         <!-- Challenge + Concept -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-800">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
           <div class="py-10 md:pr-16">
-            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white/40 mb-4">01 / The Challenge</p>
-            <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-white mb-4">Low visibility.<br/>Low conversions.</h3>
-            <p class="text-xs leading-relaxed text-white/60 font-normal">Elevating the brand's digital presence to attract high-tier clients. The old site lacked a sophisticated technical portfolio and a clear conversion funnel.</p>
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black/50 mb-4">01 / The Challenge</p>
+            <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">Low visibility.<br/>Low conversions.</h3>
+            <p class="text-xs leading-relaxed text-black/70 font-normal">Elevating the brand's digital presence to attract high-tier clients. The old site lacked a sophisticated technical portfolio and a clear conversion funnel.</p>
           </div>
           <div class="py-10 md:pl-16">
-            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white/40 mb-4">02 / Concept</p>
-            <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-white mb-4">High-conversion.<br/>Lead-generation.</h3>
-            <p class="text-xs leading-relaxed text-white/60 font-normal">A cutting-edge agency flagship designed to serve as a high-conversion engine. Balancing technical depth with visual impact to convey innovation.</p>
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black/50 mb-4">02 / Concept</p>
+            <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">High-conversion.<br/>Lead-generation.</h3>
+            <p class="text-xs leading-relaxed text-black/70 font-normal">A cutting-edge agency flagship designed to serve as a high-conversion engine. Balancing technical depth with visual impact to convey innovation.</p>
           </div>
         </div>
 
         <!-- Process + Result -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-800">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
           <div class="py-10 md:pr-16">
-            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white/40 mb-6">03 / Process</p>
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black/50 mb-6">03 / Process</p>
             <div class="space-y-6">
               <div>
-                <p class="text-[10px] uppercase tracking-[0.2em] text-white font-bold mb-1">Architecture</p>
-                <p class="text-xs leading-relaxed text-white/60">Architected a lead-centric user journey. Pioneered a 'Future-Forward' aesthetic with geometric spacing.</p>
+                <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-1">Architecture</p>
+                <p class="text-xs leading-relaxed text-black/70">Architected a lead-centric user journey. Pioneered a 'Future-Forward' aesthetic with geometric spacing.</p>
               </div>
               <div>
-                <p class="text-[10px] uppercase tracking-[0.2em] text-white font-bold mb-1">Development</p>
-                <p class="text-xs leading-relaxed text-white/60">Engineered a high-performance 'Tech Sea' animation. Leveraged hardware acceleration for fluid motion.</p>
+                <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-1">Development</p>
+                <p class="text-xs leading-relaxed text-black/70">Engineered a high-performance 'Tech Sea' animation. Leveraged hardware acceleration for fluid motion.</p>
               </div>
             </div>
           </div>
           <div class="py-10 md:pl-16">
-            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white/40 mb-4">04 / Results</p>
-            <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-white mb-3">100% improvement in portfolio visibility.</h3>
-            <p class="text-xs font-medium text-white/60">Significant increase in inbound inquiries. Positioned Nexzy as a market leader in tech solutions through superior UI/UX.</p>
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black/50 mb-4">04 / Results</p>
+            <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-black mb-3">100% improvement in portfolio visibility.</h3>
+            <p class="text-xs font-medium text-black/70">Significant increase in inbound inquiries. Positioned Nexzy as a market leader in tech solutions through superior UI/UX.</p>
           </div>
         </div>
 
@@ -1291,26 +1111,26 @@
   </section>
 
   <!-- Art Work Section (McLaren) -->
-  <section id="mclaren" class="w-full bg-white text-zinc-900 overflow-x-hidden border-t border-zinc-100">
+  <section id="mclaren" class="w-full bg-transparent text-white overflow-x-hidden border-t border-white/10">
     <!-- Project Title Row -->
-    <div class="px-6 md:px-24 py-10 border-b border-zinc-100">
+    <div class="px-6 md:px-24 py-10 border-b border-white/10">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
         <div class="md:col-span-4">
-          <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-3">03 — Project</p>
-          <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.9] text-black">McLaren</h3>
+          <p class="text-[10px] uppercase tracking-[0.5em] text-white font-bold mb-3">03 — Project</p>
+          <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.9] text-white">McLaren</h3>
         </div>
         <div class="md:col-span-8">
-          <p class="text-base md:text-lg font-medium leading-snug text-black">Freelance Sketch Artist — Custom automotive artwork and concept studies.</p>
+          <p class="text-base md:text-lg font-medium leading-snug text-white">Freelance Sketch Artist — Custom automotive artwork and concept studies.</p>
         </div>
       </div>
     </div>
 
     <!-- Image Showcase -->
     <div class="px-6 md:px-24 py-10 md:py-20 max-w-[1400px] mx-auto text-center">
-      <div class="w-full h-auto bg-zinc-50 overflow-hidden border border-zinc-100 p-4 md:p-10 mb-8">
+      <div class="w-full h-auto bg-zinc-900 overflow-hidden border border-white/10 p-4 md:p-10 mb-8">
         <img src="Images/IMG_0213 (2).jpg" class="w-full h-auto object-contain" alt="McLaren Sketch" loading="lazy" decoding="async">
       </div>
-      <button onclick="document.getElementById('mclaren-modal').showModal()" class="inline-flex items-center gap-4 bg-black text-white px-8 py-4 text-[10px] uppercase font-bold tracking-widest hover:bg-zinc-800 transition-colors">
+      <button onclick="document.getElementById('mclaren-modal').showModal()" class="inline-flex items-center gap-4 bg-white text-black px-8 py-4 text-[10px] uppercase font-bold tracking-widest hover:bg-zinc-200 transition-colors">
         View All Sketches
         <span class="material-symbols-outlined text-sm">open_in_full</span>
       </button>
@@ -1330,65 +1150,65 @@
     </div>
 
     <!-- Editorial Content — Dense Grid -->
-    <div class="px-6 md:px-24 py-0 max-w-[1400px] mx-auto divide-y divide-zinc-100 border-t border-zinc-100">
+    <div class="px-6 md:px-24 py-0 max-w-[1400px] mx-auto divide-y divide-white/10 border-t border-white/10">
       <!-- Challenge + Concept -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
         <div class="py-10 md:pr-16">
-          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">01 / The Project</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">Contract-based.<br/>Client-focused.</h3>
-          <p class="text-xs leading-relaxed text-black font-normal">This was a contract-based project for McLaren Mumbai. The primary objective was to create highly customised sketches tailored precisely to the client's specific needs and vision.</p>
+          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white mb-4">01 / The Project</p>
+          <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-white mb-4">Contract-based.<br/>Client-focused.</h3>
+          <p class="text-xs leading-relaxed text-zinc-300 font-normal">This was a contract-based project for McLaren Mumbai. The primary objective was to create highly customised sketches tailored precisely to the client's specific needs and vision.</p>
         </div>
         <div class="py-10 md:pl-16">
-          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">02 / Approach</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">Strict detailing.<br/>Commitment.</h3>
-          <p class="text-xs leading-relaxed text-black font-normal">My approach centered entirely on meticulous detailing and reliable delivery. I maintained a strong commitment to producing high-quality artwork that met the client's exact standards.</p>
+          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white mb-4">02 / Approach</p>
+          <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-white mb-4">Strict detailing.<br/>Commitment.</h3>
+          <p class="text-xs leading-relaxed text-zinc-300 font-normal">My approach centered entirely on meticulous detailing and reliable delivery. I maintained a strong commitment to producing high-quality artwork that met the client's exact standards.</p>
         </div>
       </div>
       <!-- Output + Result -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
         <div class="py-10 md:pr-16">
-          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-6">03 / Output</p>
+          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white mb-6">03 / Output</p>
           <div class="grid grid-cols-2 gap-4">
             <div>
-              <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-1">Deliverables</p>
-              <p class="text-xs leading-relaxed text-black">Custom automotive sketches created on large A1 size charts.</p>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-white font-bold mb-1">Deliverables</p>
+              <p class="text-xs leading-relaxed text-zinc-300">Custom automotive sketches created on large A1 size charts.</p>
             </div>
             <div>
-              <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-1">Medium</p>
-              <p class="text-xs leading-relaxed text-black">Traditional sketching on A1 charts.</p>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-white font-bold mb-1">Medium</p>
+              <p class="text-xs leading-relaxed text-zinc-300">Traditional sketching on A1 charts.</p>
             </div>
           </div>
         </div>
         <div class="py-10 md:pl-16">
-          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">04 / Results</p>
-          <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-black mb-3">Professional delivery.</h3>
-          <p class="text-xs font-medium text-black">Successfully delivered detailed custom sketches on schedule, demonstrating professionalism, accuracy, and a strong commitment to the client's requirements.</p>
+          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white mb-4">04 / Results</p>
+          <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-white mb-3">Professional delivery.</h3>
+          <p class="text-xs font-medium text-zinc-300">Successfully delivered detailed custom sketches on schedule, demonstrating professionalism, accuracy, and a strong commitment to the client's requirements.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Porsche Mumbai Section -->
-  <section id="porsche" class="w-full bg-white text-zinc-900 overflow-x-hidden border-t border-zinc-100">
+  <section id="porsche" class="w-full bg-black text-white overflow-x-hidden border-t border-white/10">
     <!-- Project Title Row -->
-    <div class="px-6 md:px-24 py-10 border-b border-zinc-100">
+    <div class="px-6 md:px-24 py-10 border-b border-white/10">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
         <div class="md:col-span-4">
-          <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-3">04 — Project</p>
-          <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.9] text-black">Porsche</h3>
+          <p class="text-[10px] uppercase tracking-[0.5em] text-white font-bold mb-3">04 — Project</p>
+          <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.9] text-white">Porsche</h3>
         </div>
         <div class="md:col-span-8">
-          <p class="text-base md:text-lg font-medium leading-snug text-black">Freelance Sketch Artist — Custom automotive artwork and concept studies.</p>
+          <p class="text-base md:text-lg font-medium leading-snug text-white">Freelance Sketch Artist — Custom automotive artwork and concept studies.</p>
         </div>
       </div>
     </div>
 
     <!-- Image Showcase -->
     <div class="px-6 md:px-24 py-10 md:py-20 max-w-[1400px] mx-auto text-center">
-      <div class="w-full h-auto bg-zinc-50 overflow-hidden border border-zinc-100 p-4 md:p-10 mb-8">
+      <div class="w-full h-auto bg-zinc-900 overflow-hidden border border-white/10 p-4 md:p-10 mb-8">
         <img src="Images/IMG_0498.jpg" class="w-full h-auto object-contain" alt="Porsche Sketch" loading="lazy" decoding="async">
       </div>
-      <button onclick="document.getElementById('porsche-modal').showModal()" class="inline-flex items-center gap-4 bg-black text-white px-8 py-4 text-[10px] uppercase font-bold tracking-widest hover:bg-zinc-800 transition-colors">
+      <button onclick="document.getElementById('porsche-modal').showModal()" class="inline-flex items-center gap-4 bg-white text-black px-8 py-4 text-[10px] uppercase font-bold tracking-widest hover:bg-zinc-200 transition-colors">
         View All Sketches
         <span class="material-symbols-outlined text-sm">open_in_full</span>
       </button>
@@ -1407,92 +1227,235 @@
     </div>
 
     <!-- Editorial Content — Dense Grid -->
-    <div class="px-6 md:px-24 py-0 max-w-[1400px] mx-auto divide-y divide-zinc-100 border-t border-zinc-100">
+    <div class="px-6 md:px-24 py-0 max-w-[1400px] mx-auto divide-y divide-white/10 border-t border-white/10">
       <!-- Challenge + Concept -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
         <div class="py-10 md:pr-16">
-          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">01 / The Project</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">Contracted work.<br/>Tailored vision.</h3>
-          <p class="text-xs leading-relaxed text-black font-normal">A contract-based commission for Porsche Mumbai. The project required customising automotive sketches to align perfectly with the client's specific requests and expectations.</p>
+          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white mb-4">01 / The Project</p>
+          <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-white mb-4">Contracted work.<br/>Tailored vision.</h3>
+          <p class="text-xs leading-relaxed text-zinc-300 font-normal">A contract-based commission for Porsche Mumbai. The project required customising automotive sketches to align perfectly with the client's specific requests and expectations.</p>
         </div>
         <div class="py-10 md:pl-16">
-          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">02 / Approach</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">High detailing.<br/>Timely delivery.</h3>
-          <p class="text-xs leading-relaxed text-black font-normal">I focused heavily on intricate detailing and professionalism. A strong commitment to deadlines and quality ensured the artwork met the high standards of the client.</p>
+          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white mb-4">02 / Approach</p>
+          <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-white mb-4">High detailing.<br/>Timely delivery.</h3>
+          <p class="text-xs leading-relaxed text-zinc-300 font-normal">I focused heavily on intricate detailing and professionalism. A strong commitment to deadlines and quality ensured the artwork met the high standards of the client.</p>
         </div>
       </div>
       <!-- Output + Result -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
         <div class="py-10 md:pr-16">
-          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-6">03 / Output</p>
+          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white mb-6">03 / Output</p>
           <div class="grid grid-cols-2 gap-4">
             <div>
-              <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-1">Deliverables</p>
-              <p class="text-xs leading-relaxed text-black">Bespoke automotive sketches executed on large A1 size charts.</p>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-white font-bold mb-1">Deliverables</p>
+              <p class="text-xs leading-relaxed text-zinc-300">Bespoke automotive sketches executed on large A1 size charts.</p>
             </div>
             <div>
-              <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-1">Medium</p>
-              <p class="text-xs leading-relaxed text-black">Traditional hand-drawn sketches on A1 charts.</p>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-white font-bold mb-1">Medium</p>
+              <p class="text-xs leading-relaxed text-zinc-300">Traditional hand-drawn sketches on A1 charts.</p>
             </div>
           </div>
         </div>
         <div class="py-10 md:pl-16">
-          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">04 / Results</p>
-          <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-black mb-3">Client satisfaction.</h3>
-          <p class="text-xs font-medium text-black">The project was completed with a focus on timely delivery and precision, resulting in highly detailed A1 sketches that fulfilled the contract requirements.</p>
+          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white mb-4">04 / Results</p>
+          <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-white mb-3">Client satisfaction.</h3>
+          <p class="text-xs font-medium text-zinc-300">The project was completed with a focus on timely delivery and precision, resulting in highly detailed A1 sketches that fulfilled the contract requirements.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Capabilities & Services -->
-  <section id="services" class="py-16 bg-white">
+  <section id="services" class="py-16 bg-transparent text-white border-t border-white/10">
 
     <!-- Capabilities Header -->
     <div class="px-6 md:px-24 pt-24 pb-16 relative z-10">
-      <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-400 font-bold mb-6 block">Services</span>
-      <div class="max-w-4xl">
-        <h2 class="text-[clamp(3rem,8vw,8rem)] font-bold tracking-tighter leading-none mb-8 text-black">
-          What I do.
-        </h2>
-        <p class="text-xl text-zinc-500 leading-relaxed max-w-xl">
-          I provide professional web design, development, and graphic design services to help your business stand out and grow online.
-        </p>
+      <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-6 block">Services</span>
+      <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+
+        <!-- Left: heading + description -->
+        <div class="flex-1 min-w-0">
+          <h2 class="text-[clamp(3rem,8vw,8rem)] font-bold tracking-tighter leading-none mb-8 text-white">
+            What I do.
+          </h2>
+          <p class="text-xl text-zinc-400 leading-relaxed max-w-xl">
+            I provide professional web design, development, and graphic design services to help your business stand out and grow online.
+          </p>
+        </div>
+
+        <!-- Right: 3D Three.js Rubik's Cube -->
+        <div class="flex-shrink-0 flex items-center justify-center relative w-full md:w-[500px] h-[400px] md:h-[500px] mt-10 md:mt-0" id="rubiks-container">
+          <!-- The Three.js canvas will be injected here -->
+        </div>
+
       </div>
     </div>
 
+    <!-- Three.js Module for Rubik's Cube -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js"
+        }
+      }
+    </script>
+    <script type="module">
+      import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js';
+      import { RoundedBoxGeometry } from 'https://cdn.jsdelivr.net/npm/three@0.150.1/examples/jsm/geometries/RoundedBoxGeometry.js';
+
+      const container = document.getElementById('rubiks-container');
+      
+      // Scene setup
+      const scene = new THREE.Scene();
+      
+      // Camera setup
+      const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
+      camera.position.z = 7; // Moved closer to make the cube appear significantly larger
+
+      // Renderer setup
+      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      container.appendChild(renderer.domElement);
+
+      // Lighting - to match the hero section exactly
+      // 1. Ambient light (base visibility)
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+      scene.add(ambientLight);
+
+      // 2. Strong Directional Light from Top-Right
+      const dirLight = new THREE.DirectionalLight(0xffffff, 50); // Massive intensity
+      dirLight.position.set(6, 10, 5); // Positioned to hit the top and right sides hard
+      scene.add(dirLight);
+
+      // 3. Intense Spot/Point Light directly above the cube for the white glare
+      const spotLight = new THREE.PointLight(0xffffff, 100, 20); // Extreme intensity hotspot
+      spotLight.position.set(2, 6, 4);
+      scene.add(spotLight);
+
+      // 4. Fill light from the front-left to soften pitch-black shadows
+      const fillLight = new THREE.DirectionalLight(0xffffff, 1.5);
+      fillLight.position.set(-5, -2, 5);
+      scene.add(fillLight);
+
+      // Create the Rubik's Cube Group
+      const rubiksGroup = new THREE.Group();
+      
+      // Material: Glossy, reflective black plastic/metal
+      const material = new THREE.MeshStandardMaterial({ 
+        color: 0x050505, // Very dark gray/black
+        roughness: 0.1, // Very smooth to catch sharp, bright specular highlights
+        metalness: 0.85,  // Highly metallic to reflect the intense light
+      });
+
+      // Geometry: Rounded Box for catching highlights on the edges
+      const boxSize = 1;
+      const radius = 0.15;
+      const segments = 4;
+      const geometry = new RoundedBoxGeometry(boxSize, boxSize, boxSize, segments, radius);
+
+      // Build 3x3x3 grid
+      const gap = 1.05; // Gap between small cubes
+      const offset = (3 - 1) * gap / 2; // Center the 3x3x3 group
+
+      for (let x = 0; x < 3; x++) {
+        for (let y = 0; y < 3; y++) {
+          for (let z = 0; z < 3; z++) {
+            const cube = new THREE.Mesh(geometry, material);
+            cube.position.set(
+              x * gap - offset,
+              y * gap - offset,
+              z * gap - offset
+            );
+            rubiksGroup.add(cube);
+          }
+        }
+      }
+
+      // Initial tilt for a nice starting perspective
+      rubiksGroup.rotation.x = 0.5;
+      rubiksGroup.rotation.y = -0.5;
+
+      scene.add(rubiksGroup);
+
+      // Animation Loop with Intersection Observer (Performance Fix)
+      const clock = new THREE.Clock();
+      let isVisible = false;
+      let animationFrameId = null;
+      
+      // Only render when the canvas is actually visible on screen
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          isVisible = entry.isIntersecting;
+          if (isVisible && !animationFrameId) {
+            clock.getDelta(); // reset clock delta
+            animate();
+          } else if (!isVisible && animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = null;
+          }
+        });
+      }, { threshold: 0.0 });
+      
+      observer.observe(container);
+      
+      function animate() {
+        if (!isVisible) return;
+        animationFrameId = requestAnimationFrame(animate);
+        
+        const elapsedTime = clock.getElapsedTime();
+
+        // Continuous revolving rotation
+        rubiksGroup.rotation.y += 0.005;
+        rubiksGroup.rotation.x += 0.002;
+
+        // Floating up and down
+        rubiksGroup.position.y = Math.sin(elapsedTime * 2) * 0.2;
+
+        renderer.render(scene, camera);
+      }
+
+      // Handle Resize
+      window.addEventListener('resize', () => {
+        if (!container) return;
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+      });
+    </script>
+
     <!-- Service 01: Website Design & Development -->
-    <div class="px-6 md:px-24 py-16 md:py-24 bg-zinc-50">
+    <div class="px-6 md:px-24 py-16 md:py-24 bg-zinc-950 border-t border-white/10">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20 items-center">
         <div class="md:col-span-5">
-          <div class="aspect-[4/5] overflow-hidden bg-zinc-100">
-            <img class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" alt="Website Design &amp; Development" src="Images/service_web_design.png" loading="lazy" decoding="async">
+          <div class="aspect-[4/5] overflow-hidden bg-zinc-900 border border-white/10">
+            <img class="w-full h-full object-cover transition-transform duration-700 hover:scale-105 opacity-80 mix-blend-lighten" alt="Website Design &amp; Development" src="Images/service_web_design.png" loading="lazy" decoding="async">
           </div>
         </div>
         <div class="md:col-start-7 md:col-span-6 flex flex-col justify-center">
-          <span class="text-[10px] tracking-widest uppercase text-zinc-400 font-bold mb-6">Service 01</span>
-          <h3 class="text-4xl md:text-5xl font-bold tracking-tight mb-8">Website Design &amp;<br/>Development</h3>
-          <p class="text-lg text-zinc-500 mb-12 max-w-lg leading-relaxed">
+          <span class="text-[10px] tracking-widest uppercase text-zinc-500 font-bold mb-6">Service 01</span>
+          <h3 class="text-4xl md:text-5xl font-bold tracking-tight mb-8 text-white">Website Design &amp;<br/>Development</h3>
+          <p class="text-lg text-zinc-400 mb-12 max-w-lg leading-relaxed">
             I design and build fast, responsive, and easy-to-use websites. From the initial layout to the final code, I make sure your website looks great and works perfectly on all devices.
           </p>
           <div class="mb-12">
-            <h4 class="text-[10px] uppercase tracking-widest font-bold mb-6 text-zinc-900">What's included</h4>
+            <h4 class="text-[10px] uppercase tracking-widest font-bold mb-6 text-white">What's included</h4>
             <ul class="space-y-4">
-              <li class="flex items-center gap-3 text-zinc-500 text-sm">
-                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Custom Website Design
+              <li class="flex items-center gap-3 text-zinc-400 text-sm">
+                <span class="material-symbols-outlined text-white" style="font-size:14px;">arrow_forward</span>Custom Website Design
               </li>
-              <li class="flex items-center gap-3 text-zinc-500 text-sm">
-                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Mobile-Friendly Development
+              <li class="flex items-center gap-3 text-zinc-400 text-sm">
+                <span class="material-symbols-outlined text-white" style="font-size:14px;">arrow_forward</span>Mobile-Friendly Development
               </li>
-              <li class="flex items-center gap-3 text-zinc-500 text-sm">
-                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Smooth Animations
+              <li class="flex items-center gap-3 text-zinc-400 text-sm">
+                <span class="material-symbols-outlined text-white" style="font-size:14px;">arrow_forward</span>Smooth Animations
               </li>
-              <li class="flex items-center gap-3 text-zinc-500 text-sm">
-                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Search Engine Optimization (SEO)
+              <li class="flex items-center gap-3 text-zinc-400 text-sm">
+                <span class="material-symbols-outlined text-white" style="font-size:14px;">arrow_forward</span>Search Engine Optimization (SEO)
               </li>
             </ul>
           </div>
-          <a href="contact.html?service=web" class="group bg-black text-white px-10 py-5 text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-zinc-800 transition-colors duration-500 inline-flex items-center gap-3 self-start">
+          <a href="contact.html?service=web" class="group bg-white text-black px-10 py-5 text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-zinc-200 transition-colors duration-500 inline-flex items-center gap-3 self-start">
             Inquire Now
             <span class="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-1" style="font-size:14px;">arrow_forward</span>
           </a>
@@ -1501,49 +1464,49 @@
     </div>
 
     <!-- Service 02: Graphic Design & Branding -->
-    <div class="px-6 md:px-24 py-16 md:py-24 bg-white">
+    <div class="px-6 md:px-24 py-16 md:py-24 bg-black border-t border-white/10">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20 items-center">
         <div class="md:col-span-6 flex flex-col justify-center order-2 md:order-1">
-          <span class="text-[10px] tracking-widest uppercase text-zinc-400 font-bold mb-6">Service 02</span>
-          <h3 class="text-4xl md:text-5xl font-bold tracking-tight mb-8">Graphic Design &amp;<br/>Branding</h3>
-          <p class="text-lg text-zinc-500 mb-12 max-w-lg leading-relaxed">
+          <span class="text-[10px] tracking-widest uppercase text-zinc-500 font-bold mb-6">Service 02</span>
+          <h3 class="text-4xl md:text-5xl font-bold tracking-tight mb-8 text-white">Graphic Design &amp;<br/>Branding</h3>
+          <p class="text-lg text-zinc-400 mb-12 max-w-lg leading-relaxed">
             I create clean, professional, and memorable branding for your business. Whether you need a new logo, business cards, or full brand guidelines, I deliver designs that connect with your audience.
           </p>
           <div class="mb-12">
-            <h4 class="text-[10px] uppercase tracking-widest font-bold mb-6 text-zinc-900">What's included</h4>
+            <h4 class="text-[10px] uppercase tracking-widest font-bold mb-6 text-white">What's included</h4>
             <ul class="space-y-4">
-              <li class="flex items-center gap-3 text-zinc-500 text-sm">
-                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Brand Identity Design
+              <li class="flex items-center gap-3 text-zinc-400 text-sm">
+                <span class="material-symbols-outlined text-white" style="font-size:14px;">arrow_forward</span>Brand Identity Design
               </li>
-              <li class="flex items-center gap-3 text-zinc-500 text-sm">
-                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Custom Logos
+              <li class="flex items-center gap-3 text-zinc-400 text-sm">
+                <span class="material-symbols-outlined text-white" style="font-size:14px;">arrow_forward</span>Custom Logos
               </li>
-              <li class="flex items-center gap-3 text-zinc-500 text-sm">
-                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Print &amp; Packaging Design
+              <li class="flex items-center gap-3 text-zinc-400 text-sm">
+                <span class="material-symbols-outlined text-white" style="font-size:14px;">arrow_forward</span>Print &amp; Packaging Design
               </li>
-              <li class="flex items-center gap-3 text-zinc-500 text-sm">
-                <span class="material-symbols-outlined text-black" style="font-size:14px;">arrow_forward</span>Brand Guidelines
+              <li class="flex items-center gap-3 text-zinc-400 text-sm">
+                <span class="material-symbols-outlined text-white" style="font-size:14px;">arrow_forward</span>Brand Guidelines
               </li>
             </ul>
           </div>
-          <a href="contact.html?service=branding" class="group bg-black text-white px-10 py-5 text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-zinc-800 transition-colors duration-500 inline-flex items-center gap-3 self-start">
+          <a href="contact.html?service=branding" class="group bg-white text-black px-10 py-5 text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-zinc-200 transition-colors duration-500 inline-flex items-center gap-3 self-start">
             Elevate Branding
             <span class="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-1" style="font-size:14px;">arrow_forward</span>
           </a>
         </div>
         <div class="md:col-start-8 md:col-span-5 order-1 md:order-2">
-          <div class="aspect-[4/5] overflow-hidden bg-zinc-100">
-            <img class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" alt="Graphic Design &amp; Branding" src="Images/service_branding.png" loading="lazy" decoding="async">
+          <div class="aspect-[4/5] overflow-hidden bg-zinc-900 border border-white/10">
+            <img class="w-full h-full object-cover transition-transform duration-700 hover:scale-105 opacity-80 mix-blend-lighten" alt="Graphic Design &amp; Branding" src="Images/service_branding.png" loading="lazy" decoding="async">
           </div>
         </div>
       </div>
     </div>
 
     <!-- Services CTA Strip -->
-    <div class="px-6 md:px-24 py-24 border-t border-zinc-100 bg-zinc-50 text-center">
-      <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-400 font-bold mb-6 block">Start a Project</span>
-      <h3 class="text-[clamp(2.5rem,6vw,5rem)] font-bold tracking-tighter mb-12 text-zinc-900">Let's build<br/>something iconic.</h3>
-      <a class="inline-flex items-center gap-4 text-[10px] tracking-[0.3em] uppercase font-bold border-b-2 border-black pb-2 hover:opacity-50 transition-all duration-300" href="contact.html">
+    <div class="px-6 md:px-24 py-24 border-t border-white/10 bg-zinc-950 text-center">
+      <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-6 block">Start a Project</span>
+      <h3 class="text-[clamp(2.5rem,6vw,5rem)] font-bold tracking-tighter mb-12 text-white">Let's build<br/>something iconic.</h3>
+      <a class="inline-flex items-center gap-4 text-[10px] tracking-[0.3em] uppercase font-bold border-b-2 border-white pb-2 hover:opacity-50 text-white transition-all duration-300" href="contact.html">
         Start your project
         <span class="material-symbols-outlined" style="font-size:14px;">arrow_forward</span>
       </a>
@@ -1552,11 +1515,11 @@
   </section>
 
   <!-- Premium Testimonials Slider -->
-  <section class="section-testimonials py-24 px-6 md:px-24 bg-white border-t border-zinc-100 overflow-hidden">
+  <section class="section-testimonials py-24 px-6 md:px-24 bg-transparent border-t border-white/10 overflow-hidden">
     <div class="max-w-7xl mx-auto relative">
       <div class="flex flex-col items-center mb-16">
-        <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-400 font-bold mb-4">Client Perspectives</span>
-        <h2 class="text-4xl font-bold tracking-tight text-zinc-900">Kind Words</h2>
+        <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-4">Client Perspectives</span>
+        <h2 class="text-4xl font-bold tracking-tight text-white">Kind Words</h2>
       </div>
 
       <!-- Slider Container -->
@@ -1564,43 +1527,43 @@
         
         <!-- Testimonial 1 -->
         <div class="testimonial-slide absolute inset-0 flex flex-col items-center text-center opacity-0 pointer-events-none translate-x-20">
-          <p class="text-2xl md:text-4xl font-light italic leading-relaxed text-zinc-800 max-w-4xl mb-12">
+          <p class="text-2xl md:text-4xl font-light italic leading-relaxed text-zinc-300 max-w-4xl mb-12">
             "Adley doesn't just design; he architects digital experiences. The level of structural discipline and minimal elegance he brought to our project was unparalleled. A masterclass in modern digital craftsmanship."
           </p>
           <div class="flex flex-col items-center">
-            <div class="w-12 h-12 bg-zinc-100 border border-zinc-200 rounded-full mb-4 flex items-center justify-center overflow-hidden">
-              <span class="material-symbols-outlined text-zinc-400">person</span>
+            <div class="w-12 h-12 bg-zinc-900 border border-white/10 rounded-full mb-4 flex items-center justify-center overflow-hidden">
+              <span class="material-symbols-outlined text-zinc-500">person</span>
             </div>
-            <h5 class="text-xs tracking-[0.2em] font-bold uppercase text-zinc-900">Marcus Thorne</h5>
-            <p class="text-[10px] tracking-widest uppercase text-zinc-400 mt-1">Creative Director @ Elevate</p>
+            <h5 class="text-xs tracking-[0.2em] font-bold uppercase text-white">Marcus Thorne</h5>
+            <p class="text-[10px] tracking-widest uppercase text-zinc-500 mt-1">Creative Director @ Elevate</p>
           </div>
         </div>
 
         <!-- Testimonial 2 -->
         <div class="testimonial-slide absolute inset-0 flex flex-col items-center text-center opacity-0 pointer-events-none translate-x-20">
-          <p class="text-2xl md:text-4xl font-light italic leading-relaxed text-zinc-800 max-w-4xl mb-12">
+          <p class="text-2xl md:text-4xl font-light italic leading-relaxed text-zinc-300 max-w-4xl mb-12">
             "The precision is what hits you first. We needed a digital home that felt as tangible and high-end as our print publication, and Adley delivered a masterpiece. Every interaction feels intentional."
           </p>
           <div class="flex flex-col items-center">
-            <div class="w-12 h-12 bg-zinc-100 border border-zinc-200 rounded-full mb-4 flex items-center justify-center overflow-hidden">
-              <span class="material-symbols-outlined text-zinc-400">person</span>
+            <div class="w-12 h-12 bg-zinc-900 border border-white/10 rounded-full mb-4 flex items-center justify-center overflow-hidden">
+              <span class="material-symbols-outlined text-zinc-500">person</span>
             </div>
-            <h5 class="text-xs tracking-[0.2em] font-bold uppercase text-zinc-900">Elena Rossi</h5>
-            <p class="text-[10px] tracking-widest uppercase text-zinc-400 mt-1">Founder @ Archive Magazine</p>
+            <h5 class="text-xs tracking-[0.2em] font-bold uppercase text-white">Elena Rossi</h5>
+            <p class="text-[10px] tracking-widest uppercase text-zinc-500 mt-1">Founder @ Archive Magazine</p>
           </div>
         </div>
 
         <!-- Testimonial 3 -->
         <div class="testimonial-slide absolute inset-0 flex flex-col items-center text-center opacity-0 pointer-events-none translate-x-20">
-          <p class="text-2xl md:text-4xl font-light italic leading-relaxed text-zinc-800 max-w-4xl mb-12">
+          <p class="text-2xl md:text-4xl font-light italic leading-relaxed text-zinc-300 max-w-4xl mb-12">
             "Adley bridges the gap between high-concept art and high-performance development seamlessly. Working with him is a masterclass in collaboration. The results always exceed our expectations."
           </p>
           <div class="flex flex-col items-center">
-            <div class="w-12 h-12 bg-zinc-100 border border-zinc-200 rounded-full mb-4 flex items-center justify-center overflow-hidden">
-              <span class="material-symbols-outlined text-zinc-400">person</span>
+            <div class="w-12 h-12 bg-zinc-900 border border-white/10 rounded-full mb-4 flex items-center justify-center overflow-hidden">
+              <span class="material-symbols-outlined text-zinc-500">person</span>
             </div>
-            <h5 class="text-xs tracking-[0.2em] font-bold uppercase text-zinc-900">Julian Vane</h5>
-            <p class="text-[10px] tracking-widest uppercase text-zinc-400 mt-1">Lead Engineer @ Flux Digital</p>
+            <h5 class="text-xs tracking-[0.2em] font-bold uppercase text-white">Julian Vane</h5>
+            <p class="text-[10px] tracking-widest uppercase text-zinc-500 mt-1">Lead Engineer @ Flux Digital</p>
           </div>
         </div>
 
@@ -1608,10 +1571,10 @@
 
       <!-- Navigation -->
       <div class="flex justify-center gap-12 mt-4 relative z-10">
-        <button id="prev-testimonial" class="w-14 h-14 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-black hover:text-white transition-all duration-300 group">
+        <button id="prev-testimonial" class="w-14 h-14 rounded-full border border-white/20 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300 group">
           <span class="material-symbols-outlined transition-transform group-hover:-translate-x-1">west</span>
         </button>
-        <button id="next-testimonial" class="w-14 h-14 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-black hover:text-white transition-all duration-300 group">
+        <button id="next-testimonial" class="w-14 h-14 rounded-full border border-white/20 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300 group">
           <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">east</span>
         </button>
       </div>
@@ -1622,17 +1585,17 @@
 </main>
 
 <!-- Footer -->
-<footer class="bg-white flex flex-col md:flex-row justify-between items-center px-6 md:px-24 w-full py-16 text-zinc-900 border-t border-white/20">
-  <div class="mb-8 md:mb-0">
-    <a href="index.html" class="text-lg font-bold text-black tracking-widest mb-4 block">Adley Fernandes</a>
-    <p class="font-manrope text-[10px] tracking-widest uppercase text-gray-400">© 2024 Adley Fernandes. ALL RIGHTS RESERVED.</p>
+<footer class="bg-transparent flex flex-col md:flex-row justify-between items-center px-6 md:px-24 w-full py-16 text-white border-t border-white/10">
+  <div class="mb-8 md:mb-0 text-center md:text-left">
+    <a href="index.html" class="text-lg font-bold text-white tracking-widest mb-4 block">Adley Fernandes</a>
+    <p class="font-manrope text-[10px] tracking-widest uppercase text-zinc-500">© 2024 Adley Fernandes. ALL RIGHTS RESERVED.</p>
   </div>
   <div class="flex flex-wrap justify-center gap-8">
-    <a class="font-manrope text-[10px] tracking-widest uppercase text-zinc-500 hover:text-zinc-900 transition-all duration-400 underline-offset-4 hover:underline" href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
-    <a class="font-manrope text-[10px] tracking-widest uppercase text-zinc-500 hover:text-zinc-900 transition-all duration-400 underline-offset-4 hover:underline" href="https://twitter.com" target="_blank" rel="noopener">Twitter</a>
-    <a class="font-manrope text-[10px] tracking-widest uppercase text-zinc-500 hover:text-zinc-900 transition-all duration-400 underline-offset-4 hover:underline" href="https://github.com" target="_blank" rel="noopener">GitHub</a>
-    <a class="font-manrope text-[10px] tracking-widest uppercase text-zinc-500 hover:text-zinc-900 transition-all duration-400 underline-offset-4 hover:underline" href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener">Instagram</a>
-    <a class="font-manrope text-[10px] tracking-widest uppercase text-zinc-900 font-bold flex items-center gap-2" href="#top">
+    <a class="font-manrope text-[10px] tracking-widest uppercase text-zinc-400 hover:text-white transition-all duration-400 underline-offset-4 hover:underline" href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="font-manrope text-[10px] tracking-widest uppercase text-zinc-400 hover:text-white transition-all duration-400 underline-offset-4 hover:underline" href="https://twitter.com" target="_blank" rel="noopener">Twitter</a>
+    <a class="font-manrope text-[10px] tracking-widest uppercase text-zinc-400 hover:text-white transition-all duration-400 underline-offset-4 hover:underline" href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+    <a class="font-manrope text-[10px] tracking-widest uppercase text-zinc-400 hover:text-white transition-all duration-400 underline-offset-4 hover:underline" href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener">Instagram</a>
+    <a class="font-manrope text-[10px] tracking-widest uppercase text-white font-bold flex items-center gap-2" href="#top">
       Back to top
       <span class="material-symbols-outlined text-xs">arrow_upward</span>
     </a>
@@ -1664,26 +1627,6 @@
     ham3.style.transform = menuOpen ? 'translateY(-8px) rotate(-45deg)' : '';
   });
 </script>
-
-<!-- ══ SCROLL PEN ════════════════════════════════════════════ -->
-<div id="scroll-pen-wrap" aria-hidden="true">
-  <div id="scroll-pen">
-    <div class="pen-assembly">
-      <div class="p-cap"></div>
-      <div class="p-barrel"></div>
-      <div class="p-grip">
-        <div class="p-btn-indent">
-          <div class="p-btn-rocker">
-            <div class="p-btn-divider"></div>
-          </div>
-        </div>
-      </div>
-      <div class="p-ring"></div>
-      <div class="p-taper"></div>
-      <div class="p-tip"></div>
-    </div>
-  </div>
-</div>
 
 <script>
   /* -- GSAP Plugin Registration -- */
@@ -1902,112 +1845,8 @@
 
   const isMobile = window.innerWidth < 1024;
   
-
-  if (isMobile) {
-    // On mobile, we hide the fixed pen wrap entirely to save performance
-    const wrap = document.getElementById('scroll-pen-wrap');
-    if (wrap) wrap.style.display = 'none';
-    return;
-  }
-  const s = 1;
-  
   gsap.registerPlugin(ScrollTrigger);
 
-  const pen        = document.getElementById('scroll-pen');
-  const heroPenCol = document.getElementById('hero-pen-col');
-  const W = window.innerWidth;
-  const H = window.innerHeight;
-
-  /* ── Initial state — matches hero right column position ── */
-  // We make the scroll-pen visible immediately, and hide the static hero version
-  heroPenCol.style.opacity = 0;
-  gsap.set(pen, {
-    xPercent : -50,
-    yPercent : -50,
-    x        : isMobile ? W * 0.90 : W * 0.76,
-    y        : isMobile ? H * 0.15 : H * 0.50,
-    rotateZ  : 38,
-    rotateX  : 0,
-    rotateY  : 0,
-    scale    : 1.40 * s,
-    opacity  : 1,
-  });
-
-  /* ══════════════════════════════════════════════════════════
-   SCROLL-DRIVEN CHOREOGRAPHY
-   scrub: 1.6  → lags 1.6s behind scroll = smooth, weighty feel
-  ══════════════════════════════════════════════════════════ */
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger : document.body,
-      start   : 'top top',
-      end     : 'bottom bottom',
-      scrub   : 1.6,
-    }
-  });
-
-  /* ACT 1 — Hero exit → Passing Carousel (Stay Right) */
-  tl.to(pen, {
-    x: isMobile ? W * 0.90 : W * 0.85, y: isMobile ? H * 0.12 : H * 0.25,
-    rotateZ: 20, rotateX: 0, rotateY: 0,
-    scale: 1.35 * s,
-    ease: 'power1.inOut', duration: 10,
-  })
-  /* ACT 1.5 — Move to Top Left for Featured Work */
-  .to(pen, {
-    x: isMobile ? W * 0.10 : W * 0.12, y: isMobile ? H * 0.15 : H * 0.18,
-    rotateZ: -45, rotateX: 0, rotateY: 0,
-    scale: 1.25 * s,
-    ease: 'power2.inOut', duration: 12,
-  })
-
-  /* ACT 2 — Featured Work → Services */
-  .to(pen, {
-    x: isMobile ? W * 0.90 : W * 0.72, y: H * 0.40,
-    rotateZ: 45, rotateX: 0, rotateY: 0,
-    scale: 1.55 * s,
-    ease: 'power1.inOut', duration: 14,
-  })
-
-  /* ACT 3 — Services */
-  .to(pen, {
-    x: isMobile ? W * 0.10 : W * 0.44, y: H * 0.58,
-    rotateZ: -20, rotateX: 0, rotateY: 0,
-    scale: 0.80 * s,
-    ease: 'power2.inOut', duration: 12,
-  })
-
-  /* ACT 4 — Services → Testimonials */
-  .to(pen, {
-    x: isMobile ? W * 0.90 : W * 0.76, y: H * 0.18,
-    rotateZ: 75, rotateX: 0, rotateY: 0,
-    scale: 1.30 * s,
-    ease: 'power1.inOut', duration: 12,
-  })
-
-  /* ACT 5 — Testimonials → CTA */
-  .to(pen, {
-    x: isMobile ? W * 0.10 : W * 0.22, y: H * 0.46,
-    rotateZ: -35, rotateX: 0, rotateY: 0,
-    scale: 1.10 * s,
-    ease: 'power1.inOut', duration: 12,
-  })
-
-  /* ACT 6 — CTA FINALE */
-  .to(pen, {
-    x: isMobile ? W * 0.90 : W * 0.82, y: H * 0.50,
-    rotateZ: 15, rotateX: 0, rotateY: 0,
-    scale: 1.50 * s,
-    ease: 'power3.inOut', duration: 18,
-  })
-  
-  /* ACT 7 — FOOTER EXIT */
-  .to(pen, {
-    x: isMobile ? W * 0.92 : W * 0.88, y: H * 0.75,
-    rotateZ: 28, rotateX: 0, rotateY: 0,
-    scale: 1.20 * s,
-    ease: 'power2.inOut', duration: 10,
-  });
 
   /* — Featured Work Cards Entrance — */
   gsap.utils.toArray('.fade-enter-card').forEach((card) => {
@@ -2524,12 +2363,12 @@
 
           <!-- Transformation Section (Before/After) -->
           ${data.transformation ? `
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-16 border-t border-zinc-100 pt-16">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 border-t border-zinc-100 pt-12 md:pt-16">
             <div class="md:col-span-4">
               <h2 class="text-[10px] tracking-[0.3em] uppercase font-black text-zinc-300">02 / Transformation</h2>
             </div>
-            <div class="md:col-span-8 space-y-48">
-              <div class="space-y-8 group">
+            <div class="md:col-span-8 space-y-16 md:space-y-48">
+              <div class="space-y-6 md:space-y-8 group">
                 <div class="flex items-center gap-4">
                   <span class="w-8 h-[1px] bg-zinc-200"></span>
                   <p class="text-[10px] uppercase tracking-[0.3em] text-zinc-400 font-bold">Legacy State</p>
@@ -2552,33 +2391,33 @@
           ` : ''}
 
           <!-- b. Process -->
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-16 border-t border-zinc-100 pt-16">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 border-t border-zinc-100 pt-12 md:pt-16">
             <div class="md:col-span-4">
               <h2 class="text-[10px] tracking-[0.3em] uppercase font-black text-zinc-300">03 / Process</h2>
             </div>
-            <div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-32">
-              <div class="space-y-6">
+            <div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-12 md:gap-y-32">
+              <div class="space-y-4 md:space-y-6">
                 <div class="flex items-center gap-3">
                   <span class="text-[10px] font-bold text-zinc-900">01</span>
                   <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold">Research</p>
                 </div>
                 <p class="text-lg text-zinc-500 leading-relaxed font-light">${data.process.research}</p>
               </div>
-              <div class="space-y-6">
+              <div class="space-y-4 md:space-y-6">
                 <div class="flex items-center gap-3">
                   <span class="text-[10px] font-bold text-zinc-900">02</span>
                   <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold">Planning</p>
                 </div>
                 <p class="text-lg text-zinc-500 leading-relaxed font-light">${data.process.planning}</p>
               </div>
-              <div class="space-y-6">
+              <div class="space-y-4 md:space-y-6">
                 <div class="flex items-center gap-3">
                   <span class="text-[10px] font-bold text-zinc-900">03</span>
                   <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold">Design Decisions</p>
                 </div>
                 <p class="text-lg text-zinc-500 leading-relaxed font-light">${data.process.design}</p>
               </div>
-              <div class="space-y-6">
+              <div class="space-y-4 md:space-y-6">
                 <div class="flex items-center gap-3">
                   <span class="text-[10px] font-bold text-zinc-900">04</span>
                   <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold">Development</p>
@@ -2591,11 +2430,11 @@
           <!-- c. Solution Section Placeholder (Previously here) -->
           
           <!-- d. Results -->
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-16 border-t border-zinc-100 pt-24">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 border-t border-zinc-100 pt-16 md:pt-24">
             <div class="md:col-span-4">
               <h2 class="text-[10px] tracking-[0.3em] uppercase font-black text-zinc-300">05 / Results</h2>
             </div>
-            <div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-16">
+            <div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
               <div>
                 <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold mb-6">Metrics</p>
                 <p class="text-2xl font-medium tracking-tight text-zinc-800 leading-tight">${data.results.metrics}</p>
@@ -2713,72 +2552,251 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// Interactive Hero Marquee & Custom Cursor
+// Interactive GSAP Marquee & Global Custom Cursor
 document.addEventListener('DOMContentLoaded', () => {
+  // --- 0. Auto-apply Cursor Classes ---
+  document.querySelectorAll('.fade-enter-card img, #mclaren img, #porsche img').forEach(img => {
+    img.classList.add('hover-view');
+  });
+  document.querySelectorAll('button, a.bg-black, a.bg-white, a.border').forEach(btn => {
+    btn.classList.add('magnetic-btn');
+  });
+
+  // --- 1. Global Custom Cursor ---
+  const customCursor = document.createElement('div');
+  customCursor.id = 'custom-cursor';
+  const cursorText = document.createElement('span');
+  customCursor.appendChild(cursorText);
+  document.body.appendChild(customCursor);
+
+  // High-performance GSAP setters
+  const xTo = gsap.quickTo(customCursor, "x", {duration: 0.15, ease: "power3"});
+  const yTo = gsap.quickTo(customCursor, "y", {duration: 0.15, ease: "power3"});
+
+  if (window.matchMedia('(pointer: fine)').matches) {
+    window.addEventListener('mousemove', (e) => {
+      xTo(e.clientX);
+      yTo(e.clientY);
+    });
+
+    // View Mode for images
+    document.querySelectorAll('.hover-view').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        const customText = el.getAttribute('data-cursor-text') || 'VIEW';
+        cursorText.textContent = customText;
+        customCursor.classList.add('view-mode');
+      });
+      el.addEventListener('mouseleave', () => {
+        customCursor.classList.remove('view-mode');
+      });
+    });
+
+    // Magnetic Mode for buttons
+    document.querySelectorAll('.magnetic-btn').forEach(btn => {
+      btn.addEventListener('mouseenter', () => {
+        customCursor.classList.add('magnetic-mode');
+      });
+      btn.addEventListener('mouseleave', () => {
+        customCursor.classList.remove('magnetic-mode');
+        gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.4)' });
+      });
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        // Increased multiplier for stronger magnetic pull
+        gsap.to(btn, { x: x * 0.75, y: y * 0.75, duration: 0.3, ease: 'power2.out' });
+      });
+    });
+  }
+
+  // --- 2. Interactive Marquee ---
   const marquees = document.querySelectorAll('.hero-marquee');
   const marqueeWrapper = document.querySelector('.hero-marquee-wrapper');
   
   if (marquees.length > 0 && marqueeWrapper) {
-    // 1. Setup infinite GSAP loop
+    // Scroll Mode Cursor for Marquee
+    if (window.matchMedia('(pointer: fine)').matches) {
+      marqueeWrapper.addEventListener('mouseenter', () => {
+        cursorText.textContent = 'SCROLL';
+        customCursor.classList.add('scroll-mode');
+      });
+      marqueeWrapper.addEventListener('mouseleave', () => {
+        customCursor.classList.remove('scroll-mode');
+      });
+    }
+
+    // Infinite GSAP marquee
     const marqueeTween = gsap.to(marquees, {
       xPercent: -50,
       repeat: -1,
-      duration: 40,
+      duration: 30,
       ease: "none",
       force3D: true
     });
 
-    // 2. Custom Cursor Logic
-    const scrollCursor = document.createElement('div');
-    scrollCursor.id = 'scroll-cursor';
-    scrollCursor.textContent = 'Scroll';
-    document.body.appendChild(scrollCursor);
-
-    // Initial position using gsap setter for better performance
-    gsap.set(scrollCursor, { xPercent: -50, yPercent: -50 });
-    const xTo = gsap.quickTo(scrollCursor, "x", {duration: 0.2, ease: "power3"});
-    const yTo = gsap.quickTo(scrollCursor, "y", {duration: 0.2, ease: "power3"});
-    const scaleTo = gsap.quickTo(scrollCursor, "scale", {duration: 0.3, ease: "back.out(1.7)"});
-
-    marqueeWrapper.addEventListener('mouseenter', (e) => {
-      scrollCursor.classList.add('active');
-      xTo(e.clientX);
-      yTo(e.clientY);
-      scaleTo(1);
-    });
-
-    marqueeWrapper.addEventListener('mouseleave', () => {
-      scrollCursor.classList.remove('active');
-      scaleTo(0.5);
-    });
-
-    marqueeWrapper.addEventListener('mousemove', (e) => {
-      xTo(e.clientX);
-      yTo(e.clientY);
-    });
-
-    // 3. Speed up on scroll and lock page scroll
+    // Speed up and reverse based on scroll velocity using GSAP ScrollTrigger
     let scrollTimeout;
-    const handleScrollSpeed = (e) => {
-      // Lock page scrolling while hovering over the marquee
-      if (e.cancelable) e.preventDefault();
+    
+    ScrollTrigger.create({
+      trigger: document.body,
+      start: "top top",
+      end: "bottom bottom",
+      onUpdate: (self) => {
+        let velocity = self.getVelocity();
+        // Calculate a safe speed multiplier (1 to ~5)
+        let speedMultiplier = 1 + Math.abs(velocity / 300);
+        speedMultiplier = Math.min(speedMultiplier, 5);
+        
+        // Target timescale based on scroll direction
+        let targetTimeScale = self.direction * speedMultiplier;
+        
+        // Smoothly animate the timescale of the marquee
+        gsap.to(marqueeTween, { 
+          timeScale: targetTimeScale, 
+          duration: 0.25, 
+          ease: "power1.out",
+          overwrite: "auto"
+        });
 
-      // Calculate a multiplier based on scroll intensity
-      let velocity = 1;
-      if (e.type === 'wheel') velocity = Math.abs(e.deltaY) * 0.05;
-      const speedMultiplier = Math.min(Math.max(velocity, 2), 12);
+        // Debounce back to normal speed when scrolling stops
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          gsap.to(marqueeTween, { 
+            timeScale: 1, 
+            duration: 0.5, 
+            ease: "power2.out",
+            overwrite: "auto"
+          });
+        }, 150);
+      }
+    });
+  } // End of if (marquees.length > 0 && marqueeWrapper)
+
+  // --- 2.5 Brand Carousel Interactive Scrolling ---
+  const brandCarouselSection = document.getElementById('brand-carousel-section');
+  const brandCarouselTrack = document.getElementById('brand-carousel-track');
+  
+  if (brandCarouselSection && brandCarouselTrack) {
+    // Infinite GSAP marquee for brands
+    const brandTween = gsap.to(brandCarouselTrack, {
+      xPercent: -50,
+      repeat: -1,
+      duration: 15,
+      ease: "none",
+      force3D: true
+    });
+
+    let brandScrollTimeout;
+
+    // Wheel event handler to intercept scroll
+    const handleBrandWheel = (e) => {
+      e.preventDefault(); // Lock page scrolling
+
+      // Calculate speed based on scroll intensity (deltaY)
+      let velocity = Math.abs(e.deltaY);
+      if (velocity < 5) return;
+
+      // Speed up the carousel
+      let speedMultiplier = 1 + (velocity / 20); // Sensitivity
+      speedMultiplier = Math.min(speedMultiplier, 15); // Max speed cap
       
-      gsap.to(marqueeTween, { timeScale: speedMultiplier, duration: 0.2, overwrite: true });
-      
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        gsap.to(marqueeTween, { timeScale: 1, duration: 0.5 });
-      }, 150);
+      // Determine direction (scroll down/right vs up/left)
+      let direction = Math.sign(e.deltaY) || 1;
+
+      gsap.to(brandTween, { 
+        timeScale: direction * speedMultiplier, 
+        duration: 0.1, 
+        overwrite: true 
+      });
+
+      // Debounce back to normal speed
+      clearTimeout(brandScrollTimeout);
+      brandScrollTimeout = setTimeout(() => {
+        gsap.to(brandTween, { 
+          timeScale: 1, 
+          duration: 0.5, 
+          ease: "power2.out",
+          overwrite: true 
+        });
+      }, 100);
     };
 
-    marqueeWrapper.addEventListener('wheel', handleScrollSpeed, { passive: false });
-    marqueeWrapper.addEventListener('touchmove', handleScrollSpeed, { passive: false });
+    // Attach/Detach wheel listener on hover
+    brandCarouselSection.addEventListener('mouseenter', () => {
+      brandCarouselSection.addEventListener('wheel', handleBrandWheel, { passive: false });
+    });
+
+    brandCarouselSection.addEventListener('mouseleave', () => {
+      brandCarouselSection.removeEventListener('wheel', handleBrandWheel);
+      // Smoothly revert to normal if the mouse leaves while spinning fast
+      gsap.to(brandTween, { 
+        timeScale: 1, 
+        duration: 0.5, 
+        ease: "power2.out",
+        overwrite: true 
+      });
+    });
   }
+
+
+
+  // --- 3. Parallax Image Scrolling ---
+  document.querySelectorAll('.fade-enter-card > div.relative, #mclaren .bg-zinc-900, #porsche .bg-zinc-900').forEach(container => {
+    container.style.overflow = 'hidden';
+    const img = container.querySelector('img');
+    if (img) {
+      // Hardware acceleration and scale for parallax
+      img.style.willChange = 'transform';
+      gsap.set(img, { scale: 1.15, transformOrigin: 'center', force3D: true });
+      
+      gsap.to(img, {
+        yPercent: 15,
+        ease: "none",
+        scrollTrigger: {
+          trigger: container,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true
+        }
+      });
+    }
+  });
+
+  // --- 4. Velocity-Based Skewing ---
+  let proxy = { skew: 0 },
+      // Apply skew only to project cards (.fade-enter-card) to prevent glitching on horizontal sketch images
+      skewSetter = gsap.quickSetter(".fade-enter-card", "skewY", "deg"),
+      clamp = gsap.utils.clamp(-15, 15);
+
+  ScrollTrigger.create({
+    onUpdate: (self) => {
+      let skew = clamp(self.getVelocity() / -100);
+      // Only skew if the velocity is significant
+      if (Math.abs(skew) > Math.abs(proxy.skew)) {
+        proxy.skew = skew;
+        gsap.to(proxy, {
+          skew: 0, 
+          duration: 0.8, 
+          ease: "elastic.out(1, 0.4)", 
+          overwrite: true, 
+          onUpdate: () => skewSetter(proxy.skew)
+        });
+      }
+    }
+  });
+
+  // --- 5. Smooth Color Morphing Transitions ---
+  const mclarenSection = document.getElementById('mclaren');
+  if (mclarenSection) {
+    ScrollTrigger.create({
+      trigger: mclarenSection,
+      start: "top 65%", // Trigger transition slightly earlier
+      onEnter: () => gsap.to("body", { backgroundColor: "#000000", duration: 1.5, ease: "power2.inOut", overwrite: "auto" }),
+      onLeaveBack: () => gsap.to("body", { backgroundColor: "#fdfdfd", duration: 1.5, ease: "power2.inOut", overwrite: "auto" })
+    });
+  }
+
 });
 </script>
 
