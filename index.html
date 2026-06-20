@@ -3,16 +3,16 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Adley Fernandes | Design & Development Studio</title>
-<meta name="description" content="Adley Fernandes bridges architectural precision and digital performance. Bespoke website design, branding, and art direction for brands that demand a higher standard."/>
+<title>addesign studio | Design & Development Studio</title>
+<meta name="description" content="addesign studio bridges architectural precision and digital performance. Bespoke website design, branding, and art direction for brands that demand a higher standard."/>
 <!-- Preconnect first — must come before any external resource requests -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
-<!-- Material Symbols (icons only — body/heading fonts are Arial/Helvetica, no Google Font needed) -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"></noscript>
+<!-- Google Fonts (DM Sans for headings, Manrope for body text) & Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800;900&family=Manrope:wght@300;400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800;900&family=Manrope:wght@300;400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"></noscript>
 
 <!-- Preload critical brand assets -->
 <link rel="preload" as="image" href="Images/Copilot_20260615_130809.webp" fetchpriority="high" />
@@ -38,7 +38,13 @@
           "surface-dim": "#dadada","on-background": "#1a1c1c","surface-container-low": "#f3f3f4","on-tertiary-container": "#ffffff","inverse-on-surface": "#f0f1f1","primary": "#000000","surface-bright": "#f9f9f9","secondary": "#5e5e5e","surface-container-lowest": "#ffffff","on-primary-fixed": "#ffffff","inverse-surface": "#2f3131","surface-container-highest": "#e2e2e2","outline-variant": "#c6c6c6","surface-tint": "#5e5e5e","on-surface": "#1a1c1c","error": "#ba1a1a","secondary-container": "#d4d4d4","on-primary": "#e2e2e2","on-secondary": "#ffffff","error-container": "#ffdad6","surface-container": "#eeeeee","surface": "#f9f9f9","outline": "#777777","on-error-container": "#410002","surface-container-high": "#e8e8e8","tertiary-container": "#747474","on-surface-variant": "#474747","primary-container": "#3b3b3b","on-tertiary-fixed-variant": "#e2e2e2","on-primary-fixed-variant": "#e2e2e2","background": "#f9f9f9","on-primary-container": "#ffffff","on-secondary-fixed": "#1b1b1b","tertiary-fixed": "#5e5e5e","tertiary-fixed-dim": "#474747","inverse-primary": "#c6c6c6","on-tertiary-fixed": "#ffffff","tertiary": "#3b3b3b","on-tertiary": "#e2e2e2","primary-fixed": "#5e5e5e","on-secondary-container": "#1b1b1b","on-error": "#ffffff","primary-fixed-dim": "#474747","secondary-fixed-dim": "#ababab","secondary-fixed": "#c6c6c6","on-secondary-fixed-variant": "#3b3b3b","surface-variant": "#e2e2e2"
         },
         "borderRadius": {"DEFAULT": "0px","lg": "0px","xl": "0px","full": "9999px"},
-        "fontFamily": {"headline": ["Manrope"],"body": ["Manrope"],"label": ["Manrope"]}
+        "fontFamily": {
+          "sans": ["Manrope", "sans-serif"],
+          "heading": ["'DM Sans'", "sans-serif"],
+          "headline": ["'DM Sans'", "sans-serif"],
+          "body": ["Manrope", "sans-serif"],
+          "label": ["Manrope", "sans-serif"]
+        }
       },
     },
   }
@@ -46,8 +52,8 @@
 <style>
   html { scroll-behavior: smooth; }
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
-  body { font-family: Arial, sans-serif; }
-  h1, h2, h3, h4, h5, h6 { font-family: Helvetica, Arial, sans-serif; }
+  body { font-family: 'Manrope', sans-serif; }
+  h1, h2, h3, h4, h5, h6 { font-family: 'DM Sans', sans-serif; }
 
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: #f9f9f9; }
@@ -244,7 +250,7 @@
 <!-- TopNavBar -->
 <nav class="absolute md:fixed top-6 md:top-8 left-0 md:left-1/2 md:-translate-x-1/2 z-[100] flex items-center justify-between px-6 md:px-6 py-3 md:bg-white/80 md:backdrop-blur-xl md:border md:border-white/50 md:shadow-2xl w-full md:w-max md:min-w-[800px] bg-transparent pointer-events-none">
   <!-- Logo -->
-  <a href="index.html" id="mobile-logo" class="text-lg md:text-xl font-bold tracking-tighter text-black z-10 pointer-events-auto">Adley Fernandes</a>
+  <a href="index.html" id="mobile-logo" class="text-lg md:text-xl font-bold tracking-tighter text-black z-10 pointer-events-auto">addesign studio</a>
   
   <!-- Desktop Links (Absolutely Centered) -->
   <div class="hidden md:flex items-center space-x-8 absolute left-1/2 -translate-x-1/2 pointer-events-auto">
@@ -259,10 +265,10 @@
       </button>
       <!-- Dropdown Menu -->
       <div class="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-48 bg-white border border-zinc-100 shadow-2xl opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 flex flex-col p-2 z-[101]">
-        <a href="#visual-identity" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#visual-identity', offsetY: 120}, ease: 'power3.inOut'}); return false;" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-black hover:bg-zinc-50 transition-colors text-left border-b border-zinc-50 last:border-0">Branding</a>
-        <a href="#work" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#work', offsetY: 120}, ease: 'power3.inOut'}); return false;" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-black hover:bg-zinc-50 transition-colors text-left border-b border-zinc-50 last:border-0">Web Design</a>
-        <a href="#mclaren" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#mclaren', offsetY: 120}, ease: 'power3.inOut'}); return false;" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-black hover:bg-zinc-50 transition-colors text-left border-b border-zinc-50 last:border-0">McLaren</a>
-        <a href="#porsche" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#porsche', offsetY: 120}, ease: 'power3.inOut'}); return false;" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-black hover:bg-zinc-50 transition-colors text-left border-b border-zinc-50 last:border-0">Porsche</a>
+        <a href="#branding" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#branding', offsetY: 120}, ease: 'power3.inOut'}); return false;" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-black hover:bg-zinc-50 transition-colors text-left border-b border-zinc-50 last:border-0">Branding</a>
+        <a href="#posters" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#posters', offsetY: 120}, ease: 'power3.inOut'}); return false;" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-black hover:bg-zinc-50 transition-colors text-left border-b border-zinc-50 last:border-0">Posters</a>
+        <a href="#mclaren" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#mclaren', offsetY: 120}, ease: 'power3.inOut'}); return false;" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-black hover:bg-zinc-50 transition-colors text-left border-b border-zinc-50 last:border-0">Illustration</a>
+        <a href="#work" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#work', offsetY: 120}, ease: 'power3.inOut'}); return false;" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-black hover:bg-zinc-50 transition-colors text-left border-b border-zinc-50 last:border-0">Web Development</a>
       </div>
     </div>
     <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="index.html#services" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#services', offsetY: 120}, ease: 'power3.inOut'}); return false;">Services</a>
@@ -277,24 +283,38 @@
     </a>
   </div>
 
-  <!-- Mobile hamburger -->
-  <button id="hamburger" class="md:hidden fixed top-6 right-6 z-[110] flex flex-col gap-1 p-2 pointer-events-auto" aria-label="Open menu">
-    <span class="block w-5 h-[2px] bg-black transition-all duration-300" id="ham-1"></span>
-    <span class="block w-5 h-[2px] bg-black transition-all duration-300" id="ham-2"></span>
-    <span class="block w-5 h-[2px] bg-black transition-all duration-300" id="ham-3"></span>
-  </button>
-</nav>
+  <!-- Floating Mobile Menu -->
+  <div class="md:hidden fixed top-6 right-6 z-[120] flex flex-col items-end pointer-events-auto">
+    <!-- Button with Difference Blend -->
+    <button id="mobile-dropdown-btn" class="flex items-center gap-2 px-4 py-2 rounded-full font-manrope text-[10px] tracking-widest uppercase font-bold transition-all duration-300 shadow-xl" style="mix-blend-mode: difference; background-color: #fff; color: #000;">
+      <span>Menu</span>
+      <span class="material-symbols-outlined text-[14px] transition-transform duration-300" id="mobile-dropdown-arrow">expand_more</span>
+    </button>
 
-<!-- Mobile Menu -->
-<div id="mobile-menu" class="fixed top-[4.5rem] left-0 w-full z-40 bg-white/98 shadow-2xl backdrop-blur-xl px-6 py-0 flex flex-col gap-0 transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] opacity-0 invisible -translate-y-4">
-  <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-black font-bold" href="index.html">Home</a>
-  <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="index.html#services" onclick="document.getElementById('hamburger').click(); gsap.to(window, {duration: 1.5, scrollTo: '#services', ease: 'power4.inOut'}); return false;">Services</a>
-  <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="#about" onclick="document.getElementById('hamburger').click(); gsap.to(window, {duration: 1.5, scrollTo: '#about', ease: 'power4.inOut'}); return false;">About</a>
-  <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="contact.html">Contact</a>
-  <a class="py-6 mt-4 bg-black text-white text-center font-manrope text-sm tracking-[0.2em] uppercase font-bold" href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener">
-    Get in Touch
-  </a>
-</div>
+    <!-- Dropdown Card -->
+    <div id="mobile-dropdown-menu" class="mt-4 w-[85vw] max-w-[280px] bg-white/95 backdrop-blur-xl border border-zinc-100 shadow-2xl rounded-3xl opacity-0 invisible -translate-y-4 transition-all duration-[400ms] ease-[cubic-bezier(0.19,1,0.22,1)] flex flex-col overflow-hidden" style="mix-blend-mode: normal;">
+      <a href="index.html" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">Home</a>
+      
+      <!-- Projects Section -->
+      <div class="px-6 py-3 border-b border-zinc-100">
+        <span class="text-[9px] uppercase tracking-[0.2em] text-zinc-400 font-bold mb-3 block">Projects</span>
+        <div class="flex flex-col pl-3 border-l border-zinc-200 gap-2">
+          <a href="#branding" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#branding', offsetY: 120}, ease: 'power3.inOut'});" class="py-1 text-[10px] uppercase tracking-widest text-zinc-500 hover:text-black mobile-link">Branding</a>
+          <a href="#posters" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#posters', offsetY: 120}, ease: 'power3.inOut'});" class="py-1 text-[10px] uppercase tracking-widest text-zinc-500 hover:text-black mobile-link">Posters</a>
+          <a href="#mclaren" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#mclaren', offsetY: 120}, ease: 'power3.inOut'});" class="py-1 text-[10px] uppercase tracking-widest text-zinc-500 hover:text-black mobile-link">Illustration</a>
+          <a href="#work" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#work', offsetY: 120}, ease: 'power3.inOut'});" class="py-1 text-[10px] uppercase tracking-widest text-zinc-500 hover:text-black mobile-link">Web Development</a>
+        </div>
+      </div>
+
+      <a href="index.html#services" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#services', offsetY: 120}, ease: 'power3.inOut'});" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">Services</a>
+      <a href="index.html#about" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#about', offsetY: 120}, ease: 'power3.inOut'});" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">About</a>
+      <a href="contact.html" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">Contact</a>
+      <a class="px-6 py-5 bg-black text-white text-center text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-zinc-800 transition-colors" href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener">
+        Get in Touch
+      </a>
+    </div>
+  </div>
+</nav>
 
 
 
@@ -305,7 +325,7 @@
 
     <!-- Overline -->
     <div class="absolute top-32 md:static w-full px-6 md:px-12 lg:px-24 z-20">
-      <p class="hero-slide-right relative z-10 text-sm md:text-xs md:tracking-[0.3em] md:uppercase text-zinc-500 mb-0 md:mb-8 text-left">Creative Studio — 2024</p>
+      <p class="hero-slide-right relative z-10 text-sm md:text-xs md:text-sm md:tracking-[0.3em] md:uppercase text-zinc-500 mb-0 md:mb-8 text-left">Creative Studio — 2024</p>
     </div>
 
     <!-- Marquee & Cube Container (The Sandwich) -->
@@ -345,14 +365,14 @@
     <!-- Descriptor & CTA -->
     <div class="w-full px-6 md:px-12 lg:px-24 flex flex-col items-start text-left mt-8 md:mt-8">
       <!-- Descriptor -->
-      <p class="hero-slide-right relative z-10 text-sm md:text-xs md:tracking-[0.3em] md:uppercase text-zinc-500 leading-relaxed max-w-xl mb-8 md:mb-12">
+      <p class="hero-slide-right relative z-10 text-sm md:text-xs md:text-sm md:tracking-[0.3em] md:uppercase text-zinc-500 leading-relaxed max-w-xl mb-8 md:mb-12">
         Websites and brand identities engineered to convert <br/>
         — not just impress.
       </p>
 
       <!-- View Work Link -->
       <div class="hero-slide-right relative z-10 flex items-center justify-start gap-10">
-        <a href="#visual-identity" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#visual-identity', offsetY: 120}, ease: 'power3.inOut'}); return false;" class="group bg-black text-white border border-white/20 px-5 md:px-10 py-3.5 md:py-5 text-[9px] md:text-xs tracking-[0.2em] uppercase font-bold hover:bg-[#ffea00] hover:text-black hover:border-[#ffea00] hover:shadow-[0_0_20px_rgba(255,234,0,0.6)] transition-all duration-500 inline-flex items-center gap-3 btn-shine-trigger">
+        <a href="#visual-identity" onclick="gsap.to(window, {duration: 1.2, scrollTo: {y: '#visual-identity', offsetY: 120}, ease: 'power3.inOut'}); return false;" class="group bg-black text-white border border-white/20 px-5 md:px-10 py-3.5 md:py-5 text-[9px] md:text-xs md:text-sm tracking-[0.2em] uppercase font-bold hover:bg-[#ffea00] hover:text-black hover:border-[#ffea00] hover:shadow-[0_0_20px_rgba(255,234,0,0.6)] transition-all duration-500 inline-flex items-center gap-3 btn-shine-trigger">
           View Selected Works
           <div class="relative w-4 h-4 flex items-center justify-center overflow-hidden flex-shrink-0">
             <span class="material-symbols-outlined absolute transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-x-6" style="font-size:16px;">arrow_forward</span>
@@ -379,13 +399,13 @@
           </p>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 pt-6 md:pt-8">
             <div>
-              <h3 class="text-xs tracking-widest uppercase font-bold text-zinc-900 mb-4">How I started</h3>
+              <h3 class="text-xs md:text-sm tracking-widest uppercase font-bold text-zinc-900 mb-4">How I started</h3>
               <p class="text-sm text-zinc-500 leading-relaxed">
                 That natural curiosity turned into a real career. Over the past two years, I’ve worked as a freelance sketch artist, graphic designer, and web developer. I take my love for art and turn it into working websites and brand designs.
               </p>
             </div>
             <div>
-              <h3 class="text-xs tracking-widest uppercase font-bold text-zinc-900 mb-4">Why I do it</h3>
+              <h3 class="text-xs md:text-sm tracking-widest uppercase font-bold text-zinc-900 mb-4">Why I do it</h3>
               <p class="text-sm text-zinc-500 leading-relaxed">
                 Design just makes sense to me, and I honestly love the process of building things from scratch. Every project is a chance to take an idea and turn it into something people actually enjoy looking at and using.
               </p>
@@ -395,7 +415,7 @@
       </div>
       <div class="lg:col-span-5 relative group">
         <div class="aspect-[4/5] overflow-hidden bg-zinc-50 border border-zinc-200">
-          <img alt="Adley Fernandes Portrait" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" src="/Images/profile-portrait.webp" loading="lazy" decoding="async">
+          <img alt="addesign studio Portrait" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" src="/Images/profile-portrait.webp" loading="lazy" decoding="async">
         </div>
         <!-- Ornamental element -->
         <div class="absolute -bottom-6 -right-6 w-32 h-32 border-r border-b border-zinc-200 pointer-events-none"></div>
@@ -506,38 +526,47 @@
     <div class="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
     <div class="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
 
-    <div id="brand-carousel-track" class="flex w-max items-center gap-32 md:gap-64 pr-32 md:pr-64" style="will-change: transform; transform: translateZ(0); backface-visibility: hidden;">
-      <!-- Set 1 -->
-      <img src="/Images/Brands/Copilot_20260426_132635.webp" alt="Luke's Iced Coffee" class="h-20 md:h-36 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
-      <img src="/Images/Brands/Nexzy logo.webp" alt="Nexzy" class="h-5 md:h-8 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
-      <img src="/Images/Brands/Teas cds logo.webp" alt="Teas CDS" class="h-9 md:h-14 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
-      <img src="/Images/Brands/benner logo.webp" alt="Benner Tea Co." class="h-7 md:h-11 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
-      <!-- Set 2 -->
-      <img src="/Images/Brands/Copilot_20260426_132635.webp" alt="Luke's Iced Coffee" class="h-20 md:h-36 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
-      <img src="/Images/Brands/Nexzy logo.webp" alt="Nexzy" class="h-5 md:h-8 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
-      <img src="/Images/Brands/Teas cds logo.webp" alt="Teas CDS" class="h-9 md:h-14 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
-      <img src="/Images/Brands/benner logo.webp" alt="Benner Tea Co." class="h-7 md:h-11 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
-      <!-- Set 3 -->
-      <img src="/Images/Brands/Copilot_20260426_132635.webp" alt="Luke's Iced Coffee" class="h-20 md:h-36 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
-      <img src="/Images/Brands/Nexzy logo.webp" alt="Nexzy" class="h-5 md:h-8 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
-      <img src="/Images/Brands/Teas cds logo.webp" alt="Teas CDS" class="h-9 md:h-14 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
-      <img src="/Images/Brands/benner logo.webp" alt="Benner Tea Co." class="h-7 md:h-11 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
-      <!-- Set 4 -->
-      <img src="/Images/Brands/Copilot_20260426_132635.webp" alt="Luke's Iced Coffee" class="h-20 md:h-36 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
-      <img src="/Images/Brands/Nexzy logo.webp" alt="Nexzy" class="h-5 md:h-8 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
-      <img src="/Images/Brands/Teas cds logo.webp" alt="Teas CDS" class="h-9 md:h-14 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
-      <img src="/Images/Brands/benner logo.webp" alt="Benner Tea Co." class="h-7 md:h-11 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
+    <div id="brand-carousel-track" class="flex w-max items-center" style="will-change: transform; transform: translateZ(0); backface-visibility: hidden;">
+      
+      <!-- Half 1 -->
+      <div class="flex items-center gap-32 md:gap-64 pr-32 md:pr-64 shrink-0 w-max">
+        <!-- Set 1 -->
+        <img src="/Images/Brands/Copilot_20260426_132635.webp" alt="Luke's Iced Coffee" class="h-20 md:h-36 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
+        <img src="/Images/Brands/Nexzy logo.webp" alt="Nexzy" class="h-5 md:h-8 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
+        <img src="/Images/Brands/Teas cds logo.webp" alt="Teas CDS" class="h-9 md:h-14 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
+        <img src="/Images/Brands/benner logo.webp" alt="Benner Tea Co." class="h-7 md:h-11 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
+        <!-- Set 2 -->
+        <img src="/Images/Brands/Copilot_20260426_132635.webp" alt="Luke's Iced Coffee" class="h-20 md:h-36 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
+        <img src="/Images/Brands/Nexzy logo.webp" alt="Nexzy" class="h-5 md:h-8 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
+        <img src="/Images/Brands/Teas cds logo.webp" alt="Teas CDS" class="h-9 md:h-14 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
+        <img src="/Images/Brands/benner logo.webp" alt="Benner Tea Co." class="h-7 md:h-11 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
+      </div>
+
+      <!-- Half 2 (Exact Duplicate for perfect looping) -->
+      <div class="flex items-center gap-32 md:gap-64 pr-32 md:pr-64 shrink-0 w-max" aria-hidden="true">
+        <!-- Set 3 -->
+        <img src="/Images/Brands/Copilot_20260426_132635.webp" alt="Luke's Iced Coffee" class="h-20 md:h-36 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
+        <img src="/Images/Brands/Nexzy logo.webp" alt="Nexzy" class="h-5 md:h-8 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
+        <img src="/Images/Brands/Teas cds logo.webp" alt="Teas CDS" class="h-9 md:h-14 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
+        <img src="/Images/Brands/benner logo.webp" alt="Benner Tea Co." class="h-7 md:h-11 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
+        <!-- Set 4 -->
+        <img src="/Images/Brands/Copilot_20260426_132635.webp" alt="Luke's Iced Coffee" class="h-20 md:h-36 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
+        <img src="/Images/Brands/Nexzy logo.webp" alt="Nexzy" class="h-5 md:h-8 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
+        <img src="/Images/Brands/Teas cds logo.webp" alt="Teas CDS" class="h-9 md:h-14 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
+        <img src="/Images/Brands/benner logo.webp" alt="Benner Tea Co." class="h-7 md:h-11 w-auto object-contain cursor-pointer" loading="lazy" decoding="async">
+      </div>
+      
     </div>
   </section>
 
   <!-- Section 01: Visual Identity (Branding) -->
   <section id="visual-identity" class="section-work py-16 bg-white overflow-hidden border-t border-zinc-100">
-    <div class="px-6 md:px-24 mb-16 flex flex-col md:flex-row justify-between md:items-end gap-12 w-full">
-      <div class="w-full md:w-3/5 text-zinc-900">
+    <div class="px-6 md:px-24 pt-16 mb-16 flex flex-col w-full">
+      <div class="w-full text-zinc-900 md:text-right">
         <p class="text-zinc-500 uppercase text-[10px] tracking-[0.2em] mb-6">Section 01 — Branding</p>
-        <h2 class="text-[2.5rem] md:text-[7rem] font-bold tracking-tighter leading-[0.9]">Visual Identity</h2>
       </div>
-      <div class="text-zinc-500 text-sm leading-relaxed w-full md:w-[30%] text-left md:text-right">
+      <h2 class="text-[4.5rem] md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-zinc-900 text-left">Visual<br/>Identity</h2>
+      <div class="text-zinc-500 text-sm md:text-base leading-relaxed w-full max-w-2xl text-left mt-6">
         Reimagining the heritage of Benner Tea Co. through a structural lens. Distilling legacy into a precise, narrative-driven visual identity system.
       </div>
     </div>
@@ -545,18 +574,18 @@
     <!-- ═══════════════════════════════════════════════
          CASE STUDY 01 — BENNER TEA CO.
     ═══════════════════════════════════════════════ -->
-    <div class="w-full bg-white text-zinc-900 overflow-x-hidden">
+    <div id="branding" class="w-full bg-white text-zinc-900 overflow-x-hidden">
 
 
 
-      <!-- Project Title + Tags + Description — all in one tight row -->
-      <div class="px-6 md:px-24 py-10 border-b border-zinc-100">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-          <div class="md:col-span-4">
-            <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-3">01 — Project</p>
-            <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.9] text-black">Benner<br/>Tea Co.</h3>
+      <!-- Project Title + Tags + Description -->
+      <div class="px-6 md:px-24 py-16 border-b border-zinc-100">
+        <div class="flex flex-col gap-6">
+          <div>
+            <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-6">01 — Project</p>
+            <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.85] text-black">Benner<br/>Tea Co.</h3>
           </div>
-          <div class="md:col-span-8">
+          <div class="max-w-2xl">
             <p class="text-base md:text-lg font-medium leading-snug text-black">Full brand identity redesign — logo, colour palette, typography, and packaging system.</p>
           </div>
         </div>
@@ -570,12 +599,12 @@
           <div class="py-10 md:pr-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">02 / Problem</p>
             <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">No clear visual identity.<br/>No brand recognition.</h3>
-            <p class="text-xs leading-relaxed text-black font-normal">The existing brand had no consistent colour system, no defined typeface, and packaging that looked like every other tea on the shelf. It needed a complete visual overhaul.</p>
+            <p class="text-xs md:text-sm leading-relaxed text-black font-normal">The existing brand had no consistent colour system, no defined typeface, and packaging that looked like every other tea on the shelf. It needed a complete visual overhaul.</p>
           </div>
           <div class="py-10 md:pl-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">03 / Direction</p>
             <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">Clean. Minimal.<br/>Built to stand out.</h3>
-            <p class="text-xs leading-relaxed text-black font-normal">The goal was a restrained visual system — flat layout, earthy palette, strong type hierarchy — that feels premium without being loud.</p>
+            <p class="text-xs md:text-sm leading-relaxed text-black font-normal">The goal was a restrained visual system — flat layout, earthy palette, strong type hierarchy — that feels premium without being loud.</p>
           </div>
         </div>
 
@@ -587,15 +616,15 @@
             <div class="grid grid-cols-3 gap-4 border-l-2 border-zinc-900 pl-6">
               <div>
                 <p class="text-sm font-bold text-black mb-1">Logo</p>
-                <p class="text-xs text-black font-normal leading-relaxed">Wordmark with clean geometry. Timeless, not trendy.</p>
+                <p class="text-xs md:text-sm text-black font-normal leading-relaxed">Wordmark with clean geometry. Timeless, not trendy.</p>
               </div>
               <div>
                 <p class="text-sm font-bold text-black mb-1">Colour</p>
-                <p class="text-xs text-black font-normal leading-relaxed">Earthy neutrals. Warm tones that read as natural and premium.</p>
+                <p class="text-xs md:text-sm text-black font-normal leading-relaxed">Earthy neutrals. Warm tones that read as natural and premium.</p>
               </div>
               <div>
                 <p class="text-sm font-bold text-black mb-1">Type</p>
-                <p class="text-xs text-black font-normal leading-relaxed">Serif for personality. Sans-serif for body. Clear hierarchy.</p>
+                <p class="text-xs md:text-sm text-black font-normal leading-relaxed">Serif for personality. Sans-serif for body. Clear hierarchy.</p>
               </div>
             </div>
             <p class="text-[10px] uppercase tracking-[0.3em] text-black font-bold mt-6 max-w-xs">Target: younger audience without losing existing customers.</p>
@@ -603,7 +632,7 @@
           <div class="py-10 md:pl-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">05 / Approach</p>
             <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">Strip it back.<br/>Make it count.</h3>
-            <p class="text-xs leading-relaxed text-black font-normal">Removed all visual clutter. Every element — layout, spacing, colour, type — was chosen with purpose. Nothing decorative that doesn't serve the brand.</p>
+            <p class="text-xs md:text-sm leading-relaxed text-black font-normal">Removed all visual clutter. Every element — layout, spacing, colour, type — was chosen with purpose. Nothing decorative that doesn't serve the brand.</p>
           </div>
         </div>
 
@@ -614,15 +643,15 @@
             <div class="grid grid-cols-3 gap-4">
               <div>
                 <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-2">Logo System</p>
-                <p class="text-xs leading-relaxed text-black">Primary mark, secondary lockup, and monogram. Light and dark versions.</p>
+                <p class="text-xs md:text-sm leading-relaxed text-black">Primary mark, secondary lockup, and monogram. Light and dark versions.</p>
               </div>
               <div>
                 <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-2">Colour Palette</p>
-                <p class="text-xs leading-relaxed text-black">6-colour system. Primary, secondary, and neutral tones with usage rules.</p>
+                <p class="text-xs md:text-sm leading-relaxed text-black">6-colour system. Primary, secondary, and neutral tones with usage rules.</p>
               </div>
               <div>
                 <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-2">Type System</p>
-                <p class="text-xs leading-relaxed text-black">2 typefaces. Heading, subheading, and body styles defined across all formats.</p>
+                <p class="text-xs md:text-sm leading-relaxed text-black">2 typefaces. Heading, subheading, and body styles defined across all formats.</p>
               </div>
             </div>
           </div>
@@ -641,37 +670,18 @@
         <div class="px-6 md:px-24 mb-10 max-w-[1400px] mx-auto flex items-end justify-between border-b border-zinc-100 pb-8">
           <div>
             <p class="text-[10px] uppercase tracking-[0.5em] font-black text-zinc-300 mb-3">09 / Brand Guidelines</p>
-            <h3 class="text-3xl md:text-5xl font-bold tracking-tighter leading-none">Benner Tea Co.</h3>
+            <h3 class="text-3xl md:text-5xl font-bold tracking-tighter leading-none">Brandbook for Benner Tea Co.</h3>
           </div>
-          <span class="text-[10px] uppercase tracking-[0.3em] font-bold text-zinc-400 hidden md:block">Visual Identity System — 29 Pages</span>
+          <a href="benner-guidelines.html" class="hidden md:inline-flex items-center justify-center px-8 py-4 bg-black text-white hover:bg-zinc-800 transition-colors text-[10px] font-bold uppercase tracking-[0.2em] shadow-xl hover:shadow-2xl hover:-translate-y-1 transform duration-300">
+            View Full Brand Guidelines
+          </a>
         </div>
-        <div class="grid grid-cols-2 gap-px bg-zinc-100">
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-01.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 01" loading="lazy" decoding="async"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-02.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 02" loading="lazy" decoding="async"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-03.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 03" loading="lazy" decoding="async"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-04.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 04" loading="lazy" decoding="async"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-05.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 05" loading="lazy" decoding="async"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-06.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 06" loading="lazy" decoding="async"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-07.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 07" loading="lazy" decoding="async"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-08.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 08" loading="lazy" decoding="async"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-09.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 09" loading="lazy" decoding="async"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-10.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 10" loading="lazy" decoding="async"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-11.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 11" loading="lazy" decoding="async"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-12.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 12" loading="lazy" decoding="async"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-13.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 13" loading="lazy" decoding="async"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-14.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 14" loading="lazy" decoding="async"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-15.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 15" loading="lazy" decoding="async"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-16.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 16" loading="lazy" decoding="async"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-17.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 17" loading="lazy" decoding="async"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-18.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 18" loading="lazy" decoding="async"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-19.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 19" loading="lazy" decoding="async"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-20.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 20" loading="lazy" decoding="async"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-21.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 21" loading="lazy" decoding="async"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-22.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 22" loading="lazy" decoding="async"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-23.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 23" loading="lazy" decoding="async"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-24.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 24" loading="lazy" decoding="async"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-25.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 25" loading="lazy" decoding="async"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-26.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 26" loading="lazy" decoding="async"></div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-zinc-100">
+          <div class="col-span-1 md:col-span-2 flex justify-center py-6 md:hidden">
+            <a href="benner-guidelines.html" class="inline-flex items-center justify-center px-8 py-4 bg-black text-white hover:bg-zinc-800 transition-colors text-[10px] font-bold uppercase tracking-[0.2em] shadow-xl">
+              View Full Brand Guidelines
+            </a>
+          </div>
           <!-- Mockup images — full width (col-span-2) -->
           <div class="col-span-2 group overflow-hidden bg-zinc-50"><img src="/Images/Branding/Mockup 01.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Mockup 01" loading="lazy" decoding="async"></div>
           <div class="col-span-2 group overflow-hidden bg-zinc-50"><img src="/Images/Branding/Mockup 02.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Mockup 02" loading="lazy" decoding="async"></div>
@@ -683,11 +693,6 @@
           </div>
           <div class="col-span-2 group overflow-hidden bg-zinc-50 relative z-10 -mt-12 sm:-mt-16 md:-mt-24 lg:-mt-32"><img src="/Images/Branding/mockup 03.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Mockup 03" loading="lazy" decoding="async"></div>
           <div class="col-span-2 group overflow-hidden bg-zinc-50"><img src="/Images/Branding/mockup 04.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Mockup 04" loading="lazy" decoding="async"></div>
-          <!-- Pages 27–28: 2 per row -->
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-27.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 27" loading="lazy" decoding="async"></div>
-          <div class="group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-28.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 28" loading="lazy" decoding="async"></div>
-          <!-- Page 29: full width -->
-          <div class="col-span-2 group overflow-hidden bg-white"><img src="/Images/Branding/Brand guidelines-29.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Page 29" loading="lazy" decoding="async"></div>
         </div>
       </div>
     </div>
@@ -696,16 +701,16 @@
     <!-- ═══════════════════════════════════════════════
          CASE STUDY 02 — LUKE'S ICED COFFEE
     ═══════════════════════════════════════════════ -->
-    <div class="w-full bg-white text-zinc-900 overflow-x-hidden border-t border-zinc-100">
+    <div id="web-development" class="w-full bg-white text-zinc-900 overflow-x-hidden border-t border-zinc-100">
 
       <!-- Project Title Row -->
-      <div class="px-6 md:px-24 py-10 border-b border-zinc-100">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-          <div class="md:col-span-4">
-            <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-3">02 — Project</p>
-            <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.9] text-black">Luke's<br/>Iced Coffee</h3>
+      <div class="px-6 md:px-24 py-16 border-b border-zinc-100">
+        <div class="flex flex-col gap-6">
+          <div>
+            <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-6">02 — Project</p>
+            <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.85] text-black">Luke's<br/>Iced Coffee</h3>
           </div>
-          <div class="md:col-span-8">
+          <div class="max-w-2xl">
             <p class="text-base md:text-lg font-medium leading-snug text-black">Targeted collateral design — logo, menu layout, business cards, and packaging system.</p>
           </div>
         </div>
@@ -719,12 +724,12 @@
           <div class="py-10 md:pr-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">02 / Problem</p>
             <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">Outdated collateral.<br/>Low shelf impact.</h3>
-            <p class="text-xs leading-relaxed text-black font-normal">Luke's had a great product, but their touchpoints — packaging, menus, and business cards — failed to communicate what made them unique. The logo lacked legibility, and the physical items didn't feel cohesive.</p>
+            <p class="text-xs md:text-sm leading-relaxed text-black font-normal">Luke's had a great product, but their touchpoints — packaging, menus, and business cards — failed to communicate what made them unique. The logo lacked legibility, and the physical items didn't feel cohesive.</p>
           </div>
           <div class="py-10 md:pl-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">03 / Direction</p>
             <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">Young. Bold.<br/>High contrast.</h3>
-            <p class="text-xs leading-relaxed text-black font-normal">The goal was to redesign specific core assets to appeal to a Gen-Z and student demographic. Every delivered piece needed to feel punchy, modern, and instantly recognizable.</p>
+            <p class="text-xs md:text-sm leading-relaxed text-black font-normal">The goal was to redesign specific core assets to appeal to a Gen-Z and student demographic. Every delivered piece needed to feel punchy, modern, and instantly recognizable.</p>
           </div>
         </div>
 
@@ -736,15 +741,15 @@
             <div class="grid grid-cols-3 gap-4 border-l-2 border-zinc-900 pl-6">
               <div>
                 <p class="text-sm font-bold text-black mb-1">Logo</p>
-                <p class="text-xs text-black font-normal leading-relaxed">Bold wordmark. Confident and legible on small labels.</p>
+                <p class="text-xs md:text-sm text-black font-normal leading-relaxed">Bold wordmark. Confident and legible on small labels.</p>
               </div>
               <div>
                 <p class="text-sm font-bold text-black mb-1">Menu &amp; Print</p>
-                <p class="text-xs text-black font-normal leading-relaxed">Clear typographic hierarchy. Functional business cards.</p>
+                <p class="text-xs md:text-sm text-black font-normal leading-relaxed">Clear typographic hierarchy. Functional business cards.</p>
               </div>
               <div>
                 <p class="text-sm font-bold text-black mb-1">Packaging</p>
-                <p class="text-xs text-black font-normal leading-relaxed">High-impact layout rules that work across cups and cans.</p>
+                <p class="text-xs md:text-sm text-black font-normal leading-relaxed">High-impact layout rules that work across cups and cans.</p>
               </div>
             </div>
             <p class="text-[10px] uppercase tracking-[0.3em] text-black font-bold mt-6 max-w-xs">Target: Gen-Z and students. Everyday product, premium feel.</p>
@@ -752,7 +757,7 @@
           <div class="py-10 md:pl-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">05 / Approach</p>
             <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">High contrast.<br/>High energy.</h3>
-            <p class="text-xs leading-relaxed text-black font-normal">Kept the design expressive but controlled. Strong type hierarchy, a two-tone palette, and clean layout rules that work across cups, packaging, and digital.</p>
+            <p class="text-xs md:text-sm leading-relaxed text-black font-normal">Kept the design expressive but controlled. Strong type hierarchy, a two-tone palette, and clean layout rules that work across cups, packaging, and digital.</p>
           </div>
         </div>
 
@@ -763,22 +768,22 @@
             <div class="grid grid-cols-3 gap-4">
               <div>
                 <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-2">Logo Design</p>
-                <p class="text-xs leading-relaxed text-black">Primary wordmark and lockup variations.</p>
+                <p class="text-xs md:text-sm leading-relaxed text-black">Primary wordmark and lockup variations.</p>
               </div>
               <div>
                 <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-2">Print Assets</p>
-                <p class="text-xs leading-relaxed text-black">Menu layout and two-sided business cards.</p>
+                <p class="text-xs md:text-sm leading-relaxed text-black">Menu layout and two-sided business cards.</p>
               </div>
               <div>
                 <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-2">Packaging</p>
-                <p class="text-xs leading-relaxed text-black">Cup designs and retail product packaging.</p>
+                <p class="text-xs md:text-sm leading-relaxed text-black">Cup designs and retail product packaging.</p>
               </div>
             </div>
           </div>
           <div class="py-10 md:pl-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">07 / Result</p>
             <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-black mb-3">Targeted deliverables ready for production.</h3>
-            <p class="text-xs font-medium text-black">Logo files, print-ready menus, business cards, and packaging mechanicals delivered.</p>
+            <p class="text-xs md:text-sm font-medium text-black">Logo files, print-ready menus, business cards, and packaging mechanicals delivered.</p>
           </div>
         </div>
 
@@ -790,7 +795,7 @@
           <div>
             <p class="text-[10px] uppercase tracking-[0.5em] text-black font-black mb-4">Colour Palette</p>
             <h3 class="text-3xl md:text-5xl font-bold tracking-tighter leading-tight text-black mb-4">Warmth &amp; Cold.</h3>
-            <p class="text-xs leading-relaxed text-black max-w-sm">Two opposing tones — coffee brown and iced blue — create the core tension of the brand. Minimal palette, maximum recognition.</p>
+            <p class="text-xs md:text-sm leading-relaxed text-black max-w-sm">Two opposing tones — coffee brown and iced blue — create the core tension of the brand. Minimal palette, maximum recognition.</p>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-zinc-100 shadow-sm">
             <div class="bg-[#FEE6C2] h-24 flex items-end p-6 relative">
@@ -798,28 +803,28 @@
                 <p class="text-[10px] font-black tracking-[0.3em] text-zinc-900/40 uppercase mb-1">Base</p>
                 <h4 class="text-base font-bold text-zinc-900 uppercase tracking-tighter">Warm Cream</h4>
               </div>
-              <div class="absolute top-4 right-4 text-zinc-900/40 text-xs font-mono">#FEE6C2</div>
+              <div class="absolute top-4 right-4 text-zinc-900/40 text-xs md:text-sm font-mono">#FEE6C2</div>
             </div>
             <div class="bg-[#89420A] h-24 flex items-end p-6 relative">
               <div>
                 <p class="text-[10px] font-black tracking-[0.3em] text-white/40 uppercase mb-1">Primary</p>
                 <h4 class="text-base font-bold text-white uppercase tracking-tighter">Coffee Brown</h4>
               </div>
-              <div class="absolute top-4 right-4 text-white/50 text-xs font-mono">#89420A</div>
+              <div class="absolute top-4 right-4 text-white/50 text-xs md:text-sm font-mono">#89420A</div>
             </div>
             <div class="bg-[#63C7E9] h-24 flex items-end p-6 relative">
               <div>
                 <p class="text-[10px] font-black tracking-[0.3em] text-zinc-900/50 uppercase mb-1">Secondary</p>
                 <h4 class="text-base font-bold text-zinc-900 uppercase tracking-tighter">Iced Blue</h4>
               </div>
-              <div class="absolute top-4 right-4 text-zinc-900/50 text-xs font-mono">#63C7E9</div>
+              <div class="absolute top-4 right-4 text-zinc-900/50 text-xs md:text-sm font-mono">#63C7E9</div>
             </div>
             <div class="bg-[#FFB846] h-24 flex items-end p-6 relative">
               <div>
                 <p class="text-[10px] font-black tracking-[0.3em] text-zinc-900/40 uppercase mb-1">Highlight</p>
                 <h4 class="text-base font-bold text-zinc-900 uppercase tracking-tighter">Sunset Orange</h4>
               </div>
-              <div class="absolute top-4 right-4 text-zinc-900/40 text-xs font-mono">#FFB846</div>
+              <div class="absolute top-4 right-4 text-zinc-900/40 text-xs md:text-sm font-mono">#FFB846</div>
             </div>
           </div>
         </div>
@@ -860,6 +865,109 @@
     </div>
     <!-- END: Luke's Iced Coffee -->
 
+    <!-- ═══════════════════════════════════════════════
+         PROJECT 03 — THE VENOM BERRIES
+    ═══════════════════════════════════════════════ -->
+    <div id="posters" class="w-full bg-white text-zinc-900 overflow-hidden border-t border-zinc-100">
+      
+      <!-- Project Title Row -->
+      <div class="px-6 md:px-24 py-16 border-b border-zinc-100">
+        <div class="flex flex-col gap-6">
+          <div>
+            <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-6">03 — Project</p>
+            <h3 class="text-[4.5rem] md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-black">Posters &amp;<br/>Album Arts</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- POSTERS SECTION: Overview + Posters -->
+      <div class="w-full">
+        <div class="px-6 md:px-24 py-16 max-w-[1400px] mx-auto border-b border-zinc-100">
+          <div class="max-w-2xl mx-auto text-center mb-16">
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">01 / Project Overview</p>
+            <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">Dark Aesthetics.<br/>Heavy Metal.</h3>
+            <p class="text-xs md:text-sm leading-relaxed text-black font-normal">Promotional poster designed for a metalcore band's live concert. The objective was to capture the band's aggressive energy while creating a visually striking asset for social media, print, and event promotion.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            <!-- Poster 1 -->
+            <div class="bg-zinc-50 flex justify-center items-center p-8 md:p-16 group overflow-hidden shadow-inner h-[400px] md:h-[600px]">
+              <img src="/Images/Brands/venom_berries/TVB_Post-01.webp" class="w-full h-full object-contain transition-transform duration-[2s] group-hover:scale-105" alt="Rock Band Poster 1" loading="lazy" decoding="async">
+            </div>
+            <!-- Poster 2 -->
+            <div class="bg-zinc-50 flex justify-center items-center p-8 md:p-16 group overflow-hidden shadow-inner h-[400px] md:h-[600px]">
+              <img src="/Images/Brands/venom_berries/WhatsApp_Image_2026-06-08_at_5.47.11_PM.webp" class="w-full h-full object-contain transition-transform duration-[2s] group-hover:scale-105" alt="Rock Band Poster 2" loading="lazy" decoding="async">
+            </div>
+          </div>
+
+          <!-- Details Below the Posters -->
+          <div class="grid grid-cols-2 md:grid-cols-5 gap-8 border-t border-zinc-100 pt-10">
+            <div>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-2">Client</p>
+              <p class="text-xs md:text-sm text-black font-medium">The Venom Berries</p>
+            </div>
+            <div>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-2">Industry</p>
+              <p class="text-xs md:text-sm text-black font-medium">Music</p>
+            </div>
+            <div>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-2">Services</p>
+              <p class="text-xs md:text-sm text-black font-medium">Poster Design, Art Direction</p>
+            </div>
+            <div>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-2">Tools</p>
+              <p class="text-xs md:text-sm text-black font-medium">Adobe Photoshop, Illustrator</p>
+            </div>
+            <div>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-2">Year</p>
+              <p class="text-xs md:text-sm text-black font-medium">2026</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ALBUM ART SECTION -->
+      <div class="w-full">
+        <div class="px-6 md:px-24 py-16 max-w-[1400px] mx-auto">
+          <div class="max-w-2xl mx-auto text-center mb-16">
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">02 / Album Art</p>
+            <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">Visual Storytelling.<br/>Strategic Design.</h3>
+            <p class="text-xs md:text-sm leading-relaxed text-black font-normal">A custom cover design created to reflect the artist's unique sound, mood, and creative identity. Combining visual storytelling with strategic design, the artwork was crafted for both digital streaming platforms and promotional use.</p>
+          </div>
+
+          <div class="relative overflow-hidden bg-zinc-50 h-[400px] md:h-[600px] group flex justify-center items-center px-2 pb-4 pt-16 md:px-24 md:pb-24 md:pt-32 shadow-inner mb-16">
+            <p class="absolute top-6 left-6 md:top-10 md:left-10 text-[10px] uppercase tracking-[0.3em] font-black text-black z-10 bg-zinc-50/80 backdrop-blur-sm px-3 py-1.5 rounded-full">Album art for BIANCCA</p>
+            <img src="/Images/Brands/venom_berries/Album_art_final.webp" class="w-full h-full object-contain transition-transform duration-[2s] group-hover:scale-105 object-center" alt="Independent Artist Album Art" loading="lazy" decoding="async">
+          </div>
+
+          <!-- Details Below the Artwork -->
+          <div class="grid grid-cols-2 md:grid-cols-5 gap-8 border-t border-zinc-100 pt-10">
+            <div>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-2">Client</p>
+              <p class="text-xs md:text-sm text-black font-medium">BIANCCA</p>
+            </div>
+            <div>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-2">Industry</p>
+              <p class="text-xs md:text-sm text-black font-medium">Music</p>
+            </div>
+            <div>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-2">Services</p>
+              <p class="text-xs md:text-sm text-black font-medium">Album Artwork, Art Direction, Typography</p>
+            </div>
+            <div>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-2">Tools</p>
+              <p class="text-xs md:text-sm text-black font-medium">Adobe Photoshop, Illustrator</p>
+            </div>
+            <div>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-2">Year</p>
+              <p class="text-xs md:text-sm text-black font-medium">2026</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END: The Venom Berries -->
+
   </section>
 
 
@@ -867,12 +975,12 @@
 
   <!-- Section 02: Web Engineering (Development) -->
   <section id="work" class="bg-white overflow-hidden border-t border-zinc-100">
-    <div class="px-6 md:px-24 pt-16 mb-16 flex flex-col md:flex-row-reverse justify-between md:items-end gap-12 w-full">
-      <div class="w-full md:w-3/5 text-zinc-900 md:text-right">
+    <div class="px-6 md:px-24 pt-16 mb-16 flex flex-col w-full">
+      <div class="w-full text-zinc-900 md:text-right">
         <p class="text-zinc-500 uppercase text-[10px] tracking-[0.2em] mb-6">Section 02 — Design &amp; Development</p>
-        <h2 class="text-[2.5rem] md:text-[7rem] font-bold tracking-tighter leading-[0.9]">Web Design &amp; Development</h2>
       </div>
-      <div class="text-zinc-500 text-sm leading-relaxed w-full md:w-[30%] text-left">
+      <h2 class="text-[4.5rem] md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-zinc-900 text-left">Web Design &amp;<br/>Development</h2>
+      <div class="text-zinc-500 text-sm md:text-base leading-relaxed w-full max-w-2xl text-left mt-6">
         Architecting high-performance digital foundations. Where creative fluidity meets surgical technical execution.
       </div>
     </div>
@@ -884,13 +992,13 @@
 
 
       <!-- Project Title Row -->
-      <div class="px-6 md:px-24 py-10 border-b border-zinc-100">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-          <div class="md:col-span-4">
-            <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-3">01 — Project</p>
-            <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.9] text-black">The ExecuVision</h3>
+      <div class="px-6 md:px-24 py-16 border-b border-zinc-100">
+        <div class="flex flex-col gap-6">
+          <div>
+            <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-6">01 — Project</p>
+            <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.85] text-black">The<br/>ExecuVision</h3>
           </div>
-          <div class="md:col-span-8">
+          <div class="max-w-2xl">
             <p class="text-base md:text-lg font-medium leading-snug text-black">Corporate identity re-design &amp; custom high-performance web development.</p>
           </div>
         </div>
@@ -949,12 +1057,12 @@
           <div class="py-10 md:pr-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">01 / The Challenge</p>
             <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">Legacy code.<br/>High latency.</h3>
-            <p class="text-xs leading-relaxed text-black font-normal">Transforming a low-quality, buggy legacy site into a structured, high-speed platform. The existing site suffered from extreme latency and a complete lack of visual hierarchy.</p>
+            <p class="text-xs md:text-sm leading-relaxed text-black font-normal">Transforming a low-quality, buggy legacy site into a structured, high-speed platform. The existing site suffered from extreme latency and a complete lack of visual hierarchy.</p>
           </div>
           <div class="py-10 md:pl-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">02 / Concept</p>
             <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">Surgical.<br/>High-performance.</h3>
-            <p class="text-xs leading-relaxed text-black font-normal">A surgical re-imagining of corporate identity through high-performance digital architecture. Focused on a content-first philosophy, stripping away noise for a minimal aesthetic.</p>
+            <p class="text-xs md:text-sm leading-relaxed text-black font-normal">A surgical re-imagining of corporate identity through high-performance digital architecture. Focused on a content-first philosophy, stripping away noise for a minimal aesthetic.</p>
           </div>
         </div>
 
@@ -984,18 +1092,18 @@
             <div class="space-y-6">
               <div>
                 <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-1">Architecture</p>
-                <p class="text-xs leading-relaxed text-black">Built a new data structure to eliminate lagging. Implemented a strict 12-column grid system.</p>
+                <p class="text-xs md:text-sm leading-relaxed text-black">Built a new data structure to eliminate lagging. Implemented a strict 12-column grid system.</p>
               </div>
               <div>
                 <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-1">Development</p>
-                <p class="text-xs leading-relaxed text-black">Rebuilt the tech stack for maximum responsiveness. Fixed legacy bugs for zero-lag interactions.</p>
+                <p class="text-xs md:text-sm leading-relaxed text-black">Rebuilt the tech stack for maximum responsiveness. Fixed legacy bugs for zero-lag interactions.</p>
               </div>
             </div>
           </div>
           <div class="py-10 md:pl-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">05 / Results</p>
             <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-black mb-3">100% bug-free deployment.</h3>
-            <p class="text-xs font-medium text-black">Drastic speed improvements. Shifted the experience from a high-friction environment to a seamless, high-quality digital narrative.</p>
+            <p class="text-sm font-medium text-black">Drastic speed improvements. Shifted the experience from a high-friction environment to a seamless, high-quality digital narrative.</p>
           </div>
         </div>
       </div>
@@ -1009,13 +1117,13 @@
 
 
       <!-- Project Title Row -->
-      <div class="px-6 md:px-24 py-10 border-b border-zinc-100">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-          <div class="md:col-span-4">
-            <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-3">02 — Project</p>
-            <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.9] text-black">Nexzy</h3>
+      <div class="px-6 md:px-24 py-16 border-b border-zinc-100">
+        <div class="flex flex-col gap-6">
+          <div>
+            <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-6">02 — Project</p>
+            <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.85] text-black">Nexzy</h3>
           </div>
-          <div class="md:col-span-8">
+          <div class="max-w-2xl">
             <p class="text-base md:text-lg font-medium leading-snug text-black">Growth &amp; Tech Solutions — UI/UX design &amp; advanced web development.</p>
           </div>
         </div>
@@ -1074,12 +1182,12 @@
           <div class="py-10 md:pr-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black/50 mb-4">01 / The Challenge</p>
             <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">Low visibility.<br/>Low conversions.</h3>
-            <p class="text-xs leading-relaxed text-black/70 font-normal">Elevating the brand's digital presence to attract high-tier clients. The old site lacked a sophisticated technical portfolio and a clear conversion funnel.</p>
+            <p class="text-xs md:text-sm leading-relaxed text-black/70 font-normal">Elevating the brand's digital presence to attract high-tier clients. The old site lacked a sophisticated technical portfolio and a clear conversion funnel.</p>
           </div>
           <div class="py-10 md:pl-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black/50 mb-4">02 / Concept</p>
             <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">High-conversion.<br/>Lead-generation.</h3>
-            <p class="text-xs leading-relaxed text-black/70 font-normal">A cutting-edge agency flagship designed to serve as a high-conversion engine. Balancing technical depth with visual impact to convey innovation.</p>
+            <p class="text-xs md:text-sm leading-relaxed text-black/70 font-normal">A cutting-edge agency flagship designed to serve as a high-conversion engine. Balancing technical depth with visual impact to convey innovation.</p>
           </div>
         </div>
 
@@ -1090,18 +1198,18 @@
             <div class="space-y-6">
               <div>
                 <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-1">Architecture</p>
-                <p class="text-xs leading-relaxed text-black/70">Architected a lead-centric user journey. Pioneered a 'Future-Forward' aesthetic with geometric spacing.</p>
+                <p class="text-xs md:text-sm leading-relaxed text-black/70">Architected a lead-centric user journey. Pioneered a 'Future-Forward' aesthetic with geometric spacing.</p>
               </div>
               <div>
                 <p class="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-1">Development</p>
-                <p class="text-xs leading-relaxed text-black/70">Engineered a high-performance 'Tech Sea' animation. Leveraged hardware acceleration for fluid motion.</p>
+                <p class="text-xs md:text-sm leading-relaxed text-black/70">Engineered a high-performance 'Tech Sea' animation. Leveraged hardware acceleration for fluid motion.</p>
               </div>
             </div>
           </div>
           <div class="py-10 md:pl-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black/50 mb-4">04 / Results</p>
             <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-black mb-3">100% improvement in portfolio visibility.</h3>
-            <p class="text-xs font-medium text-black/70">Significant increase in inbound inquiries. Positioned Nexzy as a market leader in tech solutions through superior UI/UX.</p>
+            <p class="text-sm font-medium text-black/70">Significant increase in inbound inquiries. Positioned Nexzy as a market leader in tech solutions through superior UI/UX.</p>
           </div>
         </div>
 
@@ -1113,13 +1221,13 @@
   <!-- Art Work Section (McLaren) -->
   <section id="mclaren" class="w-full bg-transparent text-white overflow-x-hidden border-t border-white/10">
     <!-- Project Title Row -->
-    <div class="px-6 md:px-24 py-10 border-b border-white/10">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-        <div class="md:col-span-4">
-          <p class="text-[10px] uppercase tracking-[0.5em] text-white font-bold mb-3">03 — Project</p>
-          <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.9] text-white">McLaren</h3>
+    <div class="px-6 md:px-24 py-16 border-b border-white/10">
+      <div class="flex flex-col gap-6">
+        <div>
+          <p class="text-[10px] uppercase tracking-[0.5em] text-white font-bold mb-6">03 — Project</p>
+          <h3 class="text-[4.5rem] md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-white">McLaren</h3>
         </div>
-        <div class="md:col-span-8">
+        <div class="max-w-2xl">
           <p class="text-base md:text-lg font-medium leading-snug text-white">Freelance Sketch Artist — Custom automotive artwork and concept studies.</p>
         </div>
       </div>
@@ -1156,12 +1264,12 @@
         <div class="py-10 md:pr-16">
           <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white mb-4">01 / The Project</p>
           <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-white mb-4">Contract-based.<br/>Client-focused.</h3>
-          <p class="text-xs leading-relaxed text-zinc-300 font-normal">This was a contract-based project for McLaren Mumbai. The primary objective was to create highly customised sketches tailored precisely to the client's specific needs and vision.</p>
+          <p class="text-xs md:text-sm leading-relaxed text-zinc-300 font-normal">This was a contract-based project for McLaren Mumbai. The primary objective was to create highly customised sketches tailored precisely to the client's specific needs and vision.</p>
         </div>
         <div class="py-10 md:pl-16">
           <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white mb-4">02 / Approach</p>
           <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-white mb-4">Strict detailing.<br/>Commitment.</h3>
-          <p class="text-xs leading-relaxed text-zinc-300 font-normal">My approach centered entirely on meticulous detailing and reliable delivery. I maintained a strong commitment to producing high-quality artwork that met the client's exact standards.</p>
+          <p class="text-xs md:text-sm leading-relaxed text-zinc-300 font-normal">My approach centered entirely on meticulous detailing and reliable delivery. I maintained a strong commitment to producing high-quality artwork that met the client's exact standards.</p>
         </div>
       </div>
       <!-- Output + Result -->
@@ -1171,18 +1279,18 @@
           <div class="grid grid-cols-2 gap-4">
             <div>
               <p class="text-[10px] uppercase tracking-[0.2em] text-white font-bold mb-1">Deliverables</p>
-              <p class="text-xs leading-relaxed text-zinc-300">Custom automotive sketches created on large A1 size charts.</p>
+              <p class="text-xs md:text-sm leading-relaxed text-zinc-300">Custom automotive sketches created on large A1 size charts.</p>
             </div>
             <div>
               <p class="text-[10px] uppercase tracking-[0.2em] text-white font-bold mb-1">Medium</p>
-              <p class="text-xs leading-relaxed text-zinc-300">Traditional sketching on A1 charts.</p>
+              <p class="text-xs md:text-sm leading-relaxed text-zinc-300">Traditional sketching on A1 charts.</p>
             </div>
           </div>
         </div>
         <div class="py-10 md:pl-16">
           <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white mb-4">04 / Results</p>
           <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-white mb-3">Professional delivery.</h3>
-          <p class="text-xs font-medium text-zinc-300">Successfully delivered detailed custom sketches on schedule, demonstrating professionalism, accuracy, and a strong commitment to the client's requirements.</p>
+          <p class="text-sm font-medium text-zinc-300">Successfully delivered detailed custom sketches on schedule, demonstrating professionalism, accuracy, and a strong commitment to the client's requirements.</p>
         </div>
       </div>
     </div>
@@ -1191,13 +1299,13 @@
   <!-- Porsche Mumbai Section -->
   <section id="porsche" class="w-full bg-black text-white overflow-x-hidden border-t border-white/10">
     <!-- Project Title Row -->
-    <div class="px-6 md:px-24 py-10 border-b border-white/10">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-        <div class="md:col-span-4">
-          <p class="text-[10px] uppercase tracking-[0.5em] text-white font-bold mb-3">04 — Project</p>
-          <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.9] text-white">Porsche</h3>
+    <div class="px-6 md:px-24 py-16 border-b border-white/10">
+      <div class="flex flex-col gap-6">
+        <div>
+          <p class="text-[10px] uppercase tracking-[0.5em] text-white font-bold mb-6">04 — Project</p>
+          <h3 class="text-[4.5rem] md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-white">Porsche</h3>
         </div>
-        <div class="md:col-span-8">
+        <div class="max-w-2xl">
           <p class="text-base md:text-lg font-medium leading-snug text-white">Freelance Sketch Artist — Custom automotive artwork and concept studies.</p>
         </div>
       </div>
@@ -1233,12 +1341,12 @@
         <div class="py-10 md:pr-16">
           <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white mb-4">01 / The Project</p>
           <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-white mb-4">Contracted work.<br/>Tailored vision.</h3>
-          <p class="text-xs leading-relaxed text-zinc-300 font-normal">A contract-based commission for Porsche Mumbai. The project required customising automotive sketches to align perfectly with the client's specific requests and expectations.</p>
+          <p class="text-xs md:text-sm leading-relaxed text-zinc-300 font-normal">A contract-based commission for Porsche Mumbai. The project required customising automotive sketches to align perfectly with the client's specific requests and expectations.</p>
         </div>
         <div class="py-10 md:pl-16">
           <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white mb-4">02 / Approach</p>
           <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-white mb-4">High detailing.<br/>Timely delivery.</h3>
-          <p class="text-xs leading-relaxed text-zinc-300 font-normal">I focused heavily on intricate detailing and professionalism. A strong commitment to deadlines and quality ensured the artwork met the high standards of the client.</p>
+          <p class="text-xs md:text-sm leading-relaxed text-zinc-300 font-normal">I focused heavily on intricate detailing and professionalism. A strong commitment to deadlines and quality ensured the artwork met the high standards of the client.</p>
         </div>
       </div>
       <!-- Output + Result -->
@@ -1248,50 +1356,81 @@
           <div class="grid grid-cols-2 gap-4">
             <div>
               <p class="text-[10px] uppercase tracking-[0.2em] text-white font-bold mb-1">Deliverables</p>
-              <p class="text-xs leading-relaxed text-zinc-300">Bespoke automotive sketches executed on large A1 size charts.</p>
+              <p class="text-xs md:text-sm leading-relaxed text-zinc-300">Bespoke automotive sketches executed on large A1 size charts.</p>
             </div>
             <div>
               <p class="text-[10px] uppercase tracking-[0.2em] text-white font-bold mb-1">Medium</p>
-              <p class="text-xs leading-relaxed text-zinc-300">Traditional hand-drawn sketches on A1 charts.</p>
+              <p class="text-xs md:text-sm leading-relaxed text-zinc-300">Traditional hand-drawn sketches on A1 charts.</p>
             </div>
           </div>
         </div>
         <div class="py-10 md:pl-16">
           <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white mb-4">04 / Results</p>
           <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-white mb-3">Client satisfaction.</h3>
-          <p class="text-xs font-medium text-zinc-300">The project was completed with a focus on timely delivery and precision, resulting in highly detailed A1 sketches that fulfilled the contract requirements.</p>
+          <p class="text-sm font-medium text-zinc-300">The project was completed with a focus on timely delivery and precision, resulting in highly detailed A1 sketches that fulfilled the contract requirements.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Capabilities & Services -->
-  <section id="services" class="py-16 bg-transparent text-white border-t border-white/10">
+  <!-- Capabilities & Services - Sticky Scroll -->
+  <section id="services" class="bg-zinc-950 text-white border-t border-white/10 relative h-[400vh] md:h-[800vh]">
+    <div class="sticky top-0 h-screen w-full overflow-hidden flex items-center">
+      
+      <!-- Left side: The Skills (Absolute Stacking) -->
+      <div class="w-full md:w-1/2 px-6 md:px-24 flex flex-col justify-center relative z-10 h-full">
+        <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-12 block absolute top-[20rem] md:top-32">Services</span>
+        
+        <div class="relative w-full h-[300px] flex items-center mt-16 md:mt-0">
+          
+          <!-- Item 0: What I Do -->
+          <div class="skill-item absolute inset-0 flex flex-col justify-center opacity-100 translate-y-0">
+            <h2 class="text-[clamp(3rem,8vw,8rem)] font-bold tracking-tighter leading-none mb-6 text-white">What I do.</h2>
+            <p class="text-xl text-zinc-400 leading-relaxed max-w-xl">
+              I provide professional web design, development, and graphic design services to help your business stand out and grow online.
+            </p>
+          </div>
 
-    <!-- Capabilities Header -->
-    <div class="px-6 md:px-24 pt-24 pb-16 relative z-10">
-      <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-6 block">Services</span>
-      <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+          <!-- Item 1: Brand Identity Design -->
+          <div class="skill-item absolute inset-0 flex flex-col justify-center opacity-0 translate-y-12">
+            <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-4 block">01 / Skill</span>
+            <h2 class="text-[3.5rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-none text-white">Brand Identity<br/>Design</h2>
+          </div>
 
-        <!-- Left: heading + description -->
-        <div class="flex-1 min-w-0">
-          <h2 class="text-[clamp(3rem,8vw,8rem)] font-bold tracking-tighter leading-none mb-8 text-white">
-            What I do.
-          </h2>
-          <p class="text-xl text-zinc-400 leading-relaxed max-w-xl">
-            I provide professional web design, development, and graphic design services to help your business stand out and grow online.
-          </p>
+          <!-- Item 2: Web Design & Development -->
+          <div class="skill-item absolute inset-0 flex flex-col justify-center opacity-0 translate-y-12">
+            <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-4 block">02 / Skill</span>
+            <h2 class="text-[3.5rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-none text-white">Web Design &amp;<br/>Development</h2>
+          </div>
+
+          <!-- Item 3: UI/UX Design -->
+          <div class="skill-item absolute inset-0 flex flex-col justify-center opacity-0 translate-y-12">
+            <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-4 block">03 / Skill</span>
+            <h2 class="text-[3.5rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-none text-white">UI/UX<br/>Design</h2>
+          </div>
+
+          <!-- Item 4: Marketing & Content Design -->
+          <div class="skill-item absolute inset-0 flex flex-col justify-center opacity-0 translate-y-12">
+            <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-4 block">04 / Skill</span>
+            <h2 class="text-[3.5rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-none text-white">Marketing &amp;<br/>Content Design</h2>
+          </div>
+
+          <!-- Item 5: Creative Direction -->
+          <div class="skill-item absolute inset-0 flex flex-col justify-center opacity-0 translate-y-12">
+            <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-4 block">05 / Skill</span>
+            <h2 class="text-[3.5rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-none text-white">Creative<br/>Direction</h2>
+          </div>
+
         </div>
+      </div>
 
-        <!-- Right: 3D Three.js Rubik's Cube -->
-        <div class="flex-shrink-0 flex items-center justify-center relative w-full md:w-[500px] h-[400px] md:h-[500px] mt-10 md:mt-0" id="rubiks-container">
-          <!-- The Three.js canvas will be injected here -->
-        </div>
-
+      <!-- Right side: The 3D Cube -->
+      <div class="absolute top-16 left-1/2 -translate-x-1/2 w-56 h-56 md:top-auto md:left-auto md:translate-x-0 md:relative md:w-1/2 md:h-full flex items-center justify-center pointer-events-none md:pointer-events-auto z-20" id="rubiks-container">
+        <!-- Three.js Canvas injected here -->
       </div>
     </div>
 
-    <!-- Three.js Module for Rubik's Cube -->
+    <!-- GSAP & Three.js Logic -->
     <script type="importmap">
       {
         "imports": {
@@ -1304,59 +1443,86 @@
       import { RoundedBoxGeometry } from 'https://cdn.jsdelivr.net/npm/three@0.150.1/examples/jsm/geometries/RoundedBoxGeometry.js';
 
       const container = document.getElementById('rubiks-container');
-      
-      // Scene setup
       const scene = new THREE.Scene();
-      
-      // Camera setup
       const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
-      camera.position.z = 7; // Moved closer to make the cube appear significantly larger
+      camera.position.z = 6.5;
 
-      // Renderer setup
       const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
       renderer.setSize(container.clientWidth, container.clientHeight);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       container.appendChild(renderer.domElement);
 
-      // Lighting - to match the hero section exactly
-      // 1. Ambient light (base visibility)
-      const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
       scene.add(ambientLight);
 
-      // 2. Strong Directional Light from Top-Right
-      const dirLight = new THREE.DirectionalLight(0xffffff, 50); // Massive intensity
-      dirLight.position.set(6, 10, 5); // Positioned to hit the top and right sides hard
+      const dirLight = new THREE.DirectionalLight(0xffffff, 2.5);
+      dirLight.position.set(5, 5, 5);
       scene.add(dirLight);
-
-      // 3. Intense Spot/Point Light directly above the cube for the white glare
-      const spotLight = new THREE.PointLight(0xffffff, 100, 20); // Extreme intensity hotspot
-      spotLight.position.set(2, 6, 4);
-      scene.add(spotLight);
-
-      // 4. Fill light from the front-left to soften pitch-black shadows
-      const fillLight = new THREE.DirectionalLight(0xffffff, 1.5);
-      fillLight.position.set(-5, -2, 5);
+      
+      const fillLight = new THREE.DirectionalLight(0xffffff, 1);
+      fillLight.position.set(-5, -2, -5);
       scene.add(fillLight);
 
-      // Create the Rubik's Cube Group
-      const rubiksGroup = new THREE.Group();
+      // Create Textures for 1 to 5 (Transparent Background)
+      function createNumberTexture(number) {
+        const canvas = document.createElement('canvas');
+        canvas.width = 512;
+        canvas.height = 512;
+        const ctx = canvas.getContext('2d');
+        
+        ctx.clearRect(0, 0, 512, 512);
+        
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 360px Arial, sans-serif'; 
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        
+        // Add a subtle drop shadow to make the text pop against the glossy cubes
+        ctx.shadowColor = 'rgba(0,0,0,0.8)';
+        ctx.shadowBlur = 15;
+        ctx.fillText(number, 256, 280);
+
+        const texture = new THREE.CanvasTexture(canvas);
+        texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+        return texture;
+      }
+
+      function createBlankTexture() {
+        const canvas = document.createElement('canvas');
+        canvas.width = 512;
+        canvas.height = 512;
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, 512, 512);
+        
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 12;
+        ctx.shadowColor = 'rgba(0,0,0,0.8)';
+        ctx.shadowBlur = 15;
+        ctx.beginPath();
+        ctx.arc(256, 256, 120, 0, Math.PI * 2);
+        ctx.stroke();
+
+        return new THREE.CanvasTexture(canvas);
+      }
+
+      const group = new THREE.Group();
+      const innerGroup = new THREE.Group();
+      group.add(innerGroup);
+      scene.add(group);
       
-      // Material: Glossy, reflective black plastic/metal
+      // 1. Create the 3x3x3 Rubik's Cube Structure
       const material = new THREE.MeshStandardMaterial({ 
-        color: 0x050505, // Very dark gray/black
-        roughness: 0.1, // Very smooth to catch sharp, bright specular highlights
-        metalness: 0.85,  // Highly metallic to reflect the intense light
+        color: 0x050505, 
+        roughness: 0.1, 
+        metalness: 0.85 
       });
 
-      // Geometry: Rounded Box for catching highlights on the edges
-      const boxSize = 1;
-      const radius = 0.15;
-      const segments = 4;
-      const geometry = new RoundedBoxGeometry(boxSize, boxSize, boxSize, segments, radius);
+      const boxSize = 0.85;
+      const radius = 0.12;
+      const geometry = new RoundedBoxGeometry(boxSize, boxSize, boxSize, 4, radius);
 
-      // Build 3x3x3 grid
-      const gap = 1.05; // Gap between small cubes
-      const offset = (3 - 1) * gap / 2; // Center the 3x3x3 group
+      const gap = 0.9;
+      const offset = gap; // (3-1)*gap/2 = gap
 
       for (let x = 0; x < 3; x++) {
         for (let y = 0; y < 3; y++) {
@@ -1367,63 +1533,123 @@
               y * gap - offset,
               z * gap - offset
             );
-            rubiksGroup.add(cube);
+            innerGroup.add(cube);
           }
         }
       }
 
-      // Initial tilt for a nice starting perspective
-      rubiksGroup.rotation.x = 0.5;
-      rubiksGroup.rotation.y = -0.5;
+      // 2. Add the Hovering Number Planes
+      const planeGeo = new THREE.PlaneGeometry(2.8, 2.8);
+      const planeDist = 1.4; // Slightly outside the bounds of the 3x3 grid
 
-      scene.add(rubiksGroup);
+      const faces = [
+        { num: '1', pos: [0, 0, planeDist], rot: [0, 0, 0] }, // Front
+        { num: '2', pos: [planeDist, 0, 0], rot: [0, Math.PI/2, 0] }, // Right
+        { num: '3', pos: [0, planeDist, 0], rot: [-Math.PI/2, 0, 0] }, // Top
+        { num: '4', pos: [-planeDist, 0, 0], rot: [0, -Math.PI/2, 0] }, // Left
+        { num: '5', pos: [0, -planeDist, 0], rot: [Math.PI/2, 0, 0] } // Bottom
+      ];
 
-      // Animation Loop with Intersection Observer (Performance Fix)
-      const clock = new THREE.Clock();
-      let isVisible = false;
-      let animationFrameId = null;
-      
-      // Only render when the canvas is actually visible on screen
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          isVisible = entry.isIntersecting;
-          if (isVisible && !animationFrameId) {
-            clock.getDelta(); // reset clock delta
-            animate();
-          } else if (!isVisible && animationFrameId) {
-            cancelAnimationFrame(animationFrameId);
-            animationFrameId = null;
-          }
+      faces.forEach(face => {
+        const mat = new THREE.MeshBasicMaterial({ 
+          map: createNumberTexture(face.num), 
+          transparent: true, 
+          depthWrite: false 
         });
-      }, { threshold: 0.0 });
-      
-      observer.observe(container);
-      
+        const plane = new THREE.Mesh(planeGeo, mat);
+        plane.position.set(...face.pos);
+        plane.rotation.set(...face.rot);
+        innerGroup.add(plane);
+      });
+
+      // Intro Face (Back)
+      const introMat = new THREE.MeshBasicMaterial({ 
+        map: createBlankTexture(), 
+        transparent: true, 
+        depthWrite: false 
+      });
+      const introPlane = new THREE.Mesh(planeGeo, introMat);
+      introPlane.position.set(0, 0, -planeDist);
+      introPlane.rotation.set(0, Math.PI, 0);
+      innerGroup.add(introPlane);
+
+      // Render loop
+      let time = 0;
       function animate() {
-        if (!isVisible) return;
-        animationFrameId = requestAnimationFrame(animate);
-        
-        const elapsedTime = clock.getElapsedTime();
-
-        // Continuous revolving rotation
-        rubiksGroup.rotation.y += 0.005;
-        rubiksGroup.rotation.x += 0.002;
-
-        // Floating up and down
-        rubiksGroup.position.y = Math.sin(elapsedTime * 2) * 0.2;
-
+        requestAnimationFrame(animate);
+        time += 0.02;
+        innerGroup.position.y = Math.sin(time) * 0.1;
+        // Subtle constant rotation independent of scroll
+        innerGroup.rotation.x = Math.sin(time * 0.5) * 0.05;
+        innerGroup.rotation.y = Math.cos(time * 0.3) * 0.05;
         renderer.render(scene, camera);
       }
+      animate();
 
-      // Handle Resize
       window.addEventListener('resize', () => {
         if (!container) return;
         camera.aspect = container.clientWidth / container.clientHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(container.clientWidth, container.clientHeight);
       });
-    </script>
 
+      // GSAP ScrollTrigger Integration
+      document.addEventListener("DOMContentLoaded", () => {
+        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+        const skills = document.querySelectorAll('.skill-item');
+        
+        // Define rotations for the Group to face each number directly to the camera
+        const rotations = [
+          { x: 0, y: Math.PI, z: 0 },            // 0. Intro (Back face)
+          { x: 0, y: 0, z: 0 },                  // 1. Front
+          { x: 0, y: -Math.PI/2, z: 0 },         // 2. Right
+          { x: Math.PI/2, y: 0, z: 0 },          // 3. Top
+          { x: 0, y: Math.PI/2, z: 0 },          // 4. Left
+          { x: -Math.PI/2, y: 0, z: 0 }          // 5. Bottom
+        ];
+
+        // Ensure initial state is set
+        gsap.set(group.rotation, rotations[0]);
+        gsap.set(skills[0], { opacity: 1, y: 0 });
+        for(let i = 1; i < skills.length; i++) {
+          gsap.set(skills[i], { opacity: 0, y: 50 });
+        }
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: "#services",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 1.5
+          }
+        });
+
+        // Loop through each transition step (0 to 1, 1 to 2, etc.)
+        skills.forEach((skill, index) => {
+          if (index === 0) {
+            // VERY LONG Initial pause so user can comfortably read "What I do" 
+            // before the cube starts rotating to number 1.
+            tl.to({}, { duration: 2.5 }); 
+            return;
+          }
+          
+          tl.to(skills[index - 1], { opacity: 0, y: -50, duration: 1 }, `step${index}`)
+            .to(skill, { opacity: 1, y: 0, duration: 1 }, `step${index}`)
+            .to(group.rotation, {
+              x: rotations[index].x,
+              y: rotations[index].y,
+              z: rotations[index].z,
+              duration: 1.2,
+              ease: "power2.inOut"
+            }, `step${index}`)
+            .to({}, { duration: 0.5 }); // Pause so user can read the active state clearly
+        });
+      });
+    </script>
+  </section>
+
+  <section id="services-details" class="bg-zinc-950 relative z-20">
     <!-- Service 01: Website Design & Development -->
     <div class="px-6 md:px-24 py-16 md:py-24 bg-zinc-950 border-t border-white/10">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20 items-center">
@@ -1442,16 +1668,16 @@
             <h4 class="text-[10px] uppercase tracking-widest font-bold mb-6 text-white">What's included</h4>
             <ul class="space-y-4">
               <li class="flex items-center gap-3 text-zinc-400 text-sm">
-                <span class="material-symbols-outlined text-white" style="font-size:14px;">arrow_forward</span>Custom Website Design
+                <span class="material-symbols-outlined text-white" style="font-size:14px;">arrow_forward</span>UI/UX Design
               </li>
               <li class="flex items-center gap-3 text-zinc-400 text-sm">
-                <span class="material-symbols-outlined text-white" style="font-size:14px;">arrow_forward</span>Mobile-Friendly Development
+                <span class="material-symbols-outlined text-white" style="font-size:14px;">arrow_forward</span>Web Design
               </li>
               <li class="flex items-center gap-3 text-zinc-400 text-sm">
-                <span class="material-symbols-outlined text-white" style="font-size:14px;">arrow_forward</span>Smooth Animations
+                <span class="material-symbols-outlined text-white" style="font-size:14px;">arrow_forward</span>Web Development
               </li>
               <li class="flex items-center gap-3 text-zinc-400 text-sm">
-                <span class="material-symbols-outlined text-white" style="font-size:14px;">arrow_forward</span>Search Engine Optimization (SEO)
+                <span class="material-symbols-outlined text-white" style="font-size:14px;">arrow_forward</span>AI-Assisted Design Workflows
               </li>
             </ul>
           </div>
@@ -1479,13 +1705,22 @@
                 <span class="material-symbols-outlined text-white" style="font-size:14px;">arrow_forward</span>Brand Identity Design
               </li>
               <li class="flex items-center gap-3 text-zinc-400 text-sm">
-                <span class="material-symbols-outlined text-white" style="font-size:14px;">arrow_forward</span>Custom Logos
+                <span class="material-symbols-outlined text-white" style="font-size:14px;">arrow_forward</span>Logo Design
               </li>
               <li class="flex items-center gap-3 text-zinc-400 text-sm">
-                <span class="material-symbols-outlined text-white" style="font-size:14px;">arrow_forward</span>Print &amp; Packaging Design
+                <span class="material-symbols-outlined text-white" style="font-size:14px;">arrow_forward</span>Typography
               </li>
               <li class="flex items-center gap-3 text-zinc-400 text-sm">
-                <span class="material-symbols-outlined text-white" style="font-size:14px;">arrow_forward</span>Brand Guidelines
+                <span class="material-symbols-outlined text-white" style="font-size:14px;">arrow_forward</span>Visual Systems
+              </li>
+              <li class="flex items-center gap-3 text-zinc-400 text-sm">
+                <span class="material-symbols-outlined text-white" style="font-size:14px;">arrow_forward</span>Design Systems
+              </li>
+              <li class="flex items-center gap-3 text-zinc-400 text-sm">
+                <span class="material-symbols-outlined text-white" style="font-size:14px;">arrow_forward</span>Creative Direction
+              </li>
+              <li class="flex items-center gap-3 text-zinc-400 text-sm">
+                <span class="material-symbols-outlined text-white" style="font-size:14px;">arrow_forward</span>Marketing Design
               </li>
             </ul>
           </div>
@@ -1517,53 +1752,92 @@
   <!-- Premium Testimonials Slider -->
   <section class="section-testimonials py-24 px-6 md:px-24 bg-transparent border-t border-white/10 overflow-hidden">
     <div class="max-w-7xl mx-auto relative">
-      <div class="flex flex-col items-center mb-16">
-        <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-4">Client Perspectives</span>
-        <h2 class="text-4xl font-bold tracking-tight text-white">Kind Words</h2>
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 relative z-20">
+        <div class="flex flex-col items-center md:items-start mb-6 md:mb-0">
+          <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-4">Client Perspectives</span>
+          <h2 class="text-4xl font-bold tracking-tight text-white">Kind Words</h2>
+        </div>
+        <button onclick="openTestimonialModal()" class="px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-bold uppercase tracking-widest transition-colors backdrop-blur-md">
+          Leave a Review
+        </button>
       </div>
 
       <!-- Slider Container -->
-      <div class="relative testimonial-slider-wrap h-[500px] md:h-[400px]">
+      <div class="relative testimonial-slider-wrap h-[850px] md:h-[650px]">
         
         <!-- Testimonial 1 -->
-        <div class="testimonial-slide absolute inset-0 flex flex-col items-center text-center opacity-0 pointer-events-none translate-x-20">
-          <p class="text-2xl md:text-4xl font-light italic leading-relaxed text-zinc-300 max-w-4xl mb-12">
-            "Adley doesn't just design; he architects digital experiences. The level of structural discipline and minimal elegance he brought to our project was unparalleled. A masterclass in modern digital craftsmanship."
+        <div class="testimonial-slide absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 pointer-events-none translate-x-20">
+          <p class="text-base md:text-xl font-light italic leading-relaxed text-zinc-300 max-w-4xl mb-8 md:mb-12">
+            "Very Minimal changes had to be done so all good but See the only thing I would say is that for next poster try and incorporate a little more of the elements from the bands. This is something I want us as a band to do also because we've not being doing that past few gig posters<br><br>Like if you see this poster or the last 2-3 ones of ours, if you change the names of the bands - it doesn't really make a difference to the poster<br><br>So in the future I want to start incorporating more elements like that."
           </p>
           <div class="flex flex-col items-center">
             <div class="w-12 h-12 bg-zinc-900 border border-white/10 rounded-full mb-4 flex items-center justify-center overflow-hidden">
               <span class="material-symbols-outlined text-zinc-500">person</span>
             </div>
-            <h5 class="text-xs tracking-[0.2em] font-bold uppercase text-white">Marcus Thorne</h5>
-            <p class="text-[10px] tracking-widest uppercase text-zinc-500 mt-1">Creative Director @ Elevate</p>
+            <h5 class="text-xs md:text-sm tracking-[0.2em] font-bold uppercase text-white">Aadil</h5>
+            <p class="text-[10px] tracking-widest uppercase text-zinc-500 mt-1">Basscist of The Venom Berries</p>
           </div>
         </div>
 
         <!-- Testimonial 2 -->
-        <div class="testimonial-slide absolute inset-0 flex flex-col items-center text-center opacity-0 pointer-events-none translate-x-20">
+        <div class="testimonial-slide absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 pointer-events-none translate-x-20">
           <p class="text-2xl md:text-4xl font-light italic leading-relaxed text-zinc-300 max-w-4xl mb-12">
-            "The precision is what hits you first. We needed a digital home that felt as tangible and high-end as our print publication, and Adley delivered a masterpiece. Every interaction feels intentional."
+            "amazing logo design for Nexzy Growth & Tech Solutions, exactly how i imagined, techy modern minimal, plus the website redesign adley's UI input really helped us."
           </p>
           <div class="flex flex-col items-center">
             <div class="w-12 h-12 bg-zinc-900 border border-white/10 rounded-full mb-4 flex items-center justify-center overflow-hidden">
               <span class="material-symbols-outlined text-zinc-500">person</span>
             </div>
-            <h5 class="text-xs tracking-[0.2em] font-bold uppercase text-white">Elena Rossi</h5>
-            <p class="text-[10px] tracking-widest uppercase text-zinc-500 mt-1">Founder @ Archive Magazine</p>
+            <h5 class="text-xs md:text-sm tracking-[0.2em] font-bold uppercase text-white">Rahul</h5>
+            <p class="text-[10px] tracking-widest uppercase text-zinc-500 mt-1">CEO of Nexzy</p>
           </div>
         </div>
 
         <!-- Testimonial 3 -->
-        <div class="testimonial-slide absolute inset-0 flex flex-col items-center text-center opacity-0 pointer-events-none translate-x-20">
+        <div class="testimonial-slide absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 pointer-events-none translate-x-20">
           <p class="text-2xl md:text-4xl font-light italic leading-relaxed text-zinc-300 max-w-4xl mb-12">
-            "Adley bridges the gap between high-concept art and high-performance development seamlessly. Working with him is a masterclass in collaboration. The results always exceed our expectations."
+            "the branding and logo design was very well done by adley, it is hard to find someone that really understands what you feel about your brand and can turn theory into practical."
           </p>
           <div class="flex flex-col items-center">
             <div class="w-12 h-12 bg-zinc-900 border border-white/10 rounded-full mb-4 flex items-center justify-center overflow-hidden">
               <span class="material-symbols-outlined text-zinc-500">person</span>
             </div>
-            <h5 class="text-xs tracking-[0.2em] font-bold uppercase text-white">Julian Vane</h5>
-            <p class="text-[10px] tracking-widest uppercase text-zinc-500 mt-1">Lead Engineer @ Flux Digital</p>
+            <h5 class="text-xs md:text-sm tracking-[0.2em] font-bold uppercase text-white">Pratik</h5>
+            <p class="text-[10px] tracking-widest uppercase text-zinc-500 mt-1">CEO of Luke's Iced Coffee</p>
+          </div>
+        </div>
+
+        <!-- Testimonial 4 -->
+        <div class="testimonial-slide absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 pointer-events-none translate-x-20">
+          <p class="text-2xl md:text-4xl font-light italic leading-relaxed text-zinc-300 max-w-4xl mb-12">
+            "adley worked on my album art, teh album was very personal to me and he understood the image that i had in mind perfectly."
+          </p>
+          <div class="flex flex-col items-center">
+            <div class="w-12 h-12 bg-zinc-900 border border-white/10 rounded-full mb-4 flex items-center justify-center overflow-hidden">
+              <span class="material-symbols-outlined text-zinc-500">person</span>
+            </div>
+            <h5 class="text-xs md:text-sm tracking-[0.2em] font-bold uppercase text-white">Bianca</h5>
+            <p class="text-[10px] tracking-widest uppercase text-zinc-500 mt-1">indipendent music artist in mumbai</p>
+          </div>
+        </div>
+
+        <!-- Testimonial 5 -->
+        <div class="testimonial-slide absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 pointer-events-none translate-x-20">
+          <p class="text-2xl md:text-4xl font-light italic leading-relaxed text-zinc-300 max-w-4xl mb-12">
+            "Did a logo for my reel series! Was completely receptive of what I wanted, understood and delivered well. Would highly recommend adley for the creative job you need 😊"
+          </p>
+          <div class="flex flex-col items-center">
+            <div class="w-12 h-12 bg-zinc-900 border border-white/10 rounded-full mb-4 flex items-center justify-center overflow-hidden">
+              <span class="material-symbols-outlined text-zinc-500">person</span>
+            </div>
+            <h5 class="text-xs md:text-sm tracking-[0.2em] font-bold uppercase text-white">Tiara Shannon</h5>
+            <div class="flex items-center gap-1 mt-2 text-yellow-500 text-sm">
+              <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            </div>
           </div>
         </div>
 
@@ -1587,8 +1861,8 @@
 <!-- Footer -->
 <footer class="bg-transparent flex flex-col md:flex-row justify-between items-center px-6 md:px-24 w-full py-16 text-white border-t border-white/10">
   <div class="mb-8 md:mb-0 text-center md:text-left">
-    <a href="index.html" class="text-lg font-bold text-white tracking-widest mb-4 block">Adley Fernandes</a>
-    <p class="font-manrope text-[10px] tracking-widest uppercase text-zinc-500">© 2024 Adley Fernandes. ALL RIGHTS RESERVED.</p>
+    <a href="index.html" class="text-lg font-bold text-white tracking-widest mb-4 block">addesign studio</a>
+    <p class="font-manrope text-[10px] tracking-widest uppercase text-zinc-500">© 2024 addesign studio. ALL RIGHTS RESERVED.</p>
   </div>
   <div class="flex flex-wrap justify-center gap-8">
     <a class="font-manrope text-[10px] tracking-widest uppercase text-zinc-400 hover:text-white transition-all duration-400 underline-offset-4 hover:underline" href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
@@ -1597,7 +1871,7 @@
     <a class="font-manrope text-[10px] tracking-widest uppercase text-zinc-400 hover:text-white transition-all duration-400 underline-offset-4 hover:underline" href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener">Instagram</a>
     <a class="font-manrope text-[10px] tracking-widest uppercase text-white font-bold flex items-center gap-2" href="#top">
       Back to top
-      <span class="material-symbols-outlined text-xs">arrow_upward</span>
+      <span class="material-symbols-outlined text-xs md:text-sm">arrow_upward</span>
     </a>
   </div>
 </footer>
@@ -1721,6 +1995,108 @@
     }
   }
 
+  /* -- Testimonial Modal Logic -- */
+  function openTestimonialModal() {
+    const modal = document.getElementById('testimonial-modal');
+    const content = document.getElementById('testimonial-modal-content');
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+      modal.classList.remove('opacity-0');
+      content.classList.remove('scale-95');
+    }, 10);
+    document.body.classList.add('overflow-hidden');
+  }
+
+  function closeTestimonialModal() {
+    const modal = document.getElementById('testimonial-modal');
+    const content = document.getElementById('testimonial-modal-content');
+    modal.classList.add('opacity-0');
+    content.classList.add('scale-95');
+    setTimeout(() => {
+      modal.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+      
+      const form = document.getElementById('testimonial-form');
+      if (form) {
+        form.reset();
+        form.style.display = 'block';
+        document.getElementById('testimonial-success').classList.add('hidden');
+        document.getElementById('testimonial-success').classList.remove('flex');
+        document.getElementById('test-submit-label').textContent = 'Send Testimonial';
+        document.getElementById('test-submit-btn').disabled = false;
+        document.querySelectorAll('#testimonial-form .field-error').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('#testimonial-form [required]').forEach(el => {
+          el.classList.remove('border-red-500');
+          el.classList.add('border-transparent');
+        });
+      }
+    }, 500);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const testForm = document.getElementById('testimonial-form');
+    if(testForm) {
+      testForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let valid = true;
+
+        testForm.querySelectorAll('[required]').forEach(field => {
+          const errEl = field.parentElement.querySelector('.field-error');
+          if (!field.value.trim()) {
+            if (errEl) errEl.classList.remove('hidden');
+            field.classList.remove('border-transparent');
+            field.classList.add('border-red-500');
+            valid = false;
+          } else {
+            if (errEl) errEl.classList.add('hidden');
+            field.classList.remove('border-red-500');
+            field.classList.add('border-transparent');
+          }
+        });
+
+        if (!valid) return;
+
+        const name = document.getElementById('test-name').value;
+        const role = document.getElementById('test-role').value;
+        const rating = document.getElementById('test-rating').value;
+        const comment = document.getElementById('test-comment').value;
+
+        const submitBtn = document.getElementById('test-submit-btn');
+        const submitLabel = document.getElementById('test-submit-label');
+
+        submitLabel.textContent = 'Sending...';
+        submitBtn.disabled = true;
+
+        fetch("https://formsubmit.co/ajax/addyfit21@gmail.com", {
+          method: "POST",
+          headers: { 
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+              _subject: `New Portfolio Testimonial from ${name}!`,
+              Name: name,
+              Role: role,
+              Rating: `${rating} Stars`,
+              Comment: comment
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          testForm.style.display = 'none';
+          const successDiv = document.getElementById('testimonial-success');
+          successDiv.classList.remove('hidden');
+          successDiv.classList.add('flex');
+        })
+        .catch(error => {
+          console.error("Error:", error);
+          submitLabel.textContent = 'Error. Try again';
+          submitBtn.disabled = false;
+        });
+      });
+    }
+  });
+
   prevBtn.addEventListener('click', () => {
     let prevIdx = (currentSlide - 1 + slides.length) % slides.length;
     showSlide(prevIdx, 'prev');
@@ -1758,6 +2134,64 @@
       <span class="material-symbols-outlined transition-transform duration-500 group-hover:rotate-90">close</span>
     </button>
   </div>
+
+<!-- Leave Testimonial Modal -->
+<div id="testimonial-modal" class="fixed inset-0 z-[300] bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-500">
+  <div class="bg-zinc-900 border border-white/10 w-full max-w-lg p-8 relative transform scale-95 transition-transform duration-500" id="testimonial-modal-content">
+    
+    <!-- Close Button -->
+    <button onclick="closeTestimonialModal()" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white/5 hover:bg-white/10 text-white rounded-full transition-colors">
+      <span class="material-symbols-outlined text-sm">close</span>
+    </button>
+
+    <div class="mb-8">
+      <p class="text-[10px] tracking-[0.2em] uppercase text-zinc-500 font-bold mb-2">Submit Review</p>
+      <h3 class="text-2xl font-bold tracking-tight text-white">Leave a Testimonial</h3>
+    </div>
+
+    <form id="testimonial-form" class="space-y-6" novalidate>
+      <div>
+        <label for="test-name" class="block text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2">Your Name</label>
+        <input type="text" id="test-name" required class="w-full bg-zinc-800 border border-transparent text-white text-sm px-4 py-3 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all">
+        <p class="text-[10px] text-red-500 uppercase tracking-widest mt-2 hidden field-error">Name is required</p>
+      </div>
+
+      <div>
+        <label for="test-role" class="block text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2">Role & Company</label>
+        <input type="text" id="test-role" placeholder="e.g. CEO of Nexzy" required class="w-full bg-zinc-800 border border-transparent text-white text-sm px-4 py-3 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all placeholder:text-zinc-600">
+        <p class="text-[10px] text-red-500 uppercase tracking-widest mt-2 hidden field-error">Role is required</p>
+      </div>
+
+      <div>
+        <label for="test-rating" class="block text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2">Rating</label>
+        <select id="test-rating" class="w-full bg-zinc-800 border border-transparent text-white text-sm px-4 py-3 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all appearance-none cursor-pointer">
+          <option value="5">⭐⭐⭐⭐⭐ (5 Stars)</option>
+          <option value="4">⭐⭐⭐⭐ (4 Stars)</option>
+          <option value="3">⭐⭐⭐ (3 Stars)</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="test-comment" class="block text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2">Your Review (Emojis Supported)</label>
+        <textarea id="test-comment" rows="4" required class="w-full bg-zinc-800 border border-transparent text-white text-sm px-4 py-3 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all resize-none"></textarea>
+        <p class="text-[10px] text-red-500 uppercase tracking-widest mt-2 hidden field-error">Review is required</p>
+      </div>
+
+      <button type="submit" id="test-submit-btn" class="w-full py-4 bg-white text-black text-xs font-bold uppercase tracking-[0.2em] hover:bg-zinc-200 transition-colors flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed">
+        <span id="test-submit-label">Send Testimonial</span>
+      </button>
+    </form>
+
+    <!-- Success Message -->
+    <div id="testimonial-success" class="hidden flex-col items-center justify-center text-center py-8">
+      <span class="material-symbols-outlined text-4xl text-green-500 mb-4">check_circle</span>
+      <h4 class="text-xl font-bold text-white mb-2">Thank you!</h4>
+      <p class="text-sm text-zinc-400">Your testimonial has been securely sent to Adley.</p>
+      <button onclick="closeTestimonialModal()" class="mt-8 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-bold uppercase tracking-widest transition-colors">Close</button>
+    </div>
+
+  </div>
+</div>
 
 <!-- Brand Guidelines Modal -->
 <div id="guidelines-modal" class="fixed inset-0 z-[200] bg-white hidden flex flex-col overflow-y-auto no-scrollbar scroll-smooth">
@@ -1890,7 +2324,7 @@
     // Safety check
     if (!preloader) return;
 
-    if (sessionStorage.getItem('introPlayed')) {
+    if (sessionStorage.getItem('introPlayed') || window.location.hash) {
       preloader.style.display = "none";
       document.body.classList.remove("overflow-hidden");
       if(typeof ScrollTrigger !== 'undefined') {
@@ -2199,7 +2633,7 @@
                 </div>
               </div>
               <div class="benner-reveal overflow-hidden mt-32">
-                <p class="text-xs uppercase tracking-[0.3em] text-zinc-900 font-bold">Built for Gen Z and millennials without alienating existing consumers.</p>
+                <p class="text-xs md:text-sm uppercase tracking-[0.3em] text-zinc-900 font-bold">Built for Gen Z and millennials without alienating existing consumers.</p>
               </div>
             </div>
           </section>
@@ -2269,7 +2703,7 @@
               <p class="text-[10px] uppercase tracking-[0.5em] font-black text-zinc-300 mb-12 text-center">09 / Full Guidelines</p>
               <h2 class="text-3xl md:text-[6rem] font-bold tracking-tighter leading-none text-center mb-16">Explore the Guidelines</h2>
               <div class="flex items-center justify-center gap-6 text-zinc-400 group-hover:text-zinc-900 transition-colors duration-500">
-                <span class="text-xs font-bold uppercase tracking-[0.3em]">View Visual System</span>
+                <span class="text-xs md:text-sm font-bold uppercase tracking-[0.3em]">View Visual System</span>
                 <span class="material-symbols-outlined text-4xl group-hover:translate-y-4 transition-transform duration-700">south</span>
               </div>
             </div>
@@ -2509,44 +2943,42 @@
 </script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const mobileLogo = document.getElementById('mobile-logo');
+  const mobileBtn = document.getElementById('mobile-dropdown-btn');
+  const mobileMenu = document.getElementById('mobile-dropdown-menu');
+  const mobileArrow = document.getElementById('mobile-dropdown-arrow');
 
-
-  const ham1 = document.getElementById('ham-1');
-  const ham2 = document.getElementById('ham-2');
-  const ham3 = document.getElementById('ham-3');
-
-  if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', function() {
+  if (mobileBtn && mobileMenu) {
+    mobileBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
       const isOpen = mobileMenu.classList.contains('opacity-100');
       
-      // Animate hamburger icon and menu dropdown
       if (!isOpen) {
         mobileMenu.classList.remove('opacity-0', 'invisible', '-translate-y-4');
         mobileMenu.classList.add('opacity-100', 'visible', 'translate-y-0');
-        ham1.style.transform = 'translateY(5px) rotate(45deg)';
-        ham2.style.opacity = '0';
-        ham3.style.transform = 'translateY(-5px) rotate(-45deg)';
+        if (mobileArrow) mobileArrow.style.transform = 'rotate(180deg)';
       } else {
         mobileMenu.classList.remove('opacity-100', 'visible', 'translate-y-0');
         mobileMenu.classList.add('opacity-0', 'invisible', '-translate-y-4');
-        ham1.style.transform = 'translateY(0) rotate(0)';
-        ham2.style.opacity = '1';
-        ham3.style.transform = 'translateY(0) rotate(0)';
+        if (mobileArrow) mobileArrow.style.transform = 'rotate(0deg)';
+      }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!mobileBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+        mobileMenu.classList.remove('opacity-100', 'visible', 'translate-y-0');
+        mobileMenu.classList.add('opacity-0', 'invisible', '-translate-y-4');
+        if (mobileArrow) mobileArrow.style.transform = 'rotate(0deg)';
       }
     });
 
     // Close menu when clicking a link
-    const mobileLinks = mobileMenu.querySelectorAll('a');
+    const mobileLinks = mobileMenu.querySelectorAll('.mobile-link');
     mobileLinks.forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.remove('opacity-100', 'visible', 'translate-y-0');
         mobileMenu.classList.add('opacity-0', 'invisible', '-translate-y-4');
-        ham1.style.transform = 'translateY(0) rotate(0)';
-        ham2.style.opacity = '1';
-        ham3.style.transform = 'translateY(0) rotate(0)';
+        if (mobileArrow) mobileArrow.style.transform = 'rotate(0deg)';
       });
     });
   }
