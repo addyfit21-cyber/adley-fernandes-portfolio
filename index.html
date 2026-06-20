@@ -1031,8 +1031,8 @@
               <div class="relative w-full max-w-[240px] aspect-[9/18] bg-gradient-to-br from-[#e5e7eb] via-[#ffffff] to-[#d1d5db] rounded-[2.5rem] p-[1.5%] shadow-[0_60px_120px_-30px_rgba(0,0,0,0.4)] border-x-[3px] border-zinc-300">
                 <div class="relative w-full h-full bg-black rounded-[2.2rem] p-[3%] overflow-hidden shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]">
                   <div class="absolute top-[3.5%] left-1/2 -translate-x-1/2 w-[32%] h-[2.4%] bg-[#050505] rounded-full z-20"></div>
-                  <div class="relative w-full h-full bg-black rounded-[1.8rem] overflow-hidden isolate transform-gpu" style="-webkit-mask-image: -webkit-radial-gradient(white, black);">
-                    <video preload="auto" src="/Images/web_dev/whatsapp_2_mobile.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black block pointer-events-none [clip-path:inset(0px_round_1.8rem)]"></video>
+                  <div class="absolute inset-0 bg-black rounded-[1.8rem] overflow-hidden isolate transform-gpu [clip-path:inset(0px_round_1.8rem)]" style="-webkit-mask-image: -webkit-radial-gradient(white, black);">
+                    <video preload="auto" src="/Images/web_dev/whatsapp_2_mobile.mp4" autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover bg-black block pointer-events-none [clip-path:inset(0px_round_1.8rem)]"></video>
                   </div>
                 </div>
                 <div class="absolute -left-[4px] top-[18%] w-[5px] h-[40px] bg-gradient-to-r from-[#d1d5db] to-[#9ca3af] rounded-l-md"></div>
@@ -1156,8 +1156,8 @@
               <div class="relative w-full max-w-[240px] aspect-[9/18] bg-gradient-to-br from-[#2a2a2a] via-[#1a1a1a] to-[#111] rounded-[2.5rem] p-[1.5%] shadow-[0_60px_120px_-30px_rgba(0,0,0,0.9)] border-x-[3px] border-zinc-700">
                 <div class="relative w-full h-full bg-black rounded-[2.2rem] p-[3%] overflow-hidden shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]">
                   <div class="absolute top-[3.5%] left-1/2 -translate-x-1/2 w-[32%] h-[2.4%] bg-[#050505] rounded-full z-20"></div>
-                  <div class="relative w-full h-full bg-black rounded-[1.8rem] overflow-hidden isolate transform-gpu" style="-webkit-mask-image: -webkit-radial-gradient(white, black);">
-                    <video preload="auto" src="/Images/web_dev/whatsapp_1_mobile.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black block pointer-events-none [clip-path:inset(0px_round_1.8rem)]"></video>
+                  <div class="absolute inset-0 bg-black rounded-[1.8rem] overflow-hidden isolate transform-gpu [clip-path:inset(0px_round_1.8rem)]" style="-webkit-mask-image: -webkit-radial-gradient(white, black);">
+                    <video preload="auto" src="/Images/web_dev/whatsapp_1_mobile.mp4" autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover bg-black block pointer-events-none [clip-path:inset(0px_round_1.8rem)]"></video>
                   </div>
                 </div>
                 <div class="absolute -left-[4px] top-[18%] w-[5px] h-[40px] bg-gradient-to-r from-[#444] to-[#222] rounded-l-md"></div>
@@ -2210,7 +2210,7 @@
 
   <!-- Close Button -->
   <button onclick="closeGuidelines()" class="fixed top-6 right-6 md:top-8 md:right-8 z-[210] w-10 h-10 md:w-12 md:h-12 bg-black/5 hover:bg-black/10 backdrop-blur-md flex items-center justify-center text-black transition-all group shadow-sm">
-    <span class="material-symbols-outlined transition-transform group-hover:rotate-90">close</span>
+    <span class="material-symbols-outlined transition-transform duration-500 group-hover:rotate-90">close</span>
   </button>
 
   <!-- Guidelines Content -->
@@ -2479,9 +2479,9 @@
   // ─── Shared helper: renders the iMac or iPhone mockup shell ──────────────
   function solutionMedia(mediaPath, type, isVideo = true) {
     const fitClass = 'object-cover bg-black';
-    const media = isVideo
-      ? `<video preload="auto" src="${mediaPath}" autoplay muted loop playsinline class="w-full h-full ${fitClass}"></video>`
-      : `<img src="${mediaPath}" class="w-full h-full ${fitClass}" / loading="lazy" decoding="async">`;
+    const media = mediaPath.endsWith('.mp4') 
+      ? `<video preload="auto" src="${mediaPath}" autoplay muted loop playsinline class="absolute inset-0 w-full h-full ${fitClass} [clip-path:inset(0px_round_1.8rem)]"></video>`
+      : `<img src="${mediaPath}" class="absolute inset-0 w-full h-full ${fitClass} [clip-path:inset(0px_round_1.8rem)]" loading="lazy" decoding="async">`;
 
     if (type === 'desktop') {
       return `
