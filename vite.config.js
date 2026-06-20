@@ -7,7 +7,6 @@ export default defineConfig({
       input: {
         main: resolve(process.cwd(), 'index.html'),
         contact: resolve(process.cwd(), 'contact.html'),
-        bennerGuidelines: resolve(process.cwd(), 'benner-guidelines.html'),
       },
     },
   },
