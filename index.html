@@ -304,10 +304,10 @@
       <div class="hero-marquee-wrapper w-full flex whitespace-nowrap overflow-hidden py-4 md:py-6 relative z-10">
         <div class="hero-marquee flex items-center min-w-max">
           <div class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-tight text-zinc-900 m-0 pr-12">
-            Creative design meets strategic development for brands that demand more than average. Freelance Graphic Designer India &nbsp;&nbsp;•&nbsp;&nbsp;
+            Creative design meets strategic thinking to build <span class="text-[#d8ff00] glow-text italic">brands that last</span> &nbsp;&nbsp;•&nbsp;&nbsp;
           </div>
           <div class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-tight text-zinc-900 m-0 pr-12" aria-hidden="true">
-            Creative design meets strategic development for brands that demand more than average. Freelance Graphic Designer India &nbsp;&nbsp;•&nbsp;&nbsp;
+            Creative design meets strategic thinking to build <span class="text-[#d8ff00] glow-text italic">brands that last</span> &nbsp;&nbsp;•&nbsp;&nbsp;
           </div>
         </div>
       </div>
@@ -321,10 +321,10 @@
       <div class="hero-marquee-wrapper absolute inset-0 w-full flex whitespace-nowrap overflow-hidden py-4 md:py-6 z-30 pointer-events-none cube-mask">
         <div class="hero-marquee flex items-center min-w-max rainbow-glow">
           <div class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-tight rainbow-text m-0 pr-12">
-            Creative design meets strategic development for brands that demand more than average. Freelance Graphic Designer India &nbsp;&nbsp;•&nbsp;&nbsp;
+            Creative design meets strategic thinking to build <span class="rainbow-text glow-text italic">brands that last</span> &nbsp;&nbsp;•&nbsp;&nbsp;
           </div>
           <div class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-tight rainbow-text m-0 pr-12" aria-hidden="true">
-            Creative design meets strategic development for brands that demand more than average. Freelance Graphic Designer India &nbsp;&nbsp;•&nbsp;&nbsp;
+            Creative design meets strategic thinking to build <span class="rainbow-text glow-text italic">brands that last</span> &nbsp;&nbsp;•&nbsp;&nbsp;
           </div>
         </div>
       </div>
@@ -1348,7 +1348,7 @@
     <div class="relative h-[100dvh] w-full flex flex-col md:flex-row items-center justify-center pt-20 md:pt-0">
 
       <!-- LEFT side: The 3D Cube -->
-      <div class="relative w-[70vw] h-[70vw] max-w-[400px] max-h-[400px] md:max-w-none md:max-h-none md:w-1/2 md:h-[650px] lg:h-[800px] flex items-center justify-center pointer-events-none md:pointer-events-auto z-20 order-1 mt-12 md:mt-0" id="rubiks-container">
+      <div class="relative w-[55vw] h-[55vw] max-w-[280px] max-h-[280px] md:w-1/2 md:max-w-[500px] md:max-h-[500px] flex items-center justify-center pointer-events-none md:pointer-events-auto z-20 order-1 mt-12 md:mt-0" id="rubiks-container">
       </div>
 
       <!-- RIGHT side: The Skills text -->
@@ -3060,6 +3060,22 @@ document.addEventListener('DOMContentLoaded', () => {
   // Smoothed GSAP cursor — longer duration = softer, more organic trailing feel
   const xTo = gsap.quickTo(customCursor, "x", { duration: 0.55, ease: "power4" });
   const yTo = gsap.quickTo(customCursor, "y", { duration: 0.55, ease: "power4" });
+  customCursor.classList.add('visible');
+  const darkSections = ['#services', '#mclaren', '#porsche'];
+  darkSections.forEach(selector => {
+    const section = document.querySelector(selector);
+    if (section) {
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top 50%',
+        end: 'bottom 50%',
+        onEnter: () => customCursor.classList.add('inverse'),
+        onLeave: () => customCursor.classList.remove('inverse'),
+        onEnterBack: () => customCursor.classList.add('inverse'),
+        onLeaveBack: () => customCursor.classList.remove('inverse')
+      });
+    }
+  });
 
   if (window.matchMedia('(pointer: fine)').matches) {
     window.addEventListener('mousemove', (e) => {
