@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
@@ -45,6 +48,9 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <!-- Lenis smooth scroll -->
 <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
 <script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
@@ -98,6 +104,204 @@
   @media (max-width: 1024px) {
     #scroll-pen-wrap { display: none !important; }
   }
+
+  /* Global Custom Cursor - Optimized for Performance */
+  @media (pointer: fine) {
+    body { cursor: none; }
+    a, button, [role="button"], input, select, textarea, .cursor-pointer { cursor: none !important; }
+  }
+  #custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    pointer-events: none;
+    z-index: 99999;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+    will-change: transform;
+    /* Width/height transitions use a spring-like cubic-bezier for organic feel */
+    transition:
+      width  0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+      height 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+      background-color 0.35s ease,
+      opacity 0.3s ease;
+  }
+  
+  @media (pointer: fine) {
+    #custom-cursor { opacity: 1; }
+  }
+  /* Variations */
+  #custom-cursor.view-mode,
+  #custom-cursor.scroll-mode {
+    width: 76px;
+    height: 76px;
+  }
+  #custom-cursor.magnetic-mode {
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: 1.5px solid rgba(255,255,255,0.6);
+  }
+  #custom-cursor span {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  #custom-cursor.view-mode span,
+  #custom-cursor.scroll-mode span {
+    opacity: 1;
+  }
+
+  .hero-marquee-wrapper {
+    cursor: none;
+  }
+  .stroke-text {
+    -webkit-text-stroke: 1px #18181b;
+    color: transparent;
+  }
+  :root {
+    --cube-size: clamp(140px, min(45vw, 50vh), 400px);
+  }
+  @media (min-width: 768px) {
+    :root {
+      --cube-size: clamp(300px, min(55vw, 75vh), 750px);
+    }
+  }
+  .rainbow-text {
+    background: linear-gradient(90deg, #ffea00, #ff9100, #ffea00, #ff9100, #ffea00);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: rainbow 3s linear infinite;
+  }
+  .rainbow-glow {
+    filter: drop-shadow(0 0 10px rgba(255, 234, 0, 0.6)) drop-shadow(0 0 20px rgba(255, 145, 0, 0.4));
+  }
+  @keyframes rainbow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: -200% 50%; }
+  }
+  .hero-marquee {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  .cube-mask {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-mask-image: url('Images/Copilot_20260615_130809.webp');
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-image: url('Images/Copilot_20260615_130809.webp');
+    mask-position: center;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: var(--cube-size) auto;
+    mask-size: var(--cube-size) auto;
+  }
+
+  /* Aggressively hide native video controls (Safari Low Power Mode overlays) */
+  video::-webkit-media-controls { display: none !important; }
+  video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+  video::-webkit-media-controls-play-button { display: none !important; }
+
+  /* Force pointer-events none on project videos */
+  .mockup-video { pointer-events: none; }
+
+  /* ─── Scroll-reveal baseline — elements start hidden ─────────────── */
+  .reveal-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── Nav backdrop glass polish ──────────────────────────────────── */
+  nav {
+    transition: backdrop-filter 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  /* ─── Card hover lift ────────────────────────────────────────────── */
+  .fade-enter-card {
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* ─── Section heading shimmer line ──────────────────────────────── */
+  .section-underline {
+    display: inline-block;
+    position: relative;
+  }
+  .section-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .section-underline:hover::after { width: 100%; }
+  
+  @media (max-width: 768px) {
+    #hero { padding-top: 60px; }
+    #scroll-pen-wrap { display: none !important; }
+
+    /* Tighten hero typography on small screens */
+    #hero-headline { font-size: clamp(2.2rem, 11vw, 4rem) !important; line-height: 1.0 !important; }
+    #hero p.hero-slide-right { font-size: 1rem !important; line-height: 1.6 !important; }
+    #hero .hero-slide-right a { font-size: 0.65rem !important; padding: 0.8rem 1.5rem !important; }
+
+    /* Section headings — prevent bleed on narrow screens */
+    h2.text-\[7rem\], h2.text-\[2\.5rem\] { font-size: clamp(2rem, 10vw, 3.5rem) !important; }
+
+    /* Cards: comfortable height on phones */
+    .fade-enter-card .relative.h-\[500px\] { height: 280px !important; }
+    .fade-enter-card .h-\[650px\] { height: 300px !important; }
+
+    /* About portrait — limit height on mobile */
+    #about .aspect-\[4\/5\] { aspect-ratio: 1/1 !important; }
+
+    /* Case study modal scrolling fix on iOS */
+    #case-study-modal { -webkit-overflow-scrolling: touch; overflow-y: scroll; }
+    #case-study-content { -webkit-overflow-scrolling: touch; overflow-y: scroll; }
+
+    /* Toolkit grid: 2 columns on mobile */
+    #about .grid-cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+
+    /* Mockup sizing: ensure iPhone fits on screen */
+    .max-w-\[280px\] { max-width: 180px !important; }
+
+    /* Touch targets: minimum 44px */
+    button, a { min-height: 44px; }
+    nav a { min-height: 44px; display: flex; align-items: center; }
+  }
+
+  /* Very small screens (iPhone SE, 375px) */
+  @media (max-width: 390px) {
+    #hero-headline { font-size: clamp(1.9rem, 10vw, 2.5rem) !important; }
+    .fade-enter-card .relative.h-\[500px\] { height: 240px !important; }
+  }
 </style>
 <!-- Lenis init for contact page -->
 <script>
@@ -118,55 +322,75 @@
 <body class="bg-[#fdfdfd] text-zinc-900 selection:bg-primary selection:text-on-primary overflow-x-hidden w-full relative">
 
 <!-- TopNavBar -->
-<nav class="fixed top-8 left-1/2 -translate-x-1/2 z-[100] flex items-center justify-between px-6 py-3 bg-white/80 backdrop-blur-xl border border-white/50 shadow-2xl w-[95%] md:w-max md:min-w-[800px]">
+<nav class="absolute md:fixed top-6 md:top-8 left-0 md:left-1/2 md:-translate-x-1/2 z-[100] flex items-center justify-between px-6 md:px-6 py-3 md:bg-white/80 md:backdrop-blur-xl md:border md:border-white/50 md:shadow-2xl w-full md:w-max md:min-w-[800px] bg-transparent pointer-events-none">
   <!-- Logo -->
-  <a href="index.html" class="text-lg md:text-xl font-bold tracking-tighter text-black z-10">addesign studio</a>
+  <a href="index.html" id="mobile-logo" class="text-lg md:text-xl font-bold tracking-tighter text-black z-10 pointer-events-auto">addesign studio</a>
   
   <!-- Desktop Links (Absolutely Centered) -->
-  <div class="hidden md:flex items-center space-x-8 absolute left-1/2 -translate-x-1/2">
-    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-black font-bold hover:opacity-50 transition-opacity duration-300" href="index.html">Home</a>
+  <div class="hidden md:flex items-center space-x-8 absolute left-1/2 -translate-x-1/2 pointer-events-auto">
+    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-900 border-b border-black pb-0.5 transition-colors duration-300" href="index.html">Home</a>
 
+    
     <!-- Projects Dropdown -->
     <div class="relative group">
-      <button class="bg-transparent text-black font-bold hover:opacity-50 px-0 py-2 font-manrope text-[10px] tracking-[0.2em] uppercase transition-opacity duration-300 flex items-center gap-1 cursor-pointer">
+      <button class="bg-transparent text-zinc-500 hover:text-zinc-900 px-0 py-2 font-manrope text-[10px] tracking-[0.2em] uppercase transition-colors duration-300 flex items-center gap-1 cursor-pointer">
         Projects
         <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover:rotate-180">expand_more</span>
       </button>
-      <div class="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-48 bg-white border border-black shadow-2xl opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 flex flex-col p-2 z-[101]">
-        <a href="index.html#visual-identity" class="px-4 py-3 text-[9px] uppercase tracking-widest text-black font-bold hover:opacity-50 transition-opacity text-left border-b border-black/10 last:border-0">Branding</a>
-        <a href="index.html#work" class="px-4 py-3 text-[9px] uppercase tracking-widest text-black font-bold hover:opacity-50 transition-opacity text-left border-b border-black/10 last:border-0">Web Design</a>
-        <a href="index.html#mclaren" class="px-4 py-3 text-[9px] uppercase tracking-widest text-black font-bold hover:opacity-50 transition-opacity text-left border-b border-black/10 last:border-0">McLaren</a>
-        <a href="index.html#porsche" class="px-4 py-3 text-[9px] uppercase tracking-widest text-black font-bold hover:opacity-50 transition-opacity text-left border-b border-black/10 last:border-0">Porsche</a>
+      <!-- Dropdown Menu -->
+      <div class="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-48 bg-white border border-zinc-100 shadow-2xl opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 flex flex-col p-2 z-[101]">
+        <a href="index.html#branding" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-black hover:bg-zinc-50 transition-colors text-left border-b border-zinc-50 last:border-0">Branding</a>
+        <a href="index.html#posters" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-black hover:bg-zinc-50 transition-colors text-left border-b border-zinc-50 last:border-0">Posters</a>
+        <a href="index.html#mclaren" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-black hover:bg-zinc-50 transition-colors text-left border-b border-zinc-50 last:border-0">Illustration</a>
+        <a href="index.html#work" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-black hover:bg-zinc-50 transition-colors text-left border-b border-zinc-50 last:border-0">Web Development</a>
       </div>
     </div>
-    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-black font-bold hover:opacity-50 transition-opacity duration-300" href="index.html#services">Services</a>
-    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-black font-bold hover:opacity-50 transition-opacity duration-300" href="index.html#about">About</a>
-    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-black font-bold border-b-2 border-black pb-0.5 transition-opacity duration-300" href="contact.html">Contact</a>
+    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="index.html#services">Services</a>
+    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="index.html#about">About</a>
+    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="contact.html">Contact</a>
   </div>
 
   <!-- CTA -->
-  <div class="hidden md:flex items-center z-10">
-    <a href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener" class="bg-black text-white px-5 py-2 font-manrope text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-zinc-800 transition-colors duration-500">
+  <div class="hidden md:flex items-center z-10 pointer-events-auto">
+    <a href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener" class="bg-black text-white px-5 py-2 font-manrope text-[10px] tracking-[0.2em] uppercase hover:bg-zinc-800 transition-colors duration-500">
       Get in Touch
     </a>
   </div>
 
-  <!-- Mobile hamburger -->
-  <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Open menu">
-    <span class="block w-6 h-0.5 bg-black transition-all duration-300" id="ham-1"></span>
-    <span class="block w-6 h-0.5 bg-black transition-all duration-300" id="ham-2"></span>
-    <span class="block w-6 h-0.5 bg-black transition-all duration-300" id="ham-3"></span>
-  </button>
+  <!-- Floating Mobile Menu -->
+  <div class="md:hidden fixed top-6 right-6 z-[120] flex flex-col items-end pointer-events-none">
+    <!-- Button with Difference Blend -->
+    <button id="mobile-dropdown-btn" class="flex items-center gap-2 px-4 py-2 rounded-full font-manrope text-[10px] tracking-widest uppercase font-bold transition-all duration-300 shadow-xl pointer-events-auto" style="mix-blend-mode: difference; background-color: #fff; color: #000;">
+      <span>Menu</span>
+      <span class="material-symbols-outlined text-[14px] transition-transform duration-300" id="mobile-dropdown-arrow">expand_more</span>
+    </button>
+
+    <!-- Dropdown Card -->
+    <div id="mobile-dropdown-menu" class="mt-4 w-[85vw] max-w-[280px] bg-white/95 backdrop-blur-xl border border-zinc-100 shadow-2xl rounded-3xl opacity-0 invisible -translate-y-4 transition-all duration-[400ms] ease-[cubic-bezier(0.19,1,0.22,1)] flex flex-col overflow-hidden pointer-events-auto" style="mix-blend-mode: normal;">
+      <a href="index.html" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">Home</a>
+      
+      <!-- Projects Section -->
+      <div class="px-6 py-3 border-b border-zinc-100">
+        <span class="text-[9px] uppercase tracking-[0.2em] text-zinc-400 font-bold mb-3 block">Projects</span>
+        <div class="flex flex-col pl-3 border-l border-zinc-200 gap-2">
+          <a href="index.html#branding" class="py-1 text-[10px] uppercase tracking-widest text-zinc-500 hover:text-black mobile-link">Branding</a>
+          <a href="index.html#posters" class="py-1 text-[10px] uppercase tracking-widest text-zinc-500 hover:text-black mobile-link">Posters</a>
+          <a href="index.html#mclaren" class="py-1 text-[10px] uppercase tracking-widest text-zinc-500 hover:text-black mobile-link">Illustration</a>
+          <a href="index.html#work" class="py-1 text-[10px] uppercase tracking-widest text-zinc-500 hover:text-black mobile-link">Web Development</a>
+        </div>
+      </div>
+
+      <a href="index.html#services" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">Services</a>
+      <a href="index.html#about" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">About</a>
+      <a href="contact.html" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">Contact</a>
+      <a class="px-6 py-5 bg-black text-white text-center text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-zinc-800 transition-colors" href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener">
+        Get in Touch
+      </a>
+    </div>
+  </div>
 </nav>
 
-<!-- Mobile Menu -->
-<div id="mobile-menu" class="fixed top-24 left-0 w-full z-40 bg-white shadow-2xl px-6 py-0 flex flex-col gap-0 transition-all duration-400">
-  <a class="py-4 border-b border-black/10 font-manrope text-sm tracking-[0.1em] uppercase text-black font-bold hover:opacity-50" href="index.html">Home</a>
-  <a class="py-4 border-b border-black/10 font-manrope text-sm tracking-[0.1em] uppercase text-black font-bold hover:opacity-50" href="index.html#services">Services</a>
-  <a class="py-4 border-b border-black/10 font-manrope text-sm tracking-[0.1em] uppercase text-black font-bold hover:opacity-50" href="index.html#about">About</a>
-  <a class="py-4 border-b border-black/10 font-manrope text-sm tracking-[0.1em] uppercase text-black font-black" href="contact.html">Contact</a>
-  <a class="py-6 mt-4 bg-black text-white text-center font-manrope text-sm tracking-[0.2em] uppercase font-bold" href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener">Get in Touch</a>
-</div>
+
 
 <main class="pt-32 pb-24 px-6 md:px-24 min-h-screen">
   <div class="max-w-7xl mx-auto">
@@ -394,4 +618,5 @@
     });
   });
 </script>
+<div id="custom-cursor"><span></span></div>
 </body></html>
