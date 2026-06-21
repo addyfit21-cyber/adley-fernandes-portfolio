@@ -1479,9 +1479,9 @@
     </div>
   </section>
 
-  <!-- Capabilities & Services - Sticky Scroll -->
-  <section id="services" class="bg-zinc-950 text-white border-t border-white/10 relative" style="height: 800vh; min-height: 800vh;">
-    <div class="sticky top-0 h-[100dvh] w-full overflow-hidden flex flex-col md:flex-row items-center justify-center pt-20 md:pt-0">
+  <!-- Capabilities & Services - GSAP Pin -->
+  <section id="services" class="bg-zinc-950 text-white border-t border-white/10 relative w-full overflow-hidden">
+    <div class="relative h-[100dvh] w-full flex flex-col md:flex-row items-center justify-center pt-20 md:pt-0">
 
       <!-- LEFT side: The 3D Cube -->
       <div class="relative w-[70vw] h-[70vw] max-w-[400px] max-h-[400px] md:max-w-none md:max-h-none md:w-1/2 md:h-[650px] lg:h-[800px] flex items-center justify-center pointer-events-none md:pointer-events-auto z-20 order-1 mt-12 md:mt-0" id="rubiks-container">
@@ -1697,8 +1697,10 @@ for (let x = 0; x < 3; x++) {
           scrollTrigger: {
             trigger: '#services',
             start: 'top top',
-            end: 'bottom bottom',
+            end: '+=500%', // 5 sections = 500% of viewport height
             scrub: 1.5,
+            pin: true,
+            anticipatePin: 1,
             invalidateOnRefresh: true
           }
         });
