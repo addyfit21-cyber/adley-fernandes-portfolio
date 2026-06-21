@@ -130,7 +130,7 @@
     to   { opacity: 1; }
   }
 
-  /* Global Custom Cursor - Optimized for Performance */
+  /* Global Custom Cursor - Optimized for Performance and Cross-Browser */
   @media (pointer: fine) {
     body { cursor: none; }
     a, button, [role="button"], input, select, textarea, .cursor-pointer { cursor: none !important; }
@@ -141,8 +141,8 @@
     left: 0;
     width: 12px;
     height: 12px;
-    background: #fff;
-    color: #000;
+    background: #000;
+    color: #fff;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -155,177 +155,41 @@
     z-index: 99999;
     opacity: 0;
     transform: translate(-50%, -50%);
-    mix-blend-mode: difference;
     will-change: transform;
-    /* Width/height transitions use a spring-like cubic-bezier for organic feel */
-    transition:
-      width  0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
-      height 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
-      background-color 0.35s ease,
-      opacity 0.3s ease;
+    transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                height 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                background-color 0.3s ease,
+                color 0.3s ease;
   }
+  #custom-cursor.inverse {
+    background: #fff;
+    color: #000;
+  }
+  #custom-cursor.visible { opacity: 1; }
   
-  @media (pointer: fine) {
-    #custom-cursor { opacity: 1; }
-  }
-  /* Variations */
   #custom-cursor.view-mode,
   #custom-cursor.scroll-mode {
-    width: 76px;
-    height: 76px;
+    width: 64px;
+    height: 64px;
   }
   #custom-cursor.magnetic-mode {
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     background: transparent;
-    border: 1.5px solid rgba(255,255,255,0.6);
+    border: 1.5px solid rgba(0,0,0,0.2);
+  }
+  #custom-cursor.inverse.magnetic-mode {
+    border: 1.5px solid rgba(255,255,255,0.4);
   }
   #custom-cursor span {
     opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
+    transform: scale(0.8);
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
   #custom-cursor.view-mode span,
   #custom-cursor.scroll-mode span {
     opacity: 1;
-  }
-
-  .hero-marquee-wrapper {
-    cursor: none;
-  }
-  .stroke-text {
-    -webkit-text-stroke: 1px #18181b;
-    color: transparent;
-  }
-  :root {
-    --cube-size: clamp(140px, min(45vw, 50vh), 400px);
-  }
-  @media (min-width: 768px) {
-    :root {
-      --cube-size: clamp(300px, min(55vw, 75vh), 750px);
-    }
-  }
-  .rainbow-text {
-    background: linear-gradient(90deg, #ffea00, #ff9100, #ffea00, #ff9100, #ffea00);
-    background-size: 200% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    animation: rainbow 3s linear infinite;
-  }
-  .rainbow-glow {
-    filter: drop-shadow(0 0 10px rgba(255, 234, 0, 0.6)) drop-shadow(0 0 20px rgba(255, 145, 0, 0.4));
-  }
-  @keyframes rainbow {
-    0% { background-position: 0% 50%; }
-    100% { background-position: -200% 50%; }
-  }
-  .hero-marquee {
-    will-change: transform;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-  }
-  .cube-mask {
-    transform: translateZ(0);
-    will-change: transform;
-    backface-visibility: hidden;
-    -webkit-mask-image: url('Images/Copilot_20260615_130809.webp');
-    -webkit-mask-position: center;
-    -webkit-mask-repeat: no-repeat;
-    mask-image: url('Images/Copilot_20260615_130809.webp');
-    mask-position: center;
-    mask-repeat: no-repeat;
-    -webkit-mask-size: var(--cube-size) auto;
-    mask-size: var(--cube-size) auto;
-  }
-
-  /* Aggressively hide native video controls (Safari Low Power Mode overlays) */
-  video::-webkit-media-controls { display: none !important; }
-  video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
-  video::-webkit-media-controls-play-button { display: none !important; }
-
-  /* Force pointer-events none on project videos */
-  .mockup-video { pointer-events: none; }
-
-  /* ─── Scroll-reveal baseline — elements start hidden ─────────────── */
-  .reveal-up {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .reveal-up.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ─── Nav backdrop glass polish ──────────────────────────────────── */
-  nav {
-    transition: backdrop-filter 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease;
-  }
-
-  /* ─── Card hover lift ────────────────────────────────────────────── */
-  .fade-enter-card {
-    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-                box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  /* ─── Section heading shimmer line ──────────────────────────────── */
-  .section-underline {
-    display: inline-block;
-    position: relative;
-  }
-  .section-underline::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: currentColor;
-    transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .section-underline:hover::after { width: 100%; }
-  
-  @media (max-width: 768px) {
-    #hero { padding-top: 60px; }
-    #scroll-pen-wrap { display: none !important; }
-
-    /* Tighten hero typography on small screens */
-    #hero-headline { font-size: clamp(2.2rem, 11vw, 4rem) !important; line-height: 1.0 !important; }
-    #hero p.hero-slide-right { font-size: 1rem !important; line-height: 1.6 !important; }
-    #hero .hero-slide-right a { font-size: 0.65rem !important; padding: 0.8rem 1.5rem !important; }
-
-    /* Section headings — prevent bleed on narrow screens */
-    h2.text-\[7rem\], h2.text-\[2\.5rem\] { font-size: clamp(2rem, 10vw, 3.5rem) !important; }
-
-    /* Cards: comfortable height on phones */
-    .fade-enter-card .relative.h-\[500px\] { height: 280px !important; }
-    .fade-enter-card .h-\[650px\] { height: 300px !important; }
-
-    /* About portrait — limit height on mobile */
-    #about .aspect-\[4\/5\] { aspect-ratio: 1/1 !important; }
-
-    /* Case study modal scrolling fix on iOS */
-    #case-study-modal { -webkit-overflow-scrolling: touch; overflow-y: scroll; }
-    #case-study-content { -webkit-overflow-scrolling: touch; overflow-y: scroll; }
-
-    /* Toolkit grid: 2 columns on mobile */
-    #about .grid-cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
-
-    /* Mockup sizing: ensure iPhone fits on screen */
-    .max-w-\[280px\] { max-width: 180px !important; }
-
-    /* Touch targets: minimum 44px */
-    button, a { min-height: 44px; }
-    nav a { min-height: 44px; display: flex; align-items: center; }
-  }
-
-  /* Very small screens (iPhone SE, 375px) */
-  @media (max-width: 390px) {
-    #hero-headline { font-size: clamp(1.9rem, 10vw, 2.5rem) !important; }
-    .fade-enter-card .relative.h-\[500px\] { height: 240px !important; }
+    transform: scale(1);
   }
 </style>
 </head>
