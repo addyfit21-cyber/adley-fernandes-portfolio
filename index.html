@@ -3,12 +3,55 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>addesign studio | Design & Development Studio</title>
-<meta name="description" content="addesign studio bridges architectural precision and digital performance. Bespoke website design, branding, and art direction for brands that demand a higher standard."/>
+<title>Adley Fernandes | Graphic Designer & Web Designer</title>
+<meta name="description" content="Freelance graphic designer & web designer specializing in brand identity, album artwork, poster design, UI/UX, and web development. View my portfolio."/>
+<link rel="canonical" href="https://adleyportfolio.in/" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://adleyportfolio.in/" />
+<meta property="og:title" content="Adley Fernandes | Graphic Designer & Web Designer" />
+<meta property="og:description" content="Freelance graphic designer & web designer specializing in brand identity, album artwork, poster design, UI/UX, and web development. View my portfolio." />
+<meta property="og:image" content="https://adleyportfolio.in/Images/profile-portrait.webp" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://adleyportfolio.in/" />
+<meta property="twitter:title" content="Adley Fernandes | Graphic Designer & Web Designer" />
+<meta property="twitter:description" content="Freelance graphic designer & web designer specializing in brand identity, album artwork, poster design, UI/UX, and web development. View my portfolio." />
+<meta property="twitter:image" content="https://adleyportfolio.in/Images/profile-portrait.webp" />
+
+<!-- JSON-LD Schema Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "name": "Adley Fernandes",
+      "url": "https://adleyportfolio.in/",
+      "jobTitle": "Graphic Designer & Web Designer",
+      "image": "https://adleyportfolio.in/Images/profile-portrait.webp",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Mumbai",
+        "addressCountry": "India"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "url": "https://adleyportfolio.in/",
+      "name": "Adley Fernandes Portfolio",
+      "description": "Freelance graphic designer & web designer specializing in brand identity, album artwork, poster design, UI/UX, and web development."
+    }
+  ]
+}
+</script>
 <!-- Preconnect first — must come before any external resource requests -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
 
 <!-- Google Fonts (DM Sans for headings, Manrope for body text) & Material Symbols -->
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800;900&family=Manrope:wght@300;400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -27,6 +70,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+
+<!-- Lenis smooth scroll —  GPU-composited, frame-synced momentum scrolling -->
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
 
 
 <script id="tailwind-config">
@@ -50,20 +96,38 @@
   }
 </script>
 <style>
-  html { scroll-behavior: smooth; }
+  /* Lenis handles scrolling — disable browser native smooth scroll to avoid conflicts */
+  html { scroll-behavior: auto; }
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
   body { font-family: 'Manrope', sans-serif; }
   h1, h2, h3, h4, h5, h6 { font-family: 'DM Sans', sans-serif; }
 
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: #f9f9f9; }
-  ::-webkit-scrollbar-thumb { background: #000000; }
+  ::-webkit-scrollbar-thumb { background: #000000; border-radius: 3px; }
 
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
   .fade-enter-card {
     will-change: transform, opacity;
+  }
+
+  /* ─── Global Transition Polish ──────────────────────────────────── */
+  /* Smooth hover transitions for all interactive elements */
+  a, button {
+    transition-property: color, background-color, border-color, opacity, transform, box-shadow;
+    transition-duration: 0.35s;
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  /* ─── Page-level visibility fade-in (eliminates FOUC) ───────────── */
+  body {
+    animation: page-reveal 0.5s ease both;
+  }
+  @keyframes page-reveal {
+    from { opacity: 0; }
+    to   { opacity: 1; }
   }
 
   /* Global Custom Cursor - Optimized for Performance */
@@ -75,25 +139,30 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 14px;
-    height: 14px;
-    background: #fff; /* Solid white */
-    color: #000; /* Black text for when it expands */
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    color: #000;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     pointer-events: none;
     z-index: 99999;
     opacity: 0;
     transform: translate(-50%, -50%);
-    mix-blend-mode: difference; /* Restored the cool inversion effect */
-    will-change: transform, width, height;
-    transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1), height 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s ease;
+    mix-blend-mode: difference;
+    will-change: transform;
+    /* Width/height transitions use a spring-like cubic-bezier for organic feel */
+    transition:
+      width  0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+      height 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+      background-color 0.35s ease,
+      opacity 0.3s ease;
   }
   
   @media (pointer: fine) {
@@ -102,14 +171,14 @@
   /* Variations */
   #custom-cursor.view-mode,
   #custom-cursor.scroll-mode {
-    width: 80px;
-    height: 80px;
+    width: 76px;
+    height: 76px;
   }
   #custom-cursor.magnetic-mode {
-    width: 50px;
-    height: 50px;
+    width: 44px;
+    height: 44px;
     background: transparent;
-    border: 1px solid rgba(255,255,255,0.5);
+    border: 1.5px solid rgba(255,255,255,0.6);
   }
   #custom-cursor span {
     opacity: 0;
@@ -120,11 +189,7 @@
   #custom-cursor.scroll-mode span {
     opacity: 1;
   }
-  .hero-marquee {
-    will-change: transform;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-  }
+
   .hero-marquee-wrapper {
     cursor: none;
   }
@@ -164,7 +229,7 @@
   .cube-mask {
     transform: translateZ(0);
     will-change: transform;
-    backface-visibility: hidden; /* mask-accel */
+    backface-visibility: hidden;
     -webkit-mask-image: url('Images/Copilot_20260615_130809.webp');
     -webkit-mask-position: center;
     -webkit-mask-repeat: no-repeat;
@@ -182,6 +247,46 @@
 
   /* Force pointer-events none on project videos */
   .mockup-video { pointer-events: none; }
+
+  /* ─── Scroll-reveal baseline — elements start hidden ─────────────── */
+  .reveal-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── Nav backdrop glass polish ──────────────────────────────────── */
+  nav {
+    transition: backdrop-filter 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  /* ─── Card hover lift ────────────────────────────────────────────── */
+  .fade-enter-card {
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* ─── Section heading shimmer line ──────────────────────────────── */
+  .section-underline {
+    display: inline-block;
+    position: relative;
+  }
+  .section-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .section-underline:hover::after { width: 100%; }
   
   @media (max-width: 768px) {
     #hero { padding-top: 60px; }
@@ -284,15 +389,15 @@
   </div>
 
   <!-- Floating Mobile Menu -->
-  <div class="md:hidden fixed top-6 right-6 z-[120] flex flex-col items-end pointer-events-auto">
+  <div class="md:hidden fixed top-6 right-6 z-[120] flex flex-col items-end pointer-events-none">
     <!-- Button with Difference Blend -->
-    <button id="mobile-dropdown-btn" class="flex items-center gap-2 px-4 py-2 rounded-full font-manrope text-[10px] tracking-widest uppercase font-bold transition-all duration-300 shadow-xl" style="mix-blend-mode: difference; background-color: #fff; color: #000;">
+    <button id="mobile-dropdown-btn" class="flex items-center gap-2 px-4 py-2 rounded-full font-manrope text-[10px] tracking-widest uppercase font-bold transition-all duration-300 shadow-xl pointer-events-auto" style="mix-blend-mode: difference; background-color: #fff; color: #000;">
       <span>Menu</span>
       <span class="material-symbols-outlined text-[14px] transition-transform duration-300" id="mobile-dropdown-arrow">expand_more</span>
     </button>
 
     <!-- Dropdown Card -->
-    <div id="mobile-dropdown-menu" class="mt-4 w-[85vw] max-w-[280px] bg-white/95 backdrop-blur-xl border border-zinc-100 shadow-2xl rounded-3xl opacity-0 invisible -translate-y-4 transition-all duration-[400ms] ease-[cubic-bezier(0.19,1,0.22,1)] flex flex-col overflow-hidden" style="mix-blend-mode: normal;">
+    <div id="mobile-dropdown-menu" class="mt-4 w-[85vw] max-w-[280px] bg-white/95 backdrop-blur-xl border border-zinc-100 shadow-2xl rounded-3xl opacity-0 invisible -translate-y-4 transition-all duration-[400ms] ease-[cubic-bezier(0.19,1,0.22,1)] flex flex-col overflow-hidden pointer-events-auto" style="mix-blend-mode: normal;">
       <a href="index.html" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">Home</a>
       
       <!-- Projects Section -->
@@ -323,9 +428,9 @@
   <!-- Hero Section -->
   <section id="hero" class="w-full min-h-[100svh] flex flex-col justify-end md:justify-center border-b border-zinc-100 overflow-hidden relative pt-32 pb-24 md:pb-20">
 
-    <!-- Overline -->
+    <!-- Overline (H1 for SEO) -->
     <div class="absolute top-32 md:static w-full px-6 md:px-12 lg:px-24 z-20">
-      <p class="hero-slide-right relative z-10 text-sm md:text-xs md:text-sm md:tracking-[0.3em] md:uppercase text-zinc-500 mb-0 md:mb-8 text-left">Creative Studio — 2024</p>
+      <h1 class="hero-slide-right relative z-10 text-sm md:text-xs md:tracking-[0.3em] md:uppercase text-zinc-500 mb-0 md:mb-8 text-left">Graphic Designer & Web Designer</h1>
     </div>
 
     <!-- Marquee & Cube Container (The Sandwich) -->
@@ -334,12 +439,12 @@
       <!-- 1. BACK TEXT (Solid) -->
       <div class="hero-marquee-wrapper w-full flex whitespace-nowrap overflow-hidden py-4 md:py-6 relative z-10">
         <div class="hero-marquee flex items-center min-w-max">
-          <h1 class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-[-0.04em] text-zinc-900 m-0 pr-12">
-            Creative design meets strategic development for brands that demand more than average. •
-          </h1>
-          <h1 class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-[-0.04em] text-zinc-900 m-0 pr-12" aria-hidden="true">
-            Creative design meets strategic development for brands that demand more than average. •
-          </h1>
+          <div class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-[-0.04em] text-zinc-900 m-0 pr-12">
+            Creative design meets strategic development for brands that demand more than average. Freelance Graphic Designer India •
+          </div>
+          <div class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-[-0.04em] text-zinc-900 m-0 pr-12" aria-hidden="true">
+            Creative design meets strategic development for brands that demand more than average. Freelance Graphic Designer India •
+          </div>
         </div>
       </div>
 
@@ -351,12 +456,12 @@
       <!-- 3. FRONT TEXT (Glowing Rainbow Mask) -->
       <div class="hero-marquee-wrapper absolute inset-0 w-full flex whitespace-nowrap overflow-hidden py-4 md:py-6 z-30 pointer-events-none cube-mask">
         <div class="hero-marquee flex items-center min-w-max rainbow-glow">
-          <h1 class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-[-0.04em] rainbow-text m-0 pr-12">
-            Creative design meets strategic development for brands that demand more than average. •
-          </h1>
-          <h1 class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-[-0.04em] rainbow-text m-0 pr-12" aria-hidden="true">
-            Creative design meets strategic development for brands that demand more than average. •
-          </h1>
+          <div class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-[-0.04em] rainbow-text m-0 pr-12">
+            Creative design meets strategic development for brands that demand more than average. Freelance Graphic Designer India •
+          </div>
+          <div class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-[-0.04em] rainbow-text m-0 pr-12" aria-hidden="true">
+            Creative design meets strategic development for brands that demand more than average. Freelance Graphic Designer India •
+          </div>
         </div>
       </div>
 
@@ -391,17 +496,18 @@
       <div class="lg:col-span-7">
         <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-400 font-bold mb-8 block">My Story</span>
         <h2 class="text-[clamp(2.5rem,6vw,5.5rem)] font-bold tracking-tighter leading-none text-zinc-900 mb-12">
+          <span class="block text-2xl mb-2 text-zinc-500">About Me</span>
           From sketching<br/>to screens.
         </h2>
         <div class="space-y-8 max-w-2xl">
           <p class="text-xl md:text-2xl font-light text-zinc-600 leading-relaxed">
-            I’ve always loved making things look good. Even when I was younger, I naturally noticed <span class="text-zinc-900 font-medium">shapes, balance, and how things fit together</span> before I even knew what graphic design was.
+            I’ve always loved making things look good. As a <span class="text-zinc-900 font-medium">freelance designer based in Mumbai</span>, I naturally notice shapes, balance, and how things fit together to create engaging digital experiences.
           </p>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 pt-6 md:pt-8">
             <div>
               <h3 class="text-xs md:text-sm tracking-widest uppercase font-bold text-zinc-900 mb-4">How I started</h3>
               <p class="text-sm text-zinc-500 leading-relaxed">
-                That natural curiosity turned into a real career. Over the past two years, I’ve worked as a freelance sketch artist, graphic designer, and web developer. I take my love for art and turn it into working websites and brand designs.
+                That natural curiosity turned into a real career. Over the past two years, I’ve worked as a freelance graphic designer and web developer in India. I take my love for art and turn it into working websites and brand designs.
               </p>
             </div>
             <div>
@@ -1376,61 +1482,62 @@
   <!-- Capabilities & Services - Sticky Scroll -->
   <section id="services" class="bg-zinc-950 text-white border-t border-white/10 relative h-[800vh]">
     <div class="sticky top-0 h-[100dvh] w-full overflow-hidden flex flex-col md:flex-row items-center justify-center pt-20 md:pt-0">
-      
-      <!-- Top/Right side: The 3D Cube -->
-      <div class="relative w-72 h-72 md:w-1/2 md:h-full flex items-center justify-center pointer-events-none md:pointer-events-auto z-20 mb-4 md:mb-0" id="rubiks-container">
-        <!-- Three.js Canvas injected here -->
-      </div>
 
-      <!-- Bottom/Left side: The Skills (Absolute Stacking) -->
-      <div class="w-full md:w-1/2 px-6 md:px-24 flex flex-col justify-start md:justify-center relative z-10 h-[350px] md:h-full mt-8 md:mt-0">
-        <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-8 block absolute -top-12 md:top-32 left-6 md:left-24">Services</span>
+      <!-- LEFT side: The Skills text -->
+      <div class="w-full md:w-1/2 px-6 md:px-24 flex flex-col justify-center relative z-10 flex-1 md:h-full md:mt-0 order-2 md:order-1 pb-10 md:pb-0">
+        <h2 class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-6 md:mb-8 block absolute top-0 md:top-32 left-6 md:left-24 m-0 p-0 leading-none">Services</h2>
         
         <div class="relative w-full h-full flex items-start md:items-center">
           
           <!-- Item 0: What I Do -->
-          <div class="skill-item absolute inset-0 flex flex-col justify-start md:justify-center opacity-100 translate-y-0">
-            <h2 class="text-[clamp(3rem,8vw,8rem)] font-bold tracking-tighter leading-none mb-4 md:mb-6 text-white">What I do.</h2>
-            <p class="text-lg md:text-xl text-zinc-400 leading-relaxed max-w-xl">
+          <div class="skill-item absolute inset-0 flex flex-col justify-start md:justify-center opacity-100 translate-y-0 pt-10 md:pt-0">
+            <h2 class="text-[2.5rem] md:text-[clamp(3rem,8vw,8rem)] font-bold tracking-tighter leading-none mb-4 md:mb-6 text-white">What I do.</h2>
+            <p class="text-sm md:text-xl text-zinc-400 leading-relaxed max-w-xl">
               I provide professional web design, development, and graphic design services to help your business stand out and grow online.
             </p>
           </div>
 
           <!-- Item 1: Brand Identity Design -->
-          <div class="skill-item absolute inset-0 flex flex-col justify-start md:justify-center opacity-0 translate-y-12">
-            <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-4 block">01 / Skill</span>
-            <h2 class="text-[3rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-[0.9] text-white">Brand Identity<br/>Design</h2>
+          <div class="skill-item absolute inset-0 flex flex-col justify-start md:justify-center opacity-0 translate-y-12 pt-10 md:pt-0">
+            <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-3 md:mb-4 block">01 / Skill</span>
+            <h2 class="text-[2.2rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-[0.9] text-white">Brand Identity<br/>Design</h2>
           </div>
 
           <!-- Item 2: Web Design & Development -->
-          <div class="skill-item absolute inset-0 flex flex-col justify-start md:justify-center opacity-0 translate-y-12">
-            <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-4 block">02 / Skill</span>
-            <h2 class="text-[2.5rem] sm:text-[3.5rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-[0.9] text-white">Web Design &amp;<br/>Development</h2>
+          <div class="skill-item absolute inset-0 flex flex-col justify-start md:justify-center opacity-0 translate-y-12 pt-10 md:pt-0">
+            <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-3 md:mb-4 block">02 / Skill</span>
+            <h2 class="text-[2rem] sm:text-[3.5rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-[0.9] text-white">Web Design &amp;<br/>Development</h2>
           </div>
 
           <!-- Item 3: UI/UX Design -->
-          <div class="skill-item absolute inset-0 flex flex-col justify-start md:justify-center opacity-0 translate-y-12">
-            <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-4 block">03 / Skill</span>
-            <h2 class="text-[3rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-[0.9] text-white">UI/UX<br/>Design</h2>
+          <div class="skill-item absolute inset-0 flex flex-col justify-start md:justify-center opacity-0 translate-y-12 pt-10 md:pt-0">
+            <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-3 md:mb-4 block">03 / Skill</span>
+            <h2 class="text-[2.5rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-[0.9] text-white">UI/UX<br/>Design</h2>
           </div>
 
-          <!-- Item 4: Marketing & Content Design -->
-          <div class="skill-item absolute inset-0 flex flex-col justify-start md:justify-center opacity-0 translate-y-12">
-            <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-4 block">04 / Skill</span>
-            <h2 class="text-[2.5rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-[0.9] text-white">Marketing &amp;<br/>Content Design</h2>
+          <!-- Item 4: Poster Design -->
+          <div class="skill-item absolute inset-0 flex flex-col justify-start md:justify-center opacity-0 translate-y-12 pt-10 md:pt-0">
+            <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-3 md:mb-4 block">04 / Skill</span>
+            <h2 class="text-[2rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-[0.9] text-white">Poster<br/>Design</h2>
           </div>
 
-          <!-- Item 5: Creative Direction -->
-          <div class="skill-item absolute inset-0 flex flex-col justify-start md:justify-center opacity-0 translate-y-12">
-            <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-4 block">05 / Skill</span>
-            <h2 class="text-[3rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-[0.9] text-white">Creative<br/>Direction</h2>
+          <!-- Item 5: Album Artwork Design -->
+          <div class="skill-item absolute inset-0 flex flex-col justify-start md:justify-center opacity-0 translate-y-12 pt-10 md:pt-0">
+            <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-3 md:mb-4 block">05 / Skill</span>
+            <h2 class="text-[2.2rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-[0.9] text-white">Album Artwork<br/>Design</h2>
           </div>
 
         </div>
       </div>
+
+      <!-- RIGHT side: The 3D Cube -->
+      <div class="relative w-[55vw] h-[55vw] max-w-[280px] max-h-[280px] md:w-1/2 md:h-full flex items-center justify-center pointer-events-none md:pointer-events-auto z-20 order-1 md:order-2 mt-12 md:mt-0" id="rubiks-container">
+        <!-- Three.js Canvas injected here -->
+      </div>
+
     </div>
 
-    <!-- GSAP & Three.js Logic -->
+    <!-- Three.js scene setup (module) -->
     <script type="importmap">
       {
         "imports": {
@@ -1454,34 +1561,25 @@
 
       const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
       scene.add(ambientLight);
-
       const dirLight = new THREE.DirectionalLight(0xffffff, 2.5);
       dirLight.position.set(5, 5, 5);
       scene.add(dirLight);
-      
       const fillLight = new THREE.DirectionalLight(0xffffff, 1);
       fillLight.position.set(-5, -2, -5);
       scene.add(fillLight);
 
-      // Create Textures for 1 to 5 (Transparent Background)
       function createNumberTexture(number) {
         const canvas = document.createElement('canvas');
-        canvas.width = 512;
-        canvas.height = 512;
+        canvas.width = 512; canvas.height = 512;
         const ctx = canvas.getContext('2d');
-        
         ctx.clearRect(0, 0, 512, 512);
-        
         ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 360px Arial, sans-serif'; 
+        ctx.font = 'bold 360px Arial, sans-serif';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        
-        // Add a subtle drop shadow to make the text pop against the glossy cubes
         ctx.shadowColor = 'rgba(0,0,0,0.8)';
         ctx.shadowBlur = 15;
         ctx.fillText(number, 256, 280);
-
         const texture = new THREE.CanvasTexture(canvas);
         texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
         return texture;
@@ -1489,11 +1587,9 @@
 
       function createBlankTexture() {
         const canvas = document.createElement('canvas');
-        canvas.width = 512;
-        canvas.height = 512;
+        canvas.width = 512; canvas.height = 512;
         const ctx = canvas.getContext('2d');
         ctx.clearRect(0, 0, 512, 512);
-        
         ctx.strokeStyle = '#ffffff';
         ctx.lineWidth = 12;
         ctx.shadowColor = 'rgba(0,0,0,0.8)';
@@ -1501,7 +1597,6 @@
         ctx.beginPath();
         ctx.arc(256, 256, 120, 0, Math.PI * 2);
         ctx.stroke();
-
         return new THREE.CanvasTexture(canvas);
       }
 
@@ -1509,82 +1604,63 @@
       const innerGroup = new THREE.Group();
       group.add(innerGroup);
       scene.add(group);
-      
-      // 1. Create the 3x3x3 Rubik's Cube Structure
-      const material = new THREE.MeshStandardMaterial({ 
-        color: 0x050505, 
-        roughness: 0.1, 
-        metalness: 0.85 
-      });
 
+      const material = new THREE.MeshStandardMaterial({ color: 0x050505, roughness: 0.1, metalness: 0.85 });
       const boxSize = 0.85;
       const radius = 0.12;
       const geometry = new RoundedBoxGeometry(boxSize, boxSize, boxSize, 4, radius);
-
       const gap = 0.9;
-      const offset = gap; // (3-1)*gap/2 = gap
-
-      for (let x = 0; x < 3; x++) {
+      const offset = gap;
+for (let x = 0; x < 3; x++) {
         for (let y = 0; y < 3; y++) {
           for (let z = 0; z < 3; z++) {
             const cube = new THREE.Mesh(geometry, material);
-            cube.position.set(
-              x * gap - offset,
-              y * gap - offset,
-              z * gap - offset
-            );
+            cube.position.set(x * gap - offset, y * gap - offset, z * gap - offset);
             innerGroup.add(cube);
           }
         }
       }
 
-      // 2. Add the Hovering Number Planes
       const planeGeo = new THREE.PlaneGeometry(2.8, 2.8);
-      const planeDist = 1.4; // Slightly outside the bounds of the 3x3 grid
-
+      const planeDist = 1.4;
       const faces = [
-        { num: '1', pos: [0, 0, planeDist], rot: [0, 0, 0] }, // Front
-        { num: '2', pos: [planeDist, 0, 0], rot: [0, Math.PI/2, 0] }, // Right
-        { num: '3', pos: [0, planeDist, 0], rot: [-Math.PI/2, 0, 0] }, // Top
-        { num: '4', pos: [-planeDist, 0, 0], rot: [0, -Math.PI/2, 0] }, // Left
-        { num: '5', pos: [0, -planeDist, 0], rot: [Math.PI/2, 0, 0] } // Bottom
+        { num: '1', pos: [0, 0, planeDist],   rot: [0, 0, 0] },
+        { num: '2', pos: [planeDist, 0, 0],   rot: [0, Math.PI/2, 0] },
+        { num: '3', pos: [0, planeDist, 0],   rot: [-Math.PI/2, 0, 0] },
+        { num: '4', pos: [-planeDist, 0, 0],  rot: [0, -Math.PI/2, 0] },
+        { num: '5', pos: [0, -planeDist, 0],  rot: [Math.PI/2, 0, 0] }
       ];
-
       faces.forEach(face => {
-        const mat = new THREE.MeshBasicMaterial({ 
-          map: createNumberTexture(face.num), 
-          transparent: true, 
-          depthWrite: false 
-        });
+        const mat = new THREE.MeshBasicMaterial({ map: createNumberTexture(face.num), transparent: true, depthWrite: false });
         const plane = new THREE.Mesh(planeGeo, mat);
         plane.position.set(...face.pos);
         plane.rotation.set(...face.rot);
         innerGroup.add(plane);
       });
 
-      // Intro Face (Back)
-      const introMat = new THREE.MeshBasicMaterial({ 
-        map: createBlankTexture(), 
-        transparent: true, 
-        depthWrite: false 
-      });
+      const introMat = new THREE.MeshBasicMaterial({ map: createBlankTexture(), transparent: true, depthWrite: false });
       const introPlane = new THREE.Mesh(planeGeo, introMat);
       introPlane.position.set(0, 0, -planeDist);
       introPlane.rotation.set(0, Math.PI, 0);
       innerGroup.add(introPlane);
 
-      // Render loop
+      window._cubeGroup = group;
+      window._cubeInnerGroup = innerGroup;
+      window._cubeRenderer = renderer;
+      window._cubeScene = scene;
+      window._cubeCamera = camera;
+      window._cubeContainer = container;
+
       let time = 0;
-      function animate() {
-        requestAnimationFrame(animate);
-        time += 0.02;
+      function animateCube() {
+        requestAnimationFrame(animateCube);
+        time += 0.016;
         innerGroup.position.y = Math.sin(time) * 0.1;
-        // Subtle constant rotation independent of scroll
         innerGroup.rotation.x = Math.sin(time * 0.5) * 0.05;
         innerGroup.rotation.y = Math.cos(time * 0.3) * 0.05;
         renderer.render(scene, camera);
       }
-      animate();
+      animateCube();
 
       window.addEventListener('resize', () => {
         if (!container) return;
@@ -1593,59 +1669,80 @@
         renderer.setSize(container.clientWidth, container.clientHeight);
       });
 
-      // GSAP ScrollTrigger Integration
-      document.addEventListener("DOMContentLoaded", () => {
-        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+      window._cubeReady = true;
+      document.dispatchEvent(new CustomEvent('cubeReady'));
+    </script>
 
-        const skills = document.querySelectorAll('.skill-item');
+    <script>
+    (function initCubeScroll() {
+
+      function setup() {
+        if (window._servicesSetupDone) return;
+        window._servicesSetupDone = true;
         
-        // Define rotations for the Group to face each number directly to the camera
+        const group  = window._cubeGroup;
+        const skills = document.querySelectorAll('.skill-item');
+
         const rotations = [
-          { x: 0, y: Math.PI, z: 0 },            // 0. Intro (Back face)
-          { x: 0, y: 0, z: 0 },                  // 1. Front
-          { x: 0, y: -Math.PI/2, z: 0 },         // 2. Right
-          { x: Math.PI/2, y: 0, z: 0 },          // 3. Top
-          { x: 0, y: Math.PI/2, z: 0 },          // 4. Left
-          { x: -Math.PI/2, y: 0, z: 0 }          // 5. Bottom
+          { x: 0, y: Math.PI, z: 0 },
+          { x: 0, y: 0,       z: 0 },
+          { x: 0, y: -Math.PI/2, z: 0 },
+          { x: Math.PI/2, y: 0, z: 0 },
+          { x: 0, y: Math.PI/2, z: 0 },
+          { x: -Math.PI/2, y: 0, z: 0 }
         ];
 
-        // Ensure initial state is set
         gsap.set(group.rotation, rotations[0]);
-        gsap.set(skills[0], { opacity: 1, y: 0 });
-        for(let i = 1; i < skills.length; i++) {
-          gsap.set(skills[i], { opacity: 0, y: 50 });
-        }
+        skills.forEach((s, i) => gsap.set(s, { opacity: i === 0 ? 1 : 0, y: i === 0 ? 0 : 50 }));
 
         const tl = gsap.timeline({
           scrollTrigger: {
-            trigger: "#services",
-            start: "top top",
-            end: "bottom bottom",
-            scrub: 1.5
+            trigger: '#services',
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: 1.5,
+            invalidateOnRefresh: true
           }
         });
 
-        // Loop through each transition step (0 to 1, 1 to 2, etc.)
+        tl.to({}, { duration: 2 }); // Initial pause on "What I Do"
+
         skills.forEach((skill, index) => {
-          if (index === 0) {
-            // VERY LONG Initial pause so user can comfortably read "What I do" 
-            // before the cube starts rotating to number 1.
-            tl.to({}, { duration: 2.5 }); 
-            return;
-          }
-          
-          tl.to(skills[index - 1], { opacity: 0, y: -50, duration: 1 }, `step${index}`)
-            .to(skill, { opacity: 1, y: 0, duration: 1 }, `step${index}`)
+          if (index === 0) return;
+          const label = `step${index}`;
+          tl.addLabel(label)
+            // Fade out the previous text
+            .to(skills[index - 1], { opacity: 0, y: -40, duration: 0.4, ease: 'power2.in' }, label)
+            // Rotate the cube concurrently
             .to(group.rotation, {
               x: rotations[index].x,
               y: rotations[index].y,
               z: rotations[index].z,
-              duration: 1.2,
-              ease: "power2.inOut"
-            }, `step${index}`)
-            .to({}, { duration: 0.5 }); // Pause so user can read the active state clearly
+              duration: 1.0,
+              ease: 'power3.inOut'
+            }, label)
+            // Fade in the new text after the previous one fades out
+            .to(skill, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, `${label}+=0.5`)
+            // Pause to let the user read
+            .to({}, { duration: 1.0 });
         });
-      });
+
+        setTimeout(() => ScrollTrigger.refresh(), 300);
+      }
+
+      function trySetup() {
+        if (!window._cubeGroup) { setTimeout(trySetup, 50); return; }
+        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') { setTimeout(trySetup, 50); return; }
+        setTimeout(setup, 250);
+      }
+
+      if (window._cubeReady) {
+        trySetup();
+      } else {
+        document.addEventListener('cubeReady', trySetup, { once: true });
+        document.addEventListener('DOMContentLoaded', () => setTimeout(trySetup, 150));
+      }
+    })();
     </script>
   </section>
 
@@ -2277,23 +2374,43 @@
 (function () {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
-  const isMobile = window.innerWidth < 1024;
-  
   gsap.registerPlugin(ScrollTrigger);
 
-
-  /* — Featured Work Cards Entrance — */
-  gsap.utils.toArray('.fade-enter-card').forEach((card) => {
+  /* — Featured Work Cards Entrance: clean fade + lift — */
+  gsap.utils.toArray('.fade-enter-card').forEach((card, i) => {
     gsap.from(card, {
       scrollTrigger: {
         trigger: card,
-        start: 'top 90%', // waits slightly longer into view
+        start: 'top 88%',
+        once: true
       },
       opacity: 0,
-      y: 100, // much larger vertical slide up distance
-      duration: 1.4, // slightly longer for smoothness
-      ease: 'power2.out',
-      clearProps: 'all' // removes applied styles at end so no lingering artifacts conflict with hover effects
+      y: 60,
+      duration: 1.1,
+      ease: 'expo.out',
+      clearProps: 'all'
+    });
+  });
+
+  /* — Section heading / text reveals —
+     IMPORTANT: skip any element inside .skill-item or #services — those
+     are controlled exclusively by the cube ScrollTrigger timeline and
+     must NOT be touched by this global reveal. */
+  gsap.utils.toArray('h2, h3').forEach(el => {
+    if (el.closest('.hero-marquee')) return; // skip marquee
+    if (el.closest('.skill-item'))   return; // skip services skill slides
+    if (el.closest('#services'))     return; // skip entire services section
+    gsap.from(el, {
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 92%',
+        once: true
+      },
+      opacity: 0,
+      y: 30,
+      duration: 0.9,
+      ease: 'power3.out',
+      clearProps: 'all'
     });
   });
 
@@ -2345,11 +2462,11 @@
         if (textStr.charAt(i) === '|') {
           textEl.innerHTML += "<br/>";
           i++;
-          setTimeout(typeWriter, 800);
+          setTimeout(typeWriter, 300);
         } else {
           textEl.innerHTML += textStr.charAt(i);
           i++;
-          setTimeout(typeWriter, 50);
+          setTimeout(typeWriter, 25);
         }
       } else {
         cursorEl.classList.remove("animate-pulse-cursor");
@@ -2358,8 +2475,8 @@
         setTimeout(() => {
           gsap.to(preloader, {
             opacity: 0,
-            duration: 1.5,
-            ease: "power3.inOut",
+            duration: 0.8,
+            ease: "power2.out",
             onComplete: () => {
               preloader.style.display = "none";
               document.body.classList.remove("overflow-hidden");
@@ -2369,11 +2486,11 @@
               }
             }
           });
-        }, 1200); 
+        }, 300); 
       }
     }
     
-    setTimeout(typeWriter, 500);
+    setTimeout(typeWriter, 200);
   }
 
   // --- Smart Audio Logic (Runs regardless of intro state) ---
@@ -2984,6 +3101,62 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+// ─── Lenis Smooth Scroll Initialisation ─────────────────────────────────────
+(function initLenis() {
+  if (typeof Lenis === 'undefined') return;
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    orientation: 'vertical',
+    gestureOrientation: 'vertical',
+    smoothWheel: true,
+    smoothTouch: false,   // Native touch on mobile — better feel
+    wheelMultiplier: 0.9,
+    touchMultiplier: 2,
+    infinite: false,
+  });
+
+  window.__lenis = lenis;
+
+  // ── CRITICAL: Drive Lenis through GSAP's ticker, NOT a separate rAF.
+  // This keeps Lenis and ScrollTrigger on the exact same frame tick,
+  // so scrub-based timelines read the correct interpolated scroll position.
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000); // gsap time is in seconds; lenis.raf expects ms
+  });
+  gsap.ticker.lagSmoothing(0);
+
+  // Keep ScrollTrigger refreshed every Lenis scroll event
+  lenis.on('scroll', ScrollTrigger.update);
+
+  // ── CRITICAL: Recalculate ScrollTrigger offsets on layout shifts
+  // Lazy-loaded images push the page down, making cached scroll start/end points stale.
+  let refreshTimeout;
+  const ro = new ResizeObserver(() => {
+    clearTimeout(refreshTimeout);
+    refreshTimeout = setTimeout(() => ScrollTrigger.refresh(), 150);
+  });
+  ro.observe(document.body);
+
+  // Patch in-page anchor links to use Lenis momentum
+  document.addEventListener('click', e => {
+    const anchor = e.target.closest('a[href^="#"]');
+    if (anchor) {
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        lenis.scrollTo(target, {
+          offset: -120,
+          duration: 1.4,
+          easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+        });
+      }
+    }
+  });
+})();
+
 // Interactive GSAP Marquee & Global Custom Cursor
 document.addEventListener('DOMContentLoaded', () => {
   // --- 0. Auto-apply Cursor Classes ---
@@ -3001,15 +3174,15 @@ document.addEventListener('DOMContentLoaded', () => {
   customCursor.appendChild(cursorText);
   document.body.appendChild(customCursor);
 
-  // High-performance GSAP setters
-  const xTo = gsap.quickTo(customCursor, "x", {duration: 0.15, ease: "power3"});
-  const yTo = gsap.quickTo(customCursor, "y", {duration: 0.15, ease: "power3"});
+  // Smoothed GSAP cursor — longer duration = softer, more organic trailing feel
+  const xTo = gsap.quickTo(customCursor, "x", { duration: 0.55, ease: "power4" });
+  const yTo = gsap.quickTo(customCursor, "y", { duration: 0.55, ease: "power4" });
 
   if (window.matchMedia('(pointer: fine)').matches) {
     window.addEventListener('mousemove', (e) => {
       xTo(e.clientX);
       yTo(e.clientY);
-    });
+    }, { passive: true });
 
     // View Mode for images
     document.querySelectorAll('.hover-view').forEach(el => {
@@ -3023,21 +3196,22 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Magnetic Mode for buttons
+    // Magnetic Mode for buttons — gentler pull for stability
     document.querySelectorAll('.magnetic-btn').forEach(btn => {
       btn.addEventListener('mouseenter', () => {
         customCursor.classList.add('magnetic-mode');
       });
       btn.addEventListener('mouseleave', () => {
         customCursor.classList.remove('magnetic-mode');
-        gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.4)' });
+        // Elastic snap-back with reduced overshoot
+        gsap.to(btn, { x: 0, y: 0, duration: 0.8, ease: 'elastic.out(1, 0.5)' });
       });
       btn.addEventListener('mousemove', (e) => {
         const rect = btn.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
-        // Increased multiplier for stronger magnetic pull
-        gsap.to(btn, { x: x * 0.75, y: y * 0.75, duration: 0.3, ease: 'power2.out' });
+        // Reduced multiplier (0.4) for a subtler, more refined magnetic feel
+        gsap.to(btn, { x: x * 0.4, y: y * 0.4, duration: 0.5, ease: 'power2.out' });
       });
     });
   }
@@ -3047,7 +3221,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const marqueeWrapper = document.querySelector('.hero-marquee-wrapper');
   
   if (marquees.length > 0 && marqueeWrapper) {
-    // Scroll Mode Cursor for Marquee
     if (window.matchMedia('(pointer: fine)').matches) {
       marqueeWrapper.addEventListener('mouseenter', () => {
         cursorText.textContent = 'SCROLL';
@@ -3058,160 +3231,135 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Infinite GSAP marquee
+    // Infinite GSAP marquee — slightly slower for elegance
     const marqueeTween = gsap.to(marquees, {
       xPercent: -50,
       repeat: -1,
-      duration: 30,
-      ease: "none",
+      duration: 38,           // Slower base speed = more premium feel
+      ease: 'none',
       force3D: true
     });
 
-    // Speed up and reverse based on scroll velocity using GSAP ScrollTrigger
     let scrollTimeout;
-    
     ScrollTrigger.create({
       trigger: document.body,
-      start: "top top",
-      end: "bottom bottom",
+      start: 'top top',
+      end: 'bottom bottom',
       onUpdate: (self) => {
         let velocity = self.getVelocity();
-        // Calculate a safe speed multiplier (1 to ~5)
-        let speedMultiplier = 1 + Math.abs(velocity / 300);
-        speedMultiplier = Math.min(speedMultiplier, 5);
+        // Ignore massive velocity spikes caused by layout reflows (e.g. preloader hide)
+        if (Math.abs(velocity) > 3000) velocity = 0;
         
-        // Target timescale based on scroll direction
-        let targetTimeScale = self.direction * speedMultiplier;
-        
-        // Smoothly animate the timescale of the marquee
-        gsap.to(marqueeTween, { 
-          timeScale: targetTimeScale, 
-          duration: 0.25, 
-          ease: "power1.out",
-          overwrite: "auto"
+        // Cap the speed multiplier lower for a smoother response
+        let speedMultiplier = 1 + Math.abs(velocity / 500);
+        speedMultiplier = Math.min(speedMultiplier, 2.5);
+        const targetTimeScale = self.direction * speedMultiplier;
+
+        gsap.to(marqueeTween, {
+          timeScale: targetTimeScale,
+          duration: 0.5,           // Slower to react = smoother
+          ease: 'power2.out',
+          overwrite: 'auto'
         });
 
-        // Debounce back to normal speed when scrolling stops
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
-          gsap.to(marqueeTween, { 
-            timeScale: 1, 
-            duration: 0.5, 
-            ease: "power2.out",
-            overwrite: "auto"
+          gsap.to(marqueeTween, {
+            timeScale: 1,
+            duration: 1.0,         // Slow return to base speed
+            ease: 'power3.out',
+            overwrite: 'auto'
           });
-        }, 150);
+        }, 200);
       }
     });
-  } // End of if (marquees.length > 0 && marqueeWrapper)
+  }
 
   // --- 2.5 Brand Carousel Interactive Scrolling ---
   const brandCarouselSection = document.getElementById('brand-carousel-section');
   const brandCarouselTrack = document.getElementById('brand-carousel-track');
   
   if (brandCarouselSection && brandCarouselTrack) {
-    // Infinite GSAP marquee for brands
     const brandTween = gsap.to(brandCarouselTrack, {
       xPercent: -50,
       repeat: -1,
-      duration: 15,
-      ease: "none",
+      duration: 18,          // Slower brand carousel
+      ease: 'none',
       force3D: true
     });
 
     let brandScrollTimeout;
-
-    // Wheel event handler to intercept scroll
     const handleBrandWheel = (e) => {
-      e.preventDefault(); // Lock page scrolling
-
-      // Calculate speed based on scroll intensity (deltaY)
-      let velocity = Math.abs(e.deltaY);
+      e.preventDefault();
+      const velocity = Math.abs(e.deltaY);
       if (velocity < 5) return;
+      let speedMultiplier = 1 + (velocity / 30);
+      speedMultiplier = Math.min(speedMultiplier, 10);
+      const direction = Math.sign(e.deltaY) || 1;
 
-      // Speed up the carousel
-      let speedMultiplier = 1 + (velocity / 20); // Sensitivity
-      speedMultiplier = Math.min(speedMultiplier, 15); // Max speed cap
-      
-      // Determine direction (scroll down/right vs up/left)
-      let direction = Math.sign(e.deltaY) || 1;
-
-      gsap.to(brandTween, { 
-        timeScale: direction * speedMultiplier, 
-        duration: 0.1, 
-        overwrite: true 
+      gsap.to(brandTween, {
+        timeScale: direction * speedMultiplier,
+        duration: 0.2,
+        overwrite: true
       });
-
-      // Debounce back to normal speed
       clearTimeout(brandScrollTimeout);
       brandScrollTimeout = setTimeout(() => {
-        gsap.to(brandTween, { 
-          timeScale: 1, 
-          duration: 0.5, 
-          ease: "power2.out",
-          overwrite: true 
+        gsap.to(brandTween, {
+          timeScale: 1,
+          duration: 0.8,
+          ease: 'power3.out',
+          overwrite: true
         });
-      }, 100);
+      }, 150);
     };
 
-    // Attach/Detach wheel listener on hover
     brandCarouselSection.addEventListener('mouseenter', () => {
       brandCarouselSection.addEventListener('wheel', handleBrandWheel, { passive: false });
     });
-
     brandCarouselSection.addEventListener('mouseleave', () => {
       brandCarouselSection.removeEventListener('wheel', handleBrandWheel);
-      // Smoothly revert to normal if the mouse leaves while spinning fast
-      gsap.to(brandTween, { 
-        timeScale: 1, 
-        duration: 0.5, 
-        ease: "power2.out",
-        overwrite: true 
-      });
+      gsap.to(brandTween, { timeScale: 1, duration: 0.8, ease: 'power3.out', overwrite: true });
     });
   }
 
-
-
-  // --- 3. Parallax Image Scrolling ---
+  // --- 3. Parallax Image Scrolling — refined scrub value for smoother result ---
   document.querySelectorAll('.fade-enter-card > div.relative, #mclaren .bg-zinc-900, #porsche .bg-zinc-900').forEach(container => {
     container.style.overflow = 'hidden';
     const img = container.querySelector('img');
     if (img) {
-      // Hardware acceleration and scale for parallax
       img.style.willChange = 'transform';
-      gsap.set(img, { scale: 1.15, transformOrigin: 'center', force3D: true });
-      
+      gsap.set(img, { scale: 1.12, transformOrigin: 'center', force3D: true });
       gsap.to(img, {
-        yPercent: 15,
-        ease: "none",
+        yPercent: 12,
+        ease: 'none',
         scrollTrigger: {
           trigger: container,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.5       // Higher scrub = less twitchy, more cinematic
         }
       });
     }
   });
 
-  // --- 4. Velocity-Based Skewing ---
-  let proxy = { skew: 0 },
-      // Apply skew only to project cards (.fade-enter-card) to prevent glitching on horizontal sketch images
-      skewSetter = gsap.quickSetter(".fade-enter-card", "skewY", "deg"),
-      clamp = gsap.utils.clamp(-15, 15);
+  // --- 4. Velocity-Based Skewing — dramatically reduced for stability ---
+  let proxy = { skew: 0 };
+  const skewSetter = gsap.quickSetter('.fade-enter-card', 'skewY', 'deg');
+  const clampSkew = gsap.utils.clamp(-4, 4); // Much tighter range (was -15 to 15)
 
   ScrollTrigger.create({
     onUpdate: (self) => {
-      let skew = clamp(self.getVelocity() / -100);
-      // Only skew if the velocity is significant
+      let vel = self.getVelocity();
+      if (Math.abs(vel) > 3000) vel = 0;
+      
+      const skew = clampSkew(vel / -600); // Much higher divisor = gentler skew
       if (Math.abs(skew) > Math.abs(proxy.skew)) {
         proxy.skew = skew;
         gsap.to(proxy, {
-          skew: 0, 
-          duration: 0.8, 
-          ease: "elastic.out(1, 0.4)", 
-          overwrite: true, 
+          skew: 0,
+          duration: 1.2,          // Longer recovery = less jarring
+          ease: 'power3.out',     // Changed from elastic to power — no bouncing
+          overwrite: true,
           onUpdate: () => skewSetter(proxy.skew)
         });
       }
@@ -3223,9 +3371,26 @@ document.addEventListener('DOMContentLoaded', () => {
   if (mclarenSection) {
     ScrollTrigger.create({
       trigger: mclarenSection,
-      start: "top 65%", // Trigger transition slightly earlier
-      onEnter: () => gsap.to("body", { backgroundColor: "#000000", duration: 1.5, ease: "power2.inOut", overwrite: "auto" }),
-      onLeaveBack: () => gsap.to("body", { backgroundColor: "#fdfdfd", duration: 1.5, ease: "power2.inOut", overwrite: "auto" })
+      start: 'top 65%',
+      onEnter:     () => gsap.to('body', { backgroundColor: '#000000', duration: 2.0, ease: 'power3.inOut', overwrite: 'auto' }),
+      onLeaveBack: () => gsap.to('body', { backgroundColor: '#fdfdfd', duration: 2.0, ease: 'power3.inOut', overwrite: 'auto' })
+    });
+  }
+
+  // --- 6. Nav scroll shrink effect ---
+  const nav = document.querySelector('nav');
+  if (nav) {
+    ScrollTrigger.create({
+      start: 'top -60',
+      end: 99999,
+      onUpdate: (self) => {
+        const scrolled = self.progress > 0;
+        if (scrolled) {
+          nav.style.boxShadow = '0 8px 32px rgba(0,0,0,0.08)';
+        } else {
+          nav.style.boxShadow = '';
+        }
+      }
     });
   }
 
