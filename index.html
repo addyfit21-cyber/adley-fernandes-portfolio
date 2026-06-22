@@ -1712,7 +1712,7 @@ for (let x = 0; x < 3; x++) {
             // Fade out the previous text
             .fromTo(skills[index - 1], 
               { opacity: 1, y: 0 }, 
-              { opacity: 0, y: -40, duration: 0.4, ease: 'power2.in' }, 
+              { opacity: 0, y: -40, duration: 0.4, ease: 'power2.in', immediateRender: false }, 
               label
             )
             // Rotate the cube concurrently
@@ -1727,14 +1727,15 @@ for (let x = 0; x < 3; x++) {
                 y: rotations[index].y,
                 z: rotations[index].z,
                 duration: 1.0,
-                ease: 'power3.inOut'
+                ease: 'power3.inOut',
+                immediateRender: false
               }, 
               label
             )
             // Fade in the new text after the previous one fades out
             .fromTo(skill, 
               { opacity: 0, y: 50 }, 
-              { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 
+              { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out', immediateRender: false }, 
               `${label}+=0.5`
             )
             // Pause to let the user read
@@ -3041,10 +3042,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     modal.classList.remove('hidden');
     document.body.classList.add('overflow-hidden');
-    
     // Safety: Force all videos in the modal to play (handles innerHTML delay/blocking)
     const videos = content.querySelectorAll('video');
     videos.forEach(v => {
+      v.muted = true;
+      v.playsInline = true;
+      v.setAttribute('playsinline', 'true');
+      v.setAttribute('webkit-playsinline', 'true');
       v.play().catch(e => console.log('Autoplay prevented:', e));
     });
   }
@@ -3076,8 +3080,15 @@ document.addEventListener('DOMContentLoaded', () => {
             ? (video.dataset.mobileSrc || video.dataset.src)
             : video.dataset.src;
           video.src = src;
+          // Force mobile autoplay properties programmatically
+          video.muted = true;
+          video.playsInline = true;
+          video.setAttribute('playsinline', 'true');
+          video.setAttribute('webkit-playsinline', 'true');
           video.load();
         }
+        // Always force mute and play
+        video.muted = true;
         video.play().catch(function() {});
       } else {
         // Pause off-screen videos to save battery/bandwidth
