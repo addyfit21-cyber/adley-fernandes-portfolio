@@ -1492,8 +1492,8 @@
   </section>
 
   <!-- Capabilities & Services - Sticky Scroll -->
-  <section id="services" class="bg-zinc-950 text-white border-t border-white/10 relative h-[100dvh] min-h-[100dvh]">
-    <div class="h-full w-full overflow-hidden flex flex-col md:flex-row items-center justify-center md:justify-between">
+  <section id="services" class="bg-zinc-950 text-white border-t border-white/10 relative" style="height: 750vh; min-height: 750vh;">
+    <div class="sticky top-0 h-[100dvh] w-full overflow-hidden flex flex-col md:flex-row items-center justify-center md:justify-between">
 
       <!-- LEFT side (visually on desktop): The Skills text -->
       <div class="w-full h-[40vh] md:h-full md:w-1/2 px-6 md:px-24 flex flex-col justify-center relative z-10 order-2 md:order-1">
@@ -1701,16 +1701,15 @@ for (let x = 0; x < 3; x++) {
 
         const stepDuration = 2.0; 
         const transDuration = 1.0; 
-        const initialPause = 1.5; 
-        const finalPause = 1.5; 
+        const initialPause = 2.5; 
+        const finalPause = 2.5; 
 
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: '#services',
-            pin: true,
             start: 'top top',
-            end: '+=550%',
-            scrub: true
+            end: 'bottom bottom',
+            scrub: 0.8
           }
         });
 
