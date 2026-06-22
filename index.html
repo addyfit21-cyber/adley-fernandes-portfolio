@@ -1710,17 +1710,33 @@ for (let x = 0; x < 3; x++) {
           const label = `step${index}`;
           tl.addLabel(label)
             // Fade out the previous text
-            .to(skills[index - 1], { opacity: 0, y: -40, duration: 0.4, ease: 'power2.in' }, label)
+            .fromTo(skills[index - 1], 
+              { opacity: 1, y: 0 }, 
+              { opacity: 0, y: -40, duration: 0.4, ease: 'power2.in' }, 
+              label
+            )
             // Rotate the cube concurrently
-            .to(group.rotation, {
-              x: rotations[index].x,
-              y: rotations[index].y,
-              z: rotations[index].z,
-              duration: 1.0,
-              ease: 'power3.inOut'
-            }, label)
+            .fromTo(group.rotation, 
+              {
+                x: rotations[index - 1].x,
+                y: rotations[index - 1].y,
+                z: rotations[index - 1].z
+              },
+              {
+                x: rotations[index].x,
+                y: rotations[index].y,
+                z: rotations[index].z,
+                duration: 1.0,
+                ease: 'power3.inOut'
+              }, 
+              label
+            )
             // Fade in the new text after the previous one fades out
-            .to(skill, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, `${label}+=0.5`)
+            .fromTo(skill, 
+              { opacity: 0, y: 50 }, 
+              { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 
+              `${label}+=0.5`
+            )
             // Pause to let the user read
             .to({}, { duration: 1.0 });
         });
@@ -3155,21 +3171,33 @@ document.addEventListener('DOMContentLoaded', function initLenis() {
   lenis.on('scroll', ScrollTrigger.update);
 
   // ── CRITICAL: Recalculate ScrollTrigger offsets safely
-  // Since lazy-loaded images shift the document height as they load, 
+  // Since lazy-loaded images and videos shift the document height as they load, 
   // ScrollTrigger markers get stale and cause animations to jump to the end.
-  // We debounce a refresh call on every image load.
+  // We debounce a refresh call on every media load.
   let stRefreshTimeout;
+  const triggerRefresh = () => {
+    clearTimeout(stRefreshTimeout);
+    stRefreshTimeout = setTimeout(() => {
+      if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.refresh();
+      }
+    }, 250);
+  };
+
   document.addEventListener('load', (e) => {
     if (e.target.tagName === 'IMG') {
-      clearTimeout(stRefreshTimeout);
-      stRefreshTimeout = setTimeout(() => {
-        if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
-      }, 200);
+      triggerRefresh();
     }
   }, true); // use capture to catch image loads
 
+  document.addEventListener('loadedmetadata', (e) => {
+    if (e.target.tagName === 'VIDEO') {
+      triggerRefresh();
+    }
+  }, true); // use capture to catch video metadata loads (resolves video height reflows)
+
   window.addEventListener('load', () => {
-    setTimeout(() => { if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh(); }, 200);
+    setTimeout(triggerRefresh, 200);
   });
 
   // Patch in-page anchor links to use Lenis momentum (matches #hash and index.html#hash)
