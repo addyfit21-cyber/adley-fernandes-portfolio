@@ -59,20 +59,17 @@
 
 <!-- Preload critical brand assets -->
 <link rel="preload" as="image" href="Images/Copilot_20260615_130809.webp" fetchpriority="high" />
-<link rel="preload" as="image" href="/Images/Brands/Copilot_20260426_132635.webp" fetchpriority="high" />
-<link rel="preload" as="image" href="/Images/Brands/lukes iced coffee/LUKES ICED COFFEE.webp" fetchpriority="high" />
-<link rel="preload" as="image" href="/Images/Brands/benner logo.webp" />
 
 <!-- Tailwind CDN (synchronous — required for first paint) -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
 <!-- GSAP deferred — animations start after HTML is visible -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
 
 <!-- Lenis smooth scroll —  GPU-composited, frame-synced momentum scrolling -->
-<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js" defer></script>
 
 
 <script id="tailwind-config">
@@ -123,6 +120,9 @@
 
   /* ─── Page-level visibility fade-in (eliminates FOUC) ───────────── */
   body {
+    opacity: 0;
+  }
+  body.ready {
     animation: page-reveal 0.5s ease both;
   }
   @keyframes page-reveal {
@@ -130,7 +130,16 @@
     to   { opacity: 1; }
   }
 
-  /* Global Custom Cursor - Optimized for Performance and Cross-Browser */
+  /* Intro cursor blink animation */
+  @keyframes pulse-cursor {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+  .animate-pulse-cursor {
+    animation: pulse-cursor 1s ease-in-out infinite;
+  }
+
+  /* Global Custom Cursor - Optimized for Performance */
   @media (pointer: fine) {
     body { cursor: none; }
     a, button, [role="button"], input, select, textarea, .cursor-pointer { cursor: none !important; }
@@ -141,8 +150,8 @@
     left: 0;
     width: 12px;
     height: 12px;
-    background: #000;
-    color: #fff;
+    background: #fff;
+    color: #000;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -153,51 +162,189 @@
     letter-spacing: 0.08em;
     pointer-events: none;
     z-index: 99999;
-    opacity: 1 !important;
-    transform: translate(-50%, -50%);
+    opacity: 0;
+    mix-blend-mode: difference;
     will-change: transform;
-    transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
-                height 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-                background-color 0.3s ease,
-                color 0.3s ease;
+    transition:
+      width  0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+      height 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+      opacity 0.3s ease;
   }
-  #custom-cursor.inverse {
-    background: #fff;
-    color: #000;
+  @media (hover: none) {
+    #custom-cursor { display: none; }
   }
-  #custom-cursor.visible { opacity: 1; }
-  
+  /* Variations */
   #custom-cursor.view-mode,
   #custom-cursor.scroll-mode {
-    width: 64px;
-    height: 64px;
+    width: 76px;
+    height: 76px;
   }
   #custom-cursor.magnetic-mode {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     background: transparent;
-    border: 1.5px solid rgba(0,0,0,0.2);
-  }
-  #custom-cursor.inverse.magnetic-mode {
-    border: 1.5px solid rgba(255,255,255,0.4);
+    border: 1.5px solid rgba(255,255,255,0.6);
   }
   #custom-cursor span {
     opacity: 0;
-    transform: scale(0.8);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
   }
   #custom-cursor.view-mode span,
   #custom-cursor.scroll-mode span {
     opacity: 1;
-    transform: scale(1);
+  }
+
+  .hero-marquee-wrapper {
+    cursor: none;
+  }
+  .stroke-text {
+    -webkit-text-stroke: 1px #18181b;
+    color: transparent;
+  }
+  :root {
+    --cube-size: clamp(140px, min(45vw, 50vh), 400px);
+  }
+  @media (min-width: 768px) {
+    :root {
+      --cube-size: clamp(200px, min(35vw, 55vh), 420px);
+    }
+  }
+  .rainbow-text {
+    background: linear-gradient(90deg, #ffea00, #ff9100, #ffea00, #ff9100, #ffea00);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: rainbow 3s linear infinite;
+  }
+  .rainbow-glow {
+    filter: drop-shadow(0 0 15px rgba(255, 180, 0, 0.6));
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  @keyframes rainbow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: -200% 50%; }
+  }
+  .hero-marquee {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  .cube-mask {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-mask-image: url('Images/Copilot_20260615_130809.webp');
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-image: url('Images/Copilot_20260615_130809.webp');
+    mask-position: center;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: var(--cube-size) auto;
+    mask-size: var(--cube-size) auto;
+  }
+
+  /* Aggressively hide native video controls (Safari Low Power Mode overlays) */
+  video::-webkit-media-controls { display: none !important; }
+  video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+  video::-webkit-media-controls-play-button { display: none !important; }
+
+  /* Force pointer-events none on project videos */
+  .mockup-video { pointer-events: none; }
+
+  /* ─── Scroll-reveal baseline — elements start hidden ─────────────── */
+  .reveal-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── Nav backdrop glass polish ──────────────────────────────────── */
+  nav {
+    transition: backdrop-filter 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  /* ─── Card hover lift ────────────────────────────────────────────── */
+  .fade-enter-card {
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* ─── Section heading shimmer line ──────────────────────────────── */
+  .section-underline {
+    display: inline-block;
+    position: relative;
+  }
+  .section-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .section-underline:hover::after { width: 100%; }
+  
+  @media (max-width: 768px) {
+    #hero { padding-top: 60px; }
+    #scroll-pen-wrap { display: none !important; }
+
+    /* Tighten hero typography on small screens */
+    #hero-headline { font-size: clamp(2.2rem, 11vw, 4rem) !important; line-height: 1.0 !important; }
+    #hero p.hero-slide-right { font-size: 1rem !important; line-height: 1.6 !important; }
+    #hero .hero-slide-right a { font-size: 0.65rem !important; padding: 0.8rem 1.5rem !important; }
+
+    /* Section headings — prevent bleed on narrow screens */
+    h2.text-\[7rem\], h2.text-\[2\.5rem\] { font-size: clamp(2rem, 10vw, 3.5rem) !important; }
+
+    /* Cards: comfortable height on phones */
+    .fade-enter-card .relative.h-\[500px\] { height: 280px !important; }
+    .fade-enter-card .h-\[650px\] { height: 300px !important; }
+
+    /* About portrait — limit height on mobile */
+    #about .aspect-\[4\/5\] { aspect-ratio: 1/1 !important; }
+
+    /* Case study modal scrolling fix on iOS */
+    #case-study-modal { -webkit-overflow-scrolling: touch; overflow-y: scroll; }
+    #case-study-content { -webkit-overflow-scrolling: touch; overflow-y: scroll; }
+
+    /* Toolkit grid: 2 columns on mobile */
+    #about .grid-cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+
+    /* Mockup sizing: ensure iPhone fits on screen */
+    .max-w-\[280px\] { max-width: 180px !important; }
+
+    /* Touch targets: minimum 44px */
+    button, a { min-height: 44px; }
+    nav a { min-height: 44px; display: flex; align-items: center; }
+  }
+
+  /* Very small screens (iPhone SE, 375px) */
+  @media (max-width: 390px) {
+    #hero-headline { font-size: clamp(1.9rem, 10vw, 2.5rem) !important; }
+    .fade-enter-card .relative.h-\[500px\] { height: 240px !important; }
   }
 </style>
 </head>
-<body id="top" class="bg-[#fdfdfd] text-zinc-900 antialiased selection:bg-primary selection:text-white overflow-hidden w-full relative">
+<body id="top" class="bg-[#fdfdfd] text-zinc-900 antialiased selection:bg-primary selection:text-white overflow-hidden overflow-x-hidden w-full relative">
 <script>
   if (sessionStorage.getItem('introPlayed')) {
     document.body.classList.remove('overflow-hidden');
   }
+  // Prevent FOUC by revealing body only after styles are compiled and parsed
+  document.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.add('ready');
+  });
 </script>
 
 <!-- Intro Preloader -->
@@ -240,8 +387,8 @@
         <a href="#work" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-black hover:bg-zinc-50 transition-colors text-left border-b border-zinc-50 last:border-0">Web Development</a>
       </div>
     </div>
-    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="#services">Services</a>
-    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="#about">About</a>
+    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="index.html#services">Services</a>
+    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="index.html#about">About</a>
     <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="contact.html">Contact</a>
   </div>
 
@@ -275,8 +422,8 @@
         </div>
       </div>
 
-      <a href="#services" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">Services</a>
-      <a href="#about" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">About</a>
+      <a href="index.html#services" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">Services</a>
+      <a href="index.html#about" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">About</a>
       <a href="contact.html" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">Contact</a>
       <a class="px-6 py-5 bg-black text-white text-center text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-zinc-800 transition-colors" href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener">
         Get in Touch
@@ -290,12 +437,8 @@
 <main>
 
   <!-- Hero Section -->
-  <section id="hero" class="w-full min-h-[100svh] flex flex-col justify-end md:justify-center border-b border-zinc-100 overflow-hidden relative pt-32 pb-24 md:pb-20">
+  <section id="hero" class="w-full min-h-[100svh] flex flex-col justify-end md:justify-center border-b border-zinc-100 overflow-x-hidden relative bg-[#fdfdfd] pt-32 pb-24 md:pb-20">
 
-    <!-- Overline (H1 for SEO) -->
-    <div class="absolute top-32 md:static w-full px-6 md:px-12 lg:px-24 z-20">
-      <h1 class="hero-slide-right relative z-10 text-sm md:text-xs md:tracking-[0.3em] md:uppercase text-zinc-500 mb-0 md:mb-8 text-left">Graphic Designer & Web Designer</h1>
-    </div>
 
     <!-- Marquee & Cube Container (The Sandwich) -->
     <div class="relative w-full flex items-center justify-center -translate-y-4 md:-translate-y-16" style="min-height: calc(var(--cube-size) + 2rem);">
@@ -303,11 +446,11 @@
       <!-- 1. BACK TEXT (Solid) -->
       <div class="hero-marquee-wrapper w-full flex whitespace-nowrap overflow-hidden py-4 md:py-6 relative z-10">
         <div class="hero-marquee flex items-center min-w-max">
-          <div class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-tight text-zinc-900 m-0 pr-12">
-            Creative design meets strategic thinking to build <span class="text-[#d8ff00] glow-text italic">brands that last</span> &nbsp;&nbsp;•&nbsp;&nbsp;
+          <div class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-tight pb-[0.1em] font-bold tracking-tight text-zinc-900 m-0 pr-16" style="word-spacing: 0.1em;">
+            Creative design meets strategic development for brands that demand more than average &nbsp;&mdash;&nbsp;
           </div>
-          <div class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-tight text-zinc-900 m-0 pr-12" aria-hidden="true">
-            Creative design meets strategic thinking to build <span class="text-[#d8ff00] glow-text italic">brands that last</span> &nbsp;&nbsp;•&nbsp;&nbsp;
+          <div class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-tight pb-[0.1em] font-bold tracking-tight text-zinc-900 m-0 pr-16" aria-hidden="true" style="word-spacing: 0.1em;">
+            Creative design meets strategic development for brands that demand more than average &nbsp;&mdash;&nbsp;
           </div>
         </div>
       </div>
@@ -317,8 +460,21 @@
         <img src="Images/Copilot_20260615_130809.webp" alt="3D Cube" fetchpriority="high" loading="eager" decoding="sync" class="h-auto object-contain opacity-90 hero-slide-right" style="width: var(--cube-size);">
       </div>
 
-      
-<!-- Descriptor & CTA -->
+      <!-- 3. FRONT TEXT (Glowing Rainbow Mask) -->
+      <div class="hero-marquee-wrapper absolute inset-0 w-full flex whitespace-nowrap overflow-hidden py-4 md:py-6 z-30 pointer-events-none cube-mask">
+        <div class="hero-marquee flex items-center min-w-max rainbow-glow">
+          <div class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-tight pb-[0.1em] font-bold tracking-tight rainbow-text m-0 pr-16" style="word-spacing: 0.1em;">
+            Creative design meets strategic development for brands that demand more than average &nbsp;&mdash;&nbsp;
+          </div>
+          <div class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-tight pb-[0.1em] font-bold tracking-tight rainbow-text m-0 pr-16" aria-hidden="true" style="word-spacing: 0.1em;">
+            Creative design meets strategic development for brands that demand more than average &nbsp;&mdash;&nbsp;
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Descriptor & CTA -->
     <div class="w-full px-6 md:px-12 lg:px-24 flex flex-col items-start text-left mt-8 md:mt-8">
       <!-- Descriptor -->
       <p class="hero-slide-right relative z-10 text-sm md:text-xs md:text-sm md:tracking-[0.3em] md:uppercase text-zinc-500 leading-relaxed max-w-xl mb-8 md:mb-12">
@@ -346,8 +502,8 @@
     <div class="px-6 md:px-24 py-16 md:py-32 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-24 items-center">
       <div class="lg:col-span-7">
         <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-400 font-bold mb-8 block">My Story</span>
+        <span class="block text-2xl mb-2 text-zinc-500 font-semibold tracking-normal leading-normal">About Me</span>
         <h2 class="text-[clamp(2.5rem,6vw,5.5rem)] font-bold tracking-tighter leading-none text-zinc-900 mb-12">
-          <span class="block text-2xl mb-2 text-zinc-500">About Me</span>
           From sketching<br/>to screens.
         </h2>
         <div class="space-y-8 max-w-2xl">
@@ -523,7 +679,7 @@
         <p class="text-zinc-500 uppercase text-[10px] tracking-[0.2em] mb-6">Section 01 — Branding</p>
       </div>
       <h2 class="text-[3rem] sm:text-[4.5rem] md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-zinc-900 text-left">Visual<br/>Identity</h2>
-      <div class="text-zinc-500 text-sm md:text-base leading-relaxed w-full max-w-2xl text-left mt-6">
+      <div class="text-zinc-500 text-sm md:text-base leading-relaxed w-full max-w-2xl text-left mt-12 md:mt-24">
         Reimagining the heritage of Benner Tea Co. through a structural lens. Distilling legacy into a precise, narrative-driven visual identity system.
       </div>
     </div>
@@ -644,7 +800,7 @@
           <div class="col-span-2 group overflow-hidden bg-zinc-50"><img src="/Images/Branding/Mockup 02.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Mockup 02" loading="lazy" decoding="async"></div>
           <!-- Video between Mockup 02 and Mockup 03 -->
           <div class="col-span-2 bg-black">
-            <video preload="none" autoplay muted loop playsinline class="w-full h-auto block">
+            <video preload="auto" autoplay muted loop playsinline class="w-full h-auto block">
               <source src="/Images/Branding/Rebranding_Product_Video_Generation.mp4" type="video/mp4">
             </video>
           </div>
@@ -937,7 +1093,7 @@
         <p class="text-zinc-500 uppercase text-[10px] tracking-[0.2em] mb-6">Section 02 — Design &amp; Development</p>
       </div>
       <h2 class="text-[3rem] sm:text-[4.5rem] md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-zinc-900 text-left">Web Design &amp;<br/>Development</h2>
-      <div class="text-zinc-500 text-sm md:text-base leading-relaxed w-full max-w-2xl text-left mt-6">
+      <div class="text-zinc-500 text-sm md:text-base leading-relaxed w-full max-w-2xl text-left mt-12 md:mt-24">
         Architecting high-performance digital foundations. Where creative fluidity meets surgical technical execution.
       </div>
     </div>
@@ -969,7 +1125,7 @@
             <div class="flex flex-col items-center w-full">
               <div class="relative w-full aspect-[16/9] bg-[#1a1a1a] rounded-t-2xl p-[1%] shadow-[0_60px_100px_-20px_rgba(0,0,0,0.6)] border-x-[4px] border-t-[4px] border-[#2a2a2a]">
                 <div class="relative w-full h-full bg-black rounded-sm overflow-hidden">
-                  <video preload="none" src="/Images/web_dev/img_3693.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black pointer-events-none"></video>
+                  <video preload="auto" src="/Images/web_dev/img_3693.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black pointer-events-none"></video>
                   <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.04] to-white/[0.12] pointer-events-none"></div>
                 </div>
               </div>
@@ -989,7 +1145,7 @@
                 <div class="relative w-full h-full bg-black rounded-[2.2rem] p-[3%] overflow-hidden shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]">
                   <div class="absolute top-[3.5%] left-1/2 -translate-x-1/2 w-[32%] h-[2.4%] bg-[#050505] rounded-full z-20"></div>
                   <div class="relative w-full h-full bg-black rounded-[1.8rem] overflow-hidden">
-                    <video preload="none" src="/Images/web_dev/whatsapp_2_mobile.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black block pointer-events-none max-md:absolute max-md:inset-0 max-md:[clip-path:inset(0px_round_1.8rem)]"></video>
+                    <video preload="auto" src="/Images/web_dev/whatsapp_2_mobile.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black block pointer-events-none max-md:absolute max-md:inset-0 max-md:[clip-path:inset(0px_round_1.8rem)]"></video>
                   </div>
                 </div>
                 <div class="absolute -left-[4px] top-[18%] w-[5px] h-[40px] bg-gradient-to-r from-[#d1d5db] to-[#9ca3af] rounded-l-md"></div>
@@ -1030,13 +1186,13 @@
             <div class="space-y-4">
               <p class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold">Legacy State</p>
               <div class="bg-zinc-50 p-4 border border-zinc-100">
-                <video preload="none" src="/Images/web_dev/img_3692.mp4" autoplay muted loop playsinline class="w-full h-auto"></video>
+                <video preload="auto" src="/Images/web_dev/img_3692.mp4" autoplay muted loop playsinline class="w-full h-auto"></video>
               </div>
             </div>
             <div class="space-y-4">
               <p class="text-[10px] uppercase tracking-[0.3em] text-black font-bold">New Vision</p>
               <div class="bg-white p-4 border border-zinc-100 shadow-md">
-                <video preload="none" src="/Images/web_dev/img_3693.mp4" autoplay muted loop playsinline class="w-full h-auto"></video>
+                <video preload="auto" src="/Images/web_dev/img_3693.mp4" autoplay muted loop playsinline class="w-full h-auto"></video>
               </div>
             </div>
           </div>
@@ -1094,7 +1250,7 @@
             <div class="flex flex-col items-center w-full">
               <div class="relative w-full aspect-[16/9] bg-[#1a1a1a] rounded-t-2xl p-[1%] shadow-[0_60px_100px_-20px_rgba(0,0,0,0.9)] border-x-[4px] border-t-[4px] border-[#2a2a2a]">
                 <div class="relative w-full h-full bg-black rounded-sm overflow-hidden">
-                  <video preload="none" src="/Images/web_dev/img_3691.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black pointer-events-none"></video>
+                  <video preload="auto" src="/Images/web_dev/img_3691.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black pointer-events-none"></video>
                   <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.04] to-white/[0.12] pointer-events-none"></div>
                 </div>
               </div>
@@ -1114,7 +1270,7 @@
                 <div class="relative w-full h-full bg-black rounded-[2.2rem] p-[3%] overflow-hidden shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]">
                   <div class="absolute top-[3.5%] left-1/2 -translate-x-1/2 w-[32%] h-[2.4%] bg-[#050505] rounded-full z-20"></div>
                   <div class="relative w-full h-full bg-black rounded-[1.8rem] overflow-hidden">
-                    <video preload="none" src="/Images/web_dev/whatsapp_1_mobile.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black block pointer-events-none max-md:absolute max-md:inset-0 max-md:[clip-path:inset(0px_round_1.8rem)]"></video>
+                    <video preload="auto" src="/Images/web_dev/whatsapp_1_mobile.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black block pointer-events-none max-md:absolute max-md:inset-0 max-md:[clip-path:inset(0px_round_1.8rem)]"></video>
                   </div>
                 </div>
                 <div class="absolute -left-[4px] top-[18%] w-[5px] h-[40px] bg-gradient-to-r from-[#444] to-[#222] rounded-l-md"></div>
@@ -1330,22 +1486,18 @@
     </div>
   </section>
 
-  <!-- Capabilities & Services - GSAP Pin -->
-  <section id="services" class="bg-zinc-950 text-white border-t border-white/10 relative w-full overflow-hidden">
-    <div class="relative h-[100dvh] w-full flex flex-col md:flex-row items-center justify-center pt-20 md:pt-0">
+  <!-- Capabilities & Services - Sticky Scroll -->
+  <section id="services" class="bg-zinc-950 text-white border-t border-white/10 relative" style="height: 650vh; min-height: 650vh;">
+    <div class="sticky top-0 h-[100dvh] w-full overflow-hidden flex flex-col md:flex-row items-center justify-center md:justify-between">
 
-      <!-- LEFT side: The 3D Cube -->
-      <div class="relative w-[55vw] h-[55vw] max-w-[280px] max-h-[280px] md:w-1/2 md:max-w-[500px] md:max-h-[500px] flex items-center justify-center pointer-events-none md:pointer-events-auto z-20 order-1 mt-12 md:mt-0" id="rubiks-container">
-      </div>
-
-      <!-- RIGHT side: The Skills text -->
-      <div class="w-full md:w-1/2 px-6 md:px-24 flex flex-col justify-center relative z-10 flex-1 md:h-full md:mt-0 order-2 pb-10 md:pb-0">
+      <!-- LEFT side (visually on desktop): The Skills text -->
+      <div class="w-full h-[40vh] md:h-full md:w-1/2 px-6 md:px-24 flex flex-col justify-center relative z-10 order-2 md:order-1">
         
-        <div class="relative w-full h-full flex items-start md:items-center">
+        <div class="relative w-full h-full flex items-center">
           
           <!-- Item 0: What I Do -->
-          <div class="skill-item absolute inset-0 flex flex-col justify-start md:justify-center opacity-100 translate-y-0 pt-10 md:pt-0">
-            <h2 class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-6 md:mb-8 block absolute top-0 md:top-32 left-6 md:left-24 m-0 p-0 leading-none">Services</h2>
+          <div class="skill-item absolute inset-0 flex flex-col justify-center opacity-100 translate-y-0">
+            <h2 class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-4 md:mb-8 block absolute top-0 md:top-32 left-0 md:left-24 m-0 p-0 leading-none">Services</h2>
             <h2 class="text-6xl md:text-8xl font-bold tracking-tighter leading-[1.1] mb-12 reveal-text">What<br/>I do.</h2>
             <p class="text-zinc-400 max-w-md text-base md:text-lg font-medium reveal-text opacity-90 leading-relaxed mb-8">
               A comprehensive approach to digital design, blending strategic thinking with crafted execution.
@@ -1353,25 +1505,25 @@
           </div>
 
           <!-- Item 1: Brand Identity Design -->
-          <div class="skill-item absolute inset-0 flex flex-col justify-start md:justify-center opacity-0 translate-y-12 pt-10 md:pt-0">
+          <div class="skill-item absolute inset-0 flex flex-col justify-center opacity-0 translate-y-12">
             <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-3 md:mb-4 block">01 / Skill</span>
             <h2 class="text-[2rem] sm:text-[3.5rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-[0.9] text-white">Brand Identity<br/>Design</h2>
           </div>
 
           <!-- Item 2: Web Design & Development -->
-          <div class="skill-item absolute inset-0 flex flex-col justify-start md:justify-center opacity-0 translate-y-12 pt-10 md:pt-0">
+          <div class="skill-item absolute inset-0 flex flex-col justify-center opacity-0 translate-y-12">
             <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-3 md:mb-4 block">02 / Skill</span>
             <h2 class="text-[2rem] sm:text-[3.5rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-[0.9] text-white">Web Design &amp;<br/>Development</h2>
           </div>
 
           <!-- Item 3: UI/UX Design -->
-          <div class="skill-item absolute inset-0 flex flex-col justify-start md:justify-center opacity-0 translate-y-12 pt-10 md:pt-0">
+          <div class="skill-item absolute inset-0 flex flex-col justify-center opacity-0 translate-y-12">
             <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-3 md:mb-4 block">03 / Skill</span>
             <h2 class="text-[2.2rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-[0.9] text-white">UI/UX<br/>Design</h2>
           </div>
 
           <!-- Item 4: Marketing Design -->
-          <div class="skill-item absolute inset-0 flex flex-col justify-start md:justify-center opacity-0 translate-y-12 pt-10 md:pt-0">
+          <div class="skill-item absolute inset-0 flex flex-col justify-center opacity-0 translate-y-12">
             <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-3 md:mb-4 block">04 / Skill</span>
             <h2 class="text-[2.2rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-[0.9] text-white">Marketing<br/>Design</h2>
           </div>
@@ -1379,8 +1531,8 @@
         </div>
       </div>
 
-      <!-- RIGHT side: The 3D Cube -->
-      <div class="relative w-[55vw] h-[55vw] max-w-[280px] max-h-[280px] md:w-1/2 md:h-full flex items-center justify-center pointer-events-none md:pointer-events-auto z-20 order-1 md:order-2 mt-12 md:mt-0" id="rubiks-container">
+      <!-- RIGHT side (visually on desktop): The 3D Cube -->
+      <div class="relative w-[50vw] h-[50vw] max-w-[280px] max-h-[280px] md:max-w-none md:max-h-none md:w-[40%] md:h-[500px] lg:h-[600px] flex items-center justify-center pointer-events-none md:pointer-events-auto z-20 order-1 md:order-2 md:mr-16 lg:mr-24 md:ml-auto" id="rubiks-container">
         <!-- Three.js Canvas injected here -->
       </div>
 
@@ -1476,8 +1628,7 @@ for (let x = 0; x < 3; x++) {
         { num: '1', pos: [0, 0, planeDist],   rot: [0, 0, 0] },
         { num: '2', pos: [planeDist, 0, 0],   rot: [0, Math.PI/2, 0] },
         { num: '3', pos: [0, planeDist, 0],   rot: [-Math.PI/2, 0, 0] },
-        { num: '4', pos: [-planeDist, 0, 0],  rot: [0, -Math.PI/2, 0] },
-        { num: '5', pos: [0, -planeDist, 0],  rot: [Math.PI/2, 0, 0] }
+        { num: '4', pos: [-planeDist, 0, 0],  rot: [0, -Math.PI/2, 0] }
       ];
       faces.forEach(face => {
         const mat = new THREE.MeshBasicMaterial({ map: createNumberTexture(face.num), transparent: true, depthWrite: false });
@@ -1537,8 +1688,7 @@ for (let x = 0; x < 3; x++) {
           { x: 0, y: 0,       z: 0 },
           { x: 0, y: -Math.PI/2, z: 0 },
           { x: Math.PI/2, y: 0, z: 0 },
-          { x: 0, y: Math.PI/2, z: 0 },
-          { x: -Math.PI/2, y: 0, z: 0 }
+          { x: 0, y: Math.PI/2, z: 0 }
         ];
 
         gsap.set(group.rotation, rotations[0]);
@@ -1548,15 +1698,14 @@ for (let x = 0; x < 3; x++) {
           scrollTrigger: {
             trigger: '#services',
             start: 'top top',
-            end: '+=500%', // 5 sections = 500% of viewport height
-            scrub: 1.5,
-            pin: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true
+            end: 'bottom bottom',
+            scrub: 0.5
           }
         });
 
-        tl.to({}, { duration: 2 }); // Initial pause on "What I Do"
+        window._servicesTimeline = tl;
+
+        tl.to({}, { duration: 3.5 }); // Initial pause on "What I Do" (increased safe zone on mobile/desktop)
 
         skills.forEach((skill, index) => {
           if (index === 0) return;
@@ -1698,7 +1847,7 @@ for (let x = 0; x < 3; x++) {
   </section>
 
   <!-- Premium Testimonials Slider -->
-  <section class="section-testimonials py-24 px-6 md:px-24 bg-transparent border-t border-white/10 overflow-hidden">
+  <section class="section-testimonials py-24 px-6 md:px-24 bg-zinc-950 border-t border-white/10 overflow-hidden">
     <div class="max-w-7xl mx-auto relative">
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 relative z-20">
         <div class="flex flex-col items-center md:items-start mb-6 md:mb-0">
@@ -1807,7 +1956,7 @@ for (let x = 0; x < 3; x++) {
 </main>
 
 <!-- Footer -->
-<footer class="bg-transparent flex flex-col md:flex-row justify-between items-center px-6 md:px-24 w-full py-16 text-white border-t border-white/10">
+<footer class="bg-zinc-950 flex flex-col md:flex-row justify-between items-center px-6 md:px-24 w-full py-16 text-white border-t border-white/10">
   <div class="mb-8 md:mb-0 text-center md:text-left">
     <a href="index.html" class="text-lg font-bold text-white tracking-widest mb-4 block">addesign studio</a>
     <p class="font-manrope text-[10px] tracking-widest uppercase text-zinc-500">© 2024 addesign studio. ALL RIGHTS RESERVED.</p>
@@ -1815,7 +1964,6 @@ for (let x = 0; x < 3; x++) {
   <div class="flex flex-wrap justify-center gap-8">
     <a class="font-manrope text-[10px] tracking-widest uppercase text-zinc-400 hover:text-white transition-all duration-400 underline-offset-4 hover:underline" href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
     <a class="font-manrope text-[10px] tracking-widest uppercase text-zinc-400 hover:text-white transition-all duration-400 underline-offset-4 hover:underline" href="https://twitter.com" target="_blank" rel="noopener">Twitter</a>
-    <a class="font-manrope text-[10px] tracking-widest uppercase text-zinc-400 hover:text-white transition-all duration-400 underline-offset-4 hover:underline" href="https://github.com" target="_blank" rel="noopener">GitHub</a>
     <a class="font-manrope text-[10px] tracking-widest uppercase text-zinc-400 hover:text-white transition-all duration-400 underline-offset-4 hover:underline" href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener">Instagram</a>
     <a class="font-manrope text-[10px] tracking-widest uppercase text-white font-bold flex items-center gap-2" href="#top">
       Back to top
@@ -1827,9 +1975,25 @@ for (let x = 0; x < 3; x++) {
 
 <script>
   /* -- Startup Scroll Fix -- */
+  if (window.location.hash) {
+    // Prevent browser's native jump on startup by locking page to top immediately
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+
   window.addEventListener('load', () => {
-    // Force scroll to top on page load to ensure hero entry
-    if (!window.location.hash) {
+    if (window.location.hash) {
+      const hash = window.location.hash;
+      setTimeout(() => {
+        const target = document.querySelector(hash);
+        if (target && window.__lenis) {
+          window.__lenis.scrollTo(target, {
+            offset: -120,
+            duration: 1.8,
+            easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+          });
+        }
+      }, 350); // wait for ScrollTrigger initialization to finish
+    } else {
       window.scrollTo({ top: 0, behavior: 'auto' });
     }
   });
@@ -1851,20 +2015,15 @@ for (let x = 0; x < 3; x++) {
 </script>
 
 <script>
-  /* -- GSAP Plugin Registration -- */
-  if (typeof gsap !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-  }
-
   /* -- Premium Testimonial Slider Logic -- */
-  const slides = document.querySelectorAll('.testimonial-slide');
-  const nextBtn = document.getElementById('next-testimonial');
-  const prevBtn = document.getElementById('prev-testimonial');
+  let slides = [];
+  let nextBtn = null;
+  let prevBtn = null;
   let currentSlide = 0;
   let isAnimating = false;
 
   function showSlide(index, direction) {
-    if (isAnimating) return;
+    if (isAnimating || slides.length === 0) return;
     isAnimating = true;
 
     const outX = direction === 'next' ? -50 : 50;
@@ -1892,14 +2051,35 @@ for (let x = 0; x < 3; x++) {
     });
   }
 
-  // Init first slide
-  if (slides.length > 0) {
-    gsap.set(slides[0], { opacity: 1, x: 0, pointerEvents: 'auto' });
-  }
+  document.addEventListener('DOMContentLoaded', () => {
+    /* -- GSAP Plugin Registration -- */
+    if (typeof gsap !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+      ScrollTrigger.config({ ignoreMobileResize: true });
+    }
 
-  nextBtn.addEventListener('click', () => {
-    let nextIdx = (currentSlide + 1) % slides.length;
-    showSlide(nextIdx, 'next');
+    slides = document.querySelectorAll('.testimonial-slide');
+    nextBtn = document.getElementById('next-testimonial');
+    prevBtn = document.getElementById('prev-testimonial');
+
+    // Init first slide
+    if (slides.length > 0) {
+      gsap.set(slides[0], { opacity: 1, x: 0, pointerEvents: 'auto' });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        let nextIdx = (currentSlide + 1) % slides.length;
+        showSlide(nextIdx, 'next');
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        let prevIdx = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(prevIdx, 'prev');
+      });
+    }
   });
 
   /* -- Brand Guidelines Modal Logic -- */
@@ -2045,10 +2225,6 @@ for (let x = 0; x < 3; x++) {
     }
   });
 
-  prevBtn.addEventListener('click', () => {
-    let prevIdx = (currentSlide - 1 + slides.length) % slides.length;
-    showSlide(prevIdx, 'prev');
-  });
 
   /* -- Staggered Word Reveal for Hero Text -- */
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
@@ -2197,7 +2373,7 @@ for (let x = 0; x < 3; x++) {
 
       <!-- Video: full width, as-is -->
       <div class="w-full bg-white">
-        <video preload="none" autoplay muted loop playsinline class="w-full h-auto block">
+        <video preload="auto" autoplay muted loop playsinline class="w-full h-auto block">
           <source src="/Images/Branding/Rebranding_Product_Video_Generation.mp4" type="video/mp4">
         </video>
       </div>
@@ -2222,7 +2398,7 @@ for (let x = 0; x < 3; x++) {
 
 
 <script>
-(function () {
+document.addEventListener('DOMContentLoaded', () => {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
   gsap.registerPlugin(ScrollTrigger);
@@ -2265,7 +2441,7 @@ for (let x = 0; x < 3; x++) {
     });
   });
 
-})();
+});
 </script>
 
 <!-- Preloader Script -->
@@ -2295,27 +2471,8 @@ for (let x = 0; x < 3; x++) {
     if (sessionStorage.getItem('introPlayed') || window.location.hash) {
       preloader.style.display = "none";
       document.body.classList.remove("overflow-hidden");
-      
-      // Prevent "flash of Hero section" when navigating from contact page via hash
-      if (window.location.hash) {
-        document.body.style.opacity = '0';
-        window.addEventListener('load', () => {
-          setTimeout(() => {
-            const target = document.querySelector(window.location.hash);
-            if (target && typeof window.__lenis !== 'undefined') {
-              window.__lenis.scrollTo(target, { immediate: true });
-            } else if (target) {
-              window.scrollTo(0, target.offsetTop);
-            }
-            document.body.style.transition = 'opacity 0.3s ease';
-            document.body.style.opacity = '1';
-            if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
-          }, 50);
-        });
-      } else {
-        if(typeof ScrollTrigger !== 'undefined') {
-          ScrollTrigger.refresh();
-        }
+      if(typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.refresh();
       }
       return;
     }
@@ -2467,7 +2624,7 @@ for (let x = 0; x < 3; x++) {
   function solutionMedia(mediaPath, type, isVideo = true) {
     const fitClass = 'object-cover bg-black';
     const media = mediaPath.endsWith('.mp4') 
-      ? `<video preload="none" src="${mediaPath}" autoplay muted loop playsinline class="absolute inset-0 w-full h-full ${fitClass} [clip-path:inset(0px_round_1.8rem)]"></video>`
+      ? `<video preload="auto" src="${mediaPath}" autoplay muted loop playsinline class="absolute inset-0 w-full h-full ${fitClass} [clip-path:inset(0px_round_1.8rem)]"></video>`
       : `<img src="${mediaPath}" class="absolute inset-0 w-full h-full ${fitClass} [clip-path:inset(0px_round_1.8rem)]" loading="lazy" decoding="async">`;
 
     if (type === 'desktop') {
@@ -2795,7 +2952,7 @@ for (let x = 0; x < 3; x++) {
                   <p class="text-[10px] uppercase tracking-[0.3em] text-zinc-400 font-bold">Legacy State</p>
                 </div>
                 <div class="bg-zinc-50 p-4 md:p-8 rounded-[2rem] overflow-hidden border border-zinc-100 transition-all duration-700 group-hover:shadow-xl">
-                  <video preload="none" src="${data.transformation.before}" autoplay muted loop playsinline class="w-full h-auto rounded-2xl"></video>
+                  <video preload="auto" src="${data.transformation.before}" autoplay muted loop playsinline class="w-full h-auto rounded-2xl"></video>
                 </div>
               </div>
               <div class="space-y-8 group">
@@ -2804,7 +2961,7 @@ for (let x = 0; x < 3; x++) {
                   <p class="text-[10px] uppercase tracking-[0.3em] text-zinc-900 font-bold">New Vision</p>
                 </div>
                 <div class="bg-white p-4 md:p-8 border border-zinc-100 rounded-[2rem] overflow-hidden shadow-2xl transition-all duration-700 group-hover:scale-[1.01]">
-                  <video preload="none" src="${data.transformation.after}" autoplay muted loop playsinline class="w-full h-auto rounded-2xl"></video>
+                  <video preload="auto" src="${data.transformation.after}" autoplay muted loop playsinline class="w-full h-auto rounded-2xl"></video>
                 </div>
               </div>
             </div>
@@ -2972,7 +3129,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ─── Lenis Smooth Scroll Initialisation ─────────────────────────────────────
-(function initLenis() {
+document.addEventListener('DOMContentLoaded', function initLenis() {
   if (typeof Lenis === 'undefined') return;
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
@@ -3001,31 +3158,49 @@ document.addEventListener('DOMContentLoaded', function() {
   // Keep ScrollTrigger refreshed every Lenis scroll event
   lenis.on('scroll', ScrollTrigger.update);
 
-  // ── CRITICAL: Recalculate ScrollTrigger offsets on layout shifts
-  // Lazy-loaded images push the page down, making cached scroll start/end points stale.
-  let refreshTimeout;
-  const ro = new ResizeObserver(() => {
-    clearTimeout(refreshTimeout);
-    refreshTimeout = setTimeout(() => ScrollTrigger.refresh(), 150);
-  });
-  ro.observe(document.body);
+  // ── CRITICAL: Recalculate ScrollTrigger offsets safely
+  // Since lazy-loaded images shift the document height as they load, 
+  // ScrollTrigger markers get stale and cause animations to jump to the end.
+  // We debounce a refresh call on every image load.
+  let stRefreshTimeout;
+  document.addEventListener('load', (e) => {
+    if (e.target.tagName === 'IMG') {
+      clearTimeout(stRefreshTimeout);
+      stRefreshTimeout = setTimeout(() => {
+        if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+      }, 200);
+    }
+  }, true); // use capture to catch image loads
 
-  // Patch in-page anchor links to use Lenis momentum
+  window.addEventListener('load', () => {
+    setTimeout(() => { if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh(); }, 200);
+  });
+
+  // Patch in-page anchor links to use Lenis momentum (matches #hash and index.html#hash)
   document.addEventListener('click', e => {
-    const anchor = e.target.closest('a[href^="#"]');
+    const anchor = e.target.closest('a');
     if (anchor) {
-      const target = document.querySelector(anchor.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        lenis.scrollTo(target, {
-          offset: -120,
-          duration: 0.8,
-          easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-        });
+      const href = anchor.getAttribute('href');
+      if (href) {
+        const isCurrentPageHash = href.startsWith('#') || 
+          (href.startsWith('index.html#') && (window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html') || window.location.pathname === ''));
+        
+        if (isCurrentPageHash) {
+          const hash = href.substring(href.indexOf('#'));
+          const target = document.querySelector(hash);
+          if (target) {
+            e.preventDefault();
+            lenis.scrollTo(target, {
+              offset: -120,
+              duration: 1.4,
+              easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+            });
+          }
+        }
       }
     }
   });
-})();
+});
 
 // Interactive GSAP Marquee & Global Custom Cursor
 document.addEventListener('DOMContentLoaded', () => {
@@ -3044,28 +3219,20 @@ document.addEventListener('DOMContentLoaded', () => {
   customCursor.appendChild(cursorText);
   document.body.appendChild(customCursor);
 
-  // Smoothed GSAP cursor — longer duration = softer, more organic trailing feel
-  const xTo = gsap.quickTo(customCursor, "x", { duration: 0.55, ease: "power4" });
-  const yTo = gsap.quickTo(customCursor, "y", { duration: 0.55, ease: "power4" });
-  customCursor.classList.add('visible');
-  const darkSections = ['#services', '#mclaren', '#porsche'];
-  darkSections.forEach(selector => {
-    const section = document.querySelector(selector);
-    if (section) {
-      ScrollTrigger.create({
-        trigger: section,
-        start: 'top 50%',
-        end: 'bottom 50%',
-        onEnter: () => customCursor.classList.add('inverse'),
-        onLeave: () => customCursor.classList.remove('inverse'),
-        onEnterBack: () => customCursor.classList.add('inverse'),
-        onLeaveBack: () => customCursor.classList.remove('inverse')
-      });
-    }
-  });
+  // GSAP-driven cursor — GPU composited, no layout cost, works with mix-blend-mode
+  // xPercent/yPercent: -50 tells GSAP to centre the dot on the hotspot
+  gsap.set(customCursor, { xPercent: -50, yPercent: -50 });
+  const xTo = gsap.quickTo(customCursor, 'x', { duration: 0.15, ease: 'power3.out' });
+  const yTo = gsap.quickTo(customCursor, 'y', { duration: 0.15, ease: 'power3.out' });
 
   if (window.matchMedia('(pointer: fine)').matches) {
+    let cursorVisible = false;
     window.addEventListener('mousemove', (e) => {
+      // Fade in on very first mouse movement
+      if (!cursorVisible) {
+        gsap.to(customCursor, { opacity: 1, duration: 0.4, ease: 'power2.out' });
+        cursorVisible = true;
+      }
       xTo(e.clientX);
       yTo(e.clientY);
     }, { passive: true });
@@ -3084,20 +3251,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Magnetic Mode for buttons — gentler pull for stability
     document.querySelectorAll('.magnetic-btn').forEach(btn => {
+      const btnXTo = gsap.quickTo(btn, 'x', { duration: 0.3, ease: 'power3.out' });
+      const btnYTo = gsap.quickTo(btn, 'y', { duration: 0.3, ease: 'power3.out' });
+
       btn.addEventListener('mouseenter', () => {
         customCursor.classList.add('magnetic-mode');
       });
       btn.addEventListener('mouseleave', () => {
         customCursor.classList.remove('magnetic-mode');
-        // Elastic snap-back with reduced overshoot
-        gsap.to(btn, { x: 0, y: 0, duration: 0.8, ease: 'elastic.out(1, 0.5)' });
+        // Elastic snap-back
+        gsap.to(btn, { x: 0, y: 0, duration: 0.8, ease: 'elastic.out(1, 0.5)', overwrite: 'auto' });
       });
       btn.addEventListener('mousemove', (e) => {
         const rect = btn.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
-        // Reduced multiplier (0.4) for a subtler, more refined magnetic feel
-        gsap.to(btn, { x: x * 0.4, y: y * 0.4, duration: 0.5, ease: 'power2.out' });
+        btnXTo(x * 0.4);
+        btnYTo(y * 0.4);
       });
     });
   }
@@ -3107,25 +3277,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const marqueeWrapper = document.querySelector('.hero-marquee-wrapper');
   
   if (marquees.length > 0 && marqueeWrapper) {
-    if (window.matchMedia('(pointer: fine)').matches) {
-      marqueeWrapper.addEventListener('mouseenter', () => {
-        cursorText.textContent = 'SCROLL';
-        customCursor.classList.add('scroll-mode');
-      });
-      marqueeWrapper.addEventListener('mouseleave', () => {
-        customCursor.classList.remove('scroll-mode');
-      });
-    }
 
-    // Infinite GSAP marquee — slightly slower for elegance
+
+    // Infinite GSAP marquee — slow and buttery smooth
     const marqueeTween = gsap.to(marquees, {
       xPercent: -50,
       repeat: -1,
-      duration: 70,
+      duration: 65,
       ease: 'none',
       force3D: true
     });
-
+  }
 
   // --- 2.5 Brand Carousel Interactive Scrolling ---
   const brandCarouselSection = document.getElementById('brand-carousel-section');
@@ -3195,30 +3357,28 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // --- 4. Velocity-Based Skewing — dramatically reduced for stability ---
-  if (window.matchMedia('(pointer: fine)').matches) {
-    let proxy = { skew: 0 };
-    const skewSetter = gsap.quickSetter('.fade-enter-card', 'skewY', 'deg');
-    const clampSkew = gsap.utils.clamp(-4, 4); // Much tighter range (was -15 to 15)
+  let proxy = { skew: 0 };
+  const skewSetter = gsap.quickSetter('.fade-enter-card', 'skewY', 'deg');
+  const clampSkew = gsap.utils.clamp(-4, 4); // Much tighter range (was -15 to 15)
 
-    ScrollTrigger.create({
-      onUpdate: (self) => {
-        let vel = self.getVelocity();
-        if (Math.abs(vel) > 3000) vel = 0;
-        
-        const skew = clampSkew(vel / -600); // Much higher divisor = gentler skew
-        if (Math.abs(skew) > Math.abs(proxy.skew)) {
-          proxy.skew = skew;
-          gsap.to(proxy, {
-            skew: 0,
-            duration: 1.2,          // Longer recovery = less jarring
-            ease: 'power3.out',     // Changed from elastic to power — no bouncing
-            overwrite: true,
-            onUpdate: () => skewSetter(proxy.skew)
-          });
-        }
+  ScrollTrigger.create({
+    onUpdate: (self) => {
+      let vel = self.getVelocity();
+      if (Math.abs(vel) > 3000) vel = 0;
+      
+      const skew = clampSkew(vel / -600); // Much higher divisor = gentler skew
+      if (Math.abs(skew) > Math.abs(proxy.skew)) {
+        proxy.skew = skew;
+        gsap.to(proxy, {
+          skew: 0,
+          duration: 1.2,          // Longer recovery = less jarring
+          ease: 'power3.out',     // Changed from elastic to power — no bouncing
+          overwrite: true,
+          onUpdate: () => skewSetter(proxy.skew)
+        });
       }
-    });
-  }
+    }
+  });
 
   // --- 5. Smooth Color Morphing Transitions ---
   const mclarenSection = document.getElementById('mclaren');
@@ -3342,7 +3502,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <img src="/Images/Branding/Mockup 02.webp" class="w-full h-auto block" alt="Mockup 02.webp" loading="lazy" decoding="async">
       </div>
       <div class="w-full bg-black shadow-xl shadow-black/10 overflow-hidden ring-1 ring-black/5">
-        <video preload="none" autoplay muted loop playsinline class="w-full h-auto block">
+        <video preload="auto" autoplay muted loop playsinline class="w-full h-auto block">
           <source src="/Images/Branding/Rebranding_Product_Video_Generation.mp4" type="video/mp4">
         </video>
       </div>
@@ -3365,7 +3525,7 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
 
       <div class="pt-12 flex justify-center">
-        <a href="#benner-tea-co" class="text-xs font-bold uppercase tracking-[0.1em] px-8 py-4 bg-black text-white hover:bg-zinc-800 transition-colors">
+        <a href="index.html#benner-tea-co" class="text-xs font-bold uppercase tracking-[0.1em] px-8 py-4 bg-black text-white hover:bg-zinc-800 transition-colors">
           Return to Portfolio
         </a>
       </div>
