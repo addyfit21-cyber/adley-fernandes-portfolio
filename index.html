@@ -567,7 +567,7 @@
 
     <!-- Capabilities & Services - Sticky Scroll -->
   <section id="services" class="bg-white text-zinc-900 border-t border-zinc-100 relative" style="height: 750vh; min-height: 750vh;">
-    <div class="sticky top-0 h-[100dvh] w-full overflow-hidden flex flex-col md:flex-row items-center justify-center md:justify-between">
+    <div class="sticky top-0 h-[100svh] w-full overflow-hidden flex flex-col md:flex-row items-center justify-center md:justify-between">
 
       <!-- LEFT side (visually on desktop): The Skills text -->
       <div class="w-full h-[40vh] md:h-full md:w-1/2 px-6 md:px-24 flex flex-col justify-center relative z-10 order-2 md:order-1">
@@ -861,7 +861,7 @@ for (let x = 0; x < 3; x++) {
       <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20 items-center">
         <div class="md:col-span-5">
           <div class="aspect-[4/5] overflow-hidden bg-zinc-100 border border-zinc-100">
-            <img class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" alt="Website Design &amp; Development" src="Images/service_web_design.webp" loading="lazy" decoding="async">
+            <img class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" alt="Website Design &amp; Development" src="Images/realistic_web_design.webp" loading="lazy" decoding="async">
           </div>
         </div>
         <div class="md:col-start-7 md:col-span-6 flex flex-col justify-center">
@@ -937,7 +937,7 @@ for (let x = 0; x < 3; x++) {
         </div>
         <div class="md:col-start-8 md:col-span-5 order-1 md:order-2">
           <div class="aspect-[4/5] overflow-hidden bg-zinc-100 border border-zinc-100">
-            <img class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" alt="Graphic Design &amp; Branding" src="Images/service_branding.webp" loading="lazy" decoding="async">
+            <img class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" alt="Graphic Design &amp; Branding" src="Images/Gemini_Generated_Image_yhiy2nyhiy2nyhiy.webp" loading="lazy" decoding="async">
           </div>
         </div>
       </div>
@@ -1069,16 +1069,26 @@ for (let x = 0; x < 3; x++) {
               View Full Brand Guidelines
             </a>
           </div>
-          <!-- Mockup images — full width (col-span-2) -->
-          <div class="col-span-2 group overflow-hidden bg-zinc-50"><img src="/Images/Branding/Mockup 01.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Mockup 01" loading="lazy" decoding="async"></div>
-          <div class="col-span-2 group overflow-hidden bg-zinc-50"><img src="/Images/Branding/Mockup 02.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Mockup 02" loading="lazy" decoding="async"></div>
-          <!-- Video between Mockup 02 and Mockup 03 -->
-          <div class="col-span-2 bg-black">
-            <video preload="none" autoplay muted loop playsinline class="card-video w-full h-auto hidden md:block" data-src="/Images/Branding/Rebranding_Product_Video_Generation.mp4"></video>
-            <video preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-auto block md:hidden pointer-events-none" data-src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4"></video>
+          <!-- Mockup images and Video -->
+          <div class="col-span-2 md:col-span-1 group overflow-hidden bg-zinc-50">
+            <img src="/Images/Branding/Mockup 01.webp" class="w-full h-full aspect-square object-cover block transition-transform duration-700 group-hover:scale-[1.02] border-none" alt="Mockup 01" loading="lazy" decoding="async">
           </div>
-          <div class="col-span-2 group overflow-hidden bg-zinc-50 relative z-10 -mt-12 sm:-mt-16 md:-mt-24 lg:-mt-32"><img src="/Images/Branding/mockup 03.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Mockup 03" loading="lazy" decoding="async"></div>
-          <div class="col-span-2 group overflow-hidden bg-zinc-50"><img src="/Images/Branding/mockup 04.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Mockup 04" loading="lazy" decoding="async"></div>
+          <div class="col-span-2 md:col-span-1 group overflow-hidden bg-zinc-50">
+            <img src="/Images/Branding/Mockup 02.webp" class="w-full h-full aspect-square object-cover block transition-transform duration-700 group-hover:scale-[1.02] border-none" alt="Mockup 02" loading="lazy" decoding="async">
+          </div>
+          <div class="col-span-2 md:col-span-1 bg-black w-full aspect-square relative flex items-center justify-center">
+            <video preload="none" autoplay muted loop playsinline class="card-video w-full h-full object-cover absolute inset-0 hidden md:block" data-src="/Images/Branding/Rebranding_Product_Video_Generation.mp4"></video>
+            <video preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-full object-cover absolute inset-0 block md:hidden pointer-events-none" data-src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4"></video>
+          </div>
+          <div class="col-span-2 md:col-span-1 group overflow-hidden bg-zinc-50 relative z-10 -mt-12 sm:-mt-16 md:mt-0">
+            <img src="/Images/Branding/mockup 03.webp" class="w-full h-full aspect-square object-cover block transition-transform duration-700 group-hover:scale-[1.02] border-none" alt="Mockup 03" loading="lazy" decoding="async">
+          </div>
+          <div class="col-span-2 md:col-span-1 group overflow-hidden bg-zinc-50">
+            <img src="/Images/Branding/mockup 04.webp" class="w-full h-full aspect-square object-cover block transition-transform duration-700 group-hover:scale-[1.02] border-none" alt="Mockup 04" loading="lazy" decoding="async">
+          </div>
+          <div class="col-span-2 md:col-span-1 group overflow-hidden bg-zinc-50">
+            <img src="/Images/Branding/IMG_3641.webp" class="w-full h-full aspect-square object-cover block transition-transform duration-700 group-hover:scale-[1.02] border-none" alt="Mockup 05" loading="lazy" decoding="async">
+          </div>
         </div>
       </div>
     </div>
@@ -1223,23 +1233,23 @@ for (let x = 0; x < 3; x++) {
           <h3 class="text-2xl md:text-4xl font-bold tracking-tighter text-black">In context.</h3>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 w-full gap-px bg-zinc-200">
-          <div class="md:col-span-2 overflow-hidden bg-zinc-50 h-[300px] md:h-[600px] group">
-            <img src="/Images/Brands/lukes%20iced%20coffee/LUKES%20ICED%20COFFEE.webp" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105" alt="Luke's Master Mockup" loading="lazy" decoding="async">
+          <div class="col-span-1 overflow-hidden bg-zinc-50 group">
+            <img src="/Images/Brands/lukes%20iced%20coffee/LUKES%20ICED%20COFFEE.webp" class="w-full h-full aspect-square object-cover transition-transform duration-[2s] group-hover:scale-105" alt="Luke's Master Mockup" loading="lazy" decoding="async">
           </div>
-          <div class="overflow-hidden bg-zinc-50 h-[250px] md:h-[450px] group">
-            <img src="/Images/Brands/lukes%20iced%20coffee/Gemini_Generated_Image_81wcsr81wcsr81wc.webp" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105" alt="Application 1" loading="lazy" decoding="async">
+          <div class="col-span-1 overflow-hidden bg-zinc-50 group">
+            <img src="/Images/Brands/lukes%20iced%20coffee/Gemini_Generated_Image_81wcsr81wcsr81wc.webp" class="w-full h-full aspect-square object-cover transition-transform duration-[2s] group-hover:scale-105" alt="Application 1" loading="lazy" decoding="async">
           </div>
-          <div class="overflow-hidden bg-zinc-50 h-[250px] md:h-[450px] group">
-            <img src="/Images/Brands/lukes%20iced%20coffee/Gemini_Generated_Image_8fqnm18fqnm18fqn.webp" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105" alt="Application 2" loading="lazy" decoding="async">
+          <div class="col-span-1 overflow-hidden bg-zinc-50 group">
+            <img src="/Images/Brands/lukes%20iced%20coffee/Gemini_Generated_Image_8fqnm18fqnm18fqn.webp" class="w-full h-full aspect-square object-cover transition-transform duration-[2s] group-hover:scale-105" alt="Application 2" loading="lazy" decoding="async">
           </div>
-          <div class="md:col-span-2 overflow-hidden bg-zinc-50 h-[250px] md:h-[500px] group">
-            <img src="/Images/Brands/lukes%20iced%20coffee/Gemini_Generated_Image_asf1saasf1saasf1.webp" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105" alt="Application 3" loading="lazy" decoding="async">
+          <div class="col-span-1 overflow-hidden bg-zinc-50 group">
+            <img src="/Images/Brands/lukes%20iced%20coffee/Gemini_Generated_Image_asf1saasf1saasf1.webp" class="w-full h-full aspect-square object-cover transition-transform duration-[2s] group-hover:scale-105" alt="Application 3" loading="lazy" decoding="async">
           </div>
-          <div class="overflow-hidden bg-zinc-50 h-[250px] md:h-[450px] group">
-            <img src="/Images/Brands/lukes%20iced%20coffee/Gemini_Generated_Image_ccm09gccm09gccm0.webp" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105" alt="Application 4" loading="lazy" decoding="async">
+          <div class="col-span-1 overflow-hidden bg-zinc-50 group">
+            <img src="/Images/Brands/lukes%20iced%20coffee/Gemini_Generated_Image_ccm09gccm09gccm0.webp" class="w-full h-full aspect-square object-cover transition-transform duration-[2s] group-hover:scale-105" alt="Application 4" loading="lazy" decoding="async">
           </div>
-          <div class="overflow-hidden bg-zinc-50 h-[250px] md:h-[450px] group">
-            <img src="/Images/Brands/lukes%20iced%20coffee/Gemini_Generated_Image_fi4dhxfi4dhxfi4d.webp" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105" alt="Application 5" loading="lazy" decoding="async">
+          <div class="col-span-1 overflow-hidden bg-zinc-50 group">
+            <img src="/Images/Brands/lukes%20iced%20coffee/Gemini_Generated_Image_fi4dhxfi4dhxfi4d.webp" class="w-full h-full aspect-square object-cover transition-transform duration-[2s] group-hover:scale-105" alt="Application 5" loading="lazy" decoding="async">
           </div>
         </div>
       </div>
@@ -2427,17 +2437,20 @@ for (let x = 0; x < 3; x++) {
         <img src="/Images/Branding/Brand guidelines-26.webp" class="w-full h-auto block" alt="Page 26" loading="lazy" decoding="async">
       </div>
 
-      <!-- Video: full width, as-is -->
-      <div class="w-full bg-black">
-        <video preload="none" autoplay muted loop playsinline class="card-video w-full h-auto hidden md:block" data-src="/Images/Branding/Rebranding_Product_Video_Generation.mp4"></video>
-        <video preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-auto block md:hidden pointer-events-none" data-src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4"></video>
+      <!-- Video and Mockups: 1x1 size -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 w-full bg-black">
+        <!-- Video -->
+        <div class="w-full aspect-square relative flex items-center justify-center">
+          <video preload="none" autoplay muted loop playsinline class="card-video w-full h-full object-cover absolute inset-0 hidden md:block" data-src="/Images/Branding/Rebranding_Product_Video_Generation.mp4"></video>
+          <video preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-full object-cover absolute inset-0 block md:hidden pointer-events-none" data-src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4"></video>
+        </div>
+        <!-- Mockups -->
+        <img src="/Images/Branding/Mockup 01.webp" class="w-full h-full aspect-square object-cover block border-none" alt="Mockup 1" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Mockup 02.webp" class="w-full h-full aspect-square object-cover block border-none" alt="Mockup 2" loading="lazy" decoding="async">
+        <img src="/Images/Branding/mockup 03.webp" class="w-full h-full aspect-square object-cover block border-none" alt="Mockup 3" loading="lazy" decoding="async">
+        <img src="/Images/Branding/mockup 04.webp" class="w-full h-full aspect-square object-cover block border-none" alt="Mockup 4" loading="lazy" decoding="async">
+        <img src="/Images/Branding/IMG_3641.webp" class="w-full h-full aspect-square object-cover block border-none" alt="Mockup 5" loading="lazy" decoding="async">
       </div>
-
-      <!-- Mockups: full width, as-is -->
-      <img src="/Images/Branding/Mockup 01.webp" class="w-full h-auto block" alt="Mockup 1" loading="lazy" decoding="async">
-      <img src="/Images/Branding/Mockup 02.webp" class="w-full h-auto block" alt="Mockup 2" loading="lazy" decoding="async">
-      <img src="/Images/Branding/mockup 03.webp" class="w-full h-auto block" alt="Mockup 3" loading="lazy" decoding="async">
-      <img src="/Images/Branding/mockup 04.webp" class="w-full h-auto block" alt="Mockup 4" loading="lazy" decoding="async">
 
       <!-- Brand Guideline Pages 27–28: 2 per row -->
       <div class="grid grid-cols-2 gap-0">
@@ -2755,7 +2768,7 @@ document.addEventListener('DOMContentLoaded', () => {
           #case-study-content h1, #case-study-content h2, #case-study-content h3 { font-family: Helvetica, Arial, sans-serif !important; }
         </style>
         <!-- Section 1: Intro -->
-        <section class="min-h-screen flex flex-col items-center justify-center px-6 text-center space-y-8 md:space-y-16">
+        <section class="min-h-[100svh] flex flex-col items-center justify-center px-6 text-center space-y-8 md:space-y-16">
           <div class="benner-reveal overflow-hidden">
             <span class="text-[10px] tracking-[0.5em] uppercase text-zinc-400 font-bold block mb-4 md:mb-8">Section 01 — Intro</span>
             <h1 class="text-4xl md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-white mb-8 md:mb-12">Benner<br/>Tea Co.</h1>
@@ -2941,7 +2954,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const content = document.getElementById('case-study-content');
 
     content.innerHTML = `
-      <div class="w-full min-h-screen bg-black pb-64 font-sans overflow-x-hidden">
+      <div class="w-full min-h-[100svh] bg-black pb-64 font-sans overflow-x-hidden">
         <style>
           #case-study-content { font-family: Arial, sans-serif !important; }
           #case-study-content h1, #case-study-content h2, #case-study-content h3 { font-family: Helvetica, Arial, sans-serif !important; }
@@ -3382,5 +3395,152 @@ document.addEventListener('DOMContentLoaded', () => {
   
 });
 </script>
+
+  <!-- ==============================================
+       FLOATING INDICATOR CUBE
+  ============================================== -->
+  <div id="floating-indicator-container" class="fixed top-[20%] md:top-[30%] right-4 md:right-8 z-[500] w-[90px] h-[90px] md:w-[140px] md:h-[140px] pointer-events-none opacity-0 invisible" style="will-change: transform, opacity; transform: translateX(100vw);">
+  </div>
+
+  <script type="module">
+    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js';
+    import { RoundedBoxGeometry } from 'https://cdn.jsdelivr.net/npm/three@0.150.1/examples/jsm/geometries/RoundedBoxGeometry.js';
+
+    const container = document.getElementById('floating-indicator-container');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
+    camera.position.z = 6.5;
+
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
+
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
+    const dirLight = new THREE.DirectionalLight(0xffffff, 2.5);
+    dirLight.position.set(5, 5, 5);
+    scene.add(dirLight);
+    const fillLight = new THREE.DirectionalLight(0xffffff, 1);
+    fillLight.position.set(-5, -2, -5);
+    scene.add(fillLight);
+
+    function createNumberTexture(number) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 512; canvas.height = 512;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, 512, 512);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 360px Arial, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.shadowColor = 'rgba(0,0,0,0.8)';
+      ctx.shadowBlur = 15;
+      ctx.fillText(number, 256, 280);
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+      return texture;
+    }
+
+    const group = new THREE.Group();
+    const innerGroup = new THREE.Group();
+    group.add(innerGroup);
+    scene.add(group);
+
+    const material = new THREE.MeshStandardMaterial({ color: 0x050505, roughness: 0.1, metalness: 0.85 });
+    const boxSize = 0.85;
+    const radius = 0.12;
+    const geometry = new RoundedBoxGeometry(boxSize, boxSize, boxSize, 4, radius);
+    const gap = 0.9;
+    const offset = gap;
+    for (let x = 0; x < 3; x++) {
+      for (let y = 0; y < 3; y++) {
+        for (let z = 0; z < 3; z++) {
+          const cube = new THREE.Mesh(geometry, material);
+          cube.position.set(x * gap - offset, y * gap - offset, z * gap - offset);
+          innerGroup.add(cube);
+        }
+      }
+    }
+
+    const planeGeo = new THREE.PlaneGeometry(2.8, 2.8);
+    const planeDist = 1.4;
+    // Map numbers to faces sequentially around the Y axis
+    const faces = [
+      { num: '1', pos: [0, 0, planeDist],   rot: [0, 0, 0] },
+      { num: '2', pos: [planeDist, 0, 0],   rot: [0, Math.PI/2, 0] },
+      { num: '3', pos: [0, 0, -planeDist],  rot: [0, Math.PI, 0] },
+      { num: '4', pos: [-planeDist, 0, 0],  rot: [0, -Math.PI/2, 0] }
+    ];
+    faces.forEach(face => {
+      const mat = new THREE.MeshBasicMaterial({ map: createNumberTexture(face.num), transparent: true, depthWrite: false });
+      const plane = new THREE.Mesh(planeGeo, mat);
+      plane.position.set(...face.pos);
+      plane.rotation.set(...face.rot);
+      innerGroup.add(plane);
+    });
+
+    let idleTime = 0;
+    function animateCube() {
+      requestAnimationFrame(animateCube);
+      idleTime += 0.02;
+      group.position.y = Math.sin(idleTime) * 0.2;
+      group.rotation.x = Math.sin(idleTime * 0.5) * 0.15;
+      group.rotation.z = Math.cos(idleTime * 0.5) * 0.1;
+      renderer.render(scene, camera);
+    }
+    animateCube();
+
+    window.addEventListener('load', () => {
+      if(typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+      // Master visibility toggle
+      gsap.to(container, {
+        scrollTrigger: {
+          trigger: '#branding',
+          start: 'top 60%',
+          endTrigger: '#porsche',
+          end: 'bottom 40%',
+          onEnter: () => gsap.to(container, { x: 0, autoAlpha: 1, duration: 1, ease: 'power3.out' }),
+          onLeave: () => gsap.to(container, { x: '100vw', autoAlpha: 0, duration: 1, ease: 'power3.in' }),
+          onEnterBack: () => gsap.to(container, { x: 0, autoAlpha: 1, duration: 1, ease: 'power3.out' }),
+          onLeaveBack: () => gsap.to(container, { x: '100vw', autoAlpha: 0, duration: 1, ease: 'power3.in' })
+        }
+      });
+
+      // Target Rotations for Inner Group (to show face 1, 2, 3, 4)
+      const sections = [
+        { id: '#branding', rotY: 0 },
+        { id: '#posters', rotY: -Math.PI/2 },
+        { id: '#work', rotY: -Math.PI },
+        { id: '#mclaren', rotY: -Math.PI * 1.5 }
+      ];
+
+      sections.forEach((sec, index) => {
+        ScrollTrigger.create({
+          trigger: sec.id,
+          start: 'top 50%',
+          end: 'bottom 50%',
+          onToggle: (self) => {
+            if (self.isActive) animateTo(sec);
+          }
+        });
+      });
+
+      function animateTo(sec) {
+        gsap.to(innerGroup.rotation, {
+          y: sec.rotY,
+          duration: 1.5,
+          ease: "power3.out"
+        });
+      }
+
+      window.addEventListener('resize', () => {
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+      });
+    });
+  </script>
 
 </body></html>
