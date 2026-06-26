@@ -2125,7 +2125,15 @@ for (let x = 0; x < 3; x++) {
     if (typeof gsap !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
       ScrollTrigger.config({ ignoreMobileResize: true });
-      ScrollTrigger.config({ ignoreMobileResize: true });
+      
+      // Auto-refresh ScrollTrigger when lazy-loaded images load and change page height
+      if (typeof ResizeObserver !== 'undefined') {
+        let refreshTimeout;
+        new ResizeObserver(() => {
+          clearTimeout(refreshTimeout);
+          refreshTimeout = setTimeout(() => ScrollTrigger.refresh(), 200);
+        }).observe(document.body);
+      }
     }
 
     slides = document.querySelectorAll('.testimonial-slide');
