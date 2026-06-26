@@ -2126,7 +2126,7 @@ for (let x = 0; x < 3; x++) {
       gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
       ScrollTrigger.config({ ignoreMobileResize: true });
       
-      // Auto-refresh ScrollTrigger when lazy-loaded images or videos load
+      // Refresh when lazy-loaded images change layout height
       let refreshTimeout;
       const refreshGSAP = () => {
         clearTimeout(refreshTimeout);
@@ -2137,12 +2137,8 @@ for (let x = 0; x < 3; x++) {
           img.addEventListener('load', refreshGSAP);
         }
       });
-      document.querySelectorAll('video').forEach(video => {
-        if (video.readyState < 2) {
-          video.addEventListener('loadeddata', refreshGSAP);
-          video.addEventListener('loadedmetadata', refreshGSAP);
-        }
-      });
+      // NOTE: Video refreshes are handled inside the IntersectionObserver (lazy-video-loader)
+      // because videos have no src at DOMContentLoaded time, so loadeddata never fires here.
     }
 
     slides = document.querySelectorAll('.testimonial-slide');
@@ -3163,6 +3159,17 @@ document.addEventListener('DOMContentLoaded', () => {
           video.setAttribute('playsinline', 'true');
           video.setAttribute('webkit-playsinline', 'true');
           video.load();
+          // CRITICAL: After src is set and video loads, the video container
+          // expands its height, shifting the entire page layout. We MUST
+          // refresh GSAP scroll triggers so the cube numbers stay correct.
+          // Use multiple delays to catch the layout settling.
+          const doRefresh = () => {
+            if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+          };
+          setTimeout(doRefresh, 100);
+          setTimeout(doRefresh, 500);
+          setTimeout(doRefresh, 1500);
+          video.addEventListener('loadedmetadata', doRefresh, { once: true });
         }
         // Always force mute and play
         video.muted = true;
@@ -3514,6 +3521,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('load', () => {
       if(typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+      // Timed safety refreshes: Chrome mobile may still be laying out lazy
+      // images/videos well after load. Refresh at 0.5s, 1.5s, 3s, 5s.
+      [500, 1500, 3000, 5000].forEach(ms => {
+        setTimeout(() => ScrollTrigger.refresh(), ms);
+      });
 
       // Master visibility toggle
       ScrollTrigger.create({
