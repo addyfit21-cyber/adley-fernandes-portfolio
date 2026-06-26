@@ -3499,17 +3499,15 @@ document.addEventListener('DOMContentLoaded', () => {
       if(typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
       // Master visibility toggle
-      gsap.to(container, {
-        scrollTrigger: {
-          trigger: '#branding',
-          start: 'top 60%',
-          endTrigger: '#porsche',
-          end: 'bottom 40%',
-          onEnter: () => gsap.to(container, { x: 0, autoAlpha: 1, duration: 1, ease: 'power3.out' }),
-          onLeave: () => gsap.to(container, { x: '100vw', autoAlpha: 0, duration: 1, ease: 'power3.in' }),
-          onEnterBack: () => gsap.to(container, { x: 0, autoAlpha: 1, duration: 1, ease: 'power3.out' }),
-          onLeaveBack: () => gsap.to(container, { x: '100vw', autoAlpha: 0, duration: 1, ease: 'power3.in' })
-        }
+      ScrollTrigger.create({
+        trigger: '#branding',
+        start: 'top 60%',
+        endTrigger: '#porsche',
+        end: 'bottom 40%',
+        onEnter: () => gsap.to(container, { x: 0, autoAlpha: 1, duration: 1, ease: 'power3.out', overwrite: 'auto' }),
+        onLeave: () => gsap.to(container, { x: '100vw', autoAlpha: 0, duration: 1, ease: 'power3.in', overwrite: 'auto' }),
+        onEnterBack: () => gsap.to(container, { x: 0, autoAlpha: 1, duration: 1, ease: 'power3.out', overwrite: 'auto' }),
+        onLeaveBack: () => gsap.to(container, { x: '100vw', autoAlpha: 0, duration: 1, ease: 'power3.in', overwrite: 'auto' })
       });
 
       // Target Rotations for Inner Group (to show face 1, 2, 3, 4)
@@ -3525,9 +3523,8 @@ document.addEventListener('DOMContentLoaded', () => {
           trigger: sec.id,
           start: 'top 50%',
           end: 'bottom 50%',
-          onToggle: (self) => {
-            if (self.isActive) animateTo(sec);
-          }
+          onEnter: () => animateTo(sec),
+          onEnterBack: () => animateTo(sec)
         });
       });
 
@@ -3535,7 +3532,8 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.to(innerGroup.rotation, {
           y: sec.rotY,
           duration: 1.5,
-          ease: "power3.out"
+          ease: "power3.out",
+          overwrite: "auto"
         });
       }
 
