@@ -3565,7 +3565,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function onScroll() {
       if (!brandingEl || !porscheEl) return;
       const vh = window.innerHeight;
-      const mid = vh * 0.5;
 
       // -- Show / hide cube --
       const bRect = brandingEl.getBoundingClientRect();
@@ -3573,29 +3572,28 @@ document.addEventListener('DOMContentLoaded', () => {
       const inRange = bRect.top < vh * 0.65 && pRect.bottom > vh * 0.35;
       if (inRange) showCube(); else hideCube();
 
-      // -- Pick which section owns the viewport centre --
+      // -- Pick active section --
+      // A section becomes active when its top crosses 25% from the top of the
+      // viewport. Walk sections in REVERSE and pick the last one whose top is
+      // already above that threshold — this is the section most-recently entered.
+      const trigger = vh * 0.25;
       let activeSec = null;
-      let closestDist = Infinity;
 
-      for (const sec of SECTIONS) {
+      for (let i = SECTIONS.length - 1; i >= 0; i--) {
+        const sec = SECTIONS[i];
         const el = document.getElementById(sec.id);
         if (!el) continue;
         const r = el.getBoundingClientRect();
-
-        // Section spans the midpoint
-        if (r.top <= mid && r.bottom >= mid) {
+        if (r.top <= trigger) {
           activeSec = sec;
           break;
         }
-        // Fallback: nearest section to midpoint (for gaps between sections)
-        const dist = Math.abs((r.top + r.bottom) / 2 - mid);
-        if (dist < closestDist) {
-          closestDist = dist;
-          activeSec = sec;
-        }
       }
 
-      if (activeSec) animateTo(activeSec.rotY);
+      // Fallback: nothing past trigger yet — show the first section
+      if (!activeSec) activeSec = SECTIONS[0];
+
+      animateTo(activeSec.rotY);
     }
 
     // Hook into Lenis (if available) for smooth scroll events, else use native scroll
