@@ -741,8 +741,11 @@ for (let x = 0; x < 3; x++) {
       }
       animateCube();
 
+      let _lastWidth = window.innerWidth;
       window.addEventListener('resize', () => {
         if (!container) return;
+        if (window.innerWidth === _lastWidth) return; // Ignore vertical-only resizes (mobile address bar)
+        _lastWidth = window.innerWidth;
         camera.aspect = container.clientWidth / container.clientHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(container.clientWidth, container.clientHeight);
@@ -2121,6 +2124,7 @@ for (let x = 0; x < 3; x++) {
     /* -- GSAP Plugin Registration -- */
     if (typeof gsap !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+      ScrollTrigger.config({ ignoreMobileResize: true });
       ScrollTrigger.config({ ignoreMobileResize: true });
     }
 
@@ -3535,7 +3539,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
 
+      let _lastWidth2 = window.innerWidth;
       window.addEventListener('resize', () => {
+        if (window.innerWidth === _lastWidth2) return;
+        _lastWidth2 = window.innerWidth;
         camera.aspect = container.clientWidth / container.clientHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(container.clientWidth, container.clientHeight);
