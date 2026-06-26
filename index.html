@@ -3519,63 +3519,111 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     animateCube();
 
-    window.addEventListener('load', () => {
-      if(typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    // ── Cube scroll logic using getBoundingClientRect ──────────────────────────
+    // We intentionally do NOT use GSAP ScrollTrigger here because ScrollTrigger
+    // pre-computes element offsets at load time. On Chrome mobile, lazy-loaded
+    // videos cause the page to grow after those offsets are computed, making all
+    // triggers fire at wrong scroll positions. getBoundingClientRect() always
+    // returns the real current position, so it is 100% immune to layout shifts.
 
-      // Timed safety refreshes: Chrome mobile may still be laying out lazy
-      // images/videos well after load. Refresh at 0.5s, 1.5s, 3s, 5s.
-      [500, 1500, 3000, 5000].forEach(ms => {
-        setTimeout(() => ScrollTrigger.refresh(), ms);
-      });
+    const SECTIONS = [
+      { id: 'branding', rotY: 0 },
+      { id: 'posters',  rotY: -Math.PI / 2 },
+      { id: 'work',     rotY: -Math.PI },
+      { id: 'mclaren',  rotY: -Math.PI * 1.5 }
+    ];
 
-      // Master visibility toggle
-      ScrollTrigger.create({
-        trigger: '#branding',
-        start: 'top 60%',
-        endTrigger: '#porsche',
-        end: 'bottom 40%',
-        onEnter: () => gsap.to(container, { x: 0, autoAlpha: 1, duration: 1, ease: 'power3.out', overwrite: 'auto' }),
-        onLeave: () => gsap.to(container, { x: '100vw', autoAlpha: 0, duration: 1, ease: 'power3.in', overwrite: 'auto' }),
-        onEnterBack: () => gsap.to(container, { x: 0, autoAlpha: 1, duration: 1, ease: 'power3.out', overwrite: 'auto' }),
-        onLeaveBack: () => gsap.to(container, { x: '100vw', autoAlpha: 0, duration: 1, ease: 'power3.in', overwrite: 'auto' })
-      });
+    const brandingEl = document.getElementById('branding');
+    const porscheEl  = document.getElementById('porsche');
+    let cubeVisible  = false;
+    let lastRotY     = null;
 
-      // Target Rotations for Inner Group (to show face 1, 2, 3, 4)
-      const sections = [
-        { id: '#branding', rotY: 0 },
-        { id: '#posters', rotY: -Math.PI/2 },
-        { id: '#work', rotY: -Math.PI },
-        { id: '#mclaren', rotY: -Math.PI * 1.5 }
-      ];
+    function animateTo(rotY) {
+      if (lastRotY === rotY) return;
+      lastRotY = rotY;
+      if (typeof gsap !== 'undefined') {
+        gsap.to(innerGroup.rotation, { y: rotY, duration: 1.5, ease: 'power3.out', overwrite: 'auto' });
+      }
+    }
 
-      sections.forEach((sec, index) => {
-        ScrollTrigger.create({
-          trigger: sec.id,
-          start: 'top 50%',
-          end: 'bottom 50%',
-          onEnter: () => animateTo(sec),
-          onEnterBack: () => animateTo(sec)
-        });
-      });
+    function showCube() {
+      if (cubeVisible) return;
+      cubeVisible = true;
+      if (typeof gsap !== 'undefined') {
+        gsap.to(container, { x: 0, autoAlpha: 1, duration: 1, ease: 'power3.out', overwrite: 'auto' });
+      }
+    }
 
-      function animateTo(sec) {
-        gsap.to(innerGroup.rotation, {
-          y: sec.rotY,
-          duration: 1.5,
-          ease: "power3.out",
-          overwrite: "auto"
-        });
+    function hideCube() {
+      if (!cubeVisible) return;
+      cubeVisible = false;
+      if (typeof gsap !== 'undefined') {
+        gsap.to(container, { x: '100vw', autoAlpha: 0, duration: 1, ease: 'power3.in', overwrite: 'auto' });
+      }
+    }
+
+    function onScroll() {
+      if (!brandingEl || !porscheEl) return;
+      const vh = window.innerHeight;
+      const mid = vh * 0.5;
+
+      // -- Show / hide cube --
+      const bRect = brandingEl.getBoundingClientRect();
+      const pRect = porscheEl.getBoundingClientRect();
+      const inRange = bRect.top < vh * 0.65 && pRect.bottom > vh * 0.35;
+      if (inRange) showCube(); else hideCube();
+
+      // -- Pick which section owns the viewport centre --
+      let activeSec = null;
+      let closestDist = Infinity;
+
+      for (const sec of SECTIONS) {
+        const el = document.getElementById(sec.id);
+        if (!el) continue;
+        const r = el.getBoundingClientRect();
+
+        // Section spans the midpoint
+        if (r.top <= mid && r.bottom >= mid) {
+          activeSec = sec;
+          break;
+        }
+        // Fallback: nearest section to midpoint (for gaps between sections)
+        const dist = Math.abs((r.top + r.bottom) / 2 - mid);
+        if (dist < closestDist) {
+          closestDist = dist;
+          activeSec = sec;
+        }
       }
 
-      let _lastWidth2 = window.innerWidth;
-      window.addEventListener('resize', () => {
-        if (window.innerWidth === _lastWidth2) return;
-        _lastWidth2 = window.innerWidth;
-        camera.aspect = container.clientWidth / container.clientHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(container.clientWidth, container.clientHeight);
-      });
+      if (activeSec) animateTo(activeSec.rotY);
+    }
+
+    // Hook into Lenis (if available) for smooth scroll events, else use native scroll
+    function attachScroll() {
+      if (window.__lenis) {
+        window.__lenis.on('scroll', onScroll);
+      } else {
+        window.addEventListener('scroll', onScroll, { passive: true });
+      }
+      onScroll(); // run once immediately
+    }
+
+    // Wait for Lenis to be ready (it initialises on DOMContentLoaded)
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => setTimeout(attachScroll, 100));
+    } else {
+      setTimeout(attachScroll, 100);
+    }
+
+    let _lastWidth2 = window.innerWidth;
+    window.addEventListener('resize', () => {
+      if (window.innerWidth === _lastWidth2) return;
+      _lastWidth2 = window.innerWidth;
+      camera.aspect = container.clientWidth / container.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(container.clientWidth, container.clientHeight);
     });
+
   </script>
 
 </body></html>
