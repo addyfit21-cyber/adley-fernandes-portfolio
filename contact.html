@@ -5,6 +5,33 @@
 <html class="light bg-[#fdfdfd]" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+
+<!-- IAB Viewport Lock -->
+<script>
+(function() {
+  var _lockedVW = window.innerWidth;
+  function setVH() {
+    var h = (window.visualViewport ? window.visualViewport.height : window.innerHeight);
+    document.documentElement.style.setProperty('--vh', (h * 0.01) + 'px');
+  }
+  setVH();
+  window.addEventListener('resize', function() {
+    var newVW = window.innerWidth;
+    if (newVW === _lockedVW) return;
+    _lockedVW = newVW;
+    setVH();
+  });
+  if (window.visualViewport) {
+    var _lockedVVW = window.visualViewport.width;
+    window.visualViewport.addEventListener('resize', function() {
+      var newVVW = window.visualViewport.width;
+      if (newVVW === _lockedVVW) return;
+      _lockedVVW = newVVW;
+      setVH();
+    });
+  }
+})();
+</script>
 <title>Contact Adley Fernandes | Graphic & Web Designer</title>
 <meta name="description" content="Get in touch with Adley Fernandes for freelance graphic design, branding, and web design projects. Start a project today."/>
 <link rel="canonical" href="https://adleyportfolio.in/contact.html" />
@@ -341,7 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-<main class="pt-32 pb-24 px-6 md:px-24 min-h-[100svh] bg-[#fdfdfd]">
+<main class="pt-32 pb-24 px-6 md:px-24 bg-[#fdfdfd]" style="min-height: calc(var(--vh, 1svh) * 100);">
   <div class="max-w-7xl mx-auto">
     <!-- Header Statement -->
     <section class="mb-32" id="contact-top">

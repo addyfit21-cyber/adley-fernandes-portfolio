@@ -3,6 +3,39 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+
+<!-- IAB Viewport Lock: Freezes --vh so Instagram/LinkedIn/TikTok toolbar
+     show/hide (which fires resize with only height change) never causes
+     layout jumps. Only updates when device WIDTH changes (true rotation). -->
+<script>
+(function() {
+  var _lockedVW = window.innerWidth;
+  function setVH() {
+    // Use visualViewport if available for accuracy, else fall back to innerHeight
+    var h = (window.visualViewport ? window.visualViewport.height : window.innerHeight);
+    document.documentElement.style.setProperty('--vh', (h * 0.01) + 'px');
+  }
+  setVH();
+  // Guard: only update --vh when the WIDTH changes (device rotation).
+  // Toolbar toggle only changes height — ignore it completely.
+  window.addEventListener('resize', function() {
+    var newVW = window.innerWidth;
+    if (newVW === _lockedVW) return; // height-only change = toolbar, skip
+    _lockedVW = newVW;
+    setVH();
+  });
+  // Secondary guard via visualViewport API (more reliable in IABs)
+  if (window.visualViewport) {
+    var _lockedVVW = window.visualViewport.width;
+    window.visualViewport.addEventListener('resize', function() {
+      var newVVW = window.visualViewport.width;
+      if (newVVW === _lockedVVW) return; // height-only, skip
+      _lockedVVW = newVVW;
+      setVH();
+    });
+  }
+})();
+</script>
 <title>Adley Fernandes | Graphic Designer & Web Designer</title>
 <meta name="description" content="Freelance graphic designer & web designer specializing in brand identity, album artwork, poster design, UI/UX, and web development. View my portfolio."/>
 <link rel="canonical" href="https://adleyportfolio.in/" />
@@ -460,7 +493,7 @@
 <main>
 
   <!-- Hero Section -->
-  <section id="hero" class="w-full min-h-[100svh] flex flex-col justify-end md:justify-center border-b border-zinc-100 overflow-x-hidden relative bg-[#fdfdfd] pt-32 pb-24 md:pb-20">
+  <section id="hero" class="w-full flex flex-col justify-end md:justify-center border-b border-zinc-100 overflow-x-hidden relative bg-[#fdfdfd] pt-32 pb-24 md:pb-20" style="min-height: calc(var(--vh, 1svh) * 100);">
     <div class="absolute top-28 md:top-36 left-6 md:left-12 lg:left-24 hero-slide-right z-20">
       <p class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold">Design Studio &mdash; 2024</p>
     </div>
@@ -567,7 +600,7 @@
 
     <!-- Capabilities & Services - Sticky Scroll -->
   <section id="services" class="bg-white text-zinc-900 border-t border-zinc-100 relative" style="height: 750vh; min-height: 750vh;">
-    <div class="sticky top-0 h-[100svh] w-full overflow-hidden flex flex-col md:flex-row items-center justify-center md:justify-between">
+    <div class="sticky top-0 w-full overflow-hidden flex flex-col md:flex-row items-center justify-center md:justify-between" style="height: calc(var(--vh, 1svh) * 100);">
 
       <!-- LEFT side (visually on desktop): The Skills text -->
       <div class="w-full h-[40vh] md:h-full md:w-1/2 px-6 md:px-24 flex flex-col justify-center relative z-10 order-2 md:order-1">
@@ -2785,7 +2818,7 @@ document.addEventListener('DOMContentLoaded', () => {
           #case-study-content h1, #case-study-content h2, #case-study-content h3 { font-family: Helvetica, Arial, sans-serif !important; }
         </style>
         <!-- Section 1: Intro -->
-        <section class="min-h-[100svh] flex flex-col items-center justify-center px-6 text-center space-y-8 md:space-y-16">
+        <section class="flex flex-col items-center justify-center px-6 text-center space-y-8 md:space-y-16" style="min-height: calc(var(--vh, 1svh) * 100);">
           <div class="benner-reveal overflow-hidden">
             <span class="text-[10px] tracking-[0.5em] uppercase text-zinc-400 font-bold block mb-4 md:mb-8">Section 01 — Intro</span>
             <h1 class="text-4xl md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-white mb-8 md:mb-12">Benner<br/>Tea Co.</h1>
@@ -2971,7 +3004,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const content = document.getElementById('case-study-content');
 
     content.innerHTML = `
-      <div class="w-full min-h-[100svh] bg-black pb-64 font-sans overflow-x-hidden">
+      <div class="w-full bg-black pb-64 font-sans overflow-x-hidden" style="min-height: calc(var(--vh, 1svh) * 100);">
         <style>
           #case-study-content { font-family: Arial, sans-serif !important; }
           #case-study-content h1, #case-study-content h2, #case-study-content h3 { font-family: Helvetica, Arial, sans-serif !important; }
@@ -3275,7 +3308,12 @@ document.addEventListener('DOMContentLoaded', function initLenis() {
   // ScrollTrigger markers get stale and cause animations to jump to the end.
   // We debounce a refresh call on every media load.
   let stRefreshTimeout;
-  const triggerRefresh = () => {
+  let _stLockedVW = window.innerWidth; // track width to ignore toolbar resizes
+  const triggerRefresh = (sourceIsResize) => {
+    // If this refresh was triggered by a resize event, only proceed if
+    // the WIDTH changed — toolbar show/hide only changes height, skip it.
+    if (sourceIsResize && window.innerWidth === _stLockedVW) return;
+    if (sourceIsResize) _stLockedVW = window.innerWidth;
     clearTimeout(stRefreshTimeout);
     stRefreshTimeout = setTimeout(() => {
       if (typeof ScrollTrigger !== 'undefined') {
@@ -3564,7 +3602,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function onScroll() {
       if (!brandingEl || !porscheEl) return;
-      const vh = window.innerHeight;
+      // Use the locked --vh value (set in <head>) so IAB toolbar toggles don't
+      // shift the trigger points. Parse back to pixels from the CSS variable.
+      const _vhPx = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) || window.innerHeight * 0.01;
+      const vh = _vhPx * 100;
 
       // -- Show / hide cube --
       const bRect = brandingEl.getBoundingClientRect();
