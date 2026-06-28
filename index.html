@@ -127,9 +127,11 @@
 </script>
 <style>
   /* Lenis handles scrolling — disable browser native smooth scroll to avoid conflicts */
-  html { scroll-behavior: auto; }
+  html { scroll-behavior: auto; overscroll-behavior: none; }
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
-  body { font-family: 'Manrope', sans-serif; }
+  /* overscroll-behavior: none prevents the IAB from scroll-chaining into the
+     app shell, which compounds the toolbar-toggle viewport jump. */
+  body { font-family: 'Manrope', sans-serif; overscroll-behavior: none; }
   h1, h2, h3, h4, h5, h6 { font-family: 'DM Sans', sans-serif; }
 
   ::-webkit-scrollbar { width: 6px; }
@@ -599,11 +601,11 @@
   </section>
 
     <!-- Capabilities & Services - Sticky Scroll -->
-  <section id="services" class="bg-white text-zinc-900 border-t border-zinc-100 relative" style="height: 750vh; min-height: 750vh;">
+  <section id="services" class="bg-white text-zinc-900 border-t border-zinc-100 relative" style="height: calc(var(--vh, 1vh) * 750); min-height: calc(var(--vh, 1vh) * 750);">
     <div class="sticky top-0 w-full overflow-hidden flex flex-col md:flex-row items-center justify-center md:justify-between" style="height: calc(var(--vh, 1svh) * 100);">
 
       <!-- LEFT side (visually on desktop): The Skills text -->
-      <div class="w-full h-[40vh] md:h-full md:w-1/2 px-6 md:px-24 flex flex-col justify-center relative z-10 order-2 md:order-1">
+      <div class="w-full md:h-full md:w-1/2 px-6 md:px-24 flex flex-col justify-center relative z-10 order-2 md:order-1" style="height: calc(var(--vh, 1vh) * 40)">
         
         <div class="relative w-full h-full flex items-center">
           
@@ -3278,15 +3280,20 @@ document.addEventListener('DOMContentLoaded', function initLenis() {
   if (typeof Lenis === 'undefined') return;
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
+  // Detect in-app browsers (Instagram, LinkedIn, TikTok, Facebook, etc.)
+  // IAB WebViews have no native scroll momentum — Lenis must handle touch
+  // smoothing itself, otherwise a single swipe stops dead immediately.
+  const isIAB = /Instagram|FBAN|FBAV|LinkedIn|BytedanceWebview|MicroMessenger|Twitter|Snapchat/.test(navigator.userAgent);
+
   const lenis = new Lenis({
-    duration: 1.2,
+    duration: isIAB ? 1.8 : 1.2,   // slightly longer ease in IABs feels natural
     easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     orientation: 'vertical',
     gestureOrientation: 'vertical',
     smoothWheel: true,
-    smoothTouch: false,   // Native touch on mobile — better feel
+    smoothTouch: isIAB,             // MUST be true in IABs — no native momentum
     wheelMultiplier: 0.9,
-    touchMultiplier: 2,
+    touchMultiplier: isIAB ? 1.8 : 2,
     infinite: false,
   });
 
