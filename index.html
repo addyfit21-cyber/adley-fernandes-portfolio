@@ -127,11 +127,10 @@
 </script>
 <style>
   /* Lenis handles scrolling — disable browser native smooth scroll to avoid conflicts */
-  html { scroll-behavior: auto; overscroll-behavior: none; }
+  html { scroll-behavior: auto; }
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
-  /* overscroll-behavior: none prevents the IAB from scroll-chaining into the
-     app shell, which compounds the toolbar-toggle viewport jump. */
-  body { font-family: 'Manrope', sans-serif; overscroll-behavior: none; }
+  /* Allow native overscroll so momentum scroll doesn't abruptly stop on mobile */
+  body { font-family: 'Manrope', sans-serif; }
   h1, h2, h3, h4, h5, h6 { font-family: 'DM Sans', sans-serif; }
 
   ::-webkit-scrollbar { width: 6px; }
@@ -466,11 +465,11 @@
 <!-- TopNavBar -->
 <nav class="absolute md:fixed top-6 md:top-8 left-0 md:left-1/2 md:-translate-x-1/2 z-[100] flex items-center justify-between px-6 py-3 bg-transparent md:bg-[#FA6B48]/15 md:backdrop-blur-md md:border md:border-[#FA6B48]/30 md:shadow-2xl w-full md:w-max md:min-w-[800px] pointer-events-none">
   <!-- Logo -->
-  <a href="index.html" id="mobile-logo" class="text-lg md:text-xl font-bold tracking-tighter text-black z-10 pointer-events-auto">addesign studio</a>
+  <a href="/" id="mobile-logo" class="text-lg md:text-xl font-bold tracking-tighter text-black z-10 pointer-events-auto">addesign studio</a>
   
   <!-- Desktop Links (Absolutely Centered) -->
   <div class="hidden md:flex items-center space-x-8 absolute left-1/2 -translate-x-1/2 pointer-events-auto">
-    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-900 border-b border-black pb-0.5 transition-colors duration-300" href="index.html">Home</a>
+    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-900 border-b border-black pb-0.5 transition-colors duration-300" href="/">Home</a>
 
     
     <!-- Projects Dropdown -->
@@ -487,8 +486,8 @@
         <a href="#work" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-black hover:bg-zinc-50 transition-colors text-left border-b border-zinc-50 last:border-0">Web Development</a>
       </div>
     </div>
-    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="index.html#services">Services</a>
-    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="index.html#about">About</a>
+    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="/#services">Services</a>
+    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="/#about">About</a>
     <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="contact.html">Contact</a>
   </div>
 
@@ -509,7 +508,7 @@
 
     <!-- Dropdown Card -->
     <div id="mobile-dropdown-menu" class="mt-4 w-[85vw] max-w-[280px] bg-white/95 backdrop-blur-xl border border-zinc-100 shadow-2xl rounded-3xl opacity-0 invisible -translate-y-4 transition-all duration-[400ms] ease-[cubic-bezier(0.19,1,0.22,1)] flex flex-col overflow-hidden pointer-events-auto" style="mix-blend-mode: normal;">
-      <a href="index.html" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">Home</a>
+      <a href="/" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">Home</a>
       
       <!-- Projects Section -->
       <div class="px-6 py-3 border-b border-zinc-100">
@@ -522,8 +521,8 @@
         </div>
       </div>
 
-      <a href="index.html#services" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">Services</a>
-      <a href="index.html#about" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">About</a>
+      <a href="/#services" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">Services</a>
+      <a href="/#about" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">About</a>
       <a href="contact.html" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">Contact</a>
       <a class="px-6 py-5 bg-black text-white text-center text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-[#FA6B48] transition-colors" href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener">
         Get in Touch
@@ -2159,7 +2158,7 @@ for (let x = 0; x < 3; x++) {
       <!-- Bottom-left -->
       <div id="footer-links-left" class="flex flex-col justify-between items-start text-left w-1/2 md:w-auto h-full">
         <div>
-          <a href="index.html" class="font-['Helvetica_Neue',Helvetica,Arial,sans-serif] text-[10px] md:text-xs font-semibold text-white tracking-[0.08em] no-underline block mb-1 lowercase">addesign studio</a>
+          <a href="/" class="font-['Helvetica_Neue',Helvetica,Arial,sans-serif] text-[10px] md:text-xs font-semibold text-white tracking-[0.08em] no-underline block mb-1 lowercase">addesign studio</a>
           <p class="font-manrope text-[8px] md:text-[10px] tracking-[0.18em] uppercase text-white/50 m-0 leading-snug">© 2024 addesign studio.<br class="block md:hidden"/> All rights reserved.</p>
         </div>
         <!-- Footer nav buttons -->
@@ -3430,9 +3429,9 @@ document.addEventListener('DOMContentLoaded', function initLenis() {
     orientation: 'vertical',
     gestureOrientation: 'vertical',
     smoothWheel: true,
-    smoothTouch: true,
+    smoothTouch: isIAB,             // MUST be true in IABs — no native momentum
     wheelMultiplier: 0.9,
-    touchMultiplier: 2,
+    touchMultiplier: isIAB ? 1.8 : 2,
     infinite: false,
   });
 
