@@ -394,6 +394,59 @@
     backface-visibility: hidden;
   }
 
+  /* Footer — per-letter pure slide, NO opacity change (mountains physically hide them) */
+  @keyframes footer-letter-in {
+    from { transform: scaleY(1.55) translateY(350px); }
+    to   { transform: scaleY(1.55) translateY(0); }
+  }
+  .footer-letter {
+    display: inline-block;
+    transform-origin: bottom center;
+    transform: scaleY(1.55) translateY(350px);
+    opacity: 1;
+    will-change: transform;
+  }
+  .footer-letter.visible {
+    animation: footer-letter-in 1.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  /* ── Mobile footer fixes ── */
+  @media (max-width: 768px) {
+    /* Smaller translateY so letters emerge properly over the shorter mobile image */
+    @keyframes footer-letter-in {
+      from { transform: scaleY(1.3) translateY(80px); }
+      to   { transform: scaleY(1.3) translateY(0); }
+    }
+    .footer-letter {
+      transform: scaleY(1.3) translateY(80px);
+    }
+
+    /* Push text higher on mobile so it's visible in the sky area */
+    #footer-addesign-text {
+      top: 5% !important;
+    }
+
+    /* Footer overlay links: stack vertically, centre-aligned */
+    #footer-links-bar {
+      flex-direction: column !important;
+      align-items: center !important;
+      gap: 0.8rem !important;
+      padding: 1.2rem 1rem !important;
+      text-align: center;
+    }
+    #footer-links-left { align-items: center !important; text-align: center; }
+    #footer-links-right { justify-content: center !important; flex-wrap: wrap !important; gap: 0.9rem !important; }
+    #footer-links-right a, #footer-links-left a, #footer-links-left p {
+      font-size: 0.45rem !important;
+    }
+  }
+  @media (max-width: 480px) {
+    /* Very small screens: hide Twitter to save space, reduce padding further */
+    #footer-links-bar { padding: 0.8rem 0.75rem !important; }
+    .footer-twitter-link { display: none !important; }
+    #footer-addesign-text { top: 3% !important; }
+  }
+
 </style>
 </head>
 <body id="top" class="bg-[#fdfdfd] text-zinc-900 antialiased selection:bg-primary selection:text-white overflow-hidden overflow-x-hidden w-full relative">
@@ -2062,21 +2115,146 @@ for (let x = 0; x < 3; x++) {
     </div>
 
 <!-- Footer -->
-<footer class="bg-zinc-950 flex flex-col md:flex-row justify-between items-center px-6 md:px-24 w-full py-16 text-white border-t border-white/10">
-  <div class="mb-8 md:mb-0 text-center md:text-left">
-    <a href="index.html" class="text-lg font-bold text-white tracking-widest mb-4 block">addesign studio</a>
-    <p class="font-manrope text-[10px] tracking-widest uppercase text-zinc-400">© 2024 addesign studio. ALL RIGHTS RESERVED.</p>
+<footer id="site-footer" style="position: relative; width: 100%; overflow: hidden; background: #0d0a08;">
+
+  <div id="footer-scene" style="position: relative; width: 100%;">
+
+    <!-- ① BASE: Full sunset scenery — sets natural height of footer -->
+    <img
+      src="/Images/footer1.png"
+      alt=""
+      aria-hidden="true"
+      style="display: block; width: 100%; height: auto;"
+    />
+
+    <!-- ② TEXT: "addesign" — per-letter stretched rise, bottom-anchored -->
+    <div
+      id="footer-addesign-text"
+      style="
+        position: absolute;
+        top: 22%;
+        left: 0;
+        width: 100%;
+        z-index: 2;
+        pointer-events: none;
+        text-align: center;
+        line-height: 0.85;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-weight: 100;
+        font-size: clamp(5rem, 24vw, 30rem);
+        color: rgba(255, 255, 255, 0.97);
+        letter-spacing: -0.02em;
+        white-space: nowrap;
+      "
+    ><span class="footer-letter" style="animation-delay:0s">a</span><span class="footer-letter" style="animation-delay:0.1s">d</span><span class="footer-letter" style="animation-delay:0.2s">d</span><span class="footer-letter" style="animation-delay:0.3s">e</span><span class="footer-letter" style="animation-delay:0.4s">s</span><span class="footer-letter" style="animation-delay:0.5s">i</span><span class="footer-letter" style="animation-delay:0.6s">g</span><span class="footer-letter" style="animation-delay:0.7s">n</span></div>
+
+    <!-- ③ FOREGROUND: Mountains + land (transparent sky) — sits on top of text -->
+    <img
+      src="/Images/Footer 2.png"
+      alt=""
+      aria-hidden="true"
+      style="
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center bottom;
+        display: block;
+        z-index: 3;
+      "
+    />
+
+    <!-- ④ LINKS: overlaid at bottom-left and bottom-right of the scene -->
+    <div style="
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 1.5rem 2.5rem;
+    " id="footer-links-bar">
+      <!-- Bottom-left -->
+      <div id="footer-links-left" style="display:flex; flex-direction:column; align-items:flex-start;">
+        <a href="index.html" style="
+          font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+          font-size: 0.75rem;
+          font-weight: 600;
+          color: #ffffff;
+          letter-spacing: 0.08em;
+          text-decoration: none;
+          display: block;
+          margin-bottom: 0.25rem;
+          text-transform: lowercase;
+        ">addesign studio</a>
+        <p style="
+          font-family: 'Manrope', sans-serif;
+          font-size: 0.5rem;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.5);
+          margin: 0 0 0.6rem 0;
+        ">© 2024 addesign studio. All rights reserved.</p>
+        <!-- Footer nav buttons -->
+        <div style="display: flex; gap: 1.2rem; align-items: center;">
+          <a href="contact.html"
+             style="font-family:'Manrope',sans-serif; font-size:0.5rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.7); text-decoration:none; border:1px solid rgba(255,255,255,0.3); padding:0.3rem 0.7rem; border-radius:2px; transition:all 0.3s;"
+             onmouseover="this.style.color='#fff';this.style.borderColor='rgba(255,255,255,0.8)'"
+             onmouseout="this.style.color='rgba(255,255,255,0.7)';this.style.borderColor='rgba(255,255,255,0.3)'">Contact</a>
+          <a href="privacy-policy.html"
+             style="font-family:'Manrope',sans-serif; font-size:0.5rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.7); text-decoration:none; border:1px solid rgba(255,255,255,0.3); padding:0.3rem 0.7rem; border-radius:2px; transition:all 0.3s;"
+             onmouseover="this.style.color='#fff';this.style.borderColor='rgba(255,255,255,0.8)'"
+             onmouseout="this.style.color='rgba(255,255,255,0.7)';this.style.borderColor='rgba(255,255,255,0.3)'">Privacy Policy</a>
+        </div>
+      </div>
+
+      <!-- Bottom-right -->
+      <div id="footer-links-right" style="display: flex; gap: 1.5rem; align-items: center;">
+        <a href="https://www.linkedin.com/in/adley-fernandes-968688228/" target="_blank" rel="noopener"
+           style="font-family:'Manrope',sans-serif; font-size:0.5rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.6); text-decoration:none; transition:color 0.3s;"
+           onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">LinkedIn</a>
+        <a href="https://twitter.com" target="_blank" rel="noopener" class="footer-twitter-link"
+           style="font-family:'Manrope',sans-serif; font-size:0.5rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.6); text-decoration:none; transition:color 0.3s;"
+           onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">Twitter</a>
+        <a href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener"
+           style="font-family:'Manrope',sans-serif; font-size:0.5rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.6); text-decoration:none; transition:color 0.3s;"
+           onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">Instagram</a>
+        <a href="#top"
+           style="font-family:'Manrope',sans-serif; font-size:0.5rem; letter-spacing:0.18em; text-transform:uppercase; color:#ffffff; font-weight:700; text-decoration:none; display:flex; align-items:center; gap:0.3rem; transition:opacity 0.3s;"
+           onmouseover="this.style.opacity='0.5'" onmouseout="this.style.opacity='1'">
+          Back to top
+          <span class="material-symbols-outlined" style="font-size:0.75rem;">arrow_upward</span>
+        </a>
+      </div>
+    </div>
+
   </div>
-  <div class="flex flex-wrap justify-center gap-8">
-    <a class="font-manrope text-[10px] tracking-widest uppercase text-zinc-400 hover:text-white transition-all duration-400 underline-offset-4 hover:underline" href="https://www.linkedin.com/in/adley-fernandes-968688228/" target="_blank" rel="noopener">LinkedIn</a>
-    <a class="font-manrope text-[10px] tracking-widest uppercase text-zinc-400 hover:text-white transition-all duration-400 underline-offset-4 hover:underline" href="https://twitter.com" target="_blank" rel="noopener">Twitter</a>
-    <a class="font-manrope text-[10px] tracking-widest uppercase text-zinc-400 hover:text-white transition-all duration-400 underline-offset-4 hover:underline" href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener">Instagram</a>
-    <a class="font-manrope text-[10px] tracking-widest uppercase text-white font-bold flex items-center gap-2" href="#top">
-      Back to top
-      <span class="material-symbols-outlined text-xs md:text-sm">arrow_upward</span>
-    </a>
-  </div>
+
 </footer>
+
+<script>
+  /* "addesign" — fires only when user has scrolled well into the footer */
+  (function() {
+    var el = document.getElementById('footer-addesign-text');
+    if (!el) return;
+    var letters = el.querySelectorAll('.footer-letter');
+    function trigger() {
+      letters.forEach(function(letter) {
+        letter.classList.add('visible');
+      });
+    }
+    var observer = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting) {
+        trigger();
+        observer.disconnect();
+      }
+    }, { threshold: 0.45 });
+    observer.observe(document.getElementById('site-footer'));
+  })();
+</script>
 
 
 <script>
