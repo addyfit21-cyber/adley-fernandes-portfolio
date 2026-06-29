@@ -3425,14 +3425,14 @@ document.addEventListener('DOMContentLoaded', function initLenis() {
   const isIAB = /Instagram|FBAN|FBAV|LinkedIn|BytedanceWebview|MicroMessenger|Twitter|Snapchat/.test(navigator.userAgent);
 
   const lenis = new Lenis({
-    duration: isIAB ? 1.8 : 1.2,   // slightly longer ease in IABs feels natural
+    duration: 1.2,
     easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     orientation: 'vertical',
     gestureOrientation: 'vertical',
     smoothWheel: true,
-    smoothTouch: isIAB,             // MUST be true in IABs — no native momentum
+    smoothTouch: true,
     wheelMultiplier: 0.9,
-    touchMultiplier: isIAB ? 1.8 : 2,
+    touchMultiplier: 2,
     infinite: false,
   });
 
