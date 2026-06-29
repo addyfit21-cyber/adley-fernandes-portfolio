@@ -346,8 +346,8 @@
     #about .aspect-\[4\/5\] { aspect-ratio: 1/1 !important; }
 
     /* Case study modal scrolling fix on iOS */
-    #case-study-modal { -webkit-overflow-scrolling: touch; overflow-y: scroll; }
-    #case-study-content { -webkit-overflow-scrolling: touch; overflow-y: scroll; }
+    #case-study-modal { touch-action: none; }
+    #case-study-content { -webkit-overflow-scrolling: touch; touch-action: pan-y; }
 
     /* Toolkit grid: 2 columns on mobile */
     #about .grid-cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
@@ -419,18 +419,11 @@
       padding: 1rem 1.2rem !important;
       align-items: flex-end !important;
     }
-    #footer-links-right a, #footer-links-left a, #footer-links-left p {
-      font-size: 0.42rem !important;
-      letter-spacing: 0.12em !important;
-    }
     #footer-links-right { gap: 0.8rem !important; }
   }
   @media (max-width: 480px) {
     #footer-links-bar { padding: 0.7rem 0.8rem !important; }
     .footer-twitter-link { display: none !important; }
-    #footer-links-right a, #footer-links-left a, #footer-links-left p {
-      font-size: 0.38rem !important;
-    }
   }
 
 </style>
@@ -2158,16 +2151,16 @@ for (let x = 0; x < 3; x++) {
       <!-- Bottom-left -->
       <div id="footer-links-left" class="flex flex-col justify-between items-start text-left w-1/2 md:w-auto h-full">
         <div>
-          <a href="/" class="font-['Helvetica_Neue',Helvetica,Arial,sans-serif] text-[10px] md:text-xs font-semibold text-white tracking-[0.08em] no-underline block mb-1 lowercase">addesign studio</a>
-          <p class="font-manrope text-[8px] md:text-[10px] tracking-[0.18em] uppercase text-white/50 m-0 leading-snug">© 2024 addesign studio.<br class="block md:hidden"/> All rights reserved.</p>
+          <a href="/" class="font-['Helvetica_Neue',Helvetica,Arial,sans-serif] text-[12px] md:text-sm font-semibold text-white tracking-[0.08em] no-underline block mb-1 lowercase">addesign studio</a>
+          <p class="font-manrope text-[10px] md:text-xs tracking-[0.18em] uppercase text-white/50 m-0 leading-snug">© 2024 addesign studio.<br class="block md:hidden"/> All rights reserved.</p>
         </div>
         <!-- Footer nav buttons -->
         <div class="flex flex-row flex-wrap gap-3 md:gap-6 items-center justify-start mt-3 md:mt-0">
           <a href="contact.html"
-             class="font-manrope text-[8px] md:text-[10px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white"
+             class="font-manrope text-xs md:text-sm tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white"
              >Contact</a>
           <a href="privacy-policy.html"
-             class="font-manrope text-[8px] md:text-[10px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white"
+             class="font-manrope text-xs md:text-sm tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white"
              >Privacy Policy</a>
         </div>
       </div>
@@ -2175,16 +2168,16 @@ for (let x = 0; x < 3; x++) {
       <!-- Bottom-right -->
       <div id="footer-links-right" class="flex flex-col justify-between items-end text-right w-1/2 md:w-auto h-full">
         <a href="#top"
-           class="font-manrope text-[8px] md:text-[10px] tracking-[0.18em] uppercase text-white font-bold no-underline flex items-center justify-end gap-1 transition-opacity duration-300 hover:opacity-50">
+           class="font-manrope text-xs md:text-sm tracking-[0.18em] uppercase text-white font-bold no-underline flex items-center justify-end gap-1 transition-opacity duration-300 hover:opacity-50">
           Back to top
           <span class="material-symbols-outlined text-[10px] md:text-xs">arrow_upward</span>
         </a>
         <div class="flex flex-row flex-wrap gap-3 md:gap-6 items-center justify-end mt-3 md:mt-0">
           <a href="https://www.linkedin.com/in/adley-fernandes-968688228/" target="_blank" rel="noopener"
-             class="font-manrope text-[8px] md:text-[10px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">LinkedIn</a>
-          <a href="https://twitter.com" target="_blank" rel="noopener" class="footer-twitter-link font-manrope text-[8px] md:text-[10px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">Twitter</a>
+             class="font-manrope text-xs md:text-sm tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">LinkedIn</a>
+          <a href="https://twitter.com" target="_blank" rel="noopener" class="footer-twitter-link font-manrope text-xs md:text-sm tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">Twitter</a>
           <a href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener"
-             class="font-manrope text-[8px] md:text-[10px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">Instagram</a>
+             class="font-manrope text-xs md:text-sm tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">Instagram</a>
         </div>
       </div>
     </div>
