@@ -20,7 +20,7 @@ servicesBlock = servicesBlock.replace(/border-white\/10/g, 'border-zinc-100');
 servicesBlock = servicesBlock.replace(/border-white/g, 'border-zinc-900');
 
 servicesBlock = servicesBlock.replace(/group bg-white text-black/g, 'group bg-black text-white');
-servicesBlock = servicesBlock.replace(/hover:bg-zinc-200/g, 'hover:bg-zinc-800');
+servicesBlock = servicesBlock.replace(/hover:bg-zinc-200/g, 'hover:bg-[#FA6B48]');
 
 servicesBlock = servicesBlock.replace(/ opacity-80 mix-blend-lighten/g, '');
 

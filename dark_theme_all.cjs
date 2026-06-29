@@ -32,7 +32,7 @@ after = after.replace(/\bhover:bg-black\/10\b/g, 'hover:bg-white/10');
 
 // Handle specific borders and buttons
 after = after.replace(/\bborder-b-2 border-white\b/g, 'border-b-2 border-white/50');
-after = after.replace(/bg-black text-white hover:bg-zinc-800/g, 'bg-white text-black hover:bg-zinc-200');
+after = after.replace(/bg-black text-white hover:bg-[#FA6B48]/g, 'bg-white text-black hover:bg-zinc-200');
 
 fs.writeFileSync(path, before + after);
 console.log('Applied global dark theme perfectly');

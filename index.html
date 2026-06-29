@@ -220,12 +220,6 @@
     width: 76px;
     height: 76px;
   }
-  #custom-cursor.magnetic-mode {
-    width: 44px;
-    height: 44px;
-    background: transparent;
-    border: 1.5px solid rgba(255,255,255,0.6);
-  }
   #custom-cursor span {
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -252,7 +246,7 @@
     }
   }
   .rainbow-text {
-    background: linear-gradient(90deg, #ffea00, #ff9100, #ffea00, #ff9100, #ffea00);
+    background: linear-gradient(90deg, #FA6B48, #e65a37, #FA6B48, #e65a37, #FA6B48);
     background-size: 200% 100%;
     -webkit-background-clip: text;
     background-clip: text;
@@ -261,8 +255,8 @@
     animation: rainbow 3s linear infinite;
   }
   .rainbow-glow {
-    /* filter removed for performance */
     transform: translateZ(0);
+    will-change: transform;
   }
   @keyframes rainbow {
     0% { background-position: 0% 50%; }
@@ -470,7 +464,7 @@
 <!-- Glassmorphism Container (The 'Tab') -->
 
 <!-- TopNavBar -->
-<nav class="absolute md:fixed top-6 md:top-8 left-0 md:left-1/2 md:-translate-x-1/2 z-[100] flex items-center justify-between px-6 md:px-6 py-3 md:bg-white/80 md:backdrop-blur-xl md:border md:border-white/50 md:shadow-2xl w-full md:w-max md:min-w-[800px] bg-transparent pointer-events-none">
+<nav class="absolute md:fixed top-6 md:top-8 left-0 md:left-1/2 md:-translate-x-1/2 z-[100] flex items-center justify-between px-6 py-3 bg-[#FA6B48]/15 backdrop-blur-md border-b md:border border-[#FA6B48]/30 md:shadow-2xl w-full md:w-max md:min-w-[800px] pointer-events-none">
   <!-- Logo -->
   <a href="index.html" id="mobile-logo" class="text-lg md:text-xl font-bold tracking-tighter text-black z-10 pointer-events-auto">addesign studio</a>
   
@@ -500,7 +494,7 @@
 
   <!-- CTA -->
   <div class="hidden md:flex items-center z-10 pointer-events-auto">
-    <a href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener" class="bg-black text-white px-5 py-2 font-manrope text-[10px] tracking-[0.2em] uppercase hover:bg-zinc-800 transition-colors duration-500">
+    <a href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener" class="bg-black text-white px-5 py-2 font-manrope text-[10px] tracking-[0.2em] uppercase hover:bg-[#FA6B48] transition-colors duration-500">
       Get in Touch
     </a>
   </div>
@@ -531,7 +525,7 @@
       <a href="index.html#services" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">Services</a>
       <a href="index.html#about" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">About</a>
       <a href="contact.html" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">Contact</a>
-      <a class="px-6 py-5 bg-black text-white text-center text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-zinc-800 transition-colors" href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener">
+      <a class="px-6 py-5 bg-black text-white text-center text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-[#FA6B48] transition-colors" href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener">
         Get in Touch
       </a>
     </div>
@@ -550,7 +544,7 @@
 
 
     <!-- Marquee & Cube Container (The Sandwich) -->
-    <div class="relative w-full flex items-center justify-center -translate-y-4 md:-translate-y-16" style="min-height: calc(var(--cube-size) + 2rem);">
+    <div class="relative w-full flex items-center justify-center" style="min-height: calc(var(--cube-size) + 2rem);">
 
       <!-- 1. BACK TEXT (Solid) -->
       <div class="hero-marquee-wrapper w-full flex whitespace-nowrap overflow-hidden py-4 md:py-6 relative z-10">
@@ -566,7 +560,7 @@
 
       <!-- 2. CUBE (Middle) -->
       <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">
-        <img src="Images/Copilot_20260615_130809.webp" alt="3D Cube" fetchpriority="high" loading="eager" decoding="sync" class="h-auto object-contain opacity-90 hero-slide-right" style="width: var(--cube-size);">
+        <img src="Images/Copilot_20260615_130809.webp" alt="3D Cube" fetchpriority="high" loading="eager" decoding="sync" class="h-auto object-contain opacity-90 hero-slide-right" style="width: var(--cube-size); transform: translateZ(0); will-change: transform;">
       </div>
 
       <!-- 3. FRONT TEXT (Glowing Rainbow Mask) -->
@@ -593,7 +587,7 @@
 
       <!-- View Work Link -->
       <div class="hero-slide-right relative z-10 flex flex-col items-start justify-start gap-6">
-        <a href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener" class="group bg-black text-white border border-white/20 px-5 md:px-10 py-3.5 md:py-5 text-[9px] md:text-xs md:text-sm tracking-[0.2em] uppercase font-bold hover:bg-[#ffea00] hover:text-black hover:border-[#ffea00] hover:shadow-[0_0_20px_rgba(255,234,0,0.6)] transition-all duration-500 inline-flex items-center gap-3 btn-shine-trigger">
+        <a href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener" class="group bg-black text-white border border-white/20 px-5 md:px-10 py-3.5 md:py-5 text-[9px] md:text-xs md:text-sm tracking-[0.2em] uppercase font-bold hover:bg-[#FA6B48] hover:text-black hover:border-[#FA6B48] hover:shadow-[0_0_20px_rgba(250,107,72,0.6)] transition-all duration-500 inline-flex items-center gap-3 btn-shine-trigger">
           Start a Project
           <div class="relative w-4 h-4 flex items-center justify-center overflow-hidden flex-shrink-0">
             <span class="material-symbols-outlined absolute transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-x-6" style="font-size:16px;">arrow_forward</span>
@@ -973,7 +967,7 @@ for (let x = 0; x < 3; x++) {
               </li>
             </ul>
           </div>
-          <a href="contact.html?service=web" class="group bg-black text-white px-10 py-5 text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-zinc-800 transition-colors duration-500 inline-flex items-center gap-3 self-start">
+          <a href="contact.html?service=web" class="group bg-black text-white px-10 py-5 text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-[#FA6B48] transition-colors duration-500 inline-flex items-center gap-3 self-start">
             Inquire Now
             <span class="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-1" style="font-size:14px;">arrow_forward</span>
           </a>
@@ -1016,7 +1010,7 @@ for (let x = 0; x < 3; x++) {
               </li>
             </ul>
           </div>
-          <a href="contact.html?service=branding" class="group bg-black text-white px-10 py-5 text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-zinc-800 transition-colors duration-500 inline-flex items-center gap-3 self-start">
+          <a href="contact.html?service=branding" class="group bg-black text-white px-10 py-5 text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-[#FA6B48] transition-colors duration-500 inline-flex items-center gap-3 self-start">
             Elevate Branding
             <span class="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-1" style="font-size:14px;">arrow_forward</span>
           </a>
@@ -1145,13 +1139,13 @@ for (let x = 0; x < 3; x++) {
             <p class="text-[10px] uppercase tracking-[0.5em] font-black text-zinc-300 mb-3">09 / Brand Guidelines</p>
             <h3 class="text-3xl md:text-5xl font-bold tracking-tighter leading-none">Brandbook for Benner Tea Co.</h3>
           </div>
-          <a href="#" onclick="openGuidelines(); return false;" class="hidden md:inline-flex items-center justify-center px-8 py-4 bg-black text-white hover:bg-zinc-800 transition-colors text-[10px] font-bold uppercase tracking-[0.2em] shadow-xl hover:shadow-2xl hover:-translate-y-1 transform duration-300">
+          <a href="#" onclick="openGuidelines(); return false;" class="hidden md:inline-flex items-center justify-center px-8 py-4 bg-black text-white hover:bg-[#FA6B48] transition-colors text-[10px] font-bold uppercase tracking-[0.2em] shadow-xl hover:shadow-2xl hover:-translate-y-1 transform duration-300">
             View Full Brand Guidelines
           </a>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-zinc-100">
           <div class="col-span-1 md:col-span-2 flex justify-center py-6 md:hidden">
-            <a href="#" onclick="openGuidelines(); return false;" class="inline-flex items-center justify-center px-8 py-4 bg-black text-white hover:bg-zinc-800 transition-colors text-[10px] font-bold uppercase tracking-[0.2em] shadow-xl">
+            <a href="#" onclick="openGuidelines(); return false;" class="inline-flex items-center justify-center px-8 py-4 bg-black text-white hover:bg-[#FA6B48] transition-colors text-[10px] font-bold uppercase tracking-[0.2em] shadow-xl">
               View Full Brand Guidelines
             </a>
           </div>
@@ -2123,6 +2117,7 @@ for (let x = 0; x < 3; x++) {
     <!-- ② TEXT: "addesign" — per-letter stretched rise, bottom-anchored -->
     <div
       id="footer-addesign-text"
+      class="font-light md:font-[100]"
       style="
         position: absolute;
         top: 22%;
@@ -2133,7 +2128,6 @@ for (let x = 0; x < 3; x++) {
         text-align: center;
         line-height: 0.85;
         font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        font-weight: 100;
         font-size: clamp(5rem, 24vw, 30rem);
         color: rgba(255, 255, 255, 0.97);
         letter-spacing: -0.02em;
@@ -2157,70 +2151,42 @@ for (let x = 0; x < 3; x++) {
         z-index: 3;
       "
     />
+    <!-- OVERLAY: Gradient layer at the bottom to improve text visibility without covering the addesign text -->
+    <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 150px; background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent); z-index: 4; pointer-events: none;"></div>
 
     <!-- ④ LINKS: overlaid at bottom-left and bottom-right of the scene -->
-    <div style="
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 10;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      padding: 1.5rem 2.5rem;
-    " id="footer-links-bar">
+    <div class="absolute bottom-0 left-0 w-full z-10 flex flex-row justify-between items-stretch p-5 md:py-6 md:px-10" id="footer-links-bar">
       <!-- Bottom-left -->
-      <div id="footer-links-left" style="display:flex; flex-direction:column; align-items:flex-start;">
-        <a href="index.html" style="
-          font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-          font-size: 0.75rem;
-          font-weight: 600;
-          color: #ffffff;
-          letter-spacing: 0.08em;
-          text-decoration: none;
-          display: block;
-          margin-bottom: 0.25rem;
-          text-transform: lowercase;
-        ">addesign studio</a>
-        <p style="
-          font-family: 'Manrope', sans-serif;
-          font-size: 0.5rem;
-          letter-spacing: 0.18em;
-          text-transform: uppercase;
-          color: rgba(255,255,255,0.5);
-          margin: 0 0 0.6rem 0;
-        ">© 2024 addesign studio. All rights reserved.</p>
+      <div id="footer-links-left" class="flex flex-col justify-between items-start text-left w-1/2 md:w-auto h-full">
+        <div>
+          <a href="index.html" class="font-['Helvetica_Neue',Helvetica,Arial,sans-serif] text-[10px] md:text-xs font-semibold text-white tracking-[0.08em] no-underline block mb-1 lowercase">addesign studio</a>
+          <p class="font-manrope text-[8px] md:text-[10px] tracking-[0.18em] uppercase text-white/50 m-0 leading-snug">© 2024 addesign studio.<br class="block md:hidden"/> All rights reserved.</p>
+        </div>
         <!-- Footer nav buttons -->
-        <div style="display: flex; gap: 1.2rem; align-items: center;">
+        <div class="flex flex-row flex-wrap gap-3 md:gap-6 items-center justify-start mt-3 md:mt-0">
           <a href="contact.html"
-             style="font-family:'Manrope',sans-serif; font-size:0.5rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.7); text-decoration:none; border:1px solid rgba(255,255,255,0.3); padding:0.3rem 0.7rem; border-radius:2px; transition:all 0.3s;"
-             onmouseover="this.style.color='#fff';this.style.borderColor='rgba(255,255,255,0.8)'"
-             onmouseout="this.style.color='rgba(255,255,255,0.7)';this.style.borderColor='rgba(255,255,255,0.3)'">Contact</a>
+             class="font-manrope text-[8px] md:text-[10px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white"
+             >Contact</a>
           <a href="privacy-policy.html"
-             style="font-family:'Manrope',sans-serif; font-size:0.5rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.7); text-decoration:none; border:1px solid rgba(255,255,255,0.3); padding:0.3rem 0.7rem; border-radius:2px; transition:all 0.3s;"
-             onmouseover="this.style.color='#fff';this.style.borderColor='rgba(255,255,255,0.8)'"
-             onmouseout="this.style.color='rgba(255,255,255,0.7)';this.style.borderColor='rgba(255,255,255,0.3)'">Privacy Policy</a>
+             class="font-manrope text-[8px] md:text-[10px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white"
+             >Privacy Policy</a>
         </div>
       </div>
 
       <!-- Bottom-right -->
-      <div id="footer-links-right" style="display: flex; gap: 1.5rem; align-items: center;">
-        <a href="https://www.linkedin.com/in/adley-fernandes-968688228/" target="_blank" rel="noopener"
-           style="font-family:'Manrope',sans-serif; font-size:0.5rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.6); text-decoration:none; transition:color 0.3s;"
-           onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">LinkedIn</a>
-        <a href="https://twitter.com" target="_blank" rel="noopener" class="footer-twitter-link"
-           style="font-family:'Manrope',sans-serif; font-size:0.5rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.6); text-decoration:none; transition:color 0.3s;"
-           onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">Twitter</a>
-        <a href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener"
-           style="font-family:'Manrope',sans-serif; font-size:0.5rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.6); text-decoration:none; transition:color 0.3s;"
-           onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">Instagram</a>
+      <div id="footer-links-right" class="flex flex-col justify-between items-end text-right w-1/2 md:w-auto h-full">
         <a href="#top"
-           style="font-family:'Manrope',sans-serif; font-size:0.5rem; letter-spacing:0.18em; text-transform:uppercase; color:#ffffff; font-weight:700; text-decoration:none; display:flex; align-items:center; gap:0.3rem; transition:opacity 0.3s;"
-           onmouseover="this.style.opacity='0.5'" onmouseout="this.style.opacity='1'">
+           class="font-manrope text-[8px] md:text-[10px] tracking-[0.18em] uppercase text-white font-bold no-underline flex items-center justify-end gap-1 transition-opacity duration-300 hover:opacity-50">
           Back to top
-          <span class="material-symbols-outlined" style="font-size:0.75rem;">arrow_upward</span>
+          <span class="material-symbols-outlined text-[10px] md:text-xs">arrow_upward</span>
         </a>
+        <div class="flex flex-row flex-wrap gap-3 md:gap-6 items-center justify-end mt-3 md:mt-0">
+          <a href="https://www.linkedin.com/in/adley-fernandes-968688228/" target="_blank" rel="noopener"
+             class="font-manrope text-[8px] md:text-[10px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">LinkedIn</a>
+          <a href="https://twitter.com" target="_blank" rel="noopener" class="footer-twitter-link font-manrope text-[8px] md:text-[10px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">Twitter</a>
+          <a href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener"
+             class="font-manrope text-[8px] md:text-[10px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">Instagram</a>
+        </div>
       </div>
     </div>
 
@@ -3550,9 +3516,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.fade-enter-card img, #mclaren img, #porsche img').forEach(img => {
     img.classList.add('hover-view');
   });
-  document.querySelectorAll('button, a.bg-black, a.bg-white, a.border, a[class*="px-"], a[class*="bg-"]').forEach(btn => {
-    btn.classList.add('magnetic-btn');
-  });
 
   // --- 1. Global Custom Cursor ---
   const customCursor = document.createElement('div');
@@ -3588,39 +3551,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       el.addEventListener('mouseleave', () => {
         customCursor.classList.remove('view-mode');
-      });
-    });
-
-    // Magnetic Mode for buttons — gentler pull for stability
-    // Uses rAF throttle so getBoundingClientRect() is never called more than
-    // once per animation frame, eliminating synchronous layout read jank.
-    document.querySelectorAll('.magnetic-btn').forEach(btn => {
-      const btnXTo = gsap.quickTo(btn, 'x', { duration: 0.3, ease: 'power3.out' });
-      const btnYTo = gsap.quickTo(btn, 'y', { duration: 0.3, ease: 'power3.out' });
-      let _magRafId = null;
-      let _magEx = 0, _magEy = 0;
-
-      btn.addEventListener('mouseenter', () => {
-        customCursor.classList.add('magnetic-mode');
-      });
-      btn.addEventListener('mouseleave', () => {
-        customCursor.classList.remove('magnetic-mode');
-        if (_magRafId) { cancelAnimationFrame(_magRafId); _magRafId = null; }
-        // Elastic snap-back
-        gsap.to(btn, { x: 0, y: 0, duration: 0.8, ease: 'elastic.out(1, 0.5)', overwrite: 'auto' });
-      });
-      btn.addEventListener('mousemove', (e) => {
-        _magEx = e.clientX;
-        _magEy = e.clientY;
-        if (_magRafId) return; // already scheduled
-        _magRafId = requestAnimationFrame(() => {
-          _magRafId = null;
-          const rect = btn.getBoundingClientRect();
-          const x = _magEx - rect.left - rect.width / 2;
-          const y = _magEy - rect.top - rect.height / 2;
-          btnXTo(x * 0.4);
-          btnYTo(y * 0.4);
-        });
       });
     });
   }

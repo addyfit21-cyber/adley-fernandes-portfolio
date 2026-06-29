@@ -41,7 +41,7 @@ const guidelinesRegex = /(<div id="guidelines-modal"[\s\S]*?<\/div>\r?\n\r?\n\r?
 content = content.replace(guidelinesRegex, (match, p1) => {
   let s = makeDarkTheme(p1);
   // Fix the share button which was bg-black text-white
-  s = s.replace('bg-black text-white hover:bg-zinc-800', 'bg-white text-black hover:bg-zinc-200');
+  s = s.replace('bg-black text-white hover:bg-[#FA6B48]', 'bg-white text-black hover:bg-zinc-200');
   return s;
 });
 

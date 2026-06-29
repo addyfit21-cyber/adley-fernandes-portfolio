@@ -12,7 +12,7 @@ if (content.includes(splitToken)) {
 
   <!-- CTA -->
   <div class="hidden md:flex items-center z-10 pointer-events-auto">
-    <a href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener" class="bg-black text-white px-5 py-2 font-manrope text-[10px] tracking-[0.2em] uppercase hover:bg-zinc-800 transition-colors duration-500">
+    <a href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener" class="bg-black text-white px-5 py-2 font-manrope text-[10px] tracking-[0.2em] uppercase hover:bg-[#FA6B48] transition-colors duration-500">
       Get in Touch
     </a>
   </div>
