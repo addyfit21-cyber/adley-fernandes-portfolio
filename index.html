@@ -3434,40 +3434,36 @@ document.addEventListener('DOMContentLoaded', function initLenis() {
   if (typeof Lenis === 'undefined') return;
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
-  // Detect in-app browsers (Instagram, LinkedIn, TikTok, Facebook, etc.)
-  // IAB WebViews have no native scroll momentum — Lenis must handle touch
-  // smoothing itself, otherwise a single swipe stops dead immediately.
-  const isIAB = /Instagram|FBAN|FBAV|LinkedIn|BytedanceWebview|MicroMessenger|Twitter|Snapchat/.test(navigator.userAgent);
+  // Detect if the device is a touch device (mobile/tablet)
+  // On all mobile browsers (including Instagram/LinkedIn), we completely disable Lenis.
+  // Native momentum scrolling is inherently smoother and more reliable on mobile.
+  const isTouchDevice = ('ontouchstart' in window || navigator.maxTouchPoints > 0);
 
-  // Detect regular mobile/touch browsers (not IAB)
-  // On these devices, native momentum scroll is perfect and Lenis must NOT
-  // intercept touch events — doing so causes the abrupt scroll stop the user sees.
-  const isTouchDevice = ('ontouchstart' in window || navigator.maxTouchPoints > 0) && !isIAB;
+  let lenis;
 
-  const lenis = new Lenis({
-    duration: 1.2,
-    easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    orientation: 'vertical',
-    gestureOrientation: 'vertical',
-    smoothWheel: true,
-    smoothTouch: isIAB,             // MUST be true in IABs — no native momentum
-    wheelMultiplier: 0.9,
-    touchMultiplier: isIAB ? 1.8 : 2,
-    infinite: false,
-  });
+  if (!isTouchDevice) {
+    lenis = new Lenis({
+      duration: 1.2,
+      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      infinite: false,
+    });
 
-  window.__lenis = lenis;
+    window.__lenis = lenis;
 
-  // ── CRITICAL: Drive Lenis through GSAP's ticker, NOT a separate rAF.
-  // This keeps Lenis and ScrollTrigger on the exact same frame tick,
-  // so scrub-based timelines read the correct interpolated scroll position.
-  gsap.ticker.add((time) => {
-    lenis.raf(time * 1000); // gsap time is in seconds; lenis.raf expects ms
-  });
-  gsap.ticker.lagSmoothing(0);
+    // ── CRITICAL: Drive Lenis through GSAP's ticker, NOT a separate rAF.
+    // This keeps Lenis and ScrollTrigger on the exact same frame tick,
+    // so scrub-based timelines read the correct interpolated scroll position.
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000); // gsap time is in seconds; lenis.raf expects ms
+    });
+    gsap.ticker.lagSmoothing(0);
 
-  // Keep ScrollTrigger refreshed every Lenis scroll event
-  lenis.on('scroll', ScrollTrigger.update);
+    // Keep ScrollTrigger refreshed every Lenis scroll event
+    lenis.on('scroll', ScrollTrigger.update);
+  }
 
   // ── CRITICAL: Recalculate ScrollTrigger offsets safely
   // Since lazy-loaded images and videos shift the document height as they load, 
@@ -3518,11 +3514,19 @@ document.addEventListener('DOMContentLoaded', function initLenis() {
           const target = document.querySelector(hash);
           if (target) {
             e.preventDefault();
-            lenis.scrollTo(target, {
-              offset: -120,
-              duration: 1.4,
-              easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-            });
+            if (lenis) {
+              lenis.scrollTo(target, {
+                offset: -120,
+                duration: 1.4,
+                easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+              });
+            } else {
+              const offsetTop = target.getBoundingClientRect().top + window.pageYOffset - 120;
+              window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+              });
+            }
           }
         }
       }
