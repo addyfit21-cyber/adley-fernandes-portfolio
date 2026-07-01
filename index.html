@@ -93,8 +93,8 @@
 <!-- Preload critical brand assets -->
 <link rel="preload" as="image" href="Images/Copilot_20260615_130809.webp" fetchpriority="high" />
 
-<!-- Tailwind CDN (synchronous — required for first paint) -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Local CSS (built via Vite/Tailwind) -->
+<link href="dist.css" rel="stylesheet">
 
 <!-- GSAP deferred — animations start after HTML is visible -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
@@ -105,26 +105,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js" defer></script>
 
 
-<script id="tailwind-config">
-  tailwind.config = {
-    darkMode: "class",
-    theme: {
-      extend: {
-        "colors": {
-          "surface-dim": "#dadada","on-background": "#1a1c1c","surface-container-low": "#f3f3f4","on-tertiary-container": "#ffffff","inverse-on-surface": "#f0f1f1","primary": "#000000","surface-bright": "#f9f9f9","secondary": "#5e5e5e","surface-container-lowest": "#ffffff","on-primary-fixed": "#ffffff","inverse-surface": "#2f3131","surface-container-highest": "#e2e2e2","outline-variant": "#c6c6c6","surface-tint": "#5e5e5e","on-surface": "#1a1c1c","error": "#ba1a1a","secondary-container": "#d4d4d4","on-primary": "#e2e2e2","on-secondary": "#ffffff","error-container": "#ffdad6","surface-container": "#eeeeee","surface": "#f9f9f9","outline": "#777777","on-error-container": "#410002","surface-container-high": "#e8e8e8","tertiary-container": "#747474","on-surface-variant": "#474747","primary-container": "#3b3b3b","on-tertiary-fixed-variant": "#e2e2e2","on-primary-fixed-variant": "#e2e2e2","background": "#f9f9f9","on-primary-container": "#ffffff","on-secondary-fixed": "#1b1b1b","tertiary-fixed": "#5e5e5e","tertiary-fixed-dim": "#474747","inverse-primary": "#c6c6c6","on-tertiary-fixed": "#ffffff","tertiary": "#3b3b3b","on-tertiary": "#e2e2e2","primary-fixed": "#5e5e5e","on-secondary-container": "#1b1b1b","on-error": "#ffffff","primary-fixed-dim": "#474747","secondary-fixed-dim": "#ababab","secondary-fixed": "#c6c6c6","on-secondary-fixed-variant": "#3b3b3b","surface-variant": "#e2e2e2"
-        },
-        "borderRadius": {"DEFAULT": "0px","lg": "0px","xl": "0px","full": "9999px"},
-        "fontFamily": {
-          "sans": ["Manrope", "sans-serif"],
-          "heading": ["'DM Sans'", "sans-serif"],
-          "headline": ["'DM Sans'", "sans-serif"],
-          "body": ["Manrope", "sans-serif"],
-          "label": ["Manrope", "sans-serif"]
-        }
-      },
-    },
-  }
-</script>
+
 <style>
   /* Lenis handles scrolling — disable browser native smooth scroll to avoid conflicts */
   html { scroll-behavior: auto; }
@@ -456,37 +437,37 @@
 <!-- Glassmorphism Container (The 'Tab') -->
 
 <!-- TopNavBar -->
-<nav class="absolute md:fixed top-6 md:top-8 left-0 md:left-1/2 md:-translate-x-1/2 z-[100] flex items-center justify-between px-6 py-3 bg-transparent md:bg-[#FA6B48]/15 md:backdrop-blur-md md:border md:border-[#FA6B48]/30 md:shadow-2xl w-full md:w-max md:min-w-[800px] pointer-events-none">
+<nav class="absolute md:fixed top-6 md:top-8 left-0 md:left-1/2 md:-translate-x-1/2 z-[100] flex items-center justify-between px-6 py-3 bg-transparent md:bg-white/90 md:backdrop-blur-lg md:border md:border-zinc-200 md:shadow-xl w-full md:w-max md:min-w-[800px] pointer-events-none">
   <!-- Logo -->
   <a href="/" id="mobile-logo" class="text-lg md:text-xl font-bold tracking-tighter text-black z-10 pointer-events-auto">addesign studio</a>
   
   <!-- Desktop Links (Absolutely Centered) -->
   <div class="hidden md:flex items-center space-x-8 absolute left-1/2 -translate-x-1/2 pointer-events-auto">
-    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-900 border-b border-black pb-0.5 transition-colors duration-300" href="/">Home</a>
+    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-black hover:text-[#FA6B48] border-b border-black hover:border-[#FA6B48] pb-0.5 transition-colors duration-300" href="/">Home</a>
 
     
     <!-- Projects Dropdown -->
     <div class="relative group">
-      <button class="bg-transparent text-zinc-500 hover:text-zinc-900 px-0 py-2 font-manrope text-[10px] tracking-[0.2em] uppercase transition-colors duration-300 flex items-center gap-1 cursor-pointer">
+      <button class="bg-transparent text-black hover:text-[#FA6B48] px-0 py-2 font-manrope text-[10px] tracking-[0.2em] uppercase transition-colors duration-300 flex items-center gap-1 cursor-pointer">
         Projects
         <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover:rotate-180">expand_more</span>
       </button>
       <!-- Dropdown Menu -->
       <div class="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-48 bg-white border border-zinc-100 shadow-2xl opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 flex flex-col p-2 z-[101]">
-        <a href="#branding" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-black hover:bg-zinc-50 transition-colors text-left border-b border-zinc-50 last:border-0">Branding</a>
-        <a href="#posters" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-black hover:bg-zinc-50 transition-colors text-left border-b border-zinc-50 last:border-0">Posters</a>
-        <a href="#mclaren" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-black hover:bg-zinc-50 transition-colors text-left border-b border-zinc-50 last:border-0">Illustration</a>
-        <a href="#work" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-black hover:bg-zinc-50 transition-colors text-left border-b border-zinc-50 last:border-0">Web Development</a>
+        <a href="#branding" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-600 hover:text-black hover:bg-zinc-50 transition-colors text-left border-b border-zinc-50 last:border-0">Branding</a>
+        <a href="#posters" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-600 hover:text-black hover:bg-zinc-50 transition-colors text-left border-b border-zinc-50 last:border-0">Posters</a>
+        <a href="#mclaren" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-600 hover:text-black hover:bg-zinc-50 transition-colors text-left border-b border-zinc-50 last:border-0">Illustration</a>
+        <a href="#work" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-600 hover:text-black hover:bg-zinc-50 transition-colors text-left border-b border-zinc-50 last:border-0">Web Development</a>
       </div>
     </div>
-    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="/#services">Services</a>
-    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="/#about">About</a>
-    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="contact.html">Contact</a>
+    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-black hover:text-[#FA6B48] transition-colors duration-300" href="/#services">Services</a>
+    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-black hover:text-[#FA6B48] transition-colors duration-300" href="/#about">About</a>
+    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-black hover:text-[#FA6B48] transition-colors duration-300" href="contact.html">Contact</a>
   </div>
 
   <!-- CTA -->
   <div class="hidden md:flex items-center z-10 pointer-events-auto">
-    <a href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener" class="bg-black text-white px-5 py-2 font-manrope text-[10px] tracking-[0.2em] uppercase hover:bg-[#FA6B48] transition-colors duration-500">
+    <a href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener" class="bg-[#FA6B48] text-white px-5 py-2 font-manrope text-[10px] tracking-[0.2em] uppercase hover:bg-black transition-colors duration-500">
       Get in Touch
     </a>
   </div>
@@ -507,17 +488,17 @@
       <div class="px-6 py-3 border-b border-zinc-100">
         <span class="text-[9px] uppercase tracking-[0.2em] text-zinc-400 font-bold mb-3 block">Projects</span>
         <div class="flex flex-col pl-3 border-l border-zinc-200 gap-2">
-          <a href="#branding" class="py-1 text-[10px] uppercase tracking-widest text-zinc-500 hover:text-black mobile-link">Branding</a>
-          <a href="#posters" class="py-1 text-[10px] uppercase tracking-widest text-zinc-500 hover:text-black mobile-link">Posters</a>
-          <a href="#mclaren" class="py-1 text-[10px] uppercase tracking-widest text-zinc-500 hover:text-black mobile-link">Illustration</a>
-          <a href="#work" class="py-1 text-[10px] uppercase tracking-widest text-zinc-500 hover:text-black mobile-link">Web Development</a>
+          <a href="#branding" class="py-1 text-[10px] uppercase tracking-widest text-zinc-600 hover:text-black mobile-link">Branding</a>
+          <a href="#posters" class="py-1 text-[10px] uppercase tracking-widest text-zinc-600 hover:text-black mobile-link">Posters</a>
+          <a href="#mclaren" class="py-1 text-[10px] uppercase tracking-widest text-zinc-600 hover:text-black mobile-link">Illustration</a>
+          <a href="#work" class="py-1 text-[10px] uppercase tracking-widest text-zinc-600 hover:text-black mobile-link">Web Development</a>
         </div>
       </div>
 
       <a href="/#services" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">Services</a>
       <a href="/#about" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">About</a>
       <a href="contact.html" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">Contact</a>
-      <a class="px-6 py-5 bg-black text-white text-center text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-[#FA6B48] transition-colors" href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener">
+      <a class="px-6 py-5 bg-[#FA6B48] text-white text-center text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-black transition-colors" href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener">
         Get in Touch
       </a>
     </div>
@@ -531,7 +512,7 @@
   <!-- Hero Section -->
   <section id="hero" class="w-full flex flex-col justify-end md:justify-center border-b border-zinc-100 overflow-x-hidden relative bg-[#fdfdfd] pt-32 pb-24 md:pb-20" style="min-height: calc(var(--vh, 1svh) * 100);">
     <div class="absolute top-28 md:top-36 left-6 md:left-12 lg:left-24 hero-slide-right z-20">
-      <p class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold">Design Studio &mdash; 2024</p>
+      <p class="text-[10px] tracking-[0.3em] uppercase text-zinc-600 font-bold">Design Studio &mdash; 2024</p>
     </div>
 
 
@@ -572,7 +553,7 @@
     <!-- Descriptor & CTA -->
     <div class="w-full px-6 md:px-12 lg:px-24 flex flex-col items-start text-left mt-8 md:mt-8">
       <!-- Descriptor -->
-      <p class="hero-slide-right relative z-10 text-sm md:text-base text-zinc-500 leading-relaxed max-w-xl mb-8 md:mb-12">
+      <p class="hero-slide-right relative z-10 text-sm md:text-base text-zinc-600 leading-relaxed max-w-xl mb-8 md:mb-12">
         <span class="font-bold text-zinc-900 text-lg md:text-xl">Helping Brands Look Better. Perform Better. Grow Faster.</span><br/>
         <span class="font-light mt-1 inline-block">Through branding, UI/UX design, and high-converting websites.</span>
       </p>
@@ -586,7 +567,7 @@
             <span class="material-symbols-outlined absolute -translate-x-6 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-x-0" style="font-size:16px;">arrow_forward</span>
           </div>
         </a>
-        <p class="font-light text-zinc-500 text-sm md:text-base mt-6 text-left">
+        <p class="font-light text-zinc-600 text-sm md:text-base mt-6 text-left">
           20+ Projects &nbsp;&bull;&nbsp; 10+ happy clients &nbsp;&bull;&nbsp; 2+ years experience
         </p>
       </div>
@@ -625,10 +606,10 @@
         <img src="/Images/Brands/Teas cds logo.webp" alt="Teas CDS" class="h-9 md:h-14 w-auto object-contain cursor-pointer" loading="eager">
         <img src="/Images/Brands/benner logo.webp" alt="Benner Tea Co." class="h-7 md:h-11 w-auto object-contain cursor-pointer" loading="eager">
         <!-- Set 4 -->
-        <img src="/Images/Brands/Copilot_20260426_132635.webp" alt="Luke's Iced Coffee" class="h-20 md:h-36 w-auto object-contain cursor-pointer" loading="eager">
-        <img src="/Images/Brands/Nexzy logo.webp" alt="Nexzy" class="h-5 md:h-8 w-auto object-contain cursor-pointer" loading="eager">
-        <img src="/Images/Brands/Teas cds logo.webp" alt="Teas CDS" class="h-9 md:h-14 w-auto object-contain cursor-pointer" loading="eager">
-        <img src="/Images/Brands/benner logo.webp" alt="Benner Tea Co." class="h-7 md:h-11 w-auto object-contain cursor-pointer" loading="eager">
+        <img src="/Images/Brands/Copilot_20260426_132635.webp" alt="Luke's Iced Coffee" class="h-20 md:h-36 w-auto object-contain cursor-pointer" loading="lazy">
+        <img src="/Images/Brands/Nexzy logo.webp" alt="Nexzy" class="h-5 md:h-8 w-auto object-contain cursor-pointer" loading="lazy">
+        <img src="/Images/Brands/Teas cds logo.webp" alt="Teas CDS" class="h-9 md:h-14 w-auto object-contain cursor-pointer" loading="lazy">
+        <img src="/Images/Brands/benner logo.webp" alt="Benner Tea Co." class="h-7 md:h-11 w-auto object-contain cursor-pointer" loading="lazy">
       </div>
       
     </div>
@@ -637,7 +618,7 @@
     <!-- Capabilities & Services - Sticky Scroll -->
   <section id="services" class="bg-white text-zinc-900 border-t border-zinc-100 relative" style="height: calc(var(--vh, 1vh) * 750); min-height: calc(var(--vh, 1vh) * 750);">
     <div class="sticky top-0 w-full overflow-hidden flex flex-col md:flex-row items-center justify-center md:justify-between" style="height: calc(var(--vh, 1svh) * 100);">
-    <span class="absolute top-8 left-6 md:top-10 md:left-24 text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold leading-none z-20">Services</span>
+    <span class="absolute top-8 left-6 md:top-10 md:left-24 text-[10px] tracking-[0.3em] uppercase text-zinc-600 font-bold leading-none z-20">Services</span>
 
       <!-- LEFT side (visually on desktop): The Skills text -->
       <div class="w-full md:h-full md:w-1/2 px-6 md:px-24 flex flex-col justify-center relative z-10 order-2 md:order-1" style="height: calc(var(--vh, 1vh) * 40)">
@@ -647,32 +628,32 @@
           <!-- Item 0: What I Do -->
           <div class="skill-item absolute inset-0 flex flex-col justify-center opacity-100 translate-y-0">
             <h2 class="text-6xl md:text-8xl font-bold tracking-tighter leading-[1.1] mb-12 reveal-text">What<br/>I do.</h2>
-            <p class="text-zinc-500 max-w-md text-base md:text-lg font-medium reveal-text opacity-90 leading-relaxed mb-8">
+            <p class="text-zinc-600 max-w-md text-base md:text-lg font-medium reveal-text opacity-90 leading-relaxed mb-8">
               A comprehensive approach to digital design, blending strategic thinking with crafted execution.
             </p>
           </div>
 
           <!-- Item 1: Brand Identity Design -->
           <div class="skill-item absolute inset-0 flex flex-col justify-center opacity-0 translate-y-12">
-            <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-3 md:mb-4 block">01 / Skill</span>
+            <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-600 font-bold mb-3 md:mb-4 block">01 / Skill</span>
             <h2 class="text-[3.5rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-[0.9] text-zinc-900">Brand Identity<br/>Design</h2>
           </div>
 
           <!-- Item 2: Web Design & Development -->
           <div class="skill-item absolute inset-0 flex flex-col justify-center opacity-0 translate-y-12">
-            <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-3 md:mb-4 block">02 / Skill</span>
+            <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-600 font-bold mb-3 md:mb-4 block">02 / Skill</span>
             <h2 class="text-[3.5rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-[0.9] text-zinc-900">Web Design &amp;<br/>Development</h2>
           </div>
 
           <!-- Item 3: UI/UX Design -->
           <div class="skill-item absolute inset-0 flex flex-col justify-center opacity-0 translate-y-12">
-            <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-3 md:mb-4 block">03 / Skill</span>
+            <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-600 font-bold mb-3 md:mb-4 block">03 / Skill</span>
             <h2 class="text-[3.5rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-[0.9] text-zinc-900">UI/UX<br/>Design</h2>
           </div>
 
           <!-- Item 4: Marketing Design -->
           <div class="skill-item absolute inset-0 flex flex-col justify-center opacity-0 translate-y-12">
-            <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-500 font-bold mb-3 md:mb-4 block">04 / Skill</span>
+            <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-600 font-bold mb-3 md:mb-4 block">04 / Skill</span>
             <h2 class="text-[3.5rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-[0.9] text-zinc-900">Marketing<br/>Design</h2>
           </div>
 
@@ -698,7 +679,9 @@
       import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js';
       import { RoundedBoxGeometry } from 'https://cdn.jsdelivr.net/npm/three@0.150.1/examples/jsm/geometries/RoundedBoxGeometry.js';
 
+      function initHeroCube() {
       const container = document.getElementById('rubiks-container');
+      if (!container) return;
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
       camera.position.z = 6.5;
@@ -713,6 +696,11 @@
       const dirLight = new THREE.DirectionalLight(0xffffff, 2.5);
       dirLight.position.set(5, 5, 5);
       scene.add(dirLight);
+      
+      const orangeLight = new THREE.DirectionalLight(0xFA6B48, 5);
+      orangeLight.position.set(0, -5, 5);
+      scene.add(orangeLight);
+      
       const fillLight = new THREE.DirectionalLight(0xffffff, 1);
       fillLight.position.set(-5, -2, -5);
       scene.add(fillLight);
@@ -800,15 +788,30 @@ for (let x = 0; x < 3; x++) {
       window._cubeContainer = container;
 
       let time = 0;
+      let heroIsVisible = false;
+      let heroAnimId = null;
+
       function animateCube() {
-        requestAnimationFrame(animateCube);
+        if (!heroIsVisible) return;
+        heroAnimId = requestAnimationFrame(animateCube);
         time += 0.016;
         innerGroup.position.y = Math.sin(time) * 0.1;
         innerGroup.rotation.x = Math.sin(time * 0.5) * 0.05;
         innerGroup.rotation.y = Math.cos(time * 0.3) * 0.05;
         renderer.render(scene, camera);
       }
-      animateCube();
+
+      const heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          heroIsVisible = entry.isIntersecting;
+          if (heroIsVisible && !heroAnimId) animateCube();
+          else if (!heroIsVisible && heroAnimId) {
+            cancelAnimationFrame(heroAnimId);
+            heroAnimId = null;
+          }
+        });
+      });
+      heroObserver.observe(container);
 
       let _lastWidth = window.innerWidth;
       window.addEventListener('resize', () => {
@@ -822,6 +825,9 @@ for (let x = 0; x < 3; x++) {
 
       window._cubeReady = true;
       document.dispatchEvent(new CustomEvent('cubeReady'));
+      }
+      // Defer execution to avoid blocking First Contentful Paint
+      setTimeout(initHeroCube, 100);
     </script>
 
     <script>
@@ -933,28 +939,28 @@ for (let x = 0; x < 3; x++) {
       <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20 items-center">
         <div class="md:col-span-5">
           <div class="aspect-[4/5] overflow-hidden bg-zinc-100 border border-zinc-100">
-            <img class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" alt="Website Design &amp; Development" src="Images/realistic_web_design.webp" loading="lazy" decoding="async">
+            <img width="1024" height="1024" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" alt="Website Design &amp; Development" src="Images/realistic_web_design.webp" loading="lazy" decoding="async">
           </div>
         </div>
         <div class="md:col-start-7 md:col-span-6 flex flex-col justify-center">
-          <span class="text-[10px] tracking-widest uppercase text-zinc-500 font-bold mb-6">Service 01</span>
+          <span class="text-[10px] tracking-widest uppercase text-zinc-600 font-bold mb-6">Service 01</span>
           <h3 class="text-4xl md:text-5xl font-bold tracking-tight mb-8 text-zinc-900">Website Design &amp;<br/>Development</h3>
-          <p class="text-lg text-zinc-500 mb-12 max-w-lg leading-relaxed">
+          <p class="text-lg text-zinc-600 mb-12 max-w-lg leading-relaxed">
             I design and build fast, responsive, and easy-to-use websites. From the initial layout to the final code, I make sure your website looks great and works perfectly on all devices.
           </p>
           <div class="mb-12">
             <h4 class="text-[10px] uppercase tracking-widest font-bold mb-6 text-zinc-900">What's included</h4>
             <ul class="space-y-4">
-              <li class="flex items-center gap-3 text-zinc-500 text-sm">
+              <li class="flex items-center gap-3 text-zinc-600 text-sm">
                 <span class="material-symbols-outlined text-zinc-900" style="font-size:14px;">arrow_forward</span>UI/UX Design
               </li>
-              <li class="flex items-center gap-3 text-zinc-500 text-sm">
+              <li class="flex items-center gap-3 text-zinc-600 text-sm">
                 <span class="material-symbols-outlined text-zinc-900" style="font-size:14px;">arrow_forward</span>Web Design
               </li>
-              <li class="flex items-center gap-3 text-zinc-500 text-sm">
+              <li class="flex items-center gap-3 text-zinc-600 text-sm">
                 <span class="material-symbols-outlined text-zinc-900" style="font-size:14px;">arrow_forward</span>Web Development
               </li>
-              <li class="flex items-center gap-3 text-zinc-500 text-sm">
+              <li class="flex items-center gap-3 text-zinc-600 text-sm">
                 <span class="material-symbols-outlined text-zinc-900" style="font-size:14px;">arrow_forward</span>AI-Assisted Design Workflows
               </li>
             </ul>
@@ -971,33 +977,33 @@ for (let x = 0; x < 3; x++) {
     <div class="px-6 md:px-24 py-16 md:py-24 bg-zinc-50 border-t border-zinc-100">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20 items-center">
         <div class="md:col-span-6 flex flex-col justify-center order-2 md:order-1">
-          <span class="text-[10px] tracking-widest uppercase text-zinc-500 font-bold mb-6">Service 02</span>
+          <span class="text-[10px] tracking-widest uppercase text-zinc-600 font-bold mb-6">Service 02</span>
           <h3 class="text-4xl md:text-5xl font-bold tracking-tight mb-8 text-zinc-900">Graphic Design &amp;<br/>Branding</h3>
-          <p class="text-lg text-zinc-500 mb-12 max-w-lg leading-relaxed">
+          <p class="text-lg text-zinc-600 mb-12 max-w-lg leading-relaxed">
             I create clean, professional, and memorable branding for your business. Whether you need a new logo, business cards, or full brand guidelines, I deliver designs that connect with your audience.
           </p>
           <div class="mb-12">
             <h4 class="text-[10px] uppercase tracking-widest font-bold mb-6 text-zinc-900">What's included</h4>
             <ul class="space-y-4">
-              <li class="flex items-center gap-3 text-zinc-500 text-sm">
+              <li class="flex items-center gap-3 text-zinc-600 text-sm">
                 <span class="material-symbols-outlined text-zinc-900" style="font-size:14px;">arrow_forward</span>Brand Identity Design
               </li>
-              <li class="flex items-center gap-3 text-zinc-500 text-sm">
+              <li class="flex items-center gap-3 text-zinc-600 text-sm">
                 <span class="material-symbols-outlined text-zinc-900" style="font-size:14px;">arrow_forward</span>Logo Design
               </li>
-              <li class="flex items-center gap-3 text-zinc-500 text-sm">
+              <li class="flex items-center gap-3 text-zinc-600 text-sm">
                 <span class="material-symbols-outlined text-zinc-900" style="font-size:14px;">arrow_forward</span>Typography
               </li>
-              <li class="flex items-center gap-3 text-zinc-500 text-sm">
+              <li class="flex items-center gap-3 text-zinc-600 text-sm">
                 <span class="material-symbols-outlined text-zinc-900" style="font-size:14px;">arrow_forward</span>Visual Systems
               </li>
-              <li class="flex items-center gap-3 text-zinc-500 text-sm">
+              <li class="flex items-center gap-3 text-zinc-600 text-sm">
                 <span class="material-symbols-outlined text-zinc-900" style="font-size:14px;">arrow_forward</span>Design Systems
               </li>
-              <li class="flex items-center gap-3 text-zinc-500 text-sm">
+              <li class="flex items-center gap-3 text-zinc-600 text-sm">
                 <span class="material-symbols-outlined text-zinc-900" style="font-size:14px;">arrow_forward</span>Creative Direction
               </li>
-              <li class="flex items-center gap-3 text-zinc-500 text-sm">
+              <li class="flex items-center gap-3 text-zinc-600 text-sm">
                 <span class="material-symbols-outlined text-zinc-900" style="font-size:14px;">arrow_forward</span>Marketing Design
               </li>
             </ul>
@@ -1009,7 +1015,7 @@ for (let x = 0; x < 3; x++) {
         </div>
         <div class="md:col-start-8 md:col-span-5 order-1 md:order-2">
           <div class="aspect-[4/5] overflow-hidden bg-zinc-100 border border-zinc-100">
-            <img class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" alt="Graphic Design &amp; Branding" src="Images/Gemini_Generated_Image_yhiy2nyhiy2nyhiy.webp" loading="lazy" decoding="async">
+            <img width="2048" height="2048" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" alt="Graphic Design &amp; Branding" src="Images/Gemini_Generated_Image_yhiy2nyhiy2nyhiy.webp" loading="lazy" decoding="async">
           </div>
         </div>
       </div>
@@ -1022,10 +1028,10 @@ for (let x = 0; x < 3; x++) {
   <section id="visual-identity" class="section-work py-16 bg-white overflow-hidden border-t border-zinc-100">
     <div class="px-6 md:px-24 pt-16 mb-16 flex flex-col w-full">
       <div class="w-full text-zinc-900 md:text-right">
-        <p class="text-zinc-500 uppercase text-[10px] tracking-[0.2em] mb-6">Section 01 — Branding</p>
+        <p class="text-zinc-600 uppercase text-[10px] tracking-[0.2em] mb-6">Section 01 — Branding</p>
       </div>
       <h2 class="text-[3rem] sm:text-[4.5rem] md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-zinc-900 text-left">Visual<br/>Identity</h2>
-      <div class="text-zinc-500 text-sm md:text-base leading-relaxed w-full max-w-2xl text-left mt-12 md:mt-24">
+      <div class="text-zinc-600 text-sm md:text-base leading-relaxed w-full max-w-2xl text-left mt-12 md:mt-24">
         Reimagining the heritage of Benner Tea Co. through a structural lens. Distilling legacy into a precise, narrative-driven visual identity system.
       </div>
     </div>
@@ -1149,8 +1155,8 @@ for (let x = 0; x < 3; x++) {
             <img src="/Images/Branding/Mockup 02.webp" class="w-full h-full aspect-square object-cover block transition-transform duration-700 group-hover:scale-[1.02] border-none" alt="Mockup 02" loading="lazy" decoding="async">
           </div>
           <div class="col-span-2 md:col-span-1 bg-black w-full aspect-square relative flex items-center justify-center">
-            <video preload="none" autoplay muted loop playsinline class="card-video w-full h-full object-cover absolute inset-0 hidden md:block" data-src="/Images/Branding/Rebranding_Product_Video_Generation.mp4"></video>
-            <video preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-full object-cover absolute inset-0 block md:hidden pointer-events-none" data-src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4"></video>
+            <video aria-hidden="true" preload="none" autoplay muted loop playsinline class="card-video w-full h-full object-cover absolute inset-0 hidden md:block" data-src="/Images/Branding/Rebranding_Product_Video_Generation.mp4"></video>
+            <video aria-hidden="true" preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-full object-cover absolute inset-0 block md:hidden pointer-events-none" data-src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4"></video>
           </div>
           <div class="col-span-2 md:col-span-1 group overflow-hidden bg-zinc-50 relative z-10 -mt-12 sm:-mt-16 md:mt-0">
             <img src="/Images/Branding/mockup 03.webp" class="w-full h-full aspect-square object-cover block transition-transform duration-700 group-hover:scale-[1.02] border-none" alt="Mockup 03" loading="lazy" decoding="async">
@@ -1371,23 +1377,23 @@ for (let x = 0; x < 3; x++) {
           <!-- Details Below the Posters -->
           <div class="grid grid-cols-2 md:grid-cols-5 gap-8 border-t border-zinc-100 pt-10">
             <div>
-              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-2">Client</p>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-600 font-bold mb-2">Client</p>
               <p class="text-[9px] md:text-[11px] text-black font-medium">The Venom Berries</p>
             </div>
             <div>
-              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-2">Industry</p>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-600 font-bold mb-2">Industry</p>
               <p class="text-[9px] md:text-[11px] text-black font-medium">Music</p>
             </div>
             <div>
-              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-2">Services</p>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-600 font-bold mb-2">Services</p>
               <p class="text-[9px] md:text-[11px] text-black font-medium">Poster Design, Art Direction</p>
             </div>
             <div>
-              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-2">Tools</p>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-600 font-bold mb-2">Tools</p>
               <p class="text-[9px] md:text-[11px] text-black font-medium">Adobe Photoshop, Illustrator</p>
             </div>
             <div>
-              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-2">Year</p>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-600 font-bold mb-2">Year</p>
               <p class="text-[9px] md:text-[11px] text-black font-medium">2026</p>
             </div>
           </div>
@@ -1411,23 +1417,23 @@ for (let x = 0; x < 3; x++) {
           <!-- Details Below the Artwork -->
           <div class="grid grid-cols-2 md:grid-cols-5 gap-8 border-t border-zinc-100 pt-10">
             <div>
-              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-2">Client</p>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-600 font-bold mb-2">Client</p>
               <p class="text-[9px] md:text-[11px] text-black font-medium">BIANCCA</p>
             </div>
             <div>
-              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-2">Industry</p>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-600 font-bold mb-2">Industry</p>
               <p class="text-[9px] md:text-[11px] text-black font-medium">Music</p>
             </div>
             <div>
-              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-2">Services</p>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-600 font-bold mb-2">Services</p>
               <p class="text-[9px] md:text-[11px] text-black font-medium">Album Artwork, Art Direction, Typography</p>
             </div>
             <div>
-              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-2">Tools</p>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-600 font-bold mb-2">Tools</p>
               <p class="text-[9px] md:text-[11px] text-black font-medium">Adobe Photoshop, Illustrator</p>
             </div>
             <div>
-              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-2">Year</p>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-600 font-bold mb-2">Year</p>
               <p class="text-[9px] md:text-[11px] text-black font-medium">2026</p>
             </div>
           </div>
@@ -1445,10 +1451,10 @@ for (let x = 0; x < 3; x++) {
   <section id="work" class="bg-white overflow-hidden border-t border-zinc-100">
     <div class="px-6 md:px-24 pt-16 mb-16 flex flex-col w-full">
       <div class="w-full text-zinc-900 md:text-right">
-        <p class="text-zinc-500 uppercase text-[10px] tracking-[0.2em] mb-6">Section 02 — Design &amp; Development</p>
+        <p class="text-zinc-600 uppercase text-[10px] tracking-[0.2em] mb-6">Section 02 — Design &amp; Development</p>
       </div>
       <h2 class="text-[3rem] sm:text-[4.5rem] md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-zinc-900 text-left">Web Design &amp;<br/>Development</h2>
-      <div class="text-zinc-500 text-sm md:text-base leading-relaxed w-full max-w-2xl text-left mt-12 md:mt-24">
+      <div class="text-zinc-600 text-sm md:text-base leading-relaxed w-full max-w-2xl text-left mt-12 md:mt-24">
         Architecting high-performance digital foundations. Where creative fluidity meets surgical technical execution.
       </div>
     </div>
@@ -1480,8 +1486,8 @@ for (let x = 0; x < 3; x++) {
             <div class="flex flex-col items-center w-full">
               <div class="relative w-full aspect-[16/9] bg-[#1a1a1a] rounded-t-2xl p-[1%] shadow-[0_60px_100px_-20px_rgba(0,0,0,0.6)] border-x-[4px] border-t-[4px] border-[#2a2a2a]">
                 <div class="relative w-full h-full bg-black rounded-sm overflow-hidden">
-                  <video preload="none" autoplay muted loop playsinline class="card-video w-full h-full object-cover bg-black pointer-events-none hidden md:block" data-src="/Images/web_dev/img_3693.mp4"></video>
-                  <video preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-full object-cover bg-black pointer-events-none block md:hidden" data-src="/Images/web_dev/img_3693_mobile.mp4"></video>
+                  <video aria-hidden="true" preload="none" autoplay muted loop playsinline class="card-video w-full h-full object-cover bg-black pointer-events-none hidden md:block" data-src="/Images/web_dev/img_3693.mp4"></video>
+                  <video aria-hidden="true" preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-full object-cover bg-black pointer-events-none block md:hidden" data-src="/Images/web_dev/img_3693_mobile.mp4"></video>
                   <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.04] to-white/[0.12] pointer-events-none"></div>
                 </div>
               </div>
@@ -1501,8 +1507,8 @@ for (let x = 0; x < 3; x++) {
                 <div class="relative w-full h-full bg-black rounded-[2.2rem] p-[3%] overflow-hidden shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]">
                   <div class="absolute top-[3.5%] left-1/2 -translate-x-1/2 w-[32%] h-[2.4%] bg-[#050505] rounded-full z-20"></div>
                   <div class="relative w-full h-full bg-black rounded-[1.8rem] overflow-hidden">
-                    <video preload="none" autoplay muted loop playsinline class="card-video w-full h-full object-cover bg-black block pointer-events-none hidden md:block" data-src="/Images/web_dev/whatsapp_2.mp4"></video>
-                    <video preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-full object-cover bg-black block pointer-events-none max-md:absolute max-md:inset-0 max-md:[clip-path:inset(0px_round_1.8rem)] block md:hidden" data-src="/Images/web_dev/whatsapp_2_mobile.mp4"></video>
+                    <video aria-hidden="true" preload="none" autoplay muted loop playsinline class="card-video w-full h-full object-cover bg-black block pointer-events-none hidden md:block" data-src="/Images/web_dev/whatsapp_2.mp4"></video>
+                    <video aria-hidden="true" preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-full object-cover bg-black block pointer-events-none max-md:absolute max-md:inset-0 max-md:[clip-path:inset(0px_round_1.8rem)] block md:hidden" data-src="/Images/web_dev/whatsapp_2_mobile.mp4"></video>
                   </div>
                 </div>
                 <div class="absolute -left-[4px] top-[18%] w-[5px] h-[40px] bg-gradient-to-r from-[#d1d5db] to-[#9ca3af] rounded-l-md"></div>
@@ -1541,17 +1547,17 @@ for (let x = 0; x < 3; x++) {
           <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-6">03 / Transformation</p>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div class="space-y-4">
-              <p class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold">Legacy State</p>
+              <p class="text-[10px] uppercase tracking-[0.3em] text-zinc-600 font-bold">Legacy State</p>
               <div class="bg-zinc-50 p-4 border border-zinc-100">
-                <video preload="none" autoplay muted loop playsinline class="card-video w-full h-auto hidden md:block" data-src="/Images/web_dev/img_3692.mp4"></video>
-                <video preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-auto block md:hidden pointer-events-none" data-src="/Images/web_dev/img_3692_mobile.mp4"></video>
+                <video aria-hidden="true" preload="none" autoplay muted loop playsinline class="card-video w-full h-auto hidden md:block" data-src="/Images/web_dev/img_3692.mp4"></video>
+                <video aria-hidden="true" preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-auto block md:hidden pointer-events-none" data-src="/Images/web_dev/img_3692_mobile.mp4"></video>
               </div>
             </div>
             <div class="space-y-4">
               <p class="text-[10px] uppercase tracking-[0.3em] text-black font-bold">New Vision</p>
               <div class="bg-white p-4 border border-zinc-100 shadow-md">
-                <video preload="none" autoplay muted loop playsinline class="card-video w-full h-auto hidden md:block" data-src="/Images/web_dev/img_3693.mp4"></video>
-                <video preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-auto block md:hidden pointer-events-none" data-src="/Images/web_dev/img_3693_mobile.mp4"></video>
+                <video aria-hidden="true" preload="none" autoplay muted loop playsinline class="card-video w-full h-auto hidden md:block" data-src="/Images/web_dev/img_3693.mp4"></video>
+                <video aria-hidden="true" preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-auto block md:hidden pointer-events-none" data-src="/Images/web_dev/img_3693_mobile.mp4"></video>
               </div>
             </div>
           </div>
@@ -1609,8 +1615,8 @@ for (let x = 0; x < 3; x++) {
             <div class="flex flex-col items-center w-full">
               <div class="relative w-full aspect-[16/9] bg-[#1a1a1a] rounded-t-2xl p-[1%] shadow-[0_60px_100px_-20px_rgba(0,0,0,0.9)] border-x-[4px] border-t-[4px] border-[#2a2a2a]">
                 <div class="relative w-full h-full bg-black rounded-sm overflow-hidden">
-                  <video preload="none" autoplay muted loop playsinline class="card-video w-full h-full object-cover bg-black pointer-events-none hidden md:block" data-src="/Images/web_dev/img_3691.mp4"></video>
-                  <video preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-full object-cover bg-black pointer-events-none block md:hidden" data-src="/Images/web_dev/img_3691_mobile.mp4"></video>
+                  <video aria-hidden="true" preload="none" autoplay muted loop playsinline class="card-video w-full h-full object-cover bg-black pointer-events-none hidden md:block" data-src="/Images/web_dev/img_3691.mp4"></video>
+                  <video aria-hidden="true" preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-full object-cover bg-black pointer-events-none block md:hidden" data-src="/Images/web_dev/img_3691_mobile.mp4"></video>
                   <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.04] to-white/[0.12] pointer-events-none"></div>
                 </div>
               </div>
@@ -1630,8 +1636,8 @@ for (let x = 0; x < 3; x++) {
                 <div class="relative w-full h-full bg-black rounded-[2.2rem] p-[3%] overflow-hidden shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]">
                   <div class="absolute top-[3.5%] left-1/2 -translate-x-1/2 w-[32%] h-[2.4%] bg-[#050505] rounded-full z-20"></div>
                   <div class="relative w-full h-full bg-black rounded-[1.8rem] overflow-hidden">
-                    <video preload="none" autoplay muted loop playsinline class="card-video w-full h-full object-cover bg-black block pointer-events-none hidden md:block" data-src="/Images/web_dev/whatsapp_1.mp4"></video>
-                    <video preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-full object-cover bg-black block pointer-events-none max-md:absolute max-md:inset-0 max-md:[clip-path:inset(0px_round_1.8rem)] block md:hidden" data-src="/Images/web_dev/whatsapp_1_mobile.mp4"></video>
+                    <video aria-hidden="true" preload="none" autoplay muted loop playsinline class="card-video w-full h-full object-cover bg-black block pointer-events-none hidden md:block" data-src="/Images/web_dev/whatsapp_1.mp4"></video>
+                    <video aria-hidden="true" preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-full object-cover bg-black block pointer-events-none max-md:absolute max-md:inset-0 max-md:[clip-path:inset(0px_round_1.8rem)] block md:hidden" data-src="/Images/web_dev/whatsapp_1_mobile.mp4"></video>
                   </div>
                 </div>
                 <div class="absolute -left-[4px] top-[18%] w-[5px] h-[40px] bg-gradient-to-r from-[#444] to-[#222] rounded-l-md"></div>
@@ -2146,40 +2152,57 @@ for (let x = 0; x < 3; x++) {
     <!-- OVERLAY: Gradient layer at the bottom to improve text visibility without covering the addesign text -->
     <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 150px; background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent); z-index: 4; pointer-events: none;"></div>
 
-    <!-- ④ LINKS: overlaid at bottom-left and bottom-right of the scene -->
-    <div class="absolute bottom-0 left-0 w-full z-10 flex flex-row justify-between items-stretch p-5 md:py-6 md:px-10" id="footer-links-bar">
-      <!-- Bottom-left -->
-      <div id="footer-links-left" class="flex flex-col justify-between items-start text-left w-1/2 md:w-auto h-full">
-        <div>
-          <a href="/" class="font-['Helvetica_Neue',Helvetica,Arial,sans-serif] text-[12px] md:text-sm font-semibold text-white tracking-[0.08em] no-underline block mb-1 lowercase">addesign studio</a>
-          <p class="font-manrope text-[10px] md:text-xs tracking-[0.18em] uppercase text-white/50 m-0 leading-snug">© 2024 addesign studio.<br class="block md:hidden"/> All rights reserved.</p>
+    <!-- ④ LINKS: overlaid at bottom of the scene -->
+    <div class="absolute bottom-0 left-0 w-full z-10 flex flex-col md:flex-row md:justify-between md:items-stretch p-4 md:py-6 md:px-10 gap-2 md:gap-0" id="footer-links-bar">
+
+      <!-- === MOBILE LAYOUT (two-column: text left, links right, centered) === -->
+      <div class="flex md:hidden flex-row justify-between items-center w-full">
+        <!-- Left: Brand + Copyright -->
+        <div class="flex flex-col items-start gap-1">
+          <a href="/" class="font-['Helvetica_Neue',Helvetica,Arial,sans-serif] text-[10px] font-semibold text-white tracking-[0.08em] no-underline lowercase">addesign studio</a>
+          <p class="font-manrope text-[8px] tracking-[0.15em] uppercase text-white/50 m-0">© 2024 addesign studio.<br/>All rights reserved.</p>
         </div>
-        <!-- Footer nav buttons -->
-        <div class="flex flex-row flex-wrap gap-3 md:gap-6 items-center justify-start mt-3 md:mt-0">
-          <a href="contact.html"
-             class="font-manrope text-[9px] md:text-[11px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white"
-             >Contact</a>
-          <a href="privacy-policy.html"
-             class="font-manrope text-[9px] md:text-[11px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white"
-             >Privacy Policy</a>
+        <!-- Right: All links, right-aligned, centered with left -->
+        <div class="flex flex-col items-end gap-1.5">
+          <div class="flex flex-row gap-3 items-center">
+            <a href="#top" class="font-manrope text-[8px] tracking-[0.15em] uppercase text-white font-bold no-underline flex items-center gap-0.5 hover:opacity-50 transition-opacity">Top <span class="material-symbols-outlined" style="font-size:8px;">arrow_upward</span></a>
+            <a href="contact.html" class="font-manrope text-[8px] tracking-[0.15em] uppercase text-white/60 no-underline hover:text-white transition-colors">Contact</a>
+            <a href="privacy-policy.html" class="font-manrope text-[8px] tracking-[0.15em] uppercase text-white/60 no-underline hover:text-white transition-colors">Privacy</a>
+          </div>
+          <div class="flex flex-row gap-3 items-center">
+            <a href="https://www.linkedin.com/in/adley-fernandes-968688228/" target="_blank" rel="noopener" class="font-manrope text-[8px] tracking-[0.15em] uppercase text-white/60 no-underline hover:text-white transition-colors">LinkedIn</a>
+            <a href="https://twitter.com" target="_blank" rel="noopener" class="footer-twitter-link font-manrope text-[8px] tracking-[0.15em] uppercase text-white/60 no-underline hover:text-white transition-colors">Twitter</a>
+            <a href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener" class="font-manrope text-[8px] tracking-[0.15em] uppercase text-white/60 no-underline hover:text-white transition-colors">Instagram</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- === DESKTOP LAYOUT (original two-column) === -->
+      <!-- Bottom-left -->
+      <div id="footer-links-left" class="hidden md:flex flex-col justify-between items-start text-left w-auto h-full">
+        <div>
+          <a href="/" class="font-['Helvetica_Neue',Helvetica,Arial,sans-serif] text-sm font-semibold text-white tracking-[0.08em] no-underline block mb-1 lowercase">addesign studio</a>
+          <p class="font-manrope text-xs tracking-[0.18em] uppercase text-white/50 m-0 leading-snug">© 2024 addesign studio. All rights reserved.</p>
+        </div>
+        <div class="flex flex-row gap-6 items-center justify-start mt-0">
+          <a href="contact.html" class="font-manrope text-[11px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">Contact</a>
+          <a href="privacy-policy.html" class="font-manrope text-[11px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">Privacy Policy</a>
         </div>
       </div>
 
       <!-- Bottom-right -->
-      <div id="footer-links-right" class="flex flex-col justify-between items-end text-right w-1/2 md:w-auto h-full">
-        <a href="#top"
-           class="font-manrope text-[9px] md:text-[11px] tracking-[0.18em] uppercase text-white font-bold no-underline flex items-center justify-end gap-1 transition-opacity duration-300 hover:opacity-50">
+      <div id="footer-links-right" class="hidden md:flex flex-col justify-between items-end text-right w-auto h-full">
+        <a href="#top" class="font-manrope text-[11px] tracking-[0.18em] uppercase text-white font-bold no-underline flex items-center justify-end gap-1 transition-opacity duration-300 hover:opacity-50">
           Back to top
-          <span class="material-symbols-outlined text-[10px] md:text-xs">arrow_upward</span>
+          <span class="material-symbols-outlined text-xs">arrow_upward</span>
         </a>
-        <div class="flex flex-row flex-wrap gap-3 md:gap-6 items-center justify-end mt-3 md:mt-0">
-          <a href="https://www.linkedin.com/in/adley-fernandes-968688228/" target="_blank" rel="noopener"
-             class="font-manrope text-[9px] md:text-[11px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">LinkedIn</a>
-          <a href="https://twitter.com" target="_blank" rel="noopener" class="footer-twitter-link font-manrope text-[9px] md:text-[11px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">Twitter</a>
-          <a href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener"
-             class="font-manrope text-[9px] md:text-[11px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">Instagram</a>
+        <div class="flex flex-row gap-6 items-center justify-end mt-0">
+          <a href="https://www.linkedin.com/in/adley-fernandes-968688228/" target="_blank" rel="noopener" class="font-manrope text-[11px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">LinkedIn</a>
+          <a href="https://twitter.com" target="_blank" rel="noopener" class="footer-twitter-link font-manrope text-[11px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">Twitter</a>
+          <a href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener" class="font-manrope text-[11px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">Instagram</a>
         </div>
       </div>
+
     </div>
 
   </div>
@@ -2624,8 +2647,8 @@ for (let x = 0; x < 3; x++) {
       <div class="grid grid-cols-1 md:grid-cols-2 gap-0 w-full bg-black">
         <!-- Video -->
         <div class="w-full aspect-square relative flex items-center justify-center">
-          <video preload="none" autoplay muted loop playsinline class="card-video w-full h-full object-cover absolute inset-0 hidden md:block" data-src="/Images/Branding/Rebranding_Product_Video_Generation.mp4"></video>
-          <video preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-full object-cover absolute inset-0 block md:hidden pointer-events-none" data-src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4"></video>
+          <video aria-hidden="true" preload="none" autoplay muted loop playsinline class="card-video w-full h-full object-cover absolute inset-0 hidden md:block" data-src="/Images/Branding/Rebranding_Product_Video_Generation.mp4"></video>
+          <video aria-hidden="true" preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-full object-cover absolute inset-0 block md:hidden pointer-events-none" data-src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4"></video>
         </div>
         <!-- Mockups -->
         <img src="/Images/Branding/Mockup 01.webp" class="w-full h-full aspect-square object-cover block border-none" alt="Mockup 1" loading="lazy" decoding="async">
@@ -2875,7 +2898,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function solutionMedia(mediaPath, type, isVideo = true) {
     const fitClass = 'object-cover bg-black';
     const media = mediaPath.endsWith('.mp4') 
-      ? `<video preload="none" src="${mediaPath}" autoplay muted loop playsinline class="absolute inset-0 w-full h-full ${fitClass} [clip-path:inset(0px_round_1.8rem)]"></video>`
+      ? `<video aria-hidden="true" preload="none" src="${mediaPath}" autoplay muted loop playsinline class="absolute inset-0 w-full h-full ${fitClass} [clip-path:inset(0px_round_1.8rem)]"></video>`
       : `<img src="${mediaPath}" class="absolute inset-0 w-full h-full ${fitClass} [clip-path:inset(0px_round_1.8rem)]" loading="lazy" decoding="async">`;
 
     if (type === 'desktop') {
@@ -3203,7 +3226,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   <p class="text-[10px] uppercase tracking-[0.3em] text-zinc-400 font-bold">Legacy State</p>
                 </div>
                 <div class="bg-zinc-950 p-4 md:p-8 rounded-[2rem] overflow-hidden border border-white/10 transition-all duration-700 group-hover:shadow-xl">
-                  <video preload="none" src="${data.transformation.before}" autoplay muted loop playsinline class="w-full h-auto rounded-2xl"></video>
+                  <video aria-hidden="true" preload="none" src="${data.transformation.before}" autoplay muted loop playsinline class="w-full h-auto rounded-2xl"></video>
                 </div>
               </div>
               <div class="space-y-8 group">
@@ -3212,7 +3235,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   <p class="text-[10px] uppercase tracking-[0.3em] text-white font-bold">New Vision</p>
                 </div>
                 <div class="bg-black p-4 md:p-8 border border-white/10 rounded-[2rem] overflow-hidden shadow-2xl transition-all duration-700 group-hover:scale-[1.01]">
-                  <video preload="none" src="${data.transformation.after}" autoplay muted loop playsinline class="w-full h-auto rounded-2xl"></video>
+                  <video aria-hidden="true" preload="none" src="${data.transformation.after}" autoplay muted loop playsinline class="w-full h-auto rounded-2xl"></video>
                 </div>
               </div>
             </div>
@@ -3585,26 +3608,33 @@ document.addEventListener('DOMContentLoaded', () => {
     import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js';
     import { RoundedBoxGeometry } from 'https://cdn.jsdelivr.net/npm/three@0.150.1/examples/jsm/geometries/RoundedBoxGeometry.js';
 
-    const container = document.getElementById('floating-indicator-container');
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
-    camera.position.z = 6.5;
+    function initFloatingCube() {
+    const indContainer = document.getElementById('floating-indicator-container');
+    if (!indContainer) return;
+    const indScene = new THREE.Scene();
+    const indCamera = new THREE.PerspectiveCamera(45, indContainer.clientWidth / indContainer.clientHeight, 0.1, 100);
+    indCamera.position.z = 6.5;
 
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    renderer.setSize(container.clientWidth, container.clientHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    container.appendChild(renderer.domElement);
+    const indRenderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    indRenderer.setSize(indContainer.clientWidth, indContainer.clientHeight);
+    indRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    indContainer.appendChild(indRenderer.domElement);
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-    scene.add(ambientLight);
-    const dirLight = new THREE.DirectionalLight(0xffffff, 2.5);
-    dirLight.position.set(5, 5, 5);
-    scene.add(dirLight);
-    const fillLight = new THREE.DirectionalLight(0xffffff, 1);
-    fillLight.position.set(-5, -2, -5);
-    scene.add(fillLight);
+    const indAmbientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    indScene.add(indAmbientLight);
+    const indDirLight = new THREE.DirectionalLight(0xffffff, 2.5);
+    indDirLight.position.set(5, 5, 5);
+    indScene.add(indDirLight);
+    
+    const indOrangeLight = new THREE.DirectionalLight(0xFA6B48, 5);
+    indOrangeLight.position.set(0, -5, 5);
+    indScene.add(indOrangeLight);
+    
+    const indFillLight = new THREE.DirectionalLight(0xffffff, 1);
+    indFillLight.position.set(-5, -2, -5);
+    indScene.add(indFillLight);
 
-    function createNumberTexture(number) {
+    function createIndNumberTexture(number) {
       const canvas = document.createElement('canvas');
       canvas.width = 512; canvas.height = 512;
       const ctx = canvas.getContext('2d');
@@ -3617,58 +3647,73 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.shadowBlur = 15;
       ctx.fillText(number, 256, 280);
       const texture = new THREE.CanvasTexture(canvas);
-      texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+      texture.anisotropy = indRenderer.capabilities.getMaxAnisotropy();
       return texture;
     }
 
-    const group = new THREE.Group();
-    const innerGroup = new THREE.Group();
-    group.add(innerGroup);
-    scene.add(group);
+    const indGroup = new THREE.Group();
+    const indInnerGroup = new THREE.Group();
+    indGroup.add(indInnerGroup);
+    indScene.add(indGroup);
 
-    const material = new THREE.MeshStandardMaterial({ color: 0x050505, roughness: 0.1, metalness: 0.85 });
-    const boxSize = 0.85;
-    const radius = 0.12;
-    const geometry = new RoundedBoxGeometry(boxSize, boxSize, boxSize, 4, radius);
-    const gap = 0.9;
-    const offset = gap;
+    const indMaterial = new THREE.MeshStandardMaterial({ color: 0x050505, roughness: 0.1, metalness: 0.85 });
+    const indBoxSize = 0.85;
+    const indRadius = 0.12;
+    const indGeometry = new RoundedBoxGeometry(indBoxSize, indBoxSize, indBoxSize, 4, indRadius);
+    const indGap = 0.9;
+    const indOffset = indGap;
     for (let x = 0; x < 3; x++) {
       for (let y = 0; y < 3; y++) {
         for (let z = 0; z < 3; z++) {
-          const cube = new THREE.Mesh(geometry, material);
-          cube.position.set(x * gap - offset, y * gap - offset, z * gap - offset);
-          innerGroup.add(cube);
+          const cube = new THREE.Mesh(indGeometry, indMaterial);
+          cube.position.set(x * indGap - indOffset, y * indGap - indOffset, z * indGap - indOffset);
+          indInnerGroup.add(cube);
         }
       }
     }
 
-    const planeGeo = new THREE.PlaneGeometry(2.8, 2.8);
-    const planeDist = 1.4;
+    const indPlaneGeo = new THREE.PlaneGeometry(2.8, 2.8);
+    const indPlaneDist = 1.4;
     // Map numbers to faces sequentially around the Y axis
-    const faces = [
-      { num: '1', pos: [0, 0, planeDist],   rot: [0, 0, 0] },
-      { num: '2', pos: [planeDist, 0, 0],   rot: [0, Math.PI/2, 0] },
-      { num: '3', pos: [0, 0, -planeDist],  rot: [0, Math.PI, 0] },
-      { num: '4', pos: [-planeDist, 0, 0],  rot: [0, -Math.PI/2, 0] }
+    const indFaces = [
+      { num: '1', pos: [0, 0, indPlaneDist],   rot: [0, 0, 0] },
+      { num: '2', pos: [indPlaneDist, 0, 0],   rot: [0, Math.PI/2, 0] },
+      { num: '3', pos: [0, 0, -indPlaneDist],  rot: [0, Math.PI, 0] },
+      { num: '4', pos: [-indPlaneDist, 0, 0],  rot: [0, -Math.PI/2, 0] }
     ];
-    faces.forEach(face => {
-      const mat = new THREE.MeshBasicMaterial({ map: createNumberTexture(face.num), transparent: true, depthWrite: false });
-      const plane = new THREE.Mesh(planeGeo, mat);
+    indFaces.forEach(face => {
+      const mat = new THREE.MeshBasicMaterial({ map: createIndNumberTexture(face.num), transparent: true, depthWrite: false });
+      const plane = new THREE.Mesh(indPlaneGeo, mat);
       plane.position.set(...face.pos);
       plane.rotation.set(...face.rot);
-      innerGroup.add(plane);
+      indInnerGroup.add(plane);
     });
 
     let idleTime = 0;
+    let indIsVisible = false;
+    let indAnimId = null;
+
     function animateCube() {
-      requestAnimationFrame(animateCube);
+      if (!indIsVisible) return;
+      indAnimId = requestAnimationFrame(animateCube);
       idleTime += 0.02;
-      group.position.y = Math.sin(idleTime) * 0.2;
-      group.rotation.x = Math.sin(idleTime * 0.5) * 0.15;
-      group.rotation.z = Math.cos(idleTime * 0.5) * 0.1;
-      renderer.render(scene, camera);
+      indGroup.position.y = Math.sin(idleTime) * 0.2;
+      indGroup.rotation.x = Math.sin(idleTime * 0.5) * 0.15;
+      indGroup.rotation.z = Math.cos(idleTime * 0.5) * 0.1;
+      indRenderer.render(indScene, indCamera);
     }
-    animateCube();
+
+    const indObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        indIsVisible = entry.isIntersecting;
+        if (indIsVisible && !indAnimId) animateCube();
+        else if (!indIsVisible && indAnimId) {
+          cancelAnimationFrame(indAnimId);
+          indAnimId = null;
+        }
+      });
+    });
+    indObserver.observe(indContainer);
 
     // ── Cube scroll logic using getBoundingClientRect ──────────────────────────
     // We intentionally do NOT use GSAP ScrollTrigger here because ScrollTrigger
@@ -3693,7 +3738,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (lastRotY === rotY) return;
       lastRotY = rotY;
       if (typeof gsap !== 'undefined') {
-        gsap.to(innerGroup.rotation, { y: rotY, duration: 1.5, ease: 'power3.out', overwrite: 'auto' });
+        gsap.to(indInnerGroup.rotation, { y: rotY, duration: 1.5, ease: 'power3.out', overwrite: 'auto' });
       }
     }
 
@@ -3701,7 +3746,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (cubeVisible) return;
       cubeVisible = true;
       if (typeof gsap !== 'undefined') {
-        gsap.to(container, { x: 0, autoAlpha: 1, duration: 1, ease: 'power3.out', overwrite: 'auto' });
+        gsap.to(indContainer, { x: 0, autoAlpha: 1, duration: 1, ease: 'power3.out', overwrite: 'auto' });
       }
     }
 
@@ -3709,7 +3754,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!cubeVisible) return;
       cubeVisible = false;
       if (typeof gsap !== 'undefined') {
-        gsap.to(container, { x: '100vw', autoAlpha: 0, duration: 1, ease: 'power3.in', overwrite: 'auto' });
+        gsap.to(indContainer, { x: '100vw', autoAlpha: 0, duration: 1, ease: 'power3.in', overwrite: 'auto' });
       }
     }
 
@@ -3771,11 +3816,13 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', () => {
       if (window.innerWidth === _lastWidth2) return;
       _lastWidth2 = window.innerWidth;
-      camera.aspect = container.clientWidth / container.clientHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(container.clientWidth, container.clientHeight);
+      indCamera.aspect = indContainer.clientWidth / indContainer.clientHeight;
+      indCamera.updateProjectionMatrix();
+      indRenderer.setSize(indContainer.clientWidth, indContainer.clientHeight);
     });
-
+    }
+    // Defer execution to avoid blocking First Contentful Paint
+    setTimeout(initFloatingCube, 200);
   </script>
 
 </body></html>
