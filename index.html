@@ -3473,16 +3473,38 @@ document.addEventListener('DOMContentLoaded', function initLenis() {
   // We debounce a refresh call on every media load.
   let stRefreshTimeout;
   let _stLockedVW = window.innerWidth; // track width to ignore toolbar resizes
+  
+  // Track if user is actively scrolling to prevent mid-scroll layout thrashing
+  let _isScrolling = false;
+  let _scrollTimeout;
+  window.addEventListener('scroll', () => {
+    _isScrolling = true;
+    clearTimeout(_scrollTimeout);
+    _scrollTimeout = setTimeout(() => {
+      _isScrolling = false;
+    }, 150); // user stopped scrolling 150ms ago
+  }, { passive: true });
+
   const triggerRefresh = (sourceIsResize) => {
     // If this refresh was triggered by a resize event, only proceed if
     // the WIDTH changed — toolbar show/hide only changes height, skip it.
     if (sourceIsResize && window.innerWidth === _stLockedVW) return;
     if (sourceIsResize) _stLockedVW = window.innerWidth;
+    
     clearTimeout(stRefreshTimeout);
     stRefreshTimeout = setTimeout(() => {
-      if (typeof ScrollTrigger !== 'undefined') {
-        ScrollTrigger.refresh();
+      if (typeof ScrollTrigger === 'undefined') return;
+      
+      // CRITICAL FIX: ScrollTrigger.refresh() forces a massive full-page layout reflow.
+      // If images load while the user is actively scrolling (like in the Branding section),
+      // firing this will completely freeze the scroll momentum causing a terrible stutter.
+      // We must defer the refresh until the user STOPS scrolling!
+      if (_isScrolling) {
+        triggerRefresh(false); // try again later
+        return;
       }
+      
+      ScrollTrigger.refresh();
     }, 250);
   };
 
