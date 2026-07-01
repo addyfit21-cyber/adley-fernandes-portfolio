@@ -3436,36 +3436,27 @@ document.addEventListener('DOMContentLoaded', function initLenis() {
   if (typeof Lenis === 'undefined') return;
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
-  // Detect if the device is a touch device (mobile/tablet)
-  // On all mobile browsers (including Instagram/LinkedIn), we completely disable Lenis.
-  // Native momentum scrolling is inherently smoother and more reliable on mobile.
-  const isTouchDevice = ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    orientation: 'vertical',
+    gestureOrientation: 'vertical',
+    smoothWheel: true,
+    infinite: false,
+  });
 
-  let lenis;
+  window.__lenis = lenis;
 
-  if (!isTouchDevice) {
-    lenis = new Lenis({
-      duration: 1.2,
-      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      infinite: false,
-    });
+  // ── CRITICAL: Drive Lenis through GSAP's ticker, NOT a separate rAF.
+  // This keeps Lenis and ScrollTrigger on the exact same frame tick,
+  // so scrub-based timelines read the correct interpolated scroll position.
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000); // gsap time is in seconds; lenis.raf expects ms
+  });
+  gsap.ticker.lagSmoothing(0);
 
-    window.__lenis = lenis;
-
-    // ── CRITICAL: Drive Lenis through GSAP's ticker, NOT a separate rAF.
-    // This keeps Lenis and ScrollTrigger on the exact same frame tick,
-    // so scrub-based timelines read the correct interpolated scroll position.
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000); // gsap time is in seconds; lenis.raf expects ms
-    });
-    gsap.ticker.lagSmoothing(0);
-
-    // Keep ScrollTrigger refreshed every Lenis scroll event
-    lenis.on('scroll', ScrollTrigger.update);
-  }
+  // Keep ScrollTrigger refreshed every Lenis scroll event
+  lenis.on('scroll', ScrollTrigger.update);
 
   // Refresh ScrollTrigger once when the page fully loads (fonts, initial styles)
   window.addEventListener('load', () => {
@@ -3698,95 +3689,46 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     indObserver.observe(indContainer);
 
-    // ── Cube scroll logic using IntersectionObserver ──────────────────────────
-    // We use IntersectionObserver instead of getBoundingClientRect() on scroll
-    // because calling getBoundingClientRect() during a scroll event forces 
-    // synchronous layout reflows, which destroys mobile scroll performance.
-    // IntersectionObserver is completely asynchronous, free of reflows, and
-    // 100% immune to layout shifts from lazy-loaded images!
+    // ── Cube scroll logic using GSAP ScrollTrigger ──────────────────────────
+    // Master visibility toggle
+    ScrollTrigger.create({
+      trigger: '#branding',
+      start: 'top 60%',
+      endTrigger: '#porsche',
+      end: 'bottom 40%',
+      onEnter: () => gsap.to(indContainer, { x: 0, autoAlpha: 1, duration: 1, ease: 'power3.out', overwrite: 'auto' }),
+      onLeave: () => gsap.to(indContainer, { x: '100vw', autoAlpha: 0, duration: 1, ease: 'power3.in', overwrite: 'auto' }),
+      onEnterBack: () => gsap.to(indContainer, { x: 0, autoAlpha: 1, duration: 1, ease: 'power3.out', overwrite: 'auto' }),
+      onLeaveBack: () => gsap.to(indContainer, { x: '100vw', autoAlpha: 0, duration: 1, ease: 'power3.in', overwrite: 'auto' })
+    });
 
+    // Target Rotations for Inner Group (to show face 1, 2, 3, 4)
     const SECTIONS = [
-      { id: 'branding', rotY: 0 },
-      { id: 'posters',  rotY: -Math.PI / 2 },
-      { id: 'work',     rotY: -Math.PI },
-      { id: 'mclaren',  rotY: -Math.PI * 1.5 }
+      { id: '#branding', rotY: 0 },
+      { id: '#posters', rotY: -Math.PI/2 },
+      { id: '#work', rotY: -Math.PI },
+      { id: '#mclaren', rotY: -Math.PI * 1.5 }
     ];
 
-    const porscheEl  = document.getElementById('porsche');
-    let cubeVisible  = false;
-    let lastRotY     = null;
-
-    function animateTo(rotY) {
-      if (lastRotY === rotY) return;
-      lastRotY = rotY;
-      if (typeof gsap !== 'undefined') {
-        gsap.to(indInnerGroup.rotation, { y: rotY, duration: 1.5, ease: 'power3.out', overwrite: 'auto' });
-      }
-    }
-
-    function showCube() {
-      if (cubeVisible) return;
-      cubeVisible = true;
-      if (typeof gsap !== 'undefined') {
-        gsap.to(indContainer, { x: 0, autoAlpha: 1, duration: 1, ease: 'power3.out', overwrite: 'auto' });
-      }
-    }
-
-    function hideCube() {
-      if (!cubeVisible) return;
-      cubeVisible = false;
-      if (typeof gsap !== 'undefined') {
-        gsap.to(indContainer, { x: '100vw', autoAlpha: 0, duration: 1, ease: 'power3.in', overwrite: 'auto' });
-      }
-    }
-
-    // Observer 1: Switch cube rotation based on which section is active
-    // rootMargin "-25% 0px -74% 0px" means the intersection line is exactly 25% from the top of the viewport.
-    // When a section overlaps this 1% line, it becomes the active section.
-    const sectionObserver = new IntersectionObserver((entries) => {
-      let activeEntry = null;
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          activeEntry = entry;
-        }
+    SECTIONS.forEach((sec) => {
+      ScrollTrigger.create({
+        trigger: sec.id,
+        start: 'top 50%',
+        end: 'bottom 50%',
+        onEnter: () => animateTo(sec),
+        onEnterBack: () => animateTo(sec)
       });
-      
-      if (activeEntry) {
-        const sec = SECTIONS.find(s => s.id === activeEntry.target.id);
-        if (sec) animateTo(sec.rotY);
-      }
-    }, {
-      rootMargin: "-25% 0px -74% 0px"
     });
 
-    // Observer 2: Show/Hide the cube based on overall visibility
-    const visibilityMap = new Map();
-    const visibilityObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        visibilityMap.set(entry.target.id, entry.isIntersecting);
-      });
-      
-      let anyVisible = false;
-      visibilityMap.forEach(isVisible => {
-        if (isVisible) anyVisible = true;
-      });
-      
-      if (anyVisible) showCube();
-      else hideCube();
-    }, {
-      // Expand the viewport vertically by 15% so the cube animates in slightly before the section fully arrives
-      rootMargin: "15% 0px 15% 0px"
-    });
-
-    SECTIONS.forEach(sec => {
-      const el = document.getElementById(sec.id);
-      if (el) {
-        sectionObserver.observe(el);
-        visibilityObserver.observe(el);
+    function animateTo(sec) {
+      if (typeof gsap !== 'undefined') {
+        gsap.to(indInnerGroup.rotation, {
+          y: sec.rotY,
+          duration: 1.5,
+          ease: "power3.out",
+          overwrite: "auto"
+        });
       }
-    });
-    if (porscheEl) {
-      visibilityObserver.observe(porscheEl);
     }
 
     let _lastWidth2 = window.innerWidth;
