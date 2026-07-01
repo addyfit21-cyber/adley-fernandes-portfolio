@@ -3748,12 +3748,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     indObserver.observe(indContainer);
 
-    // ── Cube scroll logic using getBoundingClientRect ──────────────────────────
-    // We intentionally do NOT use GSAP ScrollTrigger here because ScrollTrigger
-    // pre-computes element offsets at load time. On Chrome mobile, lazy-loaded
-    // videos cause the page to grow after those offsets are computed, making all
-    // triggers fire at wrong scroll positions. getBoundingClientRect() always
-    // returns the real current position, so it is 100% immune to layout shifts.
+    // ── Cube scroll logic using IntersectionObserver ──────────────────────────
+    // We use IntersectionObserver instead of getBoundingClientRect() on scroll
+    // because calling getBoundingClientRect() during a scroll event forces 
+    // synchronous layout reflows, which destroys mobile scroll performance.
+    // IntersectionObserver is completely asynchronous, free of reflows, and
+    // 100% immune to layout shifts from lazy-loaded images!
 
     const SECTIONS = [
       { id: 'branding', rotY: 0 },
@@ -3762,7 +3762,6 @@ document.addEventListener('DOMContentLoaded', () => {
       { id: 'mclaren',  rotY: -Math.PI * 1.5 }
     ];
 
-    const brandingEl = document.getElementById('branding');
     const porscheEl  = document.getElementById('porsche');
     let cubeVisible  = false;
     let lastRotY     = null;
@@ -3791,72 +3790,53 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // RAF throttle flag — ensures getBoundingClientRect is called at most once
-    // per animation frame. Without this, rapid Lenis scroll events on mobile
-    // trigger dozens of layout reflows per second, causing scroll to stutter/stop.
-    let _scrollRafPending = false;
-
-    function onScroll() {
-      if (_scrollRafPending) return;
-      _scrollRafPending = true;
-      requestAnimationFrame(() => {
-        _scrollRafPending = false;
-        _onScrollWork();
-      });
-    }
-
-    function _onScrollWork() {
-      if (!brandingEl || !porscheEl) return;
-      // Use the locked --vh value (set in <head>) so IAB toolbar toggles don't
-      // shift the trigger points. Parse back to pixels from the CSS variable.
-      const _vhPx = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) || window.innerHeight * 0.01;
-      const vh = _vhPx * 100;
-
-      // -- Show / hide cube --
-      const bRect = brandingEl.getBoundingClientRect();
-      const pRect = porscheEl.getBoundingClientRect();
-      const inRange = bRect.top < vh * 0.65 && pRect.bottom > vh * 0.35;
-      if (inRange) showCube(); else hideCube();
-
-      // -- Pick active section --
-      // A section becomes active when its top crosses 25% from the top of the
-      // viewport. Walk sections in REVERSE and pick the last one whose top is
-      // already above that threshold — this is the section most-recently entered.
-      const trigger = vh * 0.25;
-      let activeSec = null;
-
-      for (let i = SECTIONS.length - 1; i >= 0; i--) {
-        const sec = SECTIONS[i];
-        const el = document.getElementById(sec.id);
-        if (!el) continue;
-        const r = el.getBoundingClientRect();
-        if (r.top <= trigger) {
-          activeSec = sec;
-          break;
+    // Observer 1: Switch cube rotation based on which section is active
+    // rootMargin "-25% 0px -74% 0px" means the intersection line is exactly 25% from the top of the viewport.
+    // When a section overlaps this 1% line, it becomes the active section.
+    const sectionObserver = new IntersectionObserver((entries) => {
+      let activeEntry = null;
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          activeEntry = entry;
         }
+      });
+      
+      if (activeEntry) {
+        const sec = SECTIONS.find(s => s.id === activeEntry.target.id);
+        if (sec) animateTo(sec.rotY);
       }
+    }, {
+      rootMargin: "-25% 0px -74% 0px"
+    });
 
-      // Fallback: nothing past trigger yet — show the first section
-      if (!activeSec) activeSec = SECTIONS[0];
+    // Observer 2: Show/Hide the cube based on overall visibility
+    const visibilityMap = new Map();
+    const visibilityObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        visibilityMap.set(entry.target.id, entry.isIntersecting);
+      });
+      
+      let anyVisible = false;
+      visibilityMap.forEach(isVisible => {
+        if (isVisible) anyVisible = true;
+      });
+      
+      if (anyVisible) showCube();
+      else hideCube();
+    }, {
+      // Expand the viewport vertically by 15% so the cube animates in slightly before the section fully arrives
+      rootMargin: "15% 0px 15% 0px"
+    });
 
-      animateTo(activeSec.rotY);
-    }
-
-    // Hook into Lenis (if available) for smooth scroll events, else use native scroll
-    function attachScroll() {
-      if (window.__lenis) {
-        window.__lenis.on('scroll', onScroll);
-      } else {
-        window.addEventListener('scroll', onScroll, { passive: true });
+    SECTIONS.forEach(sec => {
+      const el = document.getElementById(sec.id);
+      if (el) {
+        sectionObserver.observe(el);
+        visibilityObserver.observe(el);
       }
-      onScroll(); // run once immediately
-    }
-
-    // Wait for Lenis to be ready (it initialises on DOMContentLoaded)
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => setTimeout(attachScroll, 100));
-    } else {
-      setTimeout(attachScroll, 100);
+    });
+    if (porscheEl) {
+      visibilityObserver.observe(porscheEl);
     }
 
     let _lastWidth2 = window.innerWidth;
