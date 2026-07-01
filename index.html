@@ -3451,11 +3451,9 @@ document.addEventListener('DOMContentLoaded', function initLenis() {
     gestureOrientation: 'vertical',
     smoothWheel: true,
     smoothTouch: isIAB,             // MUST be true in IABs — no native momentum
-    touchInertiaMultiplier: 0,      // disable Lenis inertia on touch entirely
     wheelMultiplier: 0.9,
-    touchMultiplier: isIAB ? 1.8 : 0, // 0 = don't handle touch on regular mobile
+    touchMultiplier: isIAB ? 1.8 : 2,
     infinite: false,
-    prevent: isTouchDevice ? () => true : undefined, // on regular mobile, prevent Lenis from consuming touch events
   });
 
   window.__lenis = lenis;
@@ -3765,7 +3763,21 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    // RAF throttle flag — ensures getBoundingClientRect is called at most once
+    // per animation frame. Without this, rapid Lenis scroll events on mobile
+    // trigger dozens of layout reflows per second, causing scroll to stutter/stop.
+    let _scrollRafPending = false;
+
     function onScroll() {
+      if (_scrollRafPending) return;
+      _scrollRafPending = true;
+      requestAnimationFrame(() => {
+        _scrollRafPending = false;
+        _onScrollWork();
+      });
+    }
+
+    function _onScrollWork() {
       if (!brandingEl || !porscheEl) return;
       // Use the locked --vh value (set in <head>) so IAB toolbar toggles don't
       // shift the trigger points. Parse back to pixels from the CSS variable.
