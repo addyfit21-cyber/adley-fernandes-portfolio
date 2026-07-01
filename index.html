@@ -3439,6 +3439,11 @@ document.addEventListener('DOMContentLoaded', function initLenis() {
   // smoothing itself, otherwise a single swipe stops dead immediately.
   const isIAB = /Instagram|FBAN|FBAV|LinkedIn|BytedanceWebview|MicroMessenger|Twitter|Snapchat/.test(navigator.userAgent);
 
+  // Detect regular mobile/touch browsers (not IAB)
+  // On these devices, native momentum scroll is perfect and Lenis must NOT
+  // intercept touch events — doing so causes the abrupt scroll stop the user sees.
+  const isTouchDevice = ('ontouchstart' in window || navigator.maxTouchPoints > 0) && !isIAB;
+
   const lenis = new Lenis({
     duration: 1.2,
     easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -3446,9 +3451,11 @@ document.addEventListener('DOMContentLoaded', function initLenis() {
     gestureOrientation: 'vertical',
     smoothWheel: true,
     smoothTouch: isIAB,             // MUST be true in IABs — no native momentum
+    touchInertiaMultiplier: 0,      // disable Lenis inertia on touch entirely
     wheelMultiplier: 0.9,
-    touchMultiplier: isIAB ? 1.8 : 2,
+    touchMultiplier: isIAB ? 1.8 : 0, // 0 = don't handle touch on regular mobile
     infinite: false,
+    prevent: isTouchDevice ? () => true : undefined, // on regular mobile, prevent Lenis from consuming touch events
   });
 
   window.__lenis = lenis;
