@@ -110,8 +110,8 @@
   /* Lenis handles scrolling on desktop — iOS uses native scroll */
   html { scroll-behavior: auto; }
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
-  /* Critical iOS fix: allow native momentum scroll to breathe */
-  html, body { -webkit-overflow-scrolling: auto; overscroll-behavior: none; }
+  /* Allow native smooth iOS WebKit momentum scrolling */
+  html, body { -webkit-overflow-scrolling: touch; }
   body { font-family: 'Manrope', sans-serif; }
   h1, h2, h3, h4, h5, h6 { font-family: 'DM Sans', sans-serif; }
 
@@ -630,8 +630,8 @@
   </section>
 
     <!-- Capabilities & Services - Sticky Scroll -->
-  <section id="services" class="bg-white text-zinc-900 border-t border-zinc-100 relative" style="height: calc(var(--vh, 1vh) * 750); min-height: calc(var(--vh, 1vh) * 750); touch-action: pan-y; -webkit-overflow-scrolling: auto;">
-    <div class="sticky top-0 w-full overflow-hidden flex flex-col md:flex-row items-center justify-center md:justify-between" style="height: calc(var(--vh, 1svh) * 100); touch-action: pan-y;">
+  <section id="services" class="bg-white text-zinc-900 border-t border-zinc-100 relative" style="height: calc(var(--vh, 1vh) * 750); min-height: calc(var(--vh, 1vh) * 750);">
+    <div class="sticky top-0 w-full overflow-hidden flex flex-col md:flex-row items-center justify-center md:justify-between" style="height: calc(var(--vh, 1svh) * 100);">
     <span class="absolute top-8 left-6 md:top-10 md:left-24 text-[10px] tracking-[0.3em] uppercase text-zinc-600 font-bold leading-none z-20">Services</span>
 
       <!-- LEFT side (visually on desktop): The Skills text -->
@@ -885,17 +885,7 @@ for (let x = 0; x < 3; x++) {
           }
         });
 
-        // CRITICAL FIX: Lazy loaded images push the section down after ScrollTrigger initializes,
-        // causing stale markers (start/end positions) which makes the timeline jump to 100% instantly.
-        // This observer perfectly syncs ScrollTrigger with any layout shifts.
-        let lastDocHeight = document.body.scrollHeight;
-        new ResizeObserver(() => {
-          const currentHeight = document.body.scrollHeight;
-          if (Math.abs(currentHeight - lastDocHeight) > 10) {
-            lastDocHeight = currentHeight;
-            ScrollTrigger.refresh();
-          }
-        }).observe(document.body);
+
 
         window._servicesTimeline = tl;
 
@@ -3477,8 +3467,7 @@ document.addEventListener('DOMContentLoaded', function initLenis() {
   // GSAP ScrollTrigger reads window.scrollY directly so it works either way.
   const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
   if (isTouchDevice) {
-    // No Lenis on touch — just wire ScrollTrigger to native scroll events.
-    window.addEventListener('scroll', ScrollTrigger.update, { passive: true });
+    // On touch devices, native scroll handles momentum cleanly without Lenis or extra scroll updates.
     window.__lenis = null;
     return;
   }
