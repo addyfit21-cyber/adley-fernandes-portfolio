@@ -485,7 +485,7 @@
   <!-- Floating Mobile Menu -->
   <div class="md:hidden fixed top-6 right-6 z-[120] flex flex-col items-end pointer-events-none">
     <!-- Button with Difference Blend -->
-    <button id="mobile-dropdown-btn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full font-manrope text-[9px] tracking-widest uppercase font-bold transition-all duration-300 shadow-xl pointer-events-auto" style="mix-blend-mode: difference; background-color: #fff; color: #000;">
+    <button id="mobile-dropdown-btn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full font-manrope text-[9px] tracking-widest uppercase font-bold transition-all duration-300 pointer-events-auto" style="background-color: transparent; color: #000; box-shadow: none; transition: background-color 0.4s ease, box-shadow 0.4s ease;">
       <span>Menu</span>
       <span class="material-symbols-outlined text-[12px] transition-transform duration-300" id="mobile-dropdown-arrow">expand_more</span>
     </button>
@@ -564,7 +564,7 @@
     <div class="w-full px-6 md:px-12 lg:px-24 flex flex-col items-start text-left mt-4 md:mt-8">
       <!-- Descriptor -->
       <p class="hero-slide-right relative z-10 text-sm md:text-base text-zinc-600 leading-relaxed max-w-xl mb-4 md:mb-12">
-        <span class="font-bold text-zinc-900 text-lg md:text-xl">Helping Brands Look Better. Perform Better.<br class="block md:hidden"/> Grow&nbsp;Faster.</span><br/>
+        <span class="font-bold text-zinc-900 text-lg md:text-xl">Helping Brands Look Better.<br class="block md:hidden"/> Perform Better. Grow&nbsp;Faster.</span><br/>
         <span class="font-light mt-1 inline-block">Through branding, UI/UX design, and <br class="block md:hidden"/>high-converting websites.</span>
       </p>
 
@@ -3542,6 +3542,37 @@ document.addEventListener('DOMContentLoaded', function initLenis() {
     }
   });
 });
+
+// ─── Mobile Menu Button Visibility (transparent on hero, solid on scroll) ─────
+(function initMobileMenuVisibility() {
+  // Mobile only
+  if (!window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
+
+  const btn = document.getElementById('mobile-dropdown-btn');
+  const hero = document.getElementById('hero');
+  if (!btn || !hero) return;
+
+  function trySetupMobileBtn() {
+    if (typeof ScrollTrigger === 'undefined') {
+      setTimeout(trySetupMobileBtn, 50); return;
+    }
+
+    ScrollTrigger.create({
+      trigger: hero,
+      start: 'bottom 90%',
+      onEnter: () => {
+        btn.style.backgroundColor = '#ffffff';
+        btn.style.boxShadow = '0 4px 24px rgba(0,0,0,0.18)';
+      },
+      onLeaveBack: () => {
+        btn.style.backgroundColor = 'transparent';
+        btn.style.boxShadow = 'none';
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', trySetupMobileBtn);
+})();
 
 // ─── Navbar Background on Desktop (transparent on hero, solid on scroll) ──────
 (function initNavbarVisibility() {
