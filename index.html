@@ -107,12 +107,22 @@
 
 
 <style>
-  /* Lenis handles scrolling — disable browser native smooth scroll to avoid conflicts */
+  /* Lenis handles scrolling on desktop — iOS uses native scroll */
   html { scroll-behavior: auto; }
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
-  /* Allow native overscroll so momentum scroll doesn't abruptly stop on mobile */
+  /* Critical iOS fix: allow native momentum scroll to breathe */
+  html, body { -webkit-overflow-scrolling: auto; overscroll-behavior: none; }
   body { font-family: 'Manrope', sans-serif; }
   h1, h2, h3, h4, h5, h6 { font-family: 'DM Sans', sans-serif; }
+
+  @keyframes arrow-scroll {
+    0% { transform: translateY(0); opacity: 1; }
+    70% { transform: translateY(12px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 0; }
+  }
+  .arrow-scroll-anim {
+    animation: arrow-scroll 1.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  }
 
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: #f9f9f9; }
@@ -437,7 +447,7 @@
 <!-- Glassmorphism Container (The 'Tab') -->
 
 <!-- TopNavBar -->
-<nav class="absolute md:fixed top-6 md:top-8 left-0 md:left-1/2 md:-translate-x-1/2 z-[100] flex items-center justify-between px-6 py-3 bg-transparent md:bg-white/90 md:backdrop-blur-lg md:border md:border-zinc-200 md:shadow-xl w-full md:w-max md:min-w-[800px] pointer-events-none">
+<nav id="main-nav" class="absolute md:fixed top-6 md:top-8 left-0 md:left-1/2 md:-translate-x-1/2 z-[100] flex items-center justify-between px-6 py-3 bg-transparent md:backdrop-blur-lg w-full md:w-max md:min-w-[800px] pointer-events-none" style="border: 1px solid transparent; box-shadow: none;">
   <!-- Logo -->
   <a href="/" id="mobile-logo" class="text-lg md:text-xl font-bold tracking-tighter text-black z-10 pointer-events-auto">addesign studio</a>
   
@@ -481,7 +491,7 @@
     </button>
 
     <!-- Dropdown Card -->
-    <div id="mobile-dropdown-menu" class="mt-4 w-[85vw] max-w-[280px] bg-white/95 backdrop-blur-xl border border-zinc-100 shadow-2xl rounded-3xl opacity-0 invisible -translate-y-4 transition-all duration-[400ms] ease-[cubic-bezier(0.19,1,0.22,1)] flex flex-col overflow-hidden pointer-events-auto" style="mix-blend-mode: normal;">
+    <div id="mobile-dropdown-menu" class="mt-4 w-[85vw] max-w-[280px] bg-white/95 max-md:bg-white md:backdrop-blur-xl border border-zinc-100 shadow-2xl rounded-3xl opacity-0 invisible -translate-y-4 transition-all duration-[400ms] ease-[cubic-bezier(0.19,1,0.22,1)] flex flex-col overflow-hidden pointer-events-auto" style="mix-blend-mode: normal;">
       <a href="/" class="px-6 py-4 text-xs uppercase tracking-widest text-black font-bold border-b border-zinc-100 hover:bg-zinc-50 mobile-link">Home</a>
       
       <!-- Projects Section -->
@@ -539,9 +549,9 @@
       <!-- 3. FRONT TEXT (Glowing Rainbow Mask) -->
       <div class="hero-marquee-wrapper absolute inset-0 w-full flex whitespace-nowrap overflow-hidden py-4 md:py-6 z-30 pointer-events-none cube-mask">
         <div class="hero-marquee flex items-center min-w-max rainbow-glow css-marquee">
-          <div class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-tight pb-[0.1em] font-bold tracking-tight rainbow-text m-0 pr-16" style="word-spacing: 0.1em;">
+          <h1 class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-tight pb-[0.1em] font-bold tracking-tight rainbow-text m-0 pr-16" aria-hidden="true" style="word-spacing: 0.1em;">
             Creative design meets strategic development for brands that demand more than average &nbsp;&mdash;&nbsp;
-          </div>
+          </h1>
           <div class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-tight pb-[0.1em] font-bold tracking-tight rainbow-text m-0 pr-16" aria-hidden="true" style="word-spacing: 0.1em;">
             Creative design meets strategic development for brands that demand more than average &nbsp;&mdash;&nbsp;
           </div>
@@ -554,13 +564,13 @@
     <div class="w-full px-6 md:px-12 lg:px-24 flex flex-col items-start text-left mt-4 md:mt-8">
       <!-- Descriptor -->
       <p class="hero-slide-right relative z-10 text-sm md:text-base text-zinc-600 leading-relaxed max-w-xl mb-4 md:mb-12">
-        <span class="font-bold text-zinc-900 text-lg md:text-xl">Helping Brands Look Better. Perform Better. Grow Faster.</span><br/>
-        <span class="font-light mt-1 inline-block">Through branding, UI/UX design, and high-converting websites.</span>
+        <span class="font-bold text-zinc-900 text-lg md:text-xl">Helping Brands Look&nbsp;Better. Perform&nbsp;Better. <br class="block md:hidden"/>Grow&nbsp;Faster.</span><br/>
+        <span class="font-light mt-1 inline-block">Through branding, UI/UX design, and <br class="block md:hidden"/>high-converting websites.</span>
       </p>
 
       <!-- View Work Link -->
       <div class="hero-slide-right relative z-10 flex flex-col items-start justify-start gap-6">
-        <a href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener" class="group bg-black text-white border border-white/20 px-5 md:px-10 py-3.5 md:py-5 text-[9px] md:text-[9px] md:text-[11px] tracking-[0.2em] uppercase font-bold hover:bg-[#FA6B48] hover:text-black hover:border-[#FA6B48] hover:shadow-[0_0_20px_rgba(250,107,72,0.6)] transition-all duration-500 inline-flex items-center gap-3 btn-shine-trigger">
+        <a href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener" class="group bg-black text-white border border-white/20 px-5 md:px-10 py-3.5 md:py-5 text-[9px] md:text-[9px] md:text-[11px] tracking-[0.2em] uppercase font-bold hover:bg-[#FA6B48] hover:text-black hover:border-[#FA6B48] hover:shadow-[0_0_20px_rgba(250,107,72,0.6)] transition-all duration-500 inline-flex items-center gap-3 btn-shine-trigger active:scale-95 hover:scale-105">
           Start a Project
           <div class="relative w-4 h-4 flex items-center justify-center overflow-hidden flex-shrink-0">
             <span class="material-symbols-outlined absolute transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-x-6" style="font-size:16px;">arrow_forward</span>
@@ -666,9 +676,9 @@
       </div>
 
       <!-- Scroll Indicator -->
-      <div class="absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-30 pointer-events-none opacity-60 animate-bounce">
+      <div id="services-scroll-indicator" class="absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-30 pointer-events-none opacity-60">
         <span class="text-[9px] md:text-[10px] tracking-widest uppercase text-zinc-600 font-bold">Scroll to explore</span>
-        <svg class="w-4 h-4 md:w-5 md:h-5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        <svg class="w-4 h-4 md:w-5 md:h-5 text-zinc-400 block arrow-scroll-anim" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
       </div>
 
     </div>
@@ -694,7 +704,7 @@
 
       const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
       renderer.setSize(container.clientWidth, container.clientHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setPixelRatio(window.innerWidth < 768 ? 1 : Math.min(window.devicePixelRatio, 2));
       container.appendChild(renderer.domElement);
 
       const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
@@ -903,6 +913,15 @@ for (let x = 0; x < 3; x++) {
             ease: 'power2.inOut' 
           }, transLabel);
 
+          // Fade out scroll indicator on the final scroll (after number 4)
+          if (index === 4) {
+            tl.to('#services-scroll-indicator', {
+              opacity: 0,
+              duration: 0.5,
+              ease: 'power2.inOut'
+            }, transLabel);
+          }
+
           // Rotate the cube concurrently
           tl.to(group.rotation, {
             x: rotations[index].x,
@@ -975,7 +994,7 @@ for (let x = 0; x < 3; x++) {
               </li>
             </ul>
           </div>
-          <a href="contact.html?service=web" class="group bg-black text-white px-5 md:px-10 py-5 text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-[#FA6B48] transition-colors duration-500 inline-flex items-center gap-3 self-start">
+          <a href="contact.html?service=web" class="group bg-black text-white px-5 md:px-10 py-5 text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-[#FA6B48] transition-all duration-500 inline-flex items-center gap-3 self-start active:scale-95 hover:scale-105">
             Inquire Now
             <span class="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-1" style="font-size:14px;">arrow_forward</span>
           </a>
@@ -1018,7 +1037,7 @@ for (let x = 0; x < 3; x++) {
               </li>
             </ul>
           </div>
-          <a href="contact.html?service=branding" class="group bg-black text-white px-5 md:px-10 py-5 text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-[#FA6B48] transition-colors duration-500 inline-flex items-center gap-3 self-start">
+          <a href="contact.html?service=branding" class="group bg-black text-white px-5 md:px-10 py-5 text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-[#FA6B48] transition-all duration-500 inline-flex items-center gap-3 self-start active:scale-95 hover:scale-105">
             Elevate Branding
             <span class="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-1" style="font-size:14px;">arrow_forward</span>
           </a>
@@ -1073,13 +1092,13 @@ for (let x = 0; x < 3; x++) {
             <p class="text-[10px] uppercase tracking-[0.5em] font-black text-zinc-300 mb-3">09 / Brand Guidelines</p>
             <h3 class="text-3xl md:text-5xl font-bold tracking-tighter leading-none">Brandbook for Benner Tea Co.</h3>
           </div>
-          <a href="#" onclick="openGuidelines(); return false;" class="hidden md:inline-flex items-center justify-center px-4 md:px-8 py-4 bg-black text-white hover:bg-[#FA6B48] transition-colors text-[10px] font-bold uppercase tracking-[0.2em] shadow-xl hover:shadow-2xl hover:-translate-y-1 transform duration-300">
+          <a href="#" onclick="openGuidelines(); return false;" class="hidden md:inline-flex items-center justify-center px-4 md:px-8 py-4 bg-black text-white hover:bg-[#FA6B48] transition-all text-[10px] font-bold uppercase tracking-[0.2em] shadow-xl hover:shadow-2xl hover:-translate-y-1 transform duration-300 active:scale-95 hover:scale-105">
             View Full Brand Guidelines
           </a>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-zinc-100">
           <div class="col-span-1 md:col-span-2 flex justify-center py-6 md:hidden">
-            <a href="#" onclick="openGuidelines(); return false;" class="inline-flex items-center justify-center px-4 md:px-8 py-4 bg-black text-white hover:bg-[#FA6B48] transition-colors text-[10px] font-bold uppercase tracking-[0.2em] shadow-xl">
+            <a href="#" onclick="openGuidelines(); return false;" class="inline-flex items-center justify-center px-4 md:px-8 py-4 bg-black text-white hover:bg-[#FA6B48] transition-all text-[10px] font-bold uppercase tracking-[0.2em] shadow-xl active:scale-95 hover:scale-105">
               View Full Brand Guidelines
             </a>
           </div>
@@ -1420,7 +1439,7 @@ for (let x = 0; x < 3; x++) {
           </div>
 
           <div class="relative overflow-hidden bg-zinc-50 h-[400px] md:h-[600px] group flex justify-center items-center px-2 pb-4 pt-8 md:px-24 md:pb-24 md:pt-32 shadow-inner mb-8 md:mb-16">
-            <p class="absolute top-6 left-6 md:top-10 md:left-10 text-[10px] uppercase tracking-[0.3em] font-black text-black z-10 bg-zinc-50/80 backdrop-blur-sm px-3 py-1.5 rounded-full">Album art for BIANCCA</p>
+            <p class="absolute top-6 left-6 md:top-10 md:left-10 text-[10px] uppercase tracking-[0.3em] font-black text-black z-10 bg-zinc-50/80 md:backdrop-blur-sm px-3 py-1.5 rounded-full">Album art for BIANCCA</p>
             <img src="/Images/Brands/venom_berries/Album_art_final.webp" class="w-full h-full object-contain transition-transform duration-[2s] group-hover:scale-105 object-center" alt="Independent Artist Album Art" loading="lazy" decoding="async">
           </div>
 
@@ -1735,7 +1754,7 @@ for (let x = 0; x < 3; x++) {
 
       <dialog id="mclaren-modal" class="backdrop:bg-black/95 w-[95vw] max-w-[1800px] h-[95vh] bg-transparent border-0 p-0 m-auto focus:outline-none overflow-y-auto">
         <div class="sticky top-0 right-0 flex justify-end p-4 pointer-events-none">
-          <button onclick="document.getElementById('mclaren-modal').close()" class="bg-white/10 hover:bg-white/20 text-white p-3 rounded-full backdrop-blur-md pointer-events-auto transition-colors focus:outline-none">
+          <button onclick="document.getElementById('mclaren-modal').close()" class="bg-white/10 hover:bg-white/20 text-white p-3 rounded-full md:backdrop-blur-md pointer-events-auto transition-colors focus:outline-none">
             <span class="material-symbols-outlined text-xl block">close</span>
           </button>
         </div>
@@ -1813,7 +1832,7 @@ for (let x = 0; x < 3; x++) {
 
       <dialog id="porsche-modal" class="backdrop:bg-black/95 w-[95vw] max-w-[1800px] h-[95vh] bg-transparent border-0 p-0 m-auto focus:outline-none overflow-y-auto">
         <div class="sticky top-0 right-0 flex justify-end p-4 pointer-events-none">
-          <button onclick="document.getElementById('porsche-modal').close()" class="bg-white/10 hover:bg-white/20 text-white p-3 rounded-full backdrop-blur-md pointer-events-auto transition-colors focus:outline-none">
+          <button onclick="document.getElementById('porsche-modal').close()" class="bg-white/10 hover:bg-white/20 text-white p-3 rounded-full md:backdrop-blur-md pointer-events-auto transition-colors focus:outline-none">
             <span class="material-symbols-outlined text-xl block">close</span>
           </button>
         </div>
@@ -1871,7 +1890,7 @@ for (let x = 0; x < 3; x++) {
           <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-400 font-bold mb-4">Client Perspectives</span>
           <h2 class="text-4xl font-bold tracking-tight text-white">Kind Words</h2>
         </div>
-        <button onclick="openTestimonialModal()" class="px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-bold uppercase tracking-widest transition-colors backdrop-blur-md">
+        <button onclick="openTestimonialModal()" class="px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-bold uppercase tracking-widest transition-colors md:backdrop-blur-md">
           Leave a Review
         </button>
       </div>
@@ -1959,10 +1978,10 @@ for (let x = 0; x < 3; x++) {
 
       <!-- Navigation -->
       <div class="flex justify-center gap-6 md:gap-12 mt-4 relative z-10">
-        <button id="prev-testimonial" class="w-14 h-14 rounded-full border border-white/20 text-white flex items-center justify-center hover:bg-black hover:text-white transition-all duration-300 group">
+        <button id="prev-testimonial" class="w-14 h-14 rounded-full border border-white/20 text-white flex items-center justify-center hover:bg-black hover:text-white transition-all duration-300 group active:scale-95 hover:scale-105">
           <span class="material-symbols-outlined transition-transform group-hover:-translate-x-1">west</span>
         </button>
-        <button id="next-testimonial" class="w-14 h-14 rounded-full border border-white/20 text-white flex items-center justify-center hover:bg-black hover:text-white transition-all duration-300 group">
+        <button id="next-testimonial" class="w-14 h-14 rounded-full border border-white/20 text-white flex items-center justify-center hover:bg-black hover:text-white transition-all duration-300 group active:scale-95 hover:scale-105">
           <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">east</span>
         </button>
       </div>
@@ -2538,13 +2557,13 @@ for (let x = 0; x < 3; x++) {
     </div>
 
     <!-- Close Button -->
-    <button onclick="closeCaseStudy()" class="fixed top-6 right-6 md:top-8 md:right-8 z-[210] w-10 h-10 md:w-12 md:h-12 bg-white/5 hover:bg-white/10 backdrop-blur-md flex items-center justify-center text-white transition-all group shadow-sm">
+    <button onclick="closeCaseStudy()" class="fixed top-6 right-6 md:top-8 md:right-8 z-[210] w-10 h-10 md:w-12 md:h-12 bg-white/5 hover:bg-white/10 md:backdrop-blur-md flex items-center justify-center text-white transition-all group shadow-sm">
       <span class="material-symbols-outlined transition-transform duration-500 group-hover:rotate-90">close</span>
     </button>
   </div>
 
 <!-- Leave Testimonial Modal -->
-<div id="testimonial-modal" class="fixed inset-0 z-[300] bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-500">
+<div id="testimonial-modal" class="fixed inset-0 z-[300] bg-black/80 md:backdrop-blur-md hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-500">
   <div class="bg-zinc-900 border border-white/10 w-full max-w-lg p-8 relative transform scale-95 transition-transform duration-500" id="testimonial-modal-content">
     
     <!-- Close Button -->
@@ -2585,7 +2604,7 @@ for (let x = 0; x < 3; x++) {
         <p class="text-[10px] text-red-500 uppercase tracking-widest mt-2 hidden field-error">Review is required</p>
       </div>
 
-      <button type="submit" id="test-submit-btn" class="w-full py-4 bg-black text-white text-xs font-bold uppercase tracking-[0.2em] hover:bg-white/10 transition-colors flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed">
+      <button type="submit" id="test-submit-btn" class="w-full py-4 bg-black text-white text-xs font-bold uppercase tracking-[0.2em] hover:bg-white/10 transition-all flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 hover:scale-105">
         <span id="test-submit-label">Send Testimonial</span>
       </button>
     </form>
@@ -2605,19 +2624,19 @@ for (let x = 0; x < 3; x++) {
 <div id="guidelines-modal" class="fixed inset-0 z-[200] bg-black hidden flex flex-col overflow-y-auto no-scrollbar scroll-smooth">
   <!-- Scroll Controls -->
   <div class="fixed top-1/2 right-4 md:right-8 -translate-y-1/2 z-[210] flex flex-col gap-4">
-    <button onclick="scrollModalUp()" class="w-10 h-10 md:w-12 md:h-12 bg-white/5 hover:bg-white/10 backdrop-blur-md flex items-center justify-center text-white transition-all shadow-sm">
+    <button onclick="scrollModalUp()" class="w-10 h-10 md:w-12 md:h-12 bg-white/5 hover:bg-white/10 md:backdrop-blur-md flex items-center justify-center text-white transition-all shadow-sm">
       <span class="material-symbols-outlined">arrow_upward</span>
     </button>
-    <button onclick="shareProject()" class="w-10 h-10 md:w-12 md:h-12 bg-black text-white hover:bg-white/10 backdrop-blur-md flex items-center justify-center transition-all shadow-sm" title="Share Project">
+    <button onclick="shareProject()" class="w-10 h-10 md:w-12 md:h-12 bg-black text-white hover:bg-white/10 md:backdrop-blur-md flex items-center justify-center transition-all shadow-sm active:scale-95 hover:scale-105" title="Share Project">
       <span class="material-symbols-outlined">share</span>
     </button>
-    <button onclick="scrollModalDown()" class="w-10 h-10 md:w-12 md:h-12 bg-white/5 hover:bg-white/10 backdrop-blur-md flex items-center justify-center text-white transition-all shadow-sm">
+    <button onclick="scrollModalDown()" class="w-10 h-10 md:w-12 md:h-12 bg-white/5 hover:bg-white/10 md:backdrop-blur-md flex items-center justify-center text-white transition-all shadow-sm">
       <span class="material-symbols-outlined">arrow_downward</span>
     </button>
   </div>
 
   <!-- Close Button -->
-  <button onclick="closeGuidelines()" class="fixed top-6 right-6 md:top-8 md:right-8 z-[210] w-10 h-10 md:w-12 md:h-12 bg-white/5 hover:bg-white/10 backdrop-blur-md flex items-center justify-center text-white transition-all group shadow-sm">
+  <button onclick="closeGuidelines()" class="fixed top-6 right-6 md:top-8 md:right-8 z-[210] w-10 h-10 md:w-12 md:h-12 bg-white/5 hover:bg-white/10 md:backdrop-blur-md flex items-center justify-center text-white transition-all group shadow-sm">
     <span class="material-symbols-outlined transition-transform duration-500 group-hover:rotate-90">close</span>
   </button>
 
@@ -2775,11 +2794,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (textStr.charAt(i) === '|') {
           textEl.innerHTML += "<br/>";
           i++;
-          setTimeout(typeWriter, 300);
+          setTimeout(typeWriter, 200);
         } else {
           textEl.innerHTML += textStr.charAt(i);
           i++;
-          setTimeout(typeWriter, 75);
+          setTimeout(typeWriter, 50);
         }
       } else {
         cursorEl.classList.remove("animate-pulse-cursor");
@@ -2788,7 +2807,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
           gsap.to(preloader, {
             opacity: 0,
-            duration: 1.8,
+            duration: 0.7,
             ease: "power2.inOut",
             onComplete: () => {
               preloader.style.display = "none";
@@ -2799,11 +2818,11 @@ document.addEventListener('DOMContentLoaded', () => {
               }
             }
           });
-        }, 1000);
+        }, 400);
       }
     }
     
-    setTimeout(typeWriter, 200);
+    setTimeout(typeWriter, 50);
   }
 
   // --- Smart Audio Logic (Runs regardless of intro state) ---
@@ -3446,12 +3465,27 @@ document.addEventListener('DOMContentLoaded', function initLenis() {
   if (typeof Lenis === 'undefined') return;
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
+  // ── iOS/Touch Fix ──────────────────────────────────────────────────────────
+  // Lenis intercepts touch events and fights iOS's native momentum scroll,
+  // causing the scroll to abruptly stop mid-swipe on iPhone/iPad.
+  // The fix: on any touch-primary device, skip Lenis entirely and let iOS
+  // handle scrolling natively (which it does perfectly with momentum).
+  // GSAP ScrollTrigger reads window.scrollY directly so it works either way.
+  const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+  if (isTouchDevice) {
+    // No Lenis on touch — just wire ScrollTrigger to native scroll events.
+    window.addEventListener('scroll', ScrollTrigger.update, { passive: true });
+    window.__lenis = null;
+    return;
+  }
+
   const lenis = new Lenis({
     duration: 1.2,
     easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     orientation: 'vertical',
     gestureOrientation: 'vertical',
     smoothWheel: true,
+    smoothTouch: false,  // always off — native touch scroll is better
     infinite: false,
   });
 
@@ -3508,6 +3542,42 @@ document.addEventListener('DOMContentLoaded', function initLenis() {
     }
   });
 });
+
+// ─── Navbar Background on Desktop (transparent on hero, solid on scroll) ──────
+(function initNavbarVisibility() {
+  // Desktop only — mobile nav has no background pill
+  if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
+
+  const nav = document.getElementById('main-nav');
+  const hero = document.getElementById('hero');
+  if (!nav || !hero) return;
+
+  // Add smooth transition for background/border/shadow only
+  nav.style.transition = 'background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease';
+
+  function trySetupNav() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+      setTimeout(trySetupNav, 50); return;
+    }
+
+    ScrollTrigger.create({
+      trigger: hero,
+      start: 'bottom 90%',
+      onEnter: () => {
+        nav.style.backgroundColor = 'rgba(255,255,255,0.92)';
+        nav.style.border = '1px solid rgba(228,228,231,1)';
+        nav.style.boxShadow = '0 20px 60px -10px rgba(0,0,0,0.15)';
+      },
+      onLeaveBack: () => {
+        nav.style.backgroundColor = 'transparent';
+        nav.style.border = '1px solid transparent';
+        nav.style.boxShadow = 'none';
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', trySetupNav);
+})();
 
 // Interactive GSAP Marquee & Global Custom Cursor
 document.addEventListener('DOMContentLoaded', () => {
