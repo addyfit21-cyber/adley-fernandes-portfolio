@@ -370,12 +370,14 @@
     will-change: transform;
     transform: translateZ(0);
     backface-visibility: hidden;
+    contain: layout style;
   }
   .css-marquee-reverse {
-    animation: scroll-marquee-reverse 18s linear infinite;
+    animation: scroll-marquee-reverse 35s linear infinite;
     will-change: transform;
     transform: translateZ(0);
     backface-visibility: hidden;
+    contain: layout style;
   }
 
   /* Footer — per-letter pure slide, NO opacity change (mountains physically hide them) */
@@ -586,7 +588,7 @@
   </section>
 
   <!-- Brand Carousel Section -->
-  <section id="brand-carousel-section" class="py-[2px] border-t border-zinc-100 bg-white overflow-hidden relative w-full flex items-center group">
+  <section id="brand-carousel-section" class="py-[2px] border-t border-zinc-100 bg-white overflow-hidden relative w-full flex items-center group" style="contain: paint; transform: translateZ(0);">
     
     <!-- We create a gradient overlay to blend the edges of the carousel -->
     <div class="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
@@ -597,37 +599,37 @@
       <!-- Half 1 -->
       <div class="flex items-center gap-16 md:gap-64 pr-32 md:pr-64 shrink-0 w-max">
         <!-- Set 1 -->
-        <img src="/Images/Brands/Copilot_20260426_132635.webp" alt="Luke's Iced Coffee" class="h-20 md:h-36 w-auto object-contain cursor-pointer" loading="lazy">
-        <img src="/Images/Brands/Nexzy logo.webp" alt="Nexzy" class="h-5 md:h-8 w-auto object-contain cursor-pointer" loading="lazy">
-        <img src="/Images/Brands/Teas cds logo.webp" alt="Teas CDS" class="h-9 md:h-14 w-auto object-contain cursor-pointer" loading="lazy">
-        <img src="/Images/Brands/benner logo.webp" alt="Benner Tea Co." class="h-7 md:h-11 w-auto object-contain cursor-pointer" loading="lazy">
+        <img src="/Images/Brands/Copilot_20260426_132635.webp" alt="Luke's Iced Coffee" class="h-20 md:h-36 w-auto object-contain cursor-pointer" loading="eager">
+        <img src="/Images/Brands/Nexzy logo.webp" alt="Nexzy" class="h-5 md:h-8 w-auto object-contain cursor-pointer" loading="eager">
+        <img src="/Images/Brands/Teas cds logo.webp" alt="Teas CDS" class="h-9 md:h-14 w-auto object-contain cursor-pointer" loading="eager">
+        <img src="/Images/Brands/benner logo.webp" alt="Benner Tea Co." class="h-7 md:h-11 w-auto object-contain cursor-pointer" loading="eager">
         <!-- Set 2 -->
-        <img src="/Images/Brands/Copilot_20260426_132635.webp" alt="Luke's Iced Coffee" class="h-20 md:h-36 w-auto object-contain cursor-pointer" loading="lazy">
-        <img src="/Images/Brands/Nexzy logo.webp" alt="Nexzy" class="h-5 md:h-8 w-auto object-contain cursor-pointer" loading="lazy">
-        <img src="/Images/Brands/Teas cds logo.webp" alt="Teas CDS" class="h-9 md:h-14 w-auto object-contain cursor-pointer" loading="lazy">
-        <img src="/Images/Brands/benner logo.webp" alt="Benner Tea Co." class="h-7 md:h-11 w-auto object-contain cursor-pointer" loading="lazy">
+        <img src="/Images/Brands/Copilot_20260426_132635.webp" alt="Luke's Iced Coffee" class="h-20 md:h-36 w-auto object-contain cursor-pointer" loading="eager">
+        <img src="/Images/Brands/Nexzy logo.webp" alt="Nexzy" class="h-5 md:h-8 w-auto object-contain cursor-pointer" loading="eager">
+        <img src="/Images/Brands/Teas cds logo.webp" alt="Teas CDS" class="h-9 md:h-14 w-auto object-contain cursor-pointer" loading="eager">
+        <img src="/Images/Brands/benner logo.webp" alt="Benner Tea Co." class="h-7 md:h-11 w-auto object-contain cursor-pointer" loading="eager">
       </div>
 
       <!-- Half 2 (Exact Duplicate for perfect looping) -->
       <div class="flex items-center gap-16 md:gap-64 pr-32 md:pr-64 shrink-0 w-max" aria-hidden="true">
         <!-- Set 3 -->
-        <img src="/Images/Brands/Copilot_20260426_132635.webp" alt="Luke's Iced Coffee" class="h-20 md:h-36 w-auto object-contain cursor-pointer" loading="lazy">
-        <img src="/Images/Brands/Nexzy logo.webp" alt="Nexzy" class="h-5 md:h-8 w-auto object-contain cursor-pointer" loading="lazy">
-        <img src="/Images/Brands/Teas cds logo.webp" alt="Teas CDS" class="h-9 md:h-14 w-auto object-contain cursor-pointer" loading="lazy">
-        <img src="/Images/Brands/benner logo.webp" alt="Benner Tea Co." class="h-7 md:h-11 w-auto object-contain cursor-pointer" loading="lazy">
+        <img src="/Images/Brands/Copilot_20260426_132635.webp" alt="Luke's Iced Coffee" class="h-20 md:h-36 w-auto object-contain cursor-pointer" loading="eager">
+        <img src="/Images/Brands/Nexzy logo.webp" alt="Nexzy" class="h-5 md:h-8 w-auto object-contain cursor-pointer" loading="eager">
+        <img src="/Images/Brands/Teas cds logo.webp" alt="Teas CDS" class="h-9 md:h-14 w-auto object-contain cursor-pointer" loading="eager">
+        <img src="/Images/Brands/benner logo.webp" alt="Benner Tea Co." class="h-7 md:h-11 w-auto object-contain cursor-pointer" loading="eager">
         <!-- Set 4 -->
-        <img src="/Images/Brands/Copilot_20260426_132635.webp" alt="Luke's Iced Coffee" class="h-20 md:h-36 w-auto object-contain cursor-pointer" loading="lazy">
-        <img src="/Images/Brands/Nexzy logo.webp" alt="Nexzy" class="h-5 md:h-8 w-auto object-contain cursor-pointer" loading="lazy">
-        <img src="/Images/Brands/Teas cds logo.webp" alt="Teas CDS" class="h-9 md:h-14 w-auto object-contain cursor-pointer" loading="lazy">
-        <img src="/Images/Brands/benner logo.webp" alt="Benner Tea Co." class="h-7 md:h-11 w-auto object-contain cursor-pointer" loading="lazy">
+        <img src="/Images/Brands/Copilot_20260426_132635.webp" alt="Luke's Iced Coffee" class="h-20 md:h-36 w-auto object-contain cursor-pointer" loading="eager">
+        <img src="/Images/Brands/Nexzy logo.webp" alt="Nexzy" class="h-5 md:h-8 w-auto object-contain cursor-pointer" loading="eager">
+        <img src="/Images/Brands/Teas cds logo.webp" alt="Teas CDS" class="h-9 md:h-14 w-auto object-contain cursor-pointer" loading="eager">
+        <img src="/Images/Brands/benner logo.webp" alt="Benner Tea Co." class="h-7 md:h-11 w-auto object-contain cursor-pointer" loading="eager">
       </div>
       
     </div>
   </section>
 
     <!-- Capabilities & Services - Sticky Scroll -->
-  <section id="services" class="bg-white text-zinc-900 border-t border-zinc-100 relative" style="height: calc(var(--vh, 1vh) * 750); min-height: calc(var(--vh, 1vh) * 750);">
-    <div class="sticky top-0 w-full overflow-hidden flex flex-col md:flex-row items-center justify-center md:justify-between" style="height: calc(var(--vh, 1svh) * 100);">
+  <section id="services" class="bg-white text-zinc-900 border-t border-zinc-100 relative" style="height: calc(var(--vh, 1vh) * 750); min-height: calc(var(--vh, 1vh) * 750); touch-action: pan-y; -webkit-overflow-scrolling: auto;">
+    <div class="sticky top-0 w-full overflow-hidden flex flex-col md:flex-row items-center justify-center md:justify-between" style="height: calc(var(--vh, 1svh) * 100); touch-action: pan-y;">
     <span class="absolute top-8 left-6 md:top-10 md:left-24 text-[10px] tracking-[0.3em] uppercase text-zinc-600 font-bold leading-none z-20">Services</span>
 
       <!-- LEFT side (visually on desktop): The Skills text -->
