@@ -2340,19 +2340,8 @@ for (let x = 0; x < 3; x++) {
       gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
       ScrollTrigger.config({ ignoreMobileResize: true });
       
-      // Refresh when lazy-loaded images change layout height
-      let refreshTimeout;
-      const refreshGSAP = () => {
-        clearTimeout(refreshTimeout);
-        refreshTimeout = setTimeout(() => ScrollTrigger.refresh(), 200);
-      };
-      document.querySelectorAll('img').forEach(img => {
-        if (!img.complete) {
-          img.addEventListener('load', refreshGSAP);
-        }
-      });
-      // NOTE: Video refreshes are handled inside the IntersectionObserver (lazy-video-loader)
-      // because videos have no src at DOMContentLoaded time, so loadeddata never fires here.
+      // Note: Layout dimensions for images are fixed via CSS aspect ratios/classes.
+      // We do not attach img load listeners that call ScrollTrigger.refresh mid-scroll.
     }
 
     slides = document.querySelectorAll('.testimonial-slide');
@@ -3373,17 +3362,7 @@ document.addEventListener('DOMContentLoaded', () => {
           video.setAttribute('playsinline', 'true');
           video.setAttribute('webkit-playsinline', 'true');
           video.load();
-          // CRITICAL: After src is set and video loads, the video container
-          // expands its height, shifting the entire page layout. We MUST
-          // refresh GSAP scroll triggers so the cube numbers stay correct.
-          // Use multiple delays to catch the layout settling.
-          const doRefresh = () => {
-            if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
-          };
-          setTimeout(doRefresh, 100);
-          setTimeout(doRefresh, 500);
-          setTimeout(doRefresh, 1500);
-          video.addEventListener('loadedmetadata', doRefresh, { once: true });
+          // Video containers have fixed aspect ratios so no mid-scroll ScrollTrigger.refresh is needed.
         }
         // Always force mute and play
         video.muted = true;
