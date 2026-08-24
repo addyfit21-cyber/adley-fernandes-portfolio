@@ -708,7 +708,7 @@
           ">Through branding, UI/UX design, and high-converting websites.</p>
 
           <div style="display:flex;align-items:center;gap:clamp(16px, 3vw, 28px);flex-wrap:wrap;">
-            <a href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener" style="
+            <a class="hero-cta-btn" href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener" style="
                 display:inline-flex;align-items:center;gap:10px;
                 background:#EDEBDD;color:#1B1717;
                 border:1px solid rgba(237,235,221,0.3);
@@ -808,6 +808,23 @@
        HERO CAROUSEL STYLES
   ════════════════════════════════════════════ -->
   <style>
+    @media (max-width: 768px) {
+      #hero {
+        height: 78vh !important;
+        min-height: 520px;
+      }
+      #hero-active-img-wrap {
+        height: 78vh !important;
+        min-height: 520px;
+      }
+      .hero-cta-btn {
+        padding: 8px 16px !important;
+        font-size: 0.58rem !important;
+        letter-spacing: 0.15em !important;
+        gap: 6px !important;
+      }
+    }
+
     #hero-orbit-ring .orbit-card {
       position: absolute;
       transform-origin: center center;
@@ -1153,111 +1170,55 @@
     // Left-side scroll always passes through to the page.
     const WHEEL_SENSITIVITY = 0.002; // reduced for smoother controlled scroll
 
-    function onHeroWheel(e) {
-      if (!gsapReady) return;
-
-      // Check hero is in viewport
-      const rect = heroSection.getBoundingClientRect();
-      const heroVisible = rect.top < window.innerHeight && rect.bottom > 0;
-      if (!heroVisible) return;
-
-      // Desktop: only right-zone activates carousel
-      if (!isTouchDevice && !cursorInRightZone) return;
-
-      // Capture this wheel event — prevent page scroll
-      e.preventDefault();
-
-      if (!isCarouselOpen) {
-        openCarousel();
-        return;
-      }
-
-      if (isCarouselOpen && !isSnapping) {
-        targetOrbitAngle += e.deltaY * WHEEL_SENSITIVITY;
-
-        clearTimeout(snapTimer);
-        snapTimer = setTimeout(() => {
-          if (isCarouselOpen && !isSnapping) selectImage(getActiveOrbitIdx());
-        }, 600);
-      }
-    }
-
-    function getActiveOrbitIdx() {
-      // Find which image is closest to the front based on targetOrbitAngle
-      const refAngle = typeof targetOrbitAngle !== 'undefined' ? targetOrbitAngle : orbitAngle;
-      let bestIdx = 0, bestDist = Infinity;
-      for (let i = 0; i < TOTAL; i++) {
-        const angle = ((getSlotAngle(i) + refAngle) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2);
-        const dist = Math.min(angle, Math.PI * 2 - angle);
-        if (dist < bestDist) { bestDist = dist; bestIdx = i; }
-      }
-      return bestIdx;
-    }
-
-    function updateLabel() {
-      const idx = getActiveOrbitIdx();
-      if(imgLabel) {
-        // Find which image is at front and update the label text
-        // (but label is hidden when carousel is open, so this is just prep)
-      }
-    }
-
-    // ── Init ─────────────────────────────────────────────────────
+    // --- SHOWREEL ANIMATION (Global for Desktop & Mobile) ---
     function init() {
-      buildOrbitCards();
-
-      // Wheel: non-passive so we can preventDefault in the right zone
-      window.addEventListener('wheel', onHeroWheel, { passive: false });
-
-      // Touch: intercept touchmove on hero for right-zone swipe
-      let touchStartY = 0;
-      let touchStartX = 0;
-      heroSection.addEventListener('touchstart', (e) => {
-        touchStartY = e.touches[0].clientY;
-        touchStartX = e.touches[0].clientX;
-      }, { passive: true });
+      // Hide unnecessary orbit elements
+      if (typeof orbitRing !== 'undefined' && orbitRing) orbitRing.style.display = 'none';
+      if (typeof rightZone !== 'undefined' && rightZone) rightZone.style.display = 'none';
+      if (typeof scrollHint !== 'undefined' && scrollHint) scrollHint.style.display = 'none';
       
-      heroSection.addEventListener('touchmove', (e) => {
-        // Only intercept swipe if they start touch on the right side of the screen (carousel area)
-        if (touchStartX > window.innerWidth * 0.40) {
-          if (!isCarouselOpen && !isSnapping) { openCarousel(); return; }
-          
-          // Prevent default scrolling only when interacting with carousel
-          if (e.cancelable) e.preventDefault();
-          
-          const dy = touchStartY - e.touches[0].clientY;
-          touchStartY = e.touches[0].clientY;
-          
-          if (isCarouselOpen && !isSnapping) {
-            targetOrbitAngle += dy * WHEEL_SENSITIVITY * 1.5;
-            clearTimeout(snapTimer);
-            snapTimer = setTimeout(() => {
-              if (isCarouselOpen && !isSnapping) selectImage(getActiveOrbitIdx());
-            }, 600);
-          }
+      // Make the backdrop visible and scale the active image slightly to reveal the backdrop, 
+      // giving it a premium framed look.
+      if (typeof carouselBg !== 'undefined' && carouselBg) {
+        carouselBg.style.opacity = '1';
+        carouselBg.style.transform = 'scale(1)';
+      }
+      
+      // We scale the active image wrap to 0.88 to show the backdrop
+      if (window.gsap && typeof activeWrap !== 'undefined' && activeWrap) {
+        window.gsap.set(activeWrap, { 
+          scale: 0.85, 
+          borderRadius: '16px',
+          boxShadow: '0 20px 60px rgba(0,0,0,0.6)'
+        });
+      }
+
+      let loopIdx = 0;
+      const totalSteps = Math.round(3000 / 250); // 3 seconds / 0.25s = 12 steps
+      let currentStep = 0;
+
+      // Preload all reel images
+      if (typeof IMAGES !== 'undefined') {
+        IMAGES.forEach(img => {
+          const p = new Image();
+          p.src = img.src;
+        });
+      }
+
+      const reelTimer = setInterval(() => {
+        loopIdx = (loopIdx + 1) % TOTAL;
+        const targetImg = IMAGES[loopIdx];
+        if (typeof activeImg !== 'undefined' && activeImg) activeImg.src = targetImg.src;
+        if (typeof labelText !== 'undefined' && labelText) labelText.innerText = targetImg.project;
+
+        currentStep++;
+        if (currentStep >= totalSteps) {
+          clearInterval(reelTimer);
+          // Default hero image (first image)
+          if (typeof activeImg !== 'undefined' && activeImg) activeImg.src = IMAGES[0].src;
+          if (typeof labelText !== 'undefined' && labelText) labelText.innerText = IMAGES[0].project;
         }
-      }, { passive: false });
-
-      // GSAP Ticker for buttery smooth lerping of the orbit angle
-      window.gsap.ticker.add(() => {
-        if (!isCarouselOpen || isSnapping) return;
-        const diff = targetOrbitAngle - orbitAngle;
-        if (Math.abs(diff) > 0.0005) {
-          orbitAngle += diff * 0.05; // 5% interpolation per frame for silky smoothness
-          updateOrbit(true);
-        }
-      });
-
-      window.addEventListener('resize', () => {
-        buildOrbitCards();
-        if (isCarouselOpen) updateOrbit(false);
-      });
-
-      window.gsap.set(activeWrap, { scale: 1, x: 0, y: 0, opacity: 1 });
-
-      IMAGES.forEach((img, i) => {
-        if (i < 6) { const p = new Image(); p.src = img.src; }
-      });
+      }, 250);
     }
 
     // Wait for GSAP to be ready
