@@ -1177,24 +1177,23 @@
       if (typeof rightZone !== 'undefined' && rightZone) rightZone.style.display = 'none';
       if (typeof scrollHint !== 'undefined' && scrollHint) scrollHint.style.display = 'none';
       
-      // Make the backdrop visible and scale the active image slightly to reveal the backdrop, 
-      // giving it a premium framed look.
+      // Hide the backdrop as requested
       if (typeof carouselBg !== 'undefined' && carouselBg) {
-        carouselBg.style.opacity = '1';
-        carouselBg.style.transform = 'scale(1)';
+        carouselBg.style.opacity = '0';
+        carouselBg.style.display = 'none';
       }
       
-      // We scale the active image wrap to 0.88 to show the backdrop
+      // Show images full screen on hero section
       if (window.gsap && typeof activeWrap !== 'undefined' && activeWrap) {
         window.gsap.set(activeWrap, { 
-          scale: 0.85, 
-          borderRadius: '16px',
-          boxShadow: '0 20px 60px rgba(0,0,0,0.6)'
+          scale: 1, 
+          borderRadius: '0px',
+          boxShadow: 'none'
         });
       }
 
       let loopIdx = 0;
-      const totalSteps = Math.round(3000 / 250); // 3 seconds / 0.25s = 12 steps
+      const totalSteps = Math.round(8000 / 120); // 8 seconds / 0.12s = ~67 steps
       let currentStep = 0;
 
       // Preload all reel images
@@ -1218,7 +1217,7 @@
           if (typeof activeImg !== 'undefined' && activeImg) activeImg.src = IMAGES[0].src;
           if (typeof labelText !== 'undefined' && labelText) labelText.innerText = IMAGES[0].project;
         }
-      }, 250);
+      }, 120);
     }
 
     // Wait for GSAP to be ready
