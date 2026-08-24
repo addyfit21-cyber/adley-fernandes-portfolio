@@ -1207,7 +1207,13 @@
       const reelTimer = setInterval(() => {
         loopIdx = (loopIdx + 1) % TOTAL;
         const targetImg = IMAGES[loopIdx];
-        if (typeof activeImg !== 'undefined' && activeImg) activeImg.src = targetImg.src;
+        if (typeof activeImg !== 'undefined' && activeImg) {
+          activeImg.src = targetImg.src;
+          // Smooth fade effect on image change
+          if (window.gsap) {
+            window.gsap.fromTo(activeImg, { opacity: 0.5 }, { opacity: 1, duration: 0.1, ease: 'power1.inOut' });
+          }
+        }
         if (typeof labelText !== 'undefined' && labelText) labelText.innerText = targetImg.project;
 
         currentStep++;
