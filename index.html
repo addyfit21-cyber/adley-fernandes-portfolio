@@ -1193,8 +1193,6 @@
       }
 
       let loopIdx = 0;
-      const totalSteps = Math.round(8000 / 120); // 8 seconds / 0.12s = ~67 steps
-      let currentStep = 0;
 
       // Preload all reel images
       if (typeof IMAGES !== 'undefined') {
@@ -1204,26 +1202,19 @@
         });
       }
 
-      const reelTimer = setInterval(() => {
+      // Clean, infinite flashing loop at constant 150ms
+      setInterval(() => {
         loopIdx = (loopIdx + 1) % TOTAL;
         const targetImg = IMAGES[loopIdx];
+        
         if (typeof activeImg !== 'undefined' && activeImg) {
           activeImg.src = targetImg.src;
-          // Smooth fade effect on image change
           if (window.gsap) {
             window.gsap.fromTo(activeImg, { opacity: 0.5 }, { opacity: 1, duration: 0.1, ease: 'power1.inOut' });
           }
         }
         if (typeof labelText !== 'undefined' && labelText) labelText.innerText = targetImg.project;
-
-        currentStep++;
-        if (currentStep >= totalSteps) {
-          clearInterval(reelTimer);
-          // Default hero image (first image)
-          if (typeof activeImg !== 'undefined' && activeImg) activeImg.src = IMAGES[0].src;
-          if (typeof labelText !== 'undefined' && labelText) labelText.innerText = IMAGES[0].project;
-        }
-      }, 120);
+      }, 150);
     }
 
     // Wait for GSAP to be ready
