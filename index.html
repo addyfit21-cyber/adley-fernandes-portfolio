@@ -1211,21 +1211,32 @@
 
       // Touch: intercept touchmove on hero for right-zone swipe
       let touchStartY = 0;
+      let touchStartX = 0;
       heroSection.addEventListener('touchstart', (e) => {
         touchStartY = e.touches[0].clientY;
+        touchStartX = e.touches[0].clientX;
       }, { passive: true });
+      
       heroSection.addEventListener('touchmove', (e) => {
-        if (!isCarouselOpen && !isSnapping) { openCarousel(); return; }
-        const dy = touchStartY - e.touches[0].clientY;
-        touchStartY = e.touches[0].clientY;
-        if (isCarouselOpen && !isSnapping) {
-          targetOrbitAngle += dy * WHEEL_SENSITIVITY * 1.5;
-          clearTimeout(snapTimer);
-          snapTimer = setTimeout(() => {
-            if (isCarouselOpen && !isSnapping) selectImage(getActiveOrbitIdx());
-          }, 600);
+        // Only intercept swipe if they start touch on the right side of the screen (carousel area)
+        if (touchStartX > window.innerWidth * 0.40) {
+          if (!isCarouselOpen && !isSnapping) { openCarousel(); return; }
+          
+          // Prevent default scrolling only when interacting with carousel
+          if (e.cancelable) e.preventDefault();
+          
+          const dy = touchStartY - e.touches[0].clientY;
+          touchStartY = e.touches[0].clientY;
+          
+          if (isCarouselOpen && !isSnapping) {
+            targetOrbitAngle += dy * WHEEL_SENSITIVITY * 1.5;
+            clearTimeout(snapTimer);
+            snapTimer = setTimeout(() => {
+              if (isCarouselOpen && !isSnapping) selectImage(getActiveOrbitIdx());
+            }, 600);
+          }
         }
-      }, { passive: true });
+      }, { passive: false });
 
       // GSAP Ticker for buttery smooth lerping of the orbit angle
       window.gsap.ticker.add(() => {
