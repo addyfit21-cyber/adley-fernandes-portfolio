@@ -766,39 +766,14 @@
         ">Scroll to explore</span>
       </div>
 
-      <!-- ── Project label badge — visible when full-screen image is active ── -->
-      <div id="hero-img-label" style="
-        position:absolute;
-        top:clamp(20px,3vw,32px);
-        right:clamp(20px,4vw,48px);
-        z-index:15;
-        display:flex;
-        align-items:center;
-        gap:8px;
-        background:rgba(14,14,14,0.45);
-        backdrop-filter:blur(12px);
-        -webkit-backdrop-filter:blur(12px);
-        border:1px solid rgba(237,235,221,0.12);
-        border-radius:100px;
-        padding:7px 16px;
-        transition:opacity 0.5s;
-      ">
-        <span style="
-          width:5px;height:5px;
-          border-radius:50%;
-          background:#EDEBDD;
-          flex-shrink:0;
-          display:inline-block;
-        "></span>
-        <span id="hero-label-text" style="
-          font-family:'Manrope',sans-serif;
-          font-size:0.58rem;
-          letter-spacing:0.22em;
-          text-transform:uppercase;
-          color:rgba(237,235,221,0.85);
-          font-weight:700;
-          white-space:nowrap;
-        ">TVB Brand Identity</span>
+      <!-- ── Centered Logo ── -->
+      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 12; pointer-events: none;">
+        <img src="/Images/Brands/Adesign%20studio/Adesign%20logo%20colour-01.png" alt="Logo" style="height: clamp(40px, 6vw, 65px); width: auto; object-fit: contain; filter: grayscale(1) invert(1) brightness(2);">
+      </div>
+
+      <!-- ── Project label badge (HIDDEN) ── -->
+      <div id="hero-img-label" style="display: none;">
+        <span id="hero-label-text"></span>
       </div>
 
   </section><!-- /hero -->
