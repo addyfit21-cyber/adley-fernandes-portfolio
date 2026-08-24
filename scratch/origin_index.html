@@ -47,7 +47,7 @@
   ]
 }
 </script>
-<!-- Preconnect first GÇö must come before any external resource requests -->
+<!-- Preconnect first Gï¿½ï¿½ must come before any external resource requests -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -63,15 +63,15 @@
 <link rel="preload" as="image" href="/Images/Brands/lukes iced coffee/LUKES ICED COFFEE.webp" fetchpriority="high" />
 <link rel="preload" as="image" href="/Images/Brands/benner logo.webp" />
 
-<!-- Tailwind CDN (synchronous GÇö required for first paint) -->
+<!-- Tailwind CDN (synchronous Gï¿½ï¿½ required for first paint) -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-<!-- GSAP deferred GÇö animations start after HTML is visible -->
+<!-- GSAP deferred Gï¿½ï¿½ animations start after HTML is visible -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
 
-<!-- Lenis smooth scroll GÇö  GPU-composited, frame-synced momentum scrolling -->
+<!-- Lenis smooth scroll Gï¿½ï¿½  GPU-composited, frame-synced momentum scrolling -->
 <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
 
 
@@ -96,7 +96,7 @@
   }
 </script>
 <style>
-  /* Lenis handles scrolling GÇö disable browser native smooth scroll to avoid conflicts */
+  /* Lenis handles scrolling Gï¿½ï¿½ disable browser native smooth scroll to avoid conflicts */
   html { scroll-behavior: auto; }
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
   body { font-family: 'Manrope', sans-serif; }
@@ -113,7 +113,7 @@
     will-change: transform, opacity;
   }
 
-  /* GöÇGöÇGöÇ Global Transition Polish GöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇ */
+  /* Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½ Global Transition Polish Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½ */
   /* Smooth hover transitions for all interactive elements */
   a, button {
     transition-property: color, background-color, border-color, opacity, transform, box-shadow;
@@ -121,7 +121,7 @@
     transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-  /* GöÇGöÇGöÇ Page-level visibility fade-in (eliminates FOUC) GöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇ */
+  /* Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½ Page-level visibility fade-in (eliminates FOUC) Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½ */
   body {
     animation: page-reveal 0.5s ease both;
   }
@@ -133,7 +133,7 @@
   /* Global Custom Cursor - Optimized for Performance */
   @media (pointer: fine) {
     body { cursor: none; }
-    a, button, [role="button"], input, select, textarea, .cursor-pointer { cursor: none !important; }
+    *, *::before, *::after { cursor: none !important; }
   }
   #custom-cursor {
     position: fixed;
@@ -248,7 +248,7 @@
   /* Force pointer-events none on project videos */
   .mockup-video { pointer-events: none; }
 
-  /* GöÇGöÇGöÇ Scroll-reveal baseline GÇö elements start hidden GöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇ */
+  /* Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½ Scroll-reveal baseline Gï¿½ï¿½ elements start hidden Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½ */
   .reveal-up {
     opacity: 0;
     transform: translateY(40px);
@@ -260,18 +260,18 @@
     transform: translateY(0);
   }
 
-  /* GöÇGöÇGöÇ Nav backdrop glass polish GöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇ */
+  /* Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½ Nav backdrop glass polish Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½ */
   nav {
     transition: backdrop-filter 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease;
   }
 
-  /* GöÇGöÇGöÇ Card hover lift GöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇ */
+  /* Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½ Card hover lift Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½ */
   .fade-enter-card {
     transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
                 box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  /* GöÇGöÇGöÇ Section heading shimmer line GöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇ */
+  /* Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½ Section heading shimmer line Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½ */
   .section-underline {
     display: inline-block;
     position: relative;
@@ -297,14 +297,14 @@
     #hero p.hero-slide-right { font-size: 1rem !important; line-height: 1.6 !important; }
     #hero .hero-slide-right a { font-size: 0.65rem !important; padding: 0.8rem 1.5rem !important; }
 
-    /* Section headings GÇö prevent bleed on narrow screens */
+    /* Section headings Gï¿½ï¿½ prevent bleed on narrow screens */
     h2.text-\[7rem\], h2.text-\[2\.5rem\] { font-size: clamp(2rem, 10vw, 3.5rem) !important; }
 
     /* Cards: comfortable height on phones */
     .fade-enter-card .relative.h-\[500px\] { height: 280px !important; }
     .fade-enter-card .h-\[650px\] { height: 300px !important; }
 
-    /* About portrait GÇö limit height on mobile */
+    /* About portrait Gï¿½ï¿½ limit height on mobile */
     #about .aspect-\[4\/5\] { aspect-ratio: 1/1 !important; }
 
     /* Case study modal scrolling fix on iOS */
@@ -440,10 +440,10 @@
       <div class="hero-marquee-wrapper w-full flex whitespace-nowrap overflow-hidden py-4 md:py-6 relative z-10">
         <div class="hero-marquee flex items-center min-w-max">
           <div class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-tight text-zinc-900 m-0 pr-12">
-            Creative design meets strategic development for brands that demand more than average. Freelance Graphic Designer India &nbsp;&nbsp;GÇó&nbsp;&nbsp;
+            Creative design meets strategic development for brands that demand more than average. Freelance Graphic Designer India &nbsp;&nbsp;Gï¿½ï¿½&nbsp;&nbsp;
           </div>
           <div class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-tight text-zinc-900 m-0 pr-12" aria-hidden="true">
-            Creative design meets strategic development for brands that demand more than average. Freelance Graphic Designer India &nbsp;&nbsp;GÇó&nbsp;&nbsp;
+            Creative design meets strategic development for brands that demand more than average. Freelance Graphic Designer India &nbsp;&nbsp;Gï¿½ï¿½&nbsp;&nbsp;
           </div>
         </div>
       </div>
@@ -457,10 +457,10 @@
       <div class="hero-marquee-wrapper absolute inset-0 w-full flex whitespace-nowrap overflow-hidden py-4 md:py-6 z-30 pointer-events-none cube-mask">
         <div class="hero-marquee flex items-center min-w-max rainbow-glow">
           <div class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-tight rainbow-text m-0 pr-12">
-            Creative design meets strategic development for brands that demand more than average. Freelance Graphic Designer India &nbsp;&nbsp;GÇó&nbsp;&nbsp;
+            Creative design meets strategic development for brands that demand more than average. Freelance Graphic Designer India &nbsp;&nbsp;Gï¿½ï¿½&nbsp;&nbsp;
           </div>
           <div class="text-[clamp(2.5rem,8vw,10rem)] md:text-[clamp(3.5rem,8vw,10rem)] leading-none font-bold tracking-tight rainbow-text m-0 pr-12" aria-hidden="true">
-            Creative design meets strategic development for brands that demand more than average. Freelance Graphic Designer India &nbsp;&nbsp;GÇó&nbsp;&nbsp;
+            Creative design meets strategic development for brands that demand more than average. Freelance Graphic Designer India &nbsp;&nbsp;Gï¿½ï¿½&nbsp;&nbsp;
           </div>
         </div>
       </div>
@@ -472,7 +472,7 @@
       <!-- Descriptor -->
       <p class="hero-slide-right relative z-10 text-sm md:text-xs md:text-sm md:tracking-[0.3em] md:uppercase text-zinc-500 leading-relaxed max-w-xl mb-8 md:mb-12">
         Websites and brand identities engineered to convert <br/>
-        GÇö not just impress.
+        Gï¿½ï¿½ not just impress.
       </p>
 
       <!-- View Work Link -->
@@ -501,13 +501,13 @@
         </h2>
         <div class="space-y-8 max-w-2xl">
           <p class="text-xl md:text-2xl font-light text-zinc-600 leading-relaxed">
-            IGÇÖve always loved making things look good. As a <span class="text-zinc-900 font-medium">freelance designer based in Mumbai</span>, I naturally notice shapes, balance, and how things fit together to create engaging digital experiences.
+            IGï¿½ï¿½ve always loved making things look good. As a <span class="text-zinc-900 font-medium">freelance designer based in Mumbai</span>, I naturally notice shapes, balance, and how things fit together to create engaging digital experiences.
           </p>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 pt-6 md:pt-8">
             <div>
               <h3 class="text-xs md:text-sm tracking-widest uppercase font-bold text-zinc-900 mb-4">How I started</h3>
               <p class="text-sm text-zinc-500 leading-relaxed">
-                That natural curiosity turned into a real career. Over the past two years, IGÇÖve worked as a freelance graphic designer and web developer in India. I take my love for art and turn it into working websites and brand designs.
+                That natural curiosity turned into a real career. Over the past two years, IGï¿½ï¿½ve worked as a freelance graphic designer and web developer in India. I take my love for art and turn it into working websites and brand designs.
               </p>
             </div>
             <div>
@@ -590,9 +590,9 @@
               <h5 class="text-lg font-bold mb-4 uppercase">Visual Identity</h5>
               <p class="text-zinc-500 text-sm leading-relaxed mb-6">Crafting brand systems that resonate through narrative and natural aesthetic intuition.</p>
               <ul class="text-[9px] tracking-widest uppercase text-zinc-400 space-y-2">
-                <li>GÇö Brand Strategy</li>
-                <li>GÇö Logo Systems</li>
-                <li>GÇö Storytelling</li>
+                <li>Gï¿½ï¿½ Brand Strategy</li>
+                <li>Gï¿½ï¿½ Logo Systems</li>
+                <li>Gï¿½ï¿½ Storytelling</li>
               </ul>
             </div>
             <!-- Skill Block 2 -->
@@ -601,9 +601,9 @@
               <h5 class="text-lg font-bold mb-4 uppercase">Web Engineering</h5>
               <p class="text-zinc-500 text-sm leading-relaxed mb-6">Building high-performance digital foundations with a focus on speed and structure.</p>
               <ul class="text-[9px] tracking-widest uppercase text-zinc-400 space-y-2">
-                <li>GÇö Frontend Dev</li>
-                <li>GÇö Frameworks</li>
-                <li>GÇö Performance</li>
+                <li>Gï¿½ï¿½ Frontend Dev</li>
+                <li>Gï¿½ï¿½ Frameworks</li>
+                <li>Gï¿½ï¿½ Performance</li>
               </ul>
             </div>
             <!-- Skill Block 3 -->
@@ -612,9 +612,9 @@
               <h5 class="text-lg font-bold mb-4 uppercase">Interface Design</h5>
               <p class="text-zinc-500 text-sm leading-relaxed mb-6">Curation of movement within digital spaces to create seamless user journeys.</p>
               <ul class="text-[9px] tracking-widest uppercase text-zinc-400 space-y-2">
-                <li>GÇö UI/UX Design</li>
-                <li>GÇö Interaction</li>
-                <li>GÇö Prototyping</li>
+                <li>Gï¿½ï¿½ UI/UX Design</li>
+                <li>Gï¿½ï¿½ Interaction</li>
+                <li>Gï¿½ï¿½ Prototyping</li>
               </ul>
             </div>
           </div>
@@ -669,7 +669,7 @@
   <section id="visual-identity" class="section-work py-16 bg-white overflow-hidden border-t border-zinc-100">
     <div class="px-6 md:px-24 pt-16 mb-16 flex flex-col w-full">
       <div class="w-full text-zinc-900 md:text-right">
-        <p class="text-zinc-500 uppercase text-[10px] tracking-[0.2em] mb-6">Section 01 GÇö Branding</p>
+        <p class="text-zinc-500 uppercase text-[10px] tracking-[0.2em] mb-6">Section 01 Gï¿½ï¿½ Branding</p>
       </div>
       <h2 class="text-[3rem] sm:text-[4.5rem] md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-zinc-900 text-left">Visual<br/>Identity</h2>
       <div class="text-zinc-500 text-sm md:text-base leading-relaxed w-full max-w-2xl text-left mt-6">
@@ -677,9 +677,9 @@
       </div>
     </div>
 
-    <!-- GòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉ
-         CASE STUDY 01 GÇö BENNER TEA CO.
-    GòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉ -->
+    <!-- Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½
+         CASE STUDY 01 Gï¿½ï¿½ BENNER TEA CO.
+    Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½ -->
     <div id="branding" class="w-full bg-white text-zinc-900 overflow-x-hidden">
 
 
@@ -688,19 +688,19 @@
       <div class="px-6 md:px-24 py-16 border-b border-zinc-100">
         <div class="flex flex-col gap-6">
           <div>
-            <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-6">01 GÇö Project</p>
+            <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-6">01 Gï¿½ï¿½ Project</p>
             <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.85] text-black">Benner<br/>Tea Co.</h3>
           </div>
           <div class="max-w-2xl">
-            <p class="text-base md:text-lg font-medium leading-snug text-black">Full brand identity redesign GÇö logo, colour palette, typography, and packaging system.</p>
+            <p class="text-base md:text-lg font-medium leading-snug text-black">Full brand identity redesign Gï¿½ï¿½ logo, colour palette, typography, and packaging system.</p>
           </div>
         </div>
       </div>
 
-      <!-- Editorial Content GÇö Dense Grid -->
+      <!-- Editorial Content Gï¿½ï¿½ Dense Grid -->
       <div class="px-6 md:px-24 py-0 max-w-[1400px] mx-auto divide-y divide-zinc-100">
 
-        <!-- Gap + Opportunity GÇö side by side -->
+        <!-- Gap + Opportunity Gï¿½ï¿½ side by side -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
           <div class="py-10 md:pr-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">02 / Problem</p>
@@ -710,11 +710,11 @@
           <div class="py-10 md:pl-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">03 / Direction</p>
             <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">Clean. Minimal.<br/>Built to stand out.</h3>
-            <p class="text-xs md:text-sm leading-relaxed text-black font-normal">The goal was a restrained visual system GÇö flat layout, earthy palette, strong type hierarchy GÇö that feels premium without being loud.</p>
+            <p class="text-xs md:text-sm leading-relaxed text-black font-normal">The goal was a restrained visual system Gï¿½ï¿½ flat layout, earthy palette, strong type hierarchy Gï¿½ï¿½ that feels premium without being loud.</p>
           </div>
         </div>
 
-        <!-- Objective + Approach GÇö side by side -->
+        <!-- Objective + Approach Gï¿½ï¿½ side by side -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
           <div class="py-10 md:pr-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-6">04 / Design Decisions</p>
@@ -738,11 +738,11 @@
           <div class="py-10 md:pl-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">05 / Approach</p>
             <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">Strip it back.<br/>Make it count.</h3>
-            <p class="text-xs md:text-sm leading-relaxed text-black font-normal">Removed all visual clutter. Every element GÇö layout, spacing, colour, type GÇö was chosen with purpose. Nothing decorative that doesn't serve the brand.</p>
+            <p class="text-xs md:text-sm leading-relaxed text-black font-normal">Removed all visual clutter. Every element Gï¿½ï¿½ layout, spacing, colour, type Gï¿½ï¿½ was chosen with purpose. Nothing decorative that doesn't serve the brand.</p>
           </div>
         </div>
 
-        <!-- Strategic Details + Transformation GÇö side by side -->
+        <!-- Strategic Details + Transformation Gï¿½ï¿½ side by side -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
           <div class="py-10 md:pr-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-6">06 / Deliverables</p>
@@ -763,7 +763,7 @@
           </div>
           <div class="py-10 md:pl-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">07 / Result</p>
-            <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-black mb-3">A complete brand system GÇö ready across print, packaging, and digital.</h3>
+            <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-black mb-3">A complete brand system Gï¿½ï¿½ ready across print, packaging, and digital.</h3>
             <p class="text-sm font-medium text-black">29-page brand guidelines document. Full mockup set included.</p>
           </div>
         </div>
@@ -771,7 +771,7 @@
       </div>
 
 
-      <!-- Brand Guidelines GÇö Full 2-Column Grid (all pages + mockups) -->
+      <!-- Brand Guidelines Gï¿½ï¿½ Full 2-Column Grid (all pages + mockups) -->
       <div class="py-16 md:py-20">
         <div class="px-6 md:px-24 mb-10 max-w-[1400px] mx-auto flex items-end justify-between border-b border-zinc-100 pb-8">
           <div>
@@ -788,7 +788,7 @@
               View Full Brand Guidelines
             </a>
           </div>
-          <!-- Mockup images GÇö full width (col-span-2) -->
+          <!-- Mockup images Gï¿½ï¿½ full width (col-span-2) -->
           <div class="col-span-2 group overflow-hidden bg-zinc-50"><img src="/Images/Branding/Mockup 01.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Mockup 01" loading="lazy" decoding="async"></div>
           <div class="col-span-2 group overflow-hidden bg-zinc-50"><img src="/Images/Branding/Mockup 02.webp" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" alt="Mockup 02" loading="lazy" decoding="async"></div>
           <!-- Video between Mockup 02 and Mockup 03 -->
@@ -804,25 +804,25 @@
     </div>
     <!-- END: Benner Tea Co. -->
 
-    <!-- GòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉ
-         CASE STUDY 02 GÇö LUKE'S ICED COFFEE
-    GòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉ -->
+    <!-- Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½
+         CASE STUDY 02 Gï¿½ï¿½ LUKE'S ICED COFFEE
+    Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½ -->
     <div id="web-development" class="w-full bg-white text-zinc-900 overflow-x-hidden border-t border-zinc-100">
 
       <!-- Project Title Row -->
       <div class="px-6 md:px-24 py-16 border-b border-zinc-100">
         <div class="flex flex-col gap-6">
           <div>
-            <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-6">02 GÇö Project</p>
+            <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-6">02 Gï¿½ï¿½ Project</p>
             <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.85] text-black">Luke's<br/>Iced Coffee</h3>
           </div>
           <div class="max-w-2xl">
-            <p class="text-base md:text-lg font-medium leading-snug text-black">Targeted collateral design GÇö logo, menu layout, business cards, and packaging system.</p>
+            <p class="text-base md:text-lg font-medium leading-snug text-black">Targeted collateral design Gï¿½ï¿½ logo, menu layout, business cards, and packaging system.</p>
           </div>
         </div>
       </div>
 
-      <!-- Editorial Content GÇö Dense Grid -->
+      <!-- Editorial Content Gï¿½ï¿½ Dense Grid -->
       <div class="px-6 md:px-24 py-0 max-w-[1400px] mx-auto divide-y divide-zinc-100">
 
         <!-- Problem + Direction -->
@@ -830,7 +830,7 @@
           <div class="py-10 md:pr-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">02 / Problem</p>
             <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-black mb-4">Outdated collateral.<br/>Low shelf impact.</h3>
-            <p class="text-xs md:text-sm leading-relaxed text-black font-normal">Luke's had a great product, but their touchpoints GÇö packaging, menus, and business cards GÇö failed to communicate what made them unique. The logo lacked legibility, and the physical items didn't feel cohesive.</p>
+            <p class="text-xs md:text-sm leading-relaxed text-black font-normal">Luke's had a great product, but their touchpoints Gï¿½ï¿½ packaging, menus, and business cards Gï¿½ï¿½ failed to communicate what made them unique. The logo lacked legibility, and the physical items didn't feel cohesive.</p>
           </div>
           <div class="py-10 md:pl-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-black mb-4">03 / Direction</p>
@@ -901,7 +901,7 @@
           <div>
             <p class="text-[10px] uppercase tracking-[0.5em] text-black font-black mb-4">Colour Palette</p>
             <h3 class="text-3xl md:text-5xl font-bold tracking-tighter leading-tight text-black mb-4">Warmth &amp; Cold.</h3>
-            <p class="text-xs md:text-sm leading-relaxed text-black max-w-sm">Two opposing tones GÇö coffee brown and iced blue GÇö create the core tension of the brand. Minimal palette, maximum recognition.</p>
+            <p class="text-xs md:text-sm leading-relaxed text-black max-w-sm">Two opposing tones Gï¿½ï¿½ coffee brown and iced blue Gï¿½ï¿½ create the core tension of the brand. Minimal palette, maximum recognition.</p>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-zinc-100 shadow-sm">
             <div class="bg-[#FEE6C2] h-24 flex items-end p-6 relative">
@@ -971,16 +971,16 @@
     </div>
     <!-- END: Luke's Iced Coffee -->
 
-    <!-- GòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉ
-         PROJECT 03 GÇö THE VENOM BERRIES
-    GòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉ -->
+    <!-- Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½
+         PROJECT 03 Gï¿½ï¿½ THE VENOM BERRIES
+    Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½ -->
     <div id="posters" class="w-full bg-white text-zinc-900 overflow-hidden border-t border-zinc-100">
       
       <!-- Project Title Row -->
       <div class="px-6 md:px-24 py-16 border-b border-zinc-100">
         <div class="flex flex-col gap-6">
           <div>
-            <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-6">03 GÇö Project</p>
+            <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-6">03 Gï¿½ï¿½ Project</p>
             <h3 class="text-[3rem] sm:text-[4.5rem] md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-black">Posters &amp;<br/>Album Arts</h3>
           </div>
         </div>
@@ -1083,7 +1083,7 @@
   <section id="work" class="bg-white overflow-hidden border-t border-zinc-100">
     <div class="px-6 md:px-24 pt-16 mb-16 flex flex-col w-full">
       <div class="w-full text-zinc-900 md:text-right">
-        <p class="text-zinc-500 uppercase text-[10px] tracking-[0.2em] mb-6">Section 02 GÇö Design &amp; Development</p>
+        <p class="text-zinc-500 uppercase text-[10px] tracking-[0.2em] mb-6">Section 02 Gï¿½ï¿½ Design &amp; Development</p>
       </div>
       <h2 class="text-[3rem] sm:text-[4.5rem] md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-zinc-900 text-left">Web Design &amp;<br/>Development</h2>
       <div class="text-zinc-500 text-sm md:text-base leading-relaxed w-full max-w-2xl text-left mt-6">
@@ -1091,9 +1091,9 @@
       </div>
     </div>
 
-    <!-- GòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉ
-         PROJECT 01 GÇö THE EXECUVISION
-    GòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉ -->
+    <!-- Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½
+         PROJECT 01 Gï¿½ï¿½ THE EXECUVISION
+    Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½ -->
     <div class="w-full bg-white text-zinc-900 overflow-x-hidden">
 
 
@@ -1101,7 +1101,7 @@
       <div class="px-6 md:px-24 py-16 border-b border-zinc-100">
         <div class="flex flex-col gap-6">
           <div>
-            <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-6">01 GÇö Project</p>
+            <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-6">01 Gï¿½ï¿½ Project</p>
             <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.85] text-black">The<br/>ExecuVision</h3>
           </div>
           <div class="max-w-2xl">
@@ -1155,7 +1155,7 @@
         </div>
       </div>
 
-      <!-- Editorial Content GÇö Dense Grid -->
+      <!-- Editorial Content Gï¿½ï¿½ Dense Grid -->
       <div class="px-6 md:px-24 py-0 max-w-[1400px] mx-auto divide-y divide-zinc-100 border-t border-zinc-100">
 
         <!-- Challenge + Concept -->
@@ -1216,9 +1216,9 @@
     </div>
     <!-- END: ExecuVision -->
 
-    <!-- GòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉ
-         PROJECT 02 GÇö NEXZY
-    GòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉ -->
+    <!-- Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½
+         PROJECT 02 Gï¿½ï¿½ NEXZY
+    Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½ -->
     <div class="w-full bg-white text-zinc-900 overflow-x-hidden border-t-[6px] border-zinc-100">
 
 
@@ -1226,11 +1226,11 @@
       <div class="px-6 md:px-24 py-16 border-b border-zinc-100">
         <div class="flex flex-col gap-6">
           <div>
-            <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-6">02 GÇö Project</p>
+            <p class="text-[10px] uppercase tracking-[0.5em] text-black font-bold mb-6">02 Gï¿½ï¿½ Project</p>
             <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.85] text-black">Nexzy</h3>
           </div>
           <div class="max-w-2xl">
-            <p class="text-base md:text-lg font-medium leading-snug text-black">Growth &amp; Tech Solutions GÇö UI/UX design &amp; advanced web development.</p>
+            <p class="text-base md:text-lg font-medium leading-snug text-black">Growth &amp; Tech Solutions Gï¿½ï¿½ UI/UX design &amp; advanced web development.</p>
           </div>
         </div>
       </div>
@@ -1280,7 +1280,7 @@
         </div>
       </div>
 
-      <!-- Editorial Content GÇö Dense Grid -->
+      <!-- Editorial Content Gï¿½ï¿½ Dense Grid -->
       <div class="px-6 md:px-24 py-0 max-w-[1400px] mx-auto divide-y divide-zinc-100 border-t border-zinc-100">
 
         <!-- Challenge + Concept -->
@@ -1330,11 +1330,11 @@
     <div class="px-6 md:px-24 py-16 border-b border-white/10">
       <div class="flex flex-col gap-6">
         <div>
-          <p class="text-[10px] uppercase tracking-[0.5em] text-white font-bold mb-6">03 GÇö Project</p>
+          <p class="text-[10px] uppercase tracking-[0.5em] text-white font-bold mb-6">03 Gï¿½ï¿½ Project</p>
           <h3 class="text-[3rem] sm:text-[4.5rem] md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-white">McLaren</h3>
         </div>
         <div class="max-w-2xl">
-          <p class="text-base md:text-lg font-medium leading-snug text-white">Freelance Sketch Artist GÇö Custom automotive artwork and concept studies.</p>
+          <p class="text-base md:text-lg font-medium leading-snug text-white">Freelance Sketch Artist Gï¿½ï¿½ Custom automotive artwork and concept studies.</p>
         </div>
       </div>
     </div>
@@ -1363,7 +1363,7 @@
       </dialog>
     </div>
 
-    <!-- Editorial Content GÇö Dense Grid -->
+    <!-- Editorial Content Gï¿½ï¿½ Dense Grid -->
     <div class="px-6 md:px-24 py-0 max-w-[1400px] mx-auto divide-y divide-white/10 border-t border-white/10">
       <!-- Challenge + Concept -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
@@ -1408,11 +1408,11 @@
     <div class="px-6 md:px-24 py-16 border-b border-white/10">
       <div class="flex flex-col gap-6">
         <div>
-          <p class="text-[10px] uppercase tracking-[0.5em] text-white font-bold mb-6">04 GÇö Project</p>
+          <p class="text-[10px] uppercase tracking-[0.5em] text-white font-bold mb-6">04 Gï¿½ï¿½ Project</p>
           <h3 class="text-[3rem] sm:text-[4.5rem] md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-white">Porsche</h3>
         </div>
         <div class="max-w-2xl">
-          <p class="text-base md:text-lg font-medium leading-snug text-white">Freelance Sketch Artist GÇö Custom automotive artwork and concept studies.</p>
+          <p class="text-base md:text-lg font-medium leading-snug text-white">Freelance Sketch Artist Gï¿½ï¿½ Custom automotive artwork and concept studies.</p>
         </div>
       </div>
     </div>
@@ -1440,7 +1440,7 @@
       </dialog>
     </div>
 
-    <!-- Editorial Content GÇö Dense Grid -->
+    <!-- Editorial Content Gï¿½ï¿½ Dense Grid -->
     <div class="px-6 md:px-24 py-0 max-w-[1400px] mx-auto divide-y divide-white/10 border-t border-white/10">
       <!-- Challenge + Concept -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
@@ -1925,7 +1925,7 @@ for (let x = 0; x < 3; x++) {
         <!-- Testimonial 5 -->
         <div class="testimonial-slide absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 pointer-events-none translate-x-20">
           <p class="text-2xl md:text-4xl font-light italic leading-relaxed text-zinc-300 max-w-4xl mb-12">
-            "Did a logo for my reel series! Was completely receptive of what I wanted, understood and delivered well. Would highly recommend adley for the creative job you need =ƒÿè"
+            "Did a logo for my reel series! Was completely receptive of what I wanted, understood and delivered well. Would highly recommend adley for the creative job you need =ï¿½ï¿½ï¿½"
           </p>
           <div class="flex flex-col items-center">
             <div class="w-12 h-12 bg-zinc-900 border border-white/10 rounded-full mb-4 flex items-center justify-center overflow-hidden">
@@ -1963,7 +1963,7 @@ for (let x = 0; x < 3; x++) {
 <footer class="bg-transparent flex flex-col md:flex-row justify-between items-center px-6 md:px-24 w-full py-16 text-white border-t border-white/10">
   <div class="mb-8 md:mb-0 text-center md:text-left">
     <a href="/" class="text-lg font-bold text-white tracking-widest mb-4 block">addesign studio</a>
-    <p class="font-manrope text-[10px] tracking-widest uppercase text-zinc-500">-¬ 2024 addesign studio. ALL RIGHTS RESERVED.</p>
+    <p class="font-manrope text-[10px] tracking-widest uppercase text-zinc-500">-ï¿½ 2024 addesign studio. ALL RIGHTS RESERVED.</p>
   </div>
   <div class="flex flex-wrap justify-center gap-8">
     <a class="font-manrope text-[10px] tracking-widest uppercase text-zinc-400 hover:text-white transition-all duration-400 underline-offset-4 hover:underline" href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
@@ -1987,7 +1987,7 @@ for (let x = 0; x < 3; x++) {
     }
   });
 
-  /* GöÇGöÇ Hamburger GöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇ */
+  /* Gï¿½ï¿½Gï¿½ï¿½ Hamburger Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½ */
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobile-menu');
   const ham1 = document.getElementById('ham-1');
@@ -2266,9 +2266,9 @@ for (let x = 0; x < 3; x++) {
       <div>
         <label for="test-rating" class="block text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2">Rating</label>
         <select id="test-rating" class="w-full bg-zinc-800 border border-transparent text-white text-sm px-4 py-3 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all appearance-none cursor-pointer">
-          <option value="5">G¡ÉG¡ÉG¡ÉG¡ÉG¡É (5 Stars)</option>
-          <option value="4">G¡ÉG¡ÉG¡ÉG¡É (4 Stars)</option>
-          <option value="3">G¡ÉG¡ÉG¡É (3 Stars)</option>
+          <option value="5">Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½ (5 Stars)</option>
+          <option value="4">Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½ (4 Stars)</option>
+          <option value="3">Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½ (3 Stars)</option>
         </select>
       </div>
 
@@ -2318,7 +2318,7 @@ for (let x = 0; x < 3; x++) {
   <div class="w-full flex flex-col items-center py-20 px-4 md:px-0">
     <div id="guidelines-container" class="w-full max-w-7xl shadow-2xl">
 
-      <!-- Brand Guideline Pages 01GÇô26: 2 per row -->
+      <!-- Brand Guideline Pages 01Gï¿½ï¿½26: 2 per row -->
       <div class="grid grid-cols-2 gap-0">
         <img src="/Images/Branding/Brand guidelines-01.webp" class="w-full h-auto block" alt="Page 01" loading="lazy" decoding="async">
         <img src="/Images/Branding/Brand guidelines-02.webp" class="w-full h-auto block" alt="Page 02" loading="lazy" decoding="async">
@@ -2361,7 +2361,7 @@ for (let x = 0; x < 3; x++) {
       <img src="/Images/Branding/mockup 03.webp" class="w-full h-auto block" alt="Mockup 3" loading="lazy" decoding="async">
       <img src="/Images/Branding/mockup 04.webp" class="w-full h-auto block" alt="Mockup 4" loading="lazy" decoding="async">
 
-      <!-- Brand Guideline Pages 27GÇô28: 2 per row -->
+      <!-- Brand Guideline Pages 27Gï¿½ï¿½28: 2 per row -->
       <div class="grid grid-cols-2 gap-0">
         <img src="/Images/Branding/Brand guidelines-27.webp" class="w-full h-auto block" alt="Page 27" loading="lazy" decoding="async">
         <img src="/Images/Branding/Brand guidelines-28.webp" class="w-full h-auto block" alt="Page 28" loading="lazy" decoding="async">
@@ -2380,7 +2380,7 @@ for (let x = 0; x < 3; x++) {
 
   gsap.registerPlugin(ScrollTrigger);
 
-  /* GÇö Featured Work Cards Entrance: clean fade + lift GÇö */
+  /* Gï¿½ï¿½ Featured Work Cards Entrance: clean fade + lift Gï¿½ï¿½ */
   gsap.utils.toArray('.fade-enter-card').forEach((card, i) => {
     gsap.from(card, {
       scrollTrigger: {
@@ -2396,8 +2396,8 @@ for (let x = 0; x < 3; x++) {
     });
   });
 
-  /* GÇö Section heading / text reveals GÇö
-     IMPORTANT: skip any element inside .skill-item or #services GÇö those
+  /* Gï¿½ï¿½ Section heading / text reveals Gï¿½ï¿½
+     IMPORTANT: skip any element inside .skill-item or #services Gï¿½ï¿½ those
      are controlled exclusively by the cube ScrollTrigger timeline and
      must NOT be touched by this global reveal. */
   gsap.utils.toArray('h2, h3').forEach(el => {
@@ -2597,7 +2597,7 @@ for (let x = 0; x < 3; x++) {
     }
   };
 
-  // GöÇGöÇGöÇ Shared helper: renders the iMac or iPhone mockup shell GöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇ
+  // Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½ Shared helper: renders the iMac or iPhone mockup shell Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½
   function solutionMedia(mediaPath, type, isVideo = true) {
     const fitClass = 'object-cover bg-black';
     const media = mediaPath.endsWith('.mp4') 
@@ -2679,7 +2679,7 @@ for (let x = 0; x < 3; x++) {
         <!-- Section 1: Intro -->
         <section class="min-h-screen flex flex-col items-center justify-center px-6 text-center space-y-8 md:space-y-16">
           <div class="benner-reveal overflow-hidden">
-            <span class="text-[10px] tracking-[0.5em] uppercase text-zinc-400 font-bold block mb-4 md:mb-8">Section 01 GÇö Intro</span>
+            <span class="text-[10px] tracking-[0.5em] uppercase text-zinc-400 font-bold block mb-4 md:mb-8">Section 01 Gï¿½ï¿½ Intro</span>
             <h1 class="text-4xl md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-zinc-900 mb-8 md:mb-12">Benner<br/>Tea Co.</h1>
           </div>
           <div class="benner-reveal overflow-hidden max-w-2xl">
@@ -2704,11 +2704,11 @@ for (let x = 0; x < 3; x++) {
             </div>
             <div class="md:col-span-8 space-y-12">
               <div class="benner-reveal overflow-hidden">
-                <h3 class="text-4xl md:text-7xl font-bold tracking-tighter leading-tight">The product was good.<br/><span class="text-zinc-300">The perception wasnGÇÖt.</span></h3>
+                <h3 class="text-4xl md:text-7xl font-bold tracking-tighter leading-tight">The product was good.<br/><span class="text-zinc-300">The perception wasnGï¿½ï¿½t.</span></h3>
               </div>
               <div class="benner-reveal overflow-hidden max-w-xl">
                 <p class="text-lg md:text-xl text-zinc-500 leading-relaxed font-light">
-                  Benner Tea Co. existed in a crowded categoryGÇöbut visually, it blended in instead of standing out.<br/><br/>
+                  Benner Tea Co. existed in a crowded categoryGï¿½ï¿½but visually, it blended in instead of standing out.<br/><br/>
                   The brand lacked clarity, identity, and a reason for younger consumers to choose it.
                 </p>
               </div>
@@ -2723,8 +2723,8 @@ for (let x = 0; x < 3; x++) {
             <div class="md:col-span-8">
               <div class="benner-reveal overflow-hidden">
                 <h3 class="text-4xl md:text-8xl font-bold tracking-tighter leading-[0.9] mb-12 italic">
-                  Tea is no longer just a beverageGÇö<br/>
-                  itGÇÖs part of a daily ritual.<br/>
+                  Tea is no longer just a beverageGï¿½ï¿½<br/>
+                  itGï¿½ï¿½s part of a daily ritual.<br/>
                   A moment of pause.<br/>
                   A lifestyle choice.
                 </h3>
@@ -2768,7 +2768,7 @@ for (let x = 0; x < 3; x++) {
               <h3 class="text-5xl md:text-9xl font-bold tracking-tighter leading-tight mb-12 italic">Reduce noise.<br/>Increase meaning.</h3>
               <div class="benner-reveal overflow-hidden max-w-2xl">
                 <p class="text-lg md:text-xl text-zinc-500 leading-relaxed font-light">
-                  Every decisionGÇöfrom layout to color to typographyGÇöwas made to simplify the experience and strengthen emotional connection.
+                  Every decisionGï¿½ï¿½from layout to color to typographyGï¿½ï¿½was made to simplify the experience and strengthen emotional connection.
                 </p>
               </div>
             </div>
@@ -2802,7 +2802,7 @@ for (let x = 0; x < 3; x++) {
             </div>
             <div class="md:col-span-8">
               <h3 class="text-4xl md:text-7xl font-bold tracking-tighter leading-tight mb-12">From a brand that felt generic and forgettable<br/><span class="text-zinc-300">to one that feels intentional, modern, and distinct.</span></h3>
-              <p class="text-xl md:text-2xl font-light text-zinc-400 leading-tight">A system that not only looks betterGÇöbut communicates better.</p>
+              <p class="text-xl md:text-2xl font-light text-zinc-400 leading-tight">A system that not only looks betterGï¿½ï¿½but communicates better.</p>
             </div>
           </section>
 
@@ -2907,7 +2907,7 @@ for (let x = 0; x < 3; x++) {
             <div class="md:col-span-8 space-y-16">
               <div>
                 <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold mb-4">Client & Concept</p>
-                <p class="text-3xl md:text-5xl font-medium tracking-tight leading-tight text-zinc-800">${data.overview.client} GÇö ${data.overview.concept}</p>
+                <p class="text-3xl md:text-5xl font-medium tracking-tight leading-tight text-zinc-800">${data.overview.client} Gï¿½ï¿½ ${data.overview.concept}</p>
               </div>
               <div class="max-w-2xl">
                 <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold mb-4">The Challenge</p>
@@ -3022,11 +3022,11 @@ for (let x = 0; x < 3; x++) {
   }
 </script>
 
-<!-- GöÇGöÇGöÇ Lazy Video Loader GöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇ
+<!-- Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½ Lazy Video Loader Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½
      Detects mobile, assigns the right src, and only loads each card video
      when it scrolls into view. Fixes the broken <source media> approach and
      prevents 3 videos competing for bandwidth on page load.
-GöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇ -->
+Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½ -->
 <script>
 (function() {
   const isMobile = window.innerWidth <= 768;
@@ -3105,7 +3105,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// GöÇGöÇGöÇ Lenis Smooth Scroll Initialisation GöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇGöÇ
+// Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½ Lenis Smooth Scroll Initialisation Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½
 (function initLenis() {
   if (typeof Lenis === 'undefined') return;
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
@@ -3116,7 +3116,7 @@ document.addEventListener('DOMContentLoaded', function() {
     orientation: 'vertical',
     gestureOrientation: 'vertical',
     smoothWheel: true,
-    smoothTouch: false,   // Native touch on mobile GÇö better feel
+    smoothTouch: false,   // Native touch on mobile Gï¿½ï¿½ better feel
     wheelMultiplier: 0.9,
     touchMultiplier: 2,
     infinite: false,
@@ -3124,7 +3124,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   window.__lenis = lenis;
 
-  // GöÇGöÇ CRITICAL: Drive Lenis through GSAP's ticker, NOT a separate rAF.
+  // Gï¿½ï¿½Gï¿½ï¿½ CRITICAL: Drive Lenis through GSAP's ticker, NOT a separate rAF.
   // This keeps Lenis and ScrollTrigger on the exact same frame tick,
   // so scrub-based timelines read the correct interpolated scroll position.
   gsap.ticker.add((time) => {
@@ -3135,7 +3135,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Keep ScrollTrigger refreshed every Lenis scroll event
   lenis.on('scroll', ScrollTrigger.update);
 
-  // GöÇGöÇ CRITICAL: Recalculate ScrollTrigger offsets on layout shifts
+  // Gï¿½ï¿½Gï¿½ï¿½ CRITICAL: Recalculate ScrollTrigger offsets on layout shifts
   // Lazy-loaded images push the page down, making cached scroll start/end points stale.
   let refreshTimeout;
   const ro = new ResizeObserver(() => {
@@ -3178,7 +3178,7 @@ document.addEventListener('DOMContentLoaded', () => {
   customCursor.appendChild(cursorText);
   document.body.appendChild(customCursor);
 
-  // Smoothed GSAP cursor GÇö longer duration = softer, more organic trailing feel
+  // Smoothed GSAP cursor Gï¿½ï¿½ longer duration = softer, more organic trailing feel
   const xTo = gsap.quickTo(customCursor, "x", { duration: 0.55, ease: "power4" });
   const yTo = gsap.quickTo(customCursor, "y", { duration: 0.55, ease: "power4" });
 
@@ -3200,7 +3200,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Magnetic Mode for buttons GÇö gentler pull for stability
+    // Magnetic Mode for buttons Gï¿½ï¿½ gentler pull for stability
     document.querySelectorAll('.magnetic-btn').forEach(btn => {
       btn.addEventListener('mouseenter', () => {
         customCursor.classList.add('magnetic-mode');
@@ -3235,7 +3235,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Infinite GSAP marquee GÇö slightly slower for elegance
+    // Infinite GSAP marquee Gï¿½ï¿½ slightly slower for elegance
     const marqueeTween = gsap.to(marquees, {
       xPercent: -50,
       repeat: -1,
@@ -3326,7 +3326,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- 3. Parallax Image Scrolling GÇö refined scrub value for smoother result ---
+  // --- 3. Parallax Image Scrolling Gï¿½ï¿½ refined scrub value for smoother result ---
   document.querySelectorAll('.fade-enter-card > div.relative, #mclaren .bg-zinc-900, #porsche .bg-zinc-900').forEach(container => {
     container.style.overflow = 'hidden';
     const img = container.querySelector('img');
@@ -3346,7 +3346,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // --- 4. Velocity-Based Skewing GÇö dramatically reduced for stability ---
+  // --- 4. Velocity-Based Skewing Gï¿½ï¿½ dramatically reduced for stability ---
   let proxy = { skew: 0 };
   const skewSetter = gsap.quickSetter('.fade-enter-card', 'skewY', 'deg');
   const clampSkew = gsap.utils.clamp(-4, 4); // Much tighter range (was -15 to 15)
@@ -3362,7 +3362,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.to(proxy, {
           skew: 0,
           duration: 1.2,          // Longer recovery = less jarring
-          ease: 'power3.out',     // Changed from elastic to power GÇö no bouncing
+          ease: 'power3.out',     // Changed from elastic to power Gï¿½ï¿½ no bouncing
           overwrite: true,
           onUpdate: () => skewSetter(proxy.skew)
         });
