@@ -132,8 +132,8 @@
     align-items: center;
     flex-shrink: 0;
     width: max-content;
-    gap: 120px;
-    padding-right: 120px;
+    gap: 60px;
+    padding-right: 60px;
   }
   .brand-logo-row img {
     height: 48px;
@@ -149,12 +149,12 @@
     filter: brightness(0) invert(1);
   }
   /* Individual size overrides */
-  .brand-logo-row img.logo-gte   { height: 72px; }
-  .brand-logo-row img.logo-tvb   { height: 48px; }
-  .brand-logo-row img.logo-cop   { height: 80px; }
-  .brand-logo-row img.logo-nex   { height: 28px; }
-  .brand-logo-row img.logo-teas  { height: 44px; }
-  .brand-logo-row img.logo-ben   { height: 36px; }
+  .brand-logo-row img.logo-gte   { height: 54px; }
+  .brand-logo-row img.logo-tvb   { height: 36px; }
+  .brand-logo-row img.logo-cop   { height: 60px; }
+  .brand-logo-row img.logo-nex   { height: 20px; }
+  .brand-logo-row img.logo-teas  { height: 32px; }
+  .brand-logo-row img.logo-ben   { height: 24px; }
   @media (min-width: 768px) {
     .brand-logo-row img.logo-gte  { height: 100px; }
     .brand-logo-row img.logo-tvb  { height: 64px; }
@@ -619,7 +619,8 @@
         border-radius: 0px;
         will-change: width, height, top, left, border-radius, opacity;
       ">
-        <img id="hero-active-img" src="/Images/Hero page animation/TVB BRand BOOK-13.webp" alt="Featured Work" style="width:100%;height:100%;object-fit:cover;display:block;will-change:transform;">
+        <img id="hero-bg-img" src="/Images/Hero page animation/TVB BRand BOOK-13.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+        <img id="hero-active-img" src="/Images/Hero page animation/TVB BRand BOOK-13.webp" alt="Featured Work" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;will-change:transform,opacity;z-index:1;">
         <!-- Dark gradient for text readability -->
         <div style="
           position:absolute;inset:0;
@@ -868,6 +869,7 @@
     const heroSection  = document.getElementById('hero');
     const activeWrap   = document.getElementById('hero-active-img-wrap');
     const activeImg    = document.getElementById('hero-active-img');
+      const bgImg        = document.getElementById('hero-bg-img');
     const orbitRing    = document.getElementById('hero-orbit-ring');
     const imgLabel     = document.getElementById('hero-img-label');
     const labelText    = document.getElementById('hero-label-text');
@@ -1175,7 +1177,8 @@
         loopIdx = (loopIdx + 1) % TOTAL;
         const targetImg = IMAGES[loopIdx];
         
-        if (typeof activeImg !== 'undefined' && activeImg) {
+        if (typeof activeImg !== 'undefined' && activeImg && bgImg) {
+          bgImg.src = activeImg.src;
           activeImg.src = targetImg.src;
           if (window.gsap) {
             window.gsap.fromTo(activeImg, { opacity: 0.5 }, { opacity: 1, duration: 0.1, ease: 'power1.inOut' });
