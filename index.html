@@ -1202,7 +1202,7 @@
         });
       }
 
-      // Clean, infinite flashing loop at constant 150ms
+      // Clean, infinite flashing loop at constant 250ms (0.25s)
       setInterval(() => {
         loopIdx = (loopIdx + 1) % TOTAL;
         const targetImg = IMAGES[loopIdx];
@@ -1214,7 +1214,7 @@
           }
         }
         if (typeof labelText !== 'undefined' && labelText) labelText.innerText = targetImg.project;
-      }, 150);
+      }, 250);
     }
 
     // Wait for GSAP to be ready
