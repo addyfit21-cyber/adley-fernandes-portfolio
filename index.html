@@ -202,7 +202,7 @@
     opacity: 0;
   }
   body.ready {
-    animation: page-reveal 0.5s ease both;
+    animation: page-reveal 0.25s ease both;
   }
   @keyframes page-reveal {
     from { opacity: 0; }
@@ -504,6 +504,15 @@
   document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('ready');
   });
+
+  // Handle bfcache back-navigation bug
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+      document.body.classList.remove('overflow-hidden');
+      const preloader = document.getElementById('intro-preloader');
+      if (preloader) preloader.style.display = 'none';
+    }
+  });
 </script>
 
 <!-- Intro Preloader -->
@@ -556,15 +565,16 @@
     </a>
   </div>
 
-  <!-- Floating Mobile Menu Button -->
-  <div class="md:hidden fixed top-6 right-6 pointer-events-none">
-    <!-- Button with Difference Blend -->
-    <button id="mobile-dropdown-btn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full font-manrope text-[9px] tracking-widest uppercase font-bold transition-all duration-300 pointer-events-auto" style="background-color: transparent; box-shadow: none; transition: background-color 0.4s ease, box-shadow 0.4s ease;">
-      <span>Menu</span>
-      <span class="material-symbols-outlined text-[12px] transition-transform duration-300" id="mobile-dropdown-arrow">expand_more</span>
-    </button>
-  </div>
+  <!-- Floating Mobile Menu Button has been moved outside nav -->
 </nav>
+
+<!-- Floating Mobile Menu Button (Moved outside nav to avoid mix-blend-mode: difference) -->
+<div class="md:hidden fixed top-6 right-6 z-[120] pointer-events-none">
+  <button id="mobile-dropdown-btn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full font-manrope text-[9px] tracking-widest uppercase font-bold transition-all duration-300 pointer-events-auto" style="background-color: rgba(237,235,221,0.15); backdrop-filter: blur(8px); border: 1px solid rgba(237,235,221,0.3); color: #EDEBDD; transition: background-color 0.4s ease, box-shadow 0.4s ease, color 0.4s ease;">
+    <span>Menu</span>
+    <span class="material-symbols-outlined text-[12px] transition-transform duration-300" id="mobile-dropdown-arrow">expand_more</span>
+  </button>
+</div>
 
 <!-- Dropdown Card Container (Outside nav to avoid mix-blend-mode) -->
 <div class="md:hidden fixed top-16 right-6 z-[120] flex flex-col items-end pointer-events-none">
@@ -852,6 +862,7 @@
       { src: '/Images/Hero page animation/Lukes iced coffee banner mockup-01.webp', label: "Luke's Banner",  project: "Luke's Iced Coffee Logo Design" },
       { src: '/Images/Hero page animation/Lukes iced coffee logo mockup-01.webp',   label: "Luke's Logo",   project: "Luke's Iced Coffee Logo Design" },
     ];
+    window.HERO_IMAGES = IMAGES;
     const TOTAL = IMAGES.length;
 
     // ── State ────────────────────────────────────────────────────
@@ -1182,7 +1193,8 @@
         setTimeout(lazyPreload, 1000);
       }
 
-      // Clean, infinite flashing loop at constant 250ms (0.25s)
+      // Clean, infinite flashing loop (slower on mobile to save CPU)
+      const flashInterval = window.matchMedia('(max-width: 768px)').matches ? 2000 : 250;
       setInterval(() => {
         loopIdx = (loopIdx + 1) % TOTAL;
         const targetImg = IMAGES[loopIdx];
@@ -1195,7 +1207,7 @@
           }
         }
         if (typeof labelText !== 'undefined' && labelText) labelText.innerText = targetImg.project;
-      }, 250);
+      }, flashInterval);
     }
 
     // Wait for GSAP to be ready
@@ -1244,329 +1256,257 @@
 
     </div>
   </section>
-  <section id="services" class="bg-[#EDEBDD] text-[#1B1717] border-t border-zinc-100 relative" style="height: calc(var(--vh, 1vh) * 750); min-height: calc(var(--vh, 1vh) * 750);">
-    <div class="sticky top-0 w-full overflow-hidden flex flex-col md:flex-row items-center justify-center md:justify-between" style="height: calc(var(--vh, 1svh) * 100);">
-    <span class="absolute top-8 left-6 md:top-10 md:left-24 text-[10px] tracking-[0.3em] uppercase text-[#1B1717]/60 font-bold leading-none z-20">Services</span>
+  <section id="services" class="bg-zinc-950 text-white border-t border-zinc-900 relative" style="height: calc(var(--vh, 1vh) * 600); min-height: calc(var(--vh, 1vh) * 600);">
+    <div class="sticky top-0 w-full overflow-hidden" style="height: calc(var(--vh, 1svh) * 100);">
+      
+      <!-- BACKGROUND IMAGES LAYER -->
+      <div id="formation-container" class="absolute inset-0 z-10 pointer-events-none overflow-hidden w-full h-full">
+         <!-- Images injected via JS, absolute positioned dead center -->
+      </div>
 
-      <!-- LEFT side (visually on desktop): The Skills text -->
-      <div class="w-full md:h-full md:w-1/2 px-6 md:px-24 flex flex-col justify-center relative z-10 order-2 md:order-1" style="height: calc(var(--vh, 1vh) * 40)">
+      <!-- FOREGROUND TEXT LAYER -->
+      <div id="skills-text-container" class="relative w-full h-full max-w-7xl mx-auto px-6 md:px-16 lg:px-24 z-20 pointer-events-none">
         
-        <div class="relative w-full h-full flex items-center">
-          
-          <!-- Item 0: What I Do -->
-          <div class="skill-item absolute inset-0 flex flex-col justify-center opacity-100 translate-y-0">
-            <h2 class="text-6xl md:text-8xl font-bold tracking-tighter leading-[1.1] mb-6 md:mb-12 reveal-text">What<br>I do.</h2>
-            <p class="text-[#1B1717]/60 max-w-md text-base md:text-lg font-medium reveal-text opacity-90 leading-relaxed mb-4 md:mb-8">
-              A comprehensive approach to digital design, blending strategic thinking with crafted execution.
-            </p>
-          </div>
-
-          <!-- Item 1: Brand Identity Design -->
-          <div class="skill-item absolute inset-0 flex flex-col justify-center opacity-0 translate-y-12">
-            <span class="text-[10px] tracking-[0.3em] uppercase text-[#1B1717]/60 font-bold mb-3 md:mb-4 block">01 / Skill</span>
-            <h2 class="text-[3.5rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-[0.9] text-[#1B1717]">Brand Identity<br>Design</h2>
-          </div>
-
-          <!-- Item 2: Web Design & Development -->
-          <div class="skill-item absolute inset-0 flex flex-col justify-center opacity-0 translate-y-12">
-            <span class="text-[10px] tracking-[0.3em] uppercase text-[#1B1717]/60 font-bold mb-3 md:mb-4 block">02 / Skill</span>
-            <h2 class="text-[3.5rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-[0.9] text-[#1B1717]">Web Design &amp;<br>Development</h2>
-          </div>
-
-          <!-- Item 3: UI/UX Design -->
-          <div class="skill-item absolute inset-0 flex flex-col justify-center opacity-0 translate-y-12">
-            <span class="text-[10px] tracking-[0.3em] uppercase text-[#1B1717]/60 font-bold mb-3 md:mb-4 block">03 / Skill</span>
-            <h2 class="text-[3.5rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-[0.9] text-[#1B1717]">UI/UX<br>Design</h2>
-          </div>
-
-          <!-- Item 4: Marketing Design -->
-          <div class="skill-item absolute inset-0 flex flex-col justify-center opacity-0 translate-y-12">
-            <span class="text-[10px] tracking-[0.3em] uppercase text-[#1B1717]/60 font-bold mb-3 md:mb-4 block">04 / Skill</span>
-            <h2 class="text-[3.5rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-[0.9] text-[#1B1717]">Marketing<br>Design</h2>
-          </div>
-
+        <!-- Formation 0 Text (Anchored Left) -->
+        <div class="skill-item absolute inset-y-0 left-0 px-6 md:px-16 lg:px-24 flex flex-col justify-center w-full md:w-1/2 opacity-100">
+          <h2 class="font-dm text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.1] mb-6 text-zinc-400">So… what do I do?</h2>
+          <p class="text-xl md:text-2xl font-manrope font-normal text-white">I make things look good.<br>But that’s not really the point.</p>
         </div>
-      </div>
 
-      <!-- RIGHT side (visually on desktop): The 3D Cube -->
-      <div class="relative w-[50vw] h-[50vw] max-w-[280px] max-h-[280px] md:max-w-none md:max-h-none md:w-[40%] md:h-[500px] lg:h-[600px] flex items-center justify-center pointer-events-none md:pointer-events-auto z-20 order-1 md:order-2 md:mr-16 lg:mr-24 md:ml-auto" id="rubiks-container">
-        <!-- Three.js Canvas injected here -->
-      </div>
+        <!-- Formation 1 Text (Anchored Right) -->
+        <div class="skill-item absolute inset-y-0 right-0 px-6 md:px-16 lg:px-24 flex flex-col justify-center w-full md:w-1/2 opacity-0 items-end text-right">
+          <h2 class="font-dm text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.1] text-zinc-400">I build <span class="text-white italic">visual identities</span>,<br>websites and experiences<br>that say something.</h2>
+        </div>
 
-      <!-- Scroll Indicator -->
-      <div id="services-scroll-indicator" class="absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-30 pointer-events-none opacity-60">
-        <span class="text-[9px] md:text-[10px] tracking-widest uppercase text-[#1B1717]/60 font-bold">Scroll to explore</span>
-        <svg class="w-4 h-4 md:w-5 md:h-5 text-[#1B1717]/60 block arrow-scroll-anim" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        <!-- Formation 2 Text (Anchored Center) -->
+        <div class="skill-item absolute inset-0 flex flex-col items-center justify-center opacity-0 text-center px-4">
+          <h2 class="font-dm text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter leading-[1.1] text-zinc-400">You bring the idea.<br>I bring the visuals.</h2>
+          <p class="text-xl md:text-3xl font-manrope font-normal text-white mt-6 md:mt-8">Then we make people stop scrolling.</p>
+        </div>
+
+        <!-- Formation 3 Text (Anchored Top Left) -->
+        <div class="skill-item absolute top-[20%] left-0 px-6 md:px-16 lg:px-24 flex flex-col items-start opacity-0 w-full md:w-1/2">
+          <h2 class="font-dm text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.1] text-zinc-400">Go ahead.<br>Explore my work.</h2>
+          <p class="text-xl md:text-2xl font-manrope font-normal text-white mt-6 md:mt-8">There’s probably something moving over there ↓</p>
+        </div>
+
       </div>
 
     </div>
 
-    <!-- Three.js scene setup (module) -->
-    <script type="importmap">
-      {
-        "imports": {
-          "three": "https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js"
+    <!-- GSAP Logic for 2D Choreography -->
+    <style>
+      .choreography-img {
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 160px; height: 160px;
+        margin-top: -80px; margin-left: -80px;
+        border-radius: 0;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.1);
+        box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        will-change: transform;
+      }
+      @media (min-width: 768px) {
+        .choreography-img {
+          width: 280px; height: 280px;
+          margin-top: -140px; margin-left: -140px;
         }
       }
-    </script>
-    <script type="module">
-      import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js';
-      import { RoundedBoxGeometry } from 'https://cdn.jsdelivr.net/npm/three@0.150.1/examples/jsm/geometries/RoundedBoxGeometry.js';
-
-      function initHeroCube() {
-      const container = document.getElementById('rubiks-container');
-      if (!container) return;
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
-      camera.position.z = 6.5;
-
-      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-      renderer.setSize(container.clientWidth, container.clientHeight);
-      renderer.setPixelRatio(window.innerWidth < 768 ? 1 : Math.min(window.devicePixelRatio, 2));
-      container.appendChild(renderer.domElement);
-
-      const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-      scene.add(ambientLight);
-      const dirLight = new THREE.DirectionalLight(0xffffff, 2.5);
-      dirLight.position.set(5, 5, 5);
-      scene.add(dirLight);
-      
-      const orangeLight = new THREE.DirectionalLight(0x630000, 5);
-      orangeLight.position.set(0, -5, 5);
-      scene.add(orangeLight);
-      
-      const fillLight = new THREE.DirectionalLight(0xffffff, 1);
-      fillLight.position.set(-5, -2, -5);
-      scene.add(fillLight);
-
-      function createNumberTexture(number) {
-        const canvas = document.createElement('canvas');
-        canvas.width = 512; canvas.height = 512;
-        const ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, 512, 512);
-        ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 360px Arial, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.shadowColor = 'rgba(0,0,0,0.8)';
-        ctx.shadowBlur = 15;
-        ctx.fillText(number, 256, 280);
-        const texture = new THREE.CanvasTexture(canvas);
-        texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
-        return texture;
+      .choreography-img img {
+        width: 100%; height: 100%;
+        object-fit: cover;
       }
-
-      function createBlankTexture() {
-        const canvas = document.createElement('canvas');
-        canvas.width = 512; canvas.height = 512;
-        const ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, 512, 512);
-        ctx.strokeStyle = '#ffffff';
-        ctx.lineWidth = 12;
-        ctx.shadowColor = 'rgba(0,0,0,0.8)';
-        ctx.shadowBlur = 15;
-        ctx.beginPath();
-        ctx.arc(256, 256, 120, 0, Math.PI * 2);
-        ctx.stroke();
-        return new THREE.CanvasTexture(canvas);
-      }
-
-      const group = new THREE.Group();
-      const innerGroup = new THREE.Group();
-      group.add(innerGroup);
-      scene.add(group);
-
-      const material = new THREE.MeshStandardMaterial({ color: 0x050505, roughness: 0.1, metalness: 0.85 });
-      const boxSize = 0.85;
-      const radius = 0.12;
-      const geometry = new RoundedBoxGeometry(boxSize, boxSize, boxSize, 4, radius);
-      const gap = 0.9;
-      const offset = gap;
-for (let x = 0; x < 3; x++) {
-        for (let y = 0; y < 3; y++) {
-          for (let z = 0; z < 3; z++) {
-            const cube = new THREE.Mesh(geometry, material);
-            cube.position.set(x * gap - offset, y * gap - offset, z * gap - offset);
-            innerGroup.add(cube);
-          }
-        }
-      }
-
-      const planeGeo = new THREE.PlaneGeometry(2.8, 2.8);
-      const planeDist = 1.4;
-      const faces = [
-        { num: '1', pos: [0, 0, planeDist],   rot: [0, 0, 0] },
-        { num: '2', pos: [planeDist, 0, 0],   rot: [0, Math.PI/2, 0] },
-        { num: '3', pos: [0, planeDist, 0],   rot: [-Math.PI/2, 0, 0] },
-        { num: '4', pos: [-planeDist, 0, 0],  rot: [0, -Math.PI/2, 0] }
-      ];
-      faces.forEach(face => {
-        const mat = new THREE.MeshBasicMaterial({ map: createNumberTexture(face.num), transparent: true, depthWrite: false });
-        const plane = new THREE.Mesh(planeGeo, mat);
-        plane.position.set(...face.pos);
-        plane.rotation.set(...face.rot);
-        innerGroup.add(plane);
-      });
-
-      const introMat = new THREE.MeshBasicMaterial({ map: createBlankTexture(), transparent: true, depthWrite: false });
-      const introPlane = new THREE.Mesh(planeGeo, introMat);
-      introPlane.position.set(0, 0, -planeDist);
-      introPlane.rotation.set(0, Math.PI, 0);
-      innerGroup.add(introPlane);
-
-      window._cubeGroup = group;
-      window._cubeInnerGroup = innerGroup;
-      window._cubeRenderer = renderer;
-      window._cubeScene = scene;
-      window._cubeCamera = camera;
-      window._cubeContainer = container;
-
-      let time = 0;
-      let heroIsVisible = false;
-      let heroAnimId = null;
-
-      function animateCube() {
-        if (!heroIsVisible) return;
-        heroAnimId = requestAnimationFrame(animateCube);
-        time += 0.016;
-        innerGroup.position.y = Math.sin(time) * 0.1;
-        innerGroup.rotation.x = Math.sin(time * 0.5) * 0.05;
-        innerGroup.rotation.y = Math.cos(time * 0.3) * 0.05;
-        renderer.render(scene, camera);
-      }
-
-      const heroObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          heroIsVisible = entry.isIntersecting;
-          if (heroIsVisible && !heroAnimId) animateCube();
-          else if (!heroIsVisible && heroAnimId) {
-            cancelAnimationFrame(heroAnimId);
-            heroAnimId = null;
-          }
-        });
-      });
-      heroObserver.observe(container);
-
-      let _lastWidth = window.innerWidth;
-      window.addEventListener('resize', () => {
-        if (!container) return;
-        if (window.innerWidth === _lastWidth) return; // Ignore vertical-only resizes (mobile address bar)
-        _lastWidth = window.innerWidth;
-        camera.aspect = container.clientWidth / container.clientHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(container.clientWidth, container.clientHeight);
-      });
-
-      window._cubeReady = true;
-      document.dispatchEvent(new CustomEvent('cubeReady'));
-      }
-      // Defer execution to avoid blocking First Contentful Paint
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(initHeroCube);
-      } else {
-        setTimeout(initHeroCube, 100);
-      }
-    </script>
-
+    </style>
     <script>
-    (function initCubeScroll() {
-
-      function setup() {
-        if (window._servicesSetupDone) return;
-        window._servicesSetupDone = true;
+      (function initChoreography() {
         
-        const group  = window._cubeGroup;
-        const skills = document.querySelectorAll('.skill-item');
+        function createWheel() {
+          const container = document.getElementById('formation-container');
+          if (!container || typeof window.HERO_IMAGES === 'undefined') return false;
 
-        const rotations = [
-          { x: 0, y: Math.PI, z: 0 },
-          { x: 0, y: 0,       z: 0 },
-          { x: 0, y: -Math.PI/2, z: 0 },
-          { x: Math.PI/2, y: 0, z: 0 },
-          { x: 0, y: Math.PI/2, z: 0 }
-        ];
+          const wheel = document.createElement('div');
+          wheel.id = 'spinning-wheel';
+          wheel.style.position = 'absolute';
+          wheel.style.top = '50%';
+          wheel.style.left = '50%';
+          wheel.style.width = '0px';
+          wheel.style.height = '0px';
+          wheel.style.willChange = 'transform';
+          container.appendChild(wheel);
 
-        gsap.set(group.rotation, rotations[0]);
-        skills.forEach((s, i) => gsap.set(s, { opacity: i === 0 ? 1 : 0, y: i === 0 ? 0 : 50 }));
+          const numImages = window.HERO_IMAGES.length;
+          const W = window.innerWidth;
+          const H = window.innerHeight;
+          const isMobile = W < 768;
+          
+          // Radius should be massive. Max of width or height.
+          const radius = isMobile ? Math.max(W, H) * 0.75 : Math.max(W, H) * 0.9; 
 
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: '#services',
-            start: 'top top',
-            end: 'bottom bottom',
-            scrub: true,
-            invalidateOnRefresh: true
+          window.HERO_IMAGES.forEach((imgObj, i) => {
+            const div = document.createElement('div');
+            div.className = 'choreography-img';
+            
+            const angle = (i / numImages) * Math.PI * 2;
+            const x = radius * Math.cos(angle);
+            const y = radius * Math.sin(angle);
+            const rot = (angle * 180 / Math.PI) + 90;
+            
+            div.style.transform = `translate(${x}px, ${y}px) rotate(${rot}deg)`;
+            
+            const img = document.createElement('img');
+            img.src = imgObj.src;
+            img.loading = "lazy";
+            
+            div.appendChild(img);
+            wheel.appendChild(div);
+          });
+          return true;
+        }
+
+        function setupGSAP() {
+          if (window._choreoSetupDone) return;
+          window._choreoSetupDone = true;
+
+          const wheel = document.getElementById('spinning-wheel');
+          const skills = gsap.utils.toArray('.skill-item');
+          const W = window.innerWidth;
+          const H = window.innerHeight;
+          const isMobile = W < 768;
+          
+          // MUST match the radius used in createWheel() exactly, otherwise all position math breaks.
+          const radius = isMobile ? Math.max(W, H) * 0.75 : Math.max(W, H) * 0.9; 
+
+          gsap.set(skills, { opacity: (i) => i === 0 ? 1 : 0, y: (i) => i === 0 ? 0 : 50 });
+
+          // --- GUARANTEED CLEARANCE MATH ---
+          
+          // State 0 (Initial): Images Right, Text Left.
+          // W*0.35 offset confirmed working — places arc visibly on the right side of the screen.
+          const s0_scale = isMobile ? 1.0 : 1.1;
+          const eff_r0 = radius * s0_scale;
+          // W*0.25 puts the right arc at 75% of screen width
+          const s0_x = (isMobile ? W*0.35 : W*0.25) - eff_r0;
+          const s0_y = 0;
+          gsap.set(wheel, { x: s0_x, y: s0_y, scale: s0_scale, rotation: 0 });
+
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: '#services',
+              start: 'top top',
+              end: 'bottom bottom',
+              scrub: 1, 
+              invalidateOnRefresh: true
+            }
+          });
+
+          // Continuous rotation of the wheel over the entire scroll
+          tl.to(wheel, {
+            rotation: -360,
+            ease: "none",
+            duration: 19
+          }, 0);
+
+          // 1. Initial pause
+          tl.to({}, { duration: 2.0 });
+
+          const transitionTimes = [4, 10, 16]; 
+          
+          // State 1: Images Left, Text Right.
+          // W*0.35 offset confirmed working — places arc visibly on the left side of the screen.
+          const s1_scale = isMobile ? 1.0 : 1.1;
+          const eff_r1 = radius * s1_scale;
+          // W*0.25 puts the left arc at 25% of screen width
+          const s1_x = eff_r1 - (isMobile ? W*0.35 : W*0.25);
+          const s1_y = 0;
+          
+          // State 2: Images Center.
+          // Decrease the desired radius to pull the circle extremely close to the center text.
+          const desired_r2 = isMobile ? Math.min(W,H)*0.45 : Math.min(W,H)*0.42;
+          const s2_scale = desired_r2 / radius;
+          const s2_x = 0;
+          const s2_y = 0;
+
+          // State 3: Wheel center placed in bottom-right quadrant.
+          // Simple explicit coords — wheel center at ~30% right, ~35% down from screen center.
+          // Zoom in slightly, but push center FAR bottom-right so the massive radius doesn't overlap top-left text.
+          const s3_scale = 1.1;
+          const s3_x = isMobile ? W*0.5 + 400 : W*0.6 + 600;
+          const s3_y = isMobile ? H*0.5 + 400 : H*0.6 + 600;
+
+          const wheelPositions = [
+             {x: s1_x, y: s1_y, scale: s1_scale},
+             {x: s2_x, y: s2_y, scale: s2_scale},
+             {x: s3_x, y: s3_y, scale: s3_scale}
+          ];
+
+          for (let state = 1; state < 4; state++) {
+            const t = transitionTimes[state-1];
+            
+            // Fade out previous text
+            tl.to(skills[state - 1], { 
+              opacity: 0, y: -40, duration: 1.5, ease: 'power2.inOut' 
+            }, t);
+
+            // Move and scale the wheel center
+            tl.to(wheel, {
+              x: wheelPositions[state-1].x,
+              y: wheelPositions[state-1].y,
+              scale: wheelPositions[state-1].scale,
+              duration: 3.0,
+              ease: 'power1.inOut'
+            }, t - 0.5); 
+
+            // Fade in new text
+            tl.to(skills[state], { 
+              opacity: 1, y: 0, duration: 1.5, ease: 'power2.out' 
+            }, t + 1.5);
           }
+
+          // Final pause removed so scroll ends immediately after last animation finishes
+
+          setTimeout(() => ScrollTrigger.refresh(), 300);
+        }
+
+        function trySetup() {
+          if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || typeof window.HERO_IMAGES === 'undefined') {
+            setTimeout(trySetup, 50);
+            return;
+          }
+          if (document.getElementById('formation-container').children.length === 0) {
+            if (!createWheel()) {
+              setTimeout(trySetup, 50);
+              return;
+            }
+          }
+          setupGSAP();
+        }
+        
+        document.addEventListener('DOMContentLoaded', trySetup);
+        if (document.readyState === "complete" || document.readyState === "interactive") {
+          trySetup();
+        }
+
+        // Recalculate on resize
+        let resizeTimeout;
+        let _lastWidth = window.innerWidth;
+        window.addEventListener('resize', () => {
+          if (window.innerWidth === _lastWidth) return;
+          _lastWidth = window.innerWidth;
+          clearTimeout(resizeTimeout);
+          resizeTimeout = setTimeout(() => {
+            if(window._choreoSetupDone) {
+               window._choreoSetupDone = false;
+               document.getElementById('formation-container').innerHTML = ''; // Clear images
+               ScrollTrigger.getAll().forEach(t => {
+                 if(t.trigger && t.trigger.id === 'services') t.kill();
+               });
+               trySetup();
+            }
+          }, 300);
         });
 
-
-
-        window._servicesTimeline = tl;
-
-        // 1. Initial pause (keeps it locked on 'What I do' for a moment)
-        tl.to({}, { duration: 4.0 });
-
-        // 2. Loop through skills and build timeline sequentially
-        skills.forEach((skill, index) => {
-          if (index === 0) return;
-
-          const transLabel = `trans${index}`;
-          tl.addLabel(transLabel);
-
-          // Fade out the previous text
-          tl.to(skills[index - 1], { 
-            opacity: 0, 
-            y: -40, 
-            duration: 1.0, 
-            ease: 'power2.inOut' 
-          }, transLabel);
-
-          // Fade out scroll indicator on the final scroll (after number 4)
-          if (index === 4) {
-            tl.to('#services-scroll-indicator', {
-              opacity: 0,
-              duration: 0.5,
-              ease: 'power2.inOut'
-            }, transLabel);
-          }
-
-          // Rotate the cube concurrently
-          tl.to(group.rotation, {
-            x: rotations[index].x,
-            y: rotations[index].y,
-            z: rotations[index].z,
-            duration: 2.5,
-            ease: 'sine.inOut'
-          }, transLabel);
-
-          // Fade in the new text
-          tl.to(skill, { 
-            opacity: 1, 
-            y: 0, 
-            duration: 1.0, 
-            ease: 'power2.out' 
-          }, transLabel + "+=1.0");
-
-          // Pause before next transition (longer pause at the end)
-          tl.to({}, { duration: (index === skills.length - 1) ? 3.0 : 2.0 });
-        });
-
-        setTimeout(() => ScrollTrigger.refresh(), 300);
-      }
-
-      function trySetup() {
-        if (!window._cubeGroup) { setTimeout(trySetup, 50); return; }
-        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') { setTimeout(trySetup, 50); return; }
-        setTimeout(setup, 250);
-      }
-
-      if (window._cubeReady) {
-        trySetup();
-      } else {
-        document.addEventListener('cubeReady', trySetup, { once: true });
-        document.addEventListener('DOMContentLoaded', () => setTimeout(trySetup, 150));
-      }
-    })();
+      })();
     </script>
   </section>
 
@@ -1653,7 +1593,7 @@ for (let x = 0; x < 3; x++) {
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
 
       <!-- Card: Album Artwork -->
-      <a href="album-artworks.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full aspect-[4/3]" style="">
+      <a href="album-artworks.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full aspect-[4/3]">
         <img src="/Images/Brands/venom_berries/Album_art_final.webp" alt="Album Artwork" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90">
         
         
@@ -1669,7 +1609,7 @@ for (let x = 0; x < 3; x++) {
         </div></a>
 
       <!-- Card: Poster Designs -->
-      <a href="posters.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full aspect-[4/3]" style="">
+      <a href="posters.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full aspect-[4/3]">
         <img src="/Images/Brands/venom_berries/TVB_Post-01.webp" alt="Poster Designs" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90">
         
         
@@ -1700,7 +1640,7 @@ for (let x = 0; x < 3; x++) {
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
 
       <!-- Card: Nexzy -->
-      <a href="web-development.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full aspect-[4/3]" style="">
+      <a href="web-development.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full aspect-[4/3]">
         <video src="/Images/web_dev/img_3693.mp4" autoplay="" muted="" loop="" playsinline="" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90"></video>
         
         
@@ -1716,7 +1656,7 @@ for (let x = 0; x < 3; x++) {
         </div></a>
 
       <!-- Card: Execuvision -->
-      <a href="web-development.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full aspect-[4/3]" style="">
+      <a href="web-development.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full aspect-[4/3]">
         <video src="/Images/web_dev/img_3691.mp4" autoplay="" muted="" loop="" playsinline="" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90"></video>
         
         
@@ -1747,7 +1687,7 @@ for (let x = 0; x < 3; x++) {
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
 
       <!-- Card: McLaren -->
-      <a href="sketches.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full aspect-[4/3]" style="">
+      <a href="sketches.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full aspect-[4/3]">
         <img src="/Images/ART%20work/IMG_9844%20(2).webp" alt="McLaren Sketches" loading="lazy" class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90">
         
         
@@ -1763,7 +1703,7 @@ for (let x = 0; x < 3; x++) {
         </div></a>
 
       <!-- Card: Porsche -->
-      <a href="sketches.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full aspect-[4/3]" style="">
+      <a href="sketches.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full aspect-[4/3]">
         <img src="/Images/ART%20work/IMG_0498.webp" alt="Porsche Sketches" loading="lazy" class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90">
         
         
@@ -3360,7 +3300,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }, {
-    rootMargin: '1500px 0px',  // start loading 1500px before card enters view
+    rootMargin: isMobile ? '300px 0px' : '1500px 0px',  // start loading earlier on desktop, later on mobile
     threshold: 0
   });
 
@@ -3516,10 +3456,12 @@ document.addEventListener('DOMContentLoaded', function initLenis() {
       start: 'bottom 90%',
       onEnter: () => {
         btn.style.backgroundColor = '#ffffff';
+        btn.style.color = '#1B1717';
         btn.style.boxShadow = '0 4px 24px rgba(0,0,0,0.18)';
       },
       onLeaveBack: () => {
-        btn.style.backgroundColor = 'transparent';
+        btn.style.backgroundColor = 'rgba(237,235,221,0.15)';
+        btn.style.color = '#EDEBDD';
         btn.style.boxShadow = 'none';
       }
     });

@@ -2,6 +2,9 @@ import { resolve, extname } from 'path';
 import { defineConfig } from 'vite';
 import { readdirSync } from 'fs';
 
+// Force Vite to open Google Chrome by default
+process.env.BROWSER = 'chrome';
+
 const htmlFiles = readdirSync(process.cwd())
   .filter(file => extname(file) === '.html')
   .reduce((entries, file) => {
@@ -11,6 +14,9 @@ const htmlFiles = readdirSync(process.cwd())
   }, {});
 
 export default defineConfig({
+  server: {
+    open: true,
+  },
   build: {
     rollupOptions: {
       input: htmlFiles,
