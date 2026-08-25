@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
@@ -484,57 +484,14 @@
   });
 </script>
 
-<!-- Intro Preloader -->
-<div id="intro-preloader" class="fixed inset-0 z-[9999] bg-[#EDEBDD] flex flex-col items-center justify-center">
-  <script>
-    if (sessionStorage.getItem('introPlayed')) {
-      document.getElementById('intro-preloader').style.display = 'none';
-    }
-  </script>
-  <div class="px-6 w-full max-w-5xl text-center">
-    <div class="text-lg md:text-2xl font-light text-[#1B1717] tracking-widest uppercase inline-block">
-      <span id="intro-text"></span><span id="intro-cursor" class="inline-block w-[2px] h-[1em] bg-[#1B1717] ml-1 align-middle animate-pulse-cursor"></span>
-    </div>
-  </div>
-</div>
 
-<!-- Glassmorphism Container (The 'Tab') -->
+  <nav id="main-nav" class="absolute md:fixed top-6 md:top-8 left-0 md:left-1/2 md:-translate-x-1/2 z-[100] flex items-center justify-between px-6 py-3 bg-transparent md:backdrop-blur-lg w-full md:w-max md:min-w-[800px] pointer-events-none" style="border: 1px solid transparent; box-shadow: none;">
 
-<!-- TopNavBar -->
-<nav id="main-nav" class="absolute md:fixed top-6 md:top-8 left-0 md:left-1/2 md:-translate-x-1/2 z-[100] flex items-center justify-between px-6 py-3 bg-transparent md:backdrop-blur-lg w-full md:w-max md:min-w-[800px] pointer-events-none" style="border: 1px solid transparent; box-shadow: none;">
-  <!-- Logo -->
-  <a href="/" id="mobile-logo" class="z-10 pointer-events-auto flex items-center"><img src="/Images/Brands/Adesign%20studio/Adesign%20logo%20colour-01.png" alt="addesign studio logo" class="h-12 md:h-20 w-auto object-contain -ml-2 md:-ml-6"></a>
-  
-  <!-- Desktop Links (Absolutely Centered) -->
-  <div class="hidden md:flex items-center space-x-8 pointer-events-auto md:-translate-x-6 lg:-translate-x-10">
-    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-[#1B1717] hover:text-[#630000] border-b border-black hover:border-[#630000] pb-0.5 transition-colors duration-300" href="/">Home</a>
-
-    
-    <!-- Projects Dropdown -->
-    <div class="relative group">
-      <button class="bg-transparent text-[#1B1717] hover:text-[#630000] px-0 py-2 font-manrope text-[10px] tracking-[0.2em] uppercase transition-colors duration-300 flex items-center gap-1 cursor-pointer">
-        Projects
-        <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover:rotate-180">expand_more</span>
-      </button>
-      <!-- Dropdown Menu -->
-      <div class="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-48 bg-[#EDEBDD] border border-zinc-100 shadow-2xl opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 flex flex-col p-2 z-[101]">
-        <a href="visual-identity.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-600 hover:text-[#1B1717] hover:bg-[#EDEBDD] transition-colors text-left border-b border-zinc-50 last:border-0">Branding</a>
-        <a href="posters.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-600 hover:text-[#1B1717] hover:bg-[#EDEBDD] transition-colors text-left border-b border-zinc-50 last:border-0">Posters</a>
-        <a href="sketches.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-600 hover:text-[#1B1717] hover:bg-[#EDEBDD] transition-colors text-left border-b border-zinc-50 last:border-0">Illustration</a>
-        <a href="web-development.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-600 hover:text-[#1B1717] hover:bg-[#EDEBDD] transition-colors text-left border-b border-zinc-50 last:border-0">Web Development</a>
-      </div>
-    </div>
-    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-[#1B1717] hover:text-[#630000] transition-colors duration-300" href="services.html">Services</a>
-    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-[#1B1717] hover:text-[#630000] transition-colors duration-300" href="about.html">About</a>
-    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-[#1B1717] hover:text-[#630000] transition-colors duration-300" href="contact.html">Contact</a>
-  </div>
-
-  <!-- CTA -->
-  <div class="hidden md:flex items-center z-10 pointer-events-auto">
-    <a href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener" class="bg-[#630000] text-white px-5 py-2 font-manrope text-[10px] tracking-[0.2em] uppercase hover:bg-[#1B1717] transition-colors duration-500">
-      Get in Touch
-    </a>
-  </div>
+  <!-- Desktop Back Button -->
+  <a href="/index.html#categories-grid" class="hidden md:inline-flex fixed top-6 left-6 md:top-8 md:left-8 z-[100] items-center gap-2 px-5 py-2.5 bg-[#EDEBDD]/90 backdrop-blur-md border border-[#1B1717]/10 hover:bg-white text-[#1B1717] text-[10px] uppercase tracking-[0.2em] font-bold rounded-full shadow-sm transition-all group hover:scale-105 active:scale-95 pointer-events-auto">
+    <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover:-translate-x-1">arrow_back</span>
+    Back
+  </a>
 
   <!-- Floating Mobile Menu -->
   <div class="md:hidden fixed top-6 right-6 z-[120] flex flex-col items-end pointer-events-none">
