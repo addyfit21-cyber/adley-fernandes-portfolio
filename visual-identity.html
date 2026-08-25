@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
@@ -17,7 +17,7 @@
   }
   setVH();
   // Guard: only update --vh when the WIDTH changes (device rotation).
-  // Toolbar toggle only changes height — ignore it completely.
+  // Toolbar toggle only changes height � ignore it completely.
   window.addEventListener('resize', function() {
     var newVW = window.innerWidth;
     if (newVW === _lockedVW) return; // height-only change = toolbar, skip
@@ -80,7 +80,7 @@
   ]
 }
 </script>
-<!-- Preconnect first — must come before any external resource requests -->
+<!-- Preconnect first � must come before any external resource requests -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -96,25 +96,25 @@
 <!-- Local CSS (built via Vite/Tailwind) -->
 <link href="dist.css" rel="stylesheet">
 
-<!-- GSAP deferred — animations start after HTML is visible -->
+<!-- GSAP deferred � animations start after HTML is visible -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
 
-<!-- Lenis smooth scroll —  GPU-composited, frame-synced momentum scrolling -->
+<!-- Lenis smooth scroll �  GPU-composited, frame-synced momentum scrolling -->
 <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js" defer></script>
 
 
 
 <style>
-  /* Lenis handles scrolling on desktop — iOS uses native scroll */
+  /* Lenis handles scrolling on desktop � iOS uses native scroll */
   html { scroll-behavior: auto; }
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
   /* Allow native smooth iOS WebKit momentum scrolling */
   html, body { -webkit-overflow-scrolling: touch; }
   body { font-family: 'Manrope', sans-serif; color: #1B1717; background-color: #EDEBDD; }
   h1, h2, h3, h4, h5, h6 { font-family: 'DM Sans', sans-serif; color: #1B1717; }
-  /* Brand carousel — all styles here so they are not subject to Tailwind purge */
+  /* Brand carousel � all styles here so they are not subject to Tailwind purge */
   #brand-carousel-section {
     background-color: #630000;
     border-top: 1px solid #7a0d0d;
@@ -191,7 +191,7 @@
     will-change: transform, opacity;
   }
 
-  /* ─── Global Transition Polish ──────────────────────────────────── */
+  /* --- Global Transition Polish ------------------------------------ */
   /* Smooth hover transitions for all interactive elements */
   a, button {
     transition-property: color, background-color, border-color, opacity;
@@ -199,7 +199,7 @@
     transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-  /* ─── Page-level visibility fade-in (eliminates FOUC) ───────────── */
+  /* --- Page-level visibility fade-in (eliminates FOUC) ------------- */
   body {
     opacity: 0;
   }
@@ -246,7 +246,7 @@
     opacity: 0;
     mix-blend-mode: difference;
     will-change: transform;
-    transform: translateZ(0);   /* own composite layer — prevents cursor repaint from dirtying hero WebGL */
+    transform: translateZ(0);   /* own composite layer � prevents cursor repaint from dirtying hero WebGL */
     contain: layout style;      /* limit repaint scope to cursor element only */
     transition:
       width  0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
@@ -329,7 +329,7 @@
   /* Force pointer-events none on project videos */
   .mockup-video { pointer-events: none; }
 
-  /* ─── Scroll-reveal baseline — elements start hidden ─────────────── */
+  /* --- Scroll-reveal baseline � elements start hidden --------------- */
   .reveal-up {
     opacity: 0;
     transform: translateY(40px);
@@ -341,18 +341,18 @@
     transform: translateY(0);
   }
 
-  /* ─── Nav backdrop glass polish ──────────────────────────────────── */
+  /* --- Nav backdrop glass polish ------------------------------------ */
   nav {
     transition: backdrop-filter 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease;
   }
 
-  /* ─── Card hover lift ────────────────────────────────────────────── */
+  /* --- Card hover lift ---------------------------------------------- */
   .fade-enter-card {
     transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
                 box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  /* ─── Section heading shimmer line ──────────────────────────────── */
+  /* --- Section heading shimmer line -------------------------------- */
   .section-underline {
     display: inline-block;
     position: relative;
@@ -378,14 +378,14 @@
     #hero p.hero-slide-right { font-size: 1rem !important; line-height: 1.6 !important; }
     #hero .hero-slide-right a { font-size: 0.65rem !important; padding: 0.8rem 1.5rem !important; }
 
-    /* Section headings — prevent bleed on narrow screens */
+    /* Section headings � prevent bleed on narrow screens */
     h2.text-\[7rem\], h2.text-\[2\.5rem\] { font-size: clamp(2rem, 10vw, 3.5rem) !important; }
 
     /* Cards: comfortable height on phones */
     .fade-enter-card .relative.h-\[500px\] { height: 280px !important; }
     .fade-enter-card .h-\[650px\] { height: 300px !important; }
 
-    /* About portrait — limit height on mobile */
+    /* About portrait � limit height on mobile */
     #about .aspect-\[4\/5\] { aspect-ratio: 1/1 !important; }
 
     /* Case study modal scrolling fix on iOS */
@@ -432,7 +432,7 @@
     contain: layout style;
   }
 
-  /* Footer — per-letter pure slide, NO opacity change (mountains physically hide them) */
+  /* Footer � per-letter pure slide, NO opacity change (mountains physically hide them) */
   @keyframes footer-letter-in {
     from { transform: scaleY(1.55) translateY(350px); }
     to   { transform: scaleY(1.55) translateY(0); }
@@ -448,7 +448,7 @@
     animation: footer-letter-in 1.6s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
-  /* ── Mobile footer fixes ── */
+  /* -- Mobile footer fixes -- */
   @media (max-width: 768px) {
     /* Smaller translateY so letters emerge properly over the shorter mobile image */
     @keyframes footer-letter-in {
@@ -459,7 +459,7 @@
       transform: scaleY(1.3) translateY(80px);
     }
 
-    /* Keep left/right layout on mobile — reduce padding and font size */
+    /* Keep left/right layout on mobile � reduce padding and font size */
     #footer-links-bar {
       padding: 1rem 1.2rem !important;
       align-items: flex-end !important;
@@ -576,7 +576,7 @@
   <section id="visual-identity" class="section-work py-8 md:py-16 bg-[#EDEBDD] overflow-hidden border-t border-zinc-100">
     <div class="px-6 md:px-24 pt-8 md:pt-16 mb-8 md:mb-16 flex flex-col w-full">
       <div class="w-full text-[#1B1717] md:text-right">
-        <p class="text-zinc-600 uppercase text-[10px] tracking-[0.2em] mb-6">Section 01 — Branding</p>
+        <p class="text-zinc-600 uppercase text-[10px] tracking-[0.2em] mb-6">Section 01 � Branding</p>
       </div>
       <h2 class="text-[3rem] sm:text-[4.5rem] md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-[#1B1717] text-left">Visual<br/>Identity</h2>
       <div class="text-zinc-600 text-sm md:text-base leading-relaxed w-full max-w-2xl text-left mt-6 md:mt-24">
@@ -584,9 +584,9 @@
       </div>
     </div>
 
-    <!-- ═══════════════════════════════════════════════
-         CASE STUDY 01 — BENNER TEA CO.
-    ═══════════════════════════════════════════════ -->
+    <!-- -----------------------------------------------
+         CASE STUDY 01 � BENNER TEA CO.
+    ----------------------------------------------- -->
     <div id="branding" class="w-full bg-[#EDEBDD] text-[#1B1717] overflow-x-hidden">
 
 
@@ -595,16 +595,16 @@
       <div class="px-6 md:px-24 py-8 md:py-16 border-b border-zinc-100">
         <div class="flex flex-col gap-6">
           <div>
-            <p class="text-[10px] uppercase tracking-[0.5em] text-[#1B1717] font-bold mb-6">01 — Project</p>
+            <p class="text-[10px] uppercase tracking-[0.5em] text-[#1B1717] font-bold mb-6">01 � Project</p>
             <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.85] text-[#1B1717]">Benner<br/>Tea Co.</h3>
           </div>
           <div class="max-w-2xl">
-            <p class="text-base md:text-lg font-medium leading-snug text-[#1B1717]">Full brand identity redesign — logo, colour palette, typography, and packaging system.</p>
+            <p class="text-base md:text-lg font-medium leading-snug text-[#1B1717]">Full brand identity redesign � logo, colour palette, typography, and packaging system.</p>
           </div>
         </div>
       </div>
 
-      <!-- Brand Guidelines — Full 2-Column Grid (all pages + mockups) -->
+      <!-- Brand Guidelines � Full 2-Column Grid (all pages + mockups) -->
       <div class="py-8 md:py-20">
         <div class="px-6 md:px-24 mb-5 md:mb-10 max-w-[1400px] mx-auto flex items-end justify-between border-b border-zinc-100 pb-4 md:pb-8">
           <div>
@@ -629,8 +629,8 @@
             <img src="/Images/Branding/Mockup 02.webp" class="w-full h-full aspect-square object-cover block transition-transform duration-700 group-hover:scale-[1.02] border-none" alt="Mockup 02" loading="lazy" decoding="async">
           </div>
           <div class="col-span-2 md:col-span-1 bg-[#1B1717] w-full aspect-square relative flex items-center justify-center">
-            <video aria-hidden="true" preload="none" autoplay muted loop playsinline class="card-video w-full h-full object-cover absolute inset-0 hidden md:block" data-src="/Images/Branding/Rebranding_Product_Video_Generation.mp4"></video>
-            <video aria-hidden="true" preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-full object-cover absolute inset-0 block md:hidden pointer-events-none" data-src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4"></video>
+            <video aria-hidden="true" preload="none" autoplay muted loop playsinline class="card-video w-full h-full object-cover absolute inset-0 hidden md:block" src="/Images/Branding/Rebranding_Product_Video_Generation.mp4"></video>
+            <video aria-hidden="true" preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-full object-cover absolute inset-0 block md:hidden pointer-events-none" src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4"></video>
           </div>
           <div class="col-span-2 md:col-span-1 group overflow-hidden bg-[#EDEBDD]">
             <img src="/Images/Branding/mockup 03.webp" class="w-full h-full aspect-square object-cover block transition-transform duration-700 group-hover:scale-[1.02] border-none" alt="Mockup 03" loading="lazy" decoding="async">
@@ -645,10 +645,10 @@
       </div>
 
 
-      <!-- Editorial Content — Dense Grid -->
+      <!-- Editorial Content � Dense Grid -->
       <div class="px-6 md:px-24 py-0 max-w-[1400px] mx-auto divide-y divide-zinc-100">
 
-        <!-- Gap + Opportunity — side by side -->
+        <!-- Gap + Opportunity � side by side -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
           <div class="py-5 md:py-10 md:pr-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-[#1B1717] mb-4">02 / Problem</p>
@@ -658,11 +658,11 @@
           <div class="py-5 md:py-10 md:pl-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-[#1B1717] mb-4">03 / Direction</p>
             <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-[#1B1717] mb-4">Clean. Minimal.<br/>Built to stand out.</h3>
-            <p class="text-[9px] md:text-[11px] leading-relaxed text-[#1B1717] font-normal">The goal was a restrained visual system — flat layout, earthy palette, strong type hierarchy — that feels premium without being loud.</p>
+            <p class="text-[9px] md:text-[11px] leading-relaxed text-[#1B1717] font-normal">The goal was a restrained visual system � flat layout, earthy palette, strong type hierarchy � that feels premium without being loud.</p>
           </div>
         </div>
 
-        <!-- Objective + Approach — side by side -->
+        <!-- Objective + Approach � side by side -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
           <div class="py-5 md:py-10 md:pr-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-[#1B1717] mb-6">04 / Design Decisions</p>
@@ -686,11 +686,11 @@
           <div class="py-5 md:py-10 md:pl-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-[#1B1717] mb-4">05 / Approach</p>
             <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-[#1B1717] mb-4">Strip it back.<br/>Make it count.</h3>
-            <p class="text-[9px] md:text-[11px] leading-relaxed text-[#1B1717] font-normal">Removed all visual clutter. Every element — layout, spacing, colour, type — was chosen with purpose. Nothing decorative that doesn't serve the brand.</p>
+            <p class="text-[9px] md:text-[11px] leading-relaxed text-[#1B1717] font-normal">Removed all visual clutter. Every element � layout, spacing, colour, type � was chosen with purpose. Nothing decorative that doesn't serve the brand.</p>
           </div>
         </div>
 
-        <!-- Strategic Details + Transformation — side by side -->
+        <!-- Strategic Details + Transformation � side by side -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
           <div class="py-5 md:py-10 md:pr-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-[#1B1717] mb-6">06 / Deliverables</p>
@@ -711,7 +711,7 @@
           </div>
           <div class="py-5 md:py-10 md:pl-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-[#1B1717] mb-4">07 / Result</p>
-            <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-[#1B1717] mb-3">A complete brand system — ready across print, packaging, and digital.</h3>
+            <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-[#1B1717] mb-3">A complete brand system � ready across print, packaging, and digital.</h3>
             <p class="text-sm font-medium text-[#1B1717]">29-page brand guidelines document. Full mockup set included.</p>
           </div>
         </div>
@@ -720,20 +720,20 @@
     </div>
     <!-- END: Benner Tea Co. -->
 
-    <!-- ═══════════════════════════════════════════════
-         CASE STUDY 02 — LUKE'S ICED COFFEE
-    ═══════════════════════════════════════════════ -->
+    <!-- -----------------------------------------------
+         CASE STUDY 02 � LUKE'S ICED COFFEE
+    ----------------------------------------------- -->
     <div id="web-development" class="w-full bg-[#EDEBDD] text-[#1B1717] overflow-x-hidden border-t border-zinc-100">
 
       <!-- Project Title Row -->
       <div class="px-6 md:px-24 py-8 md:py-16 border-b border-zinc-100">
         <div class="flex flex-col gap-6">
           <div>
-            <p class="text-[10px] uppercase tracking-[0.5em] text-[#1B1717] font-bold mb-6">02 — Project</p>
+            <p class="text-[10px] uppercase tracking-[0.5em] text-[#1B1717] font-bold mb-6">02 � Project</p>
             <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.85] text-[#1B1717]">Luke's<br/>Iced Coffee</h3>
           </div>
           <div class="max-w-2xl">
-            <p class="text-base md:text-lg font-medium leading-snug text-[#1B1717]">Targeted collateral design — logo, menu layout, business cards, and packaging system.</p>
+            <p class="text-base md:text-lg font-medium leading-snug text-[#1B1717]">Targeted collateral design � logo, menu layout, business cards, and packaging system.</p>
           </div>
         </div>
       </div>
@@ -772,7 +772,7 @@
           <div>
             <p class="text-[10px] uppercase tracking-[0.5em] text-[#1B1717] font-black mb-4">Colour Palette</p>
             <h3 class="text-3xl md:text-5xl font-bold tracking-tighter leading-tight text-[#1B1717] mb-4">Warmth &amp; Cold.</h3>
-            <p class="text-[9px] md:text-[11px] leading-relaxed text-[#1B1717] max-w-sm">Two opposing tones — coffee brown and iced blue — create the core tension of the brand. Minimal palette, maximum recognition.</p>
+            <p class="text-[9px] md:text-[11px] leading-relaxed text-[#1B1717] max-w-sm">Two opposing tones � coffee brown and iced blue � create the core tension of the brand. Minimal palette, maximum recognition.</p>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-[#EDEBDD] shadow-sm">
             <div class="bg-[#FEE6C2] h-24 flex items-end p-6 relative">
@@ -807,7 +807,7 @@
         </div>
       </div>
 
-      <!-- Editorial Content — Dense Grid -->
+      <!-- Editorial Content � Dense Grid -->
       <div class="px-6 md:px-24 py-0 max-w-[1400px] mx-auto divide-y divide-zinc-100">
 
         <!-- Problem + Direction -->
@@ -815,7 +815,7 @@
           <div class="py-5 md:py-10 md:pr-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-[#1B1717] mb-4">02 / Problem</p>
             <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-[#1B1717] mb-4">Outdated collateral.<br/>Low shelf impact.</h3>
-            <p class="text-[9px] md:text-[11px] leading-relaxed text-[#1B1717] font-normal">Luke's had a great product, but their touchpoints — packaging, menus, and business cards — failed to communicate what made them unique. The logo lacked legibility, and the physical items didn't feel cohesive.</p>
+            <p class="text-[9px] md:text-[11px] leading-relaxed text-[#1B1717] font-normal">Luke's had a great product, but their touchpoints � packaging, menus, and business cards � failed to communicate what made them unique. The logo lacked legibility, and the physical items didn't feel cohesive.</p>
           </div>
           <div class="py-5 md:py-10 md:pl-16">
             <p class="text-[10px] tracking-[0.3em] uppercase font-black text-[#1B1717] mb-4">03 / Direction</p>
@@ -887,9 +887,9 @@
     </div>
     <!-- END: Luke's Iced Coffee -->
 
-    <!-- ═══════════════════════════════════════════════
-         PROJECT 03 — THE VENOM BERRIES
-    ═══════════════════════════════════════════════ -->
+    <!-- -----------------------------------------------
+         PROJECT 03 � THE VENOM BERRIES
+    ----------------------------------------------- -->
 </section>
 </main>
 
@@ -908,7 +908,7 @@
 
   <div id="footer-scene" style="position: relative; width: 100%;">
 
-    <!-- ① BASE: Full sunset scenery — sets natural height of footer -->
+    <!-- ? BASE: Full sunset scenery � sets natural height of footer -->
     <img
       src="/Images/footer1.webp"
       alt=""
@@ -916,7 +916,7 @@
       style="display: block; width: 100%; height: auto;"
     />
 
-    <!-- ② TEXT: "addesign" — per-letter stretched rise, bottom-anchored -->
+    <!-- ? TEXT: "addesign" � per-letter stretched rise, bottom-anchored -->
     <div
       id="footer-addesign-text"
       class="font-light md:font-[100]"
@@ -937,7 +937,7 @@
       "
     ><span class="footer-letter" style="animation-delay:0s">a</span><span class="footer-letter" style="animation-delay:0.1s">d</span><span class="footer-letter" style="animation-delay:0.2s">d</span><span class="footer-letter" style="animation-delay:0.3s">e</span><span class="footer-letter" style="animation-delay:0.4s">s</span><span class="footer-letter" style="animation-delay:0.5s">i</span><span class="footer-letter" style="animation-delay:0.6s">g</span><span class="footer-letter" style="animation-delay:0.7s">n</span></div>
 
-    <!-- ③ FOREGROUND: Mountains + land (transparent sky) — sits on top of text -->
+    <!-- ? FOREGROUND: Mountains + land (transparent sky) � sits on top of text -->
     <img
       src="/Images/Footer 2.webp"
       alt=""
@@ -956,7 +956,7 @@
     <!-- OVERLAY: Gradient layer at the bottom to improve text visibility without covering the addesign text -->
     <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 150px; background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent); z-index: 4; pointer-events: none;"></div>
 
-    <!-- ④ LINKS: overlaid at bottom of the scene -->
+    <!-- ? LINKS: overlaid at bottom of the scene -->
     <div class="absolute bottom-0 left-0 w-full z-10 flex flex-col md:flex-row md:justify-between md:items-stretch px-4 pb-2 pt-4 md:py-6 md:px-10 gap-2 md:gap-0" id="footer-links-bar">
 
       <!-- === MOBILE LAYOUT (perfectly baseline aligned) === -->
@@ -965,14 +965,14 @@
         <div class="flex flex-col items-start gap-1.5">
           <a href="/" class="font-['Helvetica_Neue',Helvetica,Arial,sans-serif] text-[10px] font-semibold text-white tracking-[0.08em] no-underline lowercase leading-none">addesign studio</a>
           <p class="font-manrope text-[8px] tracking-[0.15em] uppercase text-white/50 m-0 leading-[16px]">
-            © 2024 addesign studio.<br/>All rights reserved.
+            � 2024 addesign studio.<br/>All rights reserved.
           </p>
         </div>
 
         <!-- Right side -->
         <div class="flex flex-col items-end">
           <p class="font-manrope text-[8px] tracking-[0.15em] uppercase m-0 leading-[16px] text-right">
-            <a href="#top" class="text-white font-bold no-underline hover:opacity-50">Top ↑</a> &nbsp;&nbsp;&nbsp; 
+            <a href="#top" class="text-white font-bold no-underline hover:opacity-50">Top ?</a> &nbsp;&nbsp;&nbsp; 
             <a href="contact.html" class="text-white/60 no-underline hover:text-white">Contact</a> &nbsp;&nbsp;&nbsp; 
             <a href="privacy-policy.html" class="text-white/60 no-underline hover:text-white">Privacy</a>
             <br/>
@@ -988,7 +988,7 @@
       <div id="footer-links-left" class="hidden md:flex flex-col justify-between items-start text-left w-auto h-full">
         <div>
           <a href="/" class="font-['Helvetica_Neue',Helvetica,Arial,sans-serif] text-sm font-semibold text-white tracking-[0.08em] no-underline block mb-1 lowercase">addesign studio</a>
-          <p class="font-manrope text-xs tracking-[0.18em] uppercase text-white/50 m-0 leading-snug">© 2024 addesign studio. All rights reserved.</p>
+          <p class="font-manrope text-xs tracking-[0.18em] uppercase text-white/50 m-0 leading-snug">� 2024 addesign studio. All rights reserved.</p>
         </div>
         <div class="flex flex-row gap-6 items-center justify-start mt-0">
           <a href="contact.html" class="font-manrope text-[11px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">Contact</a>
@@ -1016,7 +1016,7 @@
 </footer>
 
 <script>
-  /* "addesign" — fires only when user has scrolled well into the footer */
+  /* "addesign" � fires only when user has scrolled well into the footer */
   (function() {
     var el = document.getElementById('footer-addesign-text');
     if (!el) return;
@@ -1062,7 +1062,7 @@
     }
   });
 
-  /* ── Hamburger ───────────────────────────────────────────── */
+  /* -- Hamburger --------------------------------------------- */
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobile-menu');
   const ham1 = document.getElementById('ham-1');
@@ -1356,9 +1356,9 @@
       <div>
         <label for="test-rating" class="block text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2">Rating</label>
         <select id="test-rating" class="w-full bg-zinc-800 border border-transparent text-white text-sm px-4 py-3 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all appearance-none cursor-pointer">
-          <option value="5">⭐⭐⭐⭐⭐ (5 Stars)</option>
-          <option value="4">⭐⭐⭐⭐ (4 Stars)</option>
-          <option value="3">⭐⭐⭐ (3 Stars)</option>
+          <option value="5">????? (5 Stars)</option>
+          <option value="4">???? (4 Stars)</option>
+          <option value="3">??? (3 Stars)</option>
         </select>
       </div>
 
@@ -1408,7 +1408,7 @@
   <div class="w-full flex flex-col items-center py-10 md:py-20 px-4 md:px-0">
     <div id="guidelines-container" class="w-full max-w-7xl shadow-2xl">
 
-      <!-- Brand Guideline Pages 01–26: 2 per row -->
+      <!-- Brand Guideline Pages 01�26: 2 per row -->
       <div class="grid grid-cols-2 gap-0">
         <img src="/Images/Branding/Brand guidelines-01.webp" class="w-full h-auto block" alt="Page 01" loading="lazy" decoding="async">
         <img src="/Images/Branding/Brand guidelines-02.webp" class="w-full h-auto block" alt="Page 02" loading="lazy" decoding="async">
@@ -1442,8 +1442,8 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-0 w-full bg-[#1B1717]">
         <!-- Video -->
         <div class="w-full aspect-square relative flex items-center justify-center">
-          <video aria-hidden="true" preload="none" autoplay muted loop playsinline class="card-video w-full h-full object-cover absolute inset-0 hidden md:block" data-src="/Images/Branding/Rebranding_Product_Video_Generation.mp4"></video>
-          <video aria-hidden="true" preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-full object-cover absolute inset-0 block md:hidden pointer-events-none" data-src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4"></video>
+          <video aria-hidden="true" preload="none" autoplay muted loop playsinline class="card-video w-full h-full object-cover absolute inset-0 hidden md:block" src="/Images/Branding/Rebranding_Product_Video_Generation.mp4"></video>
+          <video aria-hidden="true" preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-full object-cover absolute inset-0 block md:hidden pointer-events-none" src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4"></video>
         </div>
         <!-- Mockups -->
         <img src="/Images/Branding/Mockup 01.webp" class="w-full h-full aspect-square object-cover block border-none" alt="Mockup 1" loading="lazy" decoding="async">
@@ -1453,7 +1453,7 @@
         <img src="/Images/Branding/IMG_3641.webp" class="w-full h-full aspect-square object-cover block border-none" alt="Mockup 5" loading="lazy" decoding="async">
       </div>
 
-      <!-- Brand Guideline Pages 27–28: 2 per row -->
+      <!-- Brand Guideline Pages 27�28: 2 per row -->
       <div class="grid grid-cols-2 gap-0">
         <img src="/Images/Branding/Brand guidelines-27.webp" class="w-full h-auto block" alt="Page 27" loading="lazy" decoding="async">
         <img src="/Images/Branding/Brand guidelines-28.webp" class="w-full h-auto block" alt="Page 28" loading="lazy" decoding="async">
@@ -1472,7 +1472,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   gsap.registerPlugin(ScrollTrigger);
 
-  /* — Featured Work Cards Entrance: clean fade + lift — */
+  /* � Featured Work Cards Entrance: clean fade + lift � */
   gsap.utils.toArray('.fade-enter-card').forEach((card, i) => {
     gsap.from(card, {
       scrollTrigger: {
@@ -1488,8 +1488,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* — Section heading / text reveals —
-     IMPORTANT: skip any element inside .skill-item or #services — those
+  /* � Section heading / text reveals �
+     IMPORTANT: skip any element inside .skill-item or #services � those
      are controlled exclusively by the cube ScrollTrigger timeline and
      must NOT be touched by this global reveal. */
   gsap.utils.toArray('h2, h3').forEach(el => {
@@ -1689,7 +1689,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // ─── Shared helper: renders the iMac or iPhone mockup shell ──────────────
+  // --- Shared helper: renders the iMac or iPhone mockup shell --------------
   function solutionMedia(mediaPath, type, isVideo = true) {
     const fitClass = 'object-cover bg-[#1B1717]';
     const media = mediaPath.endsWith('.mp4') 
@@ -1771,7 +1771,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <!-- Section 1: Intro -->
         <section class="flex flex-col items-center justify-center px-6 text-center space-y-8 md:space-y-16" style="min-height: calc(var(--vh, 1svh) * 100);">
           <div class="benner-reveal overflow-hidden">
-            <span class="text-[10px] tracking-[0.5em] uppercase text-zinc-400 font-bold block mb-4 md:mb-8">Section 01 — Intro</span>
+            <span class="text-[10px] tracking-[0.5em] uppercase text-zinc-400 font-bold block mb-4 md:mb-8">Section 01 � Intro</span>
             <h1 class="text-4xl md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-white mb-4 md:mb-12">Benner<br/>Tea Co.</h1>
           </div>
           <div class="benner-reveal overflow-hidden max-w-2xl">
@@ -1796,11 +1796,11 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div class="md:col-span-8 space-y-12">
               <div class="benner-reveal overflow-hidden">
-                <h3 class="text-4xl md:text-7xl font-bold tracking-tighter leading-tight">The product was good.<br/><span class="text-zinc-300">The perception wasn’t.</span></h3>
+                <h3 class="text-4xl md:text-7xl font-bold tracking-tighter leading-tight">The product was good.<br/><span class="text-zinc-300">The perception wasn�t.</span></h3>
               </div>
               <div class="benner-reveal overflow-hidden max-w-xl">
                 <p class="text-lg md:text-xl text-zinc-400 leading-relaxed font-light">
-                  Benner Tea Co. existed in a crowded category—but visually, it blended in instead of standing out.<br/><br/>
+                  Benner Tea Co. existed in a crowded category�but visually, it blended in instead of standing out.<br/><br/>
                   The brand lacked clarity, identity, and a reason for younger consumers to choose it.
                 </p>
               </div>
@@ -1815,8 +1815,8 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="md:col-span-8">
               <div class="benner-reveal overflow-hidden">
                 <h3 class="text-4xl md:text-8xl font-bold tracking-tighter leading-[0.9] mb-6 md:mb-12 italic">
-                  Tea is no longer just a beverage—<br/>
-                  it’s part of a daily ritual.<br/>
+                  Tea is no longer just a beverage�<br/>
+                  it�s part of a daily ritual.<br/>
                   A moment of pause.<br/>
                   A lifestyle choice.
                 </h3>
@@ -1860,7 +1860,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <h3 class="text-5xl md:text-9xl font-bold tracking-tighter leading-tight mb-6 md:mb-12 italic">Reduce noise.<br/>Increase meaning.</h3>
               <div class="benner-reveal overflow-hidden max-w-2xl">
                 <p class="text-lg md:text-xl text-zinc-400 leading-relaxed font-light">
-                  Every decision—from layout to color to typography—was made to simplify the experience and strengthen emotional connection.
+                  Every decision�from layout to color to typography�was made to simplify the experience and strengthen emotional connection.
                 </p>
               </div>
             </div>
@@ -1894,7 +1894,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div class="md:col-span-8">
               <h3 class="text-4xl md:text-7xl font-bold tracking-tighter leading-tight mb-6 md:mb-12">From a brand that felt generic and forgettable<br/><span class="text-zinc-300">to one that feels intentional, modern, and distinct.</span></h3>
-              <p class="text-xl md:text-2xl font-light text-zinc-400 leading-tight">A system that not only looks better—but communicates better.</p>
+              <p class="text-xl md:text-2xl font-light text-zinc-400 leading-tight">A system that not only looks better�but communicates better.</p>
             </div>
           </section>
 
@@ -1999,7 +1999,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="md:col-span-8 space-y-16">
               <div>
                 <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold mb-4">Client & Concept</p>
-                <p class="text-3xl md:text-5xl font-medium tracking-tight leading-tight text-zinc-800">${data.overview.client} — ${data.overview.concept}</p>
+                <p class="text-3xl md:text-5xl font-medium tracking-tight leading-tight text-zinc-800">${data.overview.client} � ${data.overview.concept}</p>
               </div>
               <div class="max-w-2xl">
                 <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold mb-4">The Challenge</p>
@@ -2117,11 +2117,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 </script>
 
-<!-- ─── Lazy Video Loader ─────────────────────────────────────────────────────
+<!-- --- Lazy Video Loader -----------------------------------------------------
      Detects mobile, assigns the right src, and only loads each card video
      when it scrolls into view. Fixes the broken <source media> approach and
      prevents 3 videos competing for bandwidth on page load.
-──────────────────────────────────────────────────────────────────────────── -->
+---------------------------------------------------------------------------- -->
 <script>
 (function() {
   const isMobile = window.innerWidth <= 768;
@@ -2214,12 +2214,12 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// ─── Lenis Smooth Scroll Initialisation ─────────────────────────────────────
+// --- Lenis Smooth Scroll Initialisation -------------------------------------
 document.addEventListener('DOMContentLoaded', function initLenis() {
   if (typeof Lenis === 'undefined') return;
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
-  // ── iOS/Touch Fix ──────────────────────────────────────────────────────────
+  // -- iOS/Touch Fix ----------------------------------------------------------
   // Lenis intercepts touch events and fights iOS's native momentum scroll,
   // causing the scroll to abruptly stop mid-swipe on iPhone/iPad.
   // The fix: on any touch-primary device, skip Lenis entirely and let iOS
@@ -2238,13 +2238,13 @@ document.addEventListener('DOMContentLoaded', function initLenis() {
     orientation: 'vertical',
     gestureOrientation: 'vertical',
     smoothWheel: true,
-    smoothTouch: false,  // always off — native touch scroll is better
+    smoothTouch: false,  // always off � native touch scroll is better
     infinite: false,
   });
 
   window.__lenis = lenis;
 
-  // ── CRITICAL: Drive Lenis through GSAP's ticker, NOT a separate rAF.
+  // -- CRITICAL: Drive Lenis through GSAP's ticker, NOT a separate rAF.
   // This keeps Lenis and ScrollTrigger on the exact same frame tick,
   // so scrub-based timelines read the correct interpolated scroll position.
   gsap.ticker.add((time) => {
@@ -2296,7 +2296,7 @@ document.addEventListener('DOMContentLoaded', function initLenis() {
   });
 });
 
-// ─── Mobile Menu Button Visibility (transparent on hero, solid on scroll) ─────
+// --- Mobile Menu Button Visibility (transparent on hero, solid on scroll) -----
 (function initMobileMenuVisibility() {
   // Mobile only
   if (!window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
@@ -2327,9 +2327,9 @@ document.addEventListener('DOMContentLoaded', function initLenis() {
   document.addEventListener('DOMContentLoaded', trySetupMobileBtn);
 })();
 
-// ─── Navbar Background on Desktop (transparent on hero, solid on scroll) ──────
+// --- Navbar Background on Desktop (transparent on hero, solid on scroll) ------
 (function initNavbarVisibility() {
-  // Desktop only — mobile nav has no background pill
+  // Desktop only � mobile nav has no background pill
   if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
 
   const nav = document.getElementById('main-nav');
@@ -2377,7 +2377,7 @@ document.addEventListener('DOMContentLoaded', () => {
   customCursor.appendChild(cursorText);
   document.body.appendChild(customCursor);
 
-  // GSAP-driven cursor — GPU composited, no layout cost, works with mix-blend-mode
+  // GSAP-driven cursor � GPU composited, no layout cost, works with mix-blend-mode
   // xPercent/yPercent: -50 tells GSAP to centre the dot on the hotspot
   gsap.set(customCursor, { xPercent: -50, yPercent: -50 });
   const xTo = gsap.quickTo(customCursor, 'x', { duration: 0.15, ease: 'power3.out' });
@@ -2412,7 +2412,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- 2.5 Brand Carousel Interactive Scrolling --- (Handled by CSS)
 
-  // --- 3. Parallax Image Scrolling — refined scrub value for smoother result ---
+  // --- 3. Parallax Image Scrolling � refined scrub value for smoother result ---
   document.querySelectorAll('.fade-enter-card > div.relative, #mclaren .bg-zinc-900, #porsche .bg-zinc-900').forEach(container => {
     container.style.overflow = 'hidden';
     const img = container.querySelector('img');
@@ -2553,7 +2553,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     indObserver.observe(indContainer);
 
-    // ── Cube scroll logic using GSAP ScrollTrigger ──────────────────────────
+    // -- Cube scroll logic using GSAP ScrollTrigger --------------------------
     // Master visibility toggle
     ScrollTrigger.create({
       trigger: '#branding',
