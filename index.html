@@ -354,9 +354,6 @@
     background-color: #EDEBDD !important;
     color: #000000 !important;
   }
-  #mobile-dropdown-btn {
-    color: #EDEBDD !important;
-  }
 
   /* ─── Card hover lift ────────────────────────────────────────────── */
   .fade-enter-card {
@@ -522,8 +519,12 @@
 <!-- Glassmorphism Container (The 'Tab') -->
 
 <!-- TopNavBar (mix-blend-mode difference) -->
-<nav id="main-nav" class="absolute top-6 md:top-8 left-0 md:left-1/2 md:-translate-x-1/2 z-[100] flex items-center justify-center px-6 py-3 w-full md:w-max md:min-w-[800px] pointer-events-none">
+<nav id="main-nav" class="absolute top-6 md:top-8 left-0 md:left-1/2 md:-translate-x-1/2 z-[100] flex items-center justify-between md:justify-center px-6 py-3 w-full md:w-max md:min-w-[800px] pointer-events-none">
   
+  <a href="/" class="pointer-events-auto md:absolute md:left-6 md:top-1/2 md:-translate-y-1/2 flex items-center">
+    <img src="/Images/Brands/Adesign%20studio/Adesign%20logo%20colour-01.png" alt="Adesign Studio" class="h-8 md:h-10 w-auto object-contain" style="filter: grayscale(1) invert(1) brightness(100);">
+  </a>
+
   <!-- Desktop Links (Perfectly Centered) -->
   <div class="hidden md:flex items-center space-x-8 pointer-events-auto">
     <a class="nav-link-dynamic font-manrope text-[10px] tracking-[0.2em] uppercase text-[#1B1717] hover:text-[#630000] border-b border-black hover:border-[#630000] pb-0.5 transition-colors duration-300" href="/">Home</a>
@@ -702,16 +703,12 @@
       "></div>
 
       <!-- ── Scroll hint — right edge, horizontal text ── -->
-      <div id="hero-scroll-hint" style="
+      <div id="hero-scroll-hint" class="hidden md:flex flex-col items-center gap-[10px]" style="
         position:absolute;
         right:0;
         top:50%;
         transform:translateY(-50%);
         z-index:15;
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        gap:10px;
         pointer-events:none;
         padding-right:18px;
         opacity:0.45;
@@ -731,11 +728,6 @@
           font-weight:700;
           white-space:nowrap;
         ">Scroll to explore</span>
-      </div>
-
-      <!-- ── Centered Logo ── -->
-      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 12; pointer-events: none; mix-blend-mode: difference;">
-        <img src="/Images/Brands/Adesign%20studio/Adesign%20logo%20colour-01.png" alt="Logo" style="height: clamp(40px, 6vw, 65px); width: auto; object-fit: contain; filter: grayscale(1) invert(1) brightness(100);">
       </div>
 
       <!-- ── Project label badge (HIDDEN) ── -->
@@ -1052,8 +1044,8 @@
           // Simple explicit coords — wheel center at ~30% right, ~35% down from screen center.
           // Zoom in slightly, but push center FAR bottom-right so the massive radius doesn't overlap top-left text.
           const s3_scale = 1.1;
-          const s3_x = isMobile ? W*0.5 + 400 : W*0.6 + 600;
-          const s3_y = isMobile ? H*0.5 + 400 : H*0.6 + 600;
+          const s3_x = isMobile ? W*0.5 + 240 : W*0.6 + 600;
+          const s3_y = isMobile ? H*0.5 + 280 : H*0.6 + 600;
 
           const wheelPositions = [
              {x: s1_x, y: s1_y, scale: s1_scale},
