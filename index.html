@@ -88,8 +88,8 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800;900&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800;900&family=Manrope:wght@300;400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"></noscript>
 
-<!-- Preload critical brand assets -->
-<link rel="preload" as="image" href="Images/Copilot_20260615_130809.webp" fetchpriority="high">
+<!-- Preload critical hero backdrop -->
+<link rel="preload" as="image" href="/Images/Hero page animation/TVB BRand BOOK-13.webp" fetchpriority="high">
 
 <!-- Local CSS (built via Vite/Tailwind) -->
 <link href="dist.css" rel="stylesheet">
@@ -799,23 +799,23 @@
   ════════════════════════════════════════════ -->
   <script>
   (function() {
-    // ── Image data ──────────────────────────────────────────────
+    // ── Image data (Using crisp 560x560 WebP thumbnails for 95% payload reduction) ─────────────────────────
     const IMAGES = [
-      { src: '/Images/Hero page animation/TVB BRand BOOK-13.webp', label: 'TVB Brand Book',   project: 'TVB Brand Identity' },
-      { src: '/Images/Hero page animation/TVB BRand BOOK-14.webp', label: 'TVB Brand Book',   project: 'TVB Brand Identity' },
-      { src: '/Images/Hero page animation/TVB BRand BOOK-15.webp', label: 'TVB Brand Book',   project: 'TVB Brand Identity' },
-      { src: '/Images/Hero page animation/TVB BRand BOOK-17.webp', label: 'TVB Brand Book',   project: 'TVB Brand Identity' },
-      { src: '/Images/Hero page animation/TVB BRand BOOK-19.webp', label: 'TVB Brand Book',   project: 'TVB Brand Identity' },
-      { src: '/Images/Hero page animation/TVB BRand BOOK-20.webp', label: 'TVB Brand Book',   project: 'TVB Brand Identity' },
-      { src: '/Images/Hero page animation/TVB CAP Mockup-01.webp',          label: 'TVB Cap',         project: 'TVB Brand Identity' },
-      { src: '/Images/Hero page animation/TVB Guitar picks-01.webp',        label: 'TVB Guitar Picks', project: 'TVB Brand Identity' },
-      { src: '/Images/Hero page animation/TVB Stickers Mockup-01.webp',     label: 'TVB Stickers',    project: 'TVB Brand Identity' },
-      { src: '/Images/Hero page animation/TVB Tshirt Mockup-01.webp',       label: 'TVB T-Shirt',     project: 'TVB Brand Identity' },
-      { src: '/Images/Hero page animation/Benner backaging mockup-01.webp', label: 'Benner Packaging', project: 'Benner Packaging / Rebranding' },
-      { src: '/Images/Hero page animation/Benner logo mockup-01.webp',      label: 'Benner Logo',     project: 'Benner Packaging / Rebranding' },
-      { src: '/Images/Hero page animation/Benner packaging 2-01.webp',      label: 'Benner Vol.2',    project: 'Benner Packaging / Rebranding' },
-      { src: '/Images/Hero page animation/Lukes iced coffee banner mockup-01.webp', label: "Luke's Banner",  project: "Luke's Iced Coffee Logo Design" },
-      { src: '/Images/Hero page animation/Lukes iced coffee logo mockup-01.webp',   label: "Luke's Logo",   project: "Luke's Iced Coffee Logo Design" },
+      { src: '/Images/Hero page animation/thumbs/TVB BRand BOOK-13.webp', label: 'TVB Brand Book',   project: 'TVB Brand Identity' },
+      { src: '/Images/Hero page animation/thumbs/TVB BRand BOOK-14.webp', label: 'TVB Brand Book',   project: 'TVB Brand Identity' },
+      { src: '/Images/Hero page animation/thumbs/TVB BRand BOOK-15.webp', label: 'TVB Brand Book',   project: 'TVB Brand Identity' },
+      { src: '/Images/Hero page animation/thumbs/TVB BRand BOOK-17.webp', label: 'TVB Brand Book',   project: 'TVB Brand Identity' },
+      { src: '/Images/Hero page animation/thumbs/TVB BRand BOOK-19.webp', label: 'TVB Brand Book',   project: 'TVB Brand Identity' },
+      { src: '/Images/Hero page animation/thumbs/TVB BRand BOOK-20.webp', label: 'TVB Brand Book',   project: 'TVB Brand Identity' },
+      { src: '/Images/Hero page animation/thumbs/TVB CAP Mockup-01.webp',          label: 'TVB Cap',         project: 'TVB Brand Identity' },
+      { src: '/Images/Hero page animation/thumbs/TVB Guitar picks-01.webp',        label: 'TVB Guitar Picks', project: 'TVB Brand Identity' },
+      { src: '/Images/Hero page animation/thumbs/TVB Stickers Mockup-01.webp',     label: 'TVB Stickers',    project: 'TVB Brand Identity' },
+      { src: '/Images/Hero page animation/thumbs/TVB Tshirt Mockup-01.webp',       label: 'TVB T-Shirt',     project: 'TVB Brand Identity' },
+      { src: '/Images/Hero page animation/thumbs/Benner backaging mockup-01.webp', label: 'Benner Packaging', project: 'Benner Packaging / Rebranding' },
+      { src: '/Images/Hero page animation/thumbs/Benner logo mockup-01.webp',      label: 'Benner Logo',     project: 'Benner Packaging / Rebranding' },
+      { src: '/Images/Hero page animation/thumbs/Benner packaging 2-01.webp',      label: 'Benner Vol.2',    project: 'Benner Packaging / Rebranding' },
+      { src: '/Images/Hero page animation/thumbs/Lukes iced coffee banner mockup-01.webp', label: "Luke's Banner",  project: "Luke's Iced Coffee Logo Design" },
+      { src: '/Images/Hero page animation/thumbs/Lukes iced coffee logo mockup-01.webp',   label: "Luke's Logo",   project: "Luke's Iced Coffee Logo Design" },
     ];
     window.HERO_IMAGES = IMAGES;
   })();
@@ -834,22 +834,22 @@
 
       <!-- Half 1 -->
       <div class="brand-logo-row">
-        <img src="/Images/Brands/GTE%20Logo%20white.png" alt="Grand Theft Emo" class="logo-gte">
-        <img src="/Images/Brands/TVB%20Primary%20Logo%20white.png" alt="TVB" class="logo-tvb">
-        <img src="/Images/Brands/Copilot_20260426_132635.webp" alt="Copilot" class="logo-cop make-white">
-        <img src="/Images/Brands/Nexzy%20logo.webp" alt="Nexzy" class="logo-nex make-white">
-        <img src="/Images/Brands/teas%20cds.png" alt="Teas CDS" class="logo-teas">
-        <img src="/Images/Brands/benner%20logo.webp" alt="Benner Tea Co." class="logo-ben make-white">
+        <img src="/Images/Brands/GTE%20Logo%20white.webp" alt="Grand Theft Emo" class="logo-gte" loading="lazy" decoding="async">
+        <img src="/Images/Brands/TVB%20Primary%20Logo%20white.webp" alt="TVB" class="logo-tvb" loading="lazy" decoding="async">
+        <img src="/Images/Brands/Copilot_20260426_132635.webp" alt="Copilot" class="logo-cop make-white" loading="lazy" decoding="async">
+        <img src="/Images/Brands/Nexzy%20logo.webp" alt="Nexzy" class="logo-nex make-white" loading="lazy" decoding="async">
+        <img src="/Images/Brands/teas%20cds.webp" alt="Teas CDS" class="logo-teas" loading="lazy" decoding="async">
+        <img src="/Images/Brands/benner%20logo.webp" alt="Benner Tea Co." class="logo-ben make-white" loading="lazy" decoding="async">
       </div>
 
       <!-- Half 2 — seamless loop duplicate -->
       <div class="brand-logo-row" aria-hidden="true">
-        <img src="/Images/Brands/GTE%20Logo%20white.png" alt="Grand Theft Emo" class="logo-gte">
-        <img src="/Images/Brands/TVB%20Primary%20Logo%20white.png" alt="TVB" class="logo-tvb">
-        <img src="/Images/Brands/Copilot_20260426_132635.webp" alt="Copilot" class="logo-cop make-white">
-        <img src="/Images/Brands/Nexzy%20logo.webp" alt="Nexzy" class="logo-nex make-white">
-        <img src="/Images/Brands/teas%20cds.png" alt="Teas CDS" class="logo-teas">
-        <img src="/Images/Brands/benner%20logo.webp" alt="Benner Tea Co." class="logo-ben make-white">
+        <img src="/Images/Brands/GTE%20Logo%20white.webp" alt="Grand Theft Emo" class="logo-gte" loading="lazy" decoding="async">
+        <img src="/Images/Brands/TVB%20Primary%20Logo%20white.webp" alt="TVB" class="logo-tvb" loading="lazy" decoding="async">
+        <img src="/Images/Brands/Copilot_20260426_132635.webp" alt="Copilot" class="logo-cop make-white" loading="lazy" decoding="async">
+        <img src="/Images/Brands/Nexzy%20logo.webp" alt="Nexzy" class="logo-nex make-white" loading="lazy" decoding="async">
+        <img src="/Images/Brands/teas%20cds.webp" alt="Teas CDS" class="logo-teas" loading="lazy" decoding="async">
+        <img src="/Images/Brands/benner%20logo.webp" alt="Benner Tea Co." class="logo-ben make-white" loading="lazy" decoding="async">
       </div>
 
     </div>
@@ -969,7 +969,9 @@
             
             const img = document.createElement('img');
             img.src = imgObj.src;
-            img.loading = "lazy";
+            img.loading = "eager";
+            img.decoding = "async";
+            img.alt = imgObj.label || "";
             
             div.appendChild(img);
             wheel.appendChild(div);
@@ -1334,146 +1336,7 @@
     </div>
   </div>
 
-<!-- ===================== POSTERS & ARTWORKS ===================== -->
-  <div class="px-6 md:px-12 lg:px-24 pt-4 md:pt-8 pb-8 md:pb-12 border-t border-[#1B1717]/10">
-    <div class="flex items-center gap-6 mb-3 pt-16 md:pt-24">
-      <span class="block w-10 h-[2px] bg-[#630000]"></span>
-      <span class="text-[10px] tracking-[0.35em] uppercase text-[#630000] font-bold">02 — Category</span>
-    </div>
-    <h2 class="text-5xl md:text-8xl font-bold tracking-tighter text-[#1B1717] leading-none">Posters &amp; Artworks</h2>
-  </div>
 
-  <div class="px-6 md:px-12 lg:px-24 pb-20 md:pb-32">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
-
-      <!-- Card: Album Artwork -->
-      <a href="album-artworks.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full aspect-[4/3]">
-        <img src="/Images/Brands/venom_berries/Album_art_final.webp" alt="Album Artwork" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90">
-        
-        
-        <div class="absolute top-6 right-6 w-8 h-8 rounded-full border border-[#1B1717]/10 bg-[#1B1717]/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span class="material-symbols-outlined text-[#EDEBDD] text-sm">north_east</span>
-        </div>
-      </div><div class="flex flex-col items-start text-left px-1">
-          <p class="text-[9px] tracking-[0.3em] uppercase font-bold mb-1 text-[#630000]/80">Music &amp; Art</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tight mb-3 text-[#630000]">Album Artwork</h3>
-          <span class="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest transition-colors duration-300 text-[#630000]/60 group-hover:text-[#630000]">
-            View Project <span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
-          </span>
-        </div></a>
-
-      <!-- Card: Poster Designs -->
-      <a href="posters.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full aspect-[4/3]">
-        <img src="/Images/Brands/venom_berries/TVB_Post-01.webp" alt="Poster Designs" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90">
-        
-        
-        <div class="absolute top-6 right-6 w-8 h-8 rounded-full border border-[#1B1717]/10 bg-[#1B1717]/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span class="material-symbols-outlined text-[#EDEBDD] text-sm">north_east</span>
-        </div>
-      </div><div class="flex flex-col items-start text-left px-1">
-          <p class="text-[9px] tracking-[0.3em] uppercase font-bold mb-1 text-[#630000]/80">Graphic Design</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tight mb-3 text-[#630000]">Poster Designs</h3>
-          <span class="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest transition-colors duration-300 text-[#630000]/60 group-hover:text-[#630000]">
-            View Project <span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
-          </span>
-        </div></a>
-
-    </div>
-  </div>
-
-  <!-- ===================== WEB DEVELOPMENT ===================== -->
-  <div class="px-6 md:px-12 lg:px-24 pt-4 md:pt-8 pb-8 md:pb-12 border-t border-[#1B1717]/10">
-    <div class="flex items-center gap-6 mb-3 pt-16 md:pt-24">
-      <span class="block w-10 h-[2px] bg-[#630000]"></span>
-      <span class="text-[10px] tracking-[0.35em] uppercase text-[#630000] font-bold">03 — Category</span>
-    </div>
-    <h2 class="text-5xl md:text-8xl font-bold tracking-tighter text-[#1B1717] leading-none">Web Development</h2>
-  </div>
-
-  <div class="px-6 md:px-12 lg:px-24 pb-20 md:pb-32">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
-
-      <!-- Card: Nexzy -->
-      <a href="web-development.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full aspect-[4/3]">
-        <video src="/Images/web_dev/img_3693.mp4" autoplay="" muted="" loop="" playsinline="" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90"></video>
-        
-        
-        <div class="absolute top-6 right-6 w-8 h-8 rounded-full border border-[#1B1717]/10 bg-[#1B1717]/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span class="material-symbols-outlined text-[#EDEBDD] text-sm">north_east</span>
-        </div>
-      </div><div class="flex flex-col items-start text-left px-1">
-          <p class="text-[9px] tracking-[0.3em] uppercase font-bold mb-1 text-[#630000]/80">Web Design &amp; Dev</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tight mb-3 text-[#630000]">Nexzy</h3>
-          <span class="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest transition-colors duration-300 text-[#630000]/60 group-hover:text-[#630000]">
-            View Project <span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
-          </span>
-        </div></a>
-
-      <!-- Card: Execuvision -->
-      <a href="web-development.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full aspect-[4/3]">
-        <video src="/Images/web_dev/img_3691.mp4" autoplay="" muted="" loop="" playsinline="" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90"></video>
-        
-        
-        <div class="absolute top-6 right-6 w-8 h-8 rounded-full border border-[#1B1717]/10 bg-[#1B1717]/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span class="material-symbols-outlined text-[#EDEBDD] text-sm">north_east</span>
-        </div>
-      </div><div class="flex flex-col items-start text-left px-1">
-          <p class="text-[9px] tracking-[0.3em] uppercase font-bold mb-1 text-[#630000]/80">Web Design &amp; Dev</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tight mb-3 text-[#630000]">Execuvision</h3>
-          <span class="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest transition-colors duration-300 text-[#630000]/60 group-hover:text-[#630000]">
-            View Project <span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
-          </span>
-        </div></a>
-
-    </div>
-  </div>
-
-  <!-- ===================== SKETCHES ===================== -->
-  <div class="px-6 md:px-12 lg:px-24 pt-4 md:pt-8 pb-8 md:pb-12 border-t border-[#1B1717]/10">
-    <div class="flex items-center gap-6 mb-3 pt-16 md:pt-24">
-      <span class="block w-10 h-[2px] bg-[#630000]"></span>
-      <span class="text-[10px] tracking-[0.35em] uppercase text-[#630000] font-bold">04 — Category</span>
-    </div>
-    <h2 class="text-5xl md:text-8xl font-bold tracking-tighter text-[#1B1717] leading-none">Sketches</h2>
-  </div>
-
-  <div class="px-6 md:px-12 lg:px-24 pb-24 md:pb-40">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
-
-      <!-- Card: McLaren -->
-      <a href="sketches.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full aspect-[4/3]">
-        <img src="/Images/ART%20work/IMG_9844%20(2).webp" alt="McLaren Sketches" loading="lazy" class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90">
-        
-        
-        <div class="absolute top-6 right-6 w-8 h-8 rounded-full border border-[#1B1717]/10 bg-[#1B1717]/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span class="material-symbols-outlined text-[#EDEBDD] text-sm">north_east</span>
-        </div>
-      </div><div class="flex flex-col items-start text-left px-1">
-          <p class="text-[9px] tracking-[0.3em] uppercase font-bold mb-1 text-[#630000]/80">Automotive Art</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tight mb-3 text-[#630000]">McLaren</h3>
-          <span class="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest transition-colors duration-300 text-[#630000]/60 group-hover:text-[#630000]">
-            View Sketches <span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
-          </span>
-        </div></a>
-
-      <!-- Card: Porsche -->
-      <a href="sketches.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full aspect-[4/3]">
-        <img src="/Images/ART%20work/IMG_0498.webp" alt="Porsche Sketches" loading="lazy" class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90">
-        
-        
-        <div class="absolute top-6 right-6 w-8 h-8 rounded-full border border-[#1B1717]/10 bg-[#1B1717]/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span class="material-symbols-outlined text-[#EDEBDD] text-sm">north_east</span>
-        </div>
-      </div><div class="flex flex-col items-start text-left px-1">
-          <p class="text-[9px] tracking-[0.3em] uppercase font-bold mb-1 text-[#630000]/80">Automotive Art</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tight mb-3 text-[#630000]">Porsche</h3>
-          <span class="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest transition-colors duration-300 text-[#630000]/60 group-hover:text-[#630000]">
-            View Sketches <span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
-          </span>
-        </div></a>
-
-    </div>
-  </div>
 
 </section>
 
@@ -3294,10 +3157,30 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   
+  // --- 4. IntersectionObserver for Video Lazy Loading ---
+  if ('IntersectionObserver' in window) {
+    const videoObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const video = entry.target;
+          const isMobile = window.innerWidth <= 768;
+          const src = isMobile && video.dataset.mobileSrc ? video.dataset.mobileSrc : video.dataset.src;
+          if (src && video.src !== src) {
+            video.src = src;
+            video.load();
+            video.play().catch(e => console.log('Video play failed:', e));
+          }
+          observer.unobserve(video);
+        }
+      });
+    }, { rootMargin: '200px 0px' });
+
+    document.querySelectorAll('video.card-video').forEach(video => {
+      videoObserver.observe(video);
+    });
+  }
 });
 </script>
-
-  
 
 
 </body></html>
