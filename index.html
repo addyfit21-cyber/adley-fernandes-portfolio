@@ -902,8 +902,10 @@
     if (isTouchDevice && scrollHint) scrollHint.style.opacity = '1';
 
     // ── IntersectionObserver: auto-close when hero leaves view ────
+    let isHeroVisible = true;
     const heroObserver = new IntersectionObserver((entries) => {
-      if (!entries[0].isIntersecting && isCarouselOpen) {
+      isHeroVisible = entries[0].isIntersecting;
+      if (!isHeroVisible && isCarouselOpen) {
         selectImage(getActiveOrbitIdx());
       }
     }, { threshold: 0 });
@@ -1196,6 +1198,8 @@
       // Clean, infinite flashing loop (slower on mobile to save CPU)
       const flashInterval = window.matchMedia('(max-width: 768px)').matches ? 2000 : 250;
       setInterval(() => {
+        if (!isHeroVisible) return; // HUGE PERFORMANCE FIX: Don't burn CPU/Network when scrolling down!
+
         loopIdx = (loopIdx + 1) % TOTAL;
         const targetImg = IMAGES[loopIdx];
         
