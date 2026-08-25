@@ -1,4 +1,4 @@
-﻿
+
 
 
 <!DOCTYPE html>
@@ -100,7 +100,7 @@
   }
 </script>
 <style>
-  /* Lenis owns scrolling — disable native smooth to avoid conflicts */
+  /* Lenis owns scrolling � disable native smooth to avoid conflicts */
   html { scroll-behavior: auto; }
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
   body { font-family: 'Manrope', sans-serif; opacity: 0; }
@@ -193,7 +193,7 @@
   /* Force pointer-events none on project videos */
   .mockup-video { pointer-events: none; }
 
-  /* ─── Scroll-reveal baseline — elements start hidden ─────────────── */
+  /* --- Scroll-reveal baseline � elements start hidden --------------- */
   .reveal-up {
     opacity: 0;
     transform: translateY(40px);
@@ -205,18 +205,18 @@
     transform: translateY(0);
   }
 
-  /* ─── Nav backdrop glass polish ──────────────────────────────────── */
+  /* --- Nav backdrop glass polish ------------------------------------ */
   nav {
     transition: backdrop-filter 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease;
   }
 
-  /* ─── Card hover lift ────────────────────────────────────────────── */
+  /* --- Card hover lift ---------------------------------------------- */
   .fade-enter-card {
     transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
                 box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  /* ─── Section heading shimmer line ──────────────────────────────── */
+  /* --- Section heading shimmer line -------------------------------- */
   .section-underline {
     display: inline-block;
     position: relative;
@@ -242,14 +242,14 @@
     #hero p.hero-slide-right { font-size: 1rem !important; line-height: 1.6 !important; }
     #hero .hero-slide-right a { font-size: 0.65rem !important; padding: 0.8rem 1.5rem !important; }
 
-    /* Section headings — prevent bleed on narrow screens */
+    /* Section headings � prevent bleed on narrow screens */
     h2.text-\[7rem\], h2.text-\[2\.5rem\] { font-size: clamp(2rem, 10vw, 3.5rem) !important; }
 
     /* Cards: comfortable height on phones */
     .fade-enter-card .relative.h-\[500px\] { height: 280px !important; }
     .fade-enter-card .h-\[650px\] { height: 300px !important; }
 
-    /* About portrait — limit height on mobile */
+    /* About portrait � limit height on mobile */
     #about .aspect-\[4\/5\] { aspect-ratio: 1/1 !important; }
 
     /* Case study modal scrolling fix on iOS */
@@ -315,7 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
       </button>
       <!-- Dropdown Menu -->
       <div class="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-48 bg-[#EDEBDD] border border-zinc-100 shadow-2xl opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 flex flex-col p-2 z-[101]">
-        <a href="visual-identity.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-[#1B1717] hover:bg-[#EDEBDD] transition-colors text-left border-b border-zinc-50 last:border-0">Branding</a>
+        <a href="index.html#categories-grid" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-[#1B1717] hover:bg-[#EDEBDD] transition-colors text-left border-b border-zinc-50 last:border-0">Branding</a>
         <a href="posters.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-[#1B1717] hover:bg-[#EDEBDD] transition-colors text-left border-b border-zinc-50 last:border-0">Posters</a>
         <a href="sketches.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-[#1B1717] hover:bg-[#EDEBDD] transition-colors text-left border-b border-zinc-50 last:border-0">Illustration</a>
         <a href="web-development.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-zinc-500 hover:text-[#1B1717] hover:bg-[#EDEBDD] transition-colors text-left border-b border-zinc-50 last:border-0">Web Development</a>
@@ -349,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="px-6 py-3 border-b border-zinc-100">
         <span class="text-[9px] uppercase tracking-[0.2em] text-zinc-400 font-bold mb-3 block">Projects</span>
         <div class="flex flex-col pl-3 border-l border-zinc-200 gap-2">
-          <a href="visual-identity.html" class="py-1 text-[10px] uppercase tracking-widest text-zinc-500 hover:text-[#1B1717] mobile-link">Branding</a>
+          <a href="index.html#categories-grid" class="py-1 text-[10px] uppercase tracking-widest text-zinc-500 hover:text-[#1B1717] mobile-link">Branding</a>
           <a href="posters.html" class="py-1 text-[10px] uppercase tracking-widest text-zinc-500 hover:text-[#1B1717] mobile-link">Posters</a>
           <a href="sketches.html" class="py-1 text-[10px] uppercase tracking-widest text-zinc-500 hover:text-[#1B1717] mobile-link">Illustration</a>
           <a href="web-development.html" class="py-1 text-[10px] uppercase tracking-widest text-zinc-500 hover:text-[#1B1717] mobile-link">Web Development</a>
@@ -471,13 +471,13 @@ document.addEventListener('DOMContentLoaded', () => {
     <a class="font-manrope text-[10px] tracking-widest uppercase text-[#1B1717] font-bold hover:opacity-50 underline-offset-4 hover:underline transition-all duration-400" href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener">Instagram</a>
     <a class="font-manrope text-[10px] tracking-widest uppercase text-[#1B1717] font-bold hover:opacity-50 underline-offset-4 hover:underline transition-all duration-400" href="#contact-top">Back to top</a>
   </div>
-  <div class="font-manrope text-[10px] tracking-widest uppercase text-[#1B1717] font-bold">© 2024 addesign studio. ALL RIGHTS RESERVED.</div>
+  <div class="font-manrope text-[10px] tracking-widest uppercase text-[#1B1717] font-bold">� 2024 addesign studio. ALL RIGHTS RESERVED.</div>
 </footer>
 
 <!-- Success Toast -->
 <div id="toast" class="fixed bottom-8 right-8 bg-[#1B1717] text-white px-8 py-5 font-manrope text-sm tracking-widest uppercase flex items-center gap-4 z-50 shadow-2xl">
   <span class="material-symbols-outlined" style="font-size:18px;">check_circle</span>
-  Inquiry submitted — we'll be in touch.
+  Inquiry submitted � we'll be in touch.
 </div>
 
 <script>
