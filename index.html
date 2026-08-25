@@ -197,17 +197,7 @@
     transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-  /* ─── Page-level visibility fade-in (eliminates FOUC) ───────────── */
-  body {
-    opacity: 0;
-  }
-  body.ready {
-    animation: page-reveal 0.25s ease both;
-  }
-  @keyframes page-reveal {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
+  /* Removed Page-level visibility fade-in (eliminates FOUC) for faster mobile paint */
 
   /* Intro cursor blink animation */
   @keyframes pulse-cursor {
@@ -502,7 +492,7 @@
   }
   // Prevent FOUC by revealing body only after styles are compiled and parsed
   document.addEventListener('DOMContentLoaded', () => {
-    document.body.classList.add('ready');
+    // Body is now instantly visible to prevent 10s delay on mobile
   });
 
   // Handle bfcache back-navigation bug
@@ -644,33 +634,6 @@
           z-index:2;
           pointer-events:none;
         "></div>
-      </div>
-
-      <!-- ── Glassmorphic carousel backdrop ── -->
-      <div id="hero-carousel-bg" style="
-        position:absolute;
-        inset:0;
-        z-index:0;
-        opacity:0;
-        pointer-events:none;
-        transition:opacity 0.7s ease;
-        transform: scale(1.15);
-        background-image: 
-          linear-gradient(rgba(14,14,14,0.4), rgba(14,14,14,0.7)),
-          url('/Images/hero-carousel-backdrop.png');
-        background-size: cover;
-        background-position: center;
-      "></div>
-
-      <!-- ── Orbital ring container ── -->
-      <div id="hero-orbit-ring" style="
-        position: absolute;
-        inset: 0;
-        z-index: 5;
-        pointer-events: none;
-        opacity: 0;
-      ">
-        <!-- Orbit cards injected by JS -->
       </div>
 
       <!-- ── Hero Text Overlay ── -->
@@ -863,367 +826,6 @@
       { src: '/Images/Hero page animation/Lukes iced coffee logo mockup-01.webp',   label: "Luke's Logo",   project: "Luke's Iced Coffee Logo Design" },
     ];
     window.HERO_IMAGES = IMAGES;
-    const TOTAL = IMAGES.length;
-
-    // ── State ────────────────────────────────────────────────────
-    let activeIdx = 0;
-    let orbitAngle = 0;
-    let targetOrbitAngle = 0;
-    let isCarouselOpen = false;
-    let snapTimer = null;
-    let isSnapping = false;
-    let gsapReady = false;
-    let cursorInRightZone = false;
-    const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-
-    // ── DOM refs ─────────────────────────────────────────────────
-    const heroSection  = document.getElementById('hero');
-    const activeWrap   = document.getElementById('hero-active-img-wrap');
-    const activeImg    = document.getElementById('hero-active-img');
-      const bgImg        = document.getElementById('hero-bg-img');
-    const orbitRing    = document.getElementById('hero-orbit-ring');
-    const imgLabel     = document.getElementById('hero-img-label');
-    const labelText    = document.getElementById('hero-label-text');
-    const carouselBg   = document.getElementById('hero-carousel-bg');
-    const rightZone    = document.getElementById('hero-right-zone');
-    const scrollHint   = document.getElementById('hero-scroll-hint');
-
-    // ── Track cursor zone ─────────────────────────────────────────
-    // Carousel activates only in right 40%. Left side = normal page scroll.
-    document.addEventListener('mousemove', (e) => {
-      const inRight = e.clientX > window.innerWidth * 0.60;
-      if (inRight !== cursorInRightZone) {
-        cursorInRightZone = inRight;
-        if (rightZone) rightZone.classList.toggle('active-zone', inRight);
-        if (scrollHint) scrollHint.style.opacity = inRight ? '1' : '0.45';
-      }
-    }, { passive: true });
-    // Touch: always allow, no cursor restriction
-    if (isTouchDevice && scrollHint) scrollHint.style.opacity = '1';
-
-    // ── IntersectionObserver: auto-close when hero leaves view ────
-    let isHeroVisible = true;
-    const heroObserver = new IntersectionObserver((entries) => {
-      isHeroVisible = entries[0].isIntersecting;
-      if (!isHeroVisible && isCarouselOpen) {
-        selectImage(getActiveOrbitIdx());
-      }
-    }, { threshold: 0 });
-    heroObserver.observe(heroSection);
-
-    // ── Orbit geometry helpers ───────────────────────────────────
-    function getOrbitParams() {
-      const W = window.innerWidth, H = window.innerHeight;
-      const isMobile = W < 768;
-      // Cards are 16:9 to match the 1920×1080 source images — no cropping
-      const rx = isMobile ? W * 0.25 : W * 0.28;
-      const ry = isMobile ? H * 0.20 : H * 0.22;
-      const tilt = -0.45;
-      
-      // Rotate an ellipse shifts its lowest point. We offset cx so the front (lowest point) remains perfectly centered.
-      // The lowest point x is at: cx - ry * sin(tilt). We want this to equal W / 2.
-      const cx = (W / 2) + ry * Math.sin(tilt);
-      
-      return {
-        cx: cx,
-        cy: H / 2,
-        rx: rx,
-        ry: ry,
-        tilt: tilt,
-        cardW: isMobile ? 200 : 320,            // 16:9
-        cardH: isMobile ? 112 : 180,
-        activeCardW: isMobile ? 260 : 420,      // 16:9 active/front card
-        activeCardH: isMobile ? 146 : 236,
-      };
-    }
-
-    function getSlotAngle(i) {
-      // Distribute evenly; slot 0 = "front" position (right side of ellipse)
-      return (i / TOTAL) * Math.PI * 2;
-    }
-
-    function cardTransform(i, orbitOffset, params) {
-      const baseAngle = getSlotAngle(i) + orbitOffset;
-      
-      const ex = params.rx * Math.cos(baseAngle);
-      const ey = params.ry * Math.sin(baseAngle);
-      
-      const cosT = Math.cos(params.tilt);
-      const sinT = Math.sin(params.tilt);
-      
-      const x = params.cx + (ex * cosT - ey * sinT);
-      const y = params.cy + (ex * sinT + ey * cosT);
-      
-      // Depth: front is when ey is max (baseAngle = pi/2)
-      const depth = Math.sin(baseAngle); 
-      
-      const scale = 0.55 + 0.45 * ((depth + 1) / 2);         // 0.55 – 1.0
-      const opacity = 0.25 + 0.75 * ((depth + 1) / 2);       // 0.25 – 1.0
-      const zIndex = Math.round(scale * 100);
-      
-      // keep cards mostly upright, with a subtle 12-degree fan out towards the edges
-      // Math.cos(baseAngle) is 0 at the front/back, and 1/-1 at the extreme right/left
-      const rotate = Math.cos(baseAngle) * -12;
-      
-      return { x, y, scale, opacity, zIndex, rotate };
-    }
-
-    // ── Build orbit cards ────────────────────────────────────────
-    let orbitCards = [];
-    function buildOrbitCards() {
-      orbitRing.innerHTML = '';
-      orbitCards = [];
-      const params = getOrbitParams();
-      IMAGES.forEach((img, i) => {
-        const card = document.createElement('div');
-        card.className = 'orbit-card';
-        card.style.cssText = `
-          width:${params.cardW}px;height:${params.cardH}px;
-          left:0;top:0;opacity:0;
-          position:absolute;
-          transform-origin:center center;
-        `;
-        const imgEl = document.createElement('img');
-        imgEl.src = img.src;
-        imgEl.alt = img.label;
-        imgEl.loading = 'lazy';
-        card.appendChild(imgEl);
-
-        card.addEventListener('click', () => {
-          if (!isCarouselOpen || isSnapping) return;
-          selectImage(i);
-        });
-
-        orbitRing.appendChild(card);
-        orbitCards.push(card);
-      });
-    }
-
-    // ── Update orbit card positions ──────────────────────────────
-    function updateOrbit(animateOpacity) {
-      if (!gsapReady || !isCarouselOpen) return;
-      const params = getOrbitParams();
-      
-      orbitCards.forEach((card, i) => {
-        const t = cardTransform(i, orbitAngle, params);
-        const isActive = i === getActiveOrbitIdx();
-        const cw = isActive ? params.activeCardW : params.cardW;
-        const ch = isActive ? params.activeCardH : params.cardH;
-        card.style.width  = cw + 'px';
-        card.style.height = ch + 'px';
-        card.style.zIndex = isActive ? 1000 : t.zIndex;
-        card.classList.toggle('active-thumb', isActive);
-
-        window.gsap.set(card, {
-          x: t.x - cw / 2,
-          y: t.y - ch / 2,
-          scale: isActive ? 1.0 : t.scale * 0.9,
-          opacity: animateOpacity ? (isActive ? 1.0 : t.opacity) : card.style.opacity,
-          rotation: t.rotate * 0.15,
-        });
-      });
-    }
-
-    // Find which image is currently "at front" of the orbit
-    function getActiveOrbitIdx() {
-      // The front slot is angle = pi/2
-      let bestIdx = 0, bestDist = Infinity;
-      for (let i = 0; i < TOTAL; i++) {
-        const angle = ((getSlotAngle(i) + orbitAngle) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2);
-        let dist = Math.abs(angle - Math.PI/2);
-        if (dist > Math.PI) dist = Math.PI * 2 - dist;
-        if (dist < bestDist) { bestDist = dist; bestIdx = i; }
-      }
-      return bestIdx;
-    }
-
-    // ── Open carousel (Phase 2: zoom-out) ───────────────────────
-    function openCarousel() {
-      if (isCarouselOpen || isSnapping) return;
-      isCarouselOpen = true;
-      isSnapping = true;
-
-      // Hide project label when carousel opens
-      imgLabel.style.opacity = '0';
-      // Fade in glassmorphic backdrop
-      carouselBg.style.opacity = '1';
-
-      const params = getOrbitParams();
-      // center front is pi/2
-      const destAngle = Math.PI/2 - getSlotAngle(activeIdx);
-      orbitAngle = destAngle;
-      targetOrbitAngle = destAngle;
-
-      // Show orbit ring immediately so we can see other cards fading in
-      window.gsap.set(orbitRing, { opacity: 1 });
-
-      // Place orbit cards and fade in the inactive ones instantly
-      orbitCards.forEach((card, i) => {
-        const t = cardTransform(i, orbitAngle, params);
-        const cw = params.cardW, ch = params.cardH;
-        
-        window.gsap.set(card, {
-          x: t.x - cw / 2,
-          y: t.y - ch / 2,
-          scale: t.scale,
-          opacity: 0,
-          rotation: t.rotate * 0.15,
-        });
-        card.style.zIndex = (i === activeIdx) ? 1000 : t.zIndex;
-
-        if (i !== activeIdx) {
-          // Other cards fade in rapidly as soon as zoom-out starts
-          window.gsap.to(card, { opacity: t.opacity, duration: 0.3, ease: 'power2.out' });
-        }
-      });
-
-      const tl = window.gsap.timeline({
-        onComplete: () => { isSnapping = false; updateOrbit(true); }
-      });
-
-      // Cinematic Fade: active image slowly scales up and fades to black
-      tl.to(activeWrap, {
-        scale: 1.05,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power2.inOut',
-      })
-      .to(orbitCards[activeIdx], { opacity: 1.0, duration: 0.4 }, '-=0.4');
-    }
-
-    // ── Select image → snap + close carousel (Phase 4) ──────────
-    function selectImage(idx) {
-      if (isSnapping) return;
-      isSnapping = true;
-      isCarouselOpen = false;
-
-      const params = getOrbitParams();
-      // Snap orbit so idx is at front (pi/2)
-      const targetOrbit = Math.PI/2 - getSlotAngle(idx);
-      // Animate orbit rotation to snap
-      const currentOrbit = orbitAngle;
-      let delta = ((targetOrbit - currentOrbit) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2);
-      if (delta > Math.PI) delta -= Math.PI * 2;
-
-      window.gsap.to({ a: currentOrbit }, {
-        a: currentOrbit + delta,
-        duration: 0.5,
-        ease: 'power3.out',
-        onUpdate: function() { orbitAngle = this.targets()[0].a; updateOrbit(true); },
-        onComplete: () => {
-          // Now zoom selected card up to full screen
-          activeImg.src = IMAGES[idx].src;
-          activeIdx = idx;
-
-          // Update project label badge
-          if (labelText) labelText.textContent = IMAGES[idx].project;
-
-          // Fade out glassmorphic backdrop
-          carouselBg.style.opacity = '0';
-
-          // Cinematic Fade: reset position, start scaled up + faded out
-          window.gsap.set(activeWrap, { 
-            scale: 1.05, opacity: 0 
-          });
-
-          window.gsap.timeline({ 
-            onComplete: () => { 
-              isSnapping = false; 
-              window.gsap.set(activeWrap, { clearProps: "scale,opacity" });
-            } 
-          })
-            .to(orbitRing, { opacity: 0, duration: 0.5, ease: 'power2.inOut' })
-            .to(activeWrap, { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.3')
-            .to(activeWrap, {
-              scale: 1.0,
-              duration: 1.4,
-              ease: 'power3.out',
-            }, '-=0.8')
-            .call(() => {
-              orbitCards.forEach(c => window.gsap.set(c, { opacity: 0 }));
-              // Fade in project label badge after image fills screen
-              imgLabel.style.opacity = '1';
-            });
-        }
-      });
-    }
-
-    // ── Wheel-based carousel control ─────────────────────────────
-    // Only intercepts wheel when: cursor is right zone + hero visible.
-    // Left-side scroll always passes through to the page.
-    const WHEEL_SENSITIVITY = 0.002; // reduced for smoother controlled scroll
-
-    // --- SHOWREEL ANIMATION (Global for Desktop & Mobile) ---
-    function init() {
-      // Hide unnecessary orbit elements
-      if (typeof orbitRing !== 'undefined' && orbitRing) orbitRing.style.display = 'none';
-      if (typeof rightZone !== 'undefined' && rightZone) rightZone.style.display = 'none';
-      if (typeof scrollHint !== 'undefined' && scrollHint) scrollHint.style.display = 'none';
-      
-      // Hide the backdrop as requested
-      if (typeof carouselBg !== 'undefined' && carouselBg) {
-        carouselBg.style.opacity = '0';
-        carouselBg.style.display = 'none';
-      }
-      
-      // Show images full screen on hero section
-      if (window.gsap && typeof activeWrap !== 'undefined' && activeWrap) {
-        window.gsap.set(activeWrap, { 
-          scale: 1, 
-          borderRadius: '0px',
-          boxShadow: 'none'
-        });
-      }
-
-      let loopIdx = 0;
-
-      // Preload first few images immediately, lazy load the rest
-      if (typeof IMAGES !== 'undefined') {
-        for (let i = 0; i < Math.min(5, IMAGES.length); i++) {
-          const p = new Image();
-          p.src = IMAGES[i].src;
-        }
-        let preloadIdx = 5;
-        function lazyPreload() {
-          if (preloadIdx < IMAGES.length) {
-            const p = new Image();
-            p.src = IMAGES[preloadIdx].src;
-            preloadIdx++;
-            setTimeout(lazyPreload, 200);
-          }
-        }
-        setTimeout(lazyPreload, 1000);
-      }
-
-      // Clean, infinite flashing loop (slower on mobile to save CPU)
-      const flashInterval = window.matchMedia('(max-width: 768px)').matches ? 2000 : 250;
-      setInterval(() => {
-        if (!isHeroVisible) return; // HUGE PERFORMANCE FIX: Don't burn CPU/Network when scrolling down!
-
-        loopIdx = (loopIdx + 1) % TOTAL;
-        const targetImg = IMAGES[loopIdx];
-        
-        if (typeof activeImg !== 'undefined' && activeImg && bgImg) {
-          bgImg.src = activeImg.src;
-          activeImg.src = targetImg.src;
-          if (window.gsap) {
-            window.gsap.fromTo(activeImg, { opacity: 0.5 }, { opacity: 1, duration: 0.1, ease: 'power1.inOut' });
-          }
-        }
-        if (typeof labelText !== 'undefined' && labelText) labelText.innerText = targetImg.project;
-      }, flashInterval);
-    }
-
-    // Wait for GSAP to be ready
-    function waitForGSAP() {
-      if (window.gsap && window.ScrollTrigger) {
-        gsapReady = true;
-        init();
-      } else {
-        setTimeout(waitForGSAP, 60);
-      }
-    }
-    waitForGSAP();
   })();
   </script>
 
@@ -1273,25 +875,37 @@
         
         <!-- Formation 0 Text (Anchored Left) -->
         <div class="skill-item absolute inset-y-0 left-0 px-6 md:px-16 lg:px-24 flex flex-col justify-center w-full md:w-1/2 opacity-100">
-          <h2 class="font-dm text-3xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.1] mb-6 text-zinc-400">So… what do I do?</h2>
-          <p class="text-base md:text-2xl font-manrope font-normal text-white">I make things look good.<br>But that’s not really the point.</p>
+          <h2 class="font-dm text-3xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.1] mb-6 text-zinc-400">Okay, but what exactly do I do?</h2>
         </div>
 
         <!-- Formation 1 Text (Anchored Right) -->
         <div class="skill-item absolute inset-y-0 right-0 px-6 md:px-16 lg:px-24 flex flex-col justify-center w-full md:w-1/2 opacity-0 items-end text-right">
-          <h2 class="font-dm text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.1] text-zinc-400">I build <span class="text-white italic">visual identities</span>,<br>websites and experiences<br>that say something.</h2>
+          <h2 class="font-dm text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.1] text-zinc-400">
+            I take ideas,<br>
+            move a few pixels around,<br>
+            overthink the typography,<br>
+            and somehow turn it into something that works.
+          </h2>
         </div>
 
         <!-- Formation 2 Text (Anchored Center) -->
         <div class="skill-item absolute inset-0 flex flex-col items-center justify-center opacity-0 text-center px-4">
-          <h2 class="font-dm text-3xl md:text-5xl lg:text-7xl font-bold tracking-tighter leading-[1.1] text-zinc-400">You bring the idea.<br>I bring the visuals.</h2>
-          <p class="text-base md:text-3xl font-manrope font-normal text-white mt-6 md:mt-8">Then we make people stop scrolling.</p>
+          <h2 class="font-dm text-3xl md:text-5xl lg:text-7xl font-bold tracking-tighter leading-[1.1] text-zinc-400">
+            Brand identities. Websites. Visuals.
+          </h2>
+          <p class="text-base md:text-3xl font-manrope font-normal text-white mt-6 md:mt-8">
+            Not just things that look good.<br>Things that feel right.
+          </p>
         </div>
 
         <!-- Formation 3 Text (Anchored Top Left) -->
         <div class="skill-item absolute top-[20%] left-0 px-6 md:px-16 lg:px-24 flex flex-col items-start opacity-0 w-full md:w-1/2">
-          <h2 class="font-dm text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.1] text-zinc-400">Go ahead.<br>Explore my work.</h2>
-          <p class="text-base md:text-2xl font-manrope font-normal text-white mt-6 md:mt-8">There’s probably something moving over there ↓</p>
+          <h2 class="font-dm text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.1] text-zinc-400">
+            Go ahead.<br>Explore my work.
+          </h2>
+          <p class="text-base md:text-2xl font-manrope font-normal text-white mt-6 md:mt-8">
+            There's Probably something moving over there →
+          </p>
         </div>
 
       </div>
@@ -1345,7 +959,7 @@
           const isMobile = W < 768;
           
           // Radius should be massive. Max of width or height.
-          const radius = isMobile ? Math.max(W, H) * 0.75 : Math.max(W, H) * 0.9; 
+          const radius = isMobile ? Math.max(W, H) * 0.6 : Math.max(W, H) * 0.9; 
 
           window.HERO_IMAGES.forEach((imgObj, i) => {
             const div = document.createElement('div');
@@ -1379,7 +993,7 @@
           const isMobile = W < 768;
           
           // MUST match the radius used in createWheel() exactly, otherwise all position math breaks.
-          const radius = isMobile ? Math.max(W, H) * 0.75 : Math.max(W, H) * 0.9; 
+          const radius = isMobile ? Math.max(W, H) * 0.6 : Math.max(W, H) * 0.9;
 
           gsap.set(skills, { opacity: (i) => i === 0 ? 1 : 0, y: (i) => i === 0 ? 0 : 50 });
 
@@ -1389,8 +1003,8 @@
           // W*0.35 offset confirmed working — places arc visibly on the right side of the screen.
           const s0_scale = isMobile ? 1.0 : 1.1;
           const eff_r0 = radius * s0_scale;
-          // W*0.25 puts the right arc at 75% of screen width
-          const s0_x = (isMobile ? W*0.35 : W*0.25) - eff_r0;
+          // W*0.4 offset pushes the wheel further right on mobile to accommodate longer text
+          const s0_x = (isMobile ? W*0.4 : W*0.25) - eff_r0;
           const s0_y = 0;
           gsap.set(wheel, { x: s0_x, y: s0_y, scale: s0_scale, rotation: 0 });
 
@@ -1420,8 +1034,8 @@
           // W*0.35 offset confirmed working — places arc visibly on the left side of the screen.
           const s1_scale = isMobile ? 1.0 : 1.1;
           const eff_r1 = radius * s1_scale;
-          // W*0.25 puts the left arc at 25% of screen width
-          const s1_x = eff_r1 - (isMobile ? W*0.35 : W*0.25);
+          // W*0.4 offset pushes the wheel further left on mobile to accommodate longer text
+          const s1_x = eff_r1 - (isMobile ? W*0.4 : W*0.25);
           const s1_y = 0;
           
           // State 2: Images Center.
