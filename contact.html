@@ -291,6 +291,65 @@ document.addEventListener('DOMContentLoaded', () => {
   <link rel="stylesheet" href="/cursor.css">
 </head>
 <body class="bg-[#EDEBDD] text-[#1B1717] selection:bg-primary selection:text-on-primary overflow-x-hidden w-full relative">
+
+<!-- TopNavBar -->
+<nav id="main-nav" class="fixed top-0 left-0 w-full z-[120] flex justify-between items-start px-6 md:px-12 py-6 pointer-events-none">
+  <!-- Top Left: Logo -->
+  <a href="/" class="pointer-events-auto relative block">
+    <img src="/Images/Brands/Adesign%20studio/Adesign%20logo%20colour-01.webp" alt="Adesign Studio" class="h-10 md:h-14 w-auto object-contain">
+  </a>
+
+  <!-- Top Right: Desktop Navigation (Vertical Stack) -->
+  <div class="hidden md:flex flex-col items-end gap-3 pointer-events-auto">
+    <a href="about.html" class="font-manrope text-[10px] tracking-[0.2em] uppercase text-[#EDEBDD] hover:opacity-70 transition-opacity">About</a>
+    
+    <!-- Projects Dropdown -->
+    <div class="relative group flex flex-col items-end">
+      <button class="bg-transparent text-[#EDEBDD] hover:opacity-70 px-0 py-0 font-manrope text-[10px] tracking-[0.2em] uppercase transition-opacity flex items-center gap-1 cursor-pointer">
+        Projects
+        <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover:rotate-180">expand_more</span>
+      </button>
+      <!-- Dropdown Menu -->
+      <div class="absolute right-0 top-full mt-2 w-48 bg-[#EDEBDD] border border-zinc-100 shadow-2xl opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 flex flex-col p-2 z-[101]">
+        <a href="index.html#categories-grid" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-right border-b border-zinc-200 last:border-0">Visual Identity</a>
+        <a href="posters.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-right border-b border-zinc-200 last:border-0">Posters</a>
+        <a href="nexzy.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-right border-b border-zinc-200 last:border-0">Web Dev</a>
+        <a href="sketches.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-right border-b border-zinc-200 last:border-0">Sketches</a>
+      </div>
+    </div>
+    
+    <a href="services.html" class="font-manrope text-[10px] tracking-[0.2em] uppercase text-[#EDEBDD] hover:opacity-70 transition-opacity">Services</a>
+    <a href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener" class="font-manrope text-[10px] tracking-[0.2em] uppercase text-[#EDEBDD] hover:opacity-70 transition-opacity">Get in Touch</a>
+  </div>
+
+  <!-- Top Right: Mobile Menu Button (md:hidden) -->
+  <button id="mobile-dropdown-btn" class="md:hidden pointer-events-auto flex items-center gap-1.5 px-3 py-1.5 rounded-full font-manrope text-[9px] tracking-widest uppercase font-bold transition-all duration-300" style="background-color: transparent; border: 1px solid rgba(237,235,221,0.3); color: #1B1717;">
+    <span>Menu</span>
+    <span class="material-symbols-outlined text-[12px] transition-transform duration-300" id="mobile-dropdown-arrow">expand_more</span>
+  </button>
+</nav>
+
+<!-- Mobile Dropdown Menu Container (Outside nav) -->
+<div class="md:hidden fixed top-16 right-6 z-[120] flex flex-col items-end pointer-events-none">
+  <div id="mobile-dropdown-menu" class="w-[85vw] max-w-[280px] bg-[#EDEBDD] border border-zinc-100 shadow-2xl rounded-3xl opacity-0 invisible -translate-y-4 transition-all duration-300 flex flex-col overflow-hidden pointer-events-auto">
+    <a href="/" class="px-6 py-4 text-xs uppercase tracking-widest text-[#1B1717] font-bold border-b border-zinc-200 hover:bg-black/5 text-right">Home</a>
+    
+    <!-- Projects Section -->
+    <div class="px-6 py-3 border-b border-zinc-200">
+      <span class="text-[9px] uppercase tracking-[0.2em] text-[#1B1717]/60 font-bold mb-3 block text-right">Projects</span>
+      <div class="flex flex-col pr-3 border-r border-zinc-300 gap-2 items-end">
+        <a href="index.html#categories-grid" class="py-1 text-[10px] uppercase tracking-widest text-[#1B1717]/80 hover:text-[#1B1717]">Visual Identity</a>
+        <a href="posters.html" class="py-1 text-[10px] uppercase tracking-widest text-[#1B1717]/80 hover:text-[#1B1717]">Posters</a>
+        <a href="nexzy.html" class="py-1 text-[10px] uppercase tracking-widest text-[#1B1717]/80 hover:text-[#1B1717]">Web Dev</a>
+        <a href="sketches.html" class="py-1 text-[10px] uppercase tracking-widest text-[#1B1717]/80 hover:text-[#1B1717]">Sketches</a>
+      </div>
+    </div>
+
+    <a href="about.html" class="px-6 py-4 text-xs uppercase tracking-widest text-[#1B1717] font-bold border-b border-zinc-200 hover:bg-black/5 text-right">About</a>
+    <a href="services.html" class="px-6 py-4 text-xs uppercase tracking-widest text-[#1B1717] font-bold border-b border-zinc-200 hover:bg-black/5 text-right">Services</a>
+    <a href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener" class="px-6 py-4 text-xs uppercase tracking-widest text-[#1B1717] font-bold hover:bg-black/5 text-right">Get in Touch</a>
+  </div>
+</div>
 <script>
   // Prevent FOUC by revealing body only after styles are compiled and parsed
   document.addEventListener('DOMContentLoaded', () => {
