@@ -37,61 +37,65 @@
 
 <!-- TopNavBar -->
 <!-- TopNavBar -->
-<nav id="main-nav" class="fixed top-0 left-0 w-full z-[120] flex justify-between items-start px-6 md:px-12 py-6 pointer-events-none">
-  <!-- Top Left: Logo -->
-  <a href="/" class="pointer-events-auto relative block">
-    <img src="/Images/Brands/Adesign%20studio/Adesign%20logo%20colour-01.webp" alt="Adesign Studio" class="h-10 md:h-14 w-auto object-contain">
-  </a>
+<nav id="main-nav" class="pointer-events-none">
+  <!-- Top Left: Logo (Original form, NO BLEND) -->
+  <div class="fixed top-0 left-0 z-[120] px-6 md:px-12 py-6">
+    <a href="/" class="pointer-events-auto block">
+      <img src="/Images/Brands/Adesign%20studio/Adesign%20logo%20colour-01.webp" alt="Adesign Studio" class="h-10 md:h-14 w-auto object-contain">
+    </a>
+  </div>
 
-  <!-- Top Right: Desktop Navigation (Vertical Stack) -->
-  <div class="hidden md:flex flex-col items-end gap-3 pointer-events-auto mix-blend-difference">
-    <a href="about.html" class="font-manrope text-[10px] tracking-[0.2em] uppercase text-[#EDEBDD] hover:opacity-70 transition-opacity">About</a>
+  <!-- Top Right: Desktop Navigation (Horizontal) -->
+  <div class="hidden md:flex flex-row items-center gap-4 pointer-events-auto mix-blend-difference fixed top-4 right-6 md:top-6 md:right-10 z-[120]" style="will-change: transform; transform: translateZ(0); contain: layout style;">
+    <a href="/" class="font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity">Index</a>
     
     <!-- Projects Dropdown -->
-    <div class="relative group flex flex-col items-end">
-      <button class="bg-transparent text-[#EDEBDD] hover:opacity-70 px-0 py-0 font-manrope text-[10px] tracking-[0.2em] uppercase transition-opacity flex items-center gap-1 cursor-pointer">
+    <div class="relative group flex flex-col items-center">
+      <button class="bg-transparent text-white hover:opacity-70 px-0 py-0 font-manrope text-[8px] tracking-[0.2em] uppercase transition-opacity flex items-center gap-1 cursor-pointer">
         Projects
         <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover:rotate-180">expand_more</span>
       </button>
+      
       <!-- Dropdown Menu -->
-      <div class="absolute right-0 top-full mt-2 w-48 bg-[#EDEBDD] border border-zinc-100 shadow-2xl opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 flex flex-col p-2 z-[101]">
-        <a href="index.html#categories-grid" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-right border-b border-zinc-200 last:border-0">Visual Identity</a>
-        <a href="posters.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-right border-b border-zinc-200 last:border-0">Posters</a>
-        <a href="nexzy.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-right border-b border-zinc-200 last:border-0">Web Dev</a>
-        <a href="sketches.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-right border-b border-zinc-200 last:border-0">Sketches</a>
+      <div class="absolute top-full mt-4 w-40 bg-[#EDEBDD] border border-zinc-100 shadow-2xl opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 flex flex-col p-2 z-[101] mix-blend-normal">
+        <a href="index.html#categories-grid" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Visual Identity</a>
+        <a href="posters.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Posters</a>
+        <a href="nexzy.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Web Dev</a>
+        <a href="sketches.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Sketches</a>
       </div>
     </div>
     
-    <a href="services.html" class="font-manrope text-[10px] tracking-[0.2em] uppercase text-[#EDEBDD] hover:opacity-70 transition-opacity">Services</a>
-    <a href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener" class="font-manrope text-[10px] tracking-[0.2em] uppercase text-[#EDEBDD] hover:opacity-70 transition-opacity">Get in Touch</a>
+    <a href="about.html" class="font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity">About</a>
+    <a href="contact.html" class="font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity">Contact</a>
   </div>
 
-  <!-- Top Right: Mobile Menu Button (md:hidden) -->
-  <button id="mobile-dropdown-btn" class="md:hidden pointer-events-auto flex items-center gap-1.5 px-3 py-1.5 rounded-full font-manrope text-[9px] tracking-widest uppercase font-bold transition-all duration-300 mix-blend-difference" style="background-color: transparent; border: 1px solid rgba(237,235,221,0.3); color: #EDEBDD;">
-    <span>Menu</span>
-    <span class="material-symbols-outlined text-[12px] transition-transform duration-300" id="mobile-dropdown-arrow">expand_more</span>
-  </button>
+  <!-- Mobile Menu Button (Top Right) -->
+  <div class="md:hidden pointer-events-auto mix-blend-difference fixed top-6 right-6 z-[120]" style="will-change: transform; transform: translateZ(0); contain: layout style;">
+    <button id="mobile-dropdown-btn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full font-manrope text-[9px] tracking-widest uppercase font-bold transition-all duration-300 text-white border border-white/30">
+      <span>Menu</span>
+      <span class="material-symbols-outlined text-[12px] transition-transform duration-300" id="mobile-dropdown-arrow">expand_more</span>
+    </button>
+  </div>
 </nav>
 
 <!-- Mobile Dropdown Menu Container (Outside nav) -->
-<div class="md:hidden fixed top-16 right-6 z-[120] flex flex-col items-end pointer-events-none">
+<div class="md:hidden fixed top-20 right-6 z-[120] flex flex-col items-end pointer-events-none">
   <div id="mobile-dropdown-menu" class="w-[85vw] max-w-[280px] bg-[#EDEBDD] border border-zinc-100 shadow-2xl rounded-3xl opacity-0 invisible -translate-y-4 transition-all duration-300 flex flex-col overflow-hidden pointer-events-auto">
-    <a href="/" class="px-6 py-4 text-xs uppercase tracking-widest text-[#1B1717] font-bold border-b border-zinc-200 hover:bg-black/5 text-right">Home</a>
+    <a href="/" class="px-6 py-4 text-[8px] uppercase tracking-widest text-[#1B1717] font-bold border-b border-zinc-200 hover:bg-black/5 text-right">Index</a>
     
     <!-- Projects Section -->
     <div class="px-6 py-3 border-b border-zinc-200">
-      <span class="text-[9px] uppercase tracking-[0.2em] text-[#1B1717]/60 font-bold mb-3 block text-right">Projects</span>
+      <span class="text-[8px] uppercase tracking-[0.2em] text-[#1B1717]/60 font-bold mb-3 block text-right">Projects</span>
       <div class="flex flex-col pr-3 border-r border-zinc-300 gap-2 items-end">
-        <a href="index.html#categories-grid" class="py-1 text-[10px] uppercase tracking-widest text-[#1B1717]/80 hover:text-[#1B1717]">Visual Identity</a>
-        <a href="posters.html" class="py-1 text-[10px] uppercase tracking-widest text-[#1B1717]/80 hover:text-[#1B1717]">Posters</a>
-        <a href="nexzy.html" class="py-1 text-[10px] uppercase tracking-widest text-[#1B1717]/80 hover:text-[#1B1717]">Web Dev</a>
-        <a href="sketches.html" class="py-1 text-[10px] uppercase tracking-widest text-[#1B1717]/80 hover:text-[#1B1717]">Sketches</a>
+        <a href="index.html#categories-grid" class="py-1 text-[8px] uppercase tracking-widest text-[#1B1717]/80 hover:text-[#1B1717]">Visual Identity</a>
+        <a href="posters.html" class="py-1 text-[8px] uppercase tracking-widest text-[#1B1717]/80 hover:text-[#1B1717]">Posters</a>
+        <a href="nexzy.html" class="py-1 text-[8px] uppercase tracking-widest text-[#1B1717]/80 hover:text-[#1B1717]">Web Dev</a>
+        <a href="sketches.html" class="py-1 text-[8px] uppercase tracking-widest text-[#1B1717]/80 hover:text-[#1B1717]">Sketches</a>
       </div>
     </div>
 
-    <a href="about.html" class="px-6 py-4 text-xs uppercase tracking-widest text-[#1B1717] font-bold border-b border-zinc-200 hover:bg-black/5 text-right">About</a>
-    <a href="services.html" class="px-6 py-4 text-xs uppercase tracking-widest text-[#1B1717] font-bold border-b border-zinc-200 hover:bg-black/5 text-right">Services</a>
-    <a href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener" class="px-6 py-4 text-xs uppercase tracking-widest text-[#1B1717] font-bold hover:bg-black/5 text-right">Get in Touch</a>
+    <a href="about.html" class="px-6 py-4 text-[8px] uppercase tracking-widest text-[#1B1717] font-bold border-b border-zinc-200 hover:bg-black/5 text-right">About</a>
+    <a href="contact.html" class="px-6 py-4 text-[8px] uppercase tracking-widest text-[#1B1717] font-bold hover:bg-black/5 text-right">Contact</a>
   </div>
 </div>
 
@@ -99,7 +103,7 @@
   <!-- Hero / Personal Introduction -->
   <section class="px-6 md:px-24 py-24 grid grid-cols-1 md:grid-cols-12 gap-12 items-end">
     <div class="md:col-span-7">
-      <h2 class="font-manrope text-[10px] tracking-widest uppercase text-outline mb-8">Architectural Perspective</h2>
+      <h2 class="font-manrope text-[8px] tracking-widest uppercase text-outline mb-8">Architectural Perspective</h2>
       <h1 class="font-bold text-6xl md:text-8xl tracking-tighter leading-none text-[#1B1717] mb-12">
         Defining Space<br/>Through Void.
       </h1>
@@ -118,7 +122,7 @@
     <div class="max-w-6xl mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-16">
         <div class="md:col-span-4">
-          <h3 class="font-manrope text-[10px] tracking-widest uppercase text-outline sticky top-32">The Narrative</h3>
+          <h3 class="font-manrope text-[8px] tracking-widest uppercase text-outline sticky top-32">The Narrative</h3>
         </div>
         <div class="md:col-span-8">
           <div class="space-y-12">
@@ -148,7 +152,7 @@
     <div class="grid grid-cols-1 md:grid-cols-12 gap-px bg-outline-variant/30">
       <!-- Header Cell -->
       <div class="md:col-span-12 bg-[#EDEBDD] py-16">
-        <h3 class="font-manrope text-[10px] tracking-widest uppercase text-outline mb-4">Core Competencies</h3>
+        <h3 class="font-manrope text-[8px] tracking-widest uppercase text-outline mb-4">Core Competencies</h3>
         <h4 class="text-4xl font-bold tracking-tight text-[#1B1717]">The Toolkit of Precision</h4>
       </div>
       <!-- Skill Block 1 -->
@@ -156,7 +160,7 @@
         <span class="material-symbols-outlined text-4xl mb-8 text-primary" style="font-size:2.5rem;">architecture</span>
         <h5 class="text-xl font-bold mb-4">Spatial Logic</h5>
         <p class="text-on-surface-variant text-sm leading-relaxed mb-8">Structural planning for digital systems, ensuring scalability and visual balance through grid-based discipline.</p>
-        <ul class="text-[10px] tracking-widest uppercase text-outline space-y-2">
+        <ul class="text-[8px] tracking-widest uppercase text-outline space-y-2">
           <li>� Grid Systems</li>
           <li>� Information Architecture</li>
           <li>� Responsive Frameworks</li>
@@ -167,7 +171,7 @@
         <span class="material-symbols-outlined text-4xl mb-8 text-primary" style="font-size:2.5rem;">text_fields</span>
         <h5 class="text-xl font-bold mb-4">Editorial Typography</h5>
         <p class="text-on-surface-variant text-sm leading-relaxed mb-8">Type as architecture. Selecting and scaling letterforms to command attention and drive narrative flow.</p>
-        <ul class="text-[10px] tracking-widest uppercase text-outline space-y-2">
+        <ul class="text-[8px] tracking-widest uppercase text-outline space-y-2">
           <li>� Variable Fonts</li>
           <li>� Readability Audits</li>
           <li>� Custom Type Pairing</li>
@@ -178,7 +182,7 @@
         <span class="material-symbols-outlined text-4xl mb-8 text-primary" style="font-size:2.5rem;">layers</span>
         <h5 class="text-xl font-bold mb-4">Visual Stacking</h5>
         <p class="text-on-surface-variant text-sm leading-relaxed mb-8">Creating depth through tonal layering and atmospheric shifts, eliminating the need for decorative lines.</p>
-        <ul class="text-[10px] tracking-widest uppercase text-outline space-y-2">
+        <ul class="text-[8px] tracking-widest uppercase text-outline space-y-2">
           <li>� Depth Mapping</li>
           <li>� Tonal Hierarchy</li>
           <li>� Glassmorphism</li>
@@ -207,7 +211,7 @@
   <section class="px-6 md:px-24 py-24 bg-[#EDEBDD]">
     <div class="flex flex-col md:flex-row justify-between items-start border-b border-black/5 pb-24">
       <div class="max-w-md">
-        <h3 class="font-manrope text-[10px] tracking-widest uppercase text-outline mb-8">Awards &amp; Exhibitions</h3>
+        <h3 class="font-manrope text-[8px] tracking-widest uppercase text-outline mb-8">Awards &amp; Exhibitions</h3>
         <p class="text-xl font-light leading-relaxed text-[#1B1717]">
           Recognized globally for pushing the boundaries of minimalist digital design and structural interaction.
         </p>
@@ -215,24 +219,24 @@
       <div class="mt-12 md:mt-0 w-full md:w-1/2 space-y-12">
         <div class="flex justify-between items-end border-b border-black/5 pb-4 group cursor-pointer">
           <div>
-            <span class="text-[10px] tracking-widest uppercase text-outline">2023</span>
+            <span class="text-[8px] tracking-widest uppercase text-outline">2023</span>
             <h6 class="text-lg font-bold">Site of the Year</h6>
           </div>
-          <span class="text-[10px] tracking-widest uppercase text-outline mb-1 group-hover:text-[#1B1717] transition-colors">Awwwards</span>
+          <span class="text-[8px] tracking-widest uppercase text-outline mb-1 group-hover:text-[#1B1717] transition-colors">Awwwards</span>
         </div>
         <div class="flex justify-between items-end border-b border-black/5 pb-4 group cursor-pointer">
           <div>
-            <span class="text-[10px] tracking-widest uppercase text-outline">2022</span>
+            <span class="text-[8px] tracking-widest uppercase text-outline">2022</span>
             <h6 class="text-lg font-bold">Design Excellence Gold</h6>
           </div>
-          <span class="text-[10px] tracking-widest uppercase text-outline mb-1 group-hover:text-[#1B1717] transition-colors">ID Architecture</span>
+          <span class="text-[8px] tracking-widest uppercase text-outline mb-1 group-hover:text-[#1B1717] transition-colors">ID Architecture</span>
         </div>
         <div class="flex justify-between items-end border-b border-black/5 pb-4 group cursor-pointer">
           <div>
-            <span class="text-[10px] tracking-widest uppercase text-outline">2021</span>
+            <span class="text-[8px] tracking-widest uppercase text-outline">2021</span>
             <h6 class="text-lg font-bold">Visual Language Award</h6>
           </div>
-          <span class="text-[10px] tracking-widest uppercase text-outline mb-1 group-hover:text-[#1B1717] transition-colors">Webby Awards</span>
+          <span class="text-[8px] tracking-widest uppercase text-outline mb-1 group-hover:text-[#1B1717] transition-colors">Webby Awards</span>
         </div>
       </div>
     </div>
@@ -251,14 +255,14 @@
 <footer class="bg-[#EDEBDD] flex flex-col md:flex-row justify-between items-center px-6 md:px-24 py-16 w-full">
   <div class="flex flex-col gap-2 mb-8 md:mb-0">
     <a href="/" class="flex items-center"><img src="/Images/Brands/Adesign%20studio/Adesign%20logo%20colour-01.webp" alt="Adesign Studio" class="h-12 md:h-20 w-auto object-contain -ml-2 md:-ml-6"></a>
-    <p class="font-manrope text-[10px] tracking-widest uppercase text-gray-500">� 2024 Adley Fernandes. ALL RIGHTS RESERVED.</p>
+    <p class="font-manrope text-[8px] tracking-widest uppercase text-gray-500">� 2024 Adley Fernandes. ALL RIGHTS RESERVED.</p>
   </div>
   <div class="flex flex-wrap justify-center gap-8 md:gap-12">
-    <a class="font-manrope text-[10px] tracking-widest uppercase text-gray-500 hover:text-[#1B1717] underline-offset-4 hover:underline transition-all duration-400" href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
-    <a class="font-manrope text-[10px] tracking-widest uppercase text-gray-500 hover:text-[#1B1717] underline-offset-4 hover:underline transition-all duration-400" href="https://twitter.com" target="_blank" rel="noopener">Twitter</a>
-    <a class="font-manrope text-[10px] tracking-widest uppercase text-gray-500 hover:text-[#1B1717] underline-offset-4 hover:underline transition-all duration-400" href="https://github.com" target="_blank" rel="noopener">GitHub</a>
-    <a class="font-manrope text-[10px] tracking-widest uppercase text-gray-500 hover:text-[#1B1717] underline-offset-4 hover:underline transition-all duration-400" href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
-    <a class="font-manrope text-[10px] tracking-widest uppercase text-[#1B1717] underline-offset-4 hover:underline transition-all duration-400" href="#top">Back to top</a>
+    <a class="font-manrope text-[8px] tracking-widest uppercase text-gray-500 hover:text-[#1B1717] underline-offset-4 hover:underline transition-all duration-400" href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="font-manrope text-[8px] tracking-widest uppercase text-gray-500 hover:text-[#1B1717] underline-offset-4 hover:underline transition-all duration-400" href="https://twitter.com" target="_blank" rel="noopener">Twitter</a>
+    <a class="font-manrope text-[8px] tracking-widest uppercase text-gray-500 hover:text-[#1B1717] underline-offset-4 hover:underline transition-all duration-400" href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+    <a class="font-manrope text-[8px] tracking-widest uppercase text-gray-500 hover:text-[#1B1717] underline-offset-4 hover:underline transition-all duration-400" href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+    <a class="font-manrope text-[8px] tracking-widest uppercase text-[#1B1717] underline-offset-4 hover:underline transition-all duration-400" href="#top">Back to top</a>
   </div>
 </footer>
 
