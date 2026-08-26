@@ -1,547 +1,58 @@
-<!DOCTYPE html>
-
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-
-<!-- IAB Viewport Lock: Freezes --vh so Instagram/LinkedIn/TikTok toolbar
-     show/hide (which fires resize with only height change) never causes
-     layout jumps. Only updates when device WIDTH changes (true rotation). -->
-<script>
-(function() {
-  var _lockedVW = window.innerWidth;
-  function setVH() {
-    // Use visualViewport if available for accuracy, else fall back to innerHeight
-    var h = (window.visualViewport ? window.visualViewport.height : window.innerHeight);
-    document.documentElement.style.setProperty('--vh', (h * 0.01) + 'px');
-  }
-  setVH();
-  // Guard: only update --vh when the WIDTH changes (device rotation).
-  // Toolbar toggle only changes height — ignore it completely.
-  window.addEventListener('resize', function() {
-    var newVW = window.innerWidth;
-    if (newVW === _lockedVW) return; // height-only change = toolbar, skip
-    _lockedVW = newVW;
-    setVH();
-  });
-  // Secondary guard via visualViewport API (more reliable in IABs)
-  if (window.visualViewport) {
-    var _lockedVVW = window.visualViewport.width;
-    window.visualViewport.addEventListener('resize', function() {
-      var newVVW = window.visualViewport.width;
-      if (newVVW === _lockedVVW) return; // height-only, skip
-      _lockedVVW = newVVW;
-      setVH();
-    });
-  }
-})();
-</script>
-<title>Adley Fernandes | Graphic Designer & Web Designer</title>
-<meta name="description" content="Freelance graphic designer & web designer specializing in brand identity, album artwork, poster design, UI/UX, and web development. View my portfolio."/>
-<link rel="canonical" href="https://adleyportfolio.in/" />
-
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://adleyportfolio.in/" />
-<meta property="og:title" content="Adley Fernandes | Graphic Designer & Web Designer" />
-<meta property="og:description" content="Freelance graphic designer & web designer specializing in brand identity, album artwork, poster design, UI/UX, and web development. View my portfolio." />
-<meta property="og:image" content="https://adleyportfolio.in/Images/profile-portrait.webp" />
-
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content="https://adleyportfolio.in/" />
-<meta property="twitter:title" content="Adley Fernandes | Graphic Designer & Web Designer" />
-<meta property="twitter:description" content="Freelance graphic designer & web designer specializing in brand identity, album artwork, poster design, UI/UX, and web development. View my portfolio." />
-<meta property="twitter:image" content="https://adleyportfolio.in/Images/profile-portrait.webp" />
-
-<!-- JSON-LD Schema Markup -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Person",
-      "name": "Adley Fernandes",
-      "url": "https://adleyportfolio.in/",
-      "jobTitle": "Graphic Designer & Web Designer",
-      "image": "https://adleyportfolio.in/Images/profile-portrait.webp",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Mumbai",
-        "addressCountry": "India"
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Development | Adley Fernandes</title>
+  <meta name="description" content="Portfolio of Adley Fernandes.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800;900&family=Manrope:wght@300;400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            "sans": ["Manrope", "sans-serif"],
+            "heading": ["'DM Sans'", "sans-serif"],
+          }
+        }
       }
-    },
-    {
-      "@type": "WebSite",
-      "url": "https://adleyportfolio.in/",
-      "name": "Adley Fernandes Portfolio",
-      "description": "Freelance graphic designer & web designer specializing in brand identity, album artwork, poster design, UI/UX, and web development."
     }
-  ]
-}
-</script>
-<!-- Preconnect first — must come before any external resource requests -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
-<link rel="preconnect" href="https://cdn.jsdelivr.net">
-
-<!-- Google Fonts (DM Sans for headings, Manrope for body text) & Material Symbols -->
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800;900&family=Manrope:wght@300;400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800;900&family=Manrope:wght@300;400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"></noscript>
-
-<!-- Preload critical brand assets -->
-<link rel="preload" as="image" href="Images/Copilot_20260615_130809.webp" fetchpriority="high" />
-
-<!-- Local CSS (built via Vite/Tailwind) -->
-<link href="dist.css" rel="stylesheet">
-
-<!-- GSAP deferred — animations start after HTML is visible -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
-
-<!-- Lenis smooth scroll —  GPU-composited, frame-synced momentum scrolling -->
-<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js" defer></script>
-
-
-
-<style>
-  /* Lenis handles scrolling on desktop — iOS uses native scroll */
-  html { scroll-behavior: auto; }
-  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
-  /* Allow native smooth iOS WebKit momentum scrolling */
-  html, body { -webkit-overflow-scrolling: touch; }
-  body { font-family: 'Manrope', sans-serif; color: #1B1717; background-color: #EDEBDD; }
-  h1, h2, h3, h4, h5, h6 { font-family: 'DM Sans', sans-serif; color: #1B1717; }
-  /* Brand carousel — all styles here so they are not subject to Tailwind purge */
-  #brand-carousel-section {
-    background-color: #630000;
-    border-top: 1px solid #7a0d0d;
-    border-bottom: 1px solid #7a0d0d;
-    padding-top: 14px;
-    padding-bottom: 14px;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    contain: paint;
-    transform: translateZ(0);
-  }
-  .brand-logo-row {
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-    width: max-content;
-    gap: 120px;
-    padding-right: 120px;
-  }
-  .brand-logo-row img {
-    height: 48px;
-    width: auto;
-    object-fit: contain;
-    opacity: 0.9;
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
-  .brand-logo-row img:hover { opacity: 1; }
-  /* White filter for logos that need it (colored originals) */
-  .brand-logo-row img.make-white {
-    filter: brightness(0) invert(1);
-  }
-  /* Individual size overrides */
-  .brand-logo-row img.logo-gte   { height: 72px; }
-  .brand-logo-row img.logo-tvb   { height: 48px; }
-  .brand-logo-row img.logo-cop   { height: 80px; }
-  .brand-logo-row img.logo-nex   { height: 28px; }
-  .brand-logo-row img.logo-teas  { height: 44px; }
-  .brand-logo-row img.logo-ben   { height: 36px; }
-  @media (min-width: 768px) {
-    .brand-logo-row img.logo-gte  { height: 100px; }
-    .brand-logo-row img.logo-tvb  { height: 64px; }
-    .brand-logo-row img.logo-cop  { height: 110px; }
-    .brand-logo-row img.logo-nex  { height: 36px; }
-    .brand-logo-row img.logo-teas { height: 56px; }
-    .brand-logo-row img.logo-ben  { height: 48px; }
-    .brand-logo-row { gap: 150px; padding-right: 150px; }
-  }
-
-  @keyframes arrow-scroll {
-    0% { transform: translateY(0); opacity: 1; }
-    70% { transform: translateY(12px); opacity: 0; }
-    100% { transform: translateY(0); opacity: 0; }
-  }
-  .arrow-scroll-anim {
-    animation: arrow-scroll 1.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;
-  }
-
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: #f9f9f9; }
-  ::-webkit-scrollbar-thumb { background: #1B1717; border-radius: 3px; }
-
-  .no-scrollbar::-webkit-scrollbar { display: none; }
-  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-  /* Disable iOS Safari's native Play Button overlay on lazy-loaded videos */
-  video::-webkit-media-controls { display: none !important; }
-  video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
-
-  .fade-enter-card {
-    will-change: transform, opacity;
-  }
-
-  /* ─── Global Transition Polish ──────────────────────────────────── */
-  /* Smooth hover transitions for all interactive elements */
-  a, button {
-    transition-property: color, background-color, border-color, opacity;
-    transition-duration: 0.35s;
-    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  /* ─── Page-level visibility fade-in (eliminates FOUC) ───────────── */
-  body {
-    opacity: 0;
-  }
-  body.ready {
-    animation: page-reveal 0.5s ease both;
-  }
-  @keyframes page-reveal {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-
-  /* Intro cursor blink animation */
-  @keyframes pulse-cursor {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0; }
-  }
-  .animate-pulse-cursor {
-    animation: pulse-cursor 1s ease-in-out infinite;
-  }
-
-  /* Global Custom Cursor - Optimized for Performance */
-  @media (pointer: fine) {
-    body { cursor: none; }
-    a, button, [role="button"], input, select, textarea, .cursor-pointer { cursor: none !important; }
-  }
-  #custom-cursor {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 12px;
-    height: 12px;
-    background: #fff;
-    color: #1B1717;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 9px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    pointer-events: none;
-    z-index: 99999;
-    opacity: 0;
-    mix-blend-mode: difference;
-    will-change: transform;
-    transform: translateZ(0);   /* own composite layer — prevents cursor repaint from dirtying hero WebGL */
-    contain: layout style;      /* limit repaint scope to cursor element only */
-    transition:
-      width  0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
-      height 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
-      opacity 0.3s ease;
-  }
-  @media (hover: none) {
-    #custom-cursor { display: none; }
-  }
-  /* Variations */
-  #custom-cursor.view-mode,
-  #custom-cursor.scroll-mode {
-    width: 76px;
-    height: 76px;
-  }
-  #custom-cursor span {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-  }
-  #custom-cursor.view-mode span,
-  #custom-cursor.scroll-mode span {
-    opacity: 1;
-  }
-
-  .hero-marquee-wrapper {
-    cursor: none;
-  }
-  .stroke-text {
-    -webkit-text-stroke: 1px #18181b;
-    color: transparent;
-  }
-  :root {
-    --cube-size: clamp(140px, min(45vw, 50vh), 400px);
-  }
-  @media (min-width: 768px) {
-    :root {
-      --cube-size: clamp(200px, min(35vw, 55vh), 420px);
-    }
-  }
-  .rainbow-text {
-    background: linear-gradient(90deg, #630000, #630000, #630000, #630000, #630000);
-    background-size: 200% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    animation: rainbow 3s linear infinite;
-  }
-  .rainbow-glow {
-    transform: translateZ(0);
-    will-change: transform;
-  }
-  @keyframes rainbow {
-    0% { background-position: 0% 50%; }
-    100% { background-position: -200% 50%; }
-  }
-  .hero-marquee {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-  }
-  .cube-mask {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    -webkit-mask-image: url('Images/Copilot_20260615_130809.webp');
-    -webkit-mask-position: center;
-    -webkit-mask-repeat: no-repeat;
-    mask-image: url('Images/Copilot_20260615_130809.webp');
-    mask-position: center;
-    mask-repeat: no-repeat;
-    -webkit-mask-size: var(--cube-size) auto;
-    mask-size: var(--cube-size) auto;
-  }
-
-  /* Aggressively hide native video controls (Safari Low Power Mode overlays) */
-  video::-webkit-media-controls { display: none !important; }
-  video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
-  video::-webkit-media-controls-play-button { display: none !important; }
-
-  /* Force pointer-events none on project videos */
-  .mockup-video { pointer-events: none; }
-
-  /* ─── Scroll-reveal baseline — elements start hidden ─────────────── */
-  .reveal-up {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .reveal-up.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ─── Nav backdrop glass polish ──────────────────────────────────── */
-  nav {
-    transition: backdrop-filter 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease;
-  }
-
-  /* ─── Card hover lift ────────────────────────────────────────────── */
-  .fade-enter-card {
-    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-                box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  /* ─── Section heading shimmer line ──────────────────────────────── */
-  .section-underline {
-    display: inline-block;
-    position: relative;
-  }
-  .section-underline::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: currentColor;
-    transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .section-underline:hover::after { width: 100%; }
-  
-  @media (max-width: 768px) {
-    #hero { padding-top: 60px; }
-    #scroll-pen-wrap { display: none !important; }
-
-    /* Tighten hero typography on small screens */
-    #hero-headline { font-size: clamp(2.2rem, 11vw, 4rem) !important; line-height: 1.0 !important; }
-    #hero p.hero-slide-right { font-size: 1rem !important; line-height: 1.6 !important; }
-    #hero .hero-slide-right a { font-size: 0.65rem !important; padding: 0.8rem 1.5rem !important; }
-
-    /* Section headings — prevent bleed on narrow screens */
-    h2.text-\[7rem\], h2.text-\[2\.5rem\] { font-size: clamp(2rem, 10vw, 3.5rem) !important; }
-
-    /* Cards: comfortable height on phones */
-    .fade-enter-card .relative.h-\[500px\] { height: 280px !important; }
-    .fade-enter-card .h-\[650px\] { height: 300px !important; }
-
-    /* About portrait — limit height on mobile */
-    #about .aspect-\[4\/5\] { aspect-ratio: 1/1 !important; }
-
-    /* Case study modal scrolling fix on iOS */
-    #case-study-modal { touch-action: none; }
-    #case-study-content { -webkit-overflow-scrolling: touch; touch-action: pan-y; }
-
-    /* Toolkit grid: 2 columns on mobile */
-    #about .grid-cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
-
-    /* Mockup sizing: ensure iPhone fits on screen */
-    .max-w-\[280px\] { max-width: 180px !important; }
-
-    /* Touch targets: minimum 44px */
-    button, a { min-height: 44px; }
-    nav a { min-height: 44px; display: flex; align-items: center; }
-  }
-
-  /* Very small screens (iPhone SE, 375px) */
-  @media (max-width: 390px) {
-    #hero-headline { font-size: clamp(1.9rem, 10vw, 2.5rem) !important; }
-    .fade-enter-card .relative.h-\[500px\] { height: 240px !important; }
-  }
-
-  @keyframes scroll-marquee {
-    from { transform: translate3d(0%, 0, 0); }
-    to { transform: translate3d(-50%, 0, 0); }
-  }
-  @keyframes scroll-marquee-reverse {
-    from { transform: translate3d(0%, 0, 0); }
-    to { transform: translate3d(-50%, 0, 0); }
-  }
-  .css-marquee {
-    animation: scroll-marquee 65s linear infinite;
-    will-change: transform;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    contain: layout style;
-  }
-  .css-marquee-reverse {
-    animation: scroll-marquee-reverse 30s linear infinite;
-    will-change: transform;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    contain: layout style;
-  }
-
-  /* Footer — per-letter pure slide, NO opacity change (mountains physically hide them) */
-  @keyframes footer-letter-in {
-    from { transform: scaleY(1.55) translateY(350px); }
-    to   { transform: scaleY(1.55) translateY(0); }
-  }
-  .footer-letter {
-    display: inline-block;
-    transform-origin: bottom center;
-    transform: scaleY(1.55) translateY(350px);
-    opacity: 1;
-    will-change: transform;
-  }
-  .footer-letter.visible {
-    animation: footer-letter-in 1.6s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-
-  /* ── Mobile footer fixes ── */
-  @media (max-width: 768px) {
-    /* Smaller translateY so letters emerge properly over the shorter mobile image */
-    @keyframes footer-letter-in {
-      from { transform: scaleY(1.3) translateY(80px); }
-      to   { transform: scaleY(1.3) translateY(0); }
-    }
-    .footer-letter {
-      transform: scaleY(1.3) translateY(80px);
-    }
-
-    /* Keep left/right layout on mobile — reduce padding and font size */
-    #footer-links-bar {
-      padding: 1rem 1.2rem !important;
-      align-items: flex-end !important;
-    }
-    #footer-links-right { gap: 0.8rem !important; }
-  }
-  @media (max-width: 480px) {
-    #footer-links-bar { padding: 0.7rem 0.8rem !important; }
-    .footer-twitter-link { display: none !important; }
-  }
-
-</style>
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Manrope', sans-serif; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'DM Sans', sans-serif; }
+  </style>
+  <link rel="stylesheet" href="/cursor.css">
 </head>
-<body id="top" class="bg-[#EDEBDD] text-[#1B1717] antialiased selection:bg-primary selection:text-white overflow-hidden overflow-x-hidden w-full relative">
-<script>
-  if (sessionStorage.getItem('introPlayed')) {
-    document.body.classList.remove('overflow-hidden');
-  }
-  // Prevent FOUC by revealing body only after styles are compiled and parsed
-  document.addEventListener('DOMContentLoaded', () => {
-    document.body.classList.add('ready');
-  });
-</script>
+<body id="top" class="bg-[#EDEBDD] text-[#1B1717] antialiased selection:bg-[#630000] selection:text-white">
 
-
-  <nav id="main-nav" class="fixed z-[100] pointer-events-none">
-
-  <!-- Desktop Back Button -->
-  <a href="/index.html#categories-grid" class="inline-flex fixed top-6 left-6 md:top-8 md:left-8 z-[100] items-center gap-2 px-5 py-2.5 bg-[#EDEBDD]/90 backdrop-blur-md border border-[#1B1717]/10 hover:bg-white text-[#1B1717] text-[10px] uppercase tracking-[0.2em] font-bold rounded-full shadow-sm transition-all group hover:scale-105 active:scale-95 pointer-events-auto">
-    <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover:-translate-x-1">arrow_back</span>
+  <!-- Floating Back Button -->
+  <a href="/index.html#categories-grid" class="fixed top-6 left-6 md:top-8 md:left-8 z-[100] inline-flex items-center gap-2 px-5 py-2.5 bg-[#EDEBDD]/90 backdrop-blur-md border border-[#1B1717]/10 hover:bg-[#1B1717]/5 text-[#1B1717] text-[10px] uppercase tracking-[0.2em] font-bold rounded-full shadow-sm transition-all group hover:scale-105 active:scale-95">
+    <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover:-translate-x-1 group-hover:text-[#630000]">arrow_back</span>
     Back
   </a>
 
-  <!-- Floating Mobile Menu -->
-  <div class="md:hidden fixed top-6 right-6 z-[120] flex flex-col items-end pointer-events-none">
-    <!-- Button with Difference Blend -->
-    <button id="mobile-dropdown-btn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full font-manrope text-[9px] tracking-widest uppercase font-bold transition-all duration-300 pointer-events-auto" style="background-color: transparent; color: #1B1717; box-shadow: none; transition: background-color 0.4s ease, box-shadow 0.4s ease;">
-      <span>Menu</span>
-      <span class="material-symbols-outlined text-[12px] transition-transform duration-300" id="mobile-dropdown-arrow">expand_more</span>
-    </button>
-
-    <!-- Dropdown Card -->
-    <div id="mobile-dropdown-menu" class="mt-4 w-[85vw] max-w-[280px] bg-[#EDEBDD] opacity-95 max-md:bg-[#EDEBDD] md:backdrop-blur-xl border border-zinc-100 shadow-2xl rounded-3xl opacity-0 invisible -translate-y-4 transition-all duration-[400ms] ease-[cubic-bezier(0.19,1,0.22,1)] flex flex-col overflow-hidden pointer-events-auto" style="mix-blend-mode: normal;">
-      <a href="/" class="px-6 py-4 text-xs uppercase tracking-widest text-[#1B1717] font-bold border-b border-zinc-100 hover:bg-[#EDEBDD] mobile-link">Home</a>
-      
-      <!-- Projects Section -->
-      <div class="px-6 py-3 border-b border-zinc-100">
-        <span class="text-[9px] uppercase tracking-[0.2em] text-zinc-400 font-bold mb-3 block">Projects</span>
-        <div class="flex flex-col pl-3 border-l border-zinc-200 gap-2">
-          <a href="index.html#categories-grid" class="py-1 text-[10px] uppercase tracking-widest text-zinc-600 hover:text-[#1B1717] mobile-link">Branding</a>
-          <a href="posters.html" class="py-1 text-[10px] uppercase tracking-widest text-zinc-600 hover:text-[#1B1717] mobile-link">Posters</a>
-          <a href="sketches.html" class="py-1 text-[10px] uppercase tracking-widest text-zinc-600 hover:text-[#1B1717] mobile-link">Illustration</a>
-          <a href="web-development.html" class="py-1 text-[10px] uppercase tracking-widest text-zinc-600 hover:text-[#1B1717] mobile-link">Web Development</a>
+  <!-- Document Viewer Container -->
+  <main class="pt-24 md:pt-32 w-full flex flex-col items-center bg-[#EDEBDD]">
+    
+    <!-- Header Section (Constrained) -->
+    <div class="max-w-6xl w-full px-6 md:px-8 pb-10">
+      <div class="w-full pb-8 border-b border-[#1B1717]/10 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+        <div class="text-left">
+          <p class="text-[10px] uppercase tracking-[0.4em] font-black text-[#630000] mb-3">Project Overview</p>
+          <h2 class="text-4xl md:text-6xl font-bold tracking-tighter text-[#1B1717]">Web Development</h2>
+        </div>
+        <div class="text-left md:text-right">
+          <p class="text-[10px] uppercase tracking-[0.4em] font-black text-[#630000] mb-2">Deliverables</p>
+          <p class="text-sm md:text-base font-semibold text-[#1B1717]">UI/UX, Frontend Engineering, Motion Design</p>
         </div>
       </div>
-
-      <a href="services.html" class="px-6 py-4 text-xs uppercase tracking-widest text-[#1B1717] font-bold border-b border-zinc-100 hover:bg-[#EDEBDD] mobile-link">Services</a>
-      <a href="about.html" class="px-6 py-4 text-xs uppercase tracking-widest text-[#1B1717] font-bold border-b border-zinc-100 hover:bg-[#EDEBDD] mobile-link">About</a>
-      <a href="contact.html" class="px-6 py-4 text-xs uppercase tracking-widest text-[#1B1717] font-bold border-b border-zinc-100 hover:bg-[#EDEBDD] mobile-link">Contact</a>
-      <a class="px-6 py-5 bg-[#630000] text-white text-center text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-[#1B1717] transition-colors" href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener">
-        Get in Touch
-      </a>
     </div>
-  </div>
-</nav>
-
-
-
-<main>
-  <!-- Section 02: Web Engineering (Development) -->
-  <section id="work" class="bg-[#EDEBDD] overflow-hidden border-t border-zinc-100">
-    <div class="px-6 md:px-24 pt-8 md:pt-16 mb-8 md:mb-16 flex flex-col w-full">
-      <div class="w-full text-[#1B1717] md:text-right">
-        <p class="text-zinc-600 uppercase text-[10px] tracking-[0.2em] mb-6">Section 02 — Design &amp; Development</p>
-      </div>
-      <h2 class="text-[3rem] sm:text-[4.5rem] md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-[#1B1717] text-left">Web Design &amp;<br/>Development</h2>
-      <div class="text-zinc-600 text-sm md:text-base leading-relaxed w-full max-w-2xl text-left mt-6 md:mt-24">
-        Architecting high-performance digital foundations. Where creative fluidity meets surgical technical execution.
-      </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════════════
+    
+    <div class="w-full">
+<!-- ═══════════════════════════════════════════════
          PROJECT 01 — THE EXECUVISION
     ═══════════════════════════════════════════════ -->
     <div class="w-full bg-[#EDEBDD] text-[#1B1717] overflow-x-hidden">
@@ -2500,4 +2011,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   </script>
 
+  <script src="/cursor.js" defer></script>
+</div>
 </body></html>

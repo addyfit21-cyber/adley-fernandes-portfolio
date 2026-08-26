@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Illustration & Sketches | Adley Fernandes</title>
+  <title>The ExecuVision | Adley Fernandes</title>
   <meta name="description" content="Portfolio of Adley Fernandes.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -25,6 +25,7 @@
     h1, h2, h3, h4, h5, h6 { font-family: 'DM Sans', sans-serif; }
   </style>
   <link rel="stylesheet" href="/cursor.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 </head>
 <body id="top" class="bg-[#EDEBDD] text-[#1B1717] antialiased selection:bg-[#630000] selection:text-white">
 
@@ -34,181 +35,153 @@
     Back
   </a>
 
-  <!-- Document Viewer Container -->
   <main class="pt-24 md:pt-32 w-full flex flex-col items-center bg-[#EDEBDD]">
-    
-    <!-- Header Section (Constrained) -->
     <div class="max-w-6xl w-full px-6 md:px-8 pb-10">
       <div class="w-full pb-8 border-b border-[#1B1717]/10 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div class="text-left">
           <p class="text-[10px] uppercase tracking-[0.4em] font-black text-[#630000] mb-3">Project Overview</p>
-          <h2 class="text-4xl md:text-6xl font-bold tracking-tighter text-[#1B1717]">Illustration & Sketches</h2>
+          <h2 class="text-4xl md:text-6xl font-bold tracking-tighter text-[#1B1717]">The ExecuVision</h2>
         </div>
         <div class="text-left md:text-right">
           <p class="text-[10px] uppercase tracking-[0.4em] font-black text-[#630000] mb-2">Deliverables</p>
-          <p class="text-sm md:text-base font-semibold text-[#1B1717]">Automotive Artwork, Conceptual Studies</p>
+          <p class="text-sm md:text-base font-semibold text-[#1B1717]">UI/UX, Frontend Engineering, Motion Design</p>
         </div>
       </div>
     </div>
     
     <div class="w-full">
-<!-- Art Work Section (McLaren) -->
-  <section id="mclaren" class="w-full bg-[#1B1717] text-white overflow-x-hidden border-t border-white/10">
-    <!-- Project Title Row -->
-    <div class="px-6 md:px-24 py-8 md:py-16 border-b border-white/10">
-      <div class="flex flex-col gap-6">
-        <div>
-          <p class="text-[10px] uppercase tracking-[0.5em] text-white font-bold mb-6">03 — Project</p>
-          <h3 class="text-[3rem] sm:text-[4.5rem] md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-white">McLaren</h3>
-        </div>
-        <div class="max-w-2xl">
-          <p class="text-base md:text-lg font-medium leading-snug text-white">Freelance Sketch Artist — Custom automotive artwork and concept studies.</p>
+
+<!-- ═══════════════════════════════════════════════
+         PROJECT 01 — THE EXECUVISION
+    ═══════════════════════════════════════════════ -->
+    <div class="w-full bg-[#EDEBDD] text-[#1B1717] overflow-x-hidden">
+
+
+      <!-- Project Title Row -->
+      <div class="px-6 md:px-24 py-8 md:py-16 border-b border-zinc-100">
+        <div class="flex flex-col gap-6">
+          <div>
+            <p class="text-[10px] uppercase tracking-[0.5em] text-[#1B1717] font-bold mb-6">01 — Project</p>
+            <h3 class="text-4xl md:text-5xl font-bold tracking-tighter leading-[0.85] text-[#1B1717]">The<br/>ExecuVision</h3>
+          </div>
+          <div class="max-w-2xl">
+            <p class="text-base md:text-lg font-medium leading-snug text-[#1B1717]">Corporate identity re-design &amp; custom high-performance web development.</p>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Image Showcase -->
-    <div class="px-6 md:px-24 py-5 md:py-20 max-w-[1400px] mx-auto text-center">
-      <div class="w-full min-h-[50vh] md:min-h-[80vh] flex items-center justify-center mb-4 md:mb-8">
-        <img src="Images/ART%20work/IMG_9844 (2).webp" class="w-full h-auto max-h-[80vh] object-contain" alt="McLaren Sketch" loading="lazy" decoding="async">
-      </div>
-      <button onclick="document.getElementById('mclaren-modal').showModal()" class="inline-flex items-center gap-4 bg-[#EDEBDD] text-[#1B1717] px-4 md:px-8 py-4 text-[10px] uppercase font-bold tracking-widest hover:bg-zinc-200 transition-colors">
-        View All Sketches
-        <span class="material-symbols-outlined text-sm">open_in_full</span>
-      </button>
-
-      <dialog id="mclaren-modal" class="backdrop:bg-black/95 w-[95vw] max-w-[1800px] h-[95vh] bg-transparent border-0 p-0 m-auto focus:outline-none overflow-y-auto">
-        <div class="sticky top-0 right-0 flex justify-end p-4 pointer-events-none">
-          <button onclick="document.getElementById('mclaren-modal').close()" class="bg-white/10 hover:bg-white/20 text-white p-3 rounded-full md:backdrop-blur-md pointer-events-auto transition-colors focus:outline-none">
-            <span class="material-symbols-outlined text-xl block">close</span>
-          </button>
-        </div>
-        <div class="flex flex-col gap-6 md:gap-12 p-2 md:p-6 pb-12 md:pb-24 items-center">
-          <img src="Images/ART%20work/IMG_0213 (2).webp" class="w-[90%] md:w-[75%] max-w-5xl h-auto object-contain rounded-md shadow-2xl" alt="McLaren Sketch 1" loading="lazy" decoding="async">
-          <img src="Images/ART%20work/IMG_9606 (2).webp" class="w-[90%] md:w-[75%] max-w-5xl h-auto object-contain rounded-md shadow-2xl" alt="McLaren Sketch 2" loading="lazy" decoding="async">
-          <img src="Images/ART%20work/IMG_9844 (2).webp" class="w-[90%] md:w-[75%] max-w-5xl h-auto object-contain rounded-md shadow-2xl" alt="McLaren Sketch 3" loading="lazy" decoding="async">
-        </div>
-      </dialog>
-    </div>
-
-    <!-- Editorial Content — Dense Grid -->
-    <div class="px-6 md:px-24 py-0 max-w-[1400px] mx-auto divide-y divide-white/10 border-t border-white/10">
-      <!-- Challenge + Concept -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
-        <div class="py-5 md:py-10 md:pr-16">
-          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white mb-4">01 / The Project</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-white mb-4">Custom Automotive Art.</h3>
-          <p class="text-[9px] md:text-[11px] leading-relaxed text-zinc-300 font-normal">Commissioned by McLaren Mumbai to create custom automotive sketches, capturing the precise vision and aesthetic of the brand.</p>
-        </div>
-        <div class="py-5 md:py-10 md:pl-16">
-          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white mb-4">02 / Approach</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-white mb-4">Focus on details.</h3>
-          <p class="text-[9px] md:text-[11px] leading-relaxed text-zinc-300 font-normal">I focused on delivering high-quality artwork with meticulous attention to detail, ensuring the final pieces met the client's exact standards.</p>
-        </div>
-      </div>
-      <!-- Output + Result -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
-        <div class="py-5 md:py-10 md:pr-16">
-          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white mb-6">03 / Output</p>
-          <div class="grid grid-cols-2 gap-4">
-            <div>
-              <p class="text-[10px] uppercase tracking-[0.2em] text-white font-bold mb-1">Deliverables</p>
-              <p class="text-[9px] md:text-[11px] leading-relaxed text-zinc-300">Custom automotive sketches on large A1 charts.</p>
+      <!-- Device Mockup Showcase -->
+      <div class="px-6 md:px-24 py-10 md:py-20 max-w-[1400px] mx-auto">
+        <div class="flex flex-col lg:flex-row items-center justify-center gap-5 lg:gap-16 pb-6 md:pb-12">
+          <!-- Desktop iMac Mockup -->
+          <div class="w-full lg:w-[62%] max-w-[850px]">
+            <div class="flex flex-col items-center w-full">
+              <div class="relative w-full aspect-[16/9] bg-[#1a1a1a] rounded-t-2xl p-[1%] shadow-[0_60px_100px_-20px_rgba(0,0,0,0.6)] border-x-[4px] border-t-[4px] border-[#2a2a2a]">
+                <div class="relative w-full h-full bg-[#1B1717] rounded-sm overflow-hidden">
+                  <video aria-hidden="true" preload="none" autoplay muted loop playsinline class="card-video w-full h-full object-cover bg-[#1B1717] pointer-events-none hidden md:block" data-src="/Images/web_dev/img_3693.mp4"></video>
+                  <video aria-hidden="true" preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-full object-cover bg-[#1B1717] pointer-events-none block md:hidden" data-src="/Images/web_dev/img_3693_mobile.mp4"></video>
+                  <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.04] to-white/[0.12] pointer-events-none"></div>
+                </div>
+              </div>
+              <div class="relative w-full h-[60px] bg-gradient-to-b from-[#f3f4f6] via-[#d1d5db] to-[#9ca3af] flex items-center justify-center rounded-b-2xl border-t border-white/60 shadow-lg">
+                <svg class="w-5 h-5 text-[#1B1717] opacity-80" viewBox="0 0 24 24" fill="currentColor"><path d="M17.057 10.125c-.011-2.39 1.954-3.534 2.046-3.593-1.111-1.623-2.833-1.844-3.443-1.869-1.458-.148-2.846.858-3.586.858-.74 0-1.896-.838-3.13-.814-1.62.024-3.114.942-3.95 2.392-1.688 2.925-.43 7.247 1.206 9.613.801 1.157 1.752 2.457 3.003 2.41 1.205-.047 1.66-.778 3.117-.778 1.458 0 1.868.778 3.14.754 1.302-.023 2.128-1.176 2.924-2.341.92-1.344 1.301-2.645 1.321-2.712-.028-.013-2.538-.973-2.565-3.864zM14.654 4.542c.655-.794 1.096-1.897.975-3.002-.949.038-2.099.632-2.781 1.426-.612.712-1.147 1.838-1.002 2.917.952.125 2.15-.55 2.808-1.341z"/></svg>
+              </div>
+              <div class="relative w-[30%] h-[80px] flex justify-center mt-[-4px]">
+                <div class="w-full h-full bg-gradient-to-br from-[#d1d5db] via-[#9ca3af] to-[#6b7280]" style="clip-path:polygon(18% 0%,82% 0%,100% 100%,0% 100%)"></div>
+              </div>
+              <div class="w-[45%] h-[10px] bg-gradient-to-b from-[#d1d5db] via-[#9ca3af] to-[#4b5563] rounded-full mt-[-8px] shadow-lg"></div>
             </div>
-            <div>
-              <p class="text-[10px] uppercase tracking-[0.2em] text-white font-bold mb-1">Medium</p>
-              <p class="text-[9px] md:text-[11px] leading-relaxed text-zinc-300">Traditional hand-drawn sketching.</p>
+          </div>
+          <!-- iPhone Mockup -->
+          <div class="w-full lg:w-[22%] max-w-[250px]">
+            <div class="flex flex-col items-center w-full py-5 md:py-10">
+              <div class="relative w-full max-w-[240px] aspect-[9/18] bg-gradient-to-br from-[#e5e7eb] via-[#ffffff] to-[#d1d5db] rounded-[2.5rem] p-[1.5%] shadow-[0_60px_120px_-30px_rgba(0,0,0,0.4)] border-x-[3px] border-zinc-300">
+                <div class="relative w-full h-full bg-[#1B1717] rounded-[2.2rem] p-[3%] overflow-hidden shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]">
+                  <div class="absolute top-[3.5%] left-1/2 -translate-x-1/2 w-[32%] h-[2.4%] bg-[#050505] rounded-full z-20"></div>
+                  <div class="relative w-full h-full bg-[#1B1717] rounded-[1.8rem] overflow-hidden">
+                    <video aria-hidden="true" preload="none" autoplay muted loop playsinline class="card-video w-full h-full object-cover bg-[#1B1717] block pointer-events-none hidden md:block" data-src="/Images/web_dev/whatsapp_2.mp4"></video>
+                    <video aria-hidden="true" preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-full object-cover bg-[#1B1717] block pointer-events-none max-md:absolute max-md:inset-0 max-md:[clip-path:inset(0px_round_1.8rem)] block md:hidden" data-src="/Images/web_dev/whatsapp_2_mobile.mp4"></video>
+                  </div>
+                </div>
+                <div class="absolute -left-[4px] top-[18%] w-[5px] h-[40px] bg-gradient-to-r from-[#d1d5db] to-[#9ca3af] rounded-l-md"></div>
+                <div class="absolute -right-[4px] top-[22%] w-[5px] h-[75px] bg-gradient-to-l from-[#d1d5db] to-[#9ca3af] rounded-r-md"></div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="py-5 md:py-10 md:pl-16">
-          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white mb-4">04 / Results</p>
-          <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-white mb-3">On time and on point.</h3>
-          <p class="text-sm font-medium text-zinc-300">Delivered the detailed sketches on schedule, perfectly aligning with McLaren's requirements and vision.</p>
+        <div class="flex flex-wrap justify-center gap-3 pb-4 md:pb-8">
+          <span class="px-6 py-2 bg-[#EDEBDD] border border-zinc-100 text-[9px] font-bold tracking-[0.2em] uppercase text-zinc-600">Clean UI / Smooth UX</span>
+          <span class="px-6 py-2 bg-[#EDEBDD] border border-zinc-100 text-[9px] font-bold tracking-[0.2em] uppercase text-zinc-600">Zero-Lag Navigation</span>
+          <span class="px-6 py-2 bg-[#EDEBDD] border border-zinc-100 text-[9px] font-bold tracking-[0.2em] uppercase text-zinc-600">Well-Structured Content</span>
+          <span class="px-6 py-2 bg-[#EDEBDD] border border-zinc-100 text-[9px] font-bold tracking-[0.2em] uppercase text-zinc-600">Minimalist Micro-animations</span>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Porsche Mumbai Section -->
-  <section id="porsche" class="w-full bg-[#1B1717] text-white overflow-x-hidden border-t border-white/10">
-    <!-- Project Title Row -->
-    <div class="px-6 md:px-24 py-8 md:py-16 border-b border-white/10">
-      <div class="flex flex-col gap-6">
-        <div>
-          <p class="text-[10px] uppercase tracking-[0.5em] text-white font-bold mb-6">04 — Project</p>
-          <h3 class="text-[3rem] sm:text-[4.5rem] md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-white">Porsche</h3>
-        </div>
-        <div class="max-w-2xl">
-          <p class="text-base md:text-lg font-medium leading-snug text-white">Freelance Sketch Artist — Custom automotive artwork and concept studies.</p>
-        </div>
-      </div>
-    </div>
+      <!-- Editorial Content — Dense Grid -->
+      <div class="px-6 md:px-24 py-0 max-w-[1400px] mx-auto divide-y divide-zinc-100 border-t border-zinc-100">
 
-    <!-- Image Showcase -->
-    <div class="px-6 md:px-24 py-5 md:py-20 max-w-[1400px] mx-auto text-center">
-      <div class="w-full min-h-[50vh] md:min-h-[80vh] flex items-center justify-center mb-4 md:mb-8">
-        <img src="Images/ART%20work/IMG_0498.webp" class="w-full h-auto max-h-[80vh] object-contain" alt="Porsche Sketch" loading="lazy" decoding="async">
-      </div>
-      <button onclick="document.getElementById('porsche-modal').showModal()" class="inline-flex items-center gap-4 bg-[#EDEBDD] text-[#1B1717] px-4 md:px-8 py-4 text-[10px] uppercase font-bold tracking-widest hover:bg-zinc-200 transition-colors">
-        View All Sketches
-        <span class="material-symbols-outlined text-sm">open_in_full</span>
-      </button>
+        <!-- Challenge + Concept -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
+          <div class="py-5 md:py-10 md:pr-16">
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-[#1B1717] mb-4">01 / The Challenge</p>
+            <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-[#1B1717] mb-4">Legacy code.<br/>High latency.</h3>
+            <p class="text-[9px] md:text-[11px] leading-relaxed text-[#1B1717] font-normal">Transforming a low-quality, buggy legacy site into a structured, high-speed platform. The existing site suffered from extreme latency and a complete lack of visual hierarchy.</p>
+          </div>
+          <div class="py-5 md:py-10 md:pl-16">
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-[#1B1717] mb-4">02 / Concept</p>
+            <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-[#1B1717] mb-4">Surgical.<br/>High-performance.</h3>
+            <p class="text-[9px] md:text-[11px] leading-relaxed text-[#1B1717] font-normal">A surgical re-imagining of corporate identity through high-performance digital architecture. Focused on a content-first philosophy, stripping away noise for a minimal aesthetic.</p>
+          </div>
+        </div>
 
-      <dialog id="porsche-modal" class="backdrop:bg-black/95 w-[95vw] max-w-[1800px] h-[95vh] bg-transparent border-0 p-0 m-auto focus:outline-none overflow-y-auto">
-        <div class="sticky top-0 right-0 flex justify-end p-4 pointer-events-none">
-          <button onclick="document.getElementById('porsche-modal').close()" class="bg-white/10 hover:bg-white/20 text-white p-3 rounded-full md:backdrop-blur-md pointer-events-auto transition-colors focus:outline-none">
-            <span class="material-symbols-outlined text-xl block">close</span>
-          </button>
-        </div>
-        <div class="flex flex-col gap-6 md:gap-12 p-2 md:p-6 pb-12 md:pb-24 items-center">
-          <img src="Images/ART%20work/IMG_0498.webp" class="w-[90%] md:w-[75%] max-w-5xl h-auto object-contain rounded-md shadow-2xl" alt="Porsche Sketch 1" loading="lazy" decoding="async">
-          <img src="Images/ART%20work/IMG_1390.webp" class="w-[90%] md:w-[75%] max-w-5xl h-auto object-contain rounded-md shadow-2xl" alt="Porsche Sketch 2" loading="lazy" decoding="async">
-        </div>
-      </dialog>
-    </div>
-
-        <!-- Editorial Content — Dense Grid -->
-    <div class="px-6 md:px-24 py-0 max-w-[1400px] mx-auto divide-y divide-white/10 border-t border-white/10">
-      <!-- Challenge + Concept -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
-        <div class="py-5 md:py-10 md:pr-16">
-          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white mb-4">01 / The Project</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-white mb-4">Exclusive Commission.</h3>
-          <p class="text-[9px] md:text-[11px] leading-relaxed text-zinc-300 font-normal">A special commission for Porsche Mumbai to create highly detailed, custom automotive artwork that reflects the brand's iconic design.</p>
-        </div>
-        <div class="py-5 md:py-10 md:pl-16">
-          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white mb-4">02 / Approach</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-white mb-4">Precision and quality.</h3>
-          <p class="text-[9px] md:text-[11px] leading-relaxed text-zinc-300 font-normal">I prioritized intricate detailing and clean execution, making sure every line captured the essence of the vehicles.</p>
-        </div>
-      </div>
-      <!-- Output + Result -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
-        <div class="py-5 md:py-10 md:pr-16">
-          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white mb-6">03 / Output</p>
-          <div class="grid grid-cols-2 gap-4">
-            <div>
-              <p class="text-[10px] uppercase tracking-[0.2em] text-white font-bold mb-1">Deliverables</p>
-              <p class="text-[9px] md:text-[11px] leading-relaxed text-zinc-300">Custom automotive sketches on large A1 charts.</p>
+        <!-- Transformation Before/After -->
+        <div class="py-5 md:py-10 border-b border-zinc-100">
+          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-[#1B1717] mb-6">03 / Transformation</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+            <div class="space-y-4">
+              <p class="text-[10px] uppercase tracking-[0.3em] text-zinc-600 font-bold">Legacy State</p>
+              <div class="bg-[#EDEBDD] p-4 border border-zinc-100 flex items-center justify-center ">
+                <video aria-hidden="true" preload="none" autoplay muted loop playsinline class="card-video w-full h-auto object-contain rounded-md shadow-sm hidden md:block" data-src="/Images/web_dev/img_3692.mp4"></video>
+                <video aria-hidden="true" preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-auto object-contain rounded-md shadow-sm block md:hidden pointer-events-none" data-src="/Images/web_dev/img_3692_mobile.mp4"></video>
+              </div>
             </div>
-            <div>
-              <p class="text-[10px] uppercase tracking-[0.2em] text-white font-bold mb-1">Medium</p>
-              <p class="text-[9px] md:text-[11px] leading-relaxed text-zinc-300">Traditional hand-drawn sketching.</p>
+            <div class="space-y-4">
+              <p class="text-[10px] uppercase tracking-[0.3em] text-[#1B1717] font-bold">New Vision</p>
+              <div class="bg-[#EDEBDD] p-4 border border-zinc-100 shadow-md flex items-center justify-center ">
+                <video aria-hidden="true" preload="none" autoplay muted loop playsinline class="card-video w-full h-auto object-contain rounded-md shadow-sm hidden md:block" data-src="/Images/web_dev/img_3693.mp4"></video>
+                <video aria-hidden="true" preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-auto object-contain rounded-md shadow-sm block md:hidden pointer-events-none" data-src="/Images/web_dev/img_3693_mobile.mp4"></video>
+              </div>
             </div>
           </div>
         </div>
-        <div class="py-5 md:py-10 md:pl-16">
-          <p class="text-[10px] tracking-[0.3em] uppercase font-black text-white mb-4">04 / Results</p>
-          <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-white mb-3">Client satisfaction.</h3>
-          <p class="text-sm font-medium text-zinc-300">Successfully completed and delivered the bespoke A1 sketches, fully satisfying the client's expectations for both quality and timeline.</p>
+
+        <!-- Process + Result -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
+          <div class="py-5 md:py-10 md:pr-16">
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-[#1B1717] mb-6">04 / Process</p>
+            <div class="space-y-6">
+              <div>
+                <p class="text-[10px] uppercase tracking-[0.2em] text-[#1B1717] font-bold mb-1">Architecture</p>
+                <p class="text-[9px] md:text-[11px] leading-relaxed text-[#1B1717]">Built a new data structure to eliminate lagging. Implemented a strict 12-column grid system.</p>
+              </div>
+              <div>
+                <p class="text-[10px] uppercase tracking-[0.2em] text-[#1B1717] font-bold mb-1">Development</p>
+                <p class="text-[9px] md:text-[11px] leading-relaxed text-[#1B1717]">Rebuilt the tech stack for maximum responsiveness. Fixed legacy bugs for zero-lag interactions.</p>
+              </div>
+            </div>
+          </div>
+          <div class="py-5 md:py-10 md:pl-16">
+            <p class="text-[10px] tracking-[0.3em] uppercase font-black text-[#1B1717] mb-4">05 / Results</p>
+            <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-[#1B1717] mb-3">100% bug-free deployment.</h3>
+            <p class="text-sm font-medium text-[#1B1717]">Drastic speed improvements. Shifted the experience from a high-friction environment to a seamless, high-quality digital narrative.</p>
+          </div>
         </div>
       </div>
     </div>
-  </section>
+    <!-- END: ExecuVision -->
+</div>
 </main>
-
-    <!-- Services CTA Strip -->
+<!-- Services CTA Strip -->
     <div class="px-6 md:px-24 py-12 md:py-24 border-t border-white/10 bg-[#1B1717] text-center">
       <span class="text-[10px] tracking-[0.3em] uppercase text-zinc-400 font-bold mb-6 block">Start a Project</span>
       <h3 class="text-[clamp(2.5rem,6vw,5rem)] font-bold tracking-tighter mb-6 md:mb-12 text-white">Let's build<br/>something iconic.</h3>
@@ -292,8 +265,8 @@
             <a href="privacy-policy.html" class="text-white/60 no-underline hover:text-white">Privacy</a>
             <br/>
             <a href="https://www.linkedin.com/in/adley-fernandes-968688228/" target="_blank" rel="noopener" class="text-white/60 no-underline hover:text-white">LinkedIn</a> &nbsp;&nbsp;&nbsp; 
-            <a href="https://twitter.com" target="_blank" rel="noopener" class="footer-twitter-link font-manrope text-[11px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">Twitter</a> &nbsp;&nbsp;&nbsp; 
-            <a href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener" class="font-manrope text-[11px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">Instagram</a>
+            <a href="https://twitter.com" target="_blank" rel="noopener" class="text-white/60 no-underline hover:text-white">Twitter</a> &nbsp;&nbsp;&nbsp; 
+            <a href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener" class="text-white/60 no-underline hover:text-white">Instagram</a>
           </p>
         </div>
       </div>

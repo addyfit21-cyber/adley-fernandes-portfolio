@@ -100,7 +100,7 @@
   }
 </script>
 <style>
-  /* Lenis owns scrolling — disable native smooth to avoid conflicts */
+  /* Lenis owns scrolling ï¿½ disable native smooth to avoid conflicts */
   html { scroll-behavior: auto; }
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
   body { font-family: 'Manrope', sans-serif; opacity: 0; }
@@ -193,7 +193,7 @@
   /* Force pointer-events none on project videos */
   .mockup-video { pointer-events: none; }
 
-  /* --- Scroll-reveal baseline — elements start hidden --------------- */
+  /* --- Scroll-reveal baseline ï¿½ elements start hidden --------------- */
   .reveal-up {
     opacity: 0;
     transform: translateY(40px);
@@ -242,14 +242,14 @@
     #hero p.hero-slide-right { font-size: 1rem !important; line-height: 1.6 !important; }
     #hero .hero-slide-right a { font-size: 0.65rem !important; padding: 0.8rem 1.5rem !important; }
 
-    /* Section headings — prevent bleed on narrow screens */
+    /* Section headings ï¿½ prevent bleed on narrow screens */
     h2.text-\[7rem\], h2.text-\[2\.5rem\] { font-size: clamp(2rem, 10vw, 3.5rem) !important; }
 
     /* Cards: comfortable height on phones */
     .fade-enter-card .relative.h-\[500px\] { height: 280px !important; }
     .fade-enter-card .h-\[650px\] { height: 300px !important; }
 
-    /* About portrait — limit height on mobile */
+    /* About portrait ï¿½ limit height on mobile */
     #about .aspect-\[4\/5\] { aspect-ratio: 1/1 !important; }
 
     /* Case study modal scrolling fix on iOS */
@@ -288,6 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
   requestAnimationFrame(raf);
 });
 </script>
+  <link rel="stylesheet" href="/cursor.css">
 </head>
 <body class="bg-[#EDEBDD] text-[#1B1717] selection:bg-primary selection:text-on-primary overflow-x-hidden w-full relative">
 <script>
@@ -471,13 +472,13 @@ document.addEventListener('DOMContentLoaded', () => {
     <a class="font-manrope text-[10px] tracking-widest uppercase text-[#1B1717] font-bold hover:opacity-50 underline-offset-4 hover:underline transition-all duration-400" href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener">Instagram</a>
     <a class="font-manrope text-[10px] tracking-widest uppercase text-[#1B1717] font-bold hover:opacity-50 underline-offset-4 hover:underline transition-all duration-400" href="#contact-top">Back to top</a>
   </div>
-  <div class="font-manrope text-[10px] tracking-widest uppercase text-[#1B1717] font-bold">© 2024 addesign studio. ALL RIGHTS RESERVED.</div>
+  <div class="font-manrope text-[10px] tracking-widest uppercase text-[#1B1717] font-bold">ï¿½ 2024 addesign studio. ALL RIGHTS RESERVED.</div>
 </footer>
 
 <!-- Success Toast -->
 <div id="toast" class="fixed bottom-8 right-8 bg-[#1B1717] text-white px-8 py-5 font-manrope text-sm tracking-widest uppercase flex items-center gap-4 z-50 shadow-2xl">
   <span class="material-symbols-outlined" style="font-size:18px;">check_circle</span>
-  Inquiry submitted — we'll be in touch.
+  Inquiry submitted ï¿½ we'll be in touch.
 </div>
 
 <script>
@@ -611,4 +612,5 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 </script>
+  <script src="/cursor.js" defer></script>
 </body></html>
