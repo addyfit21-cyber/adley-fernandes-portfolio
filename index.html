@@ -430,6 +430,10 @@
   <link rel="stylesheet" href="/cursor.css">
 </head>
 <body id="top" class="bg-[#EDEBDD] text-[#1B1717] antialiased selection:bg-primary selection:text-[#1B1717] overflow-hidden overflow-x-hidden w-full relative">
+
+<!-- Transition Curtain -->
+<div id="transition-curtain" class="fixed inset-0 bg-[#1B1717] z-[999999] pointer-events-none translate-y-full" style="will-change: transform;"></div>
+
 <script>
   if (sessionStorage.getItem('introPlayed')) {
     document.body.classList.remove('overflow-hidden');
@@ -3080,4 +3084,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   <script src="/cursor.js" defer></script>
+  <script src="/transitions.js"></script>
 </body></html>
