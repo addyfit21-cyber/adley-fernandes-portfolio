@@ -62,7 +62,7 @@
   </div>
 
   <!-- Top Right: Desktop Navigation (Horizontal) -->
-  <div class="hidden md:flex flex-row items-center gap-4 pointer-events-auto mix-blend-difference fixed top-4 right-6 md:top-6 md:right-10 z-[120]" style="will-change: transform; transform: translateZ(0); contain: layout style;">
+  <div class="flex flex-row items-center gap-2 md:gap-4 pointer-events-auto mix-blend-difference fixed top-4 right-6 md:top-6 md:right-10 z-[120]" style="will-change: transform; transform: translateZ(0); contain: layout style;">
     <a href="/" class="font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity">Index</a>
     
     <!-- Projects Dropdown -->
@@ -85,35 +85,7 @@
     <a href="contact.html" class="font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity">Contact</a>
   </div>
 
-  <!-- Mobile Menu Button (Top Right) -->
-  <div class="md:hidden pointer-events-auto mix-blend-difference fixed top-6 right-6 z-[120]" style="will-change: transform; transform: translateZ(0); contain: layout style;">
-    <button id="mobile-dropdown-btn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full font-manrope text-[9px] tracking-widest uppercase font-bold transition-all duration-300 text-white border border-white/30">
-      <span>Menu</span>
-      <span class="material-symbols-outlined text-[12px] transition-transform duration-300" id="mobile-dropdown-arrow">expand_more</span>
-    </button>
-  </div>
-</nav>
-
-<!-- Mobile Dropdown Menu Container (Outside nav) -->
-<div class="md:hidden fixed top-20 right-6 z-[120] flex flex-col items-end pointer-events-none">
-  <div id="mobile-dropdown-menu" class="w-[85vw] max-w-[280px] bg-[#EDEBDD] border border-zinc-100 shadow-2xl rounded-3xl opacity-0 invisible -translate-y-4 transition-all duration-300 flex flex-col overflow-hidden pointer-events-auto">
-    <a href="/" class="px-6 py-4 text-[8px] uppercase tracking-widest text-[#1B1717] font-bold border-b border-zinc-200 hover:bg-black/5 text-right">Index</a>
-    
-    <!-- Projects Section -->
-    <div class="px-6 py-3 border-b border-zinc-200">
-      <span class="text-[8px] uppercase tracking-[0.2em] text-[#1B1717]/60 font-bold mb-3 block text-right">Projects</span>
-      <div class="flex flex-col pr-3 border-r border-zinc-300 gap-2 items-end">
-        <a href="index.html#categories-grid" class="py-1 text-[8px] uppercase tracking-widest text-[#1B1717]/80 hover:text-[#1B1717]">Visual Identity</a>
-        <a href="posters.html" class="py-1 text-[8px] uppercase tracking-widest text-[#1B1717]/80 hover:text-[#1B1717]">Posters</a>
-        <a href="nexzy.html" class="py-1 text-[8px] uppercase tracking-widest text-[#1B1717]/80 hover:text-[#1B1717]">Web Dev</a>
-        <a href="sketches.html" class="py-1 text-[8px] uppercase tracking-widest text-[#1B1717]/80 hover:text-[#1B1717]">Sketches</a>
-      </div>
-    </div>
-
-    <a href="index.html#about" class="px-6 py-4 text-[8px] uppercase tracking-widest text-[#1B1717] font-bold border-b border-zinc-200 hover:bg-black/5 text-right">About</a>
-    <a href="contact.html" class="px-6 py-4 text-[8px] uppercase tracking-widest text-[#1B1717] font-bold hover:bg-black/5 text-right">Contact</a>
-  </div>
-</div>
+  </nav>
 
 <main class="relative z-0 pt-24 md:pt-32 w-full flex flex-col items-center bg-[#EDEBDD]">
     
@@ -316,45 +288,5 @@
   <script src="/cursor.js" defer></script>
   <script src="/transitions.js"></script>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const mobileBtn = document.getElementById('mobile-dropdown-btn');
-  const mobileMenu = document.getElementById('mobile-dropdown-menu');
-  const mobileArrow = document.getElementById('mobile-dropdown-arrow');
 
-  if (mobileBtn && mobileMenu) {
-    mobileBtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      const isOpen = mobileMenu.classList.contains('opacity-100');
-      
-      if (!isOpen) {
-        mobileMenu.classList.remove('opacity-0', 'invisible', '-translate-y-4');
-        mobileMenu.classList.add('opacity-100', 'visible', 'translate-y-0');
-        if (mobileArrow) mobileArrow.style.transform = 'rotate(180deg)';
-      } else {
-        mobileMenu.classList.remove('opacity-100', 'visible', 'translate-y-0');
-        mobileMenu.classList.add('opacity-0', 'invisible', '-translate-y-4');
-        if (mobileArrow) mobileArrow.style.transform = 'rotate(0deg)';
-      }
-    });
-
-    document.addEventListener('click', function(e) {
-      if (!mobileBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
-        mobileMenu.classList.remove('opacity-100', 'visible', 'translate-y-0');
-        mobileMenu.classList.add('opacity-0', 'invisible', '-translate-y-4');
-        if (mobileArrow) mobileArrow.style.transform = 'rotate(0deg)';
-      }
-    });
-
-    const mobileLinks = mobileMenu.querySelectorAll('a');
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('opacity-100', 'visible', 'translate-y-0');
-        mobileMenu.classList.add('opacity-0', 'invisible', '-translate-y-4');
-        if (mobileArrow) mobileArrow.style.transform = 'rotate(0deg)';
-      });
-    });
-  }
-});
-</script>
 </body></html>
