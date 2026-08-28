@@ -19,7 +19,7 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   pointer-events: none;
-  z-index: 99999;
+  z-index: 9999999;
   opacity: 0;
   mix-blend-mode: difference;
   contain: layout style;      /* limit repaint scope to cursor element only */
