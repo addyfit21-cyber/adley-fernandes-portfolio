@@ -1,4 +1,21 @@
 <!DOCTYPE html><html class="light" lang="en"><head>
+<!-- ── Page Transition Overlay (must be in <head> for zero-flash) ── -->
+<style>
+  #page-transition-overlay {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #1B1717;
+    z-index: 99999999;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity;
+  }
+</style>
+<div id="page-transition-overlay"></div>
+<!-- ── /Page Transition Overlay ── -->
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
