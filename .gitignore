@@ -4,3 +4,4 @@ dist
 .env
 *.log
 public/Images/IMG_3600.TIF
+public/Images/hero-carousel-backdrop.png
