@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
 <style id="pf-overlay-style">
+  @keyframes pf-overlay-fade {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
   #page-transition-overlay {
     position: fixed;
     inset: 0;
@@ -10,9 +14,14 @@
     background: #1B1717;
     z-index: 99999999;
     pointer-events: none;
-    opacity: 1;
-    transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0; /* Fail-safe: if animation breaks, it stays transparent */
+    animation: pf-overlay-fade 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: opacity;
+  }
+  #page-transition-overlay.is-exiting {
+    opacity: 1 !important;
+    animation: none !important;
   }
 </style>
   <meta charset="UTF-8" />
