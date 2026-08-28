@@ -26,12 +26,12 @@
   </style>
   <link rel="stylesheet" href="/cursor.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js" defer></script>
+
 </head>
 <body id="top" class="bg-[#EDEBDD] text-[#1B1717] antialiased selection:bg-[#630000] selection:text-white">
-
-<!-- Transition Curtain -->
-<div id="transition-curtain" class="fixed inset-0 bg-[#1B1717] z-[999999] pointer-events-none translate-y-full" style="will-change: transform;"></div>
-
 
 <!-- TopNavBar -->
 <nav id="main-nav" class="pointer-events-none">
@@ -96,7 +96,7 @@
   </div>
 </div>
 
-<main class="pt-24 md:pt-32 w-full flex flex-col items-center bg-[#EDEBDD]">
+<main class="relative z-0 pt-24 md:pt-32 w-full flex flex-col items-center bg-[#EDEBDD]">
     <div class="max-w-6xl w-full px-6 md:px-8 pb-10">
       <div class="w-full pb-8 border-b border-[#1B1717]/10 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div class="text-left">
@@ -1719,45 +1719,7 @@ document.addEventListener('DOMContentLoaded', () => {
     img.classList.add('hover-view');
   });
 
-  // --- 1. Global Custom Cursor ---
-  const customCursor = document.createElement('div');
-  customCursor.id = 'custom-cursor';
-  const cursorText = document.createElement('span');
-  customCursor.appendChild(cursorText);
-  document.body.appendChild(customCursor);
-
-  // GSAP-driven cursor — GPU composited, no layout cost, works with mix-blend-mode
-  // xPercent/yPercent: -50 tells GSAP to centre the dot on the hotspot
-  gsap.set(customCursor, { xPercent: -50, yPercent: -50 });
-  const xTo = gsap.quickTo(customCursor, 'x', { duration: 0.15, ease: 'power3.out' });
-  const yTo = gsap.quickTo(customCursor, 'y', { duration: 0.15, ease: 'power3.out' });
-
-  if (window.matchMedia('(pointer: fine)').matches) {
-    let cursorVisible = false;
-    window.addEventListener('mousemove', (e) => {
-      // Fade in on very first mouse movement
-      if (!cursorVisible) {
-        gsap.to(customCursor, { opacity: 1, duration: 0.4, ease: 'power2.out' });
-        cursorVisible = true;
-      }
-      xTo(e.clientX);
-      yTo(e.clientY);
-    }, { passive: true });
-
-    // View Mode for images
-    document.querySelectorAll('.hover-view').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        const customText = el.getAttribute('data-cursor-text') || 'VIEW';
-        cursorText.textContent = customText;
-        customCursor.classList.add('view-mode');
-      });
-      el.addEventListener('mouseleave', () => {
-        customCursor.classList.remove('view-mode');
-      });
-    });
-  }
-
-  // --- 2. Interactive Marquee --- (Handled by CSS)
+    // --- 2. Interactive Marquee --- (Handled by CSS)
 
   // --- 2.5 Brand Carousel Interactive Scrolling --- (Handled by CSS)
 

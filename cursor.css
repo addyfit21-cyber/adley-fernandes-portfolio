@@ -22,8 +22,6 @@
   z-index: 99999;
   opacity: 0;
   mix-blend-mode: difference;
-  will-change: transform;
-  transform: translateZ(0);   /* own composite layer — prevents cursor repaint from dirtying hero WebGL */
   contain: layout style;      /* limit repaint scope to cursor element only */
   transition:
     width  0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
