@@ -3,8 +3,7 @@
 
 <!DOCTYPE html>
 <html class="light bg-[#EDEBDD]" lang="en"><head>
-<!-- ── Page Transition Overlay (must be in <head> for zero-flash) ── -->
-<style>
+<style id="pf-overlay-style">
   #page-transition-overlay {
     position: fixed;
     inset: 0;
@@ -18,8 +17,6 @@
     will-change: opacity;
   }
 </style>
-<div id="page-transition-overlay"></div>
-<!-- ── /Page Transition Overlay ── -->
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 
@@ -306,6 +303,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <link rel="stylesheet" href="/cursor.css">
 </head>
 <body class="bg-[#EDEBDD] text-[#1B1717] selection:bg-primary selection:text-on-primary overflow-x-hidden w-full relative">
+<div id="page-transition-overlay"></div>
 
 <!-- TopNavBar -->
 <nav id="main-nav" class="pointer-events-none">

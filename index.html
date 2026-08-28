@@ -1,6 +1,5 @@
 <!DOCTYPE html><html class="light" lang="en"><head>
-<!-- ── Page Transition Overlay (must be in <head> for zero-flash) ── -->
-<style>
+<style id="pf-overlay-style">
   #page-transition-overlay {
     position: fixed;
     inset: 0;
@@ -14,8 +13,6 @@
     will-change: opacity;
   }
 </style>
-<div id="page-transition-overlay"></div>
-<!-- ── /Page Transition Overlay ── -->
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -448,6 +445,7 @@
   <link rel="stylesheet" href="/cursor.css">
 </head>
 <body id="top" class="bg-[#EDEBDD] text-[#1B1717] antialiased selection:bg-primary selection:text-[#1B1717] overflow-hidden overflow-x-hidden w-full relative">
+<div id="page-transition-overlay"></div>
 
 <script>
   if (sessionStorage.getItem('introPlayed')) {

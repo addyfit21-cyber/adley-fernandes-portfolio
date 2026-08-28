@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- ── Page Transition Overlay (must be in <head> for zero-flash) ── -->
-<style>
+<style id="pf-overlay-style">
   #page-transition-overlay {
     position: fixed;
     inset: 0;
@@ -16,8 +15,6 @@
     will-change: opacity;
   }
 </style>
-<div id="page-transition-overlay"></div>
-<!-- ── /Page Transition Overlay ── -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy � addesign studio</title>
@@ -68,6 +65,7 @@
   <link rel="stylesheet" href="/cursor.css">
 </head>
 <body>
+<div id="page-transition-overlay"></div>
 
 <!-- TopNavBar -->
 <nav id="main-nav" class="pointer-events-none">
