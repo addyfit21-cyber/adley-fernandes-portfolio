@@ -700,7 +700,7 @@
         var dots = [];
         var current = 0;
         var timer = null;
-        var INTERVAL = 5000;
+        var INTERVAL = 4000;
         var gradientDiv = container.querySelector('div');
 
         // Build slides
@@ -864,33 +864,7 @@
         z-index:8; pointer-events:none; transition:background 0.5s;
       "></div>
 
-      <!-- ── Scroll hint — right edge, horizontal text ── -->
-      <div id="hero-scroll-hint" class="hidden md:flex flex-col items-center gap-[10px]" style="
-        position:absolute;
-        right:0;
-        top:50%;
-        transform:translateY(-50%);
-        z-index:15;
-        pointer-events:none;
-        padding-right:18px;
-        opacity:0.45;
-        transition:opacity 0.5s;
-      ">
-        <!-- Down arrow -->
-        <svg id="hero-hint-arrow" width="16" height="24" viewBox="0 0 16 24" fill="none">
-          <path d="M8 2 L8 18 M3 13 L8 19 L13 13" stroke="rgba(237,235,221,0.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
-        <!-- Horizontal label -->
-        <span style="
-          font-family:'Manrope',sans-serif;
-          font-size:0.52rem;
-          letter-spacing:0.28em;
-          text-transform:uppercase;
-          color:rgba(237,235,221,0.6);
-          font-weight:700;
-          white-space:nowrap;
-        ">Scroll to explore</span>
-      </div>
+      
 
       <!-- ── Project label badge (HIDDEN) ── -->
       <div id="hero-img-label" style="display: none;">
