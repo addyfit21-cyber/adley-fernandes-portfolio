@@ -1740,6 +1740,28 @@
 </footer>
 
 <script>
+  /* -- Startup Scroll Fix -- */
+  if (window.location.hash) {
+    // Prevent browser's native jump on startup by locking page to top immediately
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+
+  window.addEventListener('load', () => {
+    if (window.location.hash) {
+      const hash = window.location.hash;
+      setTimeout(() => {
+        const target = document.querySelector(hash);
+        if (target && window.__lenis) {
+          window.__lenis.scrollTo(target, {
+            offset: -120,
+            duration: 1.8,
+            easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+          });
+        }
+      }, 350); // wait for ScrollTrigger initialization to finish
+    }
+  });
+
   /* "addesign" — fires only when user has scrolled well into the footer */
   (function() {
     var el = document.getElementById('footer-addesign-text');
@@ -1760,32 +1782,7 @@
   })();
 </script>
 
-
 <script>
-  /* -- Startup Scroll Fix -- */
-  if (window.location.hash) {
-    // Prevent browser's native jump on startup by locking page to top immediately
-    window.scrollTo({ top: 0, behavior: 'auto' });
-  }
-
-  window.addEventListener('load', () => {
-    if (window.location.hash) {
-      const hash = window.location.hash;
-      setTimeout(() => {
-        const target = document.querySelector(hash);
-        if (target && window.__lenis) {
-          window.__lenis.scrollTo(target, {
-            offset: -120,
-            duration: 1.8,
-            easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-          });
-        }
-      }, 350); // wait for ScrollTrigger initialization to finish
-    } else {
-      window.scrollTo({ top: 0, behavior: 'auto' });
-    }
-  });
-
   /* ── Hamburger ───────────────────────────────────────────── */
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobile-menu');
@@ -2264,9 +2261,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (sessionStorage.getItem('introPlayed') || window.location.hash) {
       preloader.style.display = "none";
       document.body.classList.remove("overflow-hidden");
-      if(typeof ScrollTrigger !== 'undefined') {
-        ScrollTrigger.refresh();
-      }
+      setTimeout(() => {
+        if(typeof ScrollTrigger !== 'undefined') {
+          ScrollTrigger.refresh();
+        }
+      }, 600);
       return;
     }
 
@@ -2301,9 +2300,12 @@ document.addEventListener('DOMContentLoaded', () => {
               preloader.style.display = "none";
               document.body.classList.remove("overflow-hidden");
 
-              if(typeof ScrollTrigger !== 'undefined') {
-                ScrollTrigger.refresh();
-              }
+              // Delay refresh so it doesn't snap the orbital scrub position back to hero
+              setTimeout(() => {
+                if(typeof ScrollTrigger !== 'undefined') {
+                  ScrollTrigger.refresh();
+                }
+              }, 600);
             }
           });
         }, 400);
