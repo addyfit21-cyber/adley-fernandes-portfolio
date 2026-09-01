@@ -30,98 +30,6 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 
 <!-- IAB Viewport Lock -->
-<script>
-(function() {
-  var _lockedVW = window.innerWidth;
-  function setVH() {
-    var h = (window.visualViewport ? window.visualViewport.height : window.innerHeight);
-    document.documentElement.style.setProperty('--vh', (h * 0.01) + 'px');
-  }
-  setVH();
-  window.addEventListener('resize', function() {
-    var newVW = window.innerWidth;
-    if (newVW === _lockedVW) return;
-    _lockedVW = newVW;
-    setVH();
-  });
-  if (window.visualViewport) {
-    var _lockedVVW = window.visualViewport.width;
-    window.visualViewport.addEventListener('resize', function() {
-      var newVVW = window.visualViewport.width;
-      if (newVVW === _lockedVVW) return;
-      _lockedVVW = newVVW;
-      setVH();
-    });
-  }
-})();
-</script>
-<title>Contact Adley Fernandes | Graphic & Web Designer</title>
-<meta name="description" content="Get in touch with Adley Fernandes for freelance graphic design, branding, and web design projects. Start a project today."/>
-<link rel="canonical" href="https://adleyportfolio.in/contact.html" />
-
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://adleyportfolio.in/contact.html" />
-<meta property="og:title" content="Contact Adley Fernandes | Graphic & Web Designer" />
-<meta property="og:description" content="Get in touch with Adley Fernandes for freelance graphic design, branding, and web design projects. Start a project today." />
-<meta property="og:image" content="https://adleyportfolio.in/Images/profile-portrait.webp" />
-
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content="https://adleyportfolio.in/contact.html" />
-<meta property="twitter:title" content="Contact Adley Fernandes | Graphic & Web Designer" />
-<meta property="twitter:description" content="Get in touch with Adley Fernandes for freelance graphic design, branding, and web design projects. Start a project today." />
-<meta property="twitter:image" content="https://adleyportfolio.in/Images/profile-portrait.webp" />
-
-<!-- JSON-LD Schema Markup -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Person",
-      "name": "Adley Fernandes",
-      "url": "https://adleyportfolio.in/",
-      "jobTitle": "Graphic Designer & Web Designer"
-    },
-    {
-      "@type": "WebPage",
-      "url": "https://adleyportfolio.in/contact.html",
-      "name": "Contact Adley Fernandes",
-      "description": "Get in touch with Adley Fernandes for freelance graphic design, branding, and web design projects."
-    }
-  ]
-}
-</script>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800;900&family=Manrope:wght@300;400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
-<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800;900&family=Manrope:wght@300;400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/></noscript>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Lenis smooth scroll -->
-<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
-<script id="tailwind-config">
-  tailwind.config = {
-    darkMode: "class",
-    theme: {
-      extend: {
-        "colors": {
-          "surface-dim": "#dadada","on-background": "#1a1c1c","surface-container-low": "#f3f3f4","on-tertiary-container": "#ffffff","inverse-on-surface": "#f0f1f1","primary": "#000000","surface-bright": "#f9f9f9","secondary": "#5e5e5e","surface-container-lowest": "#ffffff","on-primary-fixed": "#ffffff","inverse-surface": "#2f3131","surface-container-highest": "#e2e2e2","outline-variant": "#c6c6c6","surface-tint": "#5e5e5e","on-surface": "#1a1c1c","error": "#ba1a1a","secondary-container": "#d4d4d4","on-primary": "#e2e2e2","on-secondary": "#ffffff","error-container": "#ffdad6","surface-container": "#eeeeee","surface": "#f9f9f9","outline": "#777777","on-error-container": "#410002","surface-container-high": "#e8e8e8","tertiary-container": "#747474","on-surface-variant": "#474747","primary-container": "#3b3b3b","on-tertiary-fixed-variant": "#e2e2e2","on-primary-fixed-variant": "#e2e2e2","background": "#f9f9f9","on-primary-container": "#ffffff","on-secondary-fixed": "#1b1b1b","tertiary-fixed": "#5e5e5e","tertiary-fixed-dim": "#474747","inverse-primary": "#c6c6c6","on-tertiary-fixed": "#ffffff","tertiary": "#3b3b3b","on-tertiary": "#e2e2e2","primary-fixed": "#5e5e5e","on-secondary-container": "#1b1b1b","on-error": "#ffffff","primary-fixed-dim": "#474747","secondary-fixed-dim": "#ababab","secondary-fixed": "#c6c6c6","on-secondary-fixed-variant": "#3b3b3b","surface-variant": "#e2e2e2"
-        },
-        "borderRadius": {"DEFAULT": "0px","lg": "0px","xl": "0px","full": "9999px"},
-        "fontFamily": {
-          "sans": ["Manrope", "sans-serif"],
-          "heading": ["'DM Sans'", "sans-serif"],
-          "headline": ["'DM Sans'", "sans-serif"],
-          "body": ["Manrope", "sans-serif"],
-          "label": ["Manrope", "sans-serif"],
-          "manrope": ["Manrope"]
-        }
-      },
-    },
-  }
-</script>
 <style>
   /* Lenis owns scrolling � disable native smooth to avoid conflicts */
   html { scroll-behavior: auto; }
@@ -310,6 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
   <link rel="stylesheet" href="/cursor.css">
+  <link href="/dist.css" rel="stylesheet">
 </head>
 <body class="bg-[#EDEBDD] text-[#1B1717] selection:bg-primary selection:text-on-primary overflow-x-hidden w-full relative">
 <div id="page-transition-overlay"></div>
@@ -593,5 +502,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </script>
   <script src="/cursor.js" defer></script>
-  <script src="/transitions.js"></script>
+    <script src="/transitions.js"></script>
 </body></html>

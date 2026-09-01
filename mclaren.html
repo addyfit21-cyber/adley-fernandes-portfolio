@@ -29,19 +29,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800;900&family=Manrope:wght@300;400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            "sans": ["Manrope", "sans-serif"],
-            "heading": ["'DM Sans'", "sans-serif"],
-          }
-        }
-      }
-    }
-  </script>
   <style>
     html { scroll-behavior: smooth; }
     body { font-family: 'Manrope', sans-serif; }
@@ -53,6 +40,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js" defer></script>
 
+  <link href="/dist.css" rel="stylesheet">
 </head>
 <body id="top" class="bg-[#EDEBDD] text-[#1B1717] antialiased selection:bg-[#630000] selection:text-white">
 <div id="page-transition-overlay"></div>
@@ -1870,5 +1858,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   <script src="/cursor.js" defer></script>
 </div>
-  <script src="/transitions.js"></script>
+    <script src="/transitions.js"></script>
 </body></html>
