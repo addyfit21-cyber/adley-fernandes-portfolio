@@ -599,9 +599,29 @@
 
       <!-- Slideshow CSS -->
       <style>
-        @keyframes hero-kenburns {
-          from { transform: scale(1.05) translate(0%, 0%); }
-          to   { transform: scale(1.18) translate(-1.5%, -1.5%); }
+        @keyframes hero-reveal {
+          0% {
+            opacity: 0;
+            transform: scale(1.12);
+            filter: blur(16px);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1);
+            filter: blur(0px);
+          }
+        }
+        @keyframes hero-exit {
+          0% {
+            opacity: 1;
+            transform: scale(1);
+            filter: blur(0px);
+          }
+          100% {
+            opacity: 0;
+            transform: scale(1.05);
+            filter: blur(12px);
+          }
         }
         .hero-slide {
           position: absolute;
@@ -611,27 +631,39 @@
           object-fit: cover;
           object-position: center;
           opacity: 0;
-          transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-          will-change: opacity, transform;
+          pointer-events: none;
+          will-change: opacity, transform, filter;
         }
         .hero-slide.active {
-          opacity: 1;
-          animation: hero-kenburns 8s ease-in-out forwards;
+          animation: hero-reveal 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+          z-index: 2;
+        }
+        .hero-slide.prev {
+          animation: hero-exit 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+          z-index: 1;
         }
         .hero-dot {
-          width: 6px;
-          height: 6px;
+          width: 8px;
+          height: 8px;
           border-radius: 50%;
-          background: rgba(237,235,221,0.35);
+          background: rgba(237,235,221,0.25);
           border: none;
           padding: 0;
           cursor: pointer;
-          transition: background 0.3s, transform 0.3s;
+          transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
           pointer-events: auto;
+          position: relative;
+        }
+        .hero-dot::after {
+          content: '';
+          position: absolute;
+          inset: -8px;
+          border-radius: 50%;
         }
         .hero-dot.active {
-          background: rgba(237,235,221,0.9);
-          transform: scale(1.5);
+          background: rgba(237,235,221,1);
+          transform: scale(1.4);
+          box-shadow: 0 0 12px rgba(237,235,221,0.5);
         }
       </style>
 
@@ -666,7 +698,7 @@
         var dots = [];
         var current = 0;
         var timer = null;
-        var INTERVAL = 4000;
+        var INTERVAL = 5000;
         var gradientDiv = container.querySelector('div');
 
         // Build slides
@@ -692,21 +724,35 @@
         });
 
         function goTo(idx) {
+          if (idx === current && slides[current].classList.contains('active')) return;
+
           slides[current].classList.remove('active');
+          slides[current].classList.add('prev');
           dots[current].classList.remove('active');
+          
           current = (idx + slides.length) % slides.length;
-          // Restart kenburns by removing + re-adding
-          slides[current].classList.remove('active');
-          void slides[current].offsetWidth;
+          
+          // Cleanup prev tags after animation
+          var prevs = slides.filter(function(s) { return s.classList.contains('prev'); });
+          prevs.forEach(function(s) {
+            setTimeout(function() { s.classList.remove('prev'); }, 1600);
+          });
+
+          slides[current].classList.remove('prev');
+          void slides[current].offsetWidth; // reflow
           slides[current].classList.add('active');
           dots[current].classList.add('active');
-          // Update badge
+
+          // Smooth Badge transition
           if (badge && badgeProjectEl) {
             badge.style.opacity = '0';
+            badge.style.transform = 'translateY(15px)';
+            badge.style.transition = 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
             setTimeout(function() {
               badgeProjectEl.textContent = SLIDE_IMAGES[current].project || '';
               badge.style.opacity = '1';
-            }, 400);
+              badge.style.transform = 'translateY(0px)';
+            }, 600);
           }
         }
 
@@ -720,9 +766,15 @@
         // Init
         slides[0].classList.add('active');
         if (badgeProjectEl) badgeProjectEl.textContent = SLIDE_IMAGES[0].project || '';
-        setTimeout(function() { if (badge) badge.style.opacity = '1'; }, 800);
+        setTimeout(function() { 
+          if (badge) {
+            badge.style.opacity = '1'; 
+            badge.style.transform = 'translateY(0px)';
+            badge.style.transition = 'opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1)';
+          }
+        }, 1200);
 
-        // Pause on hover (desktop)
+        // Pause on hover
         container.addEventListener('mouseenter', function() { clearInterval(timer); });
         container.addEventListener('mouseleave', resetTimer);
 
@@ -736,6 +788,7 @@
 
         resetTimer();
       })();
+      </script>();
       </script>
 
 
