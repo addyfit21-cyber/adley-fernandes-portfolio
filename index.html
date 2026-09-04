@@ -2273,11 +2273,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (textStr.charAt(i) === '|') {
           textEl.innerHTML += "<br/>";
           i++;
-          setTimeout(typeWriter, 100);
+          setTimeout(typeWriter, 150);
         } else {
           textEl.innerHTML += textStr.charAt(i);
           i++;
-          setTimeout(typeWriter, 20);
+          setTimeout(typeWriter, 40);
         }
       } else {
         cursorEl.classList.remove("animate-pulse-cursor");
