@@ -1,0 +1,1862 @@
+<!DOCTYPE html><html lang="en"><head>
+<style id="pf-overlay-style">
+  @keyframes pf-overlay-fade {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  #page-transition-overlay {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #1B1717;
+    z-index: 99999999;
+    pointer-events: none;
+    opacity: 0; /* Fail-safe: if animation breaks, it stays transparent */
+    animation: pf-overlay-fade 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity;
+  }
+  #page-transition-overlay.is-exiting {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>McLaren | Adley Fernandes</title>
+  <meta name="description" content="Portfolio of Adley Fernandes.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800;900&family=Manrope:wght@300;400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Manrope', sans-serif; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'DM Sans', sans-serif; }
+  </style>
+  <link rel="stylesheet" href="/cursor.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js" defer></script>
+
+  <link href="/dist.css" rel="stylesheet">
+</head>
+<body id="top" class="bg-[#EDEBDD] text-[#1B1717] antialiased selection:bg-[#630000] selection:text-white">
+<div id="page-transition-overlay"></div>
+
+<!-- TopNavBar -->
+<nav id="main-nav" class="pointer-events-none">
+  <!-- Top Left: Logo (Original form, NO BLEND) -->
+  <div class="fixed top-0 left-0 z-[120] px-6 md:px-12 py-6">
+    <a href="/" class="pointer-events-auto block">
+      <img src="/Images/Brands/Adesign%20studio/Adesign%20logo%20colour-01.webp" alt="Adesign Studio" class="h-10 md:h-14 w-auto object-contain" decoding="async" loading="lazy">
+    </a>
+  </div>
+
+  <!-- Top Right: Desktop Navigation (Horizontal) -->
+  <div class="flex flex-row items-center gap-2 md:gap-4 pointer-events-auto fixed top-4 right-6 md:top-6 md:right-10 z-[120] mix-blend-difference" >
+    <a href="/" class="mix-blend-difference font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity">Index</a>
+    
+    <!-- Projects Dropdown -->
+    <div class="relative group flex flex-col items-center">
+      <button class="mix-blend-difference bg-transparent text-white hover:opacity-70 px-0 py-0 font-manrope text-[8px] tracking-[0.2em] uppercase transition-opacity flex items-center gap-1 cursor-pointer">
+        Projects
+        <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover:rotate-180">expand_more</span>
+      </button>
+      
+      <!-- Dropdown Menu -->
+      <div class="absolute top-full mt-4 w-40 bg-[#EDEBDD] border border-zinc-100 shadow-2xl opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 flex flex-col p-2 z-[101] -right-10 md:right-auto md:left-1/2 md:-translate-x-1/2">
+        <a href="index.html#categories-grid" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Visual Identity</a>
+        <a href="posters.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Posters</a>
+        <a href="nexzy.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Web Dev</a>
+        <a href="sketches.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Sketches</a>
+      </div>
+    </div>
+    
+    <a href="index.html#about" class="mix-blend-difference font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity">About</a>
+    <a href="contact.html" class="mix-blend-difference font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity">Contact</a>
+  </div>
+
+  </nav>
+
+<main class="relative z-0 pt-24 md:pt-32 w-full flex flex-col items-center bg-[#EDEBDD]">
+    <div class="max-w-6xl w-full px-6 md:px-8 pb-10">
+      <div class="w-full pb-8 border-b border-[#1B1717]/10 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+        <div class="text-left">
+          <p class="text-[8px] uppercase tracking-[0.4em] font-black text-[#630000] mb-3">Project Overview</p>
+          <h2 class="text-4xl md:text-6xl font-bold tracking-tighter text-[#1B1717]">McLaren</h2>
+        </div>
+        <div class="text-left md:text-right">
+          <p class="text-[8px] uppercase tracking-[0.4em] font-black text-[#630000] mb-2">Deliverables</p>
+          <p class="text-sm md:text-base font-semibold text-[#1B1717]">Automotive Artwork, Conceptual Studies</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="w-full">
+
+<!-- Art Work Section (McLaren) -->
+  <section id="mclaren" class="relative z-0 w-full bg-[#1B1717] text-white overflow-x-hidden border-t border-white/10">
+    <!-- Project Title Row -->
+    <div class="px-6 md:px-24 py-8 md:py-16 border-b border-white/10">
+      <div class="flex flex-col gap-6">
+        <div>
+          <p class="text-[8px] uppercase tracking-[0.5em] text-white font-bold mb-6">03 — Project</p>
+          <h3 class="text-[3rem] sm:text-[4.5rem] md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-white">McLaren</h3>
+        </div>
+        <div class="max-w-2xl">
+          <p class="text-base md:text-lg font-medium leading-snug text-white">Freelance Sketch Artist — Custom automotive artwork and concept studies.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image Showcase -->
+    <div class="px-6 md:px-24 py-5 md:py-20 max-w-[1400px] mx-auto text-center">
+      <div class="w-full min-h-[50vh] md:min-h-[80vh] flex items-center justify-center mb-4 md:mb-8">
+        <img src="Images/ART%20work/IMG_9844 (2).webp" class="w-full h-auto max-h-[80vh] object-contain" alt="McLaren Sketch" loading="lazy" decoding="async">
+      </div>
+      <button onclick="document.getElementById('mclaren-modal').showModal()" class="inline-flex items-center gap-4 bg-[#EDEBDD] text-[#1B1717] px-4 md:px-8 py-4 text-[8px] uppercase font-bold tracking-widest hover:bg-zinc-200 transition-colors">
+        View All Sketches
+        <span class="material-symbols-outlined text-sm">open_in_full</span>
+      </button>
+
+      <dialog id="mclaren-modal" class="backdrop:bg-black/95 w-[95vw] max-w-[1800px] h-[95vh] bg-transparent border-0 p-0 m-auto focus:outline-none overflow-y-auto">
+        <div class="sticky top-0 right-0 flex justify-end p-4 pointer-events-none">
+          <button onclick="document.getElementById('mclaren-modal').close()" class="bg-white/10 hover:bg-white/20 text-white p-3 rounded-full md:backdrop-blur-md pointer-events-auto transition-colors focus:outline-none">
+            <span class="material-symbols-outlined text-xl block">close</span>
+          </button>
+        </div>
+        <div class="flex flex-col gap-6 md:gap-12 p-2 md:p-6 pb-12 md:pb-24 items-center">
+          <img src="Images/ART%20work/IMG_0213 (2).webp" class="w-[90%] md:w-[75%] max-w-5xl h-auto object-contain rounded-md shadow-2xl" alt="McLaren Sketch 1" loading="lazy" decoding="async">
+          <img src="Images/ART%20work/IMG_9606 (2).webp" class="w-[90%] md:w-[75%] max-w-5xl h-auto object-contain rounded-md shadow-2xl" alt="McLaren Sketch 2" loading="lazy" decoding="async">
+          <img src="Images/ART%20work/IMG_9844 (2).webp" class="w-[90%] md:w-[75%] max-w-5xl h-auto object-contain rounded-md shadow-2xl" alt="McLaren Sketch 3" loading="lazy" decoding="async">
+        </div>
+      </dialog>
+    </div>
+
+    <!-- Editorial Content — Dense Grid -->
+    <div class="px-6 md:px-24 py-0 max-w-[1400px] mx-auto divide-y divide-white/10 border-t border-white/10">
+      <!-- Challenge + Concept -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
+        <div class="py-5 md:py-10 md:pr-16">
+          <p class="text-[8px] tracking-[0.3em] uppercase font-black text-white mb-4">01 / The Project</p>
+          <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-white mb-4">Custom Automotive Art.</h3>
+          <p class="text-[8px] md:text-[11px] leading-relaxed text-zinc-300 font-normal">Commissioned by McLaren Mumbai to create custom automotive sketches, capturing the precise vision and aesthetic of the brand.</p>
+        </div>
+        <div class="py-5 md:py-10 md:pl-16">
+          <p class="text-[8px] tracking-[0.3em] uppercase font-black text-white mb-4">02 / Approach</p>
+          <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-white mb-4">Focus on details.</h3>
+          <p class="text-[8px] md:text-[11px] leading-relaxed text-zinc-300 font-normal">I focused on delivering high-quality artwork with meticulous attention to detail, ensuring the final pieces met the client's exact standards.</p>
+        </div>
+      </div>
+      <!-- Output + Result -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
+        <div class="py-5 md:py-10 md:pr-16">
+          <p class="text-[8px] tracking-[0.3em] uppercase font-black text-white mb-6">03 / Output</p>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <p class="text-[8px] uppercase tracking-[0.2em] text-white font-bold mb-1">Deliverables</p>
+              <p class="text-[8px] md:text-[11px] leading-relaxed text-zinc-300">Custom automotive sketches on large A1 charts.</p>
+            </div>
+            <div>
+              <p class="text-[8px] uppercase tracking-[0.2em] text-white font-bold mb-1">Medium</p>
+              <p class="text-[8px] md:text-[11px] leading-relaxed text-zinc-300">Traditional hand-drawn sketching.</p>
+            </div>
+          </div>
+        </div>
+        <div class="py-5 md:py-10 md:pl-16">
+          <p class="text-[8px] tracking-[0.3em] uppercase font-black text-white mb-4">04 / Results</p>
+          <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-white mb-3">On time and on point.</h3>
+          <p class="text-sm font-medium text-zinc-300">Delivered the detailed sketches on schedule, perfectly aligning with McLaren's requirements and vision.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+</main>
+<!-- Services CTA Strip -->
+    <div class="px-6 md:px-24 py-12 md:py-24 border-t border-white/10 bg-[#1B1717] text-center">
+      <span class="text-[8px] tracking-[0.3em] uppercase text-zinc-400 font-bold mb-6 block">Start a Project</span>
+      <h3 class="text-[clamp(2.5rem,6vw,5rem)] font-bold tracking-tighter mb-6 md:mb-12 text-white">Let's build<br/>something iconic.</h3>
+      <a class="inline-flex items-center gap-4 text-[8px] tracking-[0.3em] uppercase font-bold border-b-2 border-zinc-900 pb-2 hover:opacity-50 text-white transition-all duration-300" href="contact.html">
+        Start your project
+        <span class="material-symbols-outlined" style="font-size:14px;">arrow_forward</span>
+      </a>
+    </div>
+
+<!-- Footer -->
+<footer id="site-footer" style="position: relative; width: 100%; overflow: hidden; background: #0d0a08;">
+
+  <div id="footer-scene" style="position: relative; width: 100%;">
+
+    <!-- ① BASE: Full sunset scenery — sets natural height of footer -->
+    <img
+      src="/Images/footer1.webp"
+      alt=""
+      aria-hidden="true"
+      style="display: block; width: 100%; height: auto;"
+    decoding="async" loading="lazy">
+
+    <!-- ② TEXT: "addesign" — per-letter stretched rise, bottom-anchored -->
+    <div
+      id="footer-addesign-text"
+      class="font-light md:font-[100]"
+      style="
+        position: absolute;
+        top: 22%;
+        left: 0;
+        width: 100%;
+        z-index: 2;
+        pointer-events: none;
+        text-align: center;
+        line-height: 0.85;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: clamp(5rem, 24vw, 30rem);
+        color: rgba(255, 255, 255, 0.97);
+        letter-spacing: -0.02em;
+        white-space: nowrap;
+      "
+    ><span class="footer-letter" style="animation-delay:0s">a</span><span class="footer-letter" style="animation-delay:0.1s">d</span><span class="footer-letter" style="animation-delay:0.2s">d</span><span class="footer-letter" style="animation-delay:0.3s">e</span><span class="footer-letter" style="animation-delay:0.4s">s</span><span class="footer-letter" style="animation-delay:0.5s">i</span><span class="footer-letter" style="animation-delay:0.6s">g</span><span class="footer-letter" style="animation-delay:0.7s">n</span></div>
+
+    <!-- ③ FOREGROUND: Mountains + land (transparent sky) — sits on top of text -->
+    <img
+      src="/Images/Footer 2.webp"
+      alt=""
+      aria-hidden="true"
+      style="
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center bottom;
+        display: block;
+        z-index: 3;
+      "
+    decoding="async" loading="lazy">
+    <!-- OVERLAY: Gradient layer at the bottom to improve text visibility without covering the addesign text -->
+    <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 150px; background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent); z-index: 4; pointer-events: none;"></div>
+
+    <!-- ④ LINKS: overlaid at bottom of the scene -->
+    <div class="absolute bottom-0 left-0 w-full z-10 flex flex-col md:flex-row md:justify-between md:items-stretch px-4 pb-2 pt-4 md:py-6 md:px-10 gap-2 md:gap-0" id="footer-links-bar">
+
+      <!-- === MOBILE LAYOUT (perfectly baseline aligned) === -->
+      <div class="flex md:hidden flex-row justify-between items-end w-full">
+        <!-- Left side -->
+        <div class="flex flex-col items-start gap-1.5">
+          <a href="/" class="font-['Helvetica_Neue',Helvetica,Arial,sans-serif] text-[8px] font-semibold text-white tracking-[0.08em] no-underline lowercase leading-none">addesign studio</a>
+          <p class="font-manrope text-[8px] tracking-[0.15em] uppercase text-white/50 m-0 leading-[16px]">
+            © 2024 addesign studio.<br/>All rights reserved.
+          </p>
+        </div>
+
+        <!-- Right side -->
+        <div class="flex flex-col items-end">
+          <p class="font-manrope text-[8px] tracking-[0.15em] uppercase m-0 leading-[16px] text-right">
+            <a href="#top" class="text-white font-bold no-underline hover:opacity-50">Top ↑</a> &nbsp;&nbsp;&nbsp; 
+            <a href="contact.html" class="text-white/60 no-underline hover:text-white">Contact</a> &nbsp;&nbsp;&nbsp; 
+            <a href="privacy-policy.html" class="text-white/60 no-underline hover:text-white">Privacy</a>
+            <br/>
+            <a href="https://www.linkedin.com/in/adley-fernandes-968688228/" target="_blank" rel="noopener" class="text-white/60 no-underline hover:text-white">LinkedIn</a> &nbsp;&nbsp;&nbsp; 
+            <a href="https://twitter.com" target="_blank" rel="noopener" class="footer-twitter-link font-manrope text-[11px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">Twitter</a> &nbsp;&nbsp;&nbsp; 
+            <a href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener" class="font-manrope text-[11px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">Instagram</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- === DESKTOP LAYOUT (original two-column) === -->
+      <!-- Bottom-left -->
+      <div id="footer-links-left" class="hidden md:flex flex-col justify-between items-start text-left w-auto h-full">
+        <div>
+          <a href="/" class="font-['Helvetica_Neue',Helvetica,Arial,sans-serif] text-sm font-semibold text-white tracking-[0.08em] no-underline block mb-1 lowercase">addesign studio</a>
+          <p class="font-manrope text-xs tracking-[0.18em] uppercase text-white/50 m-0 leading-snug">© 2024 addesign studio. All rights reserved.</p>
+        </div>
+        <div class="flex flex-row gap-6 items-center justify-start mt-0">
+          <a href="contact.html" class="font-manrope text-[11px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">Contact</a>
+          <a href="privacy-policy.html" class="font-manrope text-[11px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">Privacy Policy</a>
+        </div>
+      </div>
+
+      <!-- Bottom-right -->
+      <div id="footer-links-right" class="hidden md:flex flex-col justify-between items-end text-right w-auto h-full">
+        <a href="#top" class="font-manrope text-[11px] tracking-[0.18em] uppercase text-white font-bold no-underline flex items-center justify-end gap-1 transition-opacity duration-300 hover:opacity-50">
+          Back to top
+          <span class="material-symbols-outlined text-xs">arrow_upward</span>
+        </a>
+        <div class="flex flex-row gap-6 items-center justify-end mt-0">
+          <a href="https://www.linkedin.com/in/adley-fernandes-968688228/" target="_blank" rel="noopener" class="font-manrope text-[11px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">LinkedIn</a>
+          <a href="https://twitter.com" target="_blank" rel="noopener" class="footer-twitter-link font-manrope text-[11px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">Twitter</a>
+          <a href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener" class="font-manrope text-[11px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">Instagram</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</footer>
+
+<script>
+  /* "addesign" — fires only when user has scrolled well into the footer */
+  (function() {
+    var el = document.getElementById('footer-addesign-text');
+    if (!el) return;
+    var letters = el.querySelectorAll('.footer-letter');
+    function trigger() {
+      letters.forEach(function(letter) {
+        letter.classList.add('visible');
+      });
+    }
+    var observer = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting) {
+        trigger();
+        observer.disconnect();
+      }
+    }, { threshold: 0.45 });
+    observer.observe(document.getElementById('site-footer'));
+  })();
+</script>
+
+
+<script>
+  /* -- Startup Scroll Fix -- */
+  if (window.location.hash) {
+    // Prevent browser's native jump on startup by locking page to top immediately
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+
+  window.addEventListener('load', () => {
+    if (window.location.hash) {
+      const hash = window.location.hash;
+      setTimeout(() => {
+        const target = document.querySelector(hash);
+        if (target && window.__lenis) {
+          window.__lenis.scrollTo(target, {
+            offset: -120,
+            duration: 1.8,
+            easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+          });
+        }
+      }, 350); // wait for ScrollTrigger initialization to finish
+    } else {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    }
+  });
+
+  /* ── Hamburger ───────────────────────────────────────────── */
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const ham1 = document.getElementById('ham-1');
+  const ham2 = document.getElementById('ham-2');
+  const ham3 = document.getElementById('ham-3');
+  let menuOpen = false;
+  hamburger.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    mobileMenu.classList.toggle('open', menuOpen);
+    ham2.style.opacity = menuOpen ? '0' : '1';
+    ham1.style.transform = menuOpen ? 'translateY(8px) rotate(45deg)' : '';
+    ham3.style.transform = menuOpen ? 'translateY(-8px) rotate(-45deg)' : '';
+  });
+</script>
+
+<script>
+  /* -- Premium Testimonial Slider Logic -- */
+  let slides = [];
+  let nextBtn = null;
+  let prevBtn = null;
+  let currentSlide = 0;
+  let isAnimating = false;
+
+  function showSlide(index, direction) {
+    if (isAnimating || slides.length === 0) return;
+    isAnimating = true;
+
+    const outX = direction === 'next' ? -50 : 50;
+    const inX = direction === 'next' ? 50 : -50;
+
+    // Outgoing
+    gsap.to(slides[currentSlide], {
+      opacity: 0,
+      x: outX,
+      duration: 0.8,
+      ease: "power2.inOut",
+      onComplete: () => {
+        slides[currentSlide].style.pointerEvents = 'none';
+        currentSlide = index;
+        
+        // Incoming
+        gsap.fromTo(slides[currentSlide], 
+          { opacity: 0, x: inX },
+          { opacity: 1, x: 0, duration: 0.8, ease: "power2.out", onComplete: () => {
+            slides[currentSlide].style.pointerEvents = 'auto';
+            isAnimating = false;
+          }}
+        );
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    /* -- GSAP Plugin Registration -- */
+    if (typeof gsap !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+      ScrollTrigger.config({ ignoreMobileResize: true });
+      
+      // Note: Layout dimensions for images are fixed via CSS aspect ratios/classes.
+      // We do not attach img load listeners that call ScrollTrigger.refresh mid-scroll.
+    }
+
+    slides = document.querySelectorAll('.testimonial-slide');
+    nextBtn = document.getElementById('next-testimonial');
+    prevBtn = document.getElementById('prev-testimonial');
+
+    // Init first slide
+    if (slides.length > 0) {
+      gsap.set(slides[0], { opacity: 1, x: 0, pointerEvents: 'auto' });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        let nextIdx = (currentSlide + 1) % slides.length;
+        showSlide(nextIdx, 'next');
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        let prevIdx = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(prevIdx, 'prev');
+      });
+    }
+  });
+
+  /* -- Brand Guidelines Modal Logic -- */
+  function openGuidelines() {
+    const modal = document.getElementById('guidelines-modal');
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    gsap.fromTo(modal, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" });
+  }
+
+  function closeGuidelines() {
+    const modal = document.getElementById('guidelines-modal');
+    gsap.to(modal, { opacity: 0, duration: 0.5, ease: "power2.in", onComplete: () => {
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }});
+  }
+
+  /* -- Modal Scrolling and Sharing Logic -- */
+  function scrollModalUp() {
+    const modal = document.getElementById('guidelines-modal');
+    modal.scrollBy({ top: -window.innerHeight * 0.8, behavior: 'smooth' });
+  }
+
+  function scrollModalDown() {
+    const modal = document.getElementById('guidelines-modal');
+    modal.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' });
+  }
+
+  function shareProject() {
+    const url = window.location.href.split('#')[0] + '#branding';
+    if (navigator.share) {
+      navigator.share({
+        title: 'Benner Tea Co. Rebranding',
+        url: url
+      }).catch(console.error);
+    } else {
+      navigator.clipboard.writeText(url).then(() => {
+        alert('Project link copied to clipboard!');
+      }).catch(console.error);
+    }
+  }
+
+  /* -- Testimonial Modal Logic -- */
+  function openTestimonialModal() {
+    const modal = document.getElementById('testimonial-modal');
+    const content = document.getElementById('testimonial-modal-content');
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+      modal.classList.remove('opacity-0');
+      content.classList.remove('scale-95');
+    }, 10);
+    document.body.classList.add('overflow-hidden');
+  }
+
+  function closeTestimonialModal() {
+    const modal = document.getElementById('testimonial-modal');
+    const content = document.getElementById('testimonial-modal-content');
+    modal.classList.add('opacity-0');
+    content.classList.add('scale-95');
+    setTimeout(() => {
+      modal.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+      
+      const form = document.getElementById('testimonial-form');
+      if (form) {
+        form.reset();
+        form.style.display = 'block';
+        document.getElementById('testimonial-success').classList.add('hidden');
+        document.getElementById('testimonial-success').classList.remove('flex');
+        document.getElementById('test-submit-label').textContent = 'Send Testimonial';
+        document.getElementById('test-submit-btn').disabled = false;
+        document.querySelectorAll('#testimonial-form .field-error').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('#testimonial-form [required]').forEach(el => {
+          el.classList.remove('border-red-500');
+          el.classList.add('border-transparent');
+        });
+      }
+    }, 500);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const testForm = document.getElementById('testimonial-form');
+    if(testForm) {
+      testForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let valid = true;
+
+        testForm.querySelectorAll('[required]').forEach(field => {
+          const errEl = field.parentElement.querySelector('.field-error');
+          if (!field.value.trim()) {
+            if (errEl) errEl.classList.remove('hidden');
+            field.classList.remove('border-transparent');
+            field.classList.add('border-red-500');
+            valid = false;
+          } else {
+            if (errEl) errEl.classList.add('hidden');
+            field.classList.remove('border-red-500');
+            field.classList.add('border-transparent');
+          }
+        });
+
+        if (!valid) return;
+
+        const name = document.getElementById('test-name').value;
+        const role = document.getElementById('test-role').value;
+        const rating = document.getElementById('test-rating').value;
+        const comment = document.getElementById('test-comment').value;
+
+        const submitBtn = document.getElementById('test-submit-btn');
+        const submitLabel = document.getElementById('test-submit-label');
+
+        submitLabel.textContent = 'Sending...';
+        submitBtn.disabled = true;
+
+        fetch("https://formsubmit.co/ajax/addyfit21@gmail.com", {
+          method: "POST",
+          headers: { 
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+              _subject: `New Portfolio Testimonial from ${name}!`,
+              Name: name,
+              Role: role,
+              Rating: `${rating} Stars`,
+              Comment: comment
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          testForm.style.display = 'none';
+          const successDiv = document.getElementById('testimonial-success');
+          successDiv.classList.remove('hidden');
+          successDiv.classList.add('flex');
+        })
+        .catch(error => {
+          console.error("Error:", error);
+          submitLabel.textContent = 'Error. Try again';
+          submitBtn.disabled = false;
+        });
+      });
+    }
+  });
+
+
+  /* -- Staggered Word Reveal for Hero Text -- */
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.to(".reveal-word", {
+      scrollTrigger: {
+        trigger: "#hero",
+        start: "top+=50 top", // Triggers as soon as the user starts scrolling down
+        toggleActions: "play none none reverse"
+      },
+      opacity: 1,
+      x: 0,
+      duration: 1.2,
+      stagger: 0.15,
+      ease: "power3.out"
+    });
+  }
+</script>
+
+  <!-- Detailed Case Study Modal -->
+  <div id="case-study-modal" class="fixed inset-0 z-[200] hidden">
+    <!-- Overlay -->
+    <div onclick="closeCaseStudy()" class="absolute inset-0 bg-[#1B1717]"></div>
+    
+    <!-- Content Wrapper -->
+    <div class="relative h-full w-full overflow-y-auto bg-[#1B1717]" id="case-study-content">
+      <!-- Dynamic content injected here -->
+    </div>
+
+    <!-- Close Button -->
+    <button onclick="closeCaseStudy()" class="fixed top-6 right-6 md:top-8 md:right-8 z-[210] w-10 h-10 md:w-12 md:h-12 bg-white/5 hover:bg-white/10 md:backdrop-blur-md flex items-center justify-center text-white transition-all group shadow-sm">
+      <span class="material-symbols-outlined transition-transform duration-500 group-hover:rotate-90">close</span>
+    </button>
+  </div>
+
+<!-- Leave Testimonial Modal -->
+<div id="testimonial-modal" class="fixed inset-0 z-[300] bg-black/80 md:backdrop-blur-md hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-500">
+  <div class="bg-zinc-900 border border-white/10 w-full max-w-lg p-8 relative transform scale-95 transition-transform duration-500" id="testimonial-modal-content">
+    
+    <!-- Close Button -->
+    <button onclick="closeTestimonialModal()" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white/5 hover:bg-white/10 text-white rounded-full transition-colors">
+      <span class="material-symbols-outlined text-sm">close</span>
+    </button>
+
+    <div class="mb-4 md:mb-8">
+      <p class="text-[8px] tracking-[0.2em] uppercase text-zinc-400 font-bold mb-2">Submit Review</p>
+      <h3 class="text-2xl font-bold tracking-tight text-white">Leave a Testimonial</h3>
+    </div>
+
+    <form id="testimonial-form" class="space-y-6" novalidate>
+      <div>
+        <label for="test-name" class="block text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2">Your Name</label>
+        <input type="text" id="test-name" required class="w-full bg-zinc-800 border border-transparent text-white text-sm px-4 py-3 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all">
+        <p class="text-[8px] text-red-500 uppercase tracking-widest mt-2 hidden field-error">Name is required</p>
+      </div>
+
+      <div>
+        <label for="test-role" class="block text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2">Role & Company</label>
+        <input type="text" id="test-role" placeholder="e.g. CEO of Nexzy" required class="w-full bg-zinc-800 border border-transparent text-white text-sm px-4 py-3 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all placeholder:text-zinc-300">
+        <p class="text-[8px] text-red-500 uppercase tracking-widest mt-2 hidden field-error">Role is required</p>
+      </div>
+
+      <div>
+        <label for="test-rating" class="block text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2">Rating</label>
+        <select id="test-rating" class="w-full bg-zinc-800 border border-transparent text-white text-sm px-4 py-3 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all appearance-none cursor-pointer">
+          <option value="5">⭐⭐⭐⭐⭐ (5 Stars)</option>
+          <option value="4">⭐⭐⭐⭐ (4 Stars)</option>
+          <option value="3">⭐⭐⭐ (3 Stars)</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="test-comment" class="block text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2">Your Review (Emojis Supported)</label>
+        <textarea id="test-comment" rows="4" required class="w-full bg-zinc-800 border border-transparent text-white text-sm px-4 py-3 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all resize-none"></textarea>
+        <p class="text-[8px] text-red-500 uppercase tracking-widest mt-2 hidden field-error">Review is required</p>
+      </div>
+
+      <button type="submit" id="test-submit-btn" class="w-full py-4 bg-[#1B1717] text-white text-xs font-bold uppercase tracking-[0.2em] hover:bg-white/10 transition-all flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 hover:scale-105">
+        <span id="test-submit-label">Send Testimonial</span>
+      </button>
+    </form>
+
+    <!-- Success Message -->
+    <div id="testimonial-success" class="hidden flex-col items-center justify-center text-center py-4 md:py-8">
+      <span class="material-symbols-outlined text-4xl text-green-500 mb-4">check_circle</span>
+      <h4 class="text-xl font-bold text-white mb-2">Thank you!</h4>
+      <p class="text-sm text-zinc-400">Your testimonial has been securely sent to Adley.</p>
+      <button onclick="closeTestimonialModal()" class="mt-4 md:mt-8 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-bold uppercase tracking-widest transition-colors">Close</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- Brand Guidelines Modal -->
+<div id="guidelines-modal" class="fixed inset-0 z-[200] bg-[#1B1717] hidden flex flex-col overflow-y-auto no-scrollbar scroll-smooth">
+  <!-- Scroll Controls -->
+  <div class="fixed top-1/2 right-4 md:right-8 -translate-y-1/2 z-[210] flex flex-col gap-4">
+    <button onclick="scrollModalUp()" class="w-10 h-10 md:w-12 md:h-12 bg-white/5 hover:bg-white/10 md:backdrop-blur-md flex items-center justify-center text-white transition-all shadow-sm">
+      <span class="material-symbols-outlined">arrow_upward</span>
+    </button>
+    <button onclick="shareProject()" class="w-10 h-10 md:w-12 md:h-12 bg-[#1B1717] text-white hover:bg-white/10 md:backdrop-blur-md flex items-center justify-center transition-all shadow-sm active:scale-95 hover:scale-105" title="Share Project">
+      <span class="material-symbols-outlined">share</span>
+    </button>
+    <button onclick="scrollModalDown()" class="w-10 h-10 md:w-12 md:h-12 bg-white/5 hover:bg-white/10 md:backdrop-blur-md flex items-center justify-center text-white transition-all shadow-sm">
+      <span class="material-symbols-outlined">arrow_downward</span>
+    </button>
+  </div>
+
+  <!-- Close Button -->
+  <button onclick="closeGuidelines()" class="fixed top-6 right-6 md:top-8 md:right-8 z-[210] w-10 h-10 md:w-12 md:h-12 bg-white/5 hover:bg-white/10 md:backdrop-blur-md flex items-center justify-center text-white transition-all group shadow-sm">
+    <span class="material-symbols-outlined transition-transform duration-500 group-hover:rotate-90">close</span>
+  </button>
+
+  <!-- Guidelines Content -->
+  <div class="w-full flex flex-col items-center py-10 md:py-20 px-4 md:px-0">
+    <div id="guidelines-container" class="w-full max-w-7xl shadow-2xl">
+
+      <!-- Brand Guideline Pages 01–26: 2 per row -->
+      <div class="grid grid-cols-2 gap-0">
+        <img src="/Images/Branding/Brand guidelines-01.webp" class="w-full h-auto block" alt="Page 01" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Brand guidelines-02.webp" class="w-full h-auto block" alt="Page 02" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Brand guidelines-03.webp" class="w-full h-auto block" alt="Page 03" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Brand guidelines-04.webp" class="w-full h-auto block" alt="Page 04" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Brand guidelines-05.webp" class="w-full h-auto block" alt="Page 05" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Brand guidelines-06.webp" class="w-full h-auto block" alt="Page 06" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Brand guidelines-07.webp" class="w-full h-auto block" alt="Page 07" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Brand guidelines-08.webp" class="w-full h-auto block" alt="Page 08" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Brand guidelines-09.webp" class="w-full h-auto block" alt="Page 09" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Brand guidelines-10.webp" class="w-full h-auto block" alt="Page 10" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Brand guidelines-11.webp" class="w-full h-auto block" alt="Page 11" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Brand guidelines-12.webp" class="w-full h-auto block" alt="Page 12" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Brand guidelines-13.webp" class="w-full h-auto block" alt="Page 13" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Brand guidelines-14.webp" class="w-full h-auto block" alt="Page 14" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Brand guidelines-15.webp" class="w-full h-auto block" alt="Page 15" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Brand guidelines-16.webp" class="w-full h-auto block" alt="Page 16" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Brand guidelines-17.webp" class="w-full h-auto block" alt="Page 17" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Brand guidelines-18.webp" class="w-full h-auto block" alt="Page 18" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Brand guidelines-19.webp" class="w-full h-auto block" alt="Page 19" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Brand guidelines-20.webp" class="w-full h-auto block" alt="Page 20" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Brand guidelines-21.webp" class="w-full h-auto block" alt="Page 21" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Brand guidelines-22.webp" class="w-full h-auto block" alt="Page 22" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Brand guidelines-23.webp" class="w-full h-auto block" alt="Page 23" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Brand guidelines-24.webp" class="w-full h-auto block" alt="Page 24" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Brand guidelines-25.webp" class="w-full h-auto block" alt="Page 25" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Brand guidelines-26.webp" class="w-full h-auto block" alt="Page 26" loading="lazy" decoding="async">
+      </div>
+
+      <!-- Video and Mockups: 1x1 size -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 w-full bg-[#1B1717]">
+        <!-- Video -->
+        <div class="w-full aspect-square relative flex items-center justify-center">
+          <video aria-hidden="true" preload="none" autoplay muted loop playsinline class="card-video w-full h-full object-cover absolute inset-0 hidden md:block" data-src="/Images/Branding/Rebranding_Product_Video_Generation.mp4"></video>
+          <video aria-hidden="true" preload="none" autoplay muted loop playsinline webkit-playsinline class="card-video w-full h-full object-cover absolute inset-0 block md:hidden pointer-events-none" data-src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4"></video>
+        </div>
+        <!-- Mockups -->
+        <img src="/Images/Branding/Mockup 01.webp" class="w-full h-full aspect-square object-cover block border-none" alt="Mockup 1" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Mockup 02.webp" class="w-full h-full aspect-square object-cover block border-none" alt="Mockup 2" loading="lazy" decoding="async">
+        <img src="/Images/Branding/mockup 03.webp" class="w-full h-full aspect-square object-cover block border-none" alt="Mockup 3" loading="lazy" decoding="async">
+        <img src="/Images/Branding/mockup 04.webp" class="w-full h-full aspect-square object-cover block border-none" alt="Mockup 4" loading="lazy" decoding="async">
+        <img src="/Images/Branding/IMG_3641.webp" class="w-full h-full aspect-square object-cover block border-none" alt="Mockup 5" loading="lazy" decoding="async">
+      </div>
+
+      <!-- Brand Guideline Pages 27–28: 2 per row -->
+      <div class="grid grid-cols-2 gap-0">
+        <img src="/Images/Branding/Brand guidelines-27.webp" class="w-full h-auto block" alt="Page 27" loading="lazy" decoding="async">
+        <img src="/Images/Branding/Brand guidelines-28.webp" class="w-full h-auto block" alt="Page 28" loading="lazy" decoding="async">
+      </div>
+
+      <!-- Thank You / Last Page: full width -->
+      <img src="/Images/Branding/Brand guidelines-29.webp" class="w-full h-auto block" alt="Page 29" loading="lazy" decoding="async">
+    </div>
+  </div>
+</div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* — Featured Work Cards Entrance: clean fade + lift — */
+  gsap.utils.toArray('.fade-enter-card').forEach((card, i) => {
+    gsap.from(card, {
+      scrollTrigger: {
+        trigger: card,
+        start: 'top 88%',
+        once: true
+      },
+      opacity: 0,
+      y: 60,
+      duration: 1.1,
+      ease: 'expo.out',
+      clearProps: 'all'
+    });
+  });
+
+  /* — Section heading / text reveals —
+     IMPORTANT: skip any element inside .skill-item or #services — those
+     are controlled exclusively by the cube ScrollTrigger timeline and
+     must NOT be touched by this global reveal. */
+  gsap.utils.toArray('h2, h3').forEach(el => {
+    if (el.closest('.hero-marquee')) return; // skip marquee
+    if (el.closest('.skill-item'))   return; // skip services skill slides
+    if (el.closest('#services'))     return; // skip entire services section
+    gsap.from(el, {
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 92%',
+        once: true
+      },
+      opacity: 0,
+      y: 30,
+      duration: 0.9,
+      ease: 'power3.out',
+      clearProps: 'all'
+    });
+  });
+
+});
+</script>
+
+<!-- Preloader Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    initIntro();
+  });
+
+  // Also run if already loaded (Vite HMR safety)
+  if (document.readyState === "complete" || document.readyState === "interactive") {
+    initIntro();
+  }
+
+  let introInitialized = false;
+
+  function initIntro() {
+    if (introInitialized) return;
+    introInitialized = true;
+
+    const preloader = document.getElementById("intro-preloader");
+    const textEl = document.getElementById("intro-text");
+    const cursorEl = document.getElementById("intro-cursor");
+
+    // Safety check
+    if (!preloader) return;
+
+    if (sessionStorage.getItem('introPlayed') || window.location.hash) {
+      preloader.style.display = "none";
+      document.body.classList.remove("overflow-hidden");
+      if(typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.refresh();
+      }
+      return;
+    }
+
+    sessionStorage.setItem('introPlayed', 'true');
+    const textStr = "welcome to the space of|design and emotion.";
+    
+    if (!textEl || !cursorEl) return;
+
+    let i = 0;
+    
+    function typeWriter() {
+      if (i < textStr.length) {
+        if (textStr.charAt(i) === '|') {
+          textEl.innerHTML += "<br/>";
+          i++;
+          setTimeout(typeWriter, 200);
+        } else {
+          textEl.innerHTML += textStr.charAt(i);
+          i++;
+          setTimeout(typeWriter, 50);
+        }
+      } else {
+        cursorEl.classList.remove("animate-pulse-cursor");
+        cursorEl.style.display = "none";
+        
+        setTimeout(() => {
+          gsap.to(preloader, {
+            opacity: 0,
+            duration: 0.7,
+            ease: "power2.inOut",
+            onComplete: () => {
+              preloader.style.display = "none";
+              document.body.classList.remove("overflow-hidden");
+
+              if(typeof ScrollTrigger !== 'undefined') {
+                ScrollTrigger.refresh();
+              }
+            }
+          });
+        }, 400);
+      }
+    }
+    
+    setTimeout(typeWriter, 50);
+  }
+
+  // --- Smart Audio Logic (Runs regardless of intro state) ---
+  function initSmartAudio() {
+    const bennerVideo = document.getElementById('benner-video');
+    const volumeToggle = document.getElementById('volume-toggle');
+    const volumeIcon = document.getElementById('volume-icon');
+    let userDesiresSound = false;
+
+    if (bennerVideo && volumeToggle) {
+      volumeToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        userDesiresSound = !userDesiresSound;
+        bennerVideo.muted = !userDesiresSound;
+        volumeIcon.textContent = userDesiresSound ? 'volume_up' : 'volume_off';
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) {
+            bennerVideo.muted = true;
+          } else {
+            bennerVideo.muted = !userDesiresSound;
+          }
+        });
+      }, { threshold: 0.1 });
+
+      const section = document.getElementById('visual-identity');
+      if (section) observer.observe(section);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", initSmartAudio);
+  if (document.readyState === "complete" || document.readyState === "interactive") {
+    initSmartAudio();
+  }
+
+  // --- Case Study Modal System ---
+  const caseStudyData = {
+    'blogging-site': {
+      title: "The ExecuVision",
+      category: "Re-design & Development",
+      heroImage: "/Images/web_dev/img_3693.mp4",
+      isVideo: true,
+      overview: {
+        client: "ExecuVision Collective",
+        concept: "A surgical re-imagining of corporate identity through high-performance digital architecture.",
+        goal: "Transform a low-quality, buggy legacy site into a structured, high-speed platform with surgical design precision."
+      },
+      process: {
+        research: "Identified core pain points in the original platform: extreme latency, frequent technical bugs, and a complete lack of visual hierarchy.",
+        planning: "Architected a new data structure to eliminate lagging. Created a 12-column grid system to bring order to content-heavy pages.",
+        design: "Focused on a 'Content-First' philosophy. Stripped away unnecessary visual noise to create a clean, minimalist aesthetic.",
+        dev: "Rebuilt the entire tech stack for maximum responsiveness. Fixed all legacy bugs and optimized performance for zero-lag interactions."
+      },
+      transformation: {
+        before: "/Images/web_dev/img_3692.mp4",
+        after: "/Images/web_dev/img_3693.mp4"
+      },
+      solution: {
+        features: ["Clean UI / Smooth UX", "Zero-Lag Navigation", "Well-Structured Content", "Minimalist Micro-animations"],
+        visuals: {
+          desktop: "/Images/web_dev/img_3693.mp4",
+          mobile: "/Images/web_dev/whatsapp_2_mobile.mp4" 
+        }
+      },
+      results: {
+        metrics: "Drastic speed improvements and 100% bug-free deployment. Significant increase in user clarity and usability.",
+        outcomes: "Shifted the user experience from a high-friction environment to a seamless, high-quality digital narrative."
+      }
+    },
+    'digital-narrative': {
+      title: "Nexzy",
+      category: "Growth & Tech Solutions UI/UX & Development",
+      heroImage: "/Images/web_dev/img_3691.mp4",
+      isVideo: true,
+      overview: {
+        client: "Nexzy Growth & Tech Solutions",
+        concept: "A cutting-edge agency flagship designed to serve as a high-conversion lead generation engine.",
+        goal: "Elevate the brand's digital presence to attract high-tier clients and showcase a sophisticated technical portfolio."
+      },
+      process: {
+        research: "Analyzed the B2B tech landscape to identify key conversion drivers. Studied user behavior to ensure the portfolio section remains the focal point.",
+        planning: "Architected a lead-centric user journey. Developed a content strategy that balances technical depth with visual impact.",
+        design: "Pioneered a 'Future-Forward' aesthetic. Chose a high-contrast palette and geometric spacing to convey innovation and reliability.",
+        dev: "Engineered a high-performance 'Tech Sea' animation for the hero section. Leveraged hardware acceleration to ensure fluid motion and rapid response."
+      },
+      solution: {
+        features: ["Tech Sea Motion Hero", "Clear CTA Infrastructure", "Dynamic Portfolio Grid", "High-Conversion Lead Funnel"],
+        visuals: {
+          desktop: "/Images/web_dev/img_3691.mp4",
+          mobile: "/Images/web_dev/whatsapp_1_mobile.mp4"
+        }
+      },
+      results: {
+        metrics: "Significant increase in inbound inquiries and client engagement. 100% improvement in portfolio visibility.",
+        outcomes: "Successfully positioned Nexzy as a market leader in tech solutions through superior UI/UX and motion-driven storytelling."
+      }
+    }
+  };
+
+  // ─── Shared helper: renders the iMac or iPhone mockup shell ──────────────
+  function solutionMedia(mediaPath, type, isVideo = true) {
+    const fitClass = 'object-cover bg-[#1B1717]';
+    const media = mediaPath.endsWith('.mp4') 
+      ? `<video aria-hidden="true" preload="none" src="${mediaPath}" autoplay muted loop playsinline class="absolute inset-0 w-full h-full ${fitClass} [clip-path:inset(0px_round_1.8rem)]"></video>`
+      : `<img src="${mediaPath}" class="absolute inset-0 w-full h-full ${fitClass} [clip-path:inset(0px_round_1.8rem)]" loading="lazy" decoding="async">`;
+
+    if (type === 'desktop') {
+      return `
+        <div class="flex flex-col items-center w-full group">
+          <!-- 3D iMac Frame -->
+          <div class="relative w-full aspect-[16/9] bg-[#1a1a1a] rounded-t-2xl p-[1%] shadow-[0_60px_100px_-20px_rgba(0,0,0,0.6),0_20px_40px_-10px_rgba(0,0,0,0.4)] border-x-[4px] border-t-[4px] border-[#2a2a2a]">
+            <div class="absolute inset-0 rounded-t-2xl border-r-[2px] border-b-[2px] border-black/40 pointer-events-none"></div>
+            <div class="relative w-full h-full bg-[#1B1717] rounded-sm overflow-hidden shadow-[inset_0_0_40px_rgba(0,0,0,0.9)] border-[1px] border-white/5">
+              ${media}
+              <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.04] to-white/[0.12] pointer-events-none"></div>
+              <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white/[0.05] to-transparent opacity-50 pointer-events-none"></div>
+            </div>
+          </div>
+          <!-- 3D iMac Chin -->
+          <div class="relative w-full h-[60px] md:h-[80px] bg-gradient-to-b from-[#f3f4f6] via-[#d1d5db] to-[#9ca3af] flex items-center justify-center rounded-b-2xl border-t border-white/60 shadow-[0_15px_30px_-5px_rgba(0,0,0,0.4)]">
+            <div class="absolute top-0 left-0 w-full h-[2px] bg-black/40"></div>
+            <svg class="w-6 h-6 text-white opacity-80 drop-shadow-md" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.057 10.125c-.011-2.39 1.954-3.534 2.046-3.593-1.111-1.623-2.833-1.844-3.443-1.869-1.458-.148-2.846.858-3.586.858-.74 0-1.896-.838-3.13-.814-1.62.024-3.114.942-3.95 2.392-1.688 2.925-.43 7.247 1.206 9.613.801 1.157 1.752 2.457 3.003 2.41 1.205-.047 1.66-.778 3.117-.778 1.458 0 1.868.778 3.14.754 1.302-.023 2.128-1.176 2.924-2.341.92-1.344 1.301-2.645 1.321-2.712-.028-.013-2.538-.973-2.565-3.864zM14.654 4.542c.655-.794 1.096-1.897.975-3.002-.949.038-2.099.632-2.781 1.426-.612.712-1.147 1.838-1.002 2.917.952.125 2.15-.55 2.808-1.341z"/>
+            </svg>
+          </div>
+          <!-- 3D iMac Stand -->
+          <div class="relative w-[30%] h-[110px] flex justify-center mt-[-4px]">
+            <div class="w-full h-full bg-gradient-to-br from-[#d1d5db] via-[#9ca3af] to-[#6b7280] [clip-path:polygon(18%_0%,82%_0%,100%_100%,0%_100%)] shadow-inner">
+              <div class="absolute inset-0 bg-white/10 [clip-path:polygon(95%_0%,100%_0%,100%_100%,90%_100%)]"></div>
+            </div>
+          </div>
+          <div class="w-[45%] h-[12px] bg-gradient-to-b from-[#d1d5db] via-[#9ca3af] to-[#4b5563] rounded-full mt-[-10px] shadow-[0_10px_20px_rgba(0,0,0,0.3)] border-t border-white/40"></div>
+        </div>
+      `;
+    } else {
+      return `
+        <div class="flex flex-col items-center w-full group py-6 md:py-12">
+          <!-- 3D iPhone Frame -->
+          <div class="relative w-full max-w-[280px] aspect-[9/18] bg-gradient-to-br from-[#e5e7eb] via-[#ffffff] to-[#d1d5db] rounded-[2.5rem] p-[1.5%] shadow-[0_60px_120px_-30px_rgba(0,0,0,0.4),0_15px_30px_-10px_rgba(0,0,0,0.2)] border-x-[3px] border-zinc-300">
+            <div class="absolute inset-y-[5%] -left-[1px] w-[1px] h-[90%] bg-black/80 blur-[0.5px]"></div>
+            <div class="absolute inset-y-[5%] -right-[1px] w-[1px] h-[90%] bg-white/10 blur-[0.5px]"></div>
+            <!-- Inner Black Bezel -->
+            <div class="relative w-full h-full bg-[#1B1717] rounded-[2.2rem] p-[3%] overflow-hidden shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]">
+              <!-- Dynamic Island -->
+              <div class="absolute top-[3.5%] left-1/2 -translate-x-1/2 w-[32%] h-[2.4%] bg-[#050505] rounded-full z-20 border border-zinc-900/80 flex items-center justify-end px-[2%] shadow-lg">
+                <div class="w-[3px] h-[3px] rounded-full bg-[#1a1a2e] opacity-40"></div>
+              </div>
+              <!-- Screen Container -->
+              <div class="relative w-full h-full bg-[#1B1717] rounded-[1.8rem] overflow-hidden">
+                ${media}
+                <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.06] to-white/[0.15] pointer-events-none"></div>
+                <div class="absolute top-0 left-0 w-full h-[20%] bg-gradient-to-b from-white/[0.08] to-transparent pointer-events-none"></div>
+              </div>
+            </div>
+            <!-- Hardware Buttons -->
+            <div class="absolute -left-[4px] top-[18%] w-[5px] h-[45px] bg-gradient-to-r from-[#d1d5db] to-[#9ca3af] rounded-l-md border-y border-l border-white/40 shadow-sm"></div>
+            <div class="absolute -right-[4px] top-[22%] w-[5px] h-[85px] bg-gradient-to-l from-[#d1d5db] to-[#9ca3af] rounded-r-md border-y border-r border-white/40 shadow-sm"></div>
+          </div>
+          <div class="w-[65%] h-[20px] bg-black/15 blur-2xl rounded-full mt-[-10px] -z-10 scale-x-110"></div>
+        </div>
+      `;
+    }
+  }
+
+  function openBrandingCaseStudy() {
+    const modal = document.getElementById('case-study-modal');
+    const content = document.getElementById('case-study-content');
+    
+    document.getElementById('branding-modal')?.classList.add('hidden');
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+
+    content.innerHTML = `
+      <div class="w-full bg-[#1B1717] text-white pb-32 md:pb-64 font-sans overflow-x-hidden">
+        <style>
+          #case-study-content { font-family: Arial, sans-serif !important; }
+          #case-study-content h1, #case-study-content h2, #case-study-content h3 { font-family: Helvetica, Arial, sans-serif !important; }
+        </style>
+        <!-- Section 1: Intro -->
+        <section class="flex flex-col items-center justify-center px-6 text-center space-y-8 md:space-y-16" style="min-height: calc(var(--vh, 1svh) * 100);">
+          <div class="benner-reveal overflow-hidden">
+            <span class="text-[8px] tracking-[0.5em] uppercase text-zinc-400 font-bold block mb-4 md:mb-8">Section 01 — Intro</span>
+            <h1 class="text-4xl md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-white mb-4 md:mb-12">Benner<br/>Tea Co.</h1>
+          </div>
+          <div class="benner-reveal overflow-hidden max-w-2xl">
+            <p class="text-lg md:text-2xl font-light leading-relaxed text-zinc-400 italic">A rebrand focused on making everyday tea feel modern, minimal, and emotionally relevant.</p>
+          </div>
+        </section>
+
+        <!-- Branding Showcase Mockup (Moved to Top) -->
+        <div class="px-6 md:px-24 max-w-[1400px] mx-auto mb-16 md:mb-32">
+          <div class="flex flex-wrap justify-center gap-3">
+             <span class="px-6 py-2 bg-zinc-950 border border-white/10 rounded-full text-[8px] font-bold tracking-[0.2em] uppercase text-zinc-300">Visual Identity</span>
+             <span class="px-6 py-2 bg-zinc-950 border border-white/10 rounded-full text-[8px] font-bold tracking-[0.2em] uppercase text-zinc-300">Motion System</span>
+             <span class="px-6 py-2 bg-zinc-950 border border-white/10 rounded-full text-[8px] font-bold tracking-[0.2em] uppercase text-zinc-300">Modern Ritual</span>
+          </div>
+        </div>
+
+        <div class="px-6 md:px-24 max-w-[1400px] mx-auto space-y-32">
+          <!-- Section 2: The Gap -->
+          <section class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 border-t border-white/10 pt-8 md:pt-16">
+            <div class="md:col-span-4">
+              <h2 class="text-[8px] tracking-[0.3em] uppercase font-black text-zinc-300">02 / The Gap</h2>
+            </div>
+            <div class="md:col-span-8 space-y-12">
+              <div class="benner-reveal overflow-hidden">
+                <h3 class="text-4xl md:text-7xl font-bold tracking-tighter leading-tight">The product was good.<br/><span class="text-zinc-300">The perception wasn’t.</span></h3>
+              </div>
+              <div class="benner-reveal overflow-hidden max-w-xl">
+                <p class="text-lg md:text-xl text-zinc-400 leading-relaxed font-light">
+                  Benner Tea Co. existed in a crowded category—but visually, it blended in instead of standing out.<br/><br/>
+                  The brand lacked clarity, identity, and a reason for younger consumers to choose it.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 3: The Opportunity -->
+          <section class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 border-t border-white/10 pt-8 md:pt-16">
+            <div class="md:col-span-4">
+              <h2 class="text-[8px] tracking-[0.3em] uppercase font-black text-zinc-300">03 / The Opportunity</h2>
+            </div>
+            <div class="md:col-span-8">
+              <div class="benner-reveal overflow-hidden">
+                <h3 class="text-4xl md:text-8xl font-bold tracking-tighter leading-[0.9] mb-6 md:mb-12 italic">
+                  Tea is no longer just a beverage—<br/>
+                  it’s part of a daily ritual.<br/>
+                  A moment of pause.<br/>
+                  A lifestyle choice.
+                </h3>
+                <p class="text-xl md:text-2xl text-zinc-400 font-light max-w-xl">
+                  The opportunity was to reposition Benner from a product on the shelf to a brand people connect with.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 4: The Objective -->
+          <section class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 border-t border-white/10 pt-8 md:pt-16">
+            <div class="md:col-span-4">
+              <h2 class="text-[8px] tracking-[0.3em] uppercase font-black text-zinc-300">04 / The Objective</h2>
+            </div>
+            <div class="md:col-span-8">
+              <h3 class="text-4xl md:text-6xl font-bold tracking-tighter leading-tight mb-12 md:mb-24">Create a brand that feels:</h3>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 border-l border-white/10 pl-12">
+                <div class="benner-reveal overflow-hidden">
+                  <p class="text-2xl font-light italic">Calm,<br/><span class="text-zinc-300 not-italic">but not boring</span></p>
+                </div>
+                <div class="benner-reveal overflow-hidden">
+                  <p class="text-2xl font-light italic">Premium,<br/><span class="text-zinc-300 not-italic">but still accessible</span></p>
+                </div>
+                <div class="benner-reveal overflow-hidden">
+                  <p class="text-2xl font-light italic">Minimal,<br/><span class="text-zinc-300 not-italic">yet emotionally warm</span></p>
+                </div>
+              </div>
+              <div class="benner-reveal overflow-hidden mt-16 md:mt-32">
+                <p class="text-[8px] md:text-[11px] uppercase tracking-[0.3em] text-white font-bold">Built for Gen Z and millennials without alienating existing consumers.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 5: The Approach -->
+          <section class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 border-t border-white/10 pt-8 md:pt-16">
+            <div class="md:col-span-4">
+              <h2 class="text-[8px] tracking-[0.3em] uppercase font-black text-zinc-300">05 / The Approach</h2>
+            </div>
+            <div class="md:col-span-8">
+              <h3 class="text-5xl md:text-9xl font-bold tracking-tighter leading-tight mb-6 md:mb-12 italic">Reduce noise.<br/>Increase meaning.</h3>
+              <div class="benner-reveal overflow-hidden max-w-2xl">
+                <p class="text-lg md:text-xl text-zinc-400 leading-relaxed font-light">
+                  Every decision—from layout to color to typography—was made to simplify the experience and strengthen emotional connection.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 6: Key Design Decisions -->
+          <section class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 border-t border-white/10 pt-8 md:pt-16">
+            <div class="md:col-span-4">
+              <h2 class="text-[8px] tracking-[0.3em] uppercase font-black text-zinc-300">06 / Strategic Details</h2>
+            </div>
+            <div class="md:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12">
+              <div class="space-y-6">
+                <p class="text-[8px] uppercase tracking-[0.2em] text-zinc-400 font-bold">Minimal Structure</p>
+                <p class="text-sm leading-relaxed text-zinc-400 font-light">Clear hierarchy and generous spacing to improve readability and shelf impact.</p>
+              </div>
+              <div class="space-y-6">
+                <p class="text-[8px] uppercase tracking-[0.2em] text-zinc-400 font-bold">Earthy Color Language</p>
+                <p class="text-sm leading-relaxed text-zinc-400 font-light">Oat beige and natural tones to evoke warmth, calm, and authenticity.</p>
+              </div>
+              <div class="space-y-6">
+                <p class="text-[8px] uppercase tracking-[0.2em] text-zinc-400 font-bold">Balanced Typography</p>
+                <p class="text-sm leading-relaxed text-zinc-400 font-light">A refined serif for personality, paired with a clean sans-serif for clarity.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 7: Transformation -->
+          <section class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 border-t border-white/10 pt-8 md:pt-16">
+            <div class="md:col-span-4">
+              <h2 class="text-[8px] tracking-[0.3em] uppercase font-black text-zinc-300">07 / Transformation</h2>
+            </div>
+            <div class="md:col-span-8">
+              <h3 class="text-4xl md:text-7xl font-bold tracking-tighter leading-tight mb-6 md:mb-12">From a brand that felt generic and forgettable<br/><span class="text-zinc-300">to one that feels intentional, modern, and distinct.</span></h3>
+              <p class="text-xl md:text-2xl font-light text-zinc-400 leading-tight">A system that not only looks better—but communicates better.</p>
+            </div>
+          </section>
+
+          <!-- Section 8: Transition to Guidelines -->
+          <section class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 border-t border-white/10 pt-8 md:pt-16">
+            <div class="md:col-span-4">
+              <h2 class="text-[8px] tracking-[0.3em] uppercase font-black text-zinc-300">08 / The System</h2>
+            </div>
+            <div class="md:col-span-8">
+              <p class="text-2xl md:text-4xl font-light leading-snug text-white italic">
+                To ensure consistency and scalability, the new identity was built as a complete visual system. Every element was defined, structured, and documented.
+              </p>
+            </div>
+          </section>
+
+          <!-- Section 9: CTA Divider -->
+          <section class="pt-16 md:pt-32 pb-32 md:pb-64">
+            <div class="group cursor-pointer border border-white/10 p-8 md:p-24 rounded-[3rem] hover:bg-zinc-950 transition-all duration-700" onclick="openGuidelines()">
+              <p class="text-[8px] uppercase tracking-[0.5em] font-black text-zinc-300 mb-6 md:mb-12 text-center">09 / Full Guidelines</p>
+              <h2 class="text-3xl md:text-[6rem] font-bold tracking-tighter leading-none text-center mb-8 md:mb-16">Explore the Guidelines</h2>
+              <div class="flex items-center justify-center gap-6 text-zinc-400 group-hover:text-white transition-colors duration-500">
+                <span class="text-[8px] md:text-[11px] font-bold uppercase tracking-[0.3em]">View Visual System</span>
+                <span class="material-symbols-outlined text-4xl group-hover:translate-y-4 transition-transform duration-700">south</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    `;
+
+    // Re-initialize GSAP for the new structure
+    const reveals = document.querySelectorAll('.benner-reveal');
+    reveals.forEach((el) => {
+      gsap.from(el.children, {
+        scrollTrigger: {
+          trigger: el,
+          start: "top 90%",
+          scroller: "#case-study-content",
+          toggleActions: "play none none none"
+        },
+        y: 80,
+        opacity: 0,
+        duration: 1.5,
+        ease: "power4.out",
+        stagger: 0.15
+      });
+    });
+
+    // Force videos to play
+    content.querySelectorAll('video').forEach(v => v.play().catch(() => {}));
+  }
+
+  function openCaseStudy(projectId) {
+    const data = caseStudyData[projectId];
+    if (!data) return;
+
+    const modal = document.getElementById('case-study-modal');
+    const content = document.getElementById('case-study-content');
+
+    content.innerHTML = `
+      <div class="w-full bg-[#1B1717] pb-32 md:pb-64 font-sans overflow-x-hidden" style="min-height: calc(var(--vh, 1svh) * 100);">
+        <style>
+          #case-study-content { font-family: Arial, sans-serif !important; }
+          #case-study-content h1, #case-study-content h2, #case-study-content h3 { font-family: Helvetica, Arial, sans-serif !important; }
+        </style>
+        <!-- Header Section -->
+        <div class="px-6 md:px-24 pt-16 md:pt-48 mb-6 md:mb-16 max-w-[1400px] mx-auto">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-8">
+            <div class="max-w-4xl">
+              <span class="text-[8px] tracking-[0.5em] uppercase text-zinc-400 font-bold block mb-6">01 / PROJECT</span>
+              <h1 class="text-3xl md:text-[10rem] font-bold tracking-tighter leading-[0.85] text-white">${data.title}</h1>
+            </div>
+            <div class="hidden md:block pb-4">
+              <div class="h-[1px] w-32 bg-white/10"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 04 / Final Solution (Moved to Top) -->
+        <div class="px-6 md:px-24 max-w-[1400px] mx-auto mb-16 md:mb-32">
+          <div class="flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-20 pb-8 md:pb-16">
+            <!-- Desktop Mockup Container -->
+            <div class="w-full lg:w-[62%] max-w-[850px]">
+               ${solutionMedia(data.solution.visuals.desktop, 'desktop', data.isVideo)}
+            </div>
+            <!-- Mobile Mockup Container -->
+            <div class="w-full lg:w-[22%] max-w-[280px] md:max-w-[220px]">
+               ${solutionMedia(data.solution.visuals.mobile, 'mobile', data.isVideo)}
+            </div>
+          </div>
+          <div class="flex flex-wrap justify-center gap-3">
+            ${data.solution.features.map(f => `<span class="px-6 py-2 bg-zinc-950 border border-white/10 rounded-full text-[8px] font-bold tracking-[0.2em] uppercase text-zinc-300">${f}</span>`).join('')}
+          </div>
+        </div>
+
+        <div class="px-6 md:px-24 max-w-[1400px] mx-auto space-y-32">
+          <!-- a. Overview -->
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 border-t border-white/10 pt-8 md:pt-16">
+            <div class="md:col-span-4">
+              <h2 class="text-[8px] tracking-[0.3em] uppercase font-black text-zinc-300">01 / Overview</h2>
+            </div>
+            <div class="md:col-span-8 space-y-16">
+              <div>
+                <p class="text-[8px] uppercase tracking-[0.2em] text-zinc-400 font-bold mb-4">Client & Concept</p>
+                <p class="text-3xl md:text-5xl font-medium tracking-tight leading-tight text-zinc-800">${data.overview.client} — ${data.overview.concept}</p>
+              </div>
+              <div class="max-w-2xl">
+                <p class="text-[8px] uppercase tracking-[0.2em] text-zinc-400 font-bold mb-4">The Challenge</p>
+                <p class="text-xl md:text-2xl text-zinc-400 leading-relaxed font-light">${data.overview.goal}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Transformation Section (Before/After) -->
+          ${data.transformation ? `
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-16 border-t border-white/10 pt-6 md:pt-16">
+            <div class="md:col-span-4">
+              <h2 class="text-[8px] tracking-[0.3em] uppercase font-black text-zinc-300">02 / Transformation</h2>
+            </div>
+            <div class="md:col-span-8 space-y-16 md:space-y-48">
+              <div class="space-y-6 md:space-y-8 group">
+                <div class="flex items-center gap-4">
+                  <span class="w-8 h-[1px] bg-white/10"></span>
+                  <p class="text-[8px] uppercase tracking-[0.3em] text-zinc-400 font-bold">Legacy State</p>
+                </div>
+                <div class="bg-zinc-950 p-4 md:p-8 rounded-[2rem] overflow-hidden border border-white/10 transition-all duration-700 group-hover:shadow-xl">
+                  <video aria-hidden="true" preload="none" src="${data.transformation.before}" autoplay muted loop playsinline class="w-full h-auto rounded-2xl"></video>
+                </div>
+              </div>
+              <div class="space-y-8 group">
+                <div class="flex items-center gap-4">
+                  <span class="w-8 h-[1px] bg-zinc-800"></span>
+                  <p class="text-[8px] uppercase tracking-[0.3em] text-white font-bold">New Vision</p>
+                </div>
+                <div class="bg-[#1B1717] p-4 md:p-8 border border-white/10 rounded-[2rem] overflow-hidden shadow-2xl transition-all duration-700 group-hover:scale-[1.01]">
+                  <video aria-hidden="true" preload="none" src="${data.transformation.after}" autoplay muted loop playsinline class="w-full h-auto rounded-2xl"></video>
+                </div>
+              </div>
+            </div>
+          </div>
+          ` : ''}
+
+          <!-- b. Process -->
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-16 border-t border-white/10 pt-6 md:pt-16">
+            <div class="md:col-span-4">
+              <h2 class="text-[8px] tracking-[0.3em] uppercase font-black text-zinc-300">03 / Process</h2>
+            </div>
+            <div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-12 md:gap-y-32">
+              <div class="space-y-4 md:space-y-6">
+                <div class="flex items-center gap-3">
+                  <span class="text-[8px] font-bold text-white">01</span>
+                  <p class="text-[8px] uppercase tracking-[0.2em] text-zinc-400 font-bold">Research</p>
+                </div>
+                <p class="text-lg text-zinc-400 leading-relaxed font-light">${data.process.research}</p>
+              </div>
+              <div class="space-y-4 md:space-y-6">
+                <div class="flex items-center gap-3">
+                  <span class="text-[8px] font-bold text-white">02</span>
+                  <p class="text-[8px] uppercase tracking-[0.2em] text-zinc-400 font-bold">Planning</p>
+                </div>
+                <p class="text-lg text-zinc-400 leading-relaxed font-light">${data.process.planning}</p>
+              </div>
+              <div class="space-y-4 md:space-y-6">
+                <div class="flex items-center gap-3">
+                  <span class="text-[8px] font-bold text-white">03</span>
+                  <p class="text-[8px] uppercase tracking-[0.2em] text-zinc-400 font-bold">Design Decisions</p>
+                </div>
+                <p class="text-lg text-zinc-400 leading-relaxed font-light">${data.process.design}</p>
+              </div>
+              <div class="space-y-4 md:space-y-6">
+                <div class="flex items-center gap-3">
+                  <span class="text-[8px] font-bold text-white">04</span>
+                  <p class="text-[8px] uppercase tracking-[0.2em] text-zinc-400 font-bold">Development</p>
+                </div>
+                <p class="text-lg text-zinc-400 leading-relaxed font-light">${data.process.dev}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- c. Solution Section Placeholder (Previously here) -->
+          
+          <!-- d. Results -->
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-16 border-t border-white/10 pt-8 md:pt-24">
+            <div class="md:col-span-4">
+              <h2 class="text-[8px] tracking-[0.3em] uppercase font-black text-zinc-300">05 / Results</h2>
+            </div>
+            <div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-16">
+              <div>
+                <p class="text-[8px] uppercase tracking-[0.2em] text-zinc-400 font-bold mb-6">Metrics</p>
+                <p class="text-2xl font-medium tracking-tight text-zinc-800 leading-tight">${data.results.metrics}</p>
+              </div>
+              <div>
+                <p class="text-[8px] uppercase tracking-[0.2em] text-zinc-400 font-bold mb-6">Strategic Outcome</p>
+                <p class="text-2xl font-medium tracking-tight text-zinc-800 leading-tight">${data.results.outcomes}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    modal.classList.remove('hidden');
+    document.body.classList.add('overflow-hidden');
+    // Safety: Force all videos in the modal to play (handles innerHTML delay/blocking)
+    const videos = content.querySelectorAll('video');
+    videos.forEach(v => {
+      v.muted = true;
+      v.playsInline = true;
+      v.setAttribute('playsinline', 'true');
+      v.setAttribute('webkit-playsinline', 'true');
+      v.play().catch(e => console.log('Autoplay prevented:', e));
+    });
+  }
+
+  function closeCaseStudy() {
+    document.getElementById('case-study-modal').classList.add('hidden');
+    // Clear BOTH the inline style and the Tailwind class to guarantee scroll is restored
+    document.body.style.overflow = '';
+    document.body.classList.remove('overflow-hidden');
+  }
+</script>
+
+<!-- ─── Lazy Video Loader ─────────────────────────────────────────────────────
+     Detects mobile, assigns the right src, and only loads each card video
+     when it scrolls into view. Fixes the broken <source media> approach and
+     prevents 3 videos competing for bandwidth on page load.
+──────────────────────────────────────────────────────────────────────────── -->
+<script>
+(function() {
+  const isMobile = window.innerWidth <= 768;
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      const video = entry.target;
+      if (entry.isIntersecting) {
+        // Only assign src once
+        if (!video.src || video.src === window.location.href) {
+          const src = isMobile
+            ? (video.dataset.mobileSrc || video.dataset.src)
+            : video.dataset.src;
+          video.preload = "auto";
+          video.src = src;
+          // Force mobile autoplay properties programmatically
+          video.muted = true;
+          video.playsInline = true;
+          video.setAttribute('playsinline', 'true');
+          video.setAttribute('webkit-playsinline', 'true');
+          video.load();
+          // Video containers have fixed aspect ratios so no mid-scroll ScrollTrigger.refresh is needed.
+        }
+        // Always force mute and play
+        video.muted = true;
+        setTimeout(() => {
+          const playPromise = video.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(function() {});
+          }
+        }, 50);
+      } else {
+        // Pause off-screen videos to save battery/bandwidth
+        if (!video.paused) video.pause();
+      }
+    });
+  }, {
+    rootMargin: '1500px 0px',  // start loading 1500px before card enters view
+    threshold: 0
+  });
+
+  // Observe all card videos on DOM ready
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('video.card-video').forEach(function(v) {
+      observer.observe(v);
+    });
+  });
+})();
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileBtn = document.getElementById('mobile-dropdown-btn');
+  const mobileMenu = document.getElementById('mobile-dropdown-menu');
+  const mobileArrow = document.getElementById('mobile-dropdown-arrow');
+
+  if (mobileBtn && mobileMenu) {
+    mobileBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const isOpen = mobileMenu.classList.contains('opacity-100');
+      
+      if (!isOpen) {
+        mobileMenu.classList.remove('opacity-0', 'invisible', '-translate-y-4');
+        mobileMenu.classList.add('opacity-100', 'visible', 'translate-y-0');
+        if (mobileArrow) mobileArrow.style.transform = 'rotate(180deg)';
+      } else {
+        mobileMenu.classList.remove('opacity-100', 'visible', 'translate-y-0');
+        mobileMenu.classList.add('opacity-0', 'invisible', '-translate-y-4');
+        if (mobileArrow) mobileArrow.style.transform = 'rotate(0deg)';
+      }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!mobileBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+        mobileMenu.classList.remove('opacity-100', 'visible', 'translate-y-0');
+        mobileMenu.classList.add('opacity-0', 'invisible', '-translate-y-4');
+        if (mobileArrow) mobileArrow.style.transform = 'rotate(0deg)';
+      }
+    });
+
+    // Close menu when clicking a link
+    const mobileLinks = mobileMenu.querySelectorAll('.mobile-link');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('opacity-100', 'visible', 'translate-y-0');
+        mobileMenu.classList.add('opacity-0', 'invisible', '-translate-y-4');
+        if (mobileArrow) mobileArrow.style.transform = 'rotate(0deg)';
+      });
+    });
+  }
+});
+
+// ─── Lenis Smooth Scroll Initialisation ─────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function initLenis() {
+  if (typeof Lenis === 'undefined') return;
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+  // ── iOS/Touch Fix ──────────────────────────────────────────────────────────
+  // Lenis intercepts touch events and fights iOS's native momentum scroll,
+  // causing the scroll to abruptly stop mid-swipe on iPhone/iPad.
+  // The fix: on any touch-primary device, skip Lenis entirely and let iOS
+  // handle scrolling natively (which it does perfectly with momentum).
+  // GSAP ScrollTrigger reads window.scrollY directly so it works either way.
+  const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+  if (isTouchDevice) {
+    // On touch devices, native scroll handles momentum cleanly without Lenis or extra scroll updates.
+    window.__lenis = null;
+    return;
+  }
+
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    orientation: 'vertical',
+    gestureOrientation: 'vertical',
+    smoothWheel: true,
+    smoothTouch: false,  // always off — native touch scroll is better
+    infinite: false,
+  });
+
+  window.__lenis = lenis;
+
+  // ── CRITICAL: Drive Lenis through GSAP's ticker, NOT a separate rAF.
+  // This keeps Lenis and ScrollTrigger on the exact same frame tick,
+  // so scrub-based timelines read the correct interpolated scroll position.
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000); // gsap time is in seconds; lenis.raf expects ms
+  });
+  gsap.ticker.lagSmoothing(0);
+
+  // Keep ScrollTrigger refreshed every Lenis scroll event
+  lenis.on('scroll', ScrollTrigger.update);
+
+  // Refresh ScrollTrigger once when the page fully loads (fonts, initial styles)
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+    }, 200);
+  });
+
+  // Patch in-page anchor links to use Lenis momentum (matches #hash and index.html#hash)
+  document.addEventListener('click', e => {
+    const anchor = e.target.closest('a');
+    if (anchor) {
+      const href = anchor.getAttribute('href');
+      if (href) {
+        const isCurrentPageHash = href.startsWith('#') || 
+          (href.startsWith('index.html#') && (window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html') || window.location.pathname === ''));
+        
+        if (isCurrentPageHash) {
+          const hash = href.substring(href.indexOf('#'));
+          const target = document.querySelector(hash);
+          if (target) {
+            e.preventDefault();
+            if (lenis) {
+              lenis.scrollTo(target, {
+                offset: -120,
+                duration: 1.4,
+                easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+              });
+            } else {
+              const offsetTop = target.getBoundingClientRect().top + window.pageYOffset - 120;
+              window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+              });
+            }
+          }
+        }
+      }
+    }
+  });
+});
+
+// ─── Mobile Menu Button Visibility (transparent on hero, solid on scroll) ─────
+(function initMobileMenuVisibility() {
+  // Mobile only
+  if (!window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
+
+  const btn = document.getElementById('mobile-dropdown-btn');
+  const hero = document.getElementById('hero');
+  if (!btn || !hero) return;
+
+  function trySetupMobileBtn() {
+    if (typeof ScrollTrigger === 'undefined') {
+      setTimeout(trySetupMobileBtn, 50); return;
+    }
+
+    ScrollTrigger.create({
+      trigger: hero,
+      start: 'bottom 90%',
+      onEnter: () => {
+        btn.style.backgroundColor = '#ffffff';
+        btn.style.boxShadow = '0 4px 24px rgba(0,0,0,0.18)';
+      },
+      onLeaveBack: () => {
+        btn.style.backgroundColor = 'transparent';
+        btn.style.boxShadow = 'none';
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', trySetupMobileBtn);
+})();
+
+// ─── Navbar Background on Desktop (transparent on hero, solid on scroll) ──────
+(function initNavbarVisibility() {
+  // Desktop only — mobile nav has no background pill
+  if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
+
+  const nav = document.getElementById('main-nav');
+  const hero = document.getElementById('hero');
+  if (!nav || !hero) return;
+
+  // Add smooth transition for background/border/shadow only
+  nav.style.transition = 'background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease';
+
+  function trySetupNav() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+      setTimeout(trySetupNav, 50); return;
+    }
+
+    ScrollTrigger.create({
+      trigger: hero,
+      start: 'bottom 90%',
+      onEnter: () => {
+        nav.style.backgroundColor = 'rgba(255,255,255,0.92)';
+        nav.style.border = '1px solid rgba(228,228,231,1)';
+        nav.style.boxShadow = '0 20px 60px -10px rgba(0,0,0,0.15)';
+      },
+      onLeaveBack: () => {
+        nav.style.backgroundColor = 'transparent';
+        nav.style.border = '1px solid transparent';
+        nav.style.boxShadow = 'none';
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', trySetupNav);
+})();
+
+// Interactive GSAP Marquee & Global Custom Cursor
+document.addEventListener('DOMContentLoaded', () => {
+  // --- 0. Auto-apply Cursor Classes ---
+  document.querySelectorAll('.fade-enter-card img, #mclaren img, #porsche img').forEach(img => {
+    img.classList.add('hover-view');
+  });
+
+    // --- 2. Interactive Marquee --- (Handled by CSS)
+
+  // --- 2.5 Brand Carousel Interactive Scrolling --- (Handled by CSS)
+
+  // --- 3. Parallax Image Scrolling — refined scrub value for smoother result ---
+  document.querySelectorAll('.fade-enter-card > div.relative, #mclaren .bg-zinc-900, #porsche .bg-zinc-900').forEach(container => {
+    container.style.overflow = 'hidden';
+    const img = container.querySelector('img');
+    if (img) {
+      img.style.willChange = 'transform';
+      gsap.set(img, { scale: 1.12, transformOrigin: 'center', force3D: true });
+      gsap.to(img, {
+        yPercent: 12,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: container,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.5       // Higher scrub = less twitchy, more cinematic
+        }
+      });
+    }
+  });
+
+  
+});
+</script>
+
+  <!-- ==============================================
+       FLOATING INDICATOR CUBE
+  ============================================== -->
+  <div id="floating-indicator-container" class="fixed top-[20%] md:top-[30%] right-4 md:right-8 z-[500] w-[90px] h-[90px] md:w-[140px] md:h-[140px] pointer-events-none opacity-0 invisible" style="will-change: transform, opacity; transform: translateX(100vw);">
+  </div>
+
+  <script type="module">
+    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js';
+    import { RoundedBoxGeometry } from 'https://cdn.jsdelivr.net/npm/three@0.150.1/examples/jsm/geometries/RoundedBoxGeometry.js';
+
+    function initFloatingCube() {
+    const indContainer = document.getElementById('floating-indicator-container');
+    if (!indContainer) return;
+    const indScene = new THREE.Scene();
+    const indCamera = new THREE.PerspectiveCamera(45, indContainer.clientWidth / indContainer.clientHeight, 0.1, 100);
+    indCamera.position.z = 6.5;
+
+    const indRenderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    indRenderer.setSize(indContainer.clientWidth, indContainer.clientHeight);
+    indRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    indContainer.appendChild(indRenderer.domElement);
+
+    const indAmbientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    indScene.add(indAmbientLight);
+    const indDirLight = new THREE.DirectionalLight(0xffffff, 2.5);
+    indDirLight.position.set(5, 5, 5);
+    indScene.add(indDirLight);
+    
+    const indOrangeLight = new THREE.DirectionalLight(0x630000, 5);
+    indOrangeLight.position.set(0, -5, 5);
+    indScene.add(indOrangeLight);
+    
+    const indFillLight = new THREE.DirectionalLight(0xffffff, 1);
+    indFillLight.position.set(-5, -2, -5);
+    indScene.add(indFillLight);
+
+    function createIndNumberTexture(number) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 512; canvas.height = 512;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, 512, 512);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 360px Arial, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.shadowColor = 'rgba(0,0,0,0.8)';
+      ctx.shadowBlur = 15;
+      ctx.fillText(number, 256, 280);
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.anisotropy = indRenderer.capabilities.getMaxAnisotropy();
+      return texture;
+    }
+
+    const indGroup = new THREE.Group();
+    const indInnerGroup = new THREE.Group();
+    indGroup.add(indInnerGroup);
+    indScene.add(indGroup);
+
+    const indMaterial = new THREE.MeshStandardMaterial({ color: 0x050505, roughness: 0.1, metalness: 0.85 });
+    const indBoxSize = 0.85;
+    const indRadius = 0.12;
+    const indGeometry = new RoundedBoxGeometry(indBoxSize, indBoxSize, indBoxSize, 4, indRadius);
+    const indGap = 0.9;
+    const indOffset = indGap;
+    for (let x = 0; x < 3; x++) {
+      for (let y = 0; y < 3; y++) {
+        for (let z = 0; z < 3; z++) {
+          const cube = new THREE.Mesh(indGeometry, indMaterial);
+          cube.position.set(x * indGap - indOffset, y * indGap - indOffset, z * indGap - indOffset);
+          indInnerGroup.add(cube);
+        }
+      }
+    }
+
+    const indPlaneGeo = new THREE.PlaneGeometry(2.8, 2.8);
+    const indPlaneDist = 1.4;
+    // Map numbers to faces sequentially around the Y axis
+    const indFaces = [
+      { num: '1', pos: [0, 0, indPlaneDist],   rot: [0, 0, 0] },
+      { num: '2', pos: [indPlaneDist, 0, 0],   rot: [0, Math.PI/2, 0] },
+      { num: '3', pos: [0, 0, -indPlaneDist],  rot: [0, Math.PI, 0] },
+      { num: '4', pos: [-indPlaneDist, 0, 0],  rot: [0, -Math.PI/2, 0] }
+    ];
+    indFaces.forEach(face => {
+      const mat = new THREE.MeshBasicMaterial({ map: createIndNumberTexture(face.num), transparent: true, depthWrite: false });
+      const plane = new THREE.Mesh(indPlaneGeo, mat);
+      plane.position.set(...face.pos);
+      plane.rotation.set(...face.rot);
+      indInnerGroup.add(plane);
+    });
+
+    let idleTime = 0;
+    let indIsVisible = false;
+    let indAnimId = null;
+
+    function animateCube() {
+      if (!indIsVisible) return;
+      indAnimId = requestAnimationFrame(animateCube);
+      idleTime += 0.02;
+      indGroup.position.y = Math.sin(idleTime) * 0.2;
+      indGroup.rotation.x = Math.sin(idleTime * 0.5) * 0.15;
+      indGroup.rotation.z = Math.cos(idleTime * 0.5) * 0.1;
+      indRenderer.render(indScene, indCamera);
+    }
+
+    const indObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        indIsVisible = entry.isIntersecting;
+        if (indIsVisible && !indAnimId) animateCube();
+        else if (!indIsVisible && indAnimId) {
+          cancelAnimationFrame(indAnimId);
+          indAnimId = null;
+        }
+      });
+    });
+    indObserver.observe(indContainer);
+
+    // ── Cube scroll logic using GSAP ScrollTrigger ──────────────────────────
+    // Master visibility toggle
+    ScrollTrigger.create({
+      trigger: '#branding',
+      start: 'top 60%',
+      endTrigger: '#porsche',
+      end: 'bottom 40%',
+      onEnter: () => gsap.to(indContainer, { x: 0, autoAlpha: 1, duration: 1, ease: 'power3.out', overwrite: 'auto' }),
+      onLeave: () => gsap.to(indContainer, { x: '100vw', autoAlpha: 0, duration: 1, ease: 'power3.in', overwrite: 'auto' }),
+      onEnterBack: () => gsap.to(indContainer, { x: 0, autoAlpha: 1, duration: 1, ease: 'power3.out', overwrite: 'auto' }),
+      onLeaveBack: () => gsap.to(indContainer, { x: '100vw', autoAlpha: 0, duration: 1, ease: 'power3.in', overwrite: 'auto' })
+    });
+
+    // Target Rotations for Inner Group (to show face 1, 2, 3, 4)
+    const SECTIONS = [
+      { id: '#branding', rotY: 0 },
+      { id: '#posters', rotY: -Math.PI/2 },
+      { id: '#work', rotY: -Math.PI },
+      { id: '#mclaren', rotY: -Math.PI * 1.5 }
+    ];
+
+    SECTIONS.forEach((sec) => {
+      ScrollTrigger.create({
+        trigger: sec.id,
+        start: 'top 50%',
+        end: 'bottom 50%',
+        onEnter: () => animateTo(sec),
+        onEnterBack: () => animateTo(sec)
+      });
+    });
+
+    function animateTo(sec) {
+      if (typeof gsap !== 'undefined') {
+        gsap.to(indInnerGroup.rotation, {
+          y: sec.rotY,
+          duration: 1.5,
+          ease: "power3.out",
+          overwrite: "auto"
+        });
+      }
+    }
+
+    let _lastWidth2 = window.innerWidth;
+    window.addEventListener('resize', () => {
+      if (window.innerWidth === _lastWidth2) return;
+      _lastWidth2 = window.innerWidth;
+      indCamera.aspect = indContainer.clientWidth / indContainer.clientHeight;
+      indCamera.updateProjectionMatrix();
+      indRenderer.setSize(indContainer.clientWidth, indContainer.clientHeight);
+    });
+    }
+    // Defer execution to avoid blocking First Contentful Paint
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(initFloatingCube);
+    } else {
+      setTimeout(initFloatingCube, 200);
+    }
+  </script>
+
+  <script src="/cursor.js" defer></script>
+</div>
+    <script src="/transitions.js"></script>
+</body></html>

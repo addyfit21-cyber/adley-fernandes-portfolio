@@ -1,179 +1,348 @@
+
+
+
 <!DOCTYPE html>
-<html class="light" lang="en"><head>
+<html class="light bg-[#EDEBDD]" lang="en"><head>
+<style id="pf-overlay-style">
+  @keyframes pf-overlay-fade {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  #page-transition-overlay {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #1B1717;
+    z-index: 99999999;
+    pointer-events: none;
+    opacity: 0; /* Fail-safe: if animation breaks, it stays transparent */
+    animation: pf-overlay-fade 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity;
+  }
+  #page-transition-overlay.is-exiting {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+</style>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Contact | Adley Fernandes</title>
-<meta name="description" content="Start a project with Adley Fernandes. Reach out for website design, branding, and art direction inquiries."/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-  tailwind.config = {
-    darkMode: "class",
-    theme: {
-      extend: {
-        "colors": {
-          "surface-dim": "#dadada","on-background": "#1a1c1c","surface-container-low": "#f3f3f4","on-tertiary-container": "#ffffff","inverse-on-surface": "#f0f1f1","primary": "#000000","surface-bright": "#f9f9f9","secondary": "#5e5e5e","surface-container-lowest": "#ffffff","on-primary-fixed": "#ffffff","inverse-surface": "#2f3131","surface-container-highest": "#e2e2e2","outline-variant": "#c6c6c6","surface-tint": "#5e5e5e","on-surface": "#1a1c1c","error": "#ba1a1a","secondary-container": "#d4d4d4","on-primary": "#e2e2e2","on-secondary": "#ffffff","error-container": "#ffdad6","surface-container": "#eeeeee","surface": "#f9f9f9","outline": "#777777","on-error-container": "#410002","surface-container-high": "#e8e8e8","tertiary-container": "#747474","on-surface-variant": "#474747","primary-container": "#3b3b3b","on-tertiary-fixed-variant": "#e2e2e2","on-primary-fixed-variant": "#e2e2e2","background": "#f9f9f9","on-primary-container": "#ffffff","on-secondary-fixed": "#1b1b1b","tertiary-fixed": "#5e5e5e","tertiary-fixed-dim": "#474747","inverse-primary": "#c6c6c6","on-tertiary-fixed": "#ffffff","tertiary": "#3b3b3b","on-tertiary": "#e2e2e2","primary-fixed": "#5e5e5e","on-secondary-container": "#1b1b1b","on-error": "#ffffff","primary-fixed-dim": "#474747","secondary-fixed-dim": "#ababab","secondary-fixed": "#c6c6c6","on-secondary-fixed-variant": "#3b3b3b","surface-variant": "#e2e2e2"
-        },
-        "borderRadius": {"DEFAULT": "0px","lg": "0px","xl": "0px","full": "9999px"},
-        "fontFamily": {"headline": ["Manrope"],"body": ["Manrope"],"label": ["Manrope"],"manrope": ["Manrope"]}
-      },
-    },
-  }
-</script>
+
+<!-- IAB Viewport Lock -->
 <style>
+  /* Lenis owns scrolling � disable native smooth to avoid conflicts */
+  html { scroll-behavior: auto; }
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
   body { font-family: 'Manrope', sans-serif; }
-  h1, h2, h3, h4, h5, h6 { font-family: Helvetica, Arial, sans-serif; }
-  #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+  h1, h2, h3, h4, h5, h6 { font-family: 'DM Sans', sans-serif; }
+  #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
   #mobile-menu.open { max-height: 400px; }
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: #f9f9f9; }
-  ::-webkit-scrollbar-thumb { background: #000000; }
+  ::-webkit-scrollbar-thumb { background: #1B1717; border-radius: 3px; }
+  /* Global smooth transitions */
+  a, button {
+    transition-property: color, background-color, border-color, opacity, transform, box-shadow;
+    transition-duration: 0.35s;
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
   /* Success toast */
-  #toast { transform: translateY(100px); opacity: 0; transition: all 0.5s ease; }
+  #toast { transform: translateY(100px); opacity: 0; transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
   #toast.show { transform: translateY(0); opacity: 1; }
   /* Floating label */
   .floating-label-group input:not(:placeholder-shown) ~ label,
   .floating-label-group input:focus ~ label,
   .floating-label-group textarea:not(:placeholder-shown) ~ label,
   .floating-label-group textarea:focus ~ label {
-    top: -1.5rem; font-size: 0.65rem; color: #000;
+    top: -1.5rem; font-size: 0.65rem; color: #1B1717;
   }
   /* Scroll-Pen Visibility */
   @media (max-width: 1024px) {
     #scroll-pen-wrap { display: none !important; }
   }
+
+
+
+  .hero-marquee-wrapper {
+    cursor: none;
+  }
+  .stroke-text {
+    -webkit-text-stroke: 1px #18181b;
+    color: transparent;
+  }
+  :root {
+    --cube-size: clamp(140px, min(45vw, 50vh), 400px);
+  }
+  @media (min-width: 768px) {
+    :root {
+      --cube-size: clamp(300px, min(55vw, 75vh), 750px);
+    }
+  }
+  .rainbow-text {
+    background: linear-gradient(90deg, #FFB846, #ff7b00, #FFB846, #ff7b00, #FFB846);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: rainbow 3s linear infinite;
+  }
+  .rainbow-glow {
+    filter: drop-shadow(0 0 10px rgba(255, 184, 70, 0.6)) drop-shadow(0 0 20px rgba(255, 123, 0, 0.4));
+  }
+  @keyframes rainbow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: -200% 50%; }
+  }
+  .hero-marquee {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  .cube-mask {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-mask-image: url('Images/Copilot_20260615_130809.webp');
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-image: url('Images/Copilot_20260615_130809.webp');
+    mask-position: center;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: var(--cube-size) auto;
+    mask-size: var(--cube-size) auto;
+  }
+
+  /* Aggressively hide native video controls (Safari Low Power Mode overlays) */
+  video::-webkit-media-controls { display: none !important; }
+  video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+  video::-webkit-media-controls-play-button { display: none !important; }
+
+  /* Force pointer-events none on project videos */
+  .mockup-video { pointer-events: none; }
+
+  /* --- Scroll-reveal baseline � elements start hidden --------------- */
+  .reveal-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* --- Nav backdrop glass polish ------------------------------------ */
+  nav {
+    transition: backdrop-filter 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  /* --- Card hover lift ---------------------------------------------- */
+  .fade-enter-card {
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* --- Section heading shimmer line -------------------------------- */
+  .section-underline {
+    display: inline-block;
+    position: relative;
+  }
+  .section-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .section-underline:hover::after { width: 100%; }
+  
+  @media (max-width: 768px) {
+    #hero { padding-top: 60px; }
+    #scroll-pen-wrap { display: none !important; }
+
+    /* Tighten hero typography on small screens */
+    #hero-headline { font-size: clamp(2.2rem, 11vw, 4rem) !important; line-height: 1.0 !important; }
+    #hero p.hero-slide-right { font-size: 1rem !important; line-height: 1.6 !important; }
+    #hero .hero-slide-right a { font-size: 0.65rem !important; padding: 0.8rem 1.5rem !important; }
+
+    /* Section headings � prevent bleed on narrow screens */
+    h2.text-\[7rem\], h2.text-\[2\.5rem\] { font-size: clamp(2rem, 10vw, 3.5rem) !important; }
+
+    /* Cards: comfortable height on phones */
+    .fade-enter-card .relative.h-\[500px\] { height: 280px !important; }
+    .fade-enter-card .h-\[650px\] { height: 300px !important; }
+
+    /* About portrait � limit height on mobile */
+    #about .aspect-\[4\/5\] { aspect-ratio: 1/1 !important; }
+
+    /* Case study modal scrolling fix on iOS */
+    #case-study-modal { -webkit-overflow-scrolling: touch; overflow-y: scroll; }
+    #case-study-content { -webkit-overflow-scrolling: touch; overflow-y: scroll; }
+
+    /* Toolkit grid: 2 columns on mobile */
+    #about .grid-cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+
+    /* Mockup sizing: ensure iPhone fits on screen */
+    .max-w-\[280px\] { max-width: 180px !important; }
+
+    /* Touch targets: minimum 44px */
+    button, a { min-height: 44px; }
+    nav a { min-height: 44px; display: flex; align-items: center; }
+  }
+
+  /* Very small screens (iPhone SE, 375px) */
+  @media (max-width: 390px) {
+    #hero-headline { font-size: clamp(1.9rem, 10vw, 2.5rem) !important; }
+    .fade-enter-card .relative.h-\[500px\] { height: 240px !important; }
+  }
 </style>
+<!-- Lenis init for contact page -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof Lenis === 'undefined') return;
+  const lenis = new Lenis({
+    duration: 1.3,
+    easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+    smoothTouch: false,
+    wheelMultiplier: 0.9,
+  });
+  function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+});
+</script>
+  <link rel="stylesheet" href="/cursor.css">
+  <link href="/dist.css" rel="stylesheet">
 </head>
-<body class="bg-[#fdfdfd] text-zinc-900 selection:bg-primary selection:text-on-primary">
+<body class="bg-[#EDEBDD] text-[#1B1717] selection:bg-primary selection:text-on-primary overflow-x-hidden w-full relative">
+<div id="page-transition-overlay"></div>
 
 <!-- TopNavBar -->
-<nav class="fixed top-8 left-1/2 -translate-x-1/2 z-[100] flex items-center justify-between px-6 py-3 bg-white/80 backdrop-blur-xl border border-white/50 shadow-2xl w-[95%] md:w-max md:min-w-[800px]">
-  <!-- Logo -->
-  <a href="index.html" class="text-lg md:text-xl font-bold tracking-tighter text-black z-10">Adley Fernandes</a>
-  
-  <!-- Desktop Links (Absolutely Centered) -->
-  <div class="hidden md:flex items-center space-x-8 absolute left-1/2 -translate-x-1/2">
-    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="index.html">Home</a>
-    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="portfolio.html">Portfolio</a>
-    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="index.html#services">Services</a>
-    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors duration-300" href="index.html#about">About</a>
-    <a class="font-manrope text-[10px] tracking-[0.2em] uppercase text-zinc-900 border-b border-black pb-0.5 transition-colors duration-300" href="contact.html">Contact</a>
-  </div>
-
-  <!-- CTA -->
-  <div class="hidden md:flex items-center z-10">
-    <a href="contact.html" class="bg-black text-white px-5 py-2 font-manrope text-[10px] tracking-[0.2em] uppercase hover:bg-zinc-800 transition-colors duration-500">
-      Get in Touch
+<nav id="main-nav" class="pointer-events-none">
+  <!-- Top Left: Logo (Original form, NO BLEND) -->
+  <div class="fixed top-0 left-0 z-[120] px-6 md:px-12 py-6">
+    <a href="/" class="pointer-events-auto block">
+      <img src="/Images/Brands/Adesign%20studio/Adesign%20logo%20colour-01.webp" alt="Adesign Studio" class="h-10 md:h-14 w-auto object-contain" decoding="async" loading="lazy">
     </a>
   </div>
 
-  <!-- Mobile hamburger -->
-  <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Open menu">
-    <span class="block w-6 h-0.5 bg-black transition-all duration-300" id="ham-1"></span>
-    <span class="block w-6 h-0.5 bg-black transition-all duration-300" id="ham-2"></span>
-    <span class="block w-6 h-0.5 bg-black transition-all duration-300" id="ham-3"></span>
-  </button>
-</nav>
+  <!-- Top Right: Desktop Navigation (Horizontal) -->
+  <div class="flex flex-row items-center gap-2 md:gap-4 pointer-events-auto fixed top-4 right-6 md:top-6 md:right-10 z-[120] mix-blend-difference" >
+    <a href="/" class="mix-blend-difference font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity">Index</a>
+    
+    <!-- Projects Dropdown -->
+    <div class="relative group flex flex-col items-center">
+      <button class="mix-blend-difference bg-transparent text-white hover:opacity-70 px-0 py-0 font-manrope text-[8px] tracking-[0.2em] uppercase transition-opacity flex items-center gap-1 cursor-pointer">
+        Projects
+        <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover:rotate-180">expand_more</span>
+      </button>
+      
+      <!-- Dropdown Menu -->
+      <div class="absolute top-full mt-4 w-40 bg-[#EDEBDD] border border-zinc-100 shadow-2xl opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 flex flex-col p-2 z-[101] -right-10 md:right-auto md:left-1/2 md:-translate-x-1/2">
+        <a href="index.html#categories-grid" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Visual Identity</a>
+        <a href="posters.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Posters</a>
+        <a href="nexzy.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Web Dev</a>
+        <a href="sketches.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Sketches</a>
+      </div>
+    </div>
+    
+    <a href="index.html#about" class="mix-blend-difference font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity">About</a>
+    <a href="contact.html" class="mix-blend-difference font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity">Contact</a>
+  </div>
 
-<!-- Mobile Menu -->
-<div id="mobile-menu" class="fixed top-24 left-0 w-full z-40 bg-white/98 shadow-2xl backdrop-blur-xl px-6 py-0 flex flex-col gap-0 transition-all duration-400">
-  <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="index.html">Home</a>
-  <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="portfolio.html">Portfolio</a>
-  <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="index.html#services">Services</a>
-  <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-zinc-500 hover:text-black" href="index.html#about">About</a>
-  <a class="py-4 border-b border-zinc-100 font-manrope text-sm tracking-[0.1em] uppercase text-black font-bold" href="contact.html">Contact</a>
-  <a class="py-6 mt-4 bg-black text-white text-center font-manrope text-sm tracking-[0.2em] uppercase font-bold" href="contact.html">Get in Touch</a>
-</div>
+  </nav>
 
-<main class="pt-32 pb-24 px-6 md:px-24 min-h-screen">
+<main class="pt-32 pb-24 px-6 md:px-24 bg-[#EDEBDD]" style="min-height: calc(var(--vh, 1svh) * 100);">
   <div class="max-w-7xl mx-auto">
     <!-- Header Statement -->
     <section class="mb-32" id="contact-top">
-      <h1 class="text-[3.5rem] md:text-[5rem] font-bold tracking-[-0.04em] leading-none mb-12 max-w-4xl uppercase">
-        Connect with our <span class="text-gray-400">architectural</span> studio.
+      <h1 class="text-[3.5rem] md:text-[5rem] font-bold tracking-[-0.04em] leading-none mb-12 max-w-4xl uppercase text-[#1B1717]">
+        Let's work <span class="text-[#1B1717]">together.</span>
       </h1>
-      <div class="w-full h-px bg-outline-variant/30"></div>
+      <div class="w-full h-px bg-[#1B1717]"></div>
     </section>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-24 items-start">
       <!-- Contact Details Column -->
       <div class="lg:col-span-5 space-y-24">
         <div>
-          <span class="font-manrope text-[10px] tracking-widest uppercase text-gray-500 block mb-6">General Inquiries</span>
-          <a class="text-3xl md:text-4xl font-medium tracking-tight hover:text-gray-400 transition-colors duration-500 block" href="mailto:hello@studioarch.com">
-            hello@studioarch.com
+          <span class="font-manrope text-[8px] tracking-widest uppercase text-[#1B1717] font-bold block mb-6">Email Me</span>
+          <a class="text-3xl md:text-4xl font-medium tracking-tight hover:opacity-50 transition-opacity duration-500 block text-[#1B1717]" href="mailto:addyfit21@gmail.com">
+            addyfit21@gmail.com
           </a>
         </div>
         <div class="space-y-8">
           <div>
-            <span class="font-manrope text-[10px] tracking-widest uppercase text-gray-500 block mb-2">WhatsApp</span>
-            <a href="https://wa.me/15551234567" target="_blank" rel="noopener" class="group flex items-center space-x-4 bg-surface-container-high px-8 py-6 w-full md:w-auto transition-all duration-400 hover:bg-zinc-200">
-              <span class="font-manrope text-sm tracking-[0.1em] uppercase font-bold">Start Conversation</span>
-              <span class="material-symbols-outlined text-lg">arrow_forward</span>
+            <span class="font-manrope text-[8px] tracking-widest uppercase text-[#1B1717] font-bold block mb-2">WhatsApp</span>
+            <a href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener" class="group flex items-center space-x-4 bg-[#1B1717] px-8 py-6 w-full md:w-auto transition-all duration-400 hover:bg-[#630000]">
+              <span class="font-manrope text-sm tracking-[0.1em] uppercase font-bold text-white">Chat with me</span>
+              <span class="material-symbols-outlined text-lg text-white group-hover:translate-x-2 transition-transform">arrow_forward</span>
             </a>
           </div>
           <div>
-            <span class="font-manrope text-[10px] tracking-widest uppercase text-gray-500 block mb-2">Office</span>
-            <p class="text-xl font-light text-on-surface-variant max-w-xs">
-              422 Architectural Row, <br/>
-              Creative District, <br/>
-              NY 10012
+            <span class="font-manrope text-[8px] tracking-widest uppercase text-[#1B1717] font-bold block mb-2">Location</span>
+            <p class="text-xl font-medium text-[#1B1717] max-w-xs">
+              Available for remote work worldwide.<br/>Based in India.
             </p>
           </div>
         </div>
         <div class="pt-4">
-          <div class="relative w-full aspect-[4/3] bg-zinc-50 overflow-hidden grayscale contrast-125">
-            <img class="w-full h-full object-cover opacity-80 hover:scale-105 transition-transform duration-1000" alt="Adley Fernandes Office Building" src="Images/monochrome_bg.png"/>
+          <div class="relative w-full aspect-[4/3] bg-[#EDEBDD] overflow-hidden">
+            <img class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-1000" alt="Graphic Designer Workspace" src="Images/contact_workspace.webp" loading="lazy" decoding="async">
           </div>
         </div>
       </div>
 
       <!-- Form Column -->
-      <div class="lg:col-span-7 bg-zinc-50est p-12 md:p-20 relative" id="contact-form">
-        <span class="font-manrope text-[10px] tracking-widest uppercase text-gray-500 block mb-12">New Projects &amp; Collaborations</span>
+      <div class="lg:col-span-7 bg-[#EDEBDD] p-12 md:p-20 relative border border-black shadow-lg" id="contact-form">
+        <span class="font-manrope text-[8px] tracking-widest uppercase text-[#1B1717] font-bold block mb-12">Project Details</span>
         <form id="inquiry-form" class="space-y-16" novalidate>
           <!-- Service type (pre-filled from URL) -->
           <div class="relative group">
-            <select id="service" name="service" class="block w-full px-0 py-4 bg-transparent border-t-0 border-x-0 border-b border-outline-variant/30 focus:ring-0 focus:border-black transition-colors duration-500 font-manrope text-lg outline-none appearance-none cursor-pointer text-on-surface-variant">
-              <option value="">Select a Service</option>
-              <option value="web">Website Design &amp; Development</option>
-              <option value="branding">Graphic Design &amp; Branding</option>
-              <option value="art">Art Direction</option>
-              <option value="other">Other / Let's Talk</option>
+            <select id="service" name="service" style="background-image: none;" class="block w-full px-0 py-4 bg-transparent border-t-0 border-x-0 border-b border-black focus:ring-0 focus:border-black transition-colors duration-500 font-manrope text-lg outline-none appearance-none cursor-pointer text-[#1B1717] font-bold">
+              <option value="">How can I help you?</option>
+              <option value="web">Website Design</option>
+              <option value="branding">Graphic Design</option>
+              <option value="art">Sketching &amp; Illustration</option>
+              <option value="other">Other / Just saying hi</option>
             </select>
-            <span class="absolute right-0 bottom-4 material-symbols-outlined text-gray-400 pointer-events-none">expand_more</span>
+            <span class="absolute right-0 bottom-4 material-symbols-outlined text-[#1B1717] pointer-events-none">expand_more</span>
           </div>
 
           <div class="relative group floating-label-group">
-            <input class="peer block w-full px-0 py-4 bg-transparent border-t-0 border-x-0 border-b border-outline-variant/30 focus:ring-0 focus:border-black transition-colors duration-500 font-manrope text-xl outline-none" id="name" name="name" placeholder=" " type="text" required/>
-            <label class="absolute top-4 left-0 font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 pointer-events-none transition-all duration-500 peer-focus:-top-6 peer-focus:text-xs peer-focus:text-black peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-xs" for="name">
+            <input class="peer block w-full px-0 py-4 bg-transparent border-t-0 border-x-0 border-b border-black focus:ring-0 focus:border-black transition-colors duration-500 font-manrope text-xl outline-none text-[#1B1717] font-bold" id="name" name="name" placeholder=" " type="text" required/>
+            <label class="absolute top-4 left-0 font-manrope text-sm tracking-[0.1em] uppercase text-[#1B1717] font-bold pointer-events-none transition-all duration-500 peer-focus:-top-6 peer-focus:text-xs peer-focus:text-[#1B1717] peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-xs" for="name">
               Your Full Name
             </label>
-            <span class="field-error hidden text-xs text-red-500 mt-1 block">Please enter your name.</span>
+            <span class="field-error hidden text-xs text-red-600 mt-1 block">Please enter your name.</span>
           </div>
 
           <div class="relative group floating-label-group">
-            <input class="peer block w-full px-0 py-4 bg-transparent border-t-0 border-x-0 border-b border-outline-variant/30 focus:ring-0 focus:border-black transition-colors duration-500 font-manrope text-xl outline-none" id="email" name="email" placeholder=" " type="email" required/>
-            <label class="absolute top-4 left-0 font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 pointer-events-none transition-all duration-500 peer-focus:-top-6 peer-focus:text-xs peer-focus:text-black peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-xs" for="email">
+            <input class="peer block w-full px-0 py-4 bg-transparent border-t-0 border-x-0 border-b border-black focus:ring-0 focus:border-black transition-colors duration-500 font-manrope text-xl outline-none text-[#1B1717] font-bold" id="email" name="email" placeholder=" " type="email" required/>
+            <label class="absolute top-4 left-0 font-manrope text-sm tracking-[0.1em] uppercase text-[#1B1717] font-bold pointer-events-none transition-all duration-500 peer-focus:-top-6 peer-focus:text-xs peer-focus:text-[#1B1717] peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-xs" for="email">
               Email Address
             </label>
-            <span class="field-error hidden text-xs text-red-500 mt-1 block">Please enter a valid email.</span>
+            <span class="field-error hidden text-xs text-red-600 mt-1 block">Please enter a valid email.</span>
           </div>
 
           <div class="relative group floating-label-group">
-            <textarea class="peer block w-full px-0 py-4 bg-transparent border-t-0 border-x-0 border-b border-outline-variant/30 focus:ring-0 focus:border-black transition-colors duration-500 font-manrope text-xl outline-none resize-none" id="message" name="message" placeholder=" " rows="4" required></textarea>
-            <label class="absolute top-4 left-0 font-manrope text-sm tracking-[0.1em] uppercase text-gray-400 pointer-events-none transition-all duration-500 peer-focus:-top-6 peer-focus:text-xs peer-focus:text-black peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-xs" for="message">
-              Project Brief or Message
+            <textarea class="peer block w-full px-0 py-4 bg-transparent border-t-0 border-x-0 border-b border-black focus:ring-0 focus:border-black transition-colors duration-500 font-manrope text-xl outline-none resize-none text-[#1B1717] font-bold" id="message" name="message" placeholder=" " rows="4" required></textarea>
+            <label class="absolute top-4 left-0 font-manrope text-sm tracking-[0.1em] uppercase text-[#1B1717] font-bold pointer-events-none transition-all duration-500 peer-focus:-top-6 peer-focus:text-xs peer-focus:text-[#1B1717] peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-xs" for="message">
+              Tell me about your project
             </label>
-            <span class="field-error hidden text-xs text-red-500 mt-1 block">Please describe your project.</span>
+            <span class="field-error hidden text-xs text-red-600 mt-1 block">Please describe your project.</span>
           </div>
 
           <div class="pt-8 flex justify-end">
-            <button class="flex items-center space-x-6 px-12 py-5 bg-primary text-on-primary hover:opacity-80 transition-all duration-500" type="submit" id="submit-btn">
-              <span class="font-manrope text-sm tracking-[0.2em] uppercase font-bold" id="submit-label">Submit Inquiry</span>
-              <span class="material-symbols-outlined text-lg">north_east</span>
+            <button class="flex items-center space-x-6 px-12 py-5 bg-[#1B1717] text-white hover:opacity-80 transition-all duration-500 group" type="submit" id="submit-btn">
+              <span class="font-manrope text-sm tracking-[0.2em] uppercase font-bold" id="submit-label">Send Message</span>
+              <span class="material-symbols-outlined text-lg transition-transform group-hover:translate-x-2">east</span>
             </button>
           </div>
         </form>
@@ -183,39 +352,55 @@
 </main>
 
 <!-- Footer -->
-<footer class="bg-gray-50 py-16 flex flex-col md:flex-row justify-between items-center px-6 md:px-24 w-full">
-  <div class="text-lg font-bold text-black mb-8 md:mb-0">Adley Fernandes</div>
+<footer class="bg-[#EDEBDD] py-16 flex flex-col md:flex-row justify-between items-center px-6 md:px-24 w-full border-t border-black">
+  <div class="text-lg font-bold text-[#1B1717] mb-8 md:mb-0 uppercase tracking-widest">addesign studio</div>
   <div class="flex flex-wrap justify-center gap-8 md:gap-12 mb-8 md:mb-0">
-    <a class="font-manrope text-[10px] tracking-widest uppercase text-gray-500 hover:text-black underline-offset-4 hover:underline transition-all duration-400" href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
-    <a class="font-manrope text-[10px] tracking-widest uppercase text-gray-500 hover:text-black underline-offset-4 hover:underline transition-all duration-400" href="https://twitter.com" target="_blank" rel="noopener">Twitter</a>
-    <a class="font-manrope text-[10px] tracking-widest uppercase text-gray-500 hover:text-black underline-offset-4 hover:underline transition-all duration-400" href="https://github.com" target="_blank" rel="noopener">GitHub</a>
-    <a class="font-manrope text-[10px] tracking-widest uppercase text-gray-500 hover:text-black underline-offset-4 hover:underline transition-all duration-400" href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
-    <a class="font-manrope text-[10px] tracking-widest uppercase text-gray-500 hover:text-black underline-offset-4 hover:underline transition-all duration-400" href="#contact-top">Back to top</a>
+    <a class="font-manrope text-[8px] tracking-widest uppercase text-[#1B1717] font-bold hover:opacity-50 underline-offset-4 hover:underline transition-all duration-400" href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="font-manrope text-[8px] tracking-widest uppercase text-[#1B1717] font-bold hover:opacity-50 underline-offset-4 hover:underline transition-all duration-400" href="https://twitter.com" target="_blank" rel="noopener">Twitter</a>
+    <a class="font-manrope text-[8px] tracking-widest uppercase text-[#1B1717] font-bold hover:opacity-50 underline-offset-4 hover:underline transition-all duration-400" href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+    <a class="font-manrope text-[8px] tracking-widest uppercase text-[#1B1717] font-bold hover:opacity-50 underline-offset-4 hover:underline transition-all duration-400" href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener">Instagram</a>
+    <a class="font-manrope text-[8px] tracking-widest uppercase text-[#1B1717] font-bold hover:opacity-50 underline-offset-4 hover:underline transition-all duration-400" href="#contact-top">Back to top</a>
   </div>
-  <div class="font-manrope text-[10px] tracking-widest uppercase text-gray-500">© 2024 Adley Fernandes. ALL RIGHTS RESERVED.</div>
+  <div class="font-manrope text-[8px] tracking-widest uppercase text-[#1B1717] font-bold">� 2024 addesign studio. ALL RIGHTS RESERVED.</div>
 </footer>
 
 <!-- Success Toast -->
-<div id="toast" class="fixed bottom-8 right-8 bg-black text-white px-8 py-5 font-manrope text-sm tracking-widest uppercase flex items-center gap-4 z-50 shadow-2xl">
+<div id="toast" class="fixed bottom-8 right-8 bg-[#1B1717] text-white px-8 py-5 font-manrope text-sm tracking-widest uppercase flex items-center gap-4 z-50 shadow-2xl">
   <span class="material-symbols-outlined" style="font-size:18px;">check_circle</span>
-  Inquiry submitted — we'll be in touch.
+  Inquiry submitted � we'll be in touch.
 </div>
 
 <script>
-  // Mobile menu
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const ham1 = document.getElementById('ham-1');
-  const ham2 = document.getElementById('ham-2');
-  const ham3 = document.getElementById('ham-3');
-  let menuOpen = false;
-  hamburger.addEventListener('click', () => {
-    menuOpen = !menuOpen;
-    mobileMenu.classList.toggle('open', menuOpen);
-    ham2.style.opacity = menuOpen ? '0' : '1';
-    ham1.style.transform = menuOpen ? 'translateY(8px) rotate(45deg)' : '';
-    ham3.style.transform = menuOpen ? 'translateY(-8px) rotate(-45deg)' : '';
-  });
+  // Mobile dropdown menu
+  const mobileBtn = document.getElementById('mobile-dropdown-btn');
+  const mobileMenu = document.getElementById('mobile-dropdown-menu');
+  const mobileArrow = document.getElementById('mobile-dropdown-arrow');
+
+  if (mobileBtn && mobileMenu) {
+    mobileBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const isOpen = mobileMenu.classList.contains('opacity-100');
+      
+      if (!isOpen) {
+        mobileMenu.classList.remove('opacity-0', 'invisible', '-translate-y-4');
+        mobileMenu.classList.add('opacity-100', 'visible', 'translate-y-0');
+        if (mobileArrow) mobileArrow.style.transform = 'rotate(180deg)';
+      } else {
+        mobileMenu.classList.remove('opacity-100', 'visible', 'translate-y-0');
+        mobileMenu.classList.add('opacity-0', 'invisible', '-translate-y-4');
+        if (mobileArrow) mobileArrow.style.transform = 'rotate(0deg)';
+      }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!mobileBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+        mobileMenu.classList.remove('opacity-100', 'visible', 'translate-y-0');
+        mobileMenu.classList.add('opacity-0', 'invisible', '-translate-y-4');
+        if (mobileArrow) mobileArrow.style.transform = 'rotate(0deg)';
+      }
+    });
+  }
 
   // Pre-fill service from URL param (e.g. ?service=web)
   const urlParams = new URLSearchParams(window.location.search);
@@ -254,16 +439,54 @@
 
     if (!valid) return;
 
-    // Simulate submission
+    // Gather form data
+    const serviceEl = document.getElementById('service');
+    const service = serviceEl.options[serviceEl.selectedIndex].text || 'General Inquiry';
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+
+    // Formulate WhatsApp Message
+    const bodyText = `Hello addesign studio!\n\nMy name is ${name}.\nMy email is: ${email}\nI'm interested in: ${service}\n\nProject Details:\n${message}`;
+    const waUrl = `https://api.whatsapp.com/send?phone=919987382295&text=${encodeURIComponent(bodyText)}`;
+
+    // Update UI
     submitLabel.textContent = 'Sending...';
     submitBtn.disabled = true;
-    setTimeout(() => {
+
+    // Send silently in the background via FormSubmit API
+    fetch("https://formsubmit.co/ajax/addyfit21@gmail.com", {
+      method: "POST",
+      headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+          Name: name,
+          Email: email,
+          Service: service,
+          Message: message,
+          _subject: `New Portfolio Inquiry from ${name}`,
+          _template: "table"
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
       form.reset();
-      submitLabel.textContent = 'Submit Inquiry';
+      submitLabel.textContent = 'Send Message';
       submitBtn.disabled = false;
       toast.classList.add('show');
       setTimeout(() => toast.classList.remove('show'), 4000);
-    }, 1200);
+      
+      // Open WhatsApp Web/App fallback
+      window.open(waUrl, '_blank');
+    })
+    .catch(error => {
+      console.error(error);
+      submitLabel.textContent = 'Send Message';
+      submitBtn.disabled = false;
+      alert("Oops! There was a problem sending your message. Please try again.");
+    });
   });
 
   // Live validation clear on input
@@ -276,5 +499,8 @@
       }
     });
   });
+
 </script>
+  <script src="/cursor.js" defer></script>
+    <script src="/transitions.js"></script>
 </body></html>
