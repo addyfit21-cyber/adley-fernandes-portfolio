@@ -1,6 +1,8 @@
 <!DOCTYPE html><html class="light" lang="en"><head>
-<link rel="preload" as="image" href="/Images/Hero page animation/TVB-book-13-opt.webp">
-<link rel="preload" as="image" href="/Images/Hero page animation/TVB BRand BOOK-19.webp">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preload" href="/fonts/ClashDisplay-Medium.woff2" as="font" type="font/woff2" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600&display=swap" rel="stylesheet">
 <style id="pf-overlay-style">
   @keyframes pf-overlay-fade {
     0% { opacity: 1; }
@@ -24,8 +26,286 @@
     animation: none !important;
   }
 </style>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <style>
+    @media (min-width: 768px) {
+      #gte-card {
+        grid-column: 5 / span 5;
+        justify-self: start;
+      }
+      #teas-cds-card {
+        grid-column: 7 / span 5;
+        grid-row: 2;
+        justify-self: center;
+      }
+      #execuvision-card {
+        grid-column: 4 / span 4;
+        justify-self: start;
+      }
+      #nexzy-card {
+        grid-column: 7 / span 6;
+        grid-row: 2;
+        justify-self: end;
+      }
+    }
+
+    /* Device Mockups (Web Development) */
+    .mockup-card-surface {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      background: radial-gradient(circle at 50% 48%, #1a1a1c 0%, #080808 80%, #000000 100%);
+    }
+
+    /* iPhone Mockup (Execuvision) */
+    .mockup-iphone-stage {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 8px;
+    }
+    .mockup-iphone-wrapper {
+      position: relative;
+      height: 90%;
+      aspect-ratio: 9 / 18.5;
+      border-radius: clamp(26px, 5.5vw, 44px);
+      background: linear-gradient(145deg, #f5f5f7 0%, #dedfe4 32%, #ffffff 62%, #bfc2ca 100%);
+      padding: 3.5px;
+      box-shadow: 0 24px 50px -10px rgba(0, 0, 0, 0.8), 0 4px 12px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.85);
+      border: 1px solid #bfc2ca;
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+    .group:hover .mockup-iphone-wrapper {
+      transform: scale(1.03);
+    }
+    .mockup-iphone-wrapper .btn-action {
+      position: absolute;
+      left: -3px;
+      top: 17%;
+      width: 3px;
+      height: 4.5%;
+      background: #9ca3af;
+      border-radius: 2px 0 0 2px;
+      box-shadow: -1px 0 1px rgba(0,0,0,0.25);
+    }
+    .mockup-iphone-wrapper .btn-vol-up {
+      position: absolute;
+      left: -3px;
+      top: 25%;
+      width: 3px;
+      height: 9%;
+      background: #9ca3af;
+      border-radius: 2px 0 0 2px;
+      box-shadow: -1px 0 1px rgba(0,0,0,0.25);
+    }
+    .mockup-iphone-wrapper .btn-vol-down {
+      position: absolute;
+      left: -3px;
+      top: 36%;
+      width: 3px;
+      height: 9%;
+      background: #9ca3af;
+      border-radius: 2px 0 0 2px;
+      box-shadow: -1px 0 1px rgba(0,0,0,0.25);
+    }
+    .mockup-iphone-wrapper .btn-power {
+      position: absolute;
+      right: -3px;
+      top: 28%;
+      width: 3px;
+      height: 13.5%;
+      background: #9ca3af;
+      border-radius: 0 2px 2px 0;
+      box-shadow: 1px 0 1px rgba(0,0,0,0.25);
+    }
+    .mockup-iphone-bezel {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: clamp(23px, 5vw, 40px);
+      background: #000000;
+      padding: 3.5px;
+      overflow: hidden;
+      box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.9);
+    }
+    .mockup-iphone-island {
+      position: absolute;
+      top: 2.5%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 32%;
+      height: 4.2%;
+      max-height: 16px;
+      background: #000000;
+      border-radius: 12px;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 5px;
+      box-shadow: 0 0 2px rgba(255, 255, 255, 0.25);
+    }
+    .mockup-iphone-lens {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #111827;
+      border: 1px solid #1f2937;
+    }
+    .mockup-iphone-screen {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: clamp(20px, 4.5vw, 36px);
+      overflow: hidden;
+      background: #1B1717;
+    }
+    .mockup-iphone-screen video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: inherit;
+    }
+    .mockup-iphone-glare {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 40%, rgba(255, 255, 255, 0) 65%);
+      z-index: 25;
+      border-radius: inherit;
+    }
+    .mockup-iphone-shadow {
+      width: 48%;
+      height: 8px;
+      background: radial-gradient(ellipse, rgba(255, 255, 255, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
+      margin-top: 6px;
+      filter: blur(2px);
+      flex-shrink: 0;
+    }
+
+    /* Mac Mockup (Nexzy) */
+    .mockup-mac-stage {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+    }
+    .mockup-mac-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 86%;
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      flex-shrink: 0;
+    }
+    .group:hover .mockup-mac-wrapper {
+      transform: scale(1.03);
+    }
+    .mockup-mac-screen {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #141416;
+      border-radius: 12px 12px 0 0;
+      padding: 4px 4px 0 4px;
+      border-top: 2px solid #52525a;
+      border-left: 2px solid #52525a;
+      border-right: 2px solid #52525a;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 24px 50px -8px rgba(0, 0, 0, 0.9);
+    }
+    .mockup-mac-camera {
+      position: absolute;
+      top: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #0a0a0a;
+      border: 0.5px solid #444;
+      z-index: 30;
+    }
+    .mockup-mac-screen-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: #1B1717;
+      border-radius: 4px 4px 0 0;
+      overflow: hidden;
+    }
+    .mockup-mac-screen-inner video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .mockup-mac-glare {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 40%, rgba(255, 255, 255, 0) 60%);
+      z-index: 20;
+    }
+    .mockup-mac-chin {
+      position: relative;
+      width: 100%;
+      height: clamp(20px, 6.5vw, 26px);
+      background: linear-gradient(180deg, #3a3a42 0%, #28282e 50%, #1c1c20 100%);
+      border-radius: 0 0 12px 12px;
+      border-left: 2px solid #52525a;
+      border-right: 2px solid #52525a;
+      border-bottom: 2px solid #52525a;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+    }
+    .mockup-mac-logo {
+      width: 12px;
+      height: 12px;
+      color: rgba(255, 255, 255, 0.85);
+      fill: currentColor;
+    }
+    .mockup-mac-stand {
+      position: relative;
+      width: 25%;
+      height: clamp(20px, 6.5vw, 26px);
+      margin-top: -1px;
+      background: linear-gradient(135deg, #4a4a54 0%, #303038 60%, #1e1e24 100%);
+      clip-path: polygon(18% 0%, 82% 0%, 100% 100%, 0% 100%);
+      -webkit-clip-path: polygon(18% 0%, 82% 0%, 100% 100%, 0% 100%);
+    }
+    .mockup-mac-foot {
+      width: 40%;
+      height: 6px;
+      margin-top: -1px;
+      background: linear-gradient(180deg, #52525c 0%, #282830 100%);
+      border-radius: 3px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+      border-top: 0.5px solid rgba(255, 255, 255, 0.35);
+    }
+    .mockup-mac-shadow {
+      width: 65%;
+      height: 8px;
+      background: radial-gradient(ellipse, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+      margin-top: 4px;
+      filter: blur(2px);
+    }
+  </style>
 
 <!-- IAB Viewport Lock: Freezes --vh so Instagram/LinkedIn/TikTok toolbar
      show/hide (which fires resize with only height change) never causes
@@ -109,9 +389,7 @@
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 
-<!-- Google Fonts (DM Sans for headings, Manrope for body text) & Material Symbols -->
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800;900&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800;900&family=Manrope:wght@300;400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"></noscript>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800;900&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 
 <!-- Preload critical hero backdrop -->
 
@@ -147,13 +425,204 @@
 
 
 <style>
+  @font-face {
+    font-family: 'Clash Display';
+    src: url('/fonts/ClashDisplay-Medium.woff2') format('woff2');
+    font-weight: 400 700;
+    font-style: normal;
+    font-display: swap;
+  }
   /* Lenis handles scrolling on desktop — iOS uses native scroll */
   html { scroll-behavior: auto; }
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
   /* Allow native smooth iOS WebKit momentum scrolling */
-  html, body { -webkit-overflow-scrolling: touch; }
   body { font-family: 'Manrope', sans-serif; color: #1B1717; background-color: #EDEBDD; }
-  h1, h2, h3, h4, h5, h6 { font-family: 'DM Sans', sans-serif; color: #1B1717; }
+  h1, h2, h3, h4, h5, h6, .font-dm { 
+    font-family: 'Clash Display', 'DM Sans', sans-serif; 
+    font-weight: 500; 
+    letter-spacing: 0.015em; 
+  }
+
+  /* Prevent negative tracking from squishing Clash Display glyphs */
+  h1.tracking-tighter, h2.tracking-tighter, h3.tracking-tighter, h4.tracking-tighter, .font-dm.tracking-tighter,
+  h1.tracking-tight, h2.tracking-tight, h3.tracking-tight, h4.tracking-tight, .font-dm.tracking-tight {
+    letter-spacing: 0.015em !important;
+  }
+
+  /* Orbital / Services Section Dark Canvas Headings */
+  #services #skills-text-container h2,
+  #services .skill-item h2 {
+    color: #d4d4d8 !important;
+    letter-spacing: 0.025em !important;
+    line-height: 1.28 !important;
+  }
+
+  /* ─── Spotlight Card Animation: Hover a card -> other cards go blank white ─── */
+  .portfolio-card {
+    position: relative;
+  }
+  .portfolio-card-media {
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.4s ease;
+  }
+  .portfolio-card-media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: #EDEBDD;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 50;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px rgba(27, 23, 23, 0.08);
+  }
+
+  .portfolio-card-desc {
+    font-size: 13px;
+    line-height: 1.5;
+    color: rgba(27, 23, 23, 0.72);
+    font-weight: 400;
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    pointer-events: auto;
+  }
+
+  @media (max-width: 767px) {
+    .portfolio-card-desc {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .portfolio-card-desc {
+      position: absolute;
+      font-size: 13px;
+      line-height: 1.4;
+      white-space: nowrap;
+      max-width: none;
+    }
+    .desc-tvb {
+      left: calc(100% + clamp(2rem, 4vw, 4.5rem));
+      top: clamp(3rem, 7vw, 6rem);
+      text-align: left;
+    }
+    .desc-benner {
+      right: calc(100% + clamp(2rem, 4vw, 4.5rem));
+      bottom: clamp(3rem, 8vw, 7rem);
+      text-align: left;
+    }
+    .desc-lukes {
+      left: calc(100% + clamp(1.5rem, 3vw, 3rem));
+      top: clamp(14rem, 24vw, 18rem);
+      text-align: left;
+      white-space: nowrap;
+      max-width: none;
+    }
+    .desc-gte {
+      left: calc(100% + clamp(1.25rem, 2.5vw, 2.5rem));
+      top: clamp(3rem, 7vw, 6rem);
+      text-align: left;
+      white-space: nowrap;
+      max-width: none;
+      line-height: 1.6;
+    }
+    .desc-teas-cds {
+      right: calc(100% + clamp(1.5rem, 3vw, 3.5rem));
+      top: clamp(2rem, 5vw, 3.5rem);
+      text-align: left;
+      white-space: nowrap;
+      max-width: none;
+    }
+    .desc-posters {
+      right: calc(100% + clamp(2rem, 4vw, 4.5rem));
+      top: clamp(3rem, 7vw, 6rem);
+      text-align: left;
+      white-space: nowrap;
+      max-width: none;
+    }
+    .desc-album-art {
+      left: calc(100% + clamp(2rem, 4vw, 4.5rem));
+      bottom: clamp(3rem, 8vw, 7rem);
+      text-align: left;
+      white-space: nowrap;
+      max-width: none;
+    }
+    .desc-execuvision {
+      left: calc(100% + clamp(2rem, 4vw, 4.5rem));
+      top: clamp(3rem, 7vw, 6rem);
+      text-align: left;
+      white-space: nowrap;
+      max-width: none;
+    }
+    .desc-nexzy {
+      right: calc(100% + clamp(2rem, 4vw, 4.5rem));
+      top: clamp(3rem, 7vw, 6rem);
+      text-align: left;
+      white-space: nowrap;
+      max-width: none;
+    }
+    .desc-porsche {
+      left: calc(100% + clamp(2rem, 4vw, 4.5rem));
+      top: clamp(3rem, 7vw, 6rem);
+      text-align: left;
+      white-space: nowrap;
+      max-width: none;
+    }
+    .desc-mclaren {
+      right: calc(100% + clamp(2rem, 4vw, 4.5rem));
+      top: clamp(6.5rem, 13vw, 11rem);
+      text-align: left;
+      white-space: nowrap;
+      max-width: none;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .portfolio-card-desc {
+      font-size: 14px;
+    }
+  }
+
+  /* When ANY card in #categories-grid is hovered, all OTHER cards turn cotton white */
+  #categories-grid:has(.portfolio-card:hover) .portfolio-card:not(:hover) .portfolio-card-media::after,
+  #categories-grid.has-card-hovered .portfolio-card:not(.is-hovered) .portfolio-card-media::after {
+    opacity: 1;
+  }
+  #categories-grid:has(.portfolio-card:hover) .portfolio-card:not(:hover) .portfolio-card-media,
+  #categories-grid.has-card-hovered .portfolio-card:not(.is-hovered) .portfolio-card-media {
+    background-color: #EDEBDD !important;
+    border-color: rgba(27, 23, 23, 0.08) !important;
+  }
+  #categories-grid:has(.portfolio-card:hover) .portfolio-card:not(:hover) .portfolio-card-desc,
+  #categories-grid.has-card-hovered .portfolio-card:not(.is-hovered) .portfolio-card-desc {
+    opacity: 0;
+  }
+
+  /* ─── Mobile-First: Uniform Card Sizing, Alignment & Vertical Rhythm (< 768px) ─── */
+  @media (max-width: 767px) {
+    #categories-grid .grid {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 3rem !important; /* Strictly uniform 48px vertical rhythm between cards */
+      width: 100% !important;
+    }
+    #categories-grid .portfolio-card {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      justify-self: stretch !important;
+    }
+    #categories-grid .portfolio-card-media {
+      width: 100% !important;
+      aspect-ratio: 4 / 3 !important;
+    }
+  }
+
   /* Brand carousel — all styles here so they are not subject to Tailwind purge */
   #brand-carousel-section {
     background-color: #630000;
@@ -216,9 +685,16 @@
     animation: arrow-scroll 1.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;
   }
 
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: #f9f9f9; }
-  ::-webkit-scrollbar-thumb { background: #1B1717; border-radius: 3px; }
+  /* Hide scrollbar across all browsers while preserving scrollability */
+  html, body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
 
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -519,18 +995,18 @@
   </div>
 
   <!-- Top Right: Desktop Navigation (Horizontal) -->
-  <div class="flex flex-row items-center gap-2 md:gap-4 pointer-events-auto fixed top-0 right-0 z-[120] mix-blend-difference">
-    <a href="/" class="mix-blend-difference font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity">Index</a>
+  <div id="nav-actions" class="flex flex-row items-center gap-1 sm:gap-2 md:gap-4 pointer-events-auto fixed top-6 right-8 md:top-8 md:right-12 z-[120] mix-blend-difference" style="touch-action: manipulation;">
+    <a href="/" class="font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity py-2.5 px-2 inline-flex items-center">Index</a>
     
     <!-- Projects Dropdown -->
-    <div class="relative group flex flex-col items-center">
-      <button class="mix-blend-difference bg-transparent text-white hover:opacity-70 px-0 py-0 font-manrope text-[8px] tracking-[0.2em] uppercase transition-opacity flex items-center gap-1 cursor-pointer">
+    <div class="relative group flex flex-col items-center" id="nav-projects-group">
+      <button type="button" id="nav-projects-btn" aria-expanded="false" aria-haspopup="true" class="nav-projects-btn bg-transparent text-white hover:opacity-70 py-2.5 px-2 font-manrope text-[8px] tracking-[0.2em] uppercase transition-opacity flex items-center gap-1 cursor-pointer">
         Projects
-        <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover:rotate-180">expand_more</span>
+        <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover:rotate-180 nav-projects-arrow" id="nav-projects-arrow">expand_more</span>
       </button>
       
       <!-- Dropdown Menu -->
-      <div class="absolute top-full mt-4 w-40 bg-[#EDEBDD] border border-zinc-100 shadow-2xl opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 flex flex-col p-2 z-[101] -right-10 md:right-auto md:left-1/2 md:-translate-x-1/2">
+      <div id="nav-projects-menu" class="nav-projects-menu absolute top-full mt-2 w-44 bg-[#EDEBDD] border border-zinc-200 shadow-2xl opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 flex flex-col p-2 z-[130] -right-10 md:right-auto md:left-1/2 md:-translate-x-1/2 pointer-events-auto">
         <a href="index.html#categories-grid" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Visual Identity</a>
         <a href="posters.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Posters</a>
         <a href="nexzy.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Web Dev</a>
@@ -538,8 +1014,8 @@
       </div>
     </div>
     
-    <a href="index.html#about" class="mix-blend-difference font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity">About</a>
-    <a href="contact.html" class="mix-blend-difference font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity">Contact</a>
+    <a href="index.html#about" class="font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity py-2.5 px-2 inline-flex items-center">About</a>
+    <a href="contact.html" class="font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity py-2.5 px-2 inline-flex items-center">Contact</a>
   </div>
 
   </nav>
@@ -608,12 +1084,14 @@
           ">Design Studio — 2024</p>
 
           <p style="
-            font-family: 'Manrope', sans-serif;
-            font-weight: 700;
-            font-size: clamp(1.15rem, 3vw, 1.5rem);
+            font-family: 'Clash Display', sans-serif;
+            font-weight: 500;
+            font-size: clamp(1.25rem, 3.2vw, 1.75rem);
             color: #EDEBDD;
-            line-height: 1.25;
-            margin-bottom: 6px;
+            line-height: 1.38;
+            letter-spacing: 0.02em;
+            word-spacing: 0.04em;
+            margin-bottom: clamp(10px, 1.5vw, 16px);
           ">Helping Brands Look Better.<br>Perform Better. Grow&nbsp;Faster.</p>
           <p style="
             font-family: 'Manrope', sans-serif;
@@ -795,13 +1273,13 @@
         
         <!-- Formation 0 Text (Anchored Left) -->
         <div class="skill-item absolute inset-y-0 left-0 px-6 md:px-16 lg:px-24 flex flex-col justify-center w-full md:w-1/2 opacity-100">
-          <h2 class="font-dm text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter leading-[1.1] mb-6 text-zinc-300 drop-shadow-md">Okay, but</h2>
+          <h2 class="font-dm text-3xl md:text-4xl lg:text-5xl font-medium tracking-normal leading-[1.28] mb-6 text-zinc-300 drop-shadow-md">Okay, but</h2>
           <p class="text-base md:text-lg lg:text-xl font-manrope font-light text-white/90 leading-relaxed">what exactly do I do?</p>
         </div>
 
         <!-- Formation 1 Text (Anchored Right) -->
         <div class="skill-item absolute inset-y-0 right-0 px-6 md:px-16 lg:px-24 flex flex-col justify-center w-full md:w-1/2 opacity-0 items-end text-right">
-          <h2 class="font-dm text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter leading-[1.1] text-zinc-300 mb-6 drop-shadow-md">
+          <h2 class="font-dm text-3xl md:text-4xl lg:text-5xl font-medium tracking-normal leading-[1.28] text-zinc-300 mb-6 drop-shadow-md">
             I take ideas,<br>
             move a few pixels around,
           </h2>
@@ -813,7 +1291,7 @@
 
         <!-- Formation 2 Text (Anchored Center) -->
         <div class="skill-item absolute inset-0 flex flex-col items-center justify-center opacity-0 text-center px-4">
-          <h2 class="font-dm text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter leading-[1.1] text-zinc-300 mb-6 drop-shadow-md">
+          <h2 class="font-dm text-3xl md:text-4xl lg:text-5xl font-medium tracking-normal leading-[1.28] text-zinc-300 mb-6 drop-shadow-md">
             You bring the idea.<br>I bring the visuals.
           </h2>
           <p class="text-base md:text-lg lg:text-xl font-manrope font-light text-zinc-400 leading-relaxed">
@@ -823,7 +1301,7 @@
 
         <!-- Formation 3 Text (Anchored Top Left) -->
         <div class="skill-item absolute top-[20%] left-0 px-6 md:px-16 lg:px-24 flex flex-col items-start opacity-0 w-full md:w-1/2">
-          <h2 class="font-dm text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter leading-[1.1] text-zinc-300 mb-6 drop-shadow-md">
+          <h2 class="font-dm text-3xl md:text-4xl lg:text-5xl font-medium tracking-normal leading-[1.28] text-zinc-300 mb-6 drop-shadow-md">
             Go ahead.<br>Explore my work.
           </h2>
           <p class="text-base md:text-lg lg:text-xl font-manrope font-light text-zinc-400 leading-relaxed">
@@ -1061,235 +1539,286 @@
   <!-- Cat image overlapping from the black section above -->
 
   <!-- ===================== VISUAL IDENTITY ===================== -->
-  <div class="px-6 md:px-12 lg:px-24 pt-20 md:pt-32 pb-8 md:pb-12">
+  <div class="px-6 md:px-10 lg:px-12 pt-20 md:pt-32 pb-8 md:pb-12">
     <div class="flex items-center gap-6 mb-3">
       <span class="block w-10 h-[2px] bg-[#630000]"></span>
       <span class="text-[8px] tracking-[0.35em] uppercase text-[#630000] font-bold">01 — Category</span>
     </div>
-    <h2 class="text-5xl md:text-8xl font-bold tracking-tighter text-[#1B1717] leading-none">Visual Identity</h2>
+    <h2 class="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight text-[#1B1717] leading-none">Visual Identity</h2>
   </div>
 
-  <!-- 3-card grid: 3 in a row -->
-  <div class="px-6 md:px-12 lg:px-24 pb-20 md:pb-32">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
-
-      <!-- Card: Benner -->
-      <a href="benner-case-study.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full" style="min-height:580px;">
-        <video autoplay="" muted="" loop="" playsinline="" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90 hidden md:block" src="/Images/Branding/Rebranding_Product_Video_Generation.mp4" preload="none"></video>
-        <video autoplay="" muted="" loop="" playsinline="" webkit-playsinline="" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90 block md:hidden pointer-events-none" src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4" preload="none"></video>
-        
-        
-        <div class="absolute top-6 right-6 w-8 h-8 rounded-full border border-[#1B1717]/10 bg-[#1B1717]/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-          <span class="material-symbols-outlined text-[#EDEBDD] text-sm">north_east</span>
+  <!-- Scattered minimal layout based on screenshot -->
+  <div class="px-6 md:px-10 lg:px-12 pb-20 md:pb-48">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-32 items-start relative w-full">
+      
+      <!-- Left Card (TVB) -->
+      <a href="tvb-brandbook.html" class="portfolio-card group block cursor-pointer w-full max-w-[620px] justify-self-start flex flex-col gap-3">
+        <p class="portfolio-card-desc desc-tvb order-first md:order-none">
+          A little venom, a little chaos, and a whole lot of rock ’n’ roll.
+        </p>
+        <div class="portfolio-card-media relative overflow-hidden w-full aspect-[4/3] bg-[#EAEAEA]">
+          <img src="/Images/tvb-cap-mockup.webp" alt="The Venom Berries Brand Identity" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100" decoding="async">
         </div>
-      </div><div class="flex flex-col items-start text-left px-1">
-          <p class="text-[8px] tracking-[0.3em] uppercase font-bold mb-1 text-[#630000]/80">Brand Identity</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tight mb-3 text-[#630000]">Benner</h3>
-          <span class="inline-flex items-center gap-2 text-[8px] font-bold uppercase tracking-widest transition-colors duration-300 text-[#630000]/60 group-hover:text-[#630000]">
-            View Project <span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
-          </span>
-        </div></a>
-
-      <!-- Card: Luke's Iced Coffee -->
-      <a href="lukes-case-study.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full" style="min-height:580px;">
-        <img src="/Images/Hero page animation/lukes-banner-opt.webp" alt="Luke's Iced Coffee Identity" loading="lazy" class="absolute inset-0 w-full h-full object-cover object-[70%_center] transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90" decoding="async">
-        
-        
-        <div class="absolute top-6 right-6 w-8 h-8 rounded-full border border-[#1B1717]/10 bg-[#1B1717]/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span class="material-symbols-outlined text-[#EDEBDD] text-sm">north_east</span>
+        <div class="flex justify-between items-baseline w-full px-1">
+          <p class="text-[13px] md:text-[15px] tracking-tight text-[#1B1717] font-medium">The Venom Berries</p>
+          <span class="text-[10px] md:text-[11px] tracking-tight text-[#1B1717]/60">Brand Identity</span>
         </div>
-      </div><div class="flex flex-col items-start text-left px-1">
-          <p class="text-[8px] tracking-[0.3em] uppercase font-bold mb-1 text-[#630000]/80">Brand Identity</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tight mb-3 text-[#630000]">Luke's Iced Coffee</h3>
-          <span class="inline-flex items-center gap-2 text-[8px] font-bold uppercase tracking-widest transition-colors duration-300 text-[#630000]/60 group-hover:text-[#630000]">
-            View Project <span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
-          </span>
-        </div></a>
+      </a>
 
-      <!-- Card: TVB Brand Identity -->
-      <a href="tvb-brandbook.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full" style="min-height:580px;">
-        <img src="/Images/Hero page animation/TVB-book-13-opt.webp" alt="The Venom Berries Brand Identity" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90" decoding="async">
-        
-        
-        <div class="absolute top-6 right-6 w-8 h-8 rounded-full border border-[#1B1717]/10 bg-[#1B1717]/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span class="material-symbols-outlined text-[#EDEBDD] text-sm">north_east</span>
+      <!-- Right Card (Benner) -->
+      <a href="benner-case-study.html" class="portfolio-card group block cursor-pointer w-full max-w-[620px] justify-self-end flex flex-col gap-3 md:mt-32 lg:mt-48">
+        <p class="portfolio-card-desc desc-benner order-first md:order-none">
+          Turning everyday chai into a premium experience — without the premium price tag.
+        </p>
+        <div class="portfolio-card-media relative overflow-hidden w-full aspect-[4/3] bg-[#EAEAEA]">
+          <video autoplay="" muted="" loop="" playsinline="" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100 hidden md:block" src="/Images/Branding/Rebranding_Product_Video_Generation.mp4" preload="none"></video>
+          <video autoplay="" muted="" loop="" playsinline="" webkit-playsinline="" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100 block md:hidden pointer-events-none" src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4" preload="none"></video>
         </div>
-      </div><div class="flex flex-col items-start text-left px-1">
-          <p class="text-[8px] tracking-[0.3em] uppercase font-bold mb-1 text-[#630000]/80">Brand Identity</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tight mb-3 text-[#630000]">The Venom Berries</h3>
-          <span class="inline-flex items-center gap-2 text-[8px] font-bold uppercase tracking-widest transition-colors duration-300 text-[#630000]/60 group-hover:text-[#630000]">
-            View Project <span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
-          </span>
-        </div></a>
+        <div class="flex justify-between items-baseline w-full px-1">
+          <p class="text-[13px] md:text-[15px] tracking-tight text-[#1B1717] font-medium">Benner</p>
+          <span class="text-[10px] md:text-[11px] tracking-tight text-[#1B1717]/60">Brand Identity</span>
+        </div>
+      </a>
+
     </div>
   </div>
 
-
   <!-- ===================== LOGO DESIGN ===================== -->
-  <div class="px-6 md:px-12 lg:px-24 pt-4 md:pt-8 pb-8 md:pb-12 border-t border-[#1B1717]/10">
+  <div class="px-6 md:px-10 lg:px-12 pt-4 md:pt-8 pb-8 md:pb-12 border-t border-[#1B1717]/10">
     <div class="flex items-center gap-6 mb-3 pt-16 md:pt-24">
       <span class="block w-10 h-[2px] bg-[#630000]"></span>
       <span class="text-[8px] tracking-[0.35em] uppercase text-[#630000] font-bold">03 — Category</span>
     </div>
-    <h2 class="text-5xl md:text-8xl font-bold tracking-tighter text-[#1B1717] leading-none">Logo Design</h2>
+    <h2 class="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight text-[#1B1717] leading-none">Logo Design</h2>
   </div>
 
-  <div class="px-6 md:px-12 lg:px-24 pb-20 md:pb-32">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
-      <!-- Card: Grand Theft Emo Logo -->
-      <a href="grand-theft-emo.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full" style="min-height:580px;">
-        <img src="/Images/Branding/GTE Logo Kit/gte-kit-01-opt.webp" alt="Grand Theft Emo Logo Design" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90" decoding="async">
-        
-        <div class="absolute top-6 right-6 w-8 h-8 rounded-full border border-[#1B1717]/10 bg-[#1B1717]/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-          <span class="material-symbols-outlined text-[#EDEBDD] text-sm">north_east</span>
+  <!-- 12-column grid to strictly enforce widths and gaps -->
+  <div class="px-6 md:px-10 lg:px-12 pb-20 md:pb-48">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 lg:gap-16 items-start relative w-full">
+      
+      <!-- Left Card (Luke's Iced Coffee) -->
+      <!-- Spans 4 columns (out of 12). Placed on the far left. Pushed down significantly. -->
+      <a href="lukes-case-study.html" class="portfolio-card group block cursor-pointer col-span-1 md:col-span-4 w-full max-w-[395px] justify-self-start flex flex-col gap-3 md:mt-32 lg:mt-64">
+        <p class="portfolio-card-desc desc-lukes order-first md:order-none">
+          A fresh identity for coffee, caffeine and the college crowd.
+        </p>
+        <div class="portfolio-card-media relative overflow-hidden w-full aspect-[3/4] bg-[#EAEAEA]">
+          <img src="/Images/Hero page animation/lukes-banner-opt.webp" alt="Luke's Iced Coffee Identity" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100" decoding="async">
         </div>
-      </div><div class="flex flex-col items-start text-left px-1">
-          <p class="text-[8px] tracking-[0.3em] uppercase font-bold mb-1 text-[#630000]/80">Logo Design</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tight mb-3 text-[#630000]">Grand Theft Emo</h3>
-          <span class="inline-flex items-center gap-2 text-[8px] font-bold uppercase tracking-widest transition-colors duration-300 text-[#630000]/60 group-hover:text-[#630000]">
-            View Project <span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
-          </span>
-        </div></a>
+        <div class="flex justify-between items-baseline w-full px-1">
+          <p class="text-[13px] md:text-[15px] tracking-tight text-[#1B1717] font-medium">Luke's Iced Coffee</p>
+          <span class="text-[10px] md:text-[11px] tracking-tight text-[#1B1717]/60">Brand Identity</span>
+        </div>
+      </a>
+
+      <!-- Center Card (Grand Theft Emo) -->
+      <!-- Starts at column 6, spans 6 columns (50% width). Leaves column 5 as a guaranteed gap. -->
+      <!-- Starts at the top (no margin-top). -->
+      <a href="grand-theft-emo.html" id="gte-card" class="portfolio-card group block cursor-pointer col-span-1 flex flex-col gap-3 w-full max-w-[535px]">
+        <p class="portfolio-card-desc desc-gte order-first md:order-none">
+          What happens when Grand Theft Auto meets emo?<br class="hidden md:block" />This logo.
+        </p>
+        <div class="portfolio-card-media relative overflow-hidden w-full aspect-[4/3] bg-[#EAEAEA]">
+          <img src="/Images/gte-totebag-opt.webp" alt="Grand Theft Emo Logo Design" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100" decoding="async">
+        </div>
+        <div class="flex justify-between items-baseline w-full px-1">
+          <p class="text-[13px] md:text-[15px] tracking-tight text-[#1B1717] font-medium">Grand Theft Emo</p>
+          <span class="text-[10px] md:text-[11px] tracking-tight text-[#1B1717]/60">Logo Design</span>
+        </div>
+      </a>
+
+      <!-- Right Card (Tea's CD's) -->
+      <!-- Row 2, columns 9–12. Sits on the right side of the screen. -->
+      <a href="teas-cds.html" id="teas-cds-card" class="portfolio-card group block cursor-pointer w-full max-w-[535px] flex flex-col gap-3">
+        <p class="portfolio-card-desc desc-teas-cds order-first md:order-none">
+          For the stories behind the riffs, bands and legends.
+        </p>
+        <div class="portfolio-card-media relative overflow-hidden w-full aspect-[16/9] bg-[#EAEAEA]">
+          <img src="/Images/Tea's%20cd's%20logo%20kit/Teas%20cds%20logo%20kit-01.webp" alt="Tea's CD's Logo Design" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100" decoding="async">
+        </div>
+        <div class="flex justify-between items-baseline w-full px-1">
+          <p class="text-[13px] md:text-[15px] tracking-tight text-[#1B1717] font-medium">Tea's CD's</p>
+          <span class="text-[10px] md:text-[11px] tracking-tight text-[#1B1717]/60">Logo Design</span>
+        </div>
+      </a>
+
     </div>
   </div>
 
   <!-- ===================== POSTERS & ARTWORKS ===================== -->
-  <div class="px-6 md:px-12 lg:px-24 pt-4 md:pt-8 pb-8 md:pb-12 border-t border-[#1B1717]/10">
+  <div class="px-6 md:px-10 lg:px-12 pt-4 md:pt-8 pb-8 md:pb-12 border-t border-[#1B1717]/10">
     <div class="flex items-center gap-6 mb-3 pt-16 md:pt-24">
       <span class="block w-10 h-[2px] bg-[#630000]"></span>
       <span class="text-[8px] tracking-[0.35em] uppercase text-[#630000] font-bold">03 — Category</span>
     </div>
-    <h2 class="text-5xl md:text-8xl font-bold tracking-tighter text-[#1B1717] leading-none">Posters &amp; Artworks</h2>
+    <h2 class="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight text-[#1B1717] leading-none">Posters &amp; Artworks</h2>
   </div>
 
-  <div class="px-6 md:px-12 lg:px-24 pb-20 md:pb-32">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+  <div class="px-6 md:px-10 lg:px-12 pb-20 md:pb-48">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-32 items-start relative w-full">
 
-      <!-- Card: Album Artwork -->
-      <a href="album-artworks.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full aspect-[4/3]">
-        <img src="/Images/Brands/venom_berries/album-art-opt.webp" alt="Album Artwork" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90" decoding="async">
-        
-        
-        <div class="absolute top-6 right-6 w-8 h-8 rounded-full border border-[#1B1717]/10 bg-[#1B1717]/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span class="material-symbols-outlined text-[#EDEBDD] text-sm">north_east</span>
+      <!-- Left Card (Album Artwork) -->
+      <!-- Placed on the bottom left (pushed down heavily). -->
+      <a href="album-artworks.html" class="portfolio-card group block cursor-pointer w-full max-w-[620px] justify-self-start flex flex-col gap-3 md:mt-32 lg:mt-48">
+        <p class="portfolio-card-desc desc-album-art order-first md:order-none">
+          Turning music into something you can see.
+        </p>
+        <div class="portfolio-card-media relative overflow-hidden w-full bg-[#EAEAEA]" style="aspect-ratio: 4/3;">
+          <img src="/Images/Brands/venom_berries/album-art-opt.webp" alt="Album Artwork" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100" decoding="async">
         </div>
-      </div><div class="flex flex-col items-start text-left px-1">
-          <p class="text-[8px] tracking-[0.3em] uppercase font-bold mb-1 text-[#630000]/80">Music &amp; Art</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tight mb-3 text-[#630000]">Album Artwork</h3>
-          <span class="inline-flex items-center gap-2 text-[8px] font-bold uppercase tracking-widest transition-colors duration-300 text-[#630000]/60 group-hover:text-[#630000]">
-            View Project <span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
-          </span>
-        </div></a>
+        <div class="flex justify-between items-baseline w-full px-1">
+          <p class="text-[13px] md:text-[15px] tracking-tight text-[#1B1717] font-medium">Album Artwork</p>
+          <span class="text-[10px] md:text-[11px] tracking-tight text-[#1B1717]/60">Music &amp; Art</span>
+        </div>
+      </a>
 
-      <!-- Card: Poster Designs -->
-      <a href="posters.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full aspect-[4/3]">
-        <img src="/Images/Posters page/Hero-opt.webp" alt="Poster Designs" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90" decoding="async">
-        
-        
-        <div class="absolute top-6 right-6 w-8 h-8 rounded-full border border-[#1B1717]/10 bg-[#1B1717]/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span class="material-symbols-outlined text-[#EDEBDD] text-sm">north_east</span>
+      <!-- Right Card (Poster Designs) -->
+      <!-- Placed on the top right. -->
+      <a href="posters.html" class="portfolio-card group block cursor-pointer w-full max-w-[620px] justify-self-end flex flex-col gap-3">
+        <p class="portfolio-card-desc desc-posters order-first md:order-none">
+          Big ideas, bold visuals, and posters that refuse to blend in.
+        </p>
+        <div class="portfolio-card-media relative overflow-hidden w-full bg-[#EAEAEA]" style="aspect-ratio: 4/3;">
+          <img src="/Images/emo-nite-billboard-mockup.webp" alt="Poster Designs" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100" decoding="async">
         </div>
-      </div><div class="flex flex-col items-start text-left px-1">
-          <p class="text-[8px] tracking-[0.3em] uppercase font-bold mb-1 text-[#630000]/80">Graphic Design</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tight mb-3 text-[#630000]">Poster Designs</h3>
-          <span class="inline-flex items-center gap-2 text-[8px] font-bold uppercase tracking-widest transition-colors duration-300 text-[#630000]/60 group-hover:text-[#630000]">
-            View Project <span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
-          </span>
-        </div></a>
+        <div class="flex justify-between items-baseline w-full px-1">
+          <p class="text-[13px] md:text-[15px] tracking-tight text-[#1B1717] font-medium">Poster Designs</p>
+          <span class="text-[10px] md:text-[11px] tracking-tight text-[#1B1717]/60">Graphic Design</span>
+        </div>
+      </a>
 
     </div>
   </div>
 
   <!-- ===================== WEB DEVELOPMENT ===================== -->
-  <div class="px-6 md:px-12 lg:px-24 pt-4 md:pt-8 pb-8 md:pb-12 border-t border-[#1B1717]/10">
+  <div class="px-6 md:px-10 lg:px-12 pt-4 md:pt-8 pb-8 md:pb-12 border-t border-[#1B1717]/10">
     <div class="flex items-center gap-6 mb-3 pt-16 md:pt-24">
       <span class="block w-10 h-[2px] bg-[#630000]"></span>
       <span class="text-[8px] tracking-[0.35em] uppercase text-[#630000] font-bold">03 — Category</span>
     </div>
-    <h2 class="text-5xl md:text-8xl font-bold tracking-tighter text-[#1B1717] leading-none">Web Development</h2>
+    <h2 class="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight text-[#1B1717] leading-none">Web Development</h2>
   </div>
 
-  <div class="px-6 md:px-12 lg:px-24 pb-20 md:pb-32">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+  <div class="px-6 md:px-10 lg:px-12 pb-24 md:pb-48 lg:pb-64">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 lg:gap-16 items-start relative w-full">
 
-      <!-- Card: Execuvision -->
-      <a href="execuvision.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full aspect-[4/3]">
-        <video src="/Images/web_dev/img_3693.mp4" autoplay="" muted="" loop="" playsinline="" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90" preload="none"></video>
-        
-        
-        <div class="absolute top-6 right-6 w-8 h-8 rounded-full border border-[#1B1717]/10 bg-[#1B1717]/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span class="material-symbols-outlined text-[#EDEBDD] text-sm">north_east</span>
+      <!-- Card: Execuvision (iPhone Mockup, Portrait 3/4 like Luke's, Center-Left) -->
+      <a href="execuvision.html" id="execuvision-card" class="portfolio-card group block cursor-pointer col-span-1 flex flex-col gap-3 w-full max-w-[400px]">
+        <p class="portfolio-card-desc desc-execuvision order-first md:order-none">
+          A travel blog built to make you want to pack your bags.
+        </p>
+        <div class="portfolio-card-media mockup-card-surface" style="aspect-ratio: 3/4;">
+          <div class="mockup-iphone-stage">
+            <!-- 3D iPhone Mockup Shell (Whole device visible) -->
+            <div class="mockup-iphone-wrapper">
+              <!-- Physical Hardware Buttons -->
+              <div class="btn-action"></div>
+              <div class="btn-vol-up"></div>
+              <div class="btn-vol-down"></div>
+              <div class="btn-power"></div>
+              <!-- Inner Black Bezel -->
+              <div class="mockup-iphone-bezel">
+                <!-- Dynamic Island -->
+                <div class="mockup-iphone-island">
+                  <div class="mockup-iphone-lens"></div>
+                </div>
+                <!-- Screen with video -->
+                <div class="mockup-iphone-screen">
+                  <video src="/Images/web_dev/whatsapp_2.mp4" autoplay muted loop playsinline class="hidden md:block w-full h-full object-cover" preload="none"></video>
+                  <video src="/Images/web_dev/whatsapp_2_mobile.mp4" autoplay muted loop playsinline webkit-playsinline class="block md:hidden w-full h-full object-cover pointer-events-none" preload="none"></video>
+                  <div class="mockup-iphone-glare"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Under-phone Drop Shadow -->
+            <div class="mockup-iphone-shadow"></div>
+          </div>
         </div>
-      </div><div class="flex flex-col items-start text-left px-1">
-          <p class="text-[8px] tracking-[0.3em] uppercase font-bold mb-1 text-[#630000]/80">Web Design &amp; Dev</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tight mb-3 text-[#630000]">Execuvision</h3>
-          <span class="inline-flex items-center gap-2 text-[8px] font-bold uppercase tracking-widest transition-colors duration-300 text-[#630000]/60 group-hover:text-[#630000]">
-            View Project <span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
-          </span>
-        </div></a>
+        <div class="flex justify-between items-baseline w-full px-1">
+          <p class="text-[13px] md:text-[15px] tracking-tight text-[#1B1717] font-medium">Execuvision</p>
+          <span class="text-[10px] md:text-[11px] tracking-tight text-[#1B1717]/60">Web Design &amp; Dev</span>
+        </div>
+      </a>
 
-      <!-- Card: Nexzy -->
-      <a href="nexzy.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full aspect-[4/3]">
-        <video src="/Images/web_dev/img_3691.mp4" autoplay="" muted="" loop="" playsinline="" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90" preload="none"></video>
-        
-        
-        <div class="absolute top-6 right-6 w-8 h-8 rounded-full border border-[#1B1717]/10 bg-[#1B1717]/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span class="material-symbols-outlined text-[#EDEBDD] text-sm">north_east</span>
+      <!-- Card: Nexzy (Mac Screen Mockup, 4/3 like Grand Theft Emo, Bottom Right) -->
+      <a href="nexzy.html" id="nexzy-card" class="portfolio-card group block cursor-pointer col-span-1 flex flex-col gap-3 w-full max-w-[590px] md:mt-16 lg:mt-28">
+        <p class="portfolio-card-desc desc-nexzy order-first md:order-none">
+          Making a tech company look as good as the tech behind it.
+        </p>
+        <div class="portfolio-card-media mockup-card-surface" style="aspect-ratio: 4/3;">
+          <div class="mockup-mac-stage">
+            <!-- 3D iMac Mockup Shell (Whole device visible) -->
+            <div class="mockup-mac-wrapper">
+              <!-- 3D iMac Screen -->
+              <div class="mockup-mac-screen">
+                <div class="mockup-mac-camera"></div>
+                <div class="mockup-mac-screen-inner">
+                  <video src="/Images/web_dev/img_3691.mp4" autoplay muted loop playsinline class="hidden md:block w-full h-full object-cover" preload="none"></video>
+                  <video src="/Images/web_dev/img_3691_mobile.mp4" autoplay muted loop playsinline webkit-playsinline class="block md:hidden w-full h-full object-cover pointer-events-none" preload="none"></video>
+                  <div class="mockup-mac-glare"></div>
+                </div>
+              </div>
+              <!-- 3D iMac Chin with Apple Logo -->
+              <div class="mockup-mac-chin">
+                <svg class="mockup-mac-logo" viewBox="0 0 24 24"><path d="M17.057 10.125c-.011-2.39 1.954-3.534 2.046-3.593-1.111-1.623-2.833-1.844-3.443-1.869-1.458-.148-2.846.858-3.586.858-.74 0-1.896-.838-3.13-.814-1.62.024-3.114.942-3.95 2.392-1.688 2.925-.43 7.247 1.206 9.613.801 1.157 1.752 2.457 3.003 2.41 1.205-.047 1.66-.778 3.117-.778 1.458 0 1.868.778 3.14.754 1.302-.023 2.128-1.176 2.924-2.341.92-1.344 1.301-2.645 1.321-2.712-.028-.013-2.538-.973-2.565-3.864zM14.654 4.542c.655-.794 1.096-1.897.975-3.002-.949.038-2.099.632-2.781 1.426-.612.712-1.147 1.838-1.002 2.917.952.125 2.15-.55 2.808-1.341z"/></svg>
+              </div>
+              <!-- 3D iMac Stand -->
+              <div class="mockup-mac-stand"></div>
+              <!-- 3D iMac Base Foot -->
+              <div class="mockup-mac-foot"></div>
+              <!-- Under-device Drop Shadow -->
+              <div class="mockup-mac-shadow"></div>
+            </div>
+          </div>
         </div>
-      </div><div class="flex flex-col items-start text-left px-1">
-          <p class="text-[8px] tracking-[0.3em] uppercase font-bold mb-1 text-[#630000]/80">Web Design &amp; Dev</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tight mb-3 text-[#630000]">Nexzy</h3>
-          <span class="inline-flex items-center gap-2 text-[8px] font-bold uppercase tracking-widest transition-colors duration-300 text-[#630000]/60 group-hover:text-[#630000]">
-            View Project <span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
-          </span>
-        </div></a>
+        <div class="flex justify-between items-baseline w-full px-1">
+          <p class="text-[13px] md:text-[15px] tracking-tight text-[#1B1717] font-medium">Nexzy</p>
+          <span class="text-[10px] md:text-[11px] tracking-tight text-[#1B1717]/60">Web Development</span>
+        </div>
+      </a>
 
     </div>
   </div>
 
   <!-- ===================== SKETCHES ===================== -->
-  <div class="px-6 md:px-12 lg:px-24 pt-4 md:pt-8 pb-8 md:pb-12 border-t border-[#1B1717]/10">
+  <div class="px-6 md:px-10 lg:px-12 pt-4 md:pt-8 pb-8 md:pb-12 border-t border-[#1B1717]/10">
     <div class="flex items-center gap-6 mb-3 pt-16 md:pt-24">
       <span class="block w-10 h-[2px] bg-[#630000]"></span>
       <span class="text-[8px] tracking-[0.35em] uppercase text-[#630000] font-bold">04 — Category</span>
     </div>
-    <h2 class="text-5xl md:text-8xl font-bold tracking-tighter text-[#1B1717] leading-none">Sketches</h2>
+    <h2 class="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight text-[#1B1717] leading-none">Sketches</h2>
   </div>
 
-  <div class="px-6 md:px-12 lg:px-24 pb-24 md:pb-40">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+  <div class="px-6 md:px-10 lg:px-12 pb-32 md:pb-56 lg:pb-72">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-32 items-start relative w-full">
 
-      <!-- Card: McLaren -->
-      <a href="mclaren.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full aspect-[4/3]">
-        <img src="/Images/ART%20work/sketches-opt.webp" alt="McLaren Sketches" loading="lazy" class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90" decoding="async">
-        
-        
-        <div class="absolute top-6 right-6 w-8 h-8 rounded-full border border-[#1B1717]/10 bg-[#1B1717]/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span class="material-symbols-outlined text-[#EDEBDD] text-sm">north_east</span>
+      <!-- Left Card (Porsche) - Center-Left -->
+      <a href="porsche.html" class="portfolio-card group block cursor-pointer w-full max-w-[620px] justify-self-start flex flex-col gap-3 md:mt-24 lg:mt-36">
+        <p class="portfolio-card-desc desc-porsche order-first md:order-none">
+          Putting some horsepower on paper.
+        </p>
+        <div class="portfolio-card-media relative overflow-hidden w-full bg-[#EAEAEA]" style="aspect-ratio: 4/3;">
+          <img src="/Images/ART%20work/IMG_0498.webp" alt="Porsche Sketches" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100" decoding="async">
         </div>
-      </div><div class="flex flex-col items-start text-left px-1">
-          <p class="text-[8px] tracking-[0.3em] uppercase font-bold mb-1 text-[#630000]/80">Automotive Art</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tight mb-3 text-[#630000]">McLaren</h3>
-          <span class="inline-flex items-center gap-2 text-[8px] font-bold uppercase tracking-widest transition-colors duration-300 text-[#630000]/60 group-hover:text-[#630000]">
-            View Sketches <span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
-          </span>
-        </div></a>
+        <div class="flex justify-between items-baseline w-full px-1">
+          <p class="text-[13px] md:text-[15px] tracking-tight text-[#1B1717] font-medium">Porsche</p>
+          <span class="text-[10px] md:text-[11px] tracking-tight text-[#1B1717]/60">Automotive Art</span>
+        </div>
+      </a>
 
-      <!-- Card: Porsche -->
-      <a href="porsche.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full aspect-[4/3]">
-        <img src="/Images/ART%20work/IMG_0498.webp" alt="Porsche Sketches" loading="lazy" class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90" decoding="async">
-        
-        
-        <div class="absolute top-6 right-6 w-8 h-8 rounded-full border border-[#1B1717]/10 bg-[#1B1717]/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span class="material-symbols-outlined text-[#EDEBDD] text-sm">north_east</span>
+      <!-- Right Card (McLaren) - Bottom Absolute Right -->
+      <a href="mclaren.html" class="portfolio-card group block cursor-pointer w-full max-w-[620px] justify-self-end flex flex-col gap-3 md:mt-72 lg:mt-[34rem]">
+        <p class="portfolio-card-desc desc-mclaren order-first md:order-none">
+          Fast cars, slow sketches, good details.
+        </p>
+        <div class="portfolio-card-media relative overflow-hidden w-full bg-[#EAEAEA]" style="aspect-ratio: 4/3;">
+          <img src="/Images/ART%20work/sketches-opt.webp" alt="McLaren Sketches" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100" decoding="async">
         </div>
-      </div><div class="flex flex-col items-start text-left px-1">
-          <p class="text-[8px] tracking-[0.3em] uppercase font-bold mb-1 text-[#630000]/80">Automotive Art</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tight mb-3 text-[#630000]">Porsche</h3>
-          <span class="inline-flex items-center gap-2 text-[8px] font-bold uppercase tracking-widest transition-colors duration-300 text-[#630000]/60 group-hover:text-[#630000]">
-            View Sketches <span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
-          </span>
-        </div></a>
+        <div class="flex justify-between items-baseline w-full px-1">
+          <p class="text-[13px] md:text-[15px] tracking-tight text-[#1B1717] font-medium">McLaren</p>
+          <span class="text-[10px] md:text-[11px] tracking-tight text-[#1B1717]/60">Automotive Art</span>
+        </div>
+      </a>
 
     </div>
   </div>
@@ -1301,7 +1830,7 @@
 <!-- Premium Testimonials Slider -->
   <section id="services-details" class="bg-[#EDEBDD] relative z-20">
     <!-- Service 01: Website Design & Development -->
-    <div class="px-6 md:px-24 py-8 md:py-24 bg-[#EDEBDD] border-t border-[#1B1717]/10">
+    <div class="px-6 md:px-10 lg:px-12 py-8 md:py-24 bg-[#EDEBDD] border-t border-[#1B1717]/10">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-20 items-center">
         <div class="md:col-span-5">
           <div class="aspect-[4/5] overflow-hidden bg-[#EDEBDD] border border-[#1B1717]/10">
@@ -1310,7 +1839,7 @@
         </div>
         <div class="md:col-start-7 md:col-span-6 flex flex-col justify-center">
           <span class="text-[8px] tracking-widest uppercase text-[#1B1717]/60 font-bold mb-6">Service 01</span>
-          <h3 class="text-4xl md:text-5xl font-bold tracking-tight mb-4 md:mb-8 text-[#1B1717]">Website Design &amp;<br>Development</h3>
+          <h3 class="text-3xl md:text-4xl font-medium tracking-tight mb-4 md:mb-8 text-[#1B1717]">Website Design &amp;<br>Development</h3>
           <p class="text-lg text-[#1B1717]/60 mb-6 md:mb-12 max-w-lg leading-relaxed">
             I design and build fast, responsive, and easy-to-use websites. From the initial layout to the final code, I make sure your website looks great and works perfectly on all devices.
           </p>
@@ -1340,11 +1869,11 @@
     </div>
 
     <!-- Service 02: Graphic Design & Branding -->
-    <div class="px-6 md:px-24 py-8 md:py-24 bg-[#EDEBDD] border-t border-[#1B1717]/10">
+    <div class="px-6 md:px-10 lg:px-12 py-8 md:py-24 bg-[#EDEBDD] border-t border-[#1B1717]/10">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-20 items-center">
         <div class="md:col-span-6 flex flex-col justify-center order-2 md:order-1">
           <span class="text-[8px] tracking-widest uppercase text-[#1B1717]/60 font-bold mb-6">Service 02</span>
-          <h3 class="text-4xl md:text-5xl font-bold tracking-tight mb-4 md:mb-8 text-[#1B1717]">Graphic Design &amp;<br>Branding</h3>
+          <h3 class="text-3xl md:text-4xl font-medium tracking-tight mb-4 md:mb-8 text-[#1B1717]">Graphic Design &amp;<br>Branding</h3>
           <p class="text-lg text-[#1B1717]/60 mb-6 md:mb-12 max-w-lg leading-relaxed">
             I create clean, professional, and memorable branding for your business. Whether you need a new logo, business cards, or full brand guidelines, I deliver designs that connect with your audience.
           </p>
@@ -1393,7 +1922,7 @@
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-16 relative z-20">
         <div class="flex flex-col items-center md:items-start mb-6 md:mb-0">
           <span class="text-[8px] tracking-[0.3em] uppercase text-[#1B1717]/60 font-bold mb-4">Client Perspectives</span>
-          <h2 class="text-4xl font-bold tracking-tight text-[#1B1717]">Kind Words</h2>
+          <h2 class="text-2xl md:text-3xl font-medium tracking-tight text-[#1B1717]">Kind Words</h2>
         </div>
         <button onclick="openTestimonialModal()" class="px-6 py-3 bg-[#1B1717]/5 hover:bg-[#1B1717]/10 border border-[#1B1717]/20 text-[#1B1717] text-xs font-bold uppercase tracking-widest transition-colors md:backdrop-blur-md">
           Leave a Review
@@ -1498,11 +2027,11 @@
 
   <section id="about" class="py-5 md:py-16 bg-[#EDEBDD] border-y border-[#1B1717]/10 overflow-hidden">
     <!-- Narrative Summary -->
-    <div class="px-6 md:px-24 py-8 md:py-32 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-24 items-center">
+    <div class="px-6 md:px-10 lg:px-12 py-8 md:py-32 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-24 items-center">
       <div class="lg:col-span-7">
         <span class="text-[8px] tracking-[0.3em] uppercase text-[#1B1717]/60 font-bold mb-4 md:mb-8 block">My Story</span>
         <span class="block text-2xl mb-2 text-[#1B1717]/60 font-semibold tracking-normal leading-normal">About Me</span>
-        <h2 class="text-[clamp(2.5rem,6vw,5.5rem)] font-bold tracking-tighter leading-none text-[#1B1717] mb-6 md:mb-12">
+        <h2 class="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-none text-[#1B1717] mb-6 md:mb-12">
           From sketching<br>to screens.
         </h2>
         <div class="space-y-8 max-w-2xl">
@@ -1528,11 +2057,11 @@
 
     <!-- Toolkit Section -->
     <div class="bg-[#EDEBDD] border-y border-[#1B1717]/10">
-      <div class="px-6 md:px-24 py-8 md:py-24">
+      <div class="px-6 md:px-10 lg:px-12 py-8 md:py-24">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 md:gap-16">
           <div class="lg:col-span-4">
             <span class="text-[8px] tracking-[0.3em] uppercase text-[#1B1717]/60 font-bold mb-6 block">My Skills</span>
-            <h3 class="text-4xl font-bold tracking-tight text-[#1B1717] mb-4 md:mb-8">Tools I use</h3>
+            <h3 class="text-2xl md:text-3xl font-medium tracking-tight text-[#1B1717] mb-4 md:mb-8">Tools I use</h3>
             <p class="text-[#1B1717]/60 text-sm leading-relaxed mb-6 md:mb-12">
               I use a mix of design and development tools to bring ideas to life. Here's what I work with to build websites, create brands, and design graphics every day.
             </p>
@@ -1585,7 +2114,7 @@
             <!-- Skill Block 1 -->
             <div class="bg-[#EDEBDD] p-6 md:p-10 hover:bg-[#EDEBDD] transition-colors duration-500">
               <span class="material-symbols-outlined text-4xl mb-4 md:mb-8 text-[#1B1717]">auto_awesome</span>
-              <h5 class="text-lg font-bold mb-4 uppercase">Visual Identity</h5>
+              <h5 class="text-lg font-medium mb-4 text-[#1B1717]">Visual Identity</h5>
               <p class="text-[#1B1717]/60 text-sm leading-relaxed mb-6">Crafting brand systems that resonate through narrative and natural aesthetic intuition.</p>
               <ul class="text-[8px] tracking-widest uppercase text-[#1B1717]/60 space-y-2">
                 <li>— Brand Strategy</li>
@@ -1596,7 +2125,7 @@
             <!-- Skill Block 2 -->
             <div class="bg-[#EDEBDD] p-6 md:p-10 hover:bg-[#EDEBDD] transition-colors duration-500">
               <span class="material-symbols-outlined text-4xl mb-4 md:mb-8 text-[#1B1717]">terminal</span>
-              <h5 class="text-lg font-bold mb-4 uppercase">Web Engineering</h5>
+              <h5 class="text-lg font-medium mb-4 text-[#1B1717]">Web Engineering</h5>
               <p class="text-[#1B1717]/60 text-sm leading-relaxed mb-6">Building high-performance digital foundations with a focus on speed and structure.</p>
               <ul class="text-[8px] tracking-widest uppercase text-[#1B1717]/60 space-y-2">
                 <li>— Frontend Dev</li>
@@ -1607,7 +2136,7 @@
             <!-- Skill Block 3 -->
             <div class="bg-[#EDEBDD] p-6 md:p-10 hover:bg-[#EDEBDD] transition-colors duration-500">
               <span class="material-symbols-outlined text-4xl mb-4 md:mb-8 text-[#1B1717]">grid_view</span>
-              <h5 class="text-lg font-bold mb-4 uppercase">Interface Design</h5>
+              <h5 class="text-lg font-medium mb-4 text-[#1B1717]">Interface Design</h5>
               <p class="text-[#1B1717]/60 text-sm leading-relaxed mb-6">Curation of movement within digital spaces to create seamless user journeys.</p>
               <ul class="text-[8px] tracking-widest uppercase text-[#1B1717]/60 space-y-2">
                 <li>— UI/UX Design</li>
@@ -1624,9 +2153,9 @@
 </main>
 
     <!-- Services CTA Strip -->
-    <div class="px-6 md:px-24 py-12 md:py-24 border-t border-[#1B1717]/10 bg-[#EDEBDD] text-center">
+    <div class="px-6 md:px-10 lg:px-12 py-12 md:py-24 border-t border-[#1B1717]/10 bg-[#EDEBDD] text-center">
       <span class="text-[8px] tracking-[0.3em] uppercase text-[#1B1717]/60 font-bold mb-6 block">Start a Project</span>
-      <h3 class="text-[clamp(2.5rem,6vw,5rem)] font-bold tracking-tighter mb-6 md:mb-12 text-[#1B1717]">Let's build<br>something iconic.</h3>
+      <h3 class="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-6 md:mb-12 text-[#1B1717]">Let's build<br>something iconic.</h3>
       <a class="inline-flex items-center gap-4 text-[8px] tracking-[0.3em] uppercase font-bold border-b-2 border-zinc-900 pb-2 hover:opacity-50 text-[#1B1717] transition-all duration-300" href="contact.html">
         Start your project
         <span class="material-symbols-outlined" style="font-size:14px;">arrow_forward</span>
@@ -1782,13 +2311,15 @@
   const ham2 = document.getElementById('ham-2');
   const ham3 = document.getElementById('ham-3');
   let menuOpen = false;
-  hamburger.addEventListener('click', () => {
-    menuOpen = !menuOpen;
-    mobileMenu.classList.toggle('open', menuOpen);
-    ham2.style.opacity = menuOpen ? '0' : '1';
-    ham1.style.transform = menuOpen ? 'translateY(8px) rotate(45deg)' : '';
-    ham3.style.transform = menuOpen ? 'translateY(-8px) rotate(-45deg)' : '';
-  });
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      if (mobileMenu) mobileMenu.classList.toggle('open', menuOpen);
+      if (ham2) ham2.style.opacity = menuOpen ? '0' : '1';
+      if (ham1) ham1.style.transform = menuOpen ? 'translateY(8px) rotate(45deg)' : '';
+      if (ham3) ham3.style.transform = menuOpen ? 'translateY(-8px) rotate(-45deg)' : '';
+    });
+  }
 </script>
 
 <script>
@@ -2484,7 +3015,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="w-full bg-[#1B1717] text-white pb-32 md:pb-64 font-sans overflow-x-hidden">
         <style>
           #case-study-content { font-family: Arial, sans-serif !important; }
-          #case-study-content h1, #case-study-content h2, #case-study-content h3 { font-family: Helvetica, Arial, sans-serif !important; }
+          #case-study-content h1, #case-study-content h2, #case-study-content h3 { font-family: 'Clash Display', Helvetica, Arial, sans-serif !important; }
         </style>
         <!-- Section 1: Intro -->
         <section class="flex flex-col items-center justify-center px-6 text-center space-y-8 md:space-y-16" style="min-height: calc(var(--vh, 1svh) * 100);">
@@ -3099,6 +3630,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('video.card-video').forEach(video => {
       videoObserver.observe(video);
+    });
+  }
+
+  // --- 5. Spotlight Card Animation (Hover a card -> other cards blank white) ---
+  const catGrid = document.getElementById('categories-grid');
+  if (catGrid) {
+    const portfolioCards = catGrid.querySelectorAll('.portfolio-card');
+    portfolioCards.forEach(card => {
+      card.addEventListener('pointerenter', () => {
+        catGrid.classList.add('has-card-hovered');
+        card.classList.add('is-hovered');
+      });
+      card.addEventListener('pointerleave', () => {
+        card.classList.remove('is-hovered');
+        requestAnimationFrame(() => {
+          if (!catGrid.querySelector('.portfolio-card:hover, .portfolio-card.is-hovered')) {
+            catGrid.classList.remove('has-card-hovered');
+          }
+        });
+      });
     });
   }
 });

@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html class="light bg-[#EDEBDD]" lang="en"><head>
 <style id="pf-overlay-style">
@@ -26,22 +23,20 @@
     animation: none !important;
   }
 </style>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800;900&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 
 <!-- IAB Viewport Lock -->
 <style>
-  /* Lenis owns scrolling � disable native smooth to avoid conflicts */
+  /* Lenis owns scrolling  disable native smooth to avoid conflicts */
   html { scroll-behavior: auto; }
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
   body { font-family: 'Manrope', sans-serif; }
-  h1, h2, h3, h4, h5, h6 { font-family: 'DM Sans', sans-serif; }
+  h1, h2, h3, h4, h5, h6 { font-family: 'Clash Display', 'DM Sans', sans-serif; font-weight: 500; }
   #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
   #mobile-menu.open { max-height: 400px; }
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: #f9f9f9; }
-  ::-webkit-scrollbar-thumb { background: #1B1717; border-radius: 3px; }
-  /* Global smooth transitions */
+  html, body { -ms-overflow-style: none; scrollbar-width: none; }
   a, button {
     transition-property: color, background-color, border-color, opacity, transform, box-shadow;
     transition-duration: 0.35s;
@@ -233,18 +228,18 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 
   <!-- Top Right: Desktop Navigation (Horizontal) -->
-  <div class="flex flex-row items-center gap-2 md:gap-4 pointer-events-auto fixed top-4 right-6 md:top-6 md:right-10 z-[120] mix-blend-difference" >
-    <a href="/" class="mix-blend-difference font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity">Index</a>
+  <div id="nav-actions" class="flex flex-row items-center gap-1 sm:gap-2 md:gap-4 pointer-events-auto fixed top-6 right-8 md:top-8 md:right-12 z-[120] mix-blend-difference" style="touch-action: manipulation;">
+    <a href="/" class="font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity py-2.5 px-2 inline-flex items-center">Index</a>
     
     <!-- Projects Dropdown -->
-    <div class="relative group flex flex-col items-center">
-      <button class="mix-blend-difference bg-transparent text-white hover:opacity-70 px-0 py-0 font-manrope text-[8px] tracking-[0.2em] uppercase transition-opacity flex items-center gap-1 cursor-pointer">
+    <div class="relative group flex flex-col items-center" id="nav-projects-group">
+      <button type="button" id="nav-projects-btn" aria-expanded="false" aria-haspopup="true" class="nav-projects-btn bg-transparent text-white hover:opacity-70 py-2.5 px-2 font-manrope text-[8px] tracking-[0.2em] uppercase transition-opacity flex items-center gap-1 cursor-pointer">
         Projects
-        <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover:rotate-180">expand_more</span>
+        <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover:rotate-180 nav-projects-arrow" id="nav-projects-arrow">expand_more</span>
       </button>
       
       <!-- Dropdown Menu -->
-      <div class="absolute top-full mt-4 w-40 bg-[#EDEBDD] border border-zinc-100 shadow-2xl opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 flex flex-col p-2 z-[101] -right-10 md:right-auto md:left-1/2 md:-translate-x-1/2">
+      <div id="nav-projects-menu" class="nav-projects-menu absolute top-full mt-2 w-44 bg-[#EDEBDD] border border-zinc-200 shadow-2xl opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 flex flex-col p-2 z-[130] -right-10 md:right-auto md:left-1/2 md:-translate-x-1/2 pointer-events-auto">
         <a href="index.html#categories-grid" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Visual Identity</a>
         <a href="posters.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Posters</a>
         <a href="nexzy.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Web Dev</a>
@@ -252,8 +247,8 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     </div>
     
-    <a href="index.html#about" class="mix-blend-difference font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity">About</a>
-    <a href="contact.html" class="mix-blend-difference font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity">Contact</a>
+    <a href="index.html#about" class="font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity py-2.5 px-2 inline-flex items-center">About</a>
+    <a href="contact.html" class="font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity py-2.5 px-2 inline-flex items-center">Contact</a>
   </div>
 
   </nav>

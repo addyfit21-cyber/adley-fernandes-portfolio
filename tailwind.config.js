@@ -5,6 +5,7 @@ import containerQueries from '@tailwindcss/container-queries';
 export default {
   content: [
     "./index.html",
+    "./*.html",
     "./**/*.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
@@ -69,8 +70,8 @@ export default {
       },
       fontFamily: {
         "sans": ["Manrope", "sans-serif"],
-        "heading": ["'DM Sans'", "sans-serif"],
-        "headline": ["'DM Sans'", "sans-serif"],
+        "heading": ["'Clash Display'", "'DM Sans'", "sans-serif"],
+        "headline": ["'Clash Display'", "'DM Sans'", "sans-serif"],
         "body": ["Manrope", "sans-serif"],
         "label": ["Manrope", "sans-serif"]
       }

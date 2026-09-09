@@ -87,18 +87,18 @@
   </div>
 
   <!-- Top Right: Desktop Navigation (Horizontal) -->
-  <div class="flex flex-row items-center gap-2 md:gap-4 pointer-events-auto fixed top-4 right-6 md:top-6 md:right-10 z-[120] mix-blend-difference" >
-    <a href="/" class="mix-blend-difference font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity">Index</a>
+  <div id="nav-actions" class="flex flex-row items-center gap-1 sm:gap-2 md:gap-4 pointer-events-auto fixed top-6 right-8 md:top-8 md:right-12 z-[120] mix-blend-difference" style="touch-action: manipulation;">
+    <a href="/" class="font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity py-2.5 px-2 inline-flex items-center">Index</a>
     
     <!-- Projects Dropdown -->
-    <div class="relative group flex flex-col items-center">
-      <button class="mix-blend-difference bg-transparent text-white hover:opacity-70 px-0 py-0 font-manrope text-[8px] tracking-[0.2em] uppercase transition-opacity flex items-center gap-1 cursor-pointer">
+    <div class="relative group flex flex-col items-center" id="nav-projects-group">
+      <button type="button" id="nav-projects-btn" aria-expanded="false" aria-haspopup="true" class="nav-projects-btn bg-transparent text-white hover:opacity-70 py-2.5 px-2 font-manrope text-[8px] tracking-[0.2em] uppercase transition-opacity flex items-center gap-1 cursor-pointer">
         Projects
-        <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover:rotate-180">expand_more</span>
+        <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover:rotate-180 nav-projects-arrow" id="nav-projects-arrow">expand_more</span>
       </button>
       
       <!-- Dropdown Menu -->
-      <div class="absolute top-full mt-4 w-40 bg-[#EDEBDD] border border-zinc-100 shadow-2xl opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 flex flex-col p-2 z-[101] -right-10 md:right-auto md:left-1/2 md:-translate-x-1/2">
+      <div id="nav-projects-menu" class="nav-projects-menu absolute top-full mt-2 w-44 bg-[#EDEBDD] border border-zinc-200 shadow-2xl opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 flex flex-col p-2 z-[130] -right-10 md:right-auto md:left-1/2 md:-translate-x-1/2 pointer-events-auto">
         <a href="index.html#categories-grid" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Visual Identity</a>
         <a href="posters.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Posters</a>
         <a href="nexzy.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Web Dev</a>
@@ -106,8 +106,8 @@
       </div>
     </div>
     
-    <a href="index.html#about" class="mix-blend-difference font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity">About</a>
-    <a href="contact.html" class="mix-blend-difference font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity">Contact</a>
+    <a href="index.html#about" class="font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity py-2.5 px-2 inline-flex items-center">About</a>
+    <a href="contact.html" class="font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity py-2.5 px-2 inline-flex items-center">Contact</a>
   </div>
 
   </nav>
