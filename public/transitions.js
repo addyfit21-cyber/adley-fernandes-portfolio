@@ -63,13 +63,18 @@
     }
 
     // Ensure hero video autoplays smoothly
-    var heroVideo = document.getElementById('hero-video');
-    if (heroVideo) {
+    var heroVideos = [
+      document.getElementById('hero-video-mobile'),
+      document.getElementById('hero-video')
+    ].filter(Boolean);
+
+    heroVideos.forEach(function (v) {
       if (resetToHero) {
-        heroVideo.currentTime = 0;
+        v.currentTime = 0;
       }
-      heroVideo.play().catch(function () {});
-    }
+      v.play().catch(function () {});
+    });
+  }
   }
 
   // --- Navbar Smart Contrast & Projects Dropdown Handling ---

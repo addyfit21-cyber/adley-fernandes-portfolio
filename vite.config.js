@@ -16,6 +16,9 @@ const htmlFiles = readdirSync(process.cwd())
 export default defineConfig({
   server: {
     open: true,
+    watch: {
+      ignored: ['**/dist/**', '**/node_modules/**']
+    }
   },
   build: {
     rollupOptions: {

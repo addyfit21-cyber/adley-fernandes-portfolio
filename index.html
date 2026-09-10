@@ -886,13 +886,8 @@
   .section-underline:hover::after { width: 100%; }
   
   @media (max-width: 768px) {
-    #hero { padding-top: 60px; }
+    #hero { padding-top: 0 !important; }
     #scroll-pen-wrap { display: none !important; }
-
-    /* Tighten hero typography on small screens */
-    #hero-headline { font-size: clamp(2.2rem, 11vw, 4rem) !important; line-height: 1.0 !important; }
-    #hero p.hero-slide-right { font-size: 1rem !important; line-height: 1.6 !important; }
-    #hero .hero-slide-right a { font-size: 0.65rem !important; padding: 0.8rem 1.5rem !important; }
 
     /* Section headings — prevent bleed on narrow screens */
     h2.text-\[7rem\], h2.text-\[2\.5rem\] { font-size: clamp(2rem, 10vw, 3.5rem) !important; }
@@ -1010,18 +1005,32 @@
 
       <!-- ── Hero Video ── -->
       <div id="hero-video-container" style="position:absolute;inset:0;width:100%;height:100%;z-index:1;overflow:hidden;">
+        <!-- Mobile Video (Zero crop, fits exact mobile aspect ratio 720:972) -->
         <video 
-          id="hero-video"
+          id="hero-video-mobile"
+          class="block md:hidden hero-mobile-video"
           autoplay 
           muted 
           playsinline 
+          webkit-playsinline
+          preload="auto"
+          poster="/Images/Hero video/mobile-hero-poster.webp"
+          src="/Images/Hero video/Mobile hero.mp4"
+          style="width: 100%; height: 100%; object-fit: contain;"
+        ></video>
+        <!-- Desktop Video (Full cover background) -->
+        <video 
+          id="hero-video"
+          class="hidden md:block hero-desktop-video"
+          autoplay 
+          muted 
+          playsinline 
+          webkit-playsinline
           preload="auto"
           poster="/Images/Hero video/hero-poster.webp"
+          src="/Images/Hero video/Hero Animation.mp4"
           style="width: 100%; height: 100%; object-fit: cover;"
-        >
-          <source media="(max-width: 768px)" src="/Images/Hero video/Mobile hero.mp4" type="video/mp4">
-          <source src="/Images/Hero video/Hero Animation.mp4" type="video/mp4">
-        </video>
+        ></video>
         <!-- Dark gradient for text readability -->
         <div style="
           position:absolute;inset:0;
@@ -1120,12 +1129,51 @@
   <style>
     @media (max-width: 768px) {
       #hero {
-        height: 78vh !important;
-        min-height: 520px;
+        height: auto !important;
+        min-height: unset !important;
+        max-height: none !important;
+        padding-top: 0 !important;
+        width: 100% !important;
+        position: relative !important;
+        overflow: hidden !important;
+        background: #0e0e0e !important;
       }
-      #hero-active-img-wrap {
-        height: 78vh !important;
-        min-height: 520px;
+      #hero-video-container {
+        position: relative !important;
+        inset: auto !important;
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 720 / 972 !important;
+        overflow: hidden !important;
+      }
+      .hero-mobile-video {
+        width: 100% !important;
+        height: 100% !important;
+        aspect-ratio: 720 / 972 !important;
+        object-fit: contain !important;
+        display: block !important;
+      }
+      #hero-text-overlay {
+        position: absolute !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        padding: 12px 16px 20px 16px !important;
+      }
+      #hero-text-overlay p:nth-child(1) {
+        font-size: 0.58rem !important;
+        margin-bottom: 4px !important;
+        letter-spacing: 0.25em !important;
+      }
+      #hero-text-overlay p:nth-child(2) {
+        font-size: clamp(1.05rem, 4.2vw, 1.3rem) !important;
+        line-height: 1.25 !important;
+        margin-bottom: 6px !important;
+      }
+      #hero-text-overlay p:nth-child(3) {
+        font-size: 0.72rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 12px !important;
       }
       .hero-cta-btn {
         padding: 8px 16px !important;
@@ -2392,55 +2440,38 @@
     }
   });
 
-  /* Hero video play-once controller & responsive source handler */
+  /* Hero video play-once controller for both mobile and desktop videos */
   (function() {
-    var video = document.getElementById('hero-video');
-    if (!video) return;
+    var videos = [
+      document.getElementById('hero-video-mobile'),
+      document.getElementById('hero-video')
+    ].filter(Boolean);
 
-    var hasEnded = false;
+    videos.forEach(function(video) {
+      var hasEnded = false;
 
-    // Explicitly guarantee no looping on all devices
-    video.loop = false;
-    video.removeAttribute('loop');
+      video.loop = false;
+      video.removeAttribute('loop');
 
-    function freezeOnEnd() {
-      hasEnded = true;
-      video.pause();
-    }
-
-    video.addEventListener('ended', freezeOnEnd);
-
-    // Freeze reliably on the final frame across mobile iOS Safari and Android Chrome
-    video.addEventListener('timeupdate', function() {
-      if (!hasEnded && video.duration && video.currentTime >= video.duration - 0.08) {
-        freezeOnEnd();
-      }
-    });
-
-    video.addEventListener('play', function() {
-      if (hasEnded) {
+      function freezeOnEnd() {
+        hasEnded = true;
         video.pause();
       }
-    });
 
-    var mql = window.matchMedia('(max-width: 768px)');
-    function checkHeroVideo() {
-      var current = video.currentSrc || '';
-      if (mql.matches && current && !current.includes('Mobile%20hero') && !current.includes('Mobile hero')) {
-        hasEnded = false;
-        video.load();
-        video.play().catch(function() {});
-      } else if (!mql.matches && current && !current.includes('Hero%20Animation.mp4') && !current.includes('Hero Animation.mp4')) {
-        hasEnded = false;
-        video.load();
-        video.play().catch(function() {});
-      }
-    }
-    if (mql.addEventListener) {
-      mql.addEventListener('change', checkHeroVideo);
-    } else if (mql.addListener) {
-      mql.addListener(checkHeroVideo);
-    }
+      video.addEventListener('ended', freezeOnEnd);
+
+      video.addEventListener('timeupdate', function() {
+        if (!hasEnded && video.duration && video.currentTime >= video.duration - 0.08) {
+          freezeOnEnd();
+        }
+      });
+
+      video.addEventListener('play', function() {
+        if (hasEnded) {
+          video.pause();
+        }
+      });
+    });
   })();
 </script>
 
