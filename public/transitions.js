@@ -62,24 +62,19 @@
       overlay.style.opacity = '0';
     }
 
-    // Ensure hero video autoplays smoothly
-    var heroVideos = [
-      document.getElementById('hero-video-mobile'),
-      document.getElementById('hero-video')
-    ].filter(Boolean);
-
-    heroVideos.forEach(function (v) {
-      v.loop = false;
-      v.removeAttribute('loop');
+    // Ensure desktop hero video autoplays smoothly
+    var heroVideo = document.getElementById('hero-video');
+    if (heroVideo) {
+      heroVideo.loop = false;
+      heroVideo.removeAttribute('loop');
       if (resetToHero) {
-        v.currentTime = 0;
-        v._hasEnded = false;
+        heroVideo.currentTime = 0;
+        heroVideo._hasEnded = false;
       }
-      if (!v._hasEnded) {
-        v.play().catch(function () {});
+      if (!heroVideo._hasEnded) {
+        heroVideo.play().catch(function () {});
       }
-    });
-  }
+    }
   }
 
   // --- Navbar Smart Contrast & Projects Dropdown Handling ---
@@ -106,7 +101,7 @@
 
     // Move menu out of #nav-actions so mix-blend-difference does NOT invert the dropdown
     if (navActions && navActions.contains(menu)) {
-      mainNav.appendChild(menu);
+      document.body.appendChild(menu);
     }
 
     var closeTimer = null;
@@ -115,6 +110,7 @@
       if (!btn || !menu) return;
       var rect = btn.getBoundingClientRect();
       menu.style.top = (rect.bottom + 8) + 'px';
+      menu.style.right = 'auto';
       var idealLeft = rect.left + rect.width / 2 - menu.offsetWidth / 2;
       var maxLeft = window.innerWidth - menu.offsetWidth - 16;
       menu.style.left = Math.max(16, Math.min(idealLeft, maxLeft)) + 'px';
@@ -137,7 +133,7 @@
 
     function scheduleClose() {
       if (closeTimer) clearTimeout(closeTimer);
-      closeTimer = setTimeout(closeMenu, 150);
+      closeTimer = setTimeout(closeMenu, 250);
     }
 
     var isHoverDevice = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -174,6 +170,10 @@
     });
 
     window.addEventListener('resize', function() {
+      if (menu.classList.contains('is-open')) updatePos();
+    }, { passive: true });
+
+    window.addEventListener('scroll', function() {
       if (menu.classList.contains('is-open')) updatePos();
     }, { passive: true });
   }
@@ -319,9 +319,35 @@
 
   // ─── Battery Saver & Low Power Mode Video Playback Engine ───
   function initBatterySaverVideoManager() {
+    function wireVideoEvents(v) {
+      if (!v || v._wired) return;
+      v._wired = true;
+      function markPlaying() {
+        v.classList.add('is-playing');
+        var container = v.closest('.portfolio-card-media, .mockup-iphone-screen, .mockup-mac-screen-inner');
+        if (container) {
+          var poster = container.querySelector('.video-poster-overlay');
+          if (poster) {
+            poster.classList.add('is-hidden');
+            poster.style.opacity = '0';
+          }
+        }
+      }
+      v.addEventListener('playing', markPlaying);
+      v.addEventListener('timeupdate', function () {
+        if (v.currentTime > 0.05) {
+          markPlaying();
+        }
+      });
+      if (!v.paused && v.currentTime > 0) {
+        markPlaying();
+      }
+    }
+
     function ensureVideoPlays(v) {
       if (!v) return;
-      var isHero = (v.id === 'hero-video' || v.id === 'hero-video-mobile');
+      wireVideoEvents(v);
+      var isHero = (v.id === 'hero-video');
       if (isHero) {
         v.loop = false;
         v.removeAttribute('loop');
@@ -350,31 +376,33 @@
 
     function playVisibleVideos() {
       document.querySelectorAll('video').forEach(function (v) {
+        wireVideoEvents(v);
         if (!v._hasEnded && v.paused) {
           ensureVideoPlays(v);
         }
       });
     }
 
-    // Try playing immediately
+    // Try playing immediately and wire all video elements
+    document.querySelectorAll('video').forEach(wireVideoEvents);
     playVisibleVideos();
 
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', playVisibleVideos, { once: true });
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('video').forEach(wireVideoEvents);
+        playVisibleVideos();
+      }, { once: true });
     }
     window.addEventListener('load', playVisibleVideos, { once: true });
     window.addEventListener('pageshow', playVisibleVideos);
 
-    // On ANY first user gesture: unlocks media playback on iOS Safari & Android Chrome
+    // On user gesture: unlocks media playback on iOS Safari & Android Chrome
     var gestureEvents = ['touchstart', 'pointerdown', 'mousedown', 'keydown', 'click'];
-    function onFirstGesture() {
-      gestureEvents.forEach(function (evt) {
-        window.removeEventListener(evt, onFirstGesture, { capture: true });
-      });
+    function onGesture() {
       playVisibleVideos();
     }
     gestureEvents.forEach(function (evt) {
-      window.addEventListener(evt, onFirstGesture, { passive: true, capture: true, once: true });
+      window.addEventListener(evt, onGesture, { passive: true, capture: true });
     });
 
     // IntersectionObserver: automatically plays when near viewport (200px margin)
@@ -388,8 +416,8 @@
               ensureVideoPlays(v);
             }
           } else {
-            // High-performance optimization: pause offscreen videos to avoid overloading GPU decoders
-            if (!v._hasEnded && !v.paused && v.id !== 'hero-video' && v.id !== 'hero-video-mobile') {
+            // Pause offscreen videos to avoid overloading GPU decoders
+            if (!v._hasEnded && !v.paused && v.id !== 'hero-video') {
               v.pause();
             }
           }
@@ -397,6 +425,7 @@
       }, { rootMargin: '200px 0px' });
 
       document.querySelectorAll('video').forEach(function (v) {
+        wireVideoEvents(v);
         autoPlayObserver.observe(v);
       });
 
@@ -406,10 +435,12 @@
             mut.addedNodes.forEach(function (node) {
               if (node.nodeType === 1) {
                 if (node.tagName === 'VIDEO') {
+                  wireVideoEvents(node);
                   autoPlayObserver.observe(node);
                   if (node.paused) ensureVideoPlays(node);
                 } else if (node.querySelectorAll) {
                   node.querySelectorAll('video').forEach(function (v) {
+                    wireVideoEvents(v);
                     autoPlayObserver.observe(v);
                     if (v.paused) ensureVideoPlays(v);
                   });

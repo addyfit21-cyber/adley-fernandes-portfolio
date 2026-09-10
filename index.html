@@ -1005,7 +1005,7 @@
   </div>
 
   <!-- Top Right: Desktop Navigation (Horizontal) -->
-  <div id="nav-actions" class="flex flex-row items-center gap-1 sm:gap-2 md:gap-4 pointer-events-auto fixed top-6 right-8 md:top-8 md:right-12 z-[120] mix-blend-difference" style="touch-action: manipulation;">
+  <div id="nav-actions" class="flex flex-row items-center gap-1 sm:gap-2 md:gap-4 pointer-events-auto fixed top-4 right-4 md:top-6 md:right-8 z-[120] mix-blend-difference" style="touch-action: manipulation;">
     <a href="/" class="font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity py-2.5 px-2 inline-flex items-center">Index</a>
     
     <!-- Projects Dropdown -->
@@ -1047,21 +1047,18 @@
   ">
 
 
-      <!-- ── Hero Video ── -->
+      <!-- ── Hero Media Layer (Footer Image for Mobile, Crystal-Clear Video for Desktop) ── -->
       <div id="hero-video-container" style="position:absolute;inset:0;width:100%;height:100%;z-index:1;overflow:hidden;">
-        <!-- Mobile Video (Zero crop, fits exact mobile aspect ratio 720:972) -->
-        <video 
-          id="hero-video-mobile"
-          class="block md:hidden hero-mobile-video"
-          autoplay 
-          muted 
-          playsinline 
-          webkit-playsinline
-          preload="auto"
-          poster="/Images/Hero video/mobile-hero-poster.webp"
-          src="/Images/Hero video/Mobile hero.mp4"
-          style="width: 100%; height: 100%; object-fit: cover;"
-        ></video>
+        <!-- Mobile Hero Image (Footer image for mobile devices, zero video / no animations) -->
+        <img 
+          id="hero-image-mobile"
+          src="/Images/footer-mobile.webp" 
+          alt="Adley Fernandes" 
+          class="block md:hidden hero-mobile-img absolute inset-0 w-full h-full object-cover z-0"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
         <!-- Desktop Video (Full cover background) -->
         <video 
           id="hero-video"
@@ -1189,7 +1186,7 @@
         height: 100% !important;
         overflow: hidden !important;
       }
-      .hero-mobile-video {
+      .hero-mobile-img {
         width: 100% !important;
         height: 100% !important;
         object-fit: cover !important;
@@ -2484,36 +2481,32 @@
     }
   });
 
-  /* Hero video play-once controller for both mobile and desktop videos */
+  /* Desktop Hero video play-once controller */
   (function() {
-    var videos = [
-      document.getElementById('hero-video-mobile'),
-      document.getElementById('hero-video')
-    ].filter(Boolean);
+    var video = document.getElementById('hero-video');
+    if (!video) return;
 
-    videos.forEach(function(video) {
-      video.loop = false;
-      video.removeAttribute('loop');
-      video._hasEnded = false;
+    video.loop = false;
+    video.removeAttribute('loop');
+    video._hasEnded = false;
 
-      function freezeOnEnd() {
-        video._hasEnded = true;
+    function freezeOnEnd() {
+      video._hasEnded = true;
+      video.pause();
+    }
+
+    video.addEventListener('ended', freezeOnEnd);
+
+    video.addEventListener('timeupdate', function() {
+      if (!video._hasEnded && video.duration && video.currentTime >= video.duration - 0.08) {
+        freezeOnEnd();
+      }
+    });
+
+    video.addEventListener('play', function() {
+      if (video._hasEnded) {
         video.pause();
       }
-
-      video.addEventListener('ended', freezeOnEnd);
-
-      video.addEventListener('timeupdate', function() {
-        if (!video._hasEnded && video.duration && video.currentTime >= video.duration - 0.08) {
-          freezeOnEnd();
-        }
-      });
-
-      video.addEventListener('play', function() {
-        if (video._hasEnded) {
-          video.pause();
-        }
-      });
     });
   })();
 </script>
