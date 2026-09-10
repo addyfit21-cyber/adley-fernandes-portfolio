@@ -190,7 +190,16 @@
       var targetEl = document.getElementById(parts[1]);
       if (targetEl) {
         e.preventDefault();
-        targetEl.scrollIntoView({ behavior: 'smooth' });
+        if (window.__lenis) {
+          window.__lenis.scrollTo(targetEl, {
+            offset: -120,
+            duration: 1.4,
+            easing: function(t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }
+          });
+        } else {
+          var offsetTop = targetEl.getBoundingClientRect().top + window.pageYOffset - 120;
+          window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+        }
         if (window.history && window.history.pushState) {
           window.history.pushState(null, '', '#' + parts[1]);
         }

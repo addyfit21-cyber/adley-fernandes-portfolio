@@ -659,6 +659,7 @@
     align-items: center;
     contain: paint;
     transform: translateZ(0);
+    z-index: 10;
   }
   .brand-logo-row {
     display: flex;
@@ -917,14 +918,12 @@
     will-change: transform;
     transform: translateZ(0);
     backface-visibility: hidden;
-    contain: layout style;
   }
   .css-marquee-reverse {
     animation: scroll-marquee-reverse 30s linear infinite;
     will-change: transform;
     transform: translateZ(0);
     backface-visibility: hidden;
-    contain: layout style;
   }
 
   /* Footer — per-letter pure slide, NO opacity change (mountains physically hide them) */
@@ -1228,22 +1227,23 @@
 
       <!-- Half 1 -->
       <div class="brand-logo-row">
-        <img src="/Images/Brands/GTE%20Logo%20white.webp" alt="Grand Theft Emo" class="logo-gte" loading="lazy" decoding="async">
-        <img src="/Images/Brands/TVB%20Primary%20Logo%20white.webp" alt="TVB" class="logo-tvb" loading="lazy" decoding="async">
-        <img src="/Images/Brands/Copilot_20260426_132635.webp" alt="Copilot" class="logo-cop make-white" loading="lazy" decoding="async">
-        <img src="/Images/Brands/Nexzy%20logo.webp" alt="Nexzy" class="logo-nex make-white" loading="lazy" decoding="async">
-        <img src="/Images/Brands/teas%20cds.webp" alt="Teas CDS" class="logo-teas" loading="lazy" decoding="async">
-        <img src="/Images/Brands/benner%20logo.webp" alt="Benner Tea Co." class="logo-ben make-white" loading="lazy" decoding="async">
+        <img src="/Images/Brands/logos/gte.webp" alt="Grand Theft Emo" class="logo-gte" width="200" height="200" loading="eager" fetchpriority="high" decoding="async">
+        <img src="/Images/Brands/logos/tvb.webp" alt="The Venom Berries" class="logo-tvb" width="154" height="128" loading="eager" fetchpriority="high" decoding="async">
+        <img src="/Images/Brands/logos/copilot.webp" alt="Luke's Iced Coffee" class="logo-cop make-white" width="330" height="220" loading="eager" fetchpriority="high" decoding="async">
+        <img src="/Images/Brands/logos/nexzy.webp" alt="Nexzy" class="logo-nex make-white" width="243" height="72" loading="eager" fetchpriority="high" decoding="async">
+        <img src="/Images/Brands/logos/teas.webp" alt="Tea's CD's" class="logo-teas" width="151" height="112" loading="eager" fetchpriority="high" decoding="async">
+        <img src="/Images/Brands/logos/benner.webp" alt="Benner Tea Co." class="logo-ben make-white" width="232" height="96" loading="eager" fetchpriority="high" decoding="async">
       </div>
 
       <!-- Half 2 — seamless loop duplicate -->
       <div class="brand-logo-row" aria-hidden="true">
-        <img src="/Images/Brands/GTE%20Logo%20white.webp" alt="Grand Theft Emo" class="logo-gte" loading="lazy" decoding="async">
-        <img src="/Images/Brands/TVB%20Primary%20Logo%20white.webp" alt="TVB" class="logo-tvb" loading="lazy" decoding="async">
-        <img src="/Images/Brands/Copilot_20260426_132635.webp" alt="Copilot" class="logo-cop make-white" loading="lazy" decoding="async">
-        <img src="/Images/Brands/Nexzy%20logo.webp" alt="Nexzy" class="logo-nex make-white" loading="lazy" decoding="async">
-        <img src="/Images/Brands/teas%20cds.webp" alt="Teas CDS" class="logo-teas" loading="lazy" decoding="async">
-        <img src="/Images/Brands/benner%20logo.webp" alt="Benner Tea Co." class="logo-ben make-white" loading="lazy" decoding="async">
+        <img src="/Images/Brands/logos/gte.webp" alt="Grand Theft Emo" class="logo-gte" width="200" height="200" loading="eager" fetchpriority="high" decoding="async">
+        <img src="/Images/Brands/logos/tvb.webp" alt="The Venom Berries" class="logo-tvb" width="154" height="128" loading="eager" fetchpriority="high" decoding="async">
+        <img src="/Images/Brands/logos/copilot.webp" alt="Luke's Iced Coffee" class="logo-cop make-white" width="330" height="220" loading="eager" fetchpriority="high" decoding="async">
+        <img src="/Images/Brands/logos/nexzy.webp" alt="Nexzy" class="logo-nex make-white" width="243" height="72" loading="eager" fetchpriority="high" decoding="async">
+        <img src="/Images/Brands/logos/teas.webp" alt="Tea's CD's" class="logo-teas" width="151" height="112" loading="eager" fetchpriority="high" decoding="async">
+        <img src="/Images/Brands/logos/benner.webp" alt="Benner Tea Co." class="logo-ben make-white" width="232" height="96" loading="eager" fetchpriority="high" decoding="async">
+      </div>
     </div>
   </section>
   <section id="services" class="bg-zinc-950 text-white border-t border-zinc-900 relative" style="height: calc(var(--vh, 1vh) * 600); min-height: calc(var(--vh, 1vh) * 600);">
@@ -1527,7 +1527,7 @@
     <!-- Capabilities & Services - Sticky Scroll -->
 
   <!-- About Me Section -->
-<section id="categories-grid" class="w-full bg-[#EDEBDD] border-t border-[#1B1717]/10 relative">
+<section id="categories-grid" style="scroll-margin-top: 100px;" class="w-full bg-[#EDEBDD] border-t border-[#1B1717]/10 relative">
 
   <!-- Cat image overlapping from the black section above -->
 
@@ -1577,7 +1577,7 @@
   </div>
 
   <!-- ===================== LOGO DESIGN ===================== -->
-  <div class="px-6 md:px-10 lg:px-12 pt-4 md:pt-8 pb-8 md:pb-12 border-t border-[#1B1717]/10">
+  <div id="logo-design" style="scroll-margin-top: 100px;" class="px-6 md:px-10 lg:px-12 pt-4 md:pt-8 pb-8 md:pb-12 border-t border-[#1B1717]/10">
     <div class="flex items-center gap-6 mb-3 pt-16 md:pt-24">
       <span class="block w-10 h-[2px] bg-[#630000]"></span>
       <span class="text-[8px] tracking-[0.35em] uppercase text-[#630000] font-bold">03 — Category</span>
@@ -2265,12 +2265,20 @@
       const hash = window.location.hash;
       setTimeout(() => {
         const target = document.querySelector(hash);
-        if (target && window.__lenis) {
-          window.__lenis.scrollTo(target, {
-            offset: -120,
-            duration: 1.8,
-            easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-          });
+        if (target) {
+          if (window.__lenis) {
+            window.__lenis.scrollTo(target, {
+              offset: -120,
+              duration: 1.8,
+              easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+            });
+          } else {
+            const offsetTop = target.getBoundingClientRect().top + window.pageYOffset - 120;
+            window.scrollTo({
+              top: offsetTop,
+              behavior: 'smooth'
+            });
+          }
         }
       }, 350); // wait for ScrollTrigger initialization to finish
     }
