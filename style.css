@@ -1,0 +1,13 @@
+.text-\[\#1B1717\] { color: #1B1717; }
+.hover\:text-\[\#1B1717\]:hover { color: #1B1717; }
+.bg-\[\#1B1717\] { background-color: #1B1717; }
+.hover\:bg-\[\#1B1717\]:hover { background-color: #1B1717; }
+.group:hover .group-hover\:bg-\[\#1B1717\] { background-color: #1B1717; }
+.bg-\[\#EDEBDD\] { background-color: #EDEBDD; }
+.from-\[\#EDEBDD\] { --tw-gradient-from: #EDEBDD var(--tw-gradient-from-position); --tw-gradient-to: rgba(237, 235, 221, 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.bg-\[\#630000\] { background-color: #630000; }
+.hover\:bg-\[\#630000\]:hover { background-color: #630000; }
+.text-\[\#630000\] { color: #630000; }
+.hover\:text-\[\#630000\]:hover { color: #630000; }
+.border-\[\#630000\] { border-color: #630000; }
+.hover\:border-\[\#630000\]:hover { border-color: #630000; }
