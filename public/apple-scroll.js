@@ -141,49 +141,20 @@
     });
 
     /* ════════════════════════════════════════════════════════════════════
-       3. PROJECT CARDS
-       CSS pre-hides these. GSAP only animates TO visible.
+       3. PROJECT CARDS (Smooth individual scroll reveals)
        ════════════════════════════════════════════════════════════════════ */
-    var PROJECT_SECTIONS = ['#categories-grid', '#logo-design'];
-    var allProjectGrids  = [];
-
-    PROJECT_SECTIONS.forEach(function (sel) {
-      var section = document.querySelector(sel);
-      if (!section) return;
-      section.querySelectorAll('.grid').forEach(function (g) { allProjectGrids.push(g); });
-    });
-
-    document.querySelectorAll('main .grid').forEach(function (grid) {
-      if (grid.closest('#hero') || grid.closest('#services') ||
-          grid.closest('#brand-carousel-section') || grid.closest('#about')) return;
-      if (allProjectGrids.indexOf(grid) === -1) allProjectGrids.push(grid);
-    });
-
-    var handledCards = new Set();
-
-    allProjectGrids.forEach(function (grid) {
-      var cards = [];
-      Array.prototype.forEach.call(grid.children, function (child) {
-        if (child.classList.contains('fade-enter-card') ||
-            (child.tagName === 'A' && child.classList.contains('group'))) {
-          if (!handledCards.has(child)) { cards.push(child); handledCards.add(child); }
-        }
-      });
-      if (cards.length) animateCardGroup(cards, grid);
-    });
-
-    // Stray .fade-enter-card not in a tracked grid
-    document.querySelectorAll('main .fade-enter-card').forEach(function (card) {
-      if (handledCards.has(card)) return;
-      if (card.closest('#hero') || card.closest('#services')) return;
-      handledCards.add(card);
+    document.querySelectorAll('.portfolio-card').forEach(function (card) {
       promote(card);
-      gsap.set(card, { y: 54, opacity: 0, scale: 0.96, force3D: true });
       ScrollTrigger.create({
-        trigger: card, start: 'top 87%', once: true,
+        trigger: card,
+        start: 'top 88%',
+        once: true,
         onEnter: function () {
           gsap.to(card, {
-            y: 0, opacity: 1, scale: 1, duration: 1.0, ease: 'expo.out', force3D: true,
+            y: 0, opacity: 1, scale: 1,
+            duration: isMobile ? 0.85 : 1.0,
+            ease: 'expo.out',
+            force3D: true,
             clearProps: 'will-change'
           });
         }
@@ -261,8 +232,14 @@
       });
     });
 
-    /* ── Refresh ─────────────────────────────────────────────────────── */
+    /* ── Refresh & Native Mobile Scroll Sync ──────────────────────────────── */
+    if (isMobile) {
+      window.addEventListener('scroll', function() {
+        ScrollTrigger.update();
+      }, { passive: true });
+    }
     setTimeout(function () { ScrollTrigger.refresh(); }, 200);
+    setTimeout(function () { ScrollTrigger.refresh(); }, 800);
   });
 
 })();

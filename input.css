@@ -31,4 +31,15 @@
   .nav-projects-arrow.is-open {
     transform: rotate(180deg) !important;
   }
+  @media (hover: hover) and (pointer: fine) {
+    #nav-projects-group:hover #nav-projects-menu {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translateY(0) !important;
+      pointer-events: auto !important;
+    }
+    #nav-projects-group:hover .nav-projects-arrow {
+      transform: rotate(180deg) !important;
+    }
+  }
 }

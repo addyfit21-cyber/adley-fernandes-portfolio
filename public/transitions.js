@@ -1,25 +1,46 @@
 /**
- * Page Transition System (CSS-first, Fail-safe)
+ * Page Transition & Navigation System (CSS-first, Fail-safe)
  * ─────────────────────────────────────────────────────────────────────────────
- * Strategy:
- *   ENTRY  — The overlay starts with a CSS animation (pf-overlay-fade) that
- *             fades it from opacity 1 to 0 automatically. If JS fails, it still fades.
- *             Default opacity is 0, so if animation fails, it's transparent.
- *
- *   EXIT   — On internal link click, we add the '.is-exiting' class to the overlay.
- *             This cancels the animation and triggers a CSS transition to opacity 1.
- *             We wait for the transition to finish (350ms), then navigate.
- *
- *   BFCACHE — On back/forward cache restore we remove the '.is-exiting' class.
+ * Features:
+ *   1. Projects Dropdown: Single-touch opening on mobile (no double-tap),
+ *      desktop-only hover with delay, isolated from mix-blend difference.
+ *   2. Page Transition: Smooth fade-out on link click, smooth fade-in on
+ *      destination page, zero flash on direct load or refresh, BFCache resilient.
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
 (function () {
   'use strict';
 
-  // Lazy getter — works whether script runs in <head> or at end of <body>
+  // Lazy getter for overlay
   function getOverlay() {
     return document.getElementById('page-transition-overlay');
+  }
+
+  // --- Initialize Page Transition System ---
+  function initPageTransition() {
+    var overlay = getOverlay();
+    if (!overlay) return;
+
+    var isTransitioning = sessionStorage.getItem('pageTransitioning');
+    if (isTransitioning) {
+      sessionStorage.removeItem('pageTransitioning');
+      overlay.classList.add('is-entering');
+      setTimeout(function() {
+        overlay.classList.remove('is-entering');
+        overlay.style.opacity = '0';
+      }, 500);
+    } else {
+      // Direct load or fresh reload: keep transparent so page is visible immediately
+      overlay.style.opacity = '0';
+      overlay.style.animation = 'none';
+    }
+
+    // Ensure hero video autoplays smoothly on both direct load and navigation return
+    var heroVideo = document.getElementById('hero-video');
+    if (heroVideo) {
+      heroVideo.play().catch(function () {});
+    }
   }
 
   // --- Navbar Smart Contrast & Projects Dropdown Handling ---
@@ -32,7 +53,11 @@
         '#nav-actions a, #nav-actions button { color: #ffffff !important; }' +
         '#nav-projects-menu { mix-blend-mode: normal !important; position: fixed !important; z-index: 140 !important; }' +
         '#nav-projects-menu.is-open { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important; }' +
-        '.nav-projects-arrow.is-open { transform: rotate(180deg) !important; }';
+        '.nav-projects-arrow.is-open { transform: rotate(180deg) !important; }' +
+        '@keyframes pf-fade-out { 0% { opacity: 1; } 100% { opacity: 0; } }' +
+        '#page-transition-overlay { position: fixed !important; inset: 0 !important; width: 100vw !important; height: 100vh !important; background: #1B1717 !important; z-index: 99999999 !important; pointer-events: none !important; opacity: 0; transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1); will-change: opacity; }' +
+        '#page-transition-overlay.is-entering { opacity: 1 !important; animation: pf-fade-out 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards !important; }' +
+        '#page-transition-overlay.is-exiting { opacity: 1 !important; animation: none !important; pointer-events: auto !important; }';
       document.head.appendChild(style);
     }
 
@@ -80,13 +105,18 @@
       closeTimer = setTimeout(closeMenu, 150);
     }
 
-    btn.addEventListener('mouseenter', openMenu);
-    btn.addEventListener('mouseleave', scheduleClose);
-    menu.addEventListener('mouseenter', function() {
-      if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
-    });
-    menu.addEventListener('mouseleave', scheduleClose);
+    // Only attach mouseenter/mouseleave if the device truly supports hover (desktop mice)
+    var isHoverDevice = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (isHoverDevice) {
+      btn.addEventListener('mouseenter', openMenu);
+      btn.addEventListener('mouseleave', scheduleClose);
+      menu.addEventListener('mouseenter', function() {
+        if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+      });
+      menu.addEventListener('mouseleave', scheduleClose);
+    }
 
+    // Toggle on click/touch (instant on the very first touch)
     btn.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
@@ -98,12 +128,14 @@
       }
     });
 
+    // Close when clicking outside
     document.addEventListener('click', function (e) {
       if (!btn.contains(e.target) && !menu.contains(e.target)) {
         closeMenu();
       }
     });
 
+    // Close when clicking any link inside menu
     menu.querySelectorAll('a').forEach(function (a) {
       a.addEventListener('click', function () {
         closeMenu();
@@ -116,9 +148,13 @@
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initNavDropdown);
+    document.addEventListener('DOMContentLoaded', function() {
+      initNavDropdown();
+      initPageTransition();
+    });
   } else {
     initNavDropdown();
+    initPageTransition();
   }
 
   // Intercept Exit Clicks (capture phase so it fires before Lenis anchor handler)
@@ -185,37 +221,27 @@
 
     var overlay = getOverlay();
     if (!overlay) {
-      // Fallback: navigate immediately if overlay not found
       window.location.href = href;
       return;
     }
 
-    // Force the entry animation off immediately
-    overlay.style.animation = 'none';
+    sessionStorage.setItem('pageTransitioning', '1');
+    overlay.classList.add('is-exiting');
 
-    // Small rAF delay ensures the style flush before adding the class
-    requestAnimationFrame(function() {
-      requestAnimationFrame(function() {
-        overlay.classList.add('is-exiting');
-
-        // Wait for the CSS transition (0.35s) then navigate
-        setTimeout(function () {
-          window.location.href = href;
-        }, 350);
-      });
-    });
+    setTimeout(function () {
+      window.location.href = href;
+    }, 350);
 
   }, true); // capture phase
 
-  // BFCache (back/forward button restore) — reset overlay so entry fade plays
+  // BFCache (back/forward button restore) — reset overlay so page is instantly visible
   window.addEventListener('pageshow', function (e) {
-    if (e.persisted) {
-      var overlay = getOverlay();
-      if (!overlay) return;
-      overlay.classList.remove('is-exiting');
-      overlay.style.opacity = '';
-      overlay.style.animation = '';
-    }
+    var overlay = getOverlay();
+    if (!overlay) return;
+    overlay.classList.remove('is-exiting', 'is-entering');
+    overlay.style.opacity = '0';
+    overlay.style.animation = 'none';
+    overlay.style.pointerEvents = 'none';
   });
 
 })();

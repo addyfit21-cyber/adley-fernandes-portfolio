@@ -1023,6 +1023,19 @@ input:where([type='file']):focus {
   transform: rotate(180deg) !important;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  #nav-projects-group:hover #nav-projects-menu {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    pointer-events: auto !important;
+  }
+
+  #nav-projects-group:hover .nav-projects-arrow {
+    transform: rotate(180deg) !important;
+  }
+}
+
 .pointer-events-none {
   pointer-events: none;
 }
@@ -1225,10 +1238,6 @@ input:where([type='file']):focus {
   z-index: 999999;
 }
 
-.z-\[9999\] {
-  z-index: 9999;
-}
-
 .order-1 {
   order: 1;
 }
@@ -1304,10 +1313,6 @@ input:where([type='file']):focus {
 
 .mb-8 {
   margin-bottom: 2rem;
-}
-
-.ml-1 {
-  margin-left: 0.25rem;
 }
 
 .ml-2 {
@@ -1450,6 +1455,10 @@ input:where([type='file']):focus {
   height: 6rem;
 }
 
+.h-3 {
+  height: 0.75rem;
+}
+
 .h-32 {
   height: 8rem;
 }
@@ -1480,10 +1489,6 @@ input:where([type='file']):focus {
 
 .h-\[12px\] {
   height: 12px;
-}
-
-.h-\[1em\] {
-  height: 1em;
 }
 
 .h-\[1px\] {
@@ -1586,6 +1591,10 @@ input:where([type='file']):focus {
   width: 3.5rem;
 }
 
+.w-3 {
+  width: 0.75rem;
+}
+
 .w-32 {
   width: 8rem;
 }
@@ -1612,10 +1621,6 @@ input:where([type='file']):focus {
 
 .w-\[1px\] {
   width: 1px;
-}
-
-.w-\[2px\] {
-  width: 2px;
 }
 
 .w-\[30\%\] {
@@ -2194,10 +2199,6 @@ input:where([type='file']):focus {
 
 .border-t-\[6px\] {
   border-top-width: 6px;
-}
-
-.border-dashed {
-  border-style: dashed;
 }
 
 .border-none {
@@ -2861,10 +2862,6 @@ input:where([type='file']):focus {
   text-align: right;
 }
 
-.align-middle {
-  vertical-align: middle;
-}
-
 .font-\[\'Helvetica_Neue\'\2c Helvetica\2c Arial\2c sans-serif\] {
   font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
 }
@@ -2912,10 +2909,6 @@ input:where([type='file']):focus {
 
 .text-\[11px\] {
   font-size: 11px;
-}
-
-.text-\[12px\] {
-  font-size: 12px;
 }
 
 .text-\[13px\] {
@@ -3806,10 +3799,6 @@ input:where([type='file']):focus {
   opacity: 0.5;
 }
 
-.group:hover .group-hover\:visible {
-  visibility: visible;
-}
-
 .group:hover .group-hover\:-translate-x-1 {
   --tw-translate-x: -0.25rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -3825,18 +3814,8 @@ input:where([type='file']):focus {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.group:hover .group-hover\:translate-y-0 {
-  --tw-translate-y: 0px;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
 .group:hover .group-hover\:translate-y-4 {
   --tw-translate-y: 1rem;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.group:hover .group-hover\:rotate-180 {
-  --tw-rotate: 180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -4456,10 +4435,6 @@ input:where([type='file']):focus {
 
   .md\:text-\[12rem\] {
     font-size: 12rem;
-  }
-
-  .md\:text-\[14px\] {
-    font-size: 14px;
   }
 
   .md\:text-\[15px\] {

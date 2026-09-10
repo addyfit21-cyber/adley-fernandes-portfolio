@@ -392,6 +392,7 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800;900&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 
 <!-- Preload critical hero backdrop -->
+<link rel="preload" as="image" href="/Images/Hero video/hero-poster.webp" fetchpriority="high">
 
 
 <!-- Local CSS (built via Vite/Tailwind) -->
@@ -464,7 +465,19 @@
   .portfolio-card-media {
     position: relative;
     overflow: hidden;
-    transition: background-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.4s ease;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  .portfolio-card-media img,
+  .portfolio-card-media video {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease !important;
   }
   .portfolio-card-media::after {
     content: '';
@@ -473,10 +486,22 @@
     background-color: #EDEBDD;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 50;
     border-radius: inherit;
     box-shadow: inset 0 0 0 1px rgba(27, 23, 23, 0.08);
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: opacity;
+  }
+
+  .mockup-iphone-wrapper,
+  .mockup-mac-wrapper {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
   }
 
   .portfolio-card-desc {
@@ -484,8 +509,10 @@
     line-height: 1.5;
     color: rgba(27, 23, 23, 0.72);
     font-weight: 400;
-    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    pointer-events: auto;
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none !important;
+    user-select: none;
+    will-change: opacity;
   }
 
   @media (max-width: 767px) {
@@ -585,19 +612,14 @@
     }
   }
 
-  /* When ANY card in #categories-grid is hovered, all OTHER cards turn cotton white */
-  #categories-grid:has(.portfolio-card:hover) .portfolio-card:not(:hover) .portfolio-card-media::after,
-  #categories-grid.has-card-hovered .portfolio-card:not(.is-hovered) .portfolio-card-media::after {
-    opacity: 1;
-  }
-  #categories-grid:has(.portfolio-card:hover) .portfolio-card:not(:hover) .portfolio-card-media,
-  #categories-grid.has-card-hovered .portfolio-card:not(.is-hovered) .portfolio-card-media {
-    background-color: #EDEBDD !important;
-    border-color: rgba(27, 23, 23, 0.08) !important;
-  }
-  #categories-grid:has(.portfolio-card:hover) .portfolio-card:not(:hover) .portfolio-card-desc,
-  #categories-grid.has-card-hovered .portfolio-card:not(.is-hovered) .portfolio-card-desc {
-    opacity: 0;
+  /* Spotlight Card Animation: When a card is hovered, all other cards fade to cotton white (Desktop only) */
+  @media (hover: hover) and (pointer: fine) {
+    #categories-grid.has-card-hovered .portfolio-card:not(.is-hovered) .portfolio-card-media::after {
+      opacity: 1;
+    }
+    #categories-grid.has-card-hovered .portfolio-card:not(.is-hovered) .portfolio-card-desc {
+      opacity: 0;
+    }
   }
 
   /* ─── Mobile-First: Uniform Card Sizing, Alignment & Vertical Rhythm (< 768px) ─── */
@@ -947,41 +969,8 @@
 </style>
   <link rel="stylesheet" href="/cursor.css">
 </head>
-<body id="top" class="bg-[#EDEBDD] text-[#1B1717] antialiased selection:bg-primary selection:text-[#1B1717] overflow-hidden overflow-x-hidden w-full relative">
+<body id="top" class="bg-[#EDEBDD] text-[#1B1717] antialiased selection:bg-primary selection:text-[#1B1717] overflow-x-hidden w-full relative">
 <div id="page-transition-overlay"></div>
-
-<script>
-  if (sessionStorage.getItem('introPlayed')) {
-    document.body.classList.remove('overflow-hidden');
-  }
-  // Prevent FOUC by revealing body only after styles are compiled and parsed
-  document.addEventListener('DOMContentLoaded', () => {
-    // Body is now instantly visible to prevent 10s delay on mobile
-  });
-
-  // Handle bfcache back-navigation bug
-  window.addEventListener('pageshow', (event) => {
-    if (event.persisted) {
-      document.body.classList.remove('overflow-hidden');
-      const preloader = document.getElementById('intro-preloader');
-      if (preloader) preloader.style.display = 'none';
-    }
-  });
-</script>
-
-<!-- Intro Preloader -->
-<div id="intro-preloader" class="fixed inset-0 z-[9999] bg-[#EDEBDD] flex flex-col items-center justify-center">
-  <script>
-    if (sessionStorage.getItem('introPlayed')) {
-      document.getElementById('intro-preloader').style.display = 'none';
-    }
-  </script>
-  <div class="px-6 w-full max-w-5xl text-center">
-    <div class="text-lg md:text-2xl font-light text-[#1B1717] tracking-widest uppercase inline-block">
-      <span id="intro-text"></span><span id="intro-cursor" class="inline-block w-[2px] h-[1em] bg-[#EDEBDD] ml-1 align-middle animate-pulse-cursor"></span>
-    </div>
-  </div>
-</div>
 
 <!-- Glassmorphism Container (The 'Tab') -->
 
@@ -1002,12 +991,13 @@
     <div class="relative group flex flex-col items-center" id="nav-projects-group">
       <button type="button" id="nav-projects-btn" aria-expanded="false" aria-haspopup="true" class="nav-projects-btn bg-transparent text-white hover:opacity-70 py-2.5 px-2 font-manrope text-[8px] tracking-[0.2em] uppercase transition-opacity flex items-center gap-1 cursor-pointer">
         Projects
-        <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover:rotate-180 nav-projects-arrow" id="nav-projects-arrow">expand_more</span>
+        <svg class="w-3 h-3 transition-transform duration-300 nav-projects-arrow" id="nav-projects-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
       </button>
       
       <!-- Dropdown Menu -->
-      <div id="nav-projects-menu" class="nav-projects-menu absolute top-full mt-2 w-44 bg-[#EDEBDD] border border-zinc-200 shadow-2xl opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 flex flex-col p-2 z-[130] -right-10 md:right-auto md:left-1/2 md:-translate-x-1/2 pointer-events-auto">
+      <div id="nav-projects-menu" class="nav-projects-menu absolute top-full mt-2 w-44 bg-[#EDEBDD] border border-zinc-200 shadow-2xl opacity-0 invisible translate-y-2 transition-all duration-300 flex flex-col p-2 z-[130] -right-10 md:right-auto md:left-1/2 md:-translate-x-1/2 pointer-events-auto">
         <a href="index.html#categories-grid" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Visual Identity</a>
+        <a href="index.html#logo-design" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Logo Design</a>
         <a href="posters.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Posters</a>
         <a href="nexzy.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Web Dev</a>
         <a href="sketches.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Sketches</a>
@@ -1040,13 +1030,16 @@
       <div id="hero-video-container" style="position:absolute;inset:0;width:100%;height:100%;z-index:1;overflow:hidden;">
         <video 
           id="hero-video"
-          src="/Images/Hero video/Hero Animation.mp4" 
-          
           autoplay 
           muted 
           playsinline 
+          preload="auto"
+          poster="/Images/Hero video/hero-poster.webp"
           style="width: 100%; height: 100%; object-fit: cover;"
-        ></video>
+        >
+          <source media="(max-width: 768px)" src="/Images/Hero video/Hero Animation_mobile.mp4" type="video/mp4">
+          <source src="/Images/Hero video/Hero Animation.mp4" type="video/mp4">
+        </video>
         <!-- Dark gradient for text readability -->
         <div style="
           position:absolute;inset:0;
@@ -1557,7 +1550,7 @@
           A little venom, a little chaos, and a whole lot of rock ’n’ roll.
         </p>
         <div class="portfolio-card-media relative overflow-hidden w-full aspect-[4/3] bg-[#EAEAEA]">
-          <img src="/Images/tvb-cap-mockup.webp" alt="The Venom Berries Brand Identity" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100" decoding="async">
+          <img src="/Images/tvb-cap-mockup-opt.webp" alt="The Venom Berries Brand Identity" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100" decoding="async">
         </div>
         <div class="flex justify-between items-baseline w-full px-1">
           <p class="text-[13px] md:text-[15px] tracking-tight text-[#1B1717] font-medium">The Venom Berries</p>
@@ -1571,8 +1564,8 @@
           Turning everyday chai into a premium experience — without the premium price tag.
         </p>
         <div class="portfolio-card-media relative overflow-hidden w-full aspect-[4/3] bg-[#EAEAEA]">
-          <video autoplay="" muted="" loop="" playsinline="" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100 hidden md:block" src="/Images/Branding/Rebranding_Product_Video_Generation.mp4" preload="none"></video>
-          <video autoplay="" muted="" loop="" playsinline="" webkit-playsinline="" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100 block md:hidden pointer-events-none" src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4" preload="none"></video>
+          <video autoplay="" muted="" loop="" playsinline="" poster="/Images/Branding/benner-poster.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100 hidden md:block" src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4" preload="none"></video>
+          <video autoplay="" muted="" loop="" playsinline="" webkit-playsinline="" poster="/Images/Branding/benner-poster.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100 block md:hidden pointer-events-none" src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4" preload="none"></video>
         </div>
         <div class="flex justify-between items-baseline w-full px-1">
           <p class="text-[13px] md:text-[15px] tracking-tight text-[#1B1717] font-medium">Benner</p>
@@ -1619,7 +1612,7 @@
           What happens when Grand Theft Auto meets emo?<br class="hidden md:block" />This logo.
         </p>
         <div class="portfolio-card-media relative overflow-hidden w-full aspect-[4/3] bg-[#EAEAEA]">
-          <img src="/Images/gte-totebag-opt.webp" alt="Grand Theft Emo Logo Design" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100" decoding="async">
+          <img src="/Images/gte-totebag-cover-opt.webp" alt="Grand Theft Emo Logo Design" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100" decoding="async">
         </div>
         <div class="flex justify-between items-baseline w-full px-1">
           <p class="text-[13px] md:text-[15px] tracking-tight text-[#1B1717] font-medium">Grand Theft Emo</p>
@@ -1634,7 +1627,7 @@
           For the stories behind the riffs, bands and legends.
         </p>
         <div class="portfolio-card-media relative overflow-hidden w-full aspect-[16/9] bg-[#EAEAEA]">
-          <img src="/Images/Tea's%20cd's%20logo%20kit/Teas%20cds%20logo%20kit-01.webp" alt="Tea's CD's Logo Design" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100" decoding="async">
+          <img src="/Images/Tea's%20cd's%20logo%20kit/Teas-cds-logo-kit-01-opt.webp" alt="Tea's CD's Logo Design" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100" decoding="async">
         </div>
         <div class="flex justify-between items-baseline w-full px-1">
           <p class="text-[13px] md:text-[15px] tracking-tight text-[#1B1717] font-medium">Tea's CD's</p>
@@ -1679,7 +1672,7 @@
           Big ideas, bold visuals, and posters that refuse to blend in.
         </p>
         <div class="portfolio-card-media relative overflow-hidden w-full bg-[#EAEAEA]" style="aspect-ratio: 4/3;">
-          <img src="/Images/emo-nite-billboard-mockup.webp" alt="Poster Designs" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100" decoding="async">
+          <img src="/Images/emo-nite-billboard-mockup-opt.webp" alt="Poster Designs" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100" decoding="async">
         </div>
         <div class="flex justify-between items-baseline w-full px-1">
           <p class="text-[13px] md:text-[15px] tracking-tight text-[#1B1717] font-medium">Poster Designs</p>
@@ -1724,8 +1717,8 @@
                 </div>
                 <!-- Screen with video -->
                 <div class="mockup-iphone-screen">
-                  <video src="/Images/web_dev/whatsapp_2.mp4" autoplay muted loop playsinline class="hidden md:block w-full h-full object-cover" preload="none"></video>
-                  <video src="/Images/web_dev/whatsapp_2_mobile.mp4" autoplay muted loop playsinline webkit-playsinline class="block md:hidden w-full h-full object-cover pointer-events-none" preload="none"></video>
+                  <video src="/Images/web_dev/whatsapp_2_mobile.mp4" poster="/Images/web_dev/execuvision-poster.webp" autoplay muted loop playsinline class="hidden md:block w-full h-full object-cover" preload="none"></video>
+                  <video src="/Images/web_dev/whatsapp_2_mobile.mp4" poster="/Images/web_dev/execuvision-poster.webp" autoplay muted loop playsinline webkit-playsinline class="block md:hidden w-full h-full object-cover pointer-events-none" preload="none"></video>
                   <div class="mockup-iphone-glare"></div>
                 </div>
               </div>
@@ -1753,8 +1746,8 @@
               <div class="mockup-mac-screen">
                 <div class="mockup-mac-camera"></div>
                 <div class="mockup-mac-screen-inner">
-                  <video src="/Images/web_dev/img_3691.mp4" autoplay muted loop playsinline class="hidden md:block w-full h-full object-cover" preload="none"></video>
-                  <video src="/Images/web_dev/img_3691_mobile.mp4" autoplay muted loop playsinline webkit-playsinline class="block md:hidden w-full h-full object-cover pointer-events-none" preload="none"></video>
+                  <video src="/Images/web_dev/img_3691_mobile.mp4" poster="/Images/web_dev/nexzy-poster.webp" autoplay muted loop playsinline class="hidden md:block w-full h-full object-cover" preload="none"></video>
+                  <video src="/Images/web_dev/img_3691_mobile.mp4" poster="/Images/web_dev/nexzy-poster.webp" autoplay muted loop playsinline webkit-playsinline class="block md:hidden w-full h-full object-cover pointer-events-none" preload="none"></video>
                   <div class="mockup-mac-glare"></div>
                 </div>
               </div>
@@ -1798,7 +1791,7 @@
           Putting some horsepower on paper.
         </p>
         <div class="portfolio-card-media relative overflow-hidden w-full bg-[#EAEAEA]" style="aspect-ratio: 4/3;">
-          <img src="/Images/ART%20work/IMG_0498.webp" alt="Porsche Sketches" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100" decoding="async">
+          <img src="/Images/ART%20work/porsche-cover-opt.webp" alt="Porsche Sketches" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100" decoding="async">
         </div>
         <div class="flex justify-between items-baseline w-full px-1">
           <p class="text-[13px] md:text-[15px] tracking-tight text-[#1B1717] font-medium">Porsche</p>
@@ -2757,88 +2750,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<!-- Preloader Script -->
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    initIntro();
-  });
-
-  // Also run if already loaded (Vite HMR safety)
-  if (document.readyState === "complete" || document.readyState === "interactive") {
-    initIntro();
-  }
-
-  let introInitialized = false;
-
-  function initIntro() {
-    if (introInitialized) return;
-    introInitialized = true;
-
-    const preloader = document.getElementById("intro-preloader");
-    const textEl = document.getElementById("intro-text");
-    const cursorEl = document.getElementById("intro-cursor");
-
-    // Safety check
-    if (!preloader) return;
-
-    if (sessionStorage.getItem('introPlayed') || window.location.hash) {
-      preloader.style.display = "none";
-      document.body.classList.remove("overflow-hidden");
-      setTimeout(() => {
-        if(typeof ScrollTrigger !== 'undefined') {
-          ScrollTrigger.refresh();
-        }
-      }, 600);
-      return;
-    }
-
-    sessionStorage.setItem('introPlayed', 'true');
-    const textStr = "welcome to the space of|design and emotion.";
-    
-    if (!textEl || !cursorEl) return;
-
-    let i = 0;
-    
-    function typeWriter() {
-      if (i < textStr.length) {
-        if (textStr.charAt(i) === '|') {
-          textEl.innerHTML += "<br/>";
-          i++;
-          setTimeout(typeWriter, 150);
-        } else {
-          textEl.innerHTML += textStr.charAt(i);
-          i++;
-          setTimeout(typeWriter, 40);
-        }
-      } else {
-        cursorEl.classList.remove("animate-pulse-cursor");
-        cursorEl.style.display = "none";
-        
-        setTimeout(() => {
-          gsap.to(preloader, {
-            opacity: 0,
-            duration: 0.7,
-            ease: "power2.inOut",
-            onComplete: () => {
-              preloader.style.display = "none";
-              document.body.classList.remove("overflow-hidden");
-
-              // Delay refresh so it doesn't snap the orbital scrub position back to hero
-              setTimeout(() => {
-                if(typeof ScrollTrigger !== 'undefined') {
-                  ScrollTrigger.refresh();
-                }
-              }, 600);
-            }
-          });
-        }, 400);
-      }
-    }
-    
-    setTimeout(typeWriter, 20);
-  }
-
-  // --- Smart Audio Logic (Runs regardless of intro state) ---
+  // --- Smart Audio Logic ---
   function initSmartAudio() {
     const bennerVideo = document.getElementById('benner-video');
     const volumeToggle = document.getElementById('volume-toggle');
@@ -3635,19 +3548,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- 5. Spotlight Card Animation (Hover a card -> other cards blank white) ---
   const catGrid = document.getElementById('categories-grid');
-  if (catGrid) {
+  if (catGrid && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     const portfolioCards = catGrid.querySelectorAll('.portfolio-card');
+    let leaveRaf = null;
+
     portfolioCards.forEach(card => {
-      card.addEventListener('pointerenter', () => {
+      card.addEventListener('pointerenter', (e) => {
+        if (e.pointerType === 'touch') return;
+        if (leaveRaf) {
+          cancelAnimationFrame(leaveRaf);
+          leaveRaf = null;
+        }
         catGrid.classList.add('has-card-hovered');
         card.classList.add('is-hovered');
       });
-      card.addEventListener('pointerleave', () => {
+
+      card.addEventListener('pointerleave', (e) => {
+        if (e.pointerType === 'touch') return;
         card.classList.remove('is-hovered');
-        requestAnimationFrame(() => {
-          if (!catGrid.querySelector('.portfolio-card:hover, .portfolio-card.is-hovered')) {
+        if (leaveRaf) cancelAnimationFrame(leaveRaf);
+        leaveRaf = requestAnimationFrame(() => {
+          if (!catGrid.querySelector('.portfolio-card.is-hovered')) {
             catGrid.classList.remove('has-card-hovered');
           }
+          leaveRaf = null;
         });
       });
     });
