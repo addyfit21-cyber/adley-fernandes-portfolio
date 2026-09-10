@@ -42,4 +42,45 @@
       transform: rotate(180deg) !important;
     }
   }
+
+  /* ── Footer Navigation Styles (Rock-solid centering & spacing) ── */
+  .footer-desktop-wrap {
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+  .footer-links-center {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 28px !important;
+  }
+  .footer-links-center a {
+    display: inline-block !important;
+    color: #ffffff !important;
+    font-family: 'Manrope', sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.2em !important;
+    text-transform: uppercase !important;
+    text-decoration: none !important;
+    padding: 6px 12px !important;
+    white-space: nowrap !important;
+    transition: opacity 0.2s ease !important;
+  }
+  .footer-links-center a:hover {
+    opacity: 0.7 !important;
+  }
+
+  @media (max-width: 768px) {
+    .footer-desktop-wrap { display: none !important; }
+    .footer-mobile-wrap { display: flex !important; }
+  }
+  @media (min-width: 769px) {
+    .footer-desktop-wrap { display: grid !important; }
+    .footer-mobile-wrap { display: none !important; }
+  }
 }
+

@@ -1,31 +1,47 @@
 <!DOCTYPE html><html lang="en"><head>
 <style id="pf-overlay-style">
-  @keyframes pf-overlay-fade {
-    0% { opacity: 1; }
-    100% { opacity: 0; }
-  }
   #page-transition-overlay {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    background: #1B1717;
-    z-index: 99999999;
-    pointer-events: none;
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: #0d0a08 !important;
+    z-index: 99999999 !important;
+    pointer-events: none !important;
     opacity: 0;
-    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     will-change: opacity;
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
-  #page-transition-overlay.is-entering {
+  html.is-transitioning #page-transition-overlay {
     opacity: 1 !important;
-    animation: pf-overlay-fade 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+    pointer-events: auto !important;
   }
   #page-transition-overlay.is-exiting {
     opacity: 1 !important;
-    animation: none !important;
     pointer-events: auto !important;
+    transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 </style>
+<script>
+  try {
+    if (sessionStorage.getItem('pageTransitioning') === '1') {
+      document.documentElement.classList.add('is-transitioning');
+      if (sessionStorage.getItem('resetToHero') === '1' || !window.location.hash) {
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+      }
+      setTimeout(function() {
+        document.documentElement.classList.remove('is-transitioning');
+      }, 1500);
+    }
+  } catch (e) {}
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adley Fernandes | Album Artworks</title>
@@ -157,90 +173,215 @@
 
   <div id="footer-scene" style="position: relative; width: 100%;">
 
-    <!-- ① BASE: Full sunset scenery — sets natural height of footer -->
-    <img src="/Images/footer1.webp" alt="" aria-hidden="true" style="display: block; width: 100%; height: auto;" decoding="async" loading="lazy">
+        <!-- Responsive Footer Image: Mobile image for mobile screens, PC image for desktop screens -->
+    <picture>
+      <source media="(max-width: 768px)" srcset="/Images/footer-mobile.webp" type="image/webp">
+      <source media="(max-width: 768px)" srcset="/Images/Hero%20page%20mobile.-01-01.png" type="image/png">
+      <source media="(min-width: 769px)" srcset="/Images/footer-pc.webp" type="image/webp">
+      <source media="(min-width: 769px)" srcset="/Images/Hero%20page%20final-01.png" type="image/png">
+      <img src="/Images/footer-pc.webp" alt="Adley Fernandes" style="display: block; width: 100%; height: auto;" decoding="async" loading="lazy">
+    </picture>
+    <!-- OVERLAY: Subtle gradient layer at bottom to ensure footer links readability -->
+    <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 180px; background: linear-gradient(to top, rgba(13, 10, 8, 0.95) 0%, rgba(13, 10, 8, 0.7) 45%, transparent 100%); z-index: 4; pointer-events: none;"></div>
 
-    <!-- ② TEXT: "addesign" — per-letter stretched rise, bottom-anchored -->
-    <div id="footer-addesign-text" class="font-light md:font-[100]" style="
+    <style>
+      #footer-links-bar {
         position: absolute;
-        top: 22%;
+        bottom: 0;
         left: 0;
         width: 100%;
-        z-index: 2;
-        pointer-events: none;
-        text-align: center;
-        line-height: 0.85;
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        font-size: clamp(5rem, 24vw, 30rem);
-        color: rgba(255, 255, 255, 0.97);
-        letter-spacing: -0.02em;
-        white-space: nowrap;
-      "><span class="footer-letter" style="animation-delay:0s">a</span><span class="footer-letter" style="animation-delay:0.1s">d</span><span class="footer-letter" style="animation-delay:0.2s">d</span><span class="footer-letter" style="animation-delay:0.3s">e</span><span class="footer-letter" style="animation-delay:0.4s">s</span><span class="footer-letter" style="animation-delay:0.5s">i</span><span class="footer-letter" style="animation-delay:0.6s">g</span><span class="footer-letter" style="animation-delay:0.7s">n</span></div>
-
-    <!-- ③ FOREGROUND: Mountains + land (transparent sky) — sits on top of text -->
-    <img src="/Images/Footer 2.webp" alt="" aria-hidden="true" style="
-        position: absolute;
-        inset: 0;
+        box-sizing: border-box;
+        z-index: 10;
+        padding: 24px 44px;
+      }
+      .footer-desktop-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center bottom;
-        display: block;
-        z-index: 3;
-      " decoding="async" loading="lazy">
-    <!-- OVERLAY: Gradient layer at the bottom to improve text visibility without covering the addesign text -->
-    <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 150px; background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent); z-index: 4; pointer-events: none;"></div>
+        position: relative;
+      }
+      .footer-left-identity {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3px;
+        z-index: 2;
+      }
+      .footer-center-buttons {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        z-index: 1;
+      }
+      .footer-center-buttons a {
+        display: inline-block;
+        color: #ffffff !important;
+        font-family: 'Manrope', sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        text-decoration: none;
+        margin: 0 16px;
+        padding: 6px 4px;
+        white-space: nowrap;
+        transition: opacity 0.2s ease;
+      }
+      .footer-center-buttons a:hover {
+        opacity: 0.65;
+      }
+      .footer-right-action {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        z-index: 2;
+      }
+      .footer-top-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 18px;
+        border-radius: 9999px;
+        border: 1.5px solid #ffffff;
+        background: transparent;
+        color: #ffffff !important;
+        text-decoration: none;
+        font-family: 'Manrope', sans-serif;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        white-space: nowrap;
+        transition: all 0.25s ease;
+      }
+      .footer-top-pill:hover {
+        background: #ffffff !important;
+        color: #0d0a08 !important;
+      }
+      .footer-top-pill:hover svg {
+        color: #0d0a08 !important;
+        transform: translateY(-2px);
+      }
 
-    <!-- ④ LINKS: overlaid at bottom of the scene -->
-    <div class="absolute bottom-0 left-0 w-full z-10 flex flex-col md:flex-row md:justify-between md:items-stretch px-4 pb-2 pt-4 md:py-6 md:px-10 gap-2 md:gap-0" id="footer-links-bar">
+      .footer-mobile-container {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        gap: 14px;
+      }
+      @media (max-width: 860px) {
+        .footer-desktop-bar { display: none !important; }
+        .footer-mobile-container { display: flex !important; }
+      }
+      @media (min-width: 861px) {
+        .footer-desktop-bar { display: flex !important; }
+        .footer-mobile-container { display: none !important; }
+      }
+      @media (max-width: 420px) {
+        .footer-twitter-link { display: none !important; }
+      }
+    </style>
 
-      <!-- === MOBILE LAYOUT (perfectly baseline aligned) === -->
-      <div class="flex md:hidden flex-row justify-between items-end w-full">
-        <!-- Left side -->
-        <div class="flex flex-col items-start gap-1.5">
-          <a href="/" class="font-['Helvetica_Neue',Helvetica,Arial,sans-serif] text-[8px] font-semibold text-white tracking-[0.08em] no-underline lowercase leading-none">addesign studio</a>
-          <p class="font-manrope text-[8px] tracking-[0.15em] uppercase text-white/50 m-0 leading-[16px]">
-            © 2024 addesign studio.<br>All rights reserved.
+    <!-- ④ FOOTER BUTTONS & NAVIGATION: Perfectly Centered with Generous Spacing -->
+    <div id="footer-links-bar">
+      
+      <!-- DESKTOP & TABLET VIEW (>= 861px): Dead Center Navigation -->
+      <div class="footer-desktop-bar">
+        <!-- Left: Studio identity & copyright -->
+        <div class="footer-left-identity">
+          <a href="/" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: 700; color: #ffffff; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: opacity 0.2s ease;">
+            addesign studio
+          </a>
+          <p style="font-family: 'Manrope', sans-serif; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255, 255, 255, 0.7); margin: 0; line-height: 1.2;">
+            © 2024 addesign studio. All rights reserved.
           </p>
         </div>
 
-        <!-- Right side -->
-        <div class="flex flex-col items-end">
-          <p class="font-manrope text-[8px] tracking-[0.15em] uppercase m-0 leading-[16px] text-right">
-            <a href="#top" class="text-white font-bold no-underline hover:opacity-50">Top ↑</a> &nbsp;&nbsp;&nbsp; 
-            <a href="contact.html" class="text-white/60 no-underline hover:text-white">Contact</a> &nbsp;&nbsp;&nbsp; 
-            <a href="privacy-policy.html" class="text-white/60 no-underline hover:text-white">Privacy</a>
-            <br>
-            <a href="https://www.linkedin.com/in/adley-fernandes-968688228/" target="_blank" rel="noopener" class="text-white/60 no-underline hover:text-white">LinkedIn</a> &nbsp;&nbsp;&nbsp; 
-            <a href="https://twitter.com" target="_blank" rel="noopener" class="text-white/60 no-underline hover:text-white">Twitter</a> &nbsp;&nbsp;&nbsp; 
-            <a href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener" class="text-white/60 no-underline hover:text-white">Instagram</a>
+        <!-- Center: DEAD-CENTER BUTTONS with explicit spacing -->
+        <nav class="footer-center-buttons" aria-label="Footer Navigation">
+          <a href="contact.html">
+            Contact
+          </a>
+          <a href="privacy-policy.html">
+            Privacy Policy
+          </a>
+          <span style="display: inline-block; width: 4px; height: 4px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.5); margin: 0 6px;" aria-hidden="true"></span>
+          <a href="https://www.linkedin.com/in/adley-fernandes-968688228/" target="_blank" rel="noopener">
+            LinkedIn
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener" class="footer-twitter-link">
+            Twitter
+          </a>
+          <a href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener">
+            Instagram
+          </a>
+        </nav>
+
+        <!-- Right: Sleek Back to top Pill Button -->
+        <div class="footer-right-action">
+          <a href="#top" class="footer-top-pill">
+            <span>Back to top</span>
+            <svg style="width: 12px; height: 12px; transition: transform 0.25s ease;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="19" x2="12" y2="5"></line>
+              <polyline points="5 12 12 5 19 12"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- MOBILE VIEW (< 861px): Fully Centered with Generous Spacing -->
+      <div class="footer-mobile-container">
+        <!-- Row 1: Nav buttons + Top pill -->
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px; width: 100%;">
+          <a href="contact.html" style="display: inline-block; color: #ffffff; font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; padding: 6px 8px;">
+            Contact
+          </a>
+          <span style="color: rgba(255, 255, 255, 0.4); font-size: 11px;">·</span>
+          <a href="privacy-policy.html" style="display: inline-block; color: #ffffff; font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; padding: 6px 8px;">
+            Privacy Policy
+          </a>
+          <a href="#top" class="footer-top-pill" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 9999px; border: 1.5px solid #ffffff; background: transparent; color: #ffffff; text-decoration: none; font-family: 'Manrope', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-left: 6px;">
+            <span>Top</span>
+            <svg style="width: 10px; height: 10px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="19" x2="12" y2="5"></line>
+              <polyline points="5 12 12 5 19 12"></polyline>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Hairline Divider -->
+        <div style="width: 100%; max-width: 300px; height: 1px; background-color: rgba(255, 255, 255, 0.25); margin: 0 auto;" aria-hidden="true"></div>
+
+        <!-- Row 2: Social Links -->
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px; width: 100%;">
+          <a href="https://www.linkedin.com/in/adley-fernandes-968688228/" target="_blank" rel="noopener" style="display: inline-block; color: #ffffff; font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; padding: 6px 8px;">
+            LinkedIn
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener" class="footer-twitter-link" style="display: inline-block; color: #ffffff; font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; padding: 6px 8px;">
+            Twitter
+          </a>
+          <a href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener" style="display: inline-block; color: #ffffff; font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; padding: 6px 8px;">
+            Instagram
+          </a>
+        </div>
+
+        <!-- Row 3: Studio Identity & Copyright -->
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 2px; margin-top: 2px;">
+          <a href="/" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 700; color: #ffffff; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none;">
+            addesign studio
+          </a>
+          <p style="font-family: 'Manrope', sans-serif; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255, 255, 255, 0.7); margin: 0; line-height: 1.3;">
+            © 2024 addesign studio. All rights reserved.
           </p>
-        </div>
-      </div>
-
-      <!-- === DESKTOP LAYOUT (original two-column) === -->
-      <!-- Bottom-left -->
-      <div id="footer-links-left" class="hidden md:flex flex-col justify-between items-start text-left w-auto h-full">
-        <div>
-          <a href="/" class="font-['Helvetica_Neue',Helvetica,Arial,sans-serif] text-sm font-semibold text-white tracking-[0.08em] no-underline block mb-1 lowercase">addesign studio</a>
-          <p class="font-manrope text-xs tracking-[0.18em] uppercase text-white/50 m-0 leading-snug">© 2024 addesign studio. All rights reserved.</p>
-        </div>
-        <div class="flex flex-row gap-6 items-center justify-start mt-0">
-          <a href="contact.html" class="font-manrope text-[11px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">Contact</a>
-          <a href="privacy-policy.html" class="font-manrope text-[11px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">Privacy Policy</a>
-        </div>
-      </div>
-
-      <!-- Bottom-right -->
-      <div id="footer-links-right" class="hidden md:flex flex-col justify-between items-end text-right w-auto h-full">
-        <a href="#top" class="font-manrope text-[11px] tracking-[0.18em] uppercase text-white font-bold no-underline flex items-center justify-end gap-1 transition-opacity duration-300 hover:opacity-50">
-          Back to top
-          <span class="material-symbols-outlined text-xs">arrow_upward</span>
-        </a>
-        <div class="flex flex-row gap-6 items-center justify-end mt-0">
-          <a href="https://www.linkedin.com/in/adley-fernandes-968688228/" target="_blank" rel="noopener" class="font-manrope text-[11px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">LinkedIn</a>
-          <a href="https://twitter.com" target="_blank" rel="noopener" class="footer-twitter-link font-manrope text-[11px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">Twitter</a>
-          <a href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener" class="font-manrope text-[11px] tracking-[0.18em] uppercase text-white/60 no-underline transition-colors duration-300 hover:text-white">Instagram</a>
         </div>
       </div>
 
@@ -250,30 +391,7 @@
 
 </footer>
 
-<script>
-  /* "addesign" — fires only when user has scrolled well into the footer */
-  (function() {
-    var el = document.getElementById('footer-addesign-text');
-    if (!el) return;
-    var letters = el.querySelectorAll('.footer-letter');
-    function trigger() {
-      letters.forEach(function(letter) {
-        letter.classList.add('visible');
-      });
-    }
-    var observer = new IntersectionObserver(function(entries) {
-      if (entries[0].isIntersecting) {
-        trigger();
-        observer.disconnect();
-      }
-    }, { threshold: 0.45 });
-    observer.observe(document.getElementById('site-footer'));
-  })();
-</script>
-
-
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js" defer></script>

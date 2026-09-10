@@ -1,4 +1,6 @@
 function _initCursor() {
+  if (document.getElementById('custom-cursor')) return;
+
   // --- 0. Auto-apply Cursor Classes ---
   document.querySelectorAll('.fade-enter-card img, #mclaren img, #porsche img').forEach(img => {
     img.classList.add('hover-view');
@@ -11,22 +13,39 @@ function _initCursor() {
   customCursor.appendChild(cursorText);
   document.body.appendChild(customCursor);
 
-  // GSAP-driven cursor — GPU composited, no layout cost, works with mix-blend-mode
-  // xPercent/yPercent: -50 tells GSAP to centre the dot on the hotspot
-  gsap.set(customCursor, { xPercent: -50, yPercent: -50 });
-  const xTo = gsap.quickTo(customCursor, 'x', { duration: 0.15, ease: 'power3.out' });
-  const yTo = gsap.quickTo(customCursor, 'y', { duration: 0.15, ease: 'power3.out' });
+  const hasGSAP = typeof gsap !== 'undefined';
+  let xTo, yTo;
+
+  if (hasGSAP) {
+    // GSAP-driven cursor — GPU composited, no layout cost, works with mix-blend-mode
+    gsap.set(customCursor, { xPercent: -50, yPercent: -50 });
+    xTo = gsap.quickTo(customCursor, 'x', { duration: 0.15, ease: 'power3.out' });
+    yTo = gsap.quickTo(customCursor, 'y', { duration: 0.15, ease: 'power3.out' });
+  } else {
+    customCursor.style.transform = 'translate(-50%, -50%)';
+    customCursor.style.opacity = '0';
+    customCursor.style.transition = 'opacity 0.4s ease, width 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), height 0.45s cubic-bezier(0.34, 1.56, 0.64, 1)';
+  }
 
   if (window.matchMedia('(pointer: fine)').matches) {
     let cursorVisible = false;
     window.addEventListener('mousemove', (e) => {
       // Fade in on very first mouse movement
       if (!cursorVisible) {
-        gsap.to(customCursor, { opacity: 1, duration: 0.4, ease: 'power2.out' });
+        if (hasGSAP) {
+          gsap.to(customCursor, { opacity: 1, duration: 0.4, ease: 'power2.out' });
+        } else {
+          customCursor.style.opacity = '1';
+        }
         cursorVisible = true;
       }
-      xTo(e.clientX);
-      yTo(e.clientY);
+      if (xTo && yTo) {
+        xTo(e.clientX);
+        yTo(e.clientY);
+      } else {
+        customCursor.style.left = e.clientX + 'px';
+        customCursor.style.top = e.clientY + 'px';
+      }
     }, { passive: true });
 
     // View Mode for images
@@ -40,29 +59,24 @@ function _initCursor() {
         customCursor.classList.remove('view-mode');
       });
     });
-
-    // Additional hover interactions for links/buttons if needed across the site
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-         // We could scale the cursor or change color here, but keeping it simple for now
-      });
-      el.addEventListener('mouseleave', () => {
-         
-      });
-    });
   }
 }
 
-// Wait for GSAP to be available (it's loaded dynamically so timing isn't guaranteed)
+// Wait briefly for GSAP; if not available after 250ms, initialize native fallback
 (function waitForGSAP() {
-  if (typeof gsap !== 'undefined') {
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', _initCursor);
+  let attempts = 0;
+  function check() {
+    if (typeof gsap !== 'undefined' || attempts > 5) {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', _initCursor);
+      } else {
+        _initCursor();
+      }
     } else {
-      _initCursor();
+      attempts++;
+      setTimeout(check, 50);
     }
-  } else {
-    setTimeout(waitForGSAP, 40);
   }
+  check();
 })();
 

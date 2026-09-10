@@ -1,18 +1,18 @@
 /**
- * Page Transition & Navigation System (CSS-first, Fail-safe)
+ * Page Transition & Navigation System (Silky Smooth, Zero Lag, Hardware-Accelerated)
  * ─────────────────────────────────────────────────────────────────────────────
  * Features:
- *   1. Projects Dropdown: Single-touch opening on mobile (no double-tap),
- *      desktop-only hover with delay, isolated from mix-blend difference.
- *   2. Page Transition: Smooth fade-out on link click, smooth fade-in on
- *      destination page, zero flash on direct load or refresh, BFCache resilient.
+ *   1. Ultra-smooth, hardware-accelerated transitions between pages (60/120fps).
+ *   2. Zero-flash page entry using early head-script class detection.
+ *   3. Clicking navbar logo or Index link smoothly reloads & returns to hero page at top: 0.
+ *   4. Projects Dropdown: Single-touch opening on mobile, desktop hover with delay.
+ *   5. BFCache resilience (smooth restore on browser back/forward).
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
 (function () {
   'use strict';
 
-  // Lazy getter for overlay
   function getOverlay() {
     return document.getElementById('page-transition-overlay');
   }
@@ -22,23 +22,52 @@
     var overlay = getOverlay();
     if (!overlay) return;
 
-    var isTransitioning = sessionStorage.getItem('pageTransitioning');
-    if (isTransitioning) {
+    var wasTransitioning = false;
+    var resetToHero = false;
+    try {
+      wasTransitioning = sessionStorage.getItem('pageTransitioning') === '1';
       sessionStorage.removeItem('pageTransitioning');
-      overlay.classList.add('is-entering');
-      setTimeout(function() {
-        overlay.classList.remove('is-entering');
-        overlay.style.opacity = '0';
-      }, 500);
-    } else {
-      // Direct load or fresh reload: keep transparent so page is visible immediately
-      overlay.style.opacity = '0';
-      overlay.style.animation = 'none';
+      resetToHero = sessionStorage.getItem('resetToHero') === '1';
+      sessionStorage.removeItem('resetToHero');
+    } catch (e) {}
+
+    var currentPath = window.location.pathname;
+    var currentPage = (currentPath.split('/').pop() || 'index.html');
+    var isCurrentIndex = (currentPage === 'index.html' || currentPath === '/' || currentPath === '');
+
+    if (resetToHero || (!window.location.hash && isCurrentIndex)) {
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      window.scrollTo(0, 0);
+      if (window.__lenis) {
+        window.__lenis.scrollTo(0, { immediate: true });
+      }
     }
 
-    // Ensure hero video autoplays smoothly on both direct load and navigation return
+    if (wasTransitioning) {
+      // 50ms buffer allows layout recalculations to settle before initiating the fade
+      setTimeout(function () {
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            document.documentElement.classList.remove('is-transitioning');
+            overlay.classList.remove('is-exiting');
+            overlay.style.opacity = '0';
+          });
+        });
+      }, 50);
+    } else {
+      document.documentElement.classList.remove('is-transitioning');
+      overlay.classList.remove('is-exiting');
+      overlay.style.opacity = '0';
+    }
+
+    // Ensure hero video autoplays smoothly
     var heroVideo = document.getElementById('hero-video');
     if (heroVideo) {
+      if (resetToHero) {
+        heroVideo.currentTime = 0;
+      }
       heroVideo.play().catch(function () {});
     }
   }
@@ -53,11 +82,7 @@
         '#nav-actions a, #nav-actions button { color: #ffffff !important; }' +
         '#nav-projects-menu { mix-blend-mode: normal !important; position: fixed !important; z-index: 140 !important; }' +
         '#nav-projects-menu.is-open { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important; }' +
-        '.nav-projects-arrow.is-open { transform: rotate(180deg) !important; }' +
-        '@keyframes pf-fade-out { 0% { opacity: 1; } 100% { opacity: 0; } }' +
-        '#page-transition-overlay { position: fixed !important; inset: 0 !important; width: 100vw !important; height: 100vh !important; background: #1B1717 !important; z-index: 99999999 !important; pointer-events: none !important; opacity: 0; transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1); will-change: opacity; }' +
-        '#page-transition-overlay.is-entering { opacity: 1 !important; animation: pf-fade-out 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards !important; }' +
-        '#page-transition-overlay.is-exiting { opacity: 1 !important; animation: none !important; pointer-events: auto !important; }';
+        '.nav-projects-arrow.is-open { transform: rotate(180deg) !important; }';
       document.head.appendChild(style);
     }
 
@@ -69,7 +94,7 @@
 
     if (!btn || !menu) return;
 
-    // Move menu out of #nav-actions so mix-blend-difference does NOT invert the dropdown!
+    // Move menu out of #nav-actions so mix-blend-difference does NOT invert the dropdown
     if (navActions && navActions.contains(menu)) {
       mainNav.appendChild(menu);
     }
@@ -105,7 +130,6 @@
       closeTimer = setTimeout(closeMenu, 150);
     }
 
-    // Only attach mouseenter/mouseleave if the device truly supports hover (desktop mice)
     var isHoverDevice = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     if (isHoverDevice) {
       btn.addEventListener('mouseenter', openMenu);
@@ -116,7 +140,6 @@
       menu.addEventListener('mouseleave', scheduleClose);
     }
 
-    // Toggle on click/touch (instant on the very first touch)
     btn.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
@@ -128,14 +151,12 @@
       }
     });
 
-    // Close when clicking outside
     document.addEventListener('click', function (e) {
       if (!btn.contains(e.target) && !menu.contains(e.target)) {
         closeMenu();
       }
     });
 
-    // Close when clicking any link inside menu
     menu.querySelectorAll('a').forEach(function (a) {
       a.addEventListener('click', function () {
         closeMenu();
@@ -157,10 +178,9 @@
     initPageTransition();
   }
 
-  // Intercept Exit Clicks (capture phase so it fires before Lenis anchor handler)
+  // Intercept Clicks for Transitions and Navigation
   document.addEventListener('click', function (e) {
     var el = e.target;
-    // Walk up to find an <a> tag
     while (el && el.tagName !== 'A') el = el.parentElement;
     if (!el) return;
 
@@ -170,14 +190,14 @@
     // Ignore external links, new tabs, mailto/tel/javascript
     if (
       el.getAttribute('target') === '_blank' ||
-      href.startsWith('http') ||
+      href.startsWith('http://') ||
+      href.startsWith('https://') ||
       href.startsWith('//') ||
       href.startsWith('mailto:') ||
       href.startsWith('tel:') ||
       href.startsWith('javascript:')
     ) return;
 
-    // Current page vs destination page identification
     var parts = href.split('#');
     var destPage = parts[0];
     var currentPath = window.location.pathname;
@@ -185,7 +205,7 @@
     var isCurrentIndex = (currentPage === 'index.html' || currentPath === '/' || currentPath === '');
     var isDestIndex = (destPage === '' || destPage === 'index.html' || destPage === '/');
 
-    // In-page anchor navigation (e.g. index.html#about or #about while on index.html)
+    // In-page hash navigation (e.g. index.html#about or #about while on index.html)
     if (parts[1] && ((destPage === '' && !href.startsWith('/')) || (isCurrentIndex && isDestIndex))) {
       var targetEl = document.getElementById(parts[1]);
       if (targetEl) {
@@ -207,25 +227,55 @@
       }
     }
 
-    // Scroll to top when clicking home/index while already on index page
-    if (isCurrentIndex && (href === '/' || href === 'index.html' || href === '/index.html')) {
+    // Ignore pure hash links without a matching ID
+    if (href.startsWith('#')) return;
+
+    // LOGO or INDEX LINK CLICKED:
+    // "when i click on the logo on navbar the page should reload and take me to the hero page same goes for index page"
+    var isLogoOrIndexClick = (href === '/' || href === 'index.html' || href === '/index.html');
+    if (isLogoOrIndexClick) {
       e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      if (window.history && window.history.pushState) {
-        window.history.pushState(null, '', window.location.pathname);
+
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
       }
+
+      try {
+        sessionStorage.setItem('pageTransitioning', '1');
+        sessionStorage.setItem('resetToHero', '1');
+      } catch (err) {}
+
+      var overlay = getOverlay();
+      if (overlay) {
+        overlay.classList.add('is-exiting');
+      }
+
+      setTimeout(function () {
+        window.scrollTo(0, 0);
+        if (window.__lenis) {
+          window.__lenis.scrollTo(0, { immediate: true });
+        }
+        try {
+          if (window.history && window.history.replaceState) {
+            window.history.replaceState(null, '', '/');
+          }
+        } catch (e) {}
+
+        if (isCurrentIndex) {
+          window.location.reload();
+        } else {
+          window.location.href = '/';
+        }
+      }, 250);
       return;
     }
 
-    // Ignore pure hash links (same-page scroll)
-    if (href.startsWith('#')) return;
-
-    // Ignore links that point to the current page with only a hash change
+    // Same-page links with hash
     if (destPage === '' || destPage === currentPage) {
       if (parts[1]) return;
     }
 
-    // It's a real page navigation — trigger the exit fade
+    // Standard Page-to-Page Navigation — Smooth Fade
     e.preventDefault();
 
     var overlay = getOverlay();
@@ -234,22 +284,25 @@
       return;
     }
 
-    sessionStorage.setItem('pageTransitioning', '1');
+    try {
+      sessionStorage.setItem('pageTransitioning', '1');
+    } catch (err) {}
+
     overlay.classList.add('is-exiting');
 
     setTimeout(function () {
       window.location.href = href;
-    }, 350);
+    }, 250);
 
-  }, true); // capture phase
+  }, true);
 
   // BFCache (back/forward button restore) — reset overlay so page is instantly visible
   window.addEventListener('pageshow', function (e) {
     var overlay = getOverlay();
     if (!overlay) return;
-    overlay.classList.remove('is-exiting', 'is-entering');
+    document.documentElement.classList.remove('is-transitioning');
+    overlay.classList.remove('is-exiting');
     overlay.style.opacity = '0';
-    overlay.style.animation = 'none';
     overlay.style.pointerEvents = 'none';
   });
 

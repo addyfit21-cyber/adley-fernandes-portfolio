@@ -1,32 +1,48 @@
 <!DOCTYPE html>
 <html class="light bg-[#EDEBDD]" lang="en"><head>
 <style id="pf-overlay-style">
-  @keyframes pf-overlay-fade {
-    0% { opacity: 1; }
-    100% { opacity: 0; }
-  }
   #page-transition-overlay {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    background: #1B1717;
-    z-index: 99999999;
-    pointer-events: none;
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: #0d0a08 !important;
+    z-index: 99999999 !important;
+    pointer-events: none !important;
     opacity: 0;
-    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     will-change: opacity;
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
-  #page-transition-overlay.is-entering {
+  html.is-transitioning #page-transition-overlay {
     opacity: 1 !important;
-    animation: pf-overlay-fade 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+    pointer-events: auto !important;
   }
   #page-transition-overlay.is-exiting {
     opacity: 1 !important;
-    animation: none !important;
     pointer-events: auto !important;
+    transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 </style>
+<script>
+  try {
+    if (sessionStorage.getItem('pageTransitioning') === '1') {
+      document.documentElement.classList.add('is-transitioning');
+      if (sessionStorage.getItem('resetToHero') === '1' || !window.location.hash) {
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+      }
+      setTimeout(function() {
+        document.documentElement.classList.remove('is-transitioning');
+      }, 1500);
+    }
+  } catch (e) {}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800;900&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
@@ -501,6 +517,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="/cursor.js" defer></script>
-    <script src="/transitions.js"></script>
+  <script src="/transitions.js"></script>
 </body></html>
