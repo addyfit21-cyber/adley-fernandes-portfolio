@@ -742,9 +742,42 @@
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-  /* Disable iOS Safari's native Play Button overlay on lazy-loaded videos */
-  video::-webkit-media-controls { display: none !important; }
-  video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+  /* ── Battery Saver & Low Power Mode: Suppress native play icons on all devices ── */
+  video::-webkit-media-controls,
+  video::-webkit-media-controls-start-playback-button,
+  video::-webkit-media-controls-play-button,
+  video::-webkit-media-controls-overlay-play-button,
+  video::-webkit-media-controls-enclosure,
+  video::-webkit-media-controls-panel,
+  video::-webkit-media-controls-container,
+  video::-webkit-media-controls-current-time-display,
+  video::-webkit-media-controls-time-remaining-display,
+  video::-webkit-media-controls-timeline,
+  video::-webkit-media-controls-volume-slider,
+  video::-webkit-media-controls-mute-button,
+  video::-webkit-media-controls-toggle-closed-captions-button {
+    display: none !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    max-width: 0 !important;
+    max-height: 0 !important;
+  }
+  video::--webkit-media-controls-play-button {
+    display: none !important;
+  }
+  video {
+    pointer-events: none !important;
+    -webkit-touch-callout: none !important;
+    user-select: none !important;
+  }
+  .portfolio-card, a, button, .group {
+    pointer-events: auto !important;
+  }
 
   .fade-enter-card {
     will-change: transform, opacity;
@@ -1606,8 +1639,8 @@
           Turning everyday chai into a premium experience — without the premium price tag.
         </p>
         <div class="portfolio-card-media relative overflow-hidden w-full aspect-[4/3] bg-[#EAEAEA]">
-          <video autoplay="" muted="" loop="" playsinline="" poster="/Images/Branding/benner-poster.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100 hidden md:block" src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4" preload="none"></video>
-          <video autoplay="" muted="" loop="" playsinline="" webkit-playsinline="" poster="/Images/Branding/benner-poster.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100 block md:hidden pointer-events-none" src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4" preload="none"></video>
+          <video autoplay="" muted="" loop="" playsinline="" poster="/Images/Branding/benner-poster.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100 hidden md:block" src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4" preload="metadata"></video>
+          <video autoplay="" muted="" loop="" playsinline="" webkit-playsinline="" poster="/Images/Branding/benner-poster.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100 block md:hidden pointer-events-none" src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4" preload="metadata"></video>
         </div>
         <div class="flex justify-between items-baseline w-full px-1">
           <p class="text-[13px] md:text-[15px] tracking-tight text-[#1B1717] font-medium">Benner</p>
@@ -1759,8 +1792,8 @@
                 </div>
                 <!-- Screen with video -->
                 <div class="mockup-iphone-screen">
-                  <video src="/Images/web_dev/whatsapp_2_mobile.mp4" poster="/Images/web_dev/execuvision-poster.webp" autoplay muted loop playsinline class="hidden md:block w-full h-full object-cover" preload="none"></video>
-                  <video src="/Images/web_dev/whatsapp_2_mobile.mp4" poster="/Images/web_dev/execuvision-poster.webp" autoplay muted loop playsinline webkit-playsinline class="block md:hidden w-full h-full object-cover pointer-events-none" preload="none"></video>
+                  <video src="/Images/web_dev/whatsapp_2_mobile.mp4" poster="/Images/web_dev/execuvision-poster.webp" autoplay muted loop playsinline class="hidden md:block w-full h-full object-cover" preload="metadata"></video>
+                  <video src="/Images/web_dev/whatsapp_2_mobile.mp4" poster="/Images/web_dev/execuvision-poster.webp" autoplay muted loop playsinline webkit-playsinline class="block md:hidden w-full h-full object-cover pointer-events-none" preload="metadata"></video>
                   <div class="mockup-iphone-glare"></div>
                 </div>
               </div>
@@ -1788,8 +1821,8 @@
               <div class="mockup-mac-screen">
                 <div class="mockup-mac-camera"></div>
                 <div class="mockup-mac-screen-inner">
-                  <video src="/Images/web_dev/img_3691_mobile.mp4" poster="/Images/web_dev/nexzy-poster.webp" autoplay muted loop playsinline class="hidden md:block w-full h-full object-cover" preload="none"></video>
-                  <video src="/Images/web_dev/img_3691_mobile.mp4" poster="/Images/web_dev/nexzy-poster.webp" autoplay muted loop playsinline webkit-playsinline class="block md:hidden w-full h-full object-cover pointer-events-none" preload="none"></video>
+                  <video src="/Images/web_dev/img_3691_mobile.mp4" poster="/Images/web_dev/nexzy-poster.webp" autoplay muted loop playsinline class="hidden md:block w-full h-full object-cover" preload="metadata"></video>
+                  <video src="/Images/web_dev/img_3691_mobile.mp4" poster="/Images/web_dev/nexzy-poster.webp" autoplay muted loop playsinline webkit-playsinline class="block md:hidden w-full h-full object-cover pointer-events-none" preload="metadata"></video>
                   <div class="mockup-mac-glare"></div>
                 </div>
               </div>
