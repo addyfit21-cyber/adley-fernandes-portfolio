@@ -2492,26 +2492,25 @@
     ].filter(Boolean);
 
     videos.forEach(function(video) {
-      var hasEnded = false;
-
       video.loop = false;
       video.removeAttribute('loop');
+      video._hasEnded = false;
 
       function freezeOnEnd() {
-        hasEnded = true;
+        video._hasEnded = true;
         video.pause();
       }
 
       video.addEventListener('ended', freezeOnEnd);
 
       video.addEventListener('timeupdate', function() {
-        if (!hasEnded && video.duration && video.currentTime >= video.duration - 0.08) {
+        if (!video._hasEnded && video.duration && video.currentTime >= video.duration - 0.08) {
           freezeOnEnd();
         }
       });
 
       video.addEventListener('play', function() {
-        if (hasEnded) {
+        if (video._hasEnded) {
           video.pause();
         }
       });

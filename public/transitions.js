@@ -69,10 +69,15 @@
     ].filter(Boolean);
 
     heroVideos.forEach(function (v) {
+      v.loop = false;
+      v.removeAttribute('loop');
       if (resetToHero) {
         v.currentTime = 0;
+        v._hasEnded = false;
       }
-      v.play().catch(function () {});
+      if (!v._hasEnded) {
+        v.play().catch(function () {});
+      }
     });
   }
   }
@@ -315,7 +320,19 @@
   // ─── Battery Saver & Low Power Mode Video Playback Engine ───
   function initBatterySaverVideoManager() {
     function ensureVideoPlays(v) {
-      if (!v || v._hasEnded || !v.paused) return;
+      if (!v) return;
+      var isHero = (v.id === 'hero-video' || v.id === 'hero-video-mobile');
+      if (isHero) {
+        v.loop = false;
+        v.removeAttribute('loop');
+        if (v._hasEnded || (v.duration && v.currentTime >= v.duration - 0.1)) {
+          v._hasEnded = true;
+          v.pause();
+          return;
+        }
+      }
+      if (v._hasEnded || !v.paused) return;
+
       v.muted = true;
       v.defaultMuted = true;
       v.playsInline = true;
