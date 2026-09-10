@@ -315,7 +315,7 @@
   // ─── Battery Saver & Low Power Mode Video Playback Engine ───
   function initBatterySaverVideoManager() {
     function ensureVideoPlays(v) {
-      if (!v) return;
+      if (!v || v._hasEnded || !v.paused) return;
       v.muted = true;
       v.defaultMuted = true;
       v.playsInline = true;
@@ -325,9 +325,6 @@
       v.setAttribute('disableRemotePlayback', '');
       v.setAttribute('disablePictureInPicture', '');
 
-      // Do not restart hero videos if they already completed their single play
-      if (v._hasEnded) return;
-
       var p = v.play();
       if (p !== undefined) {
         p.catch(function () {});
@@ -336,7 +333,7 @@
 
     function playVisibleVideos() {
       document.querySelectorAll('video').forEach(function (v) {
-        if (!v._hasEnded) {
+        if (!v._hasEnded && v.paused) {
           ensureVideoPlays(v);
         }
       });
@@ -345,39 +342,47 @@
     // Try playing immediately
     playVisibleVideos();
 
-    // Try playing on DOMContentLoaded, load, and pageshow
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', playVisibleVideos);
+      document.addEventListener('DOMContentLoaded', playVisibleVideos, { once: true });
     }
-    window.addEventListener('load', playVisibleVideos);
+    window.addEventListener('load', playVisibleVideos, { once: true });
     window.addEventListener('pageshow', playVisibleVideos);
 
-    // On ANY user gesture (first touch, scroll, pointerdown, click):
-    // iOS Safari & Android unconditionally allow video playback inside user gestures
-    var gestureEvents = ['touchstart', 'touchend', 'pointerdown', 'mousedown', 'scroll', 'touchmove', 'click'];
-    function onGesture() {
+    // On ANY first user gesture: unlocks media playback on iOS Safari & Android Chrome
+    var gestureEvents = ['touchstart', 'pointerdown', 'mousedown', 'keydown', 'click'];
+    function onFirstGesture() {
+      gestureEvents.forEach(function (evt) {
+        window.removeEventListener(evt, onFirstGesture, { capture: true });
+      });
       playVisibleVideos();
     }
     gestureEvents.forEach(function (evt) {
-      window.addEventListener(evt, onGesture, { passive: true, capture: true });
+      window.addEventListener(evt, onFirstGesture, { passive: true, capture: true, once: true });
     });
 
-    // Keep observing all videos so when a card video scrolls into view, it plays automatically
+    // IntersectionObserver: automatically plays when near viewport (200px margin)
+    // and pauses offscreen videos to save battery, memory & hardware decoders
     if ('IntersectionObserver' in window) {
       var autoPlayObserver = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           var v = entry.target;
-          if (entry.isIntersecting && !v._hasEnded) {
-            ensureVideoPlays(v);
+          if (entry.isIntersecting) {
+            if (!v._hasEnded && v.paused) {
+              ensureVideoPlays(v);
+            }
+          } else {
+            // High-performance optimization: pause offscreen videos to avoid overloading GPU decoders
+            if (!v._hasEnded && !v.paused && v.id !== 'hero-video' && v.id !== 'hero-video-mobile') {
+              v.pause();
+            }
           }
         });
-      }, { rootMargin: '150px 0px' });
+      }, { rootMargin: '200px 0px' });
 
       document.querySelectorAll('video').forEach(function (v) {
         autoPlayObserver.observe(v);
       });
 
-      // Also observe newly added videos if any dynamically created
       if ('MutationObserver' in window) {
         var mutObs = new MutationObserver(function (mutations) {
           mutations.forEach(function (mut) {
@@ -385,11 +390,11 @@
               if (node.nodeType === 1) {
                 if (node.tagName === 'VIDEO') {
                   autoPlayObserver.observe(node);
-                  ensureVideoPlays(node);
+                  if (node.paused) ensureVideoPlays(node);
                 } else if (node.querySelectorAll) {
                   node.querySelectorAll('video').forEach(function (v) {
                     autoPlayObserver.observe(v);
-                    ensureVideoPlays(v);
+                    if (v.paused) ensureVideoPlays(v);
                   });
                 }
               }
