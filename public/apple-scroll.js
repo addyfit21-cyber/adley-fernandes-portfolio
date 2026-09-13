@@ -232,12 +232,7 @@
       });
     });
 
-    /* ── Refresh & Native Mobile Scroll Sync ──────────────────────────────── */
-    if (isMobile) {
-      window.addEventListener('scroll', function() {
-        ScrollTrigger.update();
-      }, { passive: true });
-    }
+    /* ── Refresh ScrollTrigger ──────────────────────────────── */
     setTimeout(function () { ScrollTrigger.refresh(); }, 200);
     setTimeout(function () { ScrollTrigger.refresh(); }, 800);
   });

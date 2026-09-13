@@ -432,7 +432,7 @@
   }
 </style>
 
-<link href="dist.css" rel="stylesheet">
+<link href="/dist.css" rel="stylesheet">
 <link rel="stylesheet" href="/cursor.css">
 
 <!-- GSAP deferred — animations start after HTML is visible -->
@@ -987,6 +987,43 @@
     .footer-twitter-link { display: none !important; }
   }
 
+  /* ── Apple Enter Effect for Hero Section CTA & Text ── */
+  .apple-hero-item {
+    opacity: 0;
+    transform: translateY(28px) scale(0.97);
+    filter: blur(8px);
+    will-change: transform, opacity, filter;
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  #hero-kicker.apple-hero-item {
+    transition-delay: 0ms;
+  }
+  #hero-headline.apple-hero-item {
+    transition-delay: 90ms;
+  }
+  #hero-subheadline.apple-hero-item {
+    transition-delay: 180ms;
+  }
+  .apple-hero-cta {
+    transform: translateY(34px) scale(0.95);
+    filter: blur(10px);
+    transition-delay: 280ms;
+  }
+  .apple-hero-entered .apple-hero-item {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .apple-hero-item {
+      opacity: 1 !important;
+      transform: none !important;
+      filter: none !important;
+      transition: none !important;
+    }
+  }
 </style>
   <link rel="stylesheet" href="/cursor.css">
 </head>
@@ -1005,7 +1042,7 @@
   </div>
 
   <!-- Top Right: Desktop Navigation (Horizontal) -->
-  <div id="nav-actions" class="flex flex-row items-center gap-1 sm:gap-2 md:gap-4 pointer-events-auto fixed top-4 right-4 md:top-6 md:right-8 z-[120] mix-blend-difference" style="touch-action: manipulation;">
+  <div id="nav-actions" class="flex flex-row items-center gap-1 sm:gap-2 md:gap-4 pointer-events-auto fixed top-2.5 right-2.5 md:top-6 md:right-8 z-[120] mix-blend-difference" style="touch-action: manipulation;">
     <a href="/" class="font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity py-2.5 px-2 inline-flex items-center">Index</a>
     
     <!-- Projects Dropdown -->
@@ -1019,6 +1056,7 @@
       <div id="nav-projects-menu" class="nav-projects-menu absolute top-full mt-2 w-44 bg-[#EDEBDD] border border-zinc-200 shadow-2xl opacity-0 invisible translate-y-2 transition-all duration-300 flex flex-col p-2 z-[130] -right-10 md:right-auto md:left-1/2 md:-translate-x-1/2 pointer-events-auto">
         <a href="index.html#categories-grid" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Visual Identity</a>
         <a href="index.html#logo-design" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Logo Design</a>
+        <a href="index.html#social-media-posts" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Social Media</a>
         <a href="posters.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Posters</a>
         <a href="nexzy.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Web Dev</a>
         <a href="sketches.html" class="px-4 py-3 text-[9px] uppercase tracking-widest text-[#1B1717] hover:bg-black/5 transition-colors text-center border-b border-zinc-200 last:border-0">Sketches</a>
@@ -1098,7 +1136,7 @@
         pointer-events: none;
       ">
         <div style="pointer-events:auto;">
-          <p style="
+          <p id="hero-kicker" class="apple-hero-item" style="
             font-family: 'Manrope', sans-serif;
             font-size: clamp(0.6rem, 1.5vw, 0.7rem);
             letter-spacing: 0.3em;
@@ -1108,7 +1146,7 @@
             margin-bottom: clamp(10px, 2vw, 18px);
           ">Design Studio — 2024</p>
 
-          <p style="
+          <p id="hero-headline" class="apple-hero-item" style="
             font-family: 'Clash Display', sans-serif;
             font-weight: 500;
             font-size: clamp(1.25rem, 3.2vw, 1.75rem);
@@ -1118,7 +1156,7 @@
             word-spacing: 0.04em;
             margin-bottom: clamp(10px, 1.5vw, 16px);
           ">Helping Brands Look Better.<br>Perform Better. Grow&nbsp;Faster.</p>
-          <p style="
+          <p id="hero-subheadline" class="apple-hero-item" style="
             font-family: 'Manrope', sans-serif;
             font-weight: 300;
             font-size: clamp(0.8rem, 1.8vw, 1rem);
@@ -1127,7 +1165,7 @@
             margin-bottom: clamp(18px, 3vw, 32px);
           ">Through branding, UI/UX design, and high-converting websites.</p>
 
-          <div style="display:flex;align-items:center;gap:clamp(16px, 3vw, 28px);flex-wrap:wrap;">
+          <div id="hero-cta-wrapper" class="apple-hero-item apple-hero-cta" style="display:flex;align-items:center;gap:clamp(16px, 3vw, 28px);flex-wrap:wrap;">
             <a class="hero-cta-btn" href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener" style="
                 display:inline-flex;align-items:center;gap:10px;
                 background:#EDEBDD;color:#1B1717;
@@ -1322,11 +1360,7 @@
     <div class="sticky top-0 w-full overflow-hidden" style="height: calc(var(--vh, 1svh) * 100);">
       
       
-      <!-- ── Orbital Section Backdrop Image ── -->
-      <div aria-hidden="true" style="position:absolute;inset:0;z-index:0;overflow:hidden;">
-        <img src="/Images/hero-carousel-backdrop-opt.webp" alt="" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block;opacity:0.35;filter:saturate(0.6) brightness(0.8);">
-      </div>
-      <!-- ── /Orbital Section Backdrop Image ── -->
+
 
 <!-- BACKGROUND IMAGES LAYER -->
       <div id="formation-container" class="absolute inset-0 z-10 pointer-events-none overflow-hidden w-full h-full">
@@ -1637,7 +1671,7 @@
         </p>
         <div class="portfolio-card-media relative overflow-hidden w-full aspect-[4/3] bg-[#EAEAEA]">
           <video autoplay="" muted="" loop="" playsinline="" poster="/Images/Branding/benner-poster.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100 hidden md:block" src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4" preload="metadata"></video>
-          <video autoplay="" muted="" loop="" playsinline="" webkit-playsinline="" poster="/Images/Branding/benner-poster.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100 block md:hidden pointer-events-none" src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4" preload="metadata"></video>
+          <video autoplay="" muted="" loop="" playsinline="" webkit-playsinline="" poster="/Images/Branding/benner-poster.webp" class="card-video-media absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100 block md:hidden pointer-events-none" src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4" preload="metadata"></video>
         </div>
         <div class="flex justify-between items-baseline w-full px-1">
           <p class="text-[13px] md:text-[15px] tracking-tight text-[#1B1717] font-medium">Benner</p>
@@ -1647,6 +1681,7 @@
 
     </div>
   </div>
+
 
   <!-- ===================== LOGO DESIGN ===================== -->
   <div id="logo-design" style="scroll-margin-top: 100px;" class="px-6 md:px-10 lg:px-12 pt-4 md:pt-8 pb-8 md:pb-12 border-t border-[#1B1717]/10">
@@ -1706,6 +1741,52 @@
           <span class="text-[10px] md:text-[11px] tracking-tight text-[#1B1717]/60">Logo Design</span>
         </div>
       </a>
+
+    </div>
+  </div>
+
+  <!-- ===================== SOCIAL MEDIA POSTS ===================== -->
+  <div id="social-media-posts" style="scroll-margin-top: 100px;" class="px-6 md:px-10 lg:px-12 pt-4 md:pt-8 pb-8 md:pb-12 border-t border-[#1B1717]/10">
+    <div class="flex items-center gap-6 mb-3 pt-16 md:pt-24">
+      <span class="block w-10 h-[2px] bg-[#630000]"></span>
+      <span class="text-[8px] tracking-[0.35em] uppercase text-[#630000] font-bold">04 — Category</span>
+    </div>
+    <h2 class="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight text-[#1B1717] leading-none">Social Media Posts</h2>
+  </div>
+
+  <div class="px-6 md:px-10 lg:px-12 pb-20 md:pb-48">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-32 items-start relative w-full">
+
+      <!-- Left Card (TVB New Brand Identity Launch) -->
+      <a href="tvb-social-media.html" class="portfolio-card group block cursor-pointer w-full max-w-[620px] justify-self-start flex flex-col gap-3 md:mt-32 lg:mt-48">
+        <p class="portfolio-card-desc order-first md:order-none">
+          Launching a new brand identity — one post at a time.
+        </p>
+        <div class="portfolio-card-media relative overflow-hidden w-full bg-[#EAEAEA]" style="aspect-ratio: 4/3;">
+          <img src="/Images/Social media carousels/social-media-carousel-tvb-card.webp" alt="TVB New Brand Identity Launch Social Media" loading="lazy" style="object-position: left center;" class="absolute inset-0 w-full h-full object-cover object-left transition-transform duration-[2.5s] group-hover:scale-105 opacity-90 group-hover:opacity-100" decoding="async">
+        </div>
+        <div class="flex justify-between items-baseline w-full px-1">
+          <p class="text-[13px] md:text-[15px] tracking-tight text-[#1B1717] font-medium">TVB New Brand Identity Launch</p>
+          <span class="text-[10px] md:text-[11px] tracking-tight text-[#1B1717]/60">Social Media</span>
+        </div>
+      </a>
+
+      <!-- Right Card (Coming Soon placeholder) -->
+      <div class="portfolio-card w-full max-w-[620px] justify-self-end flex flex-col gap-3 cursor-default">
+        <p class="portfolio-card-desc order-first md:order-none opacity-40">
+          More social media work coming soon.
+        </p>
+        <div class="portfolio-card-media relative overflow-hidden w-full bg-[#EAEAEA]" style="aspect-ratio: 4/3;">
+          <div class="absolute inset-0 flex flex-col items-center justify-center gap-3">
+            <span class="block w-8 h-[1px] bg-[#1B1717]/20"></span>
+            <p class="text-[9px] tracking-[0.3em] uppercase text-[#1B1717]/30 font-medium">Coming Soon</p>
+          </div>
+        </div>
+        <div class="flex justify-between items-baseline w-full px-1 opacity-40">
+          <p class="text-[13px] md:text-[15px] tracking-tight text-[#1B1717] font-medium">—</p>
+          <span class="text-[10px] md:text-[11px] tracking-tight text-[#1B1717]/60">Social Media</span>
+        </div>
+      </div>
 
     </div>
   </div>
@@ -1994,85 +2075,15 @@
         </button>
       </div>
 
-      <!-- Slider Container -->
-      <div class="relative testimonial-slider-wrap h-[850px] md:h-[650px]">
-        
-        <!-- Testimonial 1 -->
-        <div class="testimonial-slide absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 pointer-events-none translate-x-20">
-          <p class="text-sm md:text-xl font-light italic leading-relaxed text-[#1B1717]/70 max-w-4xl mb-6 md:mb-12">
-            "Very Minimal changes had to be done so all good but See the only thing I would say is that for next poster try and incorporate a little more of the elements from the bands. This is something I want us as a band to do also because we've not being doing that past few gig posters<br><br>Like if you see this poster or the last 2-3 ones of ours, if you change the names of the bands - it doesn't really make a difference to the poster<br><br>So in the future I want to start incorporating more elements like that."
-          </p>
-          <div class="flex flex-col items-center">
-            <div class="w-12 h-12 bg-[#EDEBDD] border border-[#1B1717]/10 rounded-full mb-4 flex items-center justify-center overflow-hidden">
-              <span class="material-symbols-outlined text-[#1B1717]/60">person</span>
-            </div>
-            <h5 class="text-[8px] md:text-[11px] tracking-[0.2em] font-bold uppercase text-[#1B1717]">Aadil</h5>
-            <p class="text-[8px] tracking-widest uppercase text-[#1B1717]/60 mt-1">Basscist of The Venom Berries</p>
-          </div>
+      <!-- Slider Container — slides injected dynamically by Firebase JS -->
+      <div class="relative testimonial-slider-wrap h-[850px] md:h-[650px]" id="testimonial-slider-wrap">
+        <!-- Loading skeleton -->
+        <div id="testimonial-loading" class="absolute inset-0 flex flex-col items-center justify-center text-center">
+          <div class="w-48 h-4 bg-[#1B1717]/10 rounded mb-4 animate-pulse"></div>
+          <div class="w-64 h-4 bg-[#1B1717]/10 rounded mb-2 animate-pulse"></div>
+          <div class="w-56 h-4 bg-[#1B1717]/10 rounded mb-8 animate-pulse"></div>
+          <div class="w-10 h-10 bg-[#1B1717]/10 rounded-full animate-pulse"></div>
         </div>
-
-        <!-- Testimonial 2 -->
-        <div class="testimonial-slide absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 pointer-events-none translate-x-20">
-          <p class="text-sm md:text-xl font-light italic leading-relaxed text-[#1B1717]/70 max-w-4xl mb-6 md:mb-12">
-            "amazing logo design for Nexzy Growth &amp; Tech Solutions, exactly how i imagined, techy modern minimal, plus the website redesign adley's UI input really helped us."
-          </p>
-          <div class="flex flex-col items-center">
-            <div class="w-12 h-12 bg-[#EDEBDD] border border-[#1B1717]/10 rounded-full mb-4 flex items-center justify-center overflow-hidden">
-              <span class="material-symbols-outlined text-[#1B1717]/60">person</span>
-            </div>
-            <h5 class="text-[8px] md:text-[11px] tracking-[0.2em] font-bold uppercase text-[#1B1717]">Rahul</h5>
-            <p class="text-[8px] tracking-widest uppercase text-[#1B1717]/60 mt-1">CEO of Nexzy</p>
-          </div>
-        </div>
-
-        <!-- Testimonial 3 -->
-        <div class="testimonial-slide absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 pointer-events-none translate-x-20">
-          <p class="text-sm md:text-xl font-light italic leading-relaxed text-[#1B1717]/70 max-w-4xl mb-6 md:mb-12">
-            "the branding and logo design was very well done by adley, it is hard to find someone that really understands what you feel about your brand and can turn theory into practical."
-          </p>
-          <div class="flex flex-col items-center">
-            <div class="w-12 h-12 bg-[#EDEBDD] border border-[#1B1717]/10 rounded-full mb-4 flex items-center justify-center overflow-hidden">
-              <span class="material-symbols-outlined text-[#1B1717]/60">person</span>
-            </div>
-            <h5 class="text-[8px] md:text-[11px] tracking-[0.2em] font-bold uppercase text-[#1B1717]">Pratik</h5>
-            <p class="text-[8px] tracking-widest uppercase text-[#1B1717]/60 mt-1">CEO of Luke's Iced Coffee</p>
-          </div>
-        </div>
-
-        <!-- Testimonial 4 -->
-        <div class="testimonial-slide absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 pointer-events-none translate-x-20">
-          <p class="text-sm md:text-xl font-light italic leading-relaxed text-[#1B1717]/70 max-w-4xl mb-6 md:mb-12">
-            "adley worked on my album art, teh album was very personal to me and he understood the image that i had in mind perfectly."
-          </p>
-          <div class="flex flex-col items-center">
-            <div class="w-12 h-12 bg-[#EDEBDD] border border-[#1B1717]/10 rounded-full mb-4 flex items-center justify-center overflow-hidden">
-              <span class="material-symbols-outlined text-[#1B1717]/60">person</span>
-            </div>
-            <h5 class="text-[8px] md:text-[11px] tracking-[0.2em] font-bold uppercase text-[#1B1717]">Bianca</h5>
-            <p class="text-[8px] tracking-widest uppercase text-[#1B1717]/60 mt-1">indipendent music artist in mumbai</p>
-          </div>
-        </div>
-
-        <!-- Testimonial 5 -->
-        <div class="testimonial-slide absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 pointer-events-none translate-x-20">
-          <p class="text-sm md:text-xl font-light italic leading-relaxed text-[#1B1717]/70 max-w-4xl mb-6 md:mb-12">
-            "Did a logo for my reel series! Was completely receptive of what I wanted, understood and delivered well. Would highly recommend adley for the creative job you need 😊"
-          </p>
-          <div class="flex flex-col items-center">
-            <div class="w-12 h-12 bg-[#EDEBDD] border border-[#1B1717]/10 rounded-full mb-4 flex items-center justify-center overflow-hidden">
-              <span class="material-symbols-outlined text-[#1B1717]/60">person</span>
-            </div>
-            <h5 class="text-[8px] md:text-[11px] tracking-[0.2em] font-bold uppercase text-[#1B1717]">Tiara Shannon</h5>
-            <div class="flex items-center gap-1 mt-2 text-yellow-500 text-sm">
-              <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-            </div>
-          </div>
-        </div>
-
       </div>
 
       <!-- Navigation -->
@@ -2451,6 +2462,36 @@
 </footer>
 
 <script>
+  /* -- Apple Enter Effect for Hero Section (Enters after 1 second) -- */
+  (function initAppleHeroEnter() {
+    function runEnter() {
+      const overlay = document.getElementById('hero-text-overlay');
+      if (!overlay) return;
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        overlay.classList.add('apple-hero-entered');
+        return;
+      }
+
+      // Trigger after 1 second of user landing on the website
+      setTimeout(() => {
+        overlay.classList.add('apple-hero-entered');
+        setTimeout(() => {
+          overlay.querySelectorAll('.apple-hero-item').forEach(el => {
+            el.style.willChange = 'auto';
+            el.style.filter = 'none';
+          });
+        }, 1800);
+      }, 1000);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', runEnter);
+    } else {
+      runEnter();
+    }
+  })();
+
   /* -- Startup Scroll Fix -- */
   if (window.location.hash) {
     // Prevent browser's native jump on startup by locking page to top immediately
@@ -2531,75 +2572,176 @@
 </script>
 
 <script>
-  /* -- Premium Testimonial Slider Logic -- */
+  /* ─────────────────────────────────────────────────────────────────
+     FIREBASE CONFIG  ←  Paste your Firebase project config here
+     1. Go to https://console.firebase.google.com
+     2. Create a project → Add a Web App → copy the firebaseConfig object
+     3. Replace the placeholder values below with your real values
+     4. In Firestore → Rules, set: allow read, write: if true;  (for now)
+  ───────────────────────────────────────────────────────────────── */
+  const FIREBASE_CONFIG = {
+    apiKey:            "AIzaSyA37rG_BtAgtymx76SyRr7Qs1_mbyjLcQ0",
+    authDomain:        "adleyferanndes.firebaseapp.com",
+    projectId:         "adleyferanndes",
+    storageBucket:     "adleyferanndes.firebasestorage.app",
+    messagingSenderId: "445772985788",
+    appId:             "1:445772985788:web:2ef61cb578e9b4704be7b9"
+  };
+
+  /* -- Existing (seed) testimonials — written to Firestore once on first load -- */
+  const SEED_TESTIMONIALS = [
+    { name: 'Aadil',        role: 'Bassist of The Venom Berries',      rating: 5, comment: 'Very Minimal changes had to be done so all good but See the only thing I would say is that for next poster try and incorporate a little more of the elements from the bands. This is something I want us as a band to do also because we\'ve not being doing that past few gig posters\n\nLike if you see this poster or the last 2-3 ones of ours, if you change the names of the bands - it doesn\'t really make a difference to the poster\n\nSo in the future I want to start incorporating more elements like that.', createdAt: 1 },
+    { name: 'Rahul',        role: 'CEO of Nexzy',                       rating: 5, comment: 'amazing logo design for Nexzy Growth & Tech Solutions, exactly how i imagined, techy modern minimal, plus the website redesign adley\'s UI input really helped us.', createdAt: 2 },
+    { name: 'Pratik',       role: 'CEO of Luke\'s Iced Coffee',          rating: 5, comment: 'the branding and logo design was very well done by adley, it is hard to find someone that really understands what you feel about your brand and can turn theory into practical.', createdAt: 3 },
+    { name: 'Bianca',       role: 'Independent music artist in Mumbai', rating: 5, comment: 'adley worked on my album art, the album was very personal to me and he understood the image that i had in mind perfectly.', createdAt: 4 },
+    { name: 'Tiara Shannon', role: 'Content Creator',                   rating: 5, comment: 'Did a logo for my reel series! Was completely receptive of what I wanted, understood and delivered well. Would highly recommend adley for the creative job you need 😊', createdAt: 5 }
+  ];
+
+  /* -- Slider state -- */
   let slides = [];
   let nextBtn = null;
   let prevBtn = null;
   let currentSlide = 0;
   let isAnimating = false;
 
+  /* -- Build a star string -- */
+  function buildStars(rating) {
+    const n = Math.min(5, Math.max(1, parseInt(rating) || 5));
+    return Array.from({length: n}, () =>
+      `<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">star</span>`
+    ).join('');
+  }
+
+  /* -- Build one slide DOM element -- */
+  function buildSlide(t) {
+    const div = document.createElement('div');
+    div.className = 'testimonial-slide absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 pointer-events-none translate-x-20';
+    const commentHtml = (t.comment || '').replace(/\n/g, '<br>');
+    div.innerHTML = `
+      <p class="text-sm md:text-xl font-light italic leading-relaxed text-[#1B1717]/70 max-w-4xl mb-6 md:mb-12">
+        "${commentHtml}"
+      </p>
+      <div class="flex flex-col items-center">
+        <div class="w-12 h-12 bg-[#EDEBDD] border border-[#1B1717]/10 rounded-full mb-4 flex items-center justify-center overflow-hidden">
+          <span class="material-symbols-outlined text-[#1B1717]/60">person</span>
+        </div>
+        <h5 class="text-[8px] md:text-[11px] tracking-[0.2em] font-bold uppercase text-[#1B1717]">${t.name}</h5>
+        <p class="text-[8px] tracking-widest uppercase text-[#1B1717]/60 mt-1">${t.role}</p>
+        <div class="flex items-center gap-1 mt-2 text-yellow-500 text-sm">${buildStars(t.rating)}</div>
+      </div>`;
+    return div;
+  }
+
+  /* -- Init slider after slides are injected -- */
+  function initSlider() {
+    const wrap = document.getElementById('testimonial-slider-wrap');
+    slides = Array.from(wrap.querySelectorAll('.testimonial-slide'));
+    nextBtn = document.getElementById('next-testimonial');
+    prevBtn = document.getElementById('prev-testimonial');
+    currentSlide = 0;
+    isAnimating = false;
+
+    if (slides.length > 0 && typeof gsap !== 'undefined') {
+      gsap.set(slides[0], { opacity: 1, x: 0, pointerEvents: 'auto' });
+    }
+
+    if (nextBtn) {
+      nextBtn.onclick = () => {
+        if (slides.length < 2) return;
+        showSlide((currentSlide + 1) % slides.length, 'next');
+      };
+    }
+    if (prevBtn) {
+      prevBtn.onclick = () => {
+        if (slides.length < 2) return;
+        showSlide((currentSlide - 1 + slides.length) % slides.length, 'prev');
+      };
+    }
+  }
+
   function showSlide(index, direction) {
-    if (isAnimating || slides.length === 0) return;
+    if (isAnimating || slides.length === 0 || typeof gsap === 'undefined') return;
     isAnimating = true;
-
     const outX = direction === 'next' ? -50 : 50;
-    const inX = direction === 'next' ? 50 : -50;
-
-    // Outgoing
+    const inX  = direction === 'next' ?  50 : -50;
     gsap.to(slides[currentSlide], {
-      opacity: 0,
-      x: outX,
-      duration: 0.8,
-      ease: "power2.inOut",
+      opacity: 0, x: outX, duration: 0.8, ease: 'power2.inOut',
       onComplete: () => {
         slides[currentSlide].style.pointerEvents = 'none';
         currentSlide = index;
-        
-        // Incoming
-        gsap.fromTo(slides[currentSlide], 
+        gsap.fromTo(slides[currentSlide],
           { opacity: 0, x: inX },
-          { opacity: 1, x: 0, duration: 0.8, ease: "power2.out", onComplete: () => {
-            slides[currentSlide].style.pointerEvents = 'auto';
-            isAnimating = false;
-          }}
+          { opacity: 1, x: 0, duration: 0.8, ease: 'power2.out',
+            onComplete: () => { slides[currentSlide].style.pointerEvents = 'auto'; isAnimating = false; }
+          }
         );
       }
     });
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    /* -- GSAP Plugin Registration -- */
-    if (typeof gsap !== 'undefined') {
-      gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-      ScrollTrigger.config({ ignoreMobileResize: true });
-      
-      // Note: Layout dimensions for images are fixed via CSS aspect ratios/classes.
-      // We do not attach img load listeners that call ScrollTrigger.refresh mid-scroll.
+  /* -- Firebase bootstrap -- */
+  let _db = null;
+
+  async function initFirebase() {
+    if (FIREBASE_CONFIG.apiKey === 'PASTE_YOUR_API_KEY_HERE') {
+      console.warn('[Testimonials] Firebase not configured yet — showing seed data only.');
+      return null;
+    }
+    try {
+      const { initializeApp, getApps } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js');
+      const { getFirestore, collection, getDocs, addDoc, query, orderBy, serverTimestamp }
+        = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js');
+
+      const app = getApps().length ? getApps()[0] : initializeApp(FIREBASE_CONFIG);
+      _db = getFirestore(app);
+      _db._fns = { collection, getDocs, addDoc, query, orderBy, serverTimestamp };
+      return _db;
+    } catch(err) {
+      console.error('[Testimonials] Firebase init failed:', err);
+      return null;
+    }
+  }
+
+  async function loadTestimonials() {
+    const wrap = document.getElementById('testimonial-slider-wrap');
+    const loading = document.getElementById('testimonial-loading');
+    const db = await initFirebase();
+
+    let testimonials = [];
+
+    if (db) {
+      try {
+        const { collection, getDocs, addDoc, query, orderBy, serverTimestamp } = db._fns;
+        const col = collection(db, 'testimonials');
+        const snapshot = await getDocs(query(col, orderBy('createdAt', 'asc')));
+
+        /* Seed once if collection is empty */
+        if (snapshot.empty) {
+          for (const t of SEED_TESTIMONIALS) {
+            await addDoc(col, { ...t, seeded: true });
+          }
+          const seeded = await getDocs(query(col, orderBy('createdAt', 'asc')));
+          seeded.forEach(doc => testimonials.push(doc.data()));
+        } else {
+          snapshot.forEach(doc => testimonials.push(doc.data()));
+        }
+      } catch(err) {
+        console.error('[Testimonials] Firestore read error:', err);
+        testimonials = SEED_TESTIMONIALS;
+      }
+    } else {
+      /* Firebase not configured — show seed data statically */
+      testimonials = SEED_TESTIMONIALS;
     }
 
-    slides = document.querySelectorAll('.testimonial-slide');
-    nextBtn = document.getElementById('next-testimonial');
-    prevBtn = document.getElementById('prev-testimonial');
+    /* Remove loading skeleton */
+    if (loading) loading.remove();
 
-    // Init first slide
-    if (slides.length > 0) {
-      gsap.set(slides[0], { opacity: 1, x: 0, pointerEvents: 'auto' });
-    }
+    /* Inject slides */
+    testimonials.forEach(t => wrap.appendChild(buildSlide(t)));
 
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        let nextIdx = (currentSlide + 1) % slides.length;
-        showSlide(nextIdx, 'next');
-      });
-    }
-
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        let prevIdx = (currentSlide - 1 + slides.length) % slides.length;
-        showSlide(prevIdx, 'prev');
-      });
-    }
-  });
+    initSlider();
+  }
 
   /* -- Brand Guidelines Modal Logic -- */
   function openGuidelines() {
@@ -2631,26 +2773,18 @@
   function shareProject() {
     const url = window.location.href.split('#')[0] + '#branding';
     if (navigator.share) {
-      navigator.share({
-        title: 'Benner Tea Co. Rebranding',
-        url: url
-      }).catch(console.error);
+      navigator.share({ title: 'Benner Tea Co. Rebranding', url }).catch(console.error);
     } else {
-      navigator.clipboard.writeText(url).then(() => {
-        alert('Project link copied to clipboard!');
-      }).catch(console.error);
+      navigator.clipboard.writeText(url).then(() => alert('Project link copied!')).catch(console.error);
     }
   }
 
-  /* -- Testimonial Modal Logic -- */
+  /* -- Testimonial Modal -- */
   function openTestimonialModal() {
     const modal = document.getElementById('testimonial-modal');
     const content = document.getElementById('testimonial-modal-content');
     modal.classList.remove('hidden');
-    setTimeout(() => {
-      modal.classList.remove('opacity-0');
-      content.classList.remove('scale-95');
-    }, 10);
+    setTimeout(() => { modal.classList.remove('opacity-0'); content.classList.remove('scale-95'); }, 10);
     document.body.classList.add('overflow-hidden');
   }
 
@@ -2662,104 +2796,114 @@
     setTimeout(() => {
       modal.classList.add('hidden');
       document.body.classList.remove('overflow-hidden');
-      
       const form = document.getElementById('testimonial-form');
       if (form) {
         form.reset();
         form.style.display = 'block';
         document.getElementById('testimonial-success').classList.add('hidden');
         document.getElementById('testimonial-success').classList.remove('flex');
-        document.getElementById('test-submit-label').textContent = 'Send Testimonial';
+        document.getElementById('test-submit-label').textContent = 'Send Review';
         document.getElementById('test-submit-btn').disabled = false;
         document.querySelectorAll('#testimonial-form .field-error').forEach(el => el.classList.add('hidden'));
         document.querySelectorAll('#testimonial-form [required]').forEach(el => {
           el.classList.remove('border-red-500');
           el.classList.add('border-transparent');
         });
+        /* Reset star UI */
+        document.querySelectorAll('.star-btn').forEach(s => s.classList.remove('text-yellow-400'));
+        document.querySelectorAll('.star-btn').forEach((s,i) => { if(i < 4) s.classList.add('text-yellow-400'); });
+        document.getElementById('test-rating').value = '5';
       }
     }, 500);
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+    /* -- GSAP Plugin Registration -- */
+    if (typeof gsap !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+      ScrollTrigger.config({ ignoreMobileResize: true });
+    }
+
+    /* -- Load testimonials from Firebase -- */
+    loadTestimonials();
+
+    /* -- Interactive star rating -- */
+    const starBtns = document.querySelectorAll('.star-btn');
+    const ratingInput = document.getElementById('test-rating');
+    starBtns.forEach((star, idx) => {
+      star.addEventListener('mouseenter', () => {
+        starBtns.forEach((s, i) => s.classList.toggle('text-yellow-400', i <= idx));
+      });
+      star.addEventListener('mouseleave', () => {
+        const val = parseInt(ratingInput.value) - 1;
+        starBtns.forEach((s, i) => s.classList.toggle('text-yellow-400', i <= val));
+      });
+      star.addEventListener('click', () => {
+        ratingInput.value = idx + 1;
+        starBtns.forEach((s, i) => s.classList.toggle('text-yellow-400', i <= idx));
+      });
+    });
+
+    /* -- Testimonial form submit -- */
     const testForm = document.getElementById('testimonial-form');
-    if(testForm) {
-      testForm.addEventListener('submit', (e) => {
+    if (testForm) {
+      testForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         let valid = true;
-
         testForm.querySelectorAll('[required]').forEach(field => {
           const errEl = field.parentElement.querySelector('.field-error');
           if (!field.value.trim()) {
             if (errEl) errEl.classList.remove('hidden');
-            field.classList.remove('border-transparent');
-            field.classList.add('border-red-500');
+            field.classList.remove('border-transparent'); field.classList.add('border-red-500');
             valid = false;
           } else {
             if (errEl) errEl.classList.add('hidden');
-            field.classList.remove('border-red-500');
-            field.classList.add('border-transparent');
+            field.classList.remove('border-red-500'); field.classList.add('border-transparent');
           }
         });
-
         if (!valid) return;
 
-        const name = document.getElementById('test-name').value;
-        const role = document.getElementById('test-role').value;
-        const rating = document.getElementById('test-rating').value;
-        const comment = document.getElementById('test-comment').value;
-
-        const submitBtn = document.getElementById('test-submit-btn');
+        const name    = document.getElementById('test-name').value.trim();
+        const role    = document.getElementById('test-role').value.trim();
+        const rating  = parseInt(document.getElementById('test-rating').value) || 5;
+        const comment = document.getElementById('test-comment').value.trim();
+        const submitBtn   = document.getElementById('test-submit-btn');
         const submitLabel = document.getElementById('test-submit-label');
 
         submitLabel.textContent = 'Sending...';
         submitBtn.disabled = true;
 
-        fetch("https://formsubmit.co/ajax/addyfit21@gmail.com", {
-          method: "POST",
-          headers: { 
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-          },
-          body: JSON.stringify({
-              _subject: `New Portfolio Testimonial from ${name}!`,
-              Name: name,
-              Role: role,
-              Rating: `${rating} Stars`,
-              Comment: comment
-          })
-        })
-        .then(response => response.json())
-        .then(data => {
-          testForm.style.display = 'none';
-          const successDiv = document.getElementById('testimonial-success');
-          successDiv.classList.remove('hidden');
-          successDiv.classList.add('flex');
-        })
-        .catch(error => {
-          console.error("Error:", error);
-          submitLabel.textContent = 'Error. Try again';
-          submitBtn.disabled = false;
-        });
+        const db = await initFirebase();
+        const newReview = { name, role, rating, comment, createdAt: Date.now() };
+
+        if (db) {
+          try {
+            const { collection, addDoc, serverTimestamp } = db._fns;
+            await addDoc(collection(db, 'testimonials'), {
+              ...newReview,
+              createdAt: serverTimestamp()
+            });
+          } catch(err) {
+            console.error('[Testimonials] Write error:', err);
+          }
+        }
+
+        /* Append new slide live to the slider */
+        const wrap = document.getElementById('testimonial-slider-wrap');
+        const newSlide = buildSlide(newReview);
+        wrap.appendChild(newSlide);
+        slides = Array.from(wrap.querySelectorAll('.testimonial-slide'));
+        /* Jump to the new slide */
+        setTimeout(() => showSlide(slides.length - 1, 'next'), 300);
+
+        /* Show success */
+        testForm.style.display = 'none';
+        const successDiv = document.getElementById('testimonial-success');
+        successDiv.classList.remove('hidden');
+        successDiv.classList.add('flex');
       });
     }
   });
-
-
-  /* -- Staggered Word Reveal for Hero Text -- */
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-    gsap.to(".reveal-word", {
-      scrollTrigger: {
-        trigger: "#hero",
-        start: "top+=50 top", // Triggers as soon as the user starts scrolling down
-        toggleActions: "play none none reverse"
-      },
-      opacity: 1,
-      x: 0,
-      duration: 1.2,
-      stagger: 0.15,
-      ease: "power3.out"
-    });
-  }
 </script>
 
   <!-- Detailed Case Study Modal -->
@@ -2792,45 +2936,59 @@
       <h3 class="text-2xl font-bold tracking-tight text-white">Leave a Testimonial</h3>
     </div>
 
-    <form id="testimonial-form" class="space-y-6" novalidate="">
+    <form id="testimonial-form" class="space-y-5" novalidate="">
       <div>
         <label for="test-name" class="block text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2">Your Name</label>
-        <input type="text" id="test-name" required="" class="w-full bg-zinc-800 border border-transparent text-white text-sm px-4 py-3 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all">
+        <input type="text" id="test-name" required="" autocomplete="name" class="w-full bg-zinc-800 border border-transparent text-white text-sm px-4 py-3 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all">
         <p class="text-[8px] text-red-500 uppercase tracking-widest mt-2 hidden field-error">Name is required</p>
       </div>
 
       <div>
         <label for="test-role" class="block text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2">Role &amp; Company</label>
-        <input type="text" id="test-role" placeholder="e.g. CEO of Nexzy" required="" class="w-full bg-zinc-800 border border-transparent text-white text-sm px-4 py-3 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all placeholder:text-zinc-300">
+        <input type="text" id="test-role" placeholder="e.g. CEO of Nexzy" required="" class="w-full bg-zinc-800 border border-transparent text-white text-sm px-4 py-3 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all placeholder:text-zinc-600">
         <p class="text-[8px] text-red-500 uppercase tracking-widest mt-2 hidden field-error">Role is required</p>
       </div>
 
       <div>
-        <label for="test-rating" class="block text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2">Rating</label>
-        <select id="test-rating" class="w-full bg-zinc-800 border border-transparent text-white text-sm px-4 py-3 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all appearance-none cursor-pointer">
-          <option value="5">⭐⭐⭐⭐⭐ (5 Stars)</option>
-          <option value="4">⭐⭐⭐⭐ (4 Stars)</option>
-          <option value="3">⭐⭐⭐ (3 Stars)</option>
-        </select>
+        <label class="block text-xs font-bold uppercase tracking-widest text-zinc-400 mb-3">Rating</label>
+        <div class="flex items-center gap-2">
+          <button type="button" class="star-btn text-zinc-600 text-2xl transition-colors hover:scale-110" data-val="1" aria-label="1 star">
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">star</span>
+          </button>
+          <button type="button" class="star-btn text-yellow-400 text-2xl transition-colors hover:scale-110" data-val="2" aria-label="2 stars">
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">star</span>
+          </button>
+          <button type="button" class="star-btn text-yellow-400 text-2xl transition-colors hover:scale-110" data-val="3" aria-label="3 stars">
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">star</span>
+          </button>
+          <button type="button" class="star-btn text-yellow-400 text-2xl transition-colors hover:scale-110" data-val="4" aria-label="4 stars">
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">star</span>
+          </button>
+          <button type="button" class="star-btn text-yellow-400 text-2xl transition-colors hover:scale-110" data-val="5" aria-label="5 stars">
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">star</span>
+          </button>
+        </div>
+        <input type="hidden" id="test-rating" value="5">
       </div>
 
       <div>
-        <label for="test-comment" class="block text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2">Your Review (Emojis Supported)</label>
-        <textarea id="test-comment" rows="4" required="" class="w-full bg-zinc-800 border border-transparent text-white text-sm px-4 py-3 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all resize-none"></textarea>
+        <label for="test-comment" class="block text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2">Your Review</label>
+        <textarea id="test-comment" rows="4" required="" placeholder="Share your experience working with Adley..." class="w-full bg-zinc-800 border border-transparent text-white text-sm px-4 py-3 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all resize-none placeholder:text-zinc-600"></textarea>
         <p class="text-[8px] text-red-500 uppercase tracking-widest mt-2 hidden field-error">Review is required</p>
       </div>
 
-      <button type="submit" id="test-submit-btn" class="w-full py-4 bg-[#1B1717] text-white text-xs font-bold uppercase tracking-[0.2em] hover:bg-white/10 transition-all flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 hover:scale-105">
-        <span id="test-submit-label">Send Testimonial</span>
+      <button type="submit" id="test-submit-btn" class="w-full py-4 bg-white text-[#1B1717] text-xs font-bold uppercase tracking-[0.2em] hover:bg-zinc-100 transition-all flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98]">
+        <span id="test-submit-label">Send Review</span>
       </button>
     </form>
 
     <!-- Success Message -->
     <div id="testimonial-success" class="hidden flex-col items-center justify-center text-center py-4 md:py-8">
-      <span class="material-symbols-outlined text-4xl text-green-500 mb-4">check_circle</span>
-      <h4 class="text-xl font-bold text-white mb-2">Thank you!</h4>
-      <p class="text-sm text-zinc-400">Your testimonial has been securely sent to Adley.</p>
-      <button onclick="closeTestimonialModal()" class="mt-4 md:mt-8 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-bold uppercase tracking-widest transition-colors">Close</button>
+      <span class="material-symbols-outlined text-5xl text-green-400 mb-4" style="font-variation-settings:'FILL' 1;">check_circle</span>
+      <h4 class="text-xl font-bold text-white mb-2">Thank you! 🙌</h4>
+      <p class="text-sm text-zinc-400 mb-1">Your review is now live on the site.</p>
+      <p class="text-xs text-zinc-600">Scroll the slider to see it appear.</p>
+      <button onclick="closeTestimonialModal()" class="mt-6 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-bold uppercase tracking-widest transition-colors">Close</button>
     </div>
 
   </div>
@@ -2924,41 +3082,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   gsap.registerPlugin(ScrollTrigger);
 
-  /* — Featured Work Cards Entrance: clean fade + lift — */
-  gsap.utils.toArray('.fade-enter-card').forEach((card, i) => {
-    gsap.from(card, {
-      scrollTrigger: {
-        trigger: card,
-        start: 'top 88%',
-        once: true
-      },
-      opacity: 0,
-      y: 60,
-      duration: 1.1,
-      ease: 'expo.out',
-      clearProps: 'all'
-    });
-  });
-
-  /* — Section heading / text reveals —
-     IMPORTANT: skip any element inside .skill-item or #services — those
-     are controlled exclusively by the cube ScrollTrigger timeline and
-     must NOT be touched by this global reveal. */
-  gsap.utils.toArray('h2, h3').forEach(el => {
-    if (el.closest('.hero-marquee')) return; // skip marquee
-    if (el.closest('.skill-item'))   return; // skip services skill slides
-    if (el.closest('#services'))     return; // skip entire services section
-    gsap.from(el, {
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 92%',
-        once: true
-      },
-      opacity: 0,
-      y: 30,
-      duration: 0.9,
-      ease: 'power3.out',
-      clearProps: 'all'
+  /* — Featured Work Cards Entrance: clean fade + lift (pairs with .anim-ready CSS) — */
+  gsap.utils.toArray('.fade-enter-card').forEach((card) => {
+    ScrollTrigger.create({
+      trigger: card,
+      start: 'top 88%',
+      once: true,
+      onEnter: () => {
+        gsap.to(card, {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 1.0,
+          ease: 'expo.out',
+          force3D: true,
+          clearProps: 'will-change'
+        });
+      }
     });
   });
 
@@ -3635,7 +3775,7 @@ document.addEventListener('DOMContentLoaded', function initLenis() {
   gsap.ticker.add((time) => {
     lenis.raf(time * 1000); // gsap time is in seconds; lenis.raf expects ms
   });
-  gsap.ticker.lagSmoothing(0);
+  gsap.ticker.lagSmoothing(500, 33);
 
   // Keep ScrollTrigger refreshed every Lenis scroll event
   lenis.on('scroll', ScrollTrigger.update);
@@ -3725,12 +3865,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- 2.5 Brand Carousel Interactive Scrolling --- (Handled by CSS)
 
-  // --- 3. Parallax Image Scrolling — refined scrub value for smoother result ---
+  // --- 3. Parallax Image Scrolling — refined scrub value for fluid 120fps sync ---
   document.querySelectorAll('.fade-enter-card > div.relative, #mclaren .bg-zinc-900, #porsche .bg-zinc-900').forEach(container => {
     container.style.overflow = 'hidden';
     const img = container.querySelector('img');
     if (img) {
       img.style.willChange = 'transform';
+      img.style.backfaceVisibility = 'hidden';
       gsap.set(img, { scale: 1.12, transformOrigin: 'center', force3D: true });
       gsap.to(img, {
         yPercent: 12,
@@ -3739,30 +3880,33 @@ document.addEventListener('DOMContentLoaded', () => {
           trigger: container,
           start: 'top bottom',
           end: 'bottom top',
-          scrub: 1.5, // slightly slower for cinematic smoothnesschy, more cinematic
+          scrub: 0.5,
         }
       });
     }
   });
 
   
-  // --- 4. IntersectionObserver for Video Lazy Loading ---
+  // --- 4. IntersectionObserver for Video Lazy Loading & Offscreen GPU Preservation ---
   if ('IntersectionObserver' in window) {
-    const videoObserver = new IntersectionObserver((entries, observer) => {
+    const videoObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
+        const video = entry.target;
         if (entry.isIntersecting) {
-          const video = entry.target;
           const isMobile = window.innerWidth <= 768;
           const src = isMobile && video.dataset.mobileSrc ? video.dataset.mobileSrc : video.dataset.src;
           if (src && video.src !== src) {
             video.src = src;
             video.load();
-            video.play().catch(e => console.log('Video play failed:', e));
           }
-          observer.unobserve(video);
+          video.play().catch(e => console.log('Video play failed:', e));
+        } else {
+          if (!video.paused) {
+            video.pause();
+          }
         }
       });
-    }, { rootMargin: '200px 0px' });
+    }, { rootMargin: '100px 0px' });
 
     document.querySelectorAll('video.card-video').forEach(video => {
       videoObserver.observe(video);
@@ -3799,6 +3943,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
 });
 </script>
 

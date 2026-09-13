@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .object-left {
+    object-position: left center !important;
+  }
+}
+
 @layer base {
   ::selection {
     background-color: #FA6B48;
@@ -40,6 +46,44 @@
     }
     #nav-projects-group:hover .nav-projects-arrow {
       transform: rotate(180deg) !important;
+    }
+  }
+
+  /* ── Mobile Navbar Refinements (Positioned up & right, equal compact spacing, laser-straight alignment) ── */
+  @media (max-width: 767px) {
+    #nav-actions {
+      top: 10px !important;
+      right: 10px !important;
+      gap: 4px !important;
+      align-items: center !important;
+    }
+    #nav-actions > a,
+    #nav-actions #nav-projects-btn {
+      padding-top: 6px !important;
+      padding-bottom: 6px !important;
+      padding-left: 5px !important;
+      padding-right: 5px !important;
+      height: 28px !important;
+      line-height: 1 !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      box-sizing: border-box !important;
+    }
+    #nav-projects-group {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      height: 28px !important;
+    }
+    #nav-projects-btn {
+      gap: 2px !important;
+    }
+    #nav-projects-arrow {
+      width: 9px !important;
+      height: 9px !important;
+      stroke-width: 2.5 !important;
+      margin-top: 1px !important;
     }
   }
 
@@ -130,5 +174,3 @@ video {
   opacity: 0 !important;
   pointer-events: none !important;
 }
-
-
