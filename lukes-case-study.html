@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html><html lang="en"><head>
 <style id="pf-overlay-style">
   #page-transition-overlay {
     position: fixed !important;
@@ -44,20 +44,61 @@
 </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luke's Iced Coffee</title>
-  <meta name="description" content="Case Study for Luke's Iced Coffee by Adley Fernandes.">
+  <title>Luke's Iced Coffee Logo Design</title>
+  <meta name="description" content="Logo Design and Brand Kit for Luke's Iced Coffee by Adley Fernandes.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800;900&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+  <!-- Preload Animation Frames for Zero-Flicker Playback -->
+  <link rel="preload" as="image" href="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes-10.webp" type="image/webp">
+  <link rel="preload" as="image" href="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes-10-anim-1.webp" type="image/webp">
+  <link rel="preload" as="image" href="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes-10-anim-2.webp" type="image/webp">
+  <link rel="preload" as="image" href="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes-15.webp" type="image/webp">
+  <link rel="preload" as="image" href="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes-15-anim-1.webp" type="image/webp">
+  <link rel="preload" as="image" href="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes-15-anim-2.webp" type="image/webp">
   <style>
     html { scroll-behavior: smooth; }
     body { font-family: 'Manrope', sans-serif; }
     h1, h2, h3, h4, h5, h6 { font-family: 'Clash Display', 'DM Sans', sans-serif; font-weight: 500; }
+
+    /* Instant hard-cut loop video animation (Zero fade, Zero flicker) */
+    .loop-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #EDEBDD;
+      contain: layout paint;
+    }
+    .loop-frame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      pointer-events: none;
+      transition: none !important;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+    }
+    /* Base frame is always visible at bottom of stack so background NEVER flashes */
+    .loop-frame.base-frame {
+      opacity: 1;
+      z-index: 1;
+    }
+    .loop-frame.active {
+      opacity: 1;
+      z-index: 2;
+      pointer-events: auto;
+    }
   </style>
   <link rel="stylesheet" href="/cursor.css">
   <link href="/dist.css" rel="stylesheet">
 </head>
-<body id="top" class="bg-[#EDEBDD] text-[#1B1717] antialiased selection:bg-[#630000] selection:text-white flex flex-col min-h-screen">
+<body id="top" class="bg-[#EDEBDD] text-[#1B1717] antialiased selection:bg-[#630000] selection:text-white">
 <div id="page-transition-overlay"></div>
 
 <!-- TopNavBar -->
@@ -96,177 +137,85 @@
 
   </nav>
 
-<main class="pt-24 md:pt-32 w-full flex flex-col items-center bg-[#EDEBDD] flex-grow">
+<main class="relative z-0 pt-24 md:pt-32 w-full flex flex-col items-center bg-[#EDEBDD]">
     
-    <div class="w-full">
-<!-- ═══════════════════════════════════════════════
-         CASE STUDY 02 — LUKE'S ICED COFFEE
-    ═══════════════════════════════════════════════ -->
-    <div id="web-development" class="w-full bg-[#EDEBDD] text-[#1B1717] overflow-x-hidden border-t border-zinc-100">
-
-      <!-- Header Section (Constrained) -->
-      <div class="max-w-6xl w-full px-6 md:px-8 pb-10">
-        <div class="w-full pb-8 border-b border-[#1B1717]/10 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
-          <div class="text-left">
-            <p class="text-[8px] uppercase tracking-[0.4em] font-black text-[#630000] mb-3">Project Overview</p>
-            <h2 class="text-4xl md:text-6xl font-bold tracking-tighter text-[#1B1717]">Luke's<br>Iced Coffee</h2>
-          </div>
-          <div class="text-left md:text-right">
-            <p class="text-[8px] uppercase tracking-[0.4em] font-black text-[#630000] mb-2">Deliverables</p>
-            <p class="text-sm md:text-base font-semibold text-[#1B1717]">Targeted collateral design — logo, menu layout, business cards, and packaging system.</p>
-          </div>
+    <!-- Header Section (Constrained) -->
+    <div class="max-w-6xl w-full px-6 md:px-8 pb-10">
+      <div class="w-full pb-8 border-b border-[#1B1717]/10 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+        <div class="text-left">
+          <p class="text-[8px] uppercase tracking-[0.4em] font-black text-[#630000] mb-3">Project Overview</p>
+          <h2 class="text-4xl md:text-6xl font-bold tracking-tighter text-[#1B1717]">Luke's Iced Coffee<br>Logo Design</h2>
+        </div>
+        <div class="text-left md:text-right">
+          <p class="text-[8px] uppercase tracking-[0.4em] font-black text-[#630000] mb-2">Deliverables</p>
+          <p class="text-sm md:text-base font-semibold text-[#1B1717]">Logo Design, Branding</p>
         </div>
       </div>
-
-      <!-- Applications Image Grid -->
-      <div class="w-full border-t border-zinc-100">
-        <div class="px-6 md:px-24 py-4 md:py-8 max-w-[1400px] mx-auto border-b border-zinc-100">
-          <p class="text-[8px] uppercase tracking-[0.5em] text-[#1B1717] font-black mb-2">Brand Applications</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tighter text-[#1B1717]">In context.</h3>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 w-full gap-px bg-zinc-200">
-          <div class="col-span-1 overflow-hidden bg-[#EDEBDD] group">
-            <img src="/Images/Brands/lukes%20iced%20coffee/LUKES%20ICED%20COFFEE.webp" class="w-full h-full aspect-square object-cover transition-transform duration-[2s] group-hover:scale-105" alt="Luke's Master Mockup" loading="lazy" decoding="async">
-          </div>
-          <div class="col-span-1 overflow-hidden bg-[#EDEBDD] group">
-            <img src="/Images/Brands/lukes%20iced%20coffee/Gemini_Generated_Image_81wcsr81wcsr81wc.webp" class="w-full h-full aspect-square object-cover transition-transform duration-[2s] group-hover:scale-105" alt="Application 1" loading="lazy" decoding="async">
-          </div>
-          <div class="col-span-1 overflow-hidden bg-[#EDEBDD] group">
-            <img src="/Images/Brands/lukes%20iced%20coffee/Gemini_Generated_Image_8fqnm18fqnm18fqn.webp" class="w-full h-full aspect-square object-cover transition-transform duration-[2s] group-hover:scale-105" alt="Application 2" loading="lazy" decoding="async">
-          </div>
-          <div class="col-span-1 overflow-hidden bg-[#EDEBDD] group">
-            <img src="/Images/Brands/lukes%20iced%20coffee/Gemini_Generated_Image_asf1saasf1saasf1.webp" class="w-full h-full aspect-square object-cover transition-transform duration-[2s] group-hover:scale-105" alt="Application 3" loading="lazy" decoding="async">
-          </div>
-          <div class="col-span-1 overflow-hidden bg-[#EDEBDD] group">
-            <img src="/Images/Brands/lukes%20iced%20coffee/Gemini_Generated_Image_ccm09gccm09gccm0.webp" class="w-full h-full aspect-square object-cover transition-transform duration-[2s] group-hover:scale-105" alt="Application 4" loading="lazy" decoding="async">
-          </div>
-          <div class="col-span-1 overflow-hidden bg-[#EDEBDD] group">
-            <img src="/Images/Brands/lukes%20iced%20coffee/Gemini_Generated_Image_fi4dhxfi4dhxfi4d.webp" class="w-full h-full aspect-square object-cover transition-transform duration-[2s] group-hover:scale-105" alt="Application 5" loading="lazy" decoding="async">
-          </div>
-        </div>
-      </div>
-
-      <!-- Colour Story -->
-      <div class="px-6 md:px-24 py-6 md:py-12 border-t border-zinc-100">
-        <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
-          <div>
-            <p class="text-[8px] uppercase tracking-[0.5em] text-[#1B1717] font-black mb-4">Colour Palette</p>
-            <h3 class="text-3xl md:text-5xl font-bold tracking-tighter leading-tight text-[#1B1717] mb-4">Warmth &amp; Cold.</h3>
-            <p class="text-[8px] md:text-[11px] leading-relaxed text-[#1B1717] max-w-sm">Two opposing tones — coffee brown and iced blue — create the core tension of the brand. Minimal palette, maximum recognition.</p>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-[#EDEBDD] shadow-sm">
-            <div class="bg-[#FEE6C2] h-24 flex items-end p-6 relative">
-              <div>
-                <p class="text-[8px] font-black tracking-[0.3em] text-[#1B1717]/40 uppercase mb-1">Base</p>
-                <h4 class="text-base font-bold text-[#1B1717] uppercase tracking-tighter">Warm Cream</h4>
-              </div>
-              <div class="absolute top-4 right-4 text-[#1B1717]/40 text-[8px] md:text-[11px] font-mono">#FEE6C2</div>
-            </div>
-            <div class="bg-[#89420A] h-24 flex items-end p-6 relative">
-              <div>
-                <p class="text-[8px] font-black tracking-[0.3em] text-white/40 uppercase mb-1">Primary</p>
-                <h4 class="text-base font-bold text-white uppercase tracking-tighter">Coffee Brown</h4>
-              </div>
-              <div class="absolute top-4 right-4 text-white/50 text-[8px] md:text-[11px] font-mono">#89420A</div>
-            </div>
-            <div class="bg-[#63C7E9] h-24 flex items-end p-6 relative">
-              <div>
-                <p class="text-[8px] font-black tracking-[0.3em] text-[#1B1717]/50 uppercase mb-1">Secondary</p>
-                <h4 class="text-base font-bold text-[#1B1717] uppercase tracking-tighter">Iced Blue</h4>
-              </div>
-              <div class="absolute top-4 right-4 text-[#1B1717]/50 text-[8px] md:text-[11px] font-mono">#63C7E9</div>
-            </div>
-            <div class="bg-[#FFB846] h-24 flex items-end p-6 relative">
-              <div>
-                <p class="text-[8px] font-black tracking-[0.3em] text-[#1B1717]/40 uppercase mb-1">Highlight</p>
-                <h4 class="text-base font-bold text-[#1B1717] uppercase tracking-tighter">Sunset Orange</h4>
-              </div>
-              <div class="absolute top-4 right-4 text-[#1B1717]/40 text-[8px] md:text-[11px] font-mono">#FFB846</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Editorial Content — Dense Grid -->
-      <div class="px-6 md:px-24 py-0 max-w-[1400px] mx-auto divide-y divide-zinc-100">
-
-        <!-- Problem + Direction -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
-          <div class="py-5 md:py-10 md:pr-16">
-            <p class="text-[8px] tracking-[0.3em] uppercase font-black text-[#1B1717] mb-4">02 / Problem</p>
-            <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-[#1B1717] mb-4">Outdated collateral.<br>Low shelf impact.</h3>
-            <p class="text-[8px] md:text-[11px] leading-relaxed text-[#1B1717] font-normal">Luke's had a great product, but their touchpoints — packaging, menus, and business cards — failed to communicate what made them unique. The logo lacked legibility, and the physical items didn't feel cohesive.</p>
-          </div>
-          <div class="py-5 md:py-10 md:pl-16">
-            <p class="text-[8px] tracking-[0.3em] uppercase font-black text-[#1B1717] mb-4">03 / Direction</p>
-            <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-[#1B1717] mb-4">Young. Bold.<br>High contrast.</h3>
-            <p class="text-[8px] md:text-[11px] leading-relaxed text-[#1B1717] font-normal">The goal was to redesign specific core assets to appeal to a Gen-Z and student demographic. Every delivered piece needed to feel punchy, modern, and instantly recognizable.</p>
-          </div>
-        </div>
-
-        <!-- Design Decisions + Approach -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
-          <div class="py-5 md:py-10 md:pr-16">
-            <p class="text-[8px] tracking-[0.3em] uppercase font-black text-[#1B1717] mb-6">04 / Design Decisions</p>
-            <h3 class="text-base font-bold tracking-tight mb-6 text-[#1B1717]">What the system needed:</h3>
-            <div class="grid grid-cols-3 gap-4 border-l-2 border-zinc-900 pl-6">
-              <div>
-                <p class="text-sm font-bold text-[#1B1717] mb-1">Logo</p>
-                <p class="text-[8px] md:text-[11px] text-[#1B1717] font-normal leading-relaxed">Bold wordmark. Confident and legible on small labels.</p>
-              </div>
-              <div>
-                <p class="text-sm font-bold text-[#1B1717] mb-1">Menu &amp; Print</p>
-                <p class="text-[8px] md:text-[11px] text-[#1B1717] font-normal leading-relaxed">Clear typographic hierarchy. Functional business cards.</p>
-              </div>
-              <div>
-                <p class="text-sm font-bold text-[#1B1717] mb-1">Packaging</p>
-                <p class="text-[8px] md:text-[11px] text-[#1B1717] font-normal leading-relaxed">High-impact layout rules that work across cups and cans.</p>
-              </div>
-            </div>
-            <p class="text-[8px] uppercase tracking-[0.3em] text-[#1B1717] font-bold mt-6 max-w-xs">Target: Gen-Z and students. Everyday product, premium feel.</p>
-          </div>
-          <div class="py-5 md:py-10 md:pl-16">
-            <p class="text-[8px] tracking-[0.3em] uppercase font-black text-[#1B1717] mb-4">05 / Approach</p>
-            <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-[#1B1717] mb-4">High contrast.<br>High energy.</h3>
-            <p class="text-[8px] md:text-[11px] leading-relaxed text-[#1B1717] font-normal">Kept the design expressive but controlled. Strong type hierarchy, a two-tone palette, and clean layout rules that work across cups, packaging, and digital.</p>
-          </div>
-        </div>
-
-        <!-- Deliverables + Result -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-zinc-100">
-          <div class="py-5 md:py-10 md:pr-16">
-            <p class="text-[8px] tracking-[0.3em] uppercase font-black text-[#1B1717] mb-6">06 / Deliverables</p>
-            <div class="grid grid-cols-3 gap-4">
-              <div>
-                <p class="text-[8px] uppercase tracking-[0.2em] text-[#1B1717] font-bold mb-2">Logo Design</p>
-                <p class="text-[8px] md:text-[11px] leading-relaxed text-[#1B1717]">Primary wordmark and lockup variations.</p>
-              </div>
-              <div>
-                <p class="text-[8px] uppercase tracking-[0.2em] text-[#1B1717] font-bold mb-2">Print Assets</p>
-                <p class="text-[8px] md:text-[11px] leading-relaxed text-[#1B1717]">Menu layout and two-sided business cards.</p>
-              </div>
-              <div>
-                <p class="text-[8px] uppercase tracking-[0.2em] text-[#1B1717] font-bold mb-2">Packaging</p>
-                <p class="text-[8px] md:text-[11px] leading-relaxed text-[#1B1717]">Cup designs and retail product packaging.</p>
-              </div>
-            </div>
-          </div>
-          <div class="py-5 md:py-10 md:pl-16">
-            <p class="text-[8px] tracking-[0.3em] uppercase font-black text-[#1B1717] mb-4">07 / Result</p>
-            <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-[#1B1717] mb-3">Targeted deliverables ready for production.</h3>
-            <p class="text-[8px] md:text-[11px] font-medium text-[#1B1717]">Logo files, print-ready menus, business cards, and packaging mechanicals delivered.</p>
-          </div>
-        </div>
-
-      </div>
-
     </div>
-    <!-- END: Luke's Iced Coffee -->
+
+    <!-- Images Section (Full Width, less space) -->
+    <div class="w-full space-y-2 md:space-y-4">
+
+      <div class="w-full overflow-hidden">
+        <img src="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes-01.webp" class="w-full h-auto block" alt="Luke's Iced Coffee Logo Kit-01" loading="lazy" decoding="async">
+      </div>
+      <div class="w-full overflow-hidden">
+        <img src="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes-02.webp" class="w-full h-auto block" alt="Luke's Iced Coffee Logo Kit-02" loading="lazy" decoding="async">
+      </div>
+      <div class="w-full overflow-hidden">
+        <img src="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes-03.webp" class="w-full h-auto block" alt="Luke's Iced Coffee Logo Kit-03" loading="lazy" decoding="async">
+      </div>
+      <div class="w-full overflow-hidden">
+        <img src="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes-04.webp" class="w-full h-auto block" alt="Luke's Iced Coffee Logo Kit-04" loading="lazy" decoding="async">
+      </div>
+      <div class="w-full overflow-hidden">
+        <img src="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes-05.webp" class="w-full h-auto block" alt="Luke's Iced Coffee Logo Kit-05" loading="lazy" decoding="async">
+      </div>
+      <div class="w-full overflow-hidden">
+        <img src="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes-06.webp" class="w-full h-auto block" alt="Luke's Iced Coffee Logo Kit-06" loading="lazy" decoding="async">
+      </div>
+      <div class="w-full overflow-hidden">
+        <img src="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes-07.webp" class="w-full h-auto block" alt="Luke's Iced Coffee Logo Kit-07" loading="lazy" decoding="async">
+      </div>
+      <div class="w-full overflow-hidden">
+        <img src="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes-08.webp" class="w-full h-auto block" alt="Luke's Iced Coffee Logo Kit-08" loading="lazy" decoding="async">
+      </div>
+      <div class="w-full overflow-hidden">
+        <img src="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes-09.webp" class="w-full h-auto block" alt="Luke's Iced Coffee Logo Kit-09" loading="lazy" decoding="async">
+      </div>
+      <!-- Image 10: Animated 3-frame Colorway Loop (Instant Hard Cuts, Zero Flicker) -->
+      <div class="w-full overflow-hidden loop-container" data-interval="650">
+        <img src="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes-10.webp" class="loop-frame base-frame active" alt="Luke's Iced Coffee Logo Variations - 01" loading="eager" decoding="sync" fetchpriority="high">
+        <img src="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes-10-anim-1.webp" class="loop-frame" alt="Luke's Iced Coffee Logo Variations - 02" loading="eager" decoding="sync" fetchpriority="high">
+        <img src="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes-10-anim-2.webp" class="loop-frame" alt="Luke's Iced Coffee Logo Variations - 03" loading="eager" decoding="sync" fetchpriority="high">
+      </div>
+      <div class="w-full overflow-hidden">
+        <img src="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes-11.webp" class="w-full h-auto block" alt="Luke's Iced Coffee Logo Kit-11" loading="lazy" decoding="async">
+      </div>
+      <div class="w-full overflow-hidden">
+        <img src="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes-12.webp" class="w-full h-auto block" alt="Luke's Iced Coffee Logo Kit-12" loading="lazy" decoding="async">
+      </div>
+      <div class="w-full overflow-hidden">
+        <img src="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes-13.webp" class="w-full h-auto block" alt="Luke's Iced Coffee Logo Kit-13" loading="lazy" decoding="async">
+      </div>
+      <div class="w-full overflow-hidden">
+        <img src="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes-14.webp" class="w-full h-auto block" alt="Luke's Iced Coffee Logo Kit-14" loading="lazy" decoding="async">
+      </div>
+      <!-- Image 15: Animated 3-frame Mockup Loop (Instant Hard Cuts, Zero Flicker) -->
+      <div class="w-full overflow-hidden loop-container" data-interval="650">
+        <img src="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes-15.webp" class="loop-frame base-frame active" alt="Luke's Iced Coffee Poster Mockup - 01" loading="eager" decoding="sync" fetchpriority="high">
+        <img src="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes-15-anim-1.webp" class="loop-frame" alt="Luke's Iced Coffee Poster Mockup - 02" loading="eager" decoding="sync" fetchpriority="high">
+        <img src="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes-15-anim-2.webp" class="loop-frame" alt="Luke's Iced Coffee Poster Mockup - 03" loading="eager" decoding="sync" fetchpriority="high">
+      </div>
+      <div class="w-full overflow-hidden">
+        <img src="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes-16.webp" class="w-full h-auto block" alt="Luke's Iced Coffee Logo Kit-16" loading="lazy" decoding="async">
+      </div>
+
     </div>
 
 
     <!-- Other Projects Section -->
-    <div class="w-full max-w-6xl mx-auto px-6 md:px-8 py-20 mt-12 border-t border-[#1B1717]/10 bg-zinc-100">
+    <div class="w-full max-w-6xl mx-auto px-6 md:px-8 py-20 mt-12 border-t border-[#1B1717]/10">
       <div class="flex items-center gap-6 mb-8">
         <span class="block w-10 h-[2px] bg-[#630000]"></span>
         <span class="text-[8px] tracking-[0.35em] uppercase text-[#630000] font-bold">More Projects</span>
@@ -277,7 +226,6 @@
         <a href="benner-case-study.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full" style="min-height:500px;">
           <video autoplay="" muted="" loop="" playsinline="" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90 hidden md:block" src="/Images/Branding/Rebranding_Product_Video_Generation.mp4" preload="none"></video>
           <video autoplay="" muted="" loop="" playsinline="" webkit-playsinline="" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90 block md:hidden pointer-events-none" src="/Images/Branding/Rebranding_Product_Video_Generation_mobile.mp4" preload="none"></video>
-          
           
           <div class="absolute top-6 right-6 w-8 h-8 rounded-full border border-[#1B1717]/10 bg-[#1B1717]/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <span class="material-symbols-outlined text-[#EDEBDD] text-sm">north_east</span>
@@ -290,17 +238,16 @@
             </span>
           </div></a>
 
-        <!-- Card: TVB Brand Identity -->
-        <a href="tvb-brandbook.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full" style="min-height:500px;">
-          <img src="/Images/Hero page animation/TVB BRand BOOK-13.webp" alt="The Venom Berries Brand Identity" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90" decoding="async">
-          
+        <!-- Card: Grand Theft Emo -->
+        <a href="grand-theft-emo.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full" style="min-height:500px;">
+          <img src="/Images/gte-totebag-opt.webp" alt="Grand Theft Emo Logo Design" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90" decoding="async">
           
           <div class="absolute top-6 right-6 w-8 h-8 rounded-full border border-[#1B1717]/10 bg-[#1B1717]/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <span class="material-symbols-outlined text-[#EDEBDD] text-sm">north_east</span>
           </div>
         </div><div class="flex flex-col items-start text-left px-1">
-            <p class="text-[8px] tracking-[0.3em] uppercase font-bold mb-1 text-[#630000]/80">Brand Identity</p>
-            <h3 class="text-2xl md:text-4xl font-bold tracking-tight mb-3 text-[#630000]">The Venom Berries</h3>
+            <p class="text-[8px] tracking-[0.3em] uppercase font-bold mb-1 text-[#630000]/80">Logo Design</p>
+            <h3 class="text-2xl md:text-4xl font-bold tracking-tight mb-3 text-[#630000]">Grand Theft Emo</h3>
             <span class="inline-flex items-center gap-2 text-[8px] font-bold uppercase tracking-widest transition-colors duration-300 text-[#630000]/60 group-hover:text-[#630000]">
               View Project <span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
             </span>
@@ -540,4 +487,99 @@
 
   <script src="/cursor.js" defer></script>
     <script src="/transitions.js"></script>
+  <script>
+    (function() {
+      function initLoopAnimations() {
+        const loopContainers = document.querySelectorAll('.loop-container');
+        if (!loopContainers.length) return;
+
+        loopContainers.forEach(function(container) {
+          const frames = Array.from(container.querySelectorAll('.loop-frame'));
+          if (frames.length < 2) return;
+
+          let currentIndex = 0;
+          const interval = parseInt(container.getAttribute('data-interval') || '650', 10);
+          let timer = null;
+          let isVisible = false;
+          let isReady = false;
+
+          function step() {
+            const prevIndex = currentIndex;
+            currentIndex = (currentIndex + 1) % frames.length;
+
+            // Activate new frame on top layer
+            frames[currentIndex].classList.add('active');
+
+            // Deactivate previous overlay frame (base-frame always remains rendered underneath as solid floor)
+            if (prevIndex !== 0) {
+              frames[prevIndex].classList.remove('active');
+            } else if (currentIndex !== 0) {
+              frames[0].classList.remove('active');
+            }
+          }
+
+          function start() {
+            if (!timer && isReady && isVisible) {
+              timer = setInterval(step, interval);
+            }
+          }
+
+          function stop() {
+            if (timer) {
+              clearInterval(timer);
+              timer = null;
+            }
+          }
+
+          // Decode all images in memory before starting loop to guarantee zero blank flicker
+          const decodePromises = frames.map(function(img) {
+            if (img.complete && img.naturalWidth > 0) {
+              return img.decode ? img.decode().catch(function() {}) : Promise.resolve();
+            }
+            return new Promise(function(resolve) {
+              function onDone() {
+                if (img.decode) {
+                  img.decode().then(resolve).catch(resolve);
+                } else {
+                  resolve();
+                }
+              }
+              img.addEventListener('load', onDone, { once: true });
+              img.addEventListener('error', resolve, { once: true });
+            });
+          });
+
+          Promise.all(decodePromises).then(function() {
+            isReady = true;
+            if (isVisible) {
+              start();
+            }
+          });
+
+          if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver(function(entries) {
+              entries.forEach(function(entry) {
+                isVisible = entry.isIntersecting;
+                if (isVisible) {
+                  start();
+                } else {
+                  stop();
+                }
+              });
+            }, { threshold: 0.05 });
+            observer.observe(container);
+          } else {
+            isVisible = true;
+            start();
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLoopAnimations);
+      } else {
+        initLoopAnimations();
+      }
+    })();
+  </script>
 </body></html>
