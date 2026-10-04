@@ -2071,8 +2071,8 @@
     <div class="max-w-7xl mx-auto relative">
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-16 relative z-20">
         <div class="flex flex-col items-center md:items-start mb-6 md:mb-0">
-          <span class="text-[8px] tracking-[0.3em] uppercase text-[#1B1717]/60 font-bold mb-4">Client Perspectives</span>
-          <h2 class="text-2xl md:text-3xl font-medium tracking-tight text-[#1B1717]">Kind Words</h2>
+          <span class="font-manrope text-[8px] tracking-[0.3em] uppercase text-[#1B1717]/60 font-bold mb-4">Client Perspectives</span>
+          <h2 class="font-dm text-2xl md:text-3xl font-medium tracking-tight text-[#1B1717]">Kind Words</h2>
         </div>
         <button onclick="openTestimonialModal()" class="px-6 py-3 bg-[#1B1717]/5 hover:bg-[#1B1717]/10 border border-[#1B1717]/20 text-[#1B1717] text-xs font-bold uppercase tracking-widest transition-colors md:backdrop-blur-md">
           Leave a Review
@@ -2622,15 +2622,15 @@
     div.className = 'testimonial-slide absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 pointer-events-none translate-x-20';
     const commentHtml = (t.comment || '').replace(/\n/g, '<br>');
     div.innerHTML = `
-      <p class="text-sm md:text-xl font-light italic leading-relaxed text-[#1B1717]/70 max-w-4xl mb-6 md:mb-12">
+      <p class="font-manrope text-sm md:text-xl font-light italic leading-relaxed text-[#1B1717]/70 max-w-4xl mb-6 md:mb-12">
         "${commentHtml}"
       </p>
       <div class="flex flex-col items-center">
         <div class="w-12 h-12 bg-[#EDEBDD] border border-[#1B1717]/10 rounded-full mb-4 flex items-center justify-center overflow-hidden">
           <span class="material-symbols-outlined text-[#1B1717]/60">person</span>
         </div>
-        <h5 class="text-[8px] md:text-[11px] tracking-[0.2em] font-bold uppercase text-[#1B1717]">${t.name}</h5>
-        <p class="text-[8px] tracking-widest uppercase text-[#1B1717]/60 mt-1">${t.role}</p>
+        <h5 class="font-manrope text-[8px] md:text-[11px] tracking-[0.2em] font-bold uppercase text-[#1B1717]">${t.name}</h5>
+        <p class="font-manrope text-[8px] tracking-widest uppercase text-[#1B1717]/60 mt-1">${t.role}</p>
         <div class="flex items-center gap-1 mt-2 text-yellow-500 text-sm">${buildStars(t.rating)}</div>
       </div>`;
     return div;
@@ -2955,8 +2955,8 @@
     </button>
 
     <div class="mb-4 md:mb-8">
-      <p class="text-[8px] tracking-[0.2em] uppercase text-zinc-400 font-bold mb-2">Submit Review</p>
-      <h3 class="text-2xl font-bold tracking-tight text-white">Leave a Testimonial</h3>
+      <p class="font-manrope text-[8px] tracking-[0.2em] uppercase text-zinc-400 font-bold mb-2">Submit Review</p>
+      <h3 class="font-dm text-2xl font-bold tracking-tight text-white">Leave a Testimonial</h3>
     </div>
 
     <form id="testimonial-form" class="space-y-5" novalidate="">
