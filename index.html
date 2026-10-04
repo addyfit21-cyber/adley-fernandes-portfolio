@@ -2622,15 +2622,15 @@
     div.className = 'testimonial-slide absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 pointer-events-none translate-x-20';
     const commentHtml = (t.comment || '').replace(/\n/g, '<br>');
     div.innerHTML = `
-      <p class="font-manrope text-sm md:text-xl font-light italic leading-relaxed text-[#1B1717]/70 max-w-4xl mb-6 md:mb-12">
+      <p class="text-sm md:text-xl font-light italic leading-relaxed text-[#1B1717]/70 max-w-4xl mb-6 md:mb-12">
         "${commentHtml}"
       </p>
       <div class="flex flex-col items-center">
         <div class="w-12 h-12 bg-[#EDEBDD] border border-[#1B1717]/10 rounded-full mb-4 flex items-center justify-center overflow-hidden">
           <span class="material-symbols-outlined text-[#1B1717]/60">person</span>
         </div>
-        <h5 class="font-manrope text-[8px] md:text-[11px] tracking-[0.2em] font-bold uppercase text-[#1B1717]">${t.name}</h5>
-        <p class="font-manrope text-[8px] tracking-widest uppercase text-[#1B1717]/60 mt-1">${t.role}</p>
+        <p class="text-[8px] md:text-[11px] tracking-[0.2em] font-bold uppercase text-[#1B1717]">${t.name}</p>
+        <p class="text-[8px] tracking-widest uppercase text-[#1B1717]/60 mt-1">${t.role}</p>
         <div class="flex items-center gap-1 mt-2 text-yellow-500 text-sm">${buildStars(t.rating)}</div>
       </div>`;
     return div;
