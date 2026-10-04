@@ -6,6 +6,24 @@
   .object-left {
     object-position: left center !important;
   }
+
+  /* Luke's Iced Coffee Card: Mobile-only zoom focusing on the cup holder & cups */
+  .lukes-card-img {
+    object-position: center 55% !important;
+    transform: scale(1.38);
+    transform-origin: 50% 55%;
+  }
+
+  @media (min-width: 768px) {
+    .lukes-card-img {
+      object-position: center center !important;
+      transform: scale(1);
+      transform-origin: center center;
+    }
+    .group:hover .lukes-card-img {
+      transform: scale(1.05);
+    }
+  }
 }
 
 @layer base {
