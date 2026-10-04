@@ -2693,12 +2693,12 @@
     }
     try {
       const { initializeApp, getApps } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js');
-      const { getFirestore, collection, getDocs, addDoc, query, orderBy, serverTimestamp }
+      const { getFirestore, collection, getDocs, addDoc, doc, setDoc, getDoc, query, orderBy, serverTimestamp }
         = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js');
 
       const app = getApps().length ? getApps()[0] : initializeApp(FIREBASE_CONFIG);
       _db = getFirestore(app);
-      _db._fns = { collection, getDocs, addDoc, query, orderBy, serverTimestamp };
+      _db._fns = { collection, getDocs, addDoc, doc, setDoc, getDoc, query, orderBy, serverTimestamp };
       return _db;
     } catch(err) {
       console.error('[Testimonials] Firebase init failed:', err);
@@ -2715,19 +2715,29 @@
 
     if (db) {
       try {
-        const { collection, getDocs, addDoc, query, orderBy, serverTimestamp } = db._fns;
+        const { collection, getDocs, addDoc, doc, setDoc, getDoc, query, orderBy, serverTimestamp } = db._fns;
         const col = collection(db, 'testimonials');
+
+        /* Use a sentinel doc to guard against duplicate seeding */
+        const sentinelRef = doc(db, '_meta', 'testimonials_seeded');
+        let alreadySeeded = false;
+        try {
+          const sentinelSnap = await getDoc(sentinelRef);
+          alreadySeeded = sentinelSnap.exists();
+        } catch(e) { /* ignore sentinel read errors */ }
+
         const snapshot = await getDocs(query(col, orderBy('createdAt', 'asc')));
 
-        /* Seed once if collection is empty */
-        if (snapshot.empty) {
+        if (snapshot.empty && !alreadySeeded) {
+          /* Seed once, then write the sentinel */
           for (const t of SEED_TESTIMONIALS) {
             await addDoc(col, { ...t, seeded: true });
           }
+          try { await setDoc(sentinelRef, { seededAt: Date.now() }); } catch(e) {}
           const seeded = await getDocs(query(col, orderBy('createdAt', 'asc')));
-          seeded.forEach(doc => testimonials.push(doc.data()));
+          seeded.forEach(d => testimonials.push(d.data()));
         } else {
-          snapshot.forEach(doc => testimonials.push(doc.data()));
+          snapshot.forEach(d => testimonials.push(d.data()));
         }
       } catch(err) {
         console.error('[Testimonials] Firestore read error:', err);
@@ -2737,6 +2747,15 @@
       /* Firebase not configured — show seed data statically */
       testimonials = SEED_TESTIMONIALS;
     }
+
+    /* Deduplicate by name+comment fingerprint — guards against duplicate Firestore writes */
+    const seen = new Set();
+    testimonials = testimonials.filter(t => {
+      const key = (t.name || '') + '||' + (t.comment || '');
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
 
     /* Remove loading skeleton */
     if (loading) loading.remove();
