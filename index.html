@@ -1334,9 +1334,7 @@
   <!-- Brand Carousel Section — all colours via inline style / CSS class, not Tailwind arbitrary values -->
   <section id="brand-carousel-section">
 
-    <!-- Edge fade overlays -->
-    <div style="position:absolute;inset-block:0;left:0;width:10rem;z-index:10;pointer-events:none;background:linear-gradient(to right,#630000,transparent);"></div>
-    <div style="position:absolute;inset-block:0;right:0;width:10rem;z-index:10;pointer-events:none;background:linear-gradient(to left,#630000,transparent);"></div>
+
 
     <div id="brand-carousel-track" style="display:flex;width:max-content;align-items:center;" class="css-marquee-reverse">
 
@@ -1418,11 +1416,12 @@
 
     <!-- GSAP Logic for 2D Choreography -->
     <style>
+      /* Mobile: smaller cards so there's visible breathing room between images in the orbital wheel */
       .choreography-img {
         position: absolute;
         top: 50%; left: 50%;
-        width: 120px; height: 120px;
-        margin-top: -60px; margin-left: -60px;
+        width: 100px; height: 100px;
+        margin-top: -50px; margin-left: -50px;
         border-radius: 0;
         overflow: hidden;
         border: 1px solid rgba(255,255,255,0.1);
