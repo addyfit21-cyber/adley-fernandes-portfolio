@@ -26,36 +26,10 @@
   }
 }
 
-@font-face {
-  font-family: 'Clash Display';
-  src: url('/fonts/ClashDisplay-Medium.woff2') format('woff2');
-  font-weight: 400 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Clash Display';
-  src: url('/fonts/ClashDisplay-Semibold.woff2') format('woff2');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Clash Display';
-  src: url('/fonts/ClashDisplay-Bold.woff2') format('woff2');
-  font-weight: 700 800 900;
-  font-style: normal;
-  font-display: swap;
-}
-
 @layer base {
   ::selection {
     background-color: #FA6B48;
     color: white;
-  }
-  h1, h2, h3, h4, h5, h6, .font-dm {
-    font-family: 'Clash Display', 'DM Sans', sans-serif;
-    letter-spacing: 0.015em;
   }
 }
 
@@ -217,19 +191,4 @@ video {
 .video-poster-overlay.is-hidden {
   opacity: 0 !important;
   pointer-events: none !important;
-}
-
-/* Portfolio Card Typography — match homepage Clash Display typography */
-.portfolio-card p.font-medium,
-.portfolio-card .card-title,
-.portfolio-card h3,
-.portfolio-card-title {
-  font-family: 'Clash Display', 'DM Sans', sans-serif !important;
-  font-weight: 500;
-  letter-spacing: 0.015em;
-}
-
-.portfolio-card-desc {
-  font-family: 'Clash Display', 'DM Sans', sans-serif !important;
-  letter-spacing: 0.01em;
 }
