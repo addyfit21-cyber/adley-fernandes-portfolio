@@ -1,9 +1,33 @@
 <!DOCTYPE html><html class="light" lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="preload" href="/fonts/ClashDisplay-Medium.woff2" as="font" type="font/woff2" crossorigin>
-<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&display=swap" rel="stylesheet">
 <style id="pf-overlay-style">
+    @font-face {
+      font-family: 'Body Grotesque';
+      src: url('/fonts/Body-Grotesque-Bold.ttf') format('truetype');
+      font-weight: 400 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Body Grotesque Slim';
+      src: url('/fonts/Body-Grotesque-Slim-Bold.ttf') format('truetype');
+      font-weight: 400 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Bootzy TM';
+      src: url('/fonts/Body-Grotesque-Bold.ttf') format('truetype');
+      font-weight: 400 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
   #page-transition-overlay {
     position: fixed !important;
     inset: 0 !important;
@@ -446,25 +470,25 @@
 
 
 <style>
-  @font-face {
-    font-family: 'Clash Display';
-    src: url('/fonts/ClashDisplay-Medium.woff2') format('woff2');
-    font-weight: 400 700;
-    font-style: normal;
-    font-display: swap;
-  }
   /* Lenis handles scrolling on desktop — iOS uses native scroll */
   html { scroll-behavior: auto; }
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
   /* Allow native smooth iOS WebKit momentum scrolling */
-  body { font-family: 'Manrope', sans-serif; color: #1B1717; background-color: #EDEBDD; }
-  h1, h2, h3, h4, h5, h6, .font-dm { 
-    font-family: 'Clash Display', 'DM Sans', sans-serif; 
-    font-weight: 500; 
-    letter-spacing: 0.015em; 
+  body { 
+    font-family: 'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+    color: #1B1717; 
+    background-color: #EDEBDD; 
+    letter-spacing: normal; 
+    word-spacing: normal; 
   }
+  h1, h2, h3, h4, h5, h6, .font-dm {
+      font-family: 'Body Grotesque', 'Body Grotesque Slim', -apple-system, BlinkMacSystemFont, sans-serif !important;
+      font-weight: 700 !important;
+      letter-spacing: -0.01em !important;
+      word-spacing: normal;
+    }
 
-  /* Prevent negative tracking from squishing Clash Display glyphs */
+  /* Natural spacing for headings, preventing negative squishing */
   h1.tracking-tighter, h2.tracking-tighter, h3.tracking-tighter, h4.tracking-tighter, .font-dm.tracking-tighter,
   h1.tracking-tight, h2.tracking-tight, h3.tracking-tight, h4.tracking-tight, .font-dm.tracking-tight {
     letter-spacing: 0.015em !important;
@@ -667,9 +691,9 @@
 
   /* Brand carousel — all styles here so they are not subject to Tailwind purge */
   #brand-carousel-section {
-    background-color: #630000;
-    border-top: 1px solid #7a0d0d;
-    border-bottom: 1px solid #7a0d0d;
+    background-color: #09090b;
+    border-top: 1px solid #18181b;
+    border-bottom: none;
     padding-top: 14px;
     padding-bottom: 14px;
     overflow: hidden;
@@ -1137,7 +1161,7 @@
       ">
         <div style="pointer-events:auto;">
           <p id="hero-kicker" class="apple-hero-item" style="
-            font-family: 'Manrope', sans-serif;
+            font-family: 'Switzer', -apple-system, sans-serif;
             font-size: clamp(0.6rem, 1.5vw, 0.7rem);
             letter-spacing: 0.3em;
             text-transform: uppercase;
@@ -1147,21 +1171,23 @@
           ">Design Studio — 2024</p>
 
           <p id="hero-headline" class="apple-hero-item" style="
-            font-family: 'Clash Display', sans-serif;
-            font-weight: 500;
-            font-size: clamp(1.25rem, 3.2vw, 1.75rem);
+            font-family: 'Body Grotesque', 'Body Grotesque Slim', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.4rem, 3.6vw, 2.2rem);
             color: #EDEBDD;
-            line-height: 1.38;
-            letter-spacing: 0.02em;
-            word-spacing: 0.04em;
+            line-height: 1.32;
+            letter-spacing: -0.01em;
+            word-spacing: normal;
             margin-bottom: clamp(10px, 1.5vw, 16px);
           ">Helping Brands Look Better.<br>Perform Better. Grow&nbsp;Faster.</p>
           <p id="hero-subheadline" class="apple-hero-item" style="
-            font-family: 'Manrope', sans-serif;
+            font-family: 'Switzer', -apple-system, sans-serif;
             font-weight: 300;
             font-size: clamp(0.8rem, 1.8vw, 1rem);
             color: rgba(237,235,221,0.65);
             line-height: 1.6;
+            letter-spacing: normal;
+            word-spacing: normal;
             margin-bottom: clamp(18px, 3vw, 32px);
           ">Through branding, UI/UX design, and high-converting websites.</p>
 
@@ -1171,14 +1197,14 @@
                 background:#EDEBDD;color:#1B1717;
                 border:1px solid rgba(237,235,221,0.3);
                 padding: clamp(10px,2vw,18px) clamp(16px,3vw,36px);
-                font-family:'Manrope',sans-serif;
+                font-family:'Switzer', -apple-system, sans-serif;
                 font-size:clamp(0.6rem,1.2vw,0.7rem);
                 font-weight:700;letter-spacing:0.2em;text-transform:uppercase;
                 text-decoration:none;
                 transition: background 0.5s, color 0.5s, border-color 0.5s;
               " onmouseover="this.style.background='#630000';this.style.color='#EDEBDD';this.style.borderColor='#630000';" onmouseout="this.style.background='#EDEBDD';this.style.color='#1B1717';this.style.borderColor='rgba(237,235,221,0.3)';">Start a Project <span style="font-size:14px;">→</span></a>
             <span style="
-              font-family:'Manrope',sans-serif;font-weight:300;
+              font-family:'Switzer', -apple-system, sans-serif;font-weight:300;
               font-size:clamp(0.7rem,1.3vw,0.85rem);
               color:rgba(237,235,221,0.5);
             ">20+ Projects &nbsp;·&nbsp; 10+ Clients &nbsp;·&nbsp; 2+ Years</span>
@@ -1359,7 +1385,7 @@
       </div>
     </div>
   </section>
-  <section id="services" class="bg-zinc-950 text-white border-t border-zinc-900 relative" style="height: calc(var(--vh, 1vh) * 600); min-height: calc(var(--vh, 1vh) * 600);">
+  <section id="services" class="bg-zinc-950 text-white relative" style="height: calc(var(--vh, 1vh) * 600); min-height: calc(var(--vh, 1vh) * 600);">
     <div class="sticky top-0 w-full overflow-hidden" style="height: calc(var(--vh, 1svh) * 100);">
       
       
@@ -2375,7 +2401,7 @@
           <a href="/" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: 700; color: #ffffff; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: opacity 0.2s ease;">
             addesign studio
           </a>
-          <p style="font-family: 'Manrope', sans-serif; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255, 255, 255, 0.7); margin: 0; line-height: 1.2;">
+          <p style="font-family: 'Switzer', -apple-system, sans-serif; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255, 255, 255, 0.7); margin: 0; line-height: 1.2;">
             © 2024 addesign studio. All rights reserved.
           </p>
         </div>
@@ -2416,14 +2442,14 @@
       <div class="footer-mobile-container">
         <!-- Row 1: Nav buttons + Top pill -->
         <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px; width: 100%;">
-          <a href="contact.html" style="display: inline-block; color: #ffffff; font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; padding: 6px 8px;">
+          <a href="contact.html" style="display: inline-block; color: #ffffff; font-family: 'Switzer', -apple-system, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; padding: 6px 8px;">
             Contact
           </a>
           <span style="color: rgba(255, 255, 255, 0.4); font-size: 11px;">·</span>
-          <a href="privacy-policy.html" style="display: inline-block; color: #ffffff; font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; padding: 6px 8px;">
+          <a href="privacy-policy.html" style="display: inline-block; color: #ffffff; font-family: 'Switzer', -apple-system, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; padding: 6px 8px;">
             Privacy Policy
           </a>
-          <a href="#top" class="footer-top-pill" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 9999px; border: 1.5px solid #ffffff; background: transparent; color: #ffffff; text-decoration: none; font-family: 'Manrope', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-left: 6px;">
+          <a href="#top" class="footer-top-pill" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 9999px; border: 1.5px solid #ffffff; background: transparent; color: #ffffff; text-decoration: none; font-family: 'Switzer', -apple-system, sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-left: 6px;">
             <span>Top</span>
             <svg style="width: 10px; height: 10px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <line x1="12" y1="19" x2="12" y2="5"></line>
@@ -2437,13 +2463,13 @@
 
         <!-- Row 2: Social Links -->
         <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px; width: 100%;">
-          <a href="https://www.linkedin.com/in/adley-fernandes-968688228/" target="_blank" rel="noopener" style="display: inline-block; color: #ffffff; font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; padding: 6px 8px;">
+          <a href="https://www.linkedin.com/in/adley-fernandes-968688228/" target="_blank" rel="noopener" style="display: inline-block; color: #ffffff; font-family: 'Switzer', -apple-system, sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; padding: 6px 8px;">
             LinkedIn
           </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener" class="footer-twitter-link" style="display: inline-block; color: #ffffff; font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; padding: 6px 8px;">
+          <a href="https://twitter.com" target="_blank" rel="noopener" class="footer-twitter-link" style="display: inline-block; color: #ffffff; font-family: 'Switzer', -apple-system, sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; padding: 6px 8px;">
             Twitter
           </a>
-          <a href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener" style="display: inline-block; color: #ffffff; font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; padding: 6px 8px;">
+          <a href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener" style="display: inline-block; color: #ffffff; font-family: 'Switzer', -apple-system, sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; padding: 6px 8px;">
             Instagram
           </a>
         </div>
@@ -2453,7 +2479,7 @@
           <a href="/" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 700; color: #ffffff; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none;">
             addesign studio
           </a>
-          <p style="font-family: 'Manrope', sans-serif; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255, 255, 255, 0.7); margin: 0; line-height: 1.3;">
+          <p style="font-family: 'Switzer', -apple-system, sans-serif; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255, 255, 255, 0.7); margin: 0; line-height: 1.3;">
             © 2024 addesign studio. All rights reserved.
           </p>
         </div>
@@ -2956,7 +2982,7 @@
 
     <div class="mb-4 md:mb-8">
       <p class="font-manrope text-[8px] tracking-[0.2em] uppercase text-zinc-400 font-bold mb-2">Submit Review</p>
-      <h3 class="font-dm text-2xl font-bold tracking-tight text-white">Leave a Testimonial</h3>
+      <h3 class="font-dm text-2xl font-normal tracking-tight text-white">Leave a Testimonial</h3>
     </div>
 
     <form id="testimonial-form" class="space-y-5" novalidate="">
@@ -3305,14 +3331,14 @@ document.addEventListener('DOMContentLoaded', () => {
     content.innerHTML = `
       <div class="w-full bg-[#1B1717] text-white pb-32 md:pb-64 font-sans overflow-x-hidden">
         <style>
-          #case-study-content { font-family: Arial, sans-serif !important; }
-          #case-study-content h1, #case-study-content h2, #case-study-content h3 { font-family: 'Clash Display', Helvetica, Arial, sans-serif !important; }
+          #case-study-content { font-family: 'Switzer', -apple-system, sans-serif !important; }
+          #case-study-content h1, #case-study-content h2, #case-study-content h3 { font-family: 'Body Grotesque', 'Body Grotesque Slim', -apple-system, BlinkMacSystemFont, sans-serif !important; font-weight: 700 !important; letter-spacing: -0.01em !important; }
         </style>
         <!-- Section 1: Intro -->
         <section class="flex flex-col items-center justify-center px-6 text-center space-y-8 md:space-y-16" style="min-height: calc(var(--vh, 1svh) * 100);">
           <div class="benner-reveal overflow-hidden">
             <span class="text-[8px] tracking-[0.5em] uppercase text-zinc-400 font-bold block mb-4 md:mb-8">Section 01 — Intro</span>
-            <h1 class="text-4xl md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-white mb-4 md:mb-12">Benner<br/>Tea Co.</h1>
+            <h1 class="text-4xl md:text-[12rem] font-normal tracking-tighter leading-[0.85] text-white mb-4 md:mb-12">Benner<br/>Tea Co.</h1>
           </div>
           <div class="benner-reveal overflow-hidden max-w-2xl">
             <p class="text-lg md:text-2xl font-light leading-relaxed text-zinc-400 italic">A rebrand focused on making everyday tea feel modern, minimal, and emotionally relevant.</p>
@@ -3336,7 +3362,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div class="md:col-span-8 space-y-12">
               <div class="benner-reveal overflow-hidden">
-                <h3 class="text-4xl md:text-7xl font-bold tracking-tighter leading-tight">The product was good.<br/><span class="text-zinc-300">The perception wasn’t.</span></h3>
+                <h3 class="text-4xl md:text-7xl font-normal tracking-tighter leading-tight">The product was good.<br/><span class="text-zinc-300">The perception wasn’t.</span></h3>
               </div>
               <div class="benner-reveal overflow-hidden max-w-xl">
                 <p class="text-lg md:text-xl text-zinc-400 leading-relaxed font-light">
@@ -3354,7 +3380,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div class="md:col-span-8">
               <div class="benner-reveal overflow-hidden">
-                <h3 class="text-4xl md:text-8xl font-bold tracking-tighter leading-[0.9] mb-6 md:mb-12 italic">
+                <h3 class="text-4xl md:text-8xl font-normal tracking-tighter leading-[0.9] mb-6 md:mb-12 italic">
                   Tea is no longer just a beverage—<br/>
                   it’s part of a daily ritual.<br/>
                   A moment of pause.<br/>
@@ -3373,7 +3399,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <h2 class="text-[8px] tracking-[0.3em] uppercase font-black text-zinc-300">04 / The Objective</h2>
             </div>
             <div class="md:col-span-8">
-              <h3 class="text-4xl md:text-6xl font-bold tracking-tighter leading-tight mb-12 md:mb-24">Create a brand that feels:</h3>
+              <h3 class="text-4xl md:text-6xl font-normal tracking-tighter leading-tight mb-12 md:mb-24">Create a brand that feels:</h3>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 border-l border-white/10 pl-12">
                 <div class="benner-reveal overflow-hidden">
                   <p class="text-2xl font-light italic">Calm,<br/><span class="text-zinc-300 not-italic">but not boring</span></p>
@@ -3397,7 +3423,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <h2 class="text-[8px] tracking-[0.3em] uppercase font-black text-zinc-300">05 / The Approach</h2>
             </div>
             <div class="md:col-span-8">
-              <h3 class="text-5xl md:text-9xl font-bold tracking-tighter leading-tight mb-6 md:mb-12 italic">Reduce noise.<br/>Increase meaning.</h3>
+              <h3 class="text-5xl md:text-9xl font-normal tracking-tighter leading-tight mb-6 md:mb-12 italic">Reduce noise.<br/>Increase meaning.</h3>
               <div class="benner-reveal overflow-hidden max-w-2xl">
                 <p class="text-lg md:text-xl text-zinc-400 leading-relaxed font-light">
                   Every decision—from layout to color to typography—was made to simplify the experience and strengthen emotional connection.
@@ -3433,7 +3459,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <h2 class="text-[8px] tracking-[0.3em] uppercase font-black text-zinc-300">07 / Transformation</h2>
             </div>
             <div class="md:col-span-8">
-              <h3 class="text-4xl md:text-7xl font-bold tracking-tighter leading-tight mb-6 md:mb-12">From a brand that felt generic and forgettable<br/><span class="text-zinc-300">to one that feels intentional, modern, and distinct.</span></h3>
+              <h3 class="text-4xl md:text-7xl font-normal tracking-tighter leading-tight mb-6 md:mb-12">From a brand that felt generic and forgettable<br/><span class="text-zinc-300">to one that feels intentional, modern, and distinct.</span></h3>
               <p class="text-xl md:text-2xl font-light text-zinc-400 leading-tight">A system that not only looks better—but communicates better.</p>
             </div>
           </section>
@@ -3454,7 +3480,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <section class="pt-16 md:pt-32 pb-32 md:pb-64">
             <div class="group cursor-pointer border border-white/10 p-8 md:p-24 rounded-[3rem] hover:bg-zinc-950 transition-all duration-700" onclick="openGuidelines()">
               <p class="text-[8px] uppercase tracking-[0.5em] font-black text-zinc-300 mb-6 md:mb-12 text-center">09 / Full Guidelines</p>
-              <h2 class="text-3xl md:text-[6rem] font-bold tracking-tighter leading-none text-center mb-8 md:mb-16">Explore the Guidelines</h2>
+              <h2 class="text-3xl md:text-[6rem] font-normal tracking-tighter leading-none text-center mb-8 md:mb-16">Explore the Guidelines</h2>
               <div class="flex items-center justify-center gap-6 text-zinc-400 group-hover:text-white transition-colors duration-500">
                 <span class="text-[8px] md:text-[11px] font-bold uppercase tracking-[0.3em]">View Visual System</span>
                 <span class="material-symbols-outlined text-4xl group-hover:translate-y-4 transition-transform duration-700">south</span>
@@ -3497,15 +3523,15 @@ document.addEventListener('DOMContentLoaded', () => {
     content.innerHTML = `
       <div class="w-full bg-[#1B1717] pb-32 md:pb-64 font-sans overflow-x-hidden" style="min-height: calc(var(--vh, 1svh) * 100);">
         <style>
-          #case-study-content { font-family: Arial, sans-serif !important; }
-          #case-study-content h1, #case-study-content h2, #case-study-content h3 { font-family: Helvetica, Arial, sans-serif !important; }
+          #case-study-content { font-family: 'Switzer', -apple-system, sans-serif !important; }
+          #case-study-content h1, #case-study-content h2, #case-study-content h3 { font-family: 'Body Grotesque', 'Body Grotesque Slim', -apple-system, BlinkMacSystemFont, sans-serif !important; font-weight: 700 !important; letter-spacing: -0.01em !important; }
         </style>
         <!-- Header Section -->
         <div class="px-6 md:px-24 pt-16 md:pt-48 mb-6 md:mb-16 max-w-[1400px] mx-auto">
           <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-8">
             <div class="max-w-4xl">
               <span class="text-[8px] tracking-[0.5em] uppercase text-zinc-400 font-bold block mb-6">01 / PROJECT</span>
-              <h1 class="text-3xl md:text-[10rem] font-bold tracking-tighter leading-[0.85] text-white">${data.title}</h1>
+              <h1 class="text-3xl md:text-[10rem] font-normal tracking-tighter leading-[0.85] text-white">${data.title}</h1>
             </div>
             <div class="hidden md:block pb-4">
               <div class="h-[1px] w-32 bg-white/10"></div>

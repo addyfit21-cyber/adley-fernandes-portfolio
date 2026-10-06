@@ -69,11 +69,14 @@ export default {
         "full": "9999px"
       },
       fontFamily: {
-        "sans": ["Manrope", "sans-serif"],
-        "heading": ["'Clash Display'", "'DM Sans'", "sans-serif"],
-        "headline": ["'Clash Display'", "'DM Sans'", "sans-serif"],
-        "body": ["Manrope", "sans-serif"],
-        "label": ["Manrope", "sans-serif"]
+        "sans": ["'Switzer'", "Manrope", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        "heading": ["'Body Grotesque'", "'Body Grotesque Slim'", "-apple-system", "sans-serif"],
+        "headline": ["'Body Grotesque'", "'Body Grotesque Slim'", "-apple-system", "sans-serif"],
+        "serif": ["'Body Grotesque'", "'Body Grotesque Slim'", "-apple-system", "sans-serif"],
+        "body": ["'Switzer'", "Manrope", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        "label": ["'Switzer'", "Manrope", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        "dm": ["'Body Grotesque'", "'Body Grotesque Slim'", "-apple-system", "sans-serif"],
+        "manrope": ["'Switzer'", "Manrope", "-apple-system", "BlinkMacSystemFont", "sans-serif"]
       }
     },
   },

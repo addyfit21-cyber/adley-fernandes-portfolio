@@ -1,3 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&display=swap');
+
+@font-face {
+  font-family: 'Body Grotesque';
+  src: url('/fonts/Body-Grotesque-Bold.ttf') format('truetype');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Body Grotesque Slim';
+  src: url('/fonts/Body-Grotesque-Slim-Bold.ttf') format('truetype');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Body Grotesque Fit';
+  src: url('/fonts/Body-Grotesque-Fit-Bold.ttf') format('truetype');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Body Grotesque Large';
+  src: url('/fonts/Body-Grotesque-Large-Bold.ttf') format('truetype');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bootzy TM';
+  src: url('/fonts/Body-Grotesque-Bold.ttf') format('truetype');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -27,6 +70,21 @@
 }
 
 @layer base {
+  body {
+    font-family: 'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    letter-spacing: normal;
+    word-spacing: normal;
+  }
+  h1, h2, h3, h4, h5, h6, .font-heading, .font-headline, .font-dm {
+    font-family: 'Body Grotesque', 'Body Grotesque Slim', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.01em !important;
+    word-spacing: normal;
+  }
+  h1.tracking-tighter, h2.tracking-tighter, h3.tracking-tighter, h4.tracking-tighter, .font-dm.tracking-tighter,
+  h1.tracking-tight, h2.tracking-tight, h3.tracking-tight, h4.tracking-tight, .font-dm.tracking-tight {
+    letter-spacing: 0.015em !important;
+  }
   ::selection {
     background-color: #FA6B48;
     color: white;
@@ -122,7 +180,7 @@
   .footer-links-center a {
     display: inline-block !important;
     color: #ffffff !important;
-    font-family: 'Manrope', sans-serif !important;
+    font-family: 'Switzer', -apple-system, BlinkMacSystemFont, sans-serif !important;
     font-size: 11px !important;
     font-weight: 600 !important;
     letter-spacing: 0.2em !important;
@@ -146,6 +204,22 @@
   }
 }
 
+/* ── Typography Utility Overrides ── */
+h1, h2, h3, h4, h5, h6,
+.font-dm, .font-heading, .font-headline, .font-serif,
+h1.font-bold, h2.font-bold, h3.font-bold, h4.font-bold, h5.font-bold, h6.font-bold,
+h1.font-semibold, h2.font-semibold, h3.font-semibold, h4.font-semibold,
+h1.font-medium, h2.font-medium, h3.font-medium, h4.font-medium,
+.font-dm.font-bold, .font-dm.font-semibold, .font-heading.font-bold, .font-headline.font-bold {
+  font-family: 'Body Grotesque', 'Body Grotesque Slim', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em !important;
+  word-spacing: normal;
+}
+
+.font-manrope, .font-sans, .font-body {
+  font-family: 'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
 
 /* ── Battery Saver & Low Power Mode: Suppress native play icons on all devices ── */
 video::-webkit-media-controls,

@@ -1,7 +1,29 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <style id="pf-overlay-style">
+    @font-face {
+      font-family: 'Body Grotesque';
+      src: url('/fonts/Body-Grotesque-Bold.ttf') format('truetype');
+      font-weight: 400 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Body Grotesque Slim';
+      src: url('/fonts/Body-Grotesque-Slim-Bold.ttf') format('truetype');
+      font-weight: 400 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Bootzy TM';
+      src: url('/fonts/Body-Grotesque-Bold.ttf') format('truetype');
+      font-weight: 400 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
   #page-transition-overlay {
     position: fixed !important;
     inset: 0 !important;
@@ -48,32 +70,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy � addesign studio</title>
   <meta name="description" content="Privacy Policy for addesign studio � how we collect, use, and protect your personal information." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --bg: #0d0b09; --surface: #141210; --border: rgba(255,255,255,0.08);
       --text: rgba(255,255,255,0.88); --muted: rgba(255,255,255,0.42);
-      --accent: #c9522a; --font: "Manrope", sans-serif;
-      --font-head: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --accent: #c9522a; --font: "Switzer", -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-head: 'Body Grotesque', 'Body Grotesque Slim', -apple-system, BlinkMacSystemFont, sans-serif;
     }
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 15px; line-height: 1.8; -webkit-font-smoothing: antialiased; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 15px; line-height: 1.8; letter-spacing: normal; word-spacing: normal; -webkit-font-smoothing: antialiased; }
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem; background: rgba(13,11,9,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-    .nav-logo { font-family: var(--font-head); font-weight: 500; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: lowercase; color: #fff; text-decoration: none; }
+    .nav-logo { font-family: var(--font-head); font-weight: 400; font-size: 1.1rem; letter-spacing: 0.05em; color: #fff; text-decoration: none; }
     .nav-back { font-family: var(--font); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; }
     .nav-back:hover { color: #fff; }
     .page-header { padding: 10rem 3rem 4rem; border-bottom: 1px solid var(--border); max-width: 860px; margin: 0 auto; }
     .page-header .label { font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; display: block; }
-    .page-header h1 { font-family: var(--font-head); font-weight: 100; font-size: clamp(2.5rem, 6vw, 5rem); letter-spacing: -0.03em; line-height: 1.05; color: #fff; margin-bottom: 1.5rem; }
+    .page-header h1 { font-family: var(--font-head); font-weight: 400; font-size: clamp(2.5rem, 6vw, 5rem); letter-spacing: 0.015em; line-height: 1.05; color: #fff; margin-bottom: 1.5rem; word-spacing: 0.02em; }
     .page-header .effective { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
     .content { max-width: 860px; margin: 0 auto; padding: 4rem 3rem 8rem; }
     .intro { font-size: 1rem; color: rgba(255,255,255,0.6); line-height: 1.9; margin-bottom: 4rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border); }
     .pp-section { padding: 3rem 0; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 160px 1fr; gap: 2rem 4rem; align-items: start; }
-    .pp-section .section-num { font-family: var(--font-head); font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); padding-top: 0.2rem; }
-    .pp-section .section-title { font-family: var(--font-head); font-weight: 400; font-size: 1.05rem; letter-spacing: -0.01em; color: #fff; margin-bottom: 1.2rem; }
+    .pp-section .section-num { font-family: var(--font); font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); padding-top: 0.2rem; }
+    .pp-section .section-title { font-family: var(--font-head); font-weight: 400; font-size: 1.25rem; letter-spacing: 0.015em; word-spacing: 0.02em; color: #fff; margin-bottom: 1.2rem; }
     .pp-section p { font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 1.9; margin-bottom: 0.8rem; }
     .pp-section p:last-child { margin-bottom: 0; }
     .pp-section ul { list-style: none; padding: 0; margin: 0.4rem 0 0.8rem; }

@@ -1,5 +1,27 @@
-﻿<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html><html lang="en"><head>
 <style id="pf-overlay-style">
+    @font-face {
+      font-family: 'Body Grotesque';
+      src: url('/fonts/Body-Grotesque-Bold.ttf') format('truetype');
+      font-weight: 400 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Body Grotesque Slim';
+      src: url('/fonts/Body-Grotesque-Slim-Bold.ttf') format('truetype');
+      font-weight: 400 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Bootzy TM';
+      src: url('/fonts/Body-Grotesque-Bold.ttf') format('truetype');
+      font-weight: 400 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
   #page-transition-overlay {
     position: fixed !important;
     inset: 0 !important;
@@ -47,12 +69,27 @@
   <title>Illustration & Sketches | Adley Fernandes</title>
   <meta name="description" content="Portfolio of Adley Fernandes.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800;900&family=Manrope:wght@300;400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
   <style>
     html { scroll-behavior: smooth; }
-    body { font-family: 'Manrope', sans-serif; }
-    h1, h2, h3, h4, h5, h6 { font-family: 'Clash Display', 'DM Sans', sans-serif; font-weight: 500; }
+    body { 
+      font-family: 'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+      letter-spacing: normal; 
+      word-spacing: normal; 
+    }
+    h1, h2, h3, h4, h5, h6, .font-dm {
+      font-family: 'Body Grotesque', 'Body Grotesque Slim', -apple-system, BlinkMacSystemFont, sans-serif !important;
+      font-weight: 700 !important;
+      letter-spacing: -0.01em !important;
+      word-spacing: normal;
+    }
+    h1.tracking-tighter, h2.tracking-tighter, h3.tracking-tighter, h4.tracking-tighter, .font-dm.tracking-tighter,
+    h1.tracking-tight, h2.tracking-tight, h3.tracking-tight, h4.tracking-tight, .font-dm.tracking-tight {
+      letter-spacing: 0.015em !important;
+    }
   </style>
   <link rel="stylesheet" href="/cursor.css">
   <link href="/dist.css" rel="stylesheet">
@@ -103,7 +140,7 @@
       <div class="w-full pb-8 border-b border-[#1B1717]/10 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div class="text-left">
           <p class="text-[8px] uppercase tracking-[0.4em] font-black text-[#630000] mb-3">Project Overview</p>
-          <h2 class="text-4xl md:text-6xl font-bold tracking-tighter text-[#1B1717]">Illustration & Sketches</h2>
+          <h2 class="text-4xl md:text-6xl font-normal tracking-tighter text-[#1B1717]">Illustration & Sketches</h2>
         </div>
         <div class="text-left md:text-right">
           <p class="text-[8px] uppercase tracking-[0.4em] font-black text-[#630000] mb-2">Deliverables</p>
@@ -120,7 +157,7 @@
       <div class="flex flex-col gap-6">
         <div>
           <p class="text-[8px] uppercase tracking-[0.5em] text-white font-bold mb-6">03 — Project</p>
-          <h3 class="text-[3rem] sm:text-[4.5rem] md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-white">McLaren</h3>
+          <h3 class="text-[3rem] sm:text-[4.5rem] md:text-[12rem] font-normal tracking-tighter leading-[0.85] text-white">McLaren</h3>
         </div>
         <div class="max-w-2xl">
           <p class="text-base md:text-lg font-medium leading-snug text-white">Freelance Sketch Artist — Custom automotive artwork and concept studies.</p>
@@ -158,12 +195,12 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
         <div class="py-5 md:py-10 md:pr-16">
           <p class="text-[8px] tracking-[0.3em] uppercase font-black text-white mb-4">01 / The Project</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-white mb-4">Custom Automotive Art.</h3>
+          <h3 class="text-2xl md:text-4xl font-normal tracking-tighter leading-tight text-white mb-4">Custom Automotive Art.</h3>
           <p class="text-[8px] md:text-[11px] leading-relaxed text-zinc-300 font-normal">Commissioned by McLaren Mumbai to create custom automotive sketches, capturing the precise vision and aesthetic of the brand.</p>
         </div>
         <div class="py-5 md:py-10 md:pl-16">
           <p class="text-[8px] tracking-[0.3em] uppercase font-black text-white mb-4">02 / Approach</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-white mb-4">Focus on details.</h3>
+          <h3 class="text-2xl md:text-4xl font-normal tracking-tighter leading-tight text-white mb-4">Focus on details.</h3>
           <p class="text-[8px] md:text-[11px] leading-relaxed text-zinc-300 font-normal">I focused on delivering high-quality artwork with meticulous attention to detail, ensuring the final pieces met the client's exact standards.</p>
         </div>
       </div>
@@ -184,7 +221,7 @@
         </div>
         <div class="py-5 md:py-10 md:pl-16">
           <p class="text-[8px] tracking-[0.3em] uppercase font-black text-white mb-4">04 / Results</p>
-          <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-white mb-3">On time and on point.</h3>
+          <h3 class="text-xl md:text-2xl font-normal tracking-tighter leading-snug text-white mb-3">On time and on point.</h3>
           <p class="text-sm font-medium text-zinc-300">Delivered the detailed sketches on schedule, perfectly aligning with McLaren's requirements and vision.</p>
         </div>
       </div>
@@ -198,7 +235,7 @@
       <div class="flex flex-col gap-6">
         <div>
           <p class="text-[8px] uppercase tracking-[0.5em] text-white font-bold mb-6">04 — Project</p>
-          <h3 class="text-[3rem] sm:text-[4.5rem] md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-white">Porsche</h3>
+          <h3 class="text-[3rem] sm:text-[4.5rem] md:text-[12rem] font-normal tracking-tighter leading-[0.85] text-white">Porsche</h3>
         </div>
         <div class="max-w-2xl">
           <p class="text-base md:text-lg font-medium leading-snug text-white">Freelance Sketch Artist — Custom automotive artwork and concept studies.</p>
@@ -235,12 +272,12 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
         <div class="py-5 md:py-10 md:pr-16">
           <p class="text-[8px] tracking-[0.3em] uppercase font-black text-white mb-4">01 / The Project</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-white mb-4">Exclusive Commission.</h3>
+          <h3 class="text-2xl md:text-4xl font-normal tracking-tighter leading-tight text-white mb-4">Exclusive Commission.</h3>
           <p class="text-[8px] md:text-[11px] leading-relaxed text-zinc-300 font-normal">A special commission for Porsche Mumbai to create highly detailed, custom automotive artwork that reflects the brand's iconic design.</p>
         </div>
         <div class="py-5 md:py-10 md:pl-16">
           <p class="text-[8px] tracking-[0.3em] uppercase font-black text-white mb-4">02 / Approach</p>
-          <h3 class="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-white mb-4">Precision and quality.</h3>
+          <h3 class="text-2xl md:text-4xl font-normal tracking-tighter leading-tight text-white mb-4">Precision and quality.</h3>
           <p class="text-[8px] md:text-[11px] leading-relaxed text-zinc-300 font-normal">I prioritized intricate detailing and clean execution, making sure every line captured the essence of the vehicles.</p>
         </div>
       </div>
@@ -261,7 +298,7 @@
         </div>
         <div class="py-5 md:py-10 md:pl-16">
           <p class="text-[8px] tracking-[0.3em] uppercase font-black text-white mb-4">04 / Results</p>
-          <h3 class="text-xl md:text-2xl font-bold tracking-tighter leading-snug text-white mb-3">Client satisfaction.</h3>
+          <h3 class="text-xl md:text-2xl font-normal tracking-tighter leading-snug text-white mb-3">Client satisfaction.</h3>
           <p class="text-sm font-medium text-zinc-300">Successfully completed and delivered the bespoke A1 sketches, fully satisfying the client's expectations for both quality and timeline.</p>
         </div>
       </div>
@@ -272,7 +309,7 @@
     <!-- Services CTA Strip -->
     <div class="px-6 md:px-24 py-12 md:py-24 border-t border-white/10 bg-[#1B1717] text-center">
       <span class="text-[8px] tracking-[0.3em] uppercase text-zinc-400 font-bold mb-6 block">Start a Project</span>
-      <h3 class="text-[clamp(2.5rem,6vw,5rem)] font-bold tracking-tighter mb-6 md:mb-12 text-white">Let's build<br/>something iconic.</h3>
+      <h3 class="text-[clamp(2.5rem,6vw,5rem)] font-normal tracking-tighter mb-6 md:mb-12 text-white">Let's build<br/>something iconic.</h3>
       <a class="inline-flex items-center gap-4 text-[8px] tracking-[0.3em] uppercase font-bold border-b-2 border-zinc-900 pb-2 hover:opacity-50 text-white transition-all duration-300" href="contact.html">
         Start your project
         <span class="material-symbols-outlined" style="font-size:14px;">arrow_forward</span>
@@ -804,7 +841,7 @@
 
     <div class="mb-4 md:mb-8">
       <p class="text-[8px] tracking-[0.2em] uppercase text-zinc-400 font-bold mb-2">Submit Review</p>
-      <h3 class="text-2xl font-bold tracking-tight text-white">Leave a Testimonial</h3>
+      <h3 class="text-2xl font-normal tracking-tight text-white">Leave a Testimonial</h3>
     </div>
 
     <form id="testimonial-form" class="space-y-6" novalidate>
@@ -1188,13 +1225,13 @@ else {
       <div class="w-full bg-[#1B1717] text-white pb-32 md:pb-64 font-sans overflow-x-hidden">
         <style>
           #case-study-content { font-family: Arial, sans-serif !important; }
-          #case-study-content h1, #case-study-content h2, #case-study-content h3 { font-family: Helvetica, Arial, sans-serif !important; }
+          #case-study-content h1, #case-study-content h2, #case-study-content h3 { font-family: 'Body Grotesque', 'Body Grotesque Slim', -apple-system, BlinkMacSystemFont, sans-serif !important; font-weight: 700 !important; letter-spacing: -0.01em !important; }
         </style>
         <!-- Section 1: Intro -->
         <section class="flex flex-col items-center justify-center px-6 text-center space-y-8 md:space-y-16" style="min-height: calc(var(--vh, 1svh) * 100);">
           <div class="benner-reveal overflow-hidden">
             <span class="text-[8px] tracking-[0.5em] uppercase text-zinc-400 font-bold block mb-4 md:mb-8">Section 01 — Intro</span>
-            <h1 class="text-4xl md:text-[12rem] font-bold tracking-tighter leading-[0.85] text-white mb-4 md:mb-12">Benner<br/>Tea Co.</h1>
+            <h1 class="text-4xl md:text-[12rem] font-normal tracking-tighter leading-[0.85] text-white mb-4 md:mb-12">Benner<br/>Tea Co.</h1>
           </div>
           <div class="benner-reveal overflow-hidden max-w-2xl">
             <p class="text-lg md:text-2xl font-light leading-relaxed text-zinc-400 italic">A rebrand focused on making everyday tea feel modern, minimal, and emotionally relevant.</p>
@@ -1218,7 +1255,7 @@ else {
             </div>
             <div class="md:col-span-8 space-y-12">
               <div class="benner-reveal overflow-hidden">
-                <h3 class="text-4xl md:text-7xl font-bold tracking-tighter leading-tight">The product was good.<br/><span class="text-zinc-300">The perception wasn’t.</span></h3>
+                <h3 class="text-4xl md:text-7xl font-normal tracking-tighter leading-tight">The product was good.<br/><span class="text-zinc-300">The perception wasn’t.</span></h3>
               </div>
               <div class="benner-reveal overflow-hidden max-w-xl">
                 <p class="text-lg md:text-xl text-zinc-400 leading-relaxed font-light">
@@ -1236,7 +1273,7 @@ else {
             </div>
             <div class="md:col-span-8">
               <div class="benner-reveal overflow-hidden">
-                <h3 class="text-4xl md:text-8xl font-bold tracking-tighter leading-[0.9] mb-6 md:mb-12 italic">
+                <h3 class="text-4xl md:text-8xl font-normal tracking-tighter leading-[0.9] mb-6 md:mb-12 italic">
                   Tea is no longer just a beverage—<br/>
                   it’s part of a daily ritual.<br/>
                   A moment of pause.<br/>
@@ -1255,7 +1292,7 @@ else {
               <h2 class="text-[8px] tracking-[0.3em] uppercase font-black text-zinc-300">04 / The Objective</h2>
             </div>
             <div class="md:col-span-8">
-              <h3 class="text-4xl md:text-6xl font-bold tracking-tighter leading-tight mb-12 md:mb-24">Create a brand that feels:</h3>
+              <h3 class="text-4xl md:text-6xl font-normal tracking-tighter leading-tight mb-12 md:mb-24">Create a brand that feels:</h3>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 border-l border-white/10 pl-12">
                 <div class="benner-reveal overflow-hidden">
                   <p class="text-2xl font-light italic">Calm,<br/><span class="text-zinc-300 not-italic">but not boring</span></p>
@@ -1279,7 +1316,7 @@ else {
               <h2 class="text-[8px] tracking-[0.3em] uppercase font-black text-zinc-300">05 / The Approach</h2>
             </div>
             <div class="md:col-span-8">
-              <h3 class="text-5xl md:text-9xl font-bold tracking-tighter leading-tight mb-6 md:mb-12 italic">Reduce noise.<br/>Increase meaning.</h3>
+              <h3 class="text-5xl md:text-9xl font-normal tracking-tighter leading-tight mb-6 md:mb-12 italic">Reduce noise.<br/>Increase meaning.</h3>
               <div class="benner-reveal overflow-hidden max-w-2xl">
                 <p class="text-lg md:text-xl text-zinc-400 leading-relaxed font-light">
                   Every decision—from layout to color to typography—was made to simplify the experience and strengthen emotional connection.
@@ -1315,7 +1352,7 @@ else {
               <h2 class="text-[8px] tracking-[0.3em] uppercase font-black text-zinc-300">07 / Transformation</h2>
             </div>
             <div class="md:col-span-8">
-              <h3 class="text-4xl md:text-7xl font-bold tracking-tighter leading-tight mb-6 md:mb-12">From a brand that felt generic and forgettable<br/><span class="text-zinc-300">to one that feels intentional, modern, and distinct.</span></h3>
+              <h3 class="text-4xl md:text-7xl font-normal tracking-tighter leading-tight mb-6 md:mb-12">From a brand that felt generic and forgettable<br/><span class="text-zinc-300">to one that feels intentional, modern, and distinct.</span></h3>
               <p class="text-xl md:text-2xl font-light text-zinc-400 leading-tight">A system that not only looks better—but communicates better.</p>
             </div>
           </section>
@@ -1336,7 +1373,7 @@ else {
           <section class="pt-16 md:pt-32 pb-32 md:pb-64">
             <div class="group cursor-pointer border border-white/10 p-8 md:p-24 rounded-[3rem] hover:bg-zinc-950 transition-all duration-700" onclick="openGuidelines()">
               <p class="text-[8px] uppercase tracking-[0.5em] font-black text-zinc-300 mb-6 md:mb-12 text-center">09 / Full Guidelines</p>
-              <h2 class="text-3xl md:text-[6rem] font-bold tracking-tighter leading-none text-center mb-8 md:mb-16">Explore the Guidelines</h2>
+              <h2 class="text-3xl md:text-[6rem] font-normal tracking-tighter leading-none text-center mb-8 md:mb-16">Explore the Guidelines</h2>
               <div class="flex items-center justify-center gap-6 text-zinc-400 group-hover:text-white transition-colors duration-500">
                 <span class="text-[8px] md:text-[11px] font-bold uppercase tracking-[0.3em]">View Visual System</span>
                 <span class="material-symbols-outlined text-4xl group-hover:translate-y-4 transition-transform duration-700">south</span>
@@ -1380,14 +1417,14 @@ else {
       <div class="w-full bg-[#1B1717] pb-32 md:pb-64 font-sans overflow-x-hidden" style="min-height: calc(var(--vh, 1svh) * 100);">
         <style>
           #case-study-content { font-family: Arial, sans-serif !important; }
-          #case-study-content h1, #case-study-content h2, #case-study-content h3 { font-family: Helvetica, Arial, sans-serif !important; }
+          #case-study-content h1, #case-study-content h2, #case-study-content h3 { font-family: 'Body Grotesque', 'Body Grotesque Slim', -apple-system, BlinkMacSystemFont, sans-serif !important; font-weight: 700 !important; letter-spacing: -0.01em !important; }
         </style>
         <!-- Header Section -->
         <div class="px-6 md:px-24 pt-16 md:pt-48 mb-6 md:mb-16 max-w-[1400px] mx-auto">
           <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-8">
             <div class="max-w-4xl">
               <span class="text-[8px] tracking-[0.5em] uppercase text-zinc-400 font-bold block mb-6">01 / PROJECT</span>
-              <h1 class="text-3xl md:text-[10rem] font-bold tracking-tighter leading-[0.85] text-white">${data.title}</h1>
+              <h1 class="text-3xl md:text-[10rem] font-normal tracking-tighter leading-[0.85] text-white">${data.title}</h1>
             </div>
             <div class="hidden md:block pb-4">
               <div class="h-[1px] w-32 bg-white/10"></div>
