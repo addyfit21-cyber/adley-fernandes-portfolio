@@ -4766,6 +4766,11 @@ video {
     line-height: 1.75rem;
   }
 
+  .md\:text-xs{
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
+
   .md\:leading-none{
     line-height: 1;
   }
