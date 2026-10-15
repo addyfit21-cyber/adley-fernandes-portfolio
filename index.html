@@ -973,7 +973,7 @@
 
   /* Very small screens (iPhone SE, 375px) */
   @media (max-width: 390px) {
-    #hero-headline { font-size: clamp(1.9rem, 10vw, 2.5rem) !important; }
+    #hero-headline { font-size: clamp(1.2rem, 5.5vw, 1.45rem) !important; }
     .fade-enter-card .relative.h-\[500px\] { height: 240px !important; }
   }
 
@@ -1000,6 +1000,25 @@
   @media (hover: hover) and (pointer: fine) {
     .css-marquee-reverse:hover {
       animation-play-state: paused;
+    }
+  }
+
+  
+  /* ── Navbar Logo Left Alignment with Hero Text & CTA Button ── */
+  #nav-logo-wrapper {
+    padding-top: clamp(18px, 3vh, 24px);
+    padding-left: clamp(20px, 4vw, 48px);
+  }
+  .logo-nav-img {
+    margin-left: -10px;
+  }
+  @media (max-width: 768px) {
+    #nav-logo-wrapper {
+      padding-top: 12px;
+      padding-left: clamp(16px, 4vw, 24px);
+    }
+    .logo-nav-img {
+      margin-left: -7px;
     }
   }
 
@@ -1058,10 +1077,10 @@
 
 <!-- TopNavBar -->
 <nav id="main-nav" class="pointer-events-none">
-  <!-- Top Left: Logo (Original form, NO BLEND) -->
-  <div class="fixed top-0 left-0 z-[120]">
-    <a href="/" class="pointer-events-auto block">
-      <img src="/Images/Brands/Adesign%20studio/Adesign%20logo%20colour-01.webp" alt="Adesign Studio" class="h-10 md:h-14 w-auto object-contain" decoding="async" loading="lazy">
+    <!-- Top Left: Logo (Left-aligned with Hero Text & CTA Button) -->
+  <div id="nav-logo-wrapper" class="fixed top-0 left-0 z-[120] pointer-events-none">
+    <a href="/" class="pointer-events-auto block" id="nav-logo-link">
+      <img src="/Images/Brands/Adesign%20studio/Adesign%20logo%20colour-01.webp" alt="Adesign Studio" class="h-10 md:h-14 w-auto object-contain logo-nav-img" decoding="async" loading="lazy">
     </a>
   </div>
 
@@ -1156,57 +1175,58 @@
         left: 0;
         width: 100%;
         z-index: 10;
-        padding: clamp(24px, 5vw, 64px) clamp(20px, 6vw, 96px);
+        padding: clamp(20px, 3.5vh, 44px) clamp(20px, 4vw, 48px);
         pointer-events: none;
       ">
-        <div style="pointer-events:auto;">
+        <div style="pointer-events:auto; max-width: min(480px, 100%);">
           <p id="hero-kicker" class="apple-hero-item" style="
             font-family: 'Switzer', -apple-system, sans-serif;
-            font-size: clamp(0.6rem, 1.5vw, 0.7rem);
-            letter-spacing: 0.3em;
+            font-size: clamp(0.58rem, 0.85vw, 0.65rem);
+            letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: rgba(237,235,221,0.55);
+            color: rgba(237,235,221,0.6);
             font-weight: 700;
-            margin-bottom: clamp(10px, 2vw, 18px);
+            margin-bottom: 8px;
           ">Design Studio — 2024</p>
 
           <p id="hero-headline" class="apple-hero-item" style="
             font-family: 'Body Grotesque', 'Body Grotesque Slim', -apple-system, BlinkMacSystemFont, sans-serif;
             font-weight: 700;
-            font-size: clamp(1.4rem, 3.6vw, 2.2rem);
+            font-size: clamp(1.25rem, 2.2vw, 1.65rem);
             color: #EDEBDD;
-            line-height: 1.32;
-            letter-spacing: -0.01em;
+            line-height: 1.2;
+            letter-spacing: -0.015em;
             word-spacing: normal;
-            margin-bottom: clamp(10px, 1.5vw, 16px);
+            margin-bottom: 8px;
           ">Helping Brands Look Better.<br>Perform Better. Grow&nbsp;Faster.</p>
           <p id="hero-subheadline" class="apple-hero-item" style="
             font-family: 'Switzer', -apple-system, sans-serif;
             font-weight: 300;
-            font-size: clamp(0.8rem, 1.8vw, 1rem);
-            color: rgba(237,235,221,0.65);
-            line-height: 1.6;
-            letter-spacing: normal;
+            font-size: clamp(0.75rem, 0.95vw, 0.85rem);
+            color: rgba(237,235,221,0.7);
+            line-height: 1.45;
+            letter-spacing: 0.01em;
             word-spacing: normal;
-            margin-bottom: clamp(18px, 3vw, 32px);
+            margin-bottom: 16px;
           ">Through branding, UI/UX design, and high-converting websites.</p>
 
-          <div id="hero-cta-wrapper" class="apple-hero-item apple-hero-cta" style="display:flex;align-items:center;gap:clamp(16px, 3vw, 28px);flex-wrap:wrap;">
+          <div id="hero-cta-wrapper" class="apple-hero-item apple-hero-cta" style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
             <a class="hero-cta-btn" href="https://api.whatsapp.com/send?phone=919987382295" target="_blank" rel="noopener" style="
-                display:inline-flex;align-items:center;gap:10px;
+                display:inline-flex;align-items:center;gap:7px;
                 background:#EDEBDD;color:#1B1717;
                 border:1px solid rgba(237,235,221,0.3);
-                padding: clamp(10px,2vw,18px) clamp(16px,3vw,36px);
+                padding: 8px 18px;
                 font-family:'Switzer', -apple-system, sans-serif;
-                font-size:clamp(0.6rem,1.2vw,0.7rem);
-                font-weight:700;letter-spacing:0.2em;text-transform:uppercase;
+                font-size: 0.62rem;
+                font-weight:700;letter-spacing:0.16em;text-transform:uppercase;
                 text-decoration:none;
-                transition: background 0.5s, color 0.5s, border-color 0.5s;
-              " onmouseover="this.style.background='#630000';this.style.color='#EDEBDD';this.style.borderColor='#630000';" onmouseout="this.style.background='#EDEBDD';this.style.color='#1B1717';this.style.borderColor='rgba(237,235,221,0.3)';">Start a Project <span style="font-size:14px;">→</span></a>
+                transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+              " onmouseover="this.style.background='#630000';this.style.color='#EDEBDD';this.style.borderColor='#630000';" onmouseout="this.style.background='#EDEBDD';this.style.color='#1B1717';this.style.borderColor='rgba(237,235,221,0.3)';">Start a Project <span style="font-size:12px;display:inline-block;transition:transform 0.25s ease;">→</span></a>
             <span style="
               font-family:'Switzer', -apple-system, sans-serif;font-weight:300;
-              font-size:clamp(0.7rem,1.3vw,0.85rem);
+              font-size: 0.72rem;
               color:rgba(237,235,221,0.5);
+              letter-spacing: 0.02em;
             ">20+ Projects &nbsp;·&nbsp; 10+ Clients &nbsp;·&nbsp; 2+ Years</span>
           </div>
         </div>
@@ -1262,29 +1282,29 @@
         bottom: 0 !important;
         left: 0 !important;
         width: 100% !important;
-        padding: clamp(16px, 4vw, 24px) clamp(16px, 5vw, 32px) clamp(24px, 6vw, 40px) clamp(16px, 5vw, 32px) !important;
+        padding: clamp(16px, 3.5vw, 20px) clamp(16px, 4vw, 24px) clamp(18px, 4vw, 28px) clamp(16px, 4vw, 24px) !important;
         z-index: 10 !important;
       }
       #hero-text-overlay p:nth-child(1) {
-        font-size: 0.62rem !important;
+        font-size: 0.6rem !important;
         margin-bottom: 6px !important;
-        letter-spacing: 0.25em !important;
+        letter-spacing: 0.22em !important;
       }
       #hero-text-overlay p:nth-child(2) {
-        font-size: clamp(1.2rem, 5vw, 1.55rem) !important;
-        line-height: 1.25 !important;
-        margin-bottom: 8px !important;
+        font-size: clamp(1.15rem, 4.5vw, 1.45rem) !important;
+        line-height: 1.2 !important;
+        margin-bottom: 6px !important;
       }
       #hero-text-overlay p:nth-child(3) {
-        font-size: 0.8rem !important;
-        line-height: 1.45 !important;
-        margin-bottom: 16px !important;
+        font-size: 0.78rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 14px !important;
       }
       .hero-cta-btn {
-        padding: 10px 20px !important;
-        font-size: 0.62rem !important;
-        letter-spacing: 0.18em !important;
-        gap: 8px !important;
+        padding: 7px 16px !important;
+        font-size: 0.6rem !important;
+        letter-spacing: 0.16em !important;
+        gap: 6px !important;
       }
     }
 

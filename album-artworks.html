@@ -1,4 +1,6 @@
 <!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style id="pf-overlay-style">
     @font-face {
       font-family: 'Body Grotesque';
@@ -31,10 +33,10 @@
     z-index: 99999999 !important;
     pointer-events: none !important;
     opacity: 0;
-    transform: translateZ(0);
     -webkit-transform: translateZ(0);
-    backface-visibility: hidden;
+    transform: translateZ(0);
     -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
     will-change: opacity;
     transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
@@ -64,8 +66,6 @@
     }
   } catch (e) {}
 </script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adley Fernandes | Album Artworks</title>
   <meta name="description" content="Full Brand Guidelines for The Venom Berries by Adley Fernandes.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -107,7 +107,7 @@
   </div>
 
   <!-- Top Right: Desktop Navigation (Horizontal) -->
-  <div id="nav-actions" class="flex flex-row items-center gap-1 sm:gap-2 md:gap-4 pointer-events-auto fixed top-2.5 right-2.5 md:top-6 md:right-8 z-[120] mix-blend-difference" style="touch-action: manipulation;">
+  <div id="nav-actions" class="flex flex-row items-center gap-1 sm:gap-2 md:gap-4 pointer-events-auto fixed top-2.5 right-2.5 md:top-6 md:right-8 z-[120] mix-blend-difference touch-manipulation">
     <a href="/" class="font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity py-2.5 px-2 inline-flex items-center">Index</a>
     
     <!-- Projects Dropdown -->
@@ -169,7 +169,7 @@
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
         <!-- Card: The Venom Berries -->
-        <a href="tvb-brandbook.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full" style="min-height:500px;">
+        <a href="tvb-brandbook.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full min-h-[500px]">
           <img src="/Images/tvb-cap-mockup-opt.webp" alt="The Venom Berries Brand Identity" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-105 opacity-60 group-hover:opacity-90" decoding="async">
           <div class="absolute top-6 right-6 w-8 h-8 rounded-full border border-[#1B1717]/10 bg-[#1B1717]/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <span class="material-symbols-outlined text-[#EDEBDD] text-sm">north_east</span>
@@ -183,7 +183,7 @@
           </div></a>
 
         <!-- Card: Luke's Iced Coffee -->
-        <a href="lukes-case-study.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full" style="min-height:500px;">
+        <a href="lukes-case-study.html" class="group block cursor-pointer flex flex-col gap-4 md:gap-5"><div class="relative overflow-hidden bg-zinc-900 rounded-2xl w-full min-h-[500px]">
           <img src="/Images/Lukes%20Iced%20Coffee%20logo%20Kit/Lukes%20iced%20coffee%20mockup%20cup%20holder.webp" alt="Luke's Iced Coffee Identity" loading="lazy" class="absolute inset-0 w-full h-full object-cover lukes-card-img transition-transform duration-[2.5s] opacity-60 group-hover:opacity-90" decoding="async">
           
           
@@ -203,22 +203,32 @@
   </main>
   
 
-<footer id="site-footer" style="position: relative; width: 100%; overflow: hidden; background: #0d0a08;">
+<footer id="site-footer" class="relative w-full overflow-hidden bg-[#0d0a08]">
 
-  <div id="footer-scene" style="position: relative; width: 100%;">
+  <div id="footer-scene" class="relative w-full">
 
-        <!-- Responsive Footer Image: Mobile image for mobile screens, PC image for desktop screens -->
+    <!-- Responsive Footer Image: Mobile image for mobile screens, PC image for desktop screens -->
     <picture>
       <source media="(max-width: 768px)" srcset="/Images/footer-mobile.webp" type="image/webp">
       <source media="(max-width: 768px)" srcset="/Images/Hero%20page%20mobile.-01-01.png" type="image/png">
       <source media="(min-width: 769px)" srcset="/Images/footer-pc.webp" type="image/webp">
       <source media="(min-width: 769px)" srcset="/Images/Hero%20page%20final-01.png" type="image/png">
-      <img src="/Images/footer-pc.webp" alt="Adley Fernandes" style="display: block; width: 100%; height: auto;" decoding="async" loading="lazy">
+      <img src="/Images/footer-pc.webp" alt="Adley Fernandes" class="block w-full h-auto" decoding="async" loading="lazy">
     </picture>
     <!-- OVERLAY: Subtle gradient layer at bottom to ensure footer links readability -->
-    <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 180px; background: linear-gradient(to top, rgba(13, 10, 8, 0.95) 0%, rgba(13, 10, 8, 0.7) 45%, transparent 100%); z-index: 4; pointer-events: none;"></div>
+    <div class="footer-bottom-gradient"></div>
 
     <style>
+      .footer-bottom-gradient {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 180px;
+        background: linear-gradient(to top, rgba(13, 10, 8, 0.95) 0%, rgba(13, 10, 8, 0.7) 45%, transparent 100%);
+        z-index: 4;
+        pointer-events: none;
+      }
       #footer-links-bar {
         position: absolute;
         bottom: 0;
@@ -241,6 +251,28 @@
         align-items: flex-start;
         gap: 3px;
         z-index: 2;
+      }
+      .footer-left-identity a {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: opacity 0.2s ease;
+      }
+      .footer-left-identity a:hover {
+        opacity: 0.7;
+      }
+      .footer-left-identity p {
+        font-family: 'Manrope', sans-serif;
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.7);
+        margin: 0;
+        line-height: 1.2;
       }
       .footer-center-buttons {
         position: absolute;
@@ -271,6 +303,14 @@
       .footer-center-buttons a:hover {
         opacity: 0.65;
       }
+      .footer-dot-separator {
+        display: inline-block;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5);
+        margin: 0 6px;
+      }
       .footer-right-action {
         display: flex;
         align-items: center;
@@ -295,6 +335,11 @@
         white-space: nowrap;
         transition: all 0.25s ease;
       }
+      .footer-top-pill svg {
+        width: 12px;
+        height: 12px;
+        transition: transform 0.25s ease;
+      }
       .footer-top-pill:hover {
         background: #ffffff !important;
         color: #0d0a08 !important;
@@ -311,6 +356,93 @@
         text-align: center;
         width: 100%;
         gap: 14px;
+      }
+      .footer-mobile-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        width: 100%;
+      }
+      .footer-mobile-nav-link {
+        display: inline-block;
+        color: #ffffff;
+        font-family: 'Manrope', sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 6px 8px;
+      }
+      .footer-mobile-separator {
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 11px;
+      }
+      .footer-mobile-top-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 14px;
+        border-radius: 9999px;
+        border: 1.5px solid #ffffff;
+        background: transparent;
+        color: #ffffff;
+        text-decoration: none;
+        font-family: 'Manrope', sans-serif;
+        font-size: 9px;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin-left: 6px;
+      }
+      .footer-mobile-top-pill svg {
+        width: 10px;
+        height: 10px;
+      }
+      .footer-mobile-divider {
+        width: 100%;
+        max-width: 300px;
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.25);
+        margin: 0 auto;
+      }
+      .footer-mobile-social-link {
+        display: inline-block;
+        color: #ffffff;
+        font-family: 'Manrope', sans-serif;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 6px 8px;
+      }
+      .footer-mobile-identity {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        margin-top: 2px;
+      }
+      .footer-mobile-identity a {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+      .footer-mobile-identity p {
+        font-family: 'Manrope', sans-serif;
+        font-size: 9px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.7);
+        margin: 0;
+        line-height: 1.3;
       }
       @media (max-width: 860px) {
         .footer-desktop-bar { display: none !important; }
@@ -332,10 +464,10 @@
       <div class="footer-desktop-bar">
         <!-- Left: Studio identity & copyright -->
         <div class="footer-left-identity">
-          <a href="/" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: 700; color: #ffffff; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: opacity 0.2s ease;">
+          <a href="/">
             addesign studio
           </a>
-          <p style="font-family: 'Manrope', sans-serif; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255, 255, 255, 0.7); margin: 0; line-height: 1.2;">
+          <p>
             © 2024 addesign studio. All rights reserved.
           </p>
         </div>
@@ -348,7 +480,7 @@
           <a href="privacy-policy.html">
             Privacy Policy
           </a>
-          <span style="display: inline-block; width: 4px; height: 4px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.5); margin: 0 6px;" aria-hidden="true"></span>
+          <span class="footer-dot-separator" aria-hidden="true"></span>
           <a href="https://www.linkedin.com/in/adley-fernandes-968688228/" target="_blank" rel="noopener">
             LinkedIn
           </a>
@@ -364,7 +496,7 @@
         <div class="footer-right-action">
           <a href="#top" class="footer-top-pill">
             <span>Back to top</span>
-            <svg style="width: 12px; height: 12px; transition: transform 0.25s ease;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <line x1="12" y1="19" x2="12" y2="5"></line>
               <polyline points="5 12 12 5 19 12"></polyline>
             </svg>
@@ -375,17 +507,17 @@
       <!-- MOBILE VIEW (< 861px): Fully Centered with Generous Spacing -->
       <div class="footer-mobile-container">
         <!-- Row 1: Nav buttons + Top pill -->
-        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px; width: 100%;">
-          <a href="contact.html" style="display: inline-block; color: #ffffff; font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; padding: 6px 8px;">
+        <div class="footer-mobile-row">
+          <a href="contact.html" class="footer-mobile-nav-link">
             Contact
           </a>
-          <span style="color: rgba(255, 255, 255, 0.4); font-size: 11px;">·</span>
-          <a href="privacy-policy.html" style="display: inline-block; color: #ffffff; font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; padding: 6px 8px;">
+          <span class="footer-mobile-separator">·</span>
+          <a href="privacy-policy.html" class="footer-mobile-nav-link">
             Privacy Policy
           </a>
-          <a href="#top" class="footer-top-pill" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 9999px; border: 1.5px solid #ffffff; background: transparent; color: #ffffff; text-decoration: none; font-family: 'Manrope', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-left: 6px;">
+          <a href="#top" class="footer-mobile-top-pill">
             <span>Top</span>
-            <svg style="width: 10px; height: 10px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <line x1="12" y1="19" x2="12" y2="5"></line>
               <polyline points="5 12 12 5 19 12"></polyline>
             </svg>
@@ -393,27 +525,27 @@
         </div>
 
         <!-- Hairline Divider -->
-        <div style="width: 100%; max-width: 300px; height: 1px; background-color: rgba(255, 255, 255, 0.25); margin: 0 auto;" aria-hidden="true"></div>
+        <div class="footer-mobile-divider" aria-hidden="true"></div>
 
         <!-- Row 2: Social Links -->
-        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px; width: 100%;">
-          <a href="https://www.linkedin.com/in/adley-fernandes-968688228/" target="_blank" rel="noopener" style="display: inline-block; color: #ffffff; font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; padding: 6px 8px;">
+        <div class="footer-mobile-row">
+          <a href="https://www.linkedin.com/in/adley-fernandes-968688228/" target="_blank" rel="noopener" class="footer-mobile-social-link">
             LinkedIn
           </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener" class="footer-twitter-link" style="display: inline-block; color: #ffffff; font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; padding: 6px 8px;">
+          <a href="https://twitter.com" target="_blank" rel="noopener" class="footer-twitter-link footer-mobile-social-link">
             Twitter
           </a>
-          <a href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener" style="display: inline-block; color: #ffffff; font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; padding: 6px 8px;">
+          <a href="https://www.instagram.com/adleyfernz.10/" target="_blank" rel="noopener" class="footer-mobile-social-link">
             Instagram
           </a>
         </div>
 
         <!-- Row 3: Studio Identity & Copyright -->
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 2px; margin-top: 2px;">
-          <a href="/" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 700; color: #ffffff; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none;">
+        <div class="footer-mobile-identity">
+          <a href="/">
             addesign studio
           </a>
-          <p style="font-family: 'Manrope', sans-serif; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255, 255, 255, 0.7); margin: 0; line-height: 1.3;">
+          <p>
             © 2024 addesign studio. All rights reserved.
           </p>
         </div>

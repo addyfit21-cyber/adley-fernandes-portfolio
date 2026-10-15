@@ -1714,6 +1714,10 @@ h1.tracking-tighter, h2.tracking-tighter, h3.tracking-tighter, h4.tracking-tight
   max-height: 80vh;
 }
 
+.min-h-\[500px\]{
+  min-height: 500px;
+}
+
 .min-h-\[50vh\]{
   min-height: 50vh;
 }
@@ -1972,6 +1976,10 @@ h1.tracking-tighter, h2.tracking-tighter, h3.tracking-tighter, h4.tracking-tight
 
 .cursor-pointer{
   cursor: pointer;
+}
+
+.touch-manipulation{
+  touch-action: manipulation;
 }
 
 .resize-none{
@@ -2458,6 +2466,11 @@ h1.tracking-tighter, h2.tracking-tighter, h3.tracking-tighter, h4.tracking-tight
 .bg-\[\#050505\]{
   --tw-bg-opacity: 1;
   background-color: rgb(5 5 5 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#0d0a08\]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(13 10 8 / var(--tw-bg-opacity));
 }
 
 .bg-\[\#1B1717\]{
