@@ -16,6 +16,7 @@
   font-weight: 400 900;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-0025, U+0027-002F, U+003A-FFFF;
 }
 
 @font-face {
@@ -24,6 +25,7 @@
   font-weight: 400 900;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-0025, U+0027-002F, U+003A-FFFF;
 }
 
 @font-face {
@@ -32,6 +34,7 @@
   font-weight: 400 900;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-0025, U+0027-002F, U+003A-FFFF;
 }
 
 @font-face {
@@ -40,6 +43,7 @@
   font-weight: 400 900;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-0025, U+0027-002F, U+003A-FFFF;
 }
 
 @tailwind base;
@@ -275,3 +279,56 @@ video {
     font-weight: 500;
     display: inline-block;
   }
+
+.project-idx-num {
+  font-family: 'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+}
+
+/* Projects Directory - Thin Black Borders & Smooth Hover Invert (Desktop Only) */
+.project-dir-row {
+  border-bottom: 1px solid #000000 !important;
+  transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 1024px) {
+  .project-dir-row:hover {
+    background-color: #000000 !important;
+  }
+
+  .project-dir-row .dir-label {
+    transition: color 0.4s ease !important;
+  }
+  .project-dir-row:hover .dir-label {
+    color: rgba(255, 255, 255, 0.70) !important;
+  }
+
+  .project-dir-row .dir-title {
+    transition: color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+  .project-dir-row:hover .dir-title {
+    color: #ffffff !important;
+  }
+
+  .project-dir-row .project-idx-num {
+    transition: color 0.4s ease !important;
+  }
+  .project-dir-row:hover .project-idx-num {
+    color: rgba(255, 255, 255, 0.45) !important;
+  }
+
+  .project-dir-row .dir-desc {
+    transition: color 0.4s ease !important;
+  }
+  .project-dir-row:hover .dir-desc {
+    color: rgba(255, 255, 255, 0.85) !important;
+  }
+
+  .project-dir-row .dir-arrow {
+    transition: color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+  .project-dir-row:hover .dir-arrow {
+    color: #ffffff !important;
+  }
+}

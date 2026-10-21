@@ -20,6 +20,7 @@
       font-weight: 400 900;
       font-style: normal;
       font-display: swap;
+      unicode-range: U+0000-0025, U+0027-002F, U+003A-FFFF;
     }
     @font-face {
       font-family: 'Bootzy TM';
@@ -27,6 +28,7 @@
       font-weight: 400 900;
       font-style: normal;
       font-display: swap;
+      unicode-range: U+0000-0025, U+0027-002F, U+003A-FFFF;
     }
 
   #page-transition-overlay {
@@ -505,7 +507,62 @@
       word-spacing: normal;
     }
 
-  /* Natural spacing for headings, preventing negative squishing */
+    /* Projects Directory Index Numbers - Use Switzer for clean numeral geometry */
+  .project-idx-num {
+    font-family: 'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-variant-numeric: tabular-nums;
+    display: inline-block;
+  }
+
+  /* Projects Directory - Thin Black Borders & Smooth Hover Invert (Desktop Only) */
+  .project-dir-row {
+    border-bottom: 1px solid #000000 !important;
+    transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  /* Desktop-only hover effect (1024px+ with mouse pointer); disabled on mobile & tablets */
+  @media (hover: hover) and (pointer: fine) and (min-width: 1024px) {
+    .project-dir-row:hover {
+      background-color: #000000 !important;
+    }
+
+    .project-dir-row .dir-label {
+      transition: color 0.4s ease !important;
+    }
+    .project-dir-row:hover .dir-label {
+      color: rgba(255, 255, 255, 0.70) !important;
+    }
+
+    .project-dir-row .dir-title {
+      transition: color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    .project-dir-row:hover .dir-title {
+      color: #ffffff !important;
+    }
+
+    .project-dir-row .project-idx-num {
+      transition: color 0.4s ease !important;
+    }
+    .project-dir-row:hover .project-idx-num {
+      color: rgba(255, 255, 255, 0.45) !important;
+    }
+
+    .project-dir-row .dir-desc {
+      transition: color 0.4s ease !important;
+    }
+    .project-dir-row:hover .dir-desc {
+      color: rgba(255, 255, 255, 0.85) !important;
+    }
+
+    .project-dir-row .dir-arrow {
+      transition: color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    .project-dir-row:hover .dir-arrow {
+      color: #ffffff !important;
+    }
+  }
+
+/* Natural spacing for headings, preventing negative squishing */
   h1.tracking-tighter, h2.tracking-tighter, h3.tracking-tighter, h4.tracking-tighter, .font-dm.tracking-tighter,
   h1.tracking-tight, h2.tracking-tight, h3.tracking-tight, h4.tracking-tight, .font-dm.tracking-tight {
     letter-spacing: 0.015em !important;
@@ -1773,6 +1830,359 @@
 
       })();
     </script>
+  </section>
+
+  <!-- ===================== PROJECTS DIRECTORY (FULL SCREEN BLEED) ===================== -->
+  <section id="projects-directory" class="w-full bg-[#EDEBDD] border-t border-black pt-12 sm:pt-16 md:pt-28 pb-0 relative">
+    <div class="px-5 sm:px-6 md:px-12 lg:px-20 mb-8 sm:mb-10 md:mb-14">
+      <div class="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
+        <span class="block w-6 md:w-8 h-[2px] bg-[#630000]"></span>
+        <span class="font-manrope text-[9px] md:text-[10px] tracking-[0.3em] uppercase text-[#630000] font-bold">Index / 01–10</span>
+      </div>
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-2 md:gap-4">
+        <h2 class="font-dm text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-normal tracking-[-0.03em] text-[#1B1717] leading-none">
+          Projects Directory
+        </h2>
+        <p class="font-manrope text-[11px] sm:text-xs md:text-sm text-[#1B1717]/60 tracking-widest uppercase">
+          Selected Case Studies [2024–2026]
+        </p>
+      </div>
+    </div>
+
+    <!-- Full-Width Edge-to-Edge Editorial Directory (0px space on left & right) -->
+    <div class="w-full flex flex-col border-t border-black">
+
+      <!-- 01: The Venom Berries -->
+      <a href="tvb-brandbook.html" style="background-color: #B8F818;" class="project-dir-row group block w-full px-5 sm:px-6 md:px-12 lg:px-20 py-4 sm:py-5 md:py-12 lg:py-14 border-b border-black">
+        <div class="grid grid-cols-1 md:grid-cols-12 items-baseline gap-1.5 sm:gap-2.5 md:gap-8 lg:gap-10">
+          <div class="md:col-span-7 lg:col-span-7 flex flex-col justify-center">
+            <div class="mb-1 md:mb-3">
+              <span class="dir-label font-manrope text-[8.5px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.25em] text-black/70 font-semibold">Visual Identity &amp; Merch</span>
+            </div>
+            <div class="flex items-baseline justify-between md:block gap-3 md:gap-4">
+              <h3 class="dir-title font-dm text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-normal tracking-[-0.03em] text-black leading-[0.98] md:leading-[0.95] lg:group-hover:translate-x-1.5 transition-transform duration-300">
+                <span class="project-idx-num text-black/40 font-light select-none mr-2.5 sm:mr-3 md:mr-5">01</span><span>The Venom Berries</span>
+              </h3>
+              <span class="dir-arrow md:hidden flex-shrink-0 text-black">
+                <svg class="w-4.5 h-4.5 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="md:col-span-4 lg:col-span-4 flex items-center">
+            <p class="dir-desc font-manrope text-xs sm:text-sm md:text-base lg:text-[17px] text-black/80 font-normal leading-relaxed max-w-md">
+              Brand identity, custom mascot illustration, and official merchandise design for the band.
+            </p>
+          </div>
+          <div class="dir-arrow hidden md:col-span-1 lg:col-span-1 md:flex justify-end items-center self-center text-black">
+            <svg class="w-6 h-6 md:w-7 md:h-7 transition-transform duration-300 ease-out lg:group-hover:translate-x-1.5 lg:group-hover:-translate-y-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- 02: Luke's Iced Coffee -->
+      <a href="lukes-case-study.html" style="background-color: #6F4E37;" class="project-dir-row group block w-full px-5 sm:px-6 md:px-12 lg:px-20 py-4 sm:py-5 md:py-12 lg:py-14 border-b border-black">
+        <div class="grid grid-cols-1 md:grid-cols-12 items-baseline gap-1.5 sm:gap-2.5 md:gap-8 lg:gap-10">
+          <div class="md:col-span-7 lg:col-span-7 flex flex-col justify-center">
+            <div class="mb-1 md:mb-3">
+              <span class="dir-label font-manrope text-[8.5px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.25em] text-white/75 font-semibold">Logo Design &amp; Packaging</span>
+            </div>
+            <div class="flex items-baseline justify-between md:block gap-3 md:gap-4">
+              <h3 class="dir-title font-dm text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-normal tracking-[-0.03em] text-white leading-[0.98] md:leading-[0.95] lg:group-hover:translate-x-1.5 transition-transform duration-300">
+                <span class="project-idx-num text-white/40 font-light select-none mr-2.5 sm:mr-3 md:mr-5">02</span><span>Luke's Iced Coffee</span>
+              </h3>
+              <span class="dir-arrow md:hidden flex-shrink-0 text-white">
+                <svg class="w-4.5 h-4.5 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="md:col-span-4 lg:col-span-4 flex items-center">
+            <p class="dir-desc font-manrope text-xs sm:text-sm md:text-base lg:text-[17px] text-white/85 font-normal leading-relaxed max-w-md">
+              Logo design, visual identity, and packaging design for an artisanal iced coffee brand.
+            </p>
+          </div>
+          <div class="dir-arrow hidden md:col-span-1 lg:col-span-1 md:flex justify-end items-center self-center text-white">
+            <svg class="w-6 h-6 md:w-7 md:h-7 transition-transform duration-300 ease-out lg:group-hover:translate-x-1.5 lg:group-hover:-translate-y-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- 03: Nexzy -->
+      <a href="nexzy.html" style="background-color: #FFFFFF;" class="project-dir-row group block w-full px-5 sm:px-6 md:px-12 lg:px-20 py-4 sm:py-5 md:py-12 lg:py-14 border-b border-black">
+        <div class="grid grid-cols-1 md:grid-cols-12 items-baseline gap-1.5 sm:gap-2.5 md:gap-8 lg:gap-10">
+          <div class="md:col-span-7 lg:col-span-7 flex flex-col justify-center">
+            <div class="mb-1 md:mb-3">
+              <span class="dir-label font-manrope text-[8.5px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.25em] text-black/60 font-semibold">UI/UX &amp; Web Development</span>
+            </div>
+            <div class="flex items-baseline justify-between md:block gap-3 md:gap-4">
+              <h3 class="dir-title font-dm text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-normal tracking-[-0.03em] text-black leading-[0.98] md:leading-[0.95] lg:group-hover:translate-x-1.5 transition-transform duration-300">
+                <span class="project-idx-num text-black/40 font-light select-none mr-2.5 sm:mr-3 md:mr-5">03</span><span>Nexzy</span>
+              </h3>
+              <span class="dir-arrow md:hidden flex-shrink-0 text-black">
+                <svg class="w-4.5 h-4.5 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="md:col-span-4 lg:col-span-4 flex items-center">
+            <p class="dir-desc font-manrope text-xs sm:text-sm md:text-base lg:text-[17px] text-black/75 font-normal leading-relaxed max-w-md">
+              UI/UX design and responsive website development for a tech solutions company.
+            </p>
+          </div>
+          <div class="dir-arrow hidden md:col-span-1 lg:col-span-1 md:flex justify-end items-center self-center text-black">
+            <svg class="w-6 h-6 md:w-7 md:h-7 transition-transform duration-300 ease-out lg:group-hover:translate-x-1.5 lg:group-hover:-translate-y-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- 04: ExecuVision Collective -->
+      <a href="execuvision.html" style="background-color: #70CFF8;" class="project-dir-row group block w-full px-5 sm:px-6 md:px-12 lg:px-20 py-4 sm:py-5 md:py-12 lg:py-14 border-b border-black">
+        <div class="grid grid-cols-1 md:grid-cols-12 items-baseline gap-1.5 sm:gap-2.5 md:gap-8 lg:gap-10">
+          <div class="md:col-span-7 lg:col-span-7 flex flex-col justify-center">
+            <div class="mb-1 md:mb-3">
+              <span class="dir-label font-manrope text-[8.5px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.25em] text-black/70 font-semibold">Brand Identity &amp; Web Dev</span>
+            </div>
+            <div class="flex items-baseline justify-between md:block gap-3 md:gap-4">
+              <h3 class="dir-title font-dm text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-normal tracking-[-0.03em] text-black leading-[0.98] md:leading-[0.95] lg:group-hover:translate-x-1.5 transition-transform duration-300">
+                <span class="project-idx-num text-black/40 font-light select-none mr-2.5 sm:mr-3 md:mr-5">04</span><span>ExecuVision Collective</span>
+              </h3>
+              <span class="dir-arrow md:hidden flex-shrink-0 text-black">
+                <svg class="w-4.5 h-4.5 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="md:col-span-4 lg:col-span-4 flex items-center">
+            <p class="dir-desc font-manrope text-xs sm:text-sm md:text-base lg:text-[17px] text-black/80 font-normal leading-relaxed max-w-md">
+              Brand identity redesign, visual assets, and website development for a corporate collective.
+            </p>
+          </div>
+          <div class="dir-arrow hidden md:col-span-1 lg:col-span-1 md:flex justify-end items-center self-center text-black">
+            <svg class="w-6 h-6 md:w-7 md:h-7 transition-transform duration-300 ease-out lg:group-hover:translate-x-1.5 lg:group-hover:-translate-y-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- 05: McLaren -->
+      <a href="mclaren.html" style="background-color: #FFFFFF;" class="project-dir-row group block w-full px-5 sm:px-6 md:px-12 lg:px-20 py-4 sm:py-5 md:py-12 lg:py-14 border-b border-black">
+        <div class="grid grid-cols-1 md:grid-cols-12 items-baseline gap-1.5 sm:gap-2.5 md:gap-8 lg:gap-10">
+          <div class="md:col-span-7 lg:col-span-7 flex flex-col justify-center">
+            <div class="mb-1 md:mb-3">
+              <span class="dir-label font-manrope text-[8.5px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.25em] text-black/60 font-semibold">Custom Sketches</span>
+            </div>
+            <div class="flex items-baseline justify-between md:block gap-3 md:gap-4">
+              <h3 class="dir-title font-dm text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-normal tracking-[-0.03em] text-black leading-[0.98] md:leading-[0.95] lg:group-hover:translate-x-1.5 transition-transform duration-300">
+                <span class="project-idx-num text-black/40 font-light select-none mr-2.5 sm:mr-3 md:mr-5">05</span><span>McLaren</span>
+              </h3>
+              <span class="dir-arrow md:hidden flex-shrink-0 text-black">
+                <svg class="w-4.5 h-4.5 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="md:col-span-4 lg:col-span-4 flex items-center">
+            <p class="dir-desc font-manrope text-xs sm:text-sm md:text-base lg:text-[17px] text-black/75 font-normal leading-relaxed max-w-md">
+              Custom hand-drawn automotive sketches made for McLaren.
+            </p>
+          </div>
+          <div class="dir-arrow hidden md:col-span-1 lg:col-span-1 md:flex justify-end items-center self-center text-black">
+            <svg class="w-6 h-6 md:w-7 md:h-7 transition-transform duration-300 ease-out lg:group-hover:translate-x-1.5 lg:group-hover:-translate-y-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- 06: Grand Theft Emo -->
+      <a href="grand-theft-emo.html" style="background-color: #9E0B0F;" class="project-dir-row group block w-full px-5 sm:px-6 md:px-12 lg:px-20 py-4 sm:py-5 md:py-12 lg:py-14 border-b border-black">
+        <div class="grid grid-cols-1 md:grid-cols-12 items-baseline gap-1.5 sm:gap-2.5 md:gap-8 lg:gap-10">
+          <div class="md:col-span-7 lg:col-span-7 flex flex-col justify-center">
+            <div class="mb-1 md:mb-3">
+              <span class="dir-label font-manrope text-[8.5px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.25em] text-white/75 font-semibold">Logo Design &amp; Apparel</span>
+            </div>
+            <div class="flex items-baseline justify-between md:block gap-3 md:gap-4">
+              <h3 class="dir-title font-dm text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-normal tracking-[-0.03em] text-white leading-[0.98] md:leading-[0.95] lg:group-hover:translate-x-1.5 transition-transform duration-300">
+                <span class="project-idx-num text-white/40 font-light select-none mr-2.5 sm:mr-3 md:mr-5">06</span><span>Grand Theft Emo</span>
+              </h3>
+              <span class="dir-arrow md:hidden flex-shrink-0 text-white">
+                <svg class="w-4.5 h-4.5 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="md:col-span-4 lg:col-span-4 flex items-center">
+            <p class="dir-desc font-manrope text-xs sm:text-sm md:text-base lg:text-[17px] text-white/85 font-normal leading-relaxed max-w-md">
+              Custom logo design, band typography, and official tour apparel.
+            </p>
+          </div>
+          <div class="dir-arrow hidden md:col-span-1 lg:col-span-1 md:flex justify-end items-center self-center text-white">
+            <svg class="w-6 h-6 md:w-7 md:h-7 transition-transform duration-300 ease-out lg:group-hover:translate-x-1.5 lg:group-hover:-translate-y-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- 07: Porsche -->
+      <a href="porsche.html" style="background-color: #FFFFFF;" class="project-dir-row group block w-full px-5 sm:px-6 md:px-12 lg:px-20 py-4 sm:py-5 md:py-12 lg:py-14 border-b border-black">
+        <div class="grid grid-cols-1 md:grid-cols-12 items-baseline gap-1.5 sm:gap-2.5 md:gap-8 lg:gap-10">
+          <div class="md:col-span-7 lg:col-span-7 flex flex-col justify-center">
+            <div class="mb-1 md:mb-3">
+              <span class="dir-label font-manrope text-[8.5px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.25em] text-black/60 font-semibold">Custom Sketches</span>
+            </div>
+            <div class="flex items-baseline justify-between md:block gap-3 md:gap-4">
+              <h3 class="dir-title font-dm text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-normal tracking-[-0.03em] text-black leading-[0.98] md:leading-[0.95] lg:group-hover:translate-x-1.5 transition-transform duration-300">
+                <span class="project-idx-num text-black/40 font-light select-none mr-2.5 sm:mr-3 md:mr-5">07</span><span>Porsche</span>
+              </h3>
+              <span class="dir-arrow md:hidden flex-shrink-0 text-black">
+                <svg class="w-4.5 h-4.5 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="md:col-span-4 lg:col-span-4 flex items-center">
+            <p class="dir-desc font-manrope text-xs sm:text-sm md:text-base lg:text-[17px] text-black/75 font-normal leading-relaxed max-w-md">
+              Custom hand-drawn automotive sketches made for Porsche.
+            </p>
+          </div>
+          <div class="dir-arrow hidden md:col-span-1 lg:col-span-1 md:flex justify-end items-center self-center text-black">
+            <svg class="w-6 h-6 md:w-7 md:h-7 transition-transform duration-300 ease-out lg:group-hover:translate-x-1.5 lg:group-hover:-translate-y-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- 08: Tea's CD's -->
+      <a href="teas-cds.html" style="background-color: #D9387A;" class="project-dir-row group block w-full px-5 sm:px-6 md:px-12 lg:px-20 py-4 sm:py-5 md:py-12 lg:py-14 border-b border-black">
+        <div class="grid grid-cols-1 md:grid-cols-12 items-baseline gap-1.5 sm:gap-2.5 md:gap-8 lg:gap-10">
+          <div class="md:col-span-7 lg:col-span-7 flex flex-col justify-center">
+            <div class="mb-1 md:mb-3">
+              <span class="dir-label font-manrope text-[8.5px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.25em] text-white/75 font-semibold">Logo Design &amp; Branding</span>
+            </div>
+            <div class="flex items-baseline justify-between md:block gap-3 md:gap-4">
+              <h3 class="dir-title font-dm text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-normal tracking-[-0.03em] text-white leading-[0.98] md:leading-[0.95] lg:group-hover:translate-x-1.5 transition-transform duration-300">
+                <span class="project-idx-num text-white/40 font-light select-none mr-2.5 sm:mr-3 md:mr-5">08</span><span>Tea's CD's</span>
+              </h3>
+              <span class="dir-arrow md:hidden flex-shrink-0 text-white">
+                <svg class="w-4.5 h-4.5 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="md:col-span-4 lg:col-span-4 flex items-center">
+            <p class="dir-desc font-manrope text-xs sm:text-sm md:text-base lg:text-[17px] text-white/85 font-normal leading-relaxed max-w-md">
+              Custom logo kit, brand identity, and retro packaging for an independent CD archive.
+            </p>
+          </div>
+          <div class="dir-arrow hidden md:col-span-1 lg:col-span-1 md:flex justify-end items-center self-center text-white">
+            <svg class="w-6 h-6 md:w-7 md:h-7 transition-transform duration-300 ease-out lg:group-hover:translate-x-1.5 lg:group-hover:-translate-y-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- 09: Biancca -->
+      <a href="album-artworks.html" style="background-color: #B4B4B8;" class="project-dir-row group block w-full px-5 sm:px-6 md:px-12 lg:px-20 py-4 sm:py-5 md:py-12 lg:py-14 border-b border-black">
+        <div class="grid grid-cols-1 md:grid-cols-12 items-baseline gap-1.5 sm:gap-2.5 md:gap-8 lg:gap-10">
+          <div class="md:col-span-7 lg:col-span-7 flex flex-col justify-center">
+            <div class="mb-1 md:mb-3">
+              <span class="dir-label font-manrope text-[8.5px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.25em] text-black/70 font-semibold">Album Cover Artwork</span>
+            </div>
+            <div class="flex items-baseline justify-between md:block gap-3 md:gap-4">
+              <h3 class="dir-title font-dm text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-normal tracking-[-0.03em] text-black leading-[0.98] md:leading-[0.95] lg:group-hover:translate-x-1.5 transition-transform duration-300">
+                <span class="project-idx-num text-black/40 font-light select-none mr-2.5 sm:mr-3 md:mr-5">09</span><span>Biancca</span>
+              </h3>
+              <span class="dir-arrow md:hidden flex-shrink-0 text-black">
+                <svg class="w-4.5 h-4.5 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="md:col-span-4 lg:col-span-4 flex items-center">
+            <p class="dir-desc font-manrope text-xs sm:text-sm md:text-base lg:text-[17px] text-black/80 font-normal leading-relaxed max-w-md">
+              Custom album cover art, concept illustration, and layout design for independent artist Biancca.
+            </p>
+          </div>
+          <div class="dir-arrow hidden md:col-span-1 lg:col-span-1 md:flex justify-end items-center self-center text-black">
+            <svg class="w-6 h-6 md:w-7 md:h-7 transition-transform duration-300 ease-out lg:group-hover:translate-x-1.5 lg:group-hover:-translate-y-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- 10: Gig & Event Posters -->
+      <a href="posters.html" style="background-color: #FFA000;" class="project-dir-row group block w-full px-5 sm:px-6 md:px-12 lg:px-20 py-4 sm:py-5 md:py-12 lg:py-14 border-b border-black">
+        <div class="grid grid-cols-1 md:grid-cols-12 items-baseline gap-1.5 sm:gap-2.5 md:gap-8 lg:gap-10">
+          <div class="md:col-span-7 lg:col-span-7 flex flex-col justify-center">
+            <div class="mb-1 md:mb-3">
+              <span class="dir-label font-manrope text-[8.5px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.25em] text-black/70 font-semibold">Event Posters &amp; Print</span>
+            </div>
+            <div class="flex items-baseline justify-between md:block gap-3 md:gap-4">
+              <h3 class="dir-title font-dm text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-normal tracking-[-0.03em] text-black leading-[0.98] md:leading-[0.95] lg:group-hover:translate-x-1.5 transition-transform duration-300">
+                <span class="project-idx-num text-black/40 font-light select-none mr-2.5 sm:mr-3 md:mr-5">10</span><span>Gig &amp; Event Posters</span>
+              </h3>
+              <span class="dir-arrow md:hidden flex-shrink-0 text-black">
+                <svg class="w-4.5 h-4.5 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="md:col-span-4 lg:col-span-4 flex items-center">
+            <p class="dir-desc font-manrope text-xs sm:text-sm md:text-base lg:text-[17px] text-black/80 font-normal leading-relaxed max-w-md">
+              Original poster designs and promotional gig artwork for live music events, tours, and festivals.
+            </p>
+          </div>
+          <div class="dir-arrow hidden md:col-span-1 lg:col-span-1 md:flex justify-end items-center self-center text-black">
+            <svg class="w-6 h-6 md:w-7 md:h-7 transition-transform duration-300 ease-out lg:group-hover:translate-x-1.5 lg:group-hover:-translate-y-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
+        </div>
+      </a>
+
+    </div>
   </section>
 
 
@@ -3288,7 +3698,7 @@
     { name: 'Rahul', role: 'CEO of Nexzy', rating: 5, comment: 'amazing logo design for Nexzy Growth & Tech Solutions, exactly how i imagined, techy modern minimal, plus the website redesign adley\'s UI input really helped us.', createdAt: 1 },
     { name: 'Tiara Shannon', role: 'Content Creator', rating: 5, comment: 'Did a logo for my reel series! Was completely receptive of what I wanted, understood and delivered well. Would highly recommend adley for the creative job you need 😊', createdAt: 2 },
     { name: 'Maahir siddique', role: 'Lead vocals : The Venom berries', rating: 5, comment: 'Adley has completely elevated and revamped our bands image. The designs he presented were absolutely stellar! And they instantly became a fan favourite!', createdAt: 3 },
-    { name: 'Bianca', role: 'Independent music artist in Mumbai', rating: 5, comment: 'adley worked on my album art, the album was very personal to me and he understood the image that i had in mind perfectly.', createdAt: 4 },
+    { name: 'Biancca', role: 'Independent music artist in Mumbai', rating: 5, comment: 'adley worked on my album art, the album was very personal to me and he understood the image that i had in mind perfectly.', createdAt: 4 },
     { name: 'Pratik', role: 'CEO of Luke\'s Iced Coffee', rating: 5, comment: 'the branding and logo design was very well done by adley, it is hard to find someone that really understands what you feel about your brand and can turn theory into practical.', createdAt: 5 },
     { name: 'Shashank', role: 'Import export', rating: 4, comment: 'Adley restructured my old website and built something extremely visually appealing and interactive, he knows what he’s doing people I’m happy with the results.', createdAt: 6 },
     { name: 'Anirudh Rao', role: 'The Venom Berries', rating: 5, comment: 'We had Adley design the entire visual identity of The Venom Berries from scratch and our experience has been nothing short of stellar. From his creative ideas to professionalism from start to finish made working with him an absolute breeze and are very happy with the finished product. Would definitely recommend him to anyone looking for a visual designer!', createdAt: 7 },
