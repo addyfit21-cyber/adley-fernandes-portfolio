@@ -12,6 +12,7 @@
       font-weight: 400 900;
       font-style: normal;
       font-display: swap;
+      unicode-range: U+0000-0025, U+0027-002F, U+003A-FFFF;
     }
     @font-face {
       font-family: 'Body Grotesque Slim';
@@ -53,6 +54,22 @@
     pointer-events: auto !important;
     transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
+
+  /* Ampersand styling to use clean sans-serif instead of missing glyph */
+  
+  h1 .ampersand, h2 .ampersand, h3 .ampersand, h4 .ampersand, h5 .ampersand, h6 .ampersand,
+  .ampersand, span.ampersand {
+    font-family: 'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-weight: 500 !important;
+    display: inline-block !important;
+  }
+
+.ampersand {
+    font-family: 'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-weight: 500;
+    display: inline-block;
+  }
+
 </style>
 <script>
   try {
@@ -1069,6 +1086,84 @@
   }
 </style>
   <link rel="stylesheet" href="/cursor.css">
+<style>
+  /* Professional Toolkit Grid Styles */
+  .toolkit-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.65rem !important;
+    padding-top: 1.5rem !important;
+    border-top: 1px solid rgba(27, 23, 23, 0.10) !important;
+    width: 100% !important;
+  }
+  @media (max-width: 640px) {
+    .toolkit-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 0.5rem !important;
+    }
+  }
+  .toolkit-card {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    padding: 0.65rem 0.85rem !important;
+    background: rgba(27, 23, 23, 0.02) !important;
+    border: 1px solid rgba(27, 23, 23, 0.09) !important;
+    border-radius: 8px !important;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    cursor: default !important;
+    box-sizing: border-box !important;
+  }
+  .toolkit-card:hover {
+    background: #EDEBDD !important;
+    border-color: rgba(27, 23, 23, 0.28) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px -4px rgba(27, 23, 23, 0.08) !important;
+  }
+  .toolkit-icon-wrap {
+    width: 32px !important;
+    height: 32px !important;
+    flex-shrink: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 6px !important;
+    overflow: hidden !important;
+  }
+  .toolkit-icon-wrap img {
+    width: 28px !important;
+    height: 28px !important;
+    object-fit: contain !important;
+    transition: transform 0.25s ease !important;
+  }
+  .toolkit-card:hover .toolkit-icon-wrap img {
+    transform: scale(1.1) !important;
+  }
+  .toolkit-info {
+    display: flex !important;
+    flex-direction: column !important;
+    min-width: 0 !important;
+  }
+  .toolkit-name {
+    font-family: 'Switzer', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: #1B1717 !important;
+    line-height: 1.25 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  .toolkit-role {
+    font-family: 'Switzer', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-size: 9px !important;
+    letter-spacing: 0.04em !important;
+    text-transform: uppercase !important;
+    color: rgba(27, 23, 23, 0.45) !important;
+    line-height: 1.2 !important;
+    margin-top: 1px !important;
+  }
+</style>
 </head>
 <body id="top" class="bg-[#EDEBDD] text-[#1B1717] antialiased selection:bg-primary selection:text-[#1B1717] overflow-x-hidden w-full relative">
 <div id="page-transition-overlay"></div>
@@ -1106,6 +1201,7 @@
       </div>
     </div>
     
+    <a href="index.html#services-details" class="font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity py-2.5 px-2 inline-flex items-center">Pricing</a>
     <a href="index.html#about" class="font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity py-2.5 px-2 inline-flex items-center">About</a>
     <a href="contact.html" class="font-manrope text-[8px] tracking-[0.2em] uppercase text-white hover:opacity-70 transition-opacity py-2.5 px-2 inline-flex items-center">Contact</a>
   </div>
@@ -1849,7 +1945,7 @@
       <span class="block w-10 h-[2px] bg-[#630000]"></span>
       <span class="text-[8px] tracking-[0.35em] uppercase text-[#630000] font-bold">03 — Category</span>
     </div>
-    <h2 class="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight text-[#1B1717] leading-none">Posters &amp; Artworks</h2>
+    <h2 class="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight text-[#1B1717] leading-none">Posters <span class="ampersand" style="font-family: 'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important; font-weight: 500; display: inline-block;">&amp;</span> Artworks</h2>
   </div>
 
   <div class="px-6 md:px-10 lg:px-12 pb-20 md:pb-48">
@@ -2026,94 +2122,593 @@
 </section>
 
 <!-- Premium Testimonials Slider -->
-  <section id="services-details" class="bg-[#EDEBDD] relative z-20">
-    <!-- Service 01: Website Design & Development -->
-    <div class="px-6 md:px-10 lg:px-12 py-8 md:py-24 bg-[#EDEBDD] border-t border-[#1B1717]/10">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-20 items-center">
-        <div class="md:col-span-5">
-          <div class="aspect-[4/5] overflow-hidden bg-[#EDEBDD] border border-[#1B1717]/10">
-            <img width="1024" height="1024" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" alt="Website Design &amp; Development" src="Images/realistic_web_design.webp" loading="lazy" decoding="async">
+    <section id="services-details" class="bg-[#EDEBDD] relative z-20 px-6 md:px-12 lg:px-24 py-16 md:py-28 border-t border-[#1B1717]/10">
+    <div id="pricing" class="absolute -top-24 left-0 pointer-events-none"></div>
+
+    <!-- Scoped Styles for Services & Pricing -->
+    <style>
+      .pricing-section-container {
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+      
+      /* Currency Toggle Pill */
+      .currency-toggle-wrap {
+        display: inline-flex;
+        align-items: center;
+        background: rgba(27, 23, 23, 0.05);
+        border: 1px solid rgba(27, 23, 23, 0.12);
+        padding: 3px;
+        border-radius: 9999px;
+      }
+      .currency-toggle-btn {
+        padding: 6px 16px;
+        font-family: 'Switzer', -apple-system, sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        border-radius: 9999px;
+        border: none;
+        background: transparent;
+        color: rgba(27, 23, 23, 0.55);
+        cursor: pointer;
+        transition: all 0.22s ease;
+        line-height: 1.2;
+      }
+      .currency-toggle-btn.active {
+        background: #1B1717;
+        color: #EDEBDD;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+      }
+      .currency-toggle-btn:hover:not(.active) {
+        color: #1B1717;
+      }
+
+      /* Category Block */
+      .pricing-category {
+        border-top: 1px solid rgba(27, 23, 23, 0.12);
+        padding-top: 2.5rem;
+        margin-bottom: 3.5rem;
+      }
+      .pricing-category-header {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+      @media (min-width: 768px) {
+        .pricing-category-header {
+          grid-template-columns: 200px 1fr;
+          gap: 3rem;
+          align-items: baseline;
+        }
+      }
+      .category-eyebrow {
+        font-family: 'Switzer', sans-serif !important;
+        font-size: 10px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(27, 23, 23, 0.45);
+        font-weight: 600;
+      }
+      .category-title {
+        font-family: 'Body Grotesque', sans-serif !important;
+        font-size: clamp(1.75rem, 3vw, 2.5rem);
+        font-weight: 500;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        color: #1B1717;
+        margin-bottom: 0.5rem;
+      }
+      .category-desc {
+        font-family: 'Switzer', sans-serif;
+        font-size: 14px;
+        color: rgba(27, 23, 23, 0.6);
+        line-height: 1.6;
+        max-width: 580px;
+      }
+
+      /* Service Row */
+      .service-row-list {
+        display: flex;
+        flex-direction: column;
+      }
+      @media (min-width: 768px) {
+        .service-row-list {
+          margin-left: calc(200px + 3rem);
+        }
+      }
+      .service-row-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 0.5rem;
+        border-bottom: 1px solid rgba(27, 23, 23, 0.08);
+        gap: 1.5rem;
+        border-radius: 4px;
+        transition: background-color 0.2s ease, padding 0.2s ease;
+      }
+      .service-row-item:hover {
+        background-color: rgba(27, 23, 23, 0.035);
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+      }
+      .service-item-info {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        flex: 1;
+        min-width: 0;
+      }
+      .service-item-name {
+        font-family: 'Switzer', sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        color: #1B1717;
+        line-height: 1.3;
+      }
+      .service-item-scope {
+        font-family: 'Switzer', sans-serif;
+        font-size: 12.5px;
+        color: rgba(27, 23, 23, 0.5);
+        line-height: 1.4;
+      }
+      .service-item-price {
+        font-family: 'Switzer', sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        color: #1B1717;
+        white-space: nowrap;
+        text-align: right;
+        flex-shrink: 0;
+        letter-spacing: 0.02em;
+      }
+
+      /* Packages Grid */
+      .packages-grid-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+      @media (min-width: 768px) {
+        .packages-grid-container {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      .pkg-card {
+        background: #EDEBDD;
+        border: 1px solid rgba(27, 23, 23, 0.12);
+        padding: 2.25rem 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+      .pkg-card:hover {
+        border-color: rgba(27, 23, 23, 0.35);
+        transform: translateY(-3px);
+        box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.06);
+      }
+      .pkg-num {
+        font-family: 'Switzer', sans-serif !important;
+        font-size: 9px;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: rgba(27, 23, 23, 0.4);
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+      }
+      .pkg-title {
+        font-family: 'Body Grotesque', sans-serif !important;
+        font-size: 1.35rem;
+        font-weight: 600;
+        line-height: 1.25;
+        letter-spacing: -0.01em;
+        color: #1B1717;
+        margin-bottom: 1.5rem;
+      }
+      .pkg-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 2rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+        flex: 1;
+      }
+      .pkg-list li {
+        font-family: 'Switzer', sans-serif;
+        font-size: 13px;
+        color: rgba(27, 23, 23, 0.65);
+        padding-left: 1.25rem;
+        position: relative;
+        line-height: 1.45;
+      }
+      .pkg-list li::before {
+        content: '\2014';
+        position: absolute;
+        left: 0;
+        color: rgba(27, 23, 23, 0.3);
+      }
+      .pkg-price-footer {
+        border-top: 1px solid rgba(27, 23, 23, 0.1);
+        padding-top: 1.25rem;
+      }
+      .pkg-price-label {
+        font-family: 'Switzer', sans-serif;
+        font-size: 9px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(27, 23, 23, 0.45);
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+      }
+      .pkg-price-val {
+        font-family: 'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+        font-size: 1.75rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: #1B1717;
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* Custom CTA Box */
+      .custom-cta-box {
+        border-top: 1px solid rgba(27, 23, 23, 0.12);
+        margin-top: 4.5rem;
+        padding-top: 4rem;
+      }
+      .custom-cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        background: #1B1717;
+        color: #EDEBDD;
+        font-family: 'Switzer', sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        padding: 16px 32px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      .custom-cta-btn:hover {
+        background: #630000;
+        color: #EDEBDD;
+        transform: translateY(-2px);
+      }
+
+      /* Price change transition */
+      .price-dynamic {
+        font-family: 'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+        font-variant-numeric: tabular-nums;
+        display: inline-block;
+        transition: opacity 0.15s ease, transform 0.15s ease;
+      }
+      .price-dynamic.is-switching {
+        opacity: 0;
+        transform: translateY(-2px);
+      }
+    </style>
+
+    <div class="pricing-section-container">
+
+      <!-- Section Header with Title & Currency Selector -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-8 border-b border-[#1B1717]/10">
+        <div>
+          <span class="font-manrope text-[9px] tracking-[0.28em] uppercase text-[#1B1717]/50 font-bold block mb-4">Services &amp; Pricing</span>
+          <h2 class="font-dm text-4xl md:text-6xl font-normal tracking-tight text-[#1B1717] leading-none">
+            Tailored Creative Services
+          </h2>
+          <p class="font-body text-base md:text-lg text-[#1B1717]/60 mt-4 max-w-xl leading-relaxed">
+            Transparent starting rates for brands, creators, and businesses. Custom quotes tailored for larger engagements.
+          </p>
+        </div>
+
+        <!-- Currency Selector -->
+        <div class="self-start md:self-end">
+          <div class="currency-toggle-wrap" role="group" aria-label="Select display currency">
+            <button class="currency-toggle-btn active" id="hp-btn-inr" data-cur="INR" aria-pressed="true" type="button">INR &#8377;</button>
+            <button class="currency-toggle-btn" id="hp-btn-usd" data-cur="USD" aria-pressed="false" type="button">USD $</button>
           </div>
         </div>
-        <div class="md:col-start-7 md:col-span-6 flex flex-col justify-center">
-          <span class="text-[8px] tracking-widest uppercase text-[#1B1717]/60 font-bold mb-6">Service 01</span>
-          <h3 class="text-3xl md:text-4xl font-medium tracking-tight mb-4 md:mb-8 text-[#1B1717]">Website Design &amp;<br>Development</h3>
-          <p class="text-lg text-[#1B1717]/60 mb-6 md:mb-12 max-w-lg leading-relaxed">
-            I design and build fast, responsive, and easy-to-use websites. From the initial layout to the final code, I make sure your website looks great and works perfectly on all devices.
-          </p>
-          <div class="mb-6 md:mb-12">
-            <h4 class="text-[8px] uppercase tracking-widest font-bold mb-6 text-[#1B1717]">What's included</h4>
-            <ul class="space-y-4">
-              <li class="flex items-center gap-3 text-[#1B1717]/60 text-sm">
-                <span class="material-symbols-outlined text-[#1B1717]" style="font-size:14px;">arrow_forward</span>UI/UX Design
-              </li>
-              <li class="flex items-center gap-3 text-[#1B1717]/60 text-sm">
-                <span class="material-symbols-outlined text-[#1B1717]" style="font-size:14px;">arrow_forward</span>Web Design
-              </li>
-              <li class="flex items-center gap-3 text-[#1B1717]/60 text-sm">
-                <span class="material-symbols-outlined text-[#1B1717]" style="font-size:14px;">arrow_forward</span>Web Development
-              </li>
-              <li class="flex items-center gap-3 text-[#1B1717]/60 text-sm">
-                <span class="material-symbols-outlined text-[#1B1717]" style="font-size:14px;">arrow_forward</span>AI-Assisted Design Workflows
-              </li>
-            </ul>
+      </div>
+
+      <!-- Category 01: Website Design <span class="ampersand" style="font-family: 'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important; font-weight: 500; display: inline-block;">&amp;</span> Development -->
+      <div class="pricing-category" data-service="web">
+        <div class="pricing-category-header">
+          <div><span class="category-eyebrow">Category 01</span></div>
+          <div>
+            <h3 class="category-title">Website Design <span class="ampersand" style="font-family: 'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important; font-weight: 500; display: inline-block;">&amp;</span> Development</h3>
+            <p class="category-desc">
+              Bespoke, high-performance web experiences built for modern brands. Designed with meticulous craft, smooth interactions, and rock-solid responsive code.
+            </p>
           </div>
-          <a href="contact.html?service=web" class="group bg-white text-[#1B1717] px-5 md:px-10 py-5 text-[8px] tracking-[0.2em] uppercase font-bold hover:bg-[#630000] transition-all duration-500 inline-flex items-center gap-3 self-start active:scale-95 hover:scale-105">
-            Inquire Now
-            <span class="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-1" style="font-size:14px;">arrow_forward</span>
+        </div>
+
+        <div class="service-row-list">
+          <div class="service-row-item">
+            <div class="service-item-info">
+              <span class="service-item-name">3-page Website</span>
+              <span class="service-scope">Landing page, about, contact &mdash; ideal for emerging brands and independent studios</span>
+            </div>
+            <div class="service-item-price">
+              <span class="price-dynamic" data-inr="&#8377;15,000+" data-usd="$300+">&#8377;15,000+</span>
+            </div>
+          </div>
+
+          <div class="service-row-item">
+            <div class="service-item-info">
+              <span class="service-item-name">5-page Website</span>
+              <span class="service-scope">Expanded architecture with portfolio, services, or custom showcase sections</span>
+            </div>
+            <div class="service-item-price">
+              <span class="price-dynamic" data-inr="&#8377;25,000+" data-usd="$500+">&#8377;25,000+</span>
+            </div>
+          </div>
+
+          <div class="service-row-item">
+            <div class="service-item-info">
+              <span class="service-item-name">7-page Website</span>
+              <span class="service-scope">Full-scale digital presence with custom micro-interactions and structured content</span>
+            </div>
+            <div class="service-item-price">
+              <span class="price-dynamic" data-inr="&#8377;35,000+" data-usd="$700+">&#8377;35,000+</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 02: Branding <span class="ampersand" style="font-family: 'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important; font-weight: 500; display: inline-block;">&amp;</span> Visual Identity -->
+      <div class="pricing-category" data-service="branding">
+        <div class="pricing-category-header">
+          <div><span class="category-eyebrow">Category 02</span></div>
+          <div>
+            <h3 class="category-title">Branding <span class="ampersand" style="font-family: 'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important; font-weight: 500; display: inline-block;">&amp;</span> Visual Identity</h3>
+            <p class="category-desc">
+              Distinctive identity systems that define presence, command attention, and build lasting recognition across print and digital media.
+            </p>
+          </div>
+        </div>
+
+        <div class="service-row-list">
+          <div class="service-row-item">
+            <div class="service-item-info">
+              <span class="service-item-name">Logo Design</span>
+              <span class="service-scope">Primary mark, wordmark, or badge system with comprehensive vector deliverable pack</span>
+            </div>
+            <div class="service-item-price">
+              <span class="price-dynamic" data-inr="&#8377;6,000+" data-usd="$150+">&#8377;6,000+</span>
+            </div>
+          </div>
+
+          <div class="service-row-item">
+            <div class="service-item-info">
+              <span class="service-item-name">Visual Identity</span>
+              <span class="service-scope">Logo system, curated typography palette, color theory guidelines, and asset kit</span>
+            </div>
+            <div class="service-item-price">
+              <span class="price-dynamic" data-inr="&#8377;12,000+" data-usd="$300+">&#8377;12,000+</span>
+            </div>
+          </div>
+
+          <div class="service-row-item">
+            <div class="service-item-info">
+              <span class="service-item-name">Complete Brand Identity</span>
+              <span class="service-scope">Full brand book, visual guidelines, social system, and collateral touchpoints</span>
+            </div>
+            <div class="service-item-price">
+              <span class="price-dynamic" data-inr="&#8377;20,000+" data-usd="$500+">&#8377;20,000+</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 03: Graphic Design <span class="ampersand" style="font-family: 'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important; font-weight: 500; display: inline-block;">&amp;</span> Music Artwork -->
+      <div class="pricing-category" data-service="graphic">
+        <div class="pricing-category-header">
+          <div><span class="category-eyebrow">Category 03</span></div>
+          <div>
+            <h3 class="category-title">Graphic Design <span class="ampersand" style="font-family: 'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important; font-weight: 500; display: inline-block;">&amp;</span> Music Artwork</h3>
+            <p class="category-desc">
+              Editorial visual work for musical artists, authors, product launches, and cultural projects with high artistic nuance.
+            </p>
+          </div>
+        </div>
+
+        <div class="service-row-list">
+          <div class="service-row-item">
+            <div class="service-item-info">
+              <span class="service-item-name">Poster Design</span>
+              <span class="service-scope">Event, tour, promotional, or art exhibition poster &mdash; print &amp; digital formats</span>
+            </div>
+            <div class="service-item-price">
+              <span class="price-dynamic" data-inr="&#8377;3,000+" data-usd="$75+">&#8377;3,000+</span>
+            </div>
+          </div>
+
+          <div class="service-row-item">
+            <div class="service-item-info">
+              <span class="service-item-name">Social Media Post</span>
+              <span class="service-scope">Single high-impact static artwork formatted for digital distribution</span>
+            </div>
+            <div class="service-item-price">
+              <span class="price-dynamic" data-inr="&#8377;1,500+" data-usd="$40+">&#8377;1,500+</span>
+            </div>
+          </div>
+
+          <div class="service-row-item">
+            <div class="service-item-info">
+              <span class="service-item-name">Social Media Carousel</span>
+              <span class="service-scope">Multi-slide carousel with seamless visual flow and consistent layout system</span>
+            </div>
+            <div class="service-item-price">
+              <span class="price-dynamic" data-inr="&#8377;3,500+" data-usd="$90+">&#8377;3,500+</span>
+            </div>
+          </div>
+
+          <div class="service-row-item">
+            <div class="service-item-info">
+              <span class="service-item-name">Album Artwork</span>
+              <span class="service-scope">Front cover design for singles, EPs, or full albums &mdash; Spotify, Apple Music &amp; vinyl ready</span>
+            </div>
+            <div class="service-item-price">
+              <span class="price-dynamic" data-inr="&#8377;5,000+" data-usd="$150+">&#8377;5,000+</span>
+            </div>
+          </div>
+
+          <div class="service-row-item">
+            <div class="service-item-info">
+              <span class="service-item-name">Book Cover Design</span>
+              <span class="service-scope">Digital and paperback front cover layout; full wraps quoted upon specification</span>
+            </div>
+            <div class="service-item-price">
+              <span class="price-dynamic" data-inr="&#8377;5,000+" data-usd="$150+">&#8377;5,000+</span>
+            </div>
+          </div>
+
+          <div class="service-row-item">
+            <div class="service-item-info">
+              <span class="service-item-name">Merchandise Design</span>
+              <span class="service-scope">Per design for apparel, accessories, or screen-printing (artwork files only)</span>
+            </div>
+            <div class="service-item-price">
+              <span class="price-dynamic" data-inr="&#8377;6,000+" data-usd="$200+">&#8377;6,000+</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Curated Packages -->
+      <div class="mt-20 mb-8">
+        <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-4 mb-10 pb-4 border-b border-[#1B1717]/10">
+          <div>
+            <span class="font-manrope text-[9px] tracking-[0.25em] uppercase text-[#1B1717]/50 font-bold block mb-2">Curated Bundles</span>
+            <h3 class="font-dm text-2xl md:text-4xl font-normal tracking-tight text-[#1B1717]">Creative Packages</h3>
+          </div>
+          <p class="font-body text-sm text-[#1B1717]/60 max-w-sm leading-relaxed">
+            Thoughtfully packaged services designed to deliver a cohesive solution from day one.
+          </p>
+        </div>
+
+        <div class="packages-grid-container">
+          <div class="pkg-card">
+            <div>
+              <p class="pkg-num">Package 01</p>
+              <h4 class="pkg-title">The Artist<br/>Starter Pack</h4>
+              <ul class="pkg-list">
+                <li>Primary logo design</li>
+                <li>Core visual identity &amp; color palette</li>
+                <li>Social media launch assets</li>
+              </ul>
+            </div>
+            <div class="pkg-price-footer">
+              <p class="pkg-price-label">Starting from</p>
+              <p class="pkg-price-val"><span class="price-dynamic" data-inr="&#8377;15,000" data-usd="$400">&#8377;15,000</span></p>
+            </div>
+          </div>
+
+          <div class="pkg-card">
+            <div>
+              <p class="pkg-num">Package 02</p>
+              <h4 class="pkg-title">The Band<br/>Launch Pack</h4>
+              <ul class="pkg-list">
+                <li>Complete band identity &amp; mark</li>
+                <li>Promotional tour / single poster</li>
+                <li>One custom merchandise artwork</li>
+              </ul>
+            </div>
+            <div class="pkg-price-footer">
+              <p class="pkg-price-label">Starting from</p>
+              <p class="pkg-price-val"><span class="price-dynamic" data-inr="&#8377;20,000" data-usd="$550">&#8377;20,000</span></p>
+            </div>
+          </div>
+
+          <div class="pkg-card">
+            <div>
+              <p class="pkg-num">Package 03</p>
+              <h4 class="pkg-title">The Brand +<br/>Website Pack</h4>
+              <ul class="pkg-list">
+                <li>Full brand identity system &amp; guidelines</li>
+                <li>Custom 3-page responsive website</li>
+                <li>Design asset export suite</li>
+              </ul>
+            </div>
+            <div class="pkg-price-footer">
+              <p class="pkg-price-label">Starting from</p>
+              <p class="pkg-price-val"><span class="price-dynamic" data-inr="&#8377;30,000" data-usd="$750">&#8377;30,000</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Custom Project CTA -->
+      <div class="custom-cta-box">
+        <div class="max-w-2xl">
+          <span class="font-manrope text-[9px] tracking-[0.25em] uppercase text-[#1B1717]/50 font-bold block mb-4">Custom Inquiries</span>
+          <h3 class="font-dm text-3xl md:text-5xl font-normal tracking-tight text-[#1B1717] mb-5 leading-tight">
+            Have something<br/>else in mind?
+          </h3>
+          <p class="font-body text-base md:text-lg text-[#1B1717]/60 leading-relaxed mb-8 max-w-lg">
+            Every project carries unique creative demands. Tell me what you are envisioning, and I will craft a customized proposal tailored to your goals.
+          </p>
+          <a href="contact.html" class="custom-cta-btn">
+            Let&#8217;s Talk About Your Project &rarr;
           </a>
         </div>
       </div>
-    </div>
 
-    <!-- Service 02: Graphic Design & Branding -->
-    <div class="px-6 md:px-10 lg:px-12 py-8 md:py-24 bg-[#EDEBDD] border-t border-[#1B1717]/10">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-20 items-center">
-        <div class="md:col-span-6 flex flex-col justify-center order-2 md:order-1">
-          <span class="text-[8px] tracking-widest uppercase text-[#1B1717]/60 font-bold mb-6">Service 02</span>
-          <h3 class="text-3xl md:text-4xl font-medium tracking-tight mb-4 md:mb-8 text-[#1B1717]">Graphic Design &amp;<br>Branding</h3>
-          <p class="text-lg text-[#1B1717]/60 mb-6 md:mb-12 max-w-lg leading-relaxed">
-            I create clean, professional, and memorable branding for your business. Whether you need a new logo, business cards, or full brand guidelines, I deliver designs that connect with your audience.
-          </p>
-          <div class="mb-6 md:mb-12">
-            <h4 class="text-[8px] uppercase tracking-widest font-bold mb-6 text-[#1B1717]">What's included</h4>
-            <ul class="space-y-4">
-              <li class="flex items-center gap-3 text-[#1B1717]/60 text-sm">
-                <span class="material-symbols-outlined text-[#1B1717]" style="font-size:14px;">arrow_forward</span>Brand Identity Design
-              </li>
-              <li class="flex items-center gap-3 text-[#1B1717]/60 text-sm">
-                <span class="material-symbols-outlined text-[#1B1717]" style="font-size:14px;">arrow_forward</span>Logo Design
-              </li>
-              <li class="flex items-center gap-3 text-[#1B1717]/60 text-sm">
-                <span class="material-symbols-outlined text-[#1B1717]" style="font-size:14px;">arrow_forward</span>Typography
-              </li>
-              <li class="flex items-center gap-3 text-[#1B1717]/60 text-sm">
-                <span class="material-symbols-outlined text-[#1B1717]" style="font-size:14px;">arrow_forward</span>Visual Systems
-              </li>
-              <li class="flex items-center gap-3 text-[#1B1717]/60 text-sm">
-                <span class="material-symbols-outlined text-[#1B1717]" style="font-size:14px;">arrow_forward</span>Design Systems
-              </li>
-              <li class="flex items-center gap-3 text-[#1B1717]/60 text-sm">
-                <span class="material-symbols-outlined text-[#1B1717]" style="font-size:14px;">arrow_forward</span>Creative Direction
-              </li>
-              <li class="flex items-center gap-3 text-[#1B1717]/60 text-sm">
-                <span class="material-symbols-outlined text-[#1B1717]" style="font-size:14px;">arrow_forward</span>Marketing Design
-              </li>
-            </ul>
-          </div>
-          <a href="contact.html?service=branding" class="group bg-white text-[#1B1717] px-5 md:px-10 py-5 text-[8px] tracking-[0.2em] uppercase font-bold hover:bg-[#630000] transition-all duration-500 inline-flex items-center gap-3 self-start active:scale-95 hover:scale-105">
-            Elevate Branding
-            <span class="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-1" style="font-size:14px;">arrow_forward</span>
-          </a>
-        </div>
-        <div class="md:col-start-8 md:col-span-5 order-1 md:order-2">
-          <div class="aspect-[4/5] overflow-hidden bg-[#EDEBDD] border border-[#1B1717]/10">
-            <img width="2048" height="2048" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" alt="Graphic Design &amp; Branding" src="Images/Gemini_Generated_Image_yhiy2nyhiy2nyhiy.webp" loading="lazy" decoding="async">
-          </div>
-        </div>
+      <!-- Pricing Notes -->
+      <div class="mt-16 pt-8 border-t border-[#1B1717]/10">
+        <p class="font-body text-xs text-[#1B1717]/40 leading-relaxed max-w-2xl">
+          All prices shown are starting baselines. Final fees vary according to precise project requirements, milestone schedules, and deliverables. Domain registration, hosting subscriptions, fonts licenses, and physical print production are excluded unless agreed in writing. A commencement deposit is required prior to project kick-off.
+        </p>
       </div>
+
     </div>
 
+    <!-- Currency Switcher Script -->
+    <script>
+      (function initHomepagePricingCurrency() {
+        var btnInr = document.getElementById('hp-btn-inr');
+        var btnUsd = document.getElementById('hp-btn-usd');
+        if (!btnInr || !btnUsd) return;
+
+        var currentCurrency = 'INR';
+
+        function updateCurrency(target) {
+          if (target === currentCurrency) return;
+          currentCurrency = target;
+
+          if (target === 'INR') {
+            btnInr.classList.add('active');
+            btnInr.setAttribute('aria-pressed', 'true');
+            btnUsd.classList.remove('active');
+            btnUsd.setAttribute('aria-pressed', 'false');
+          } else {
+            btnUsd.classList.add('active');
+            btnUsd.setAttribute('aria-pressed', 'true');
+            btnInr.classList.remove('active');
+            btnInr.setAttribute('aria-pressed', 'false');
+          }
+
+          var prices = document.querySelectorAll('.price-dynamic');
+          prices.forEach(function(el) {
+            el.classList.add('is-switching');
+            setTimeout(function() {
+              el.textContent = (target === 'INR') ? el.dataset.inr : el.dataset.usd;
+              el.classList.remove('is-switching');
+            }, 120);
+          });
+        }
+
+        btnInr.addEventListener('click', function() { updateCurrency('INR'); });
+        btnUsd.addEventListener('click', function() { updateCurrency('USD'); });
+      })();
+    </script>
   </section>
   <section class="section-testimonials py-12 md:py-24 px-6 md:px-24 bg-[#EDEBDD] border-t border-[#1B1717]/10 overflow-hidden">
     <div class="max-w-7xl mx-auto relative">
@@ -2194,46 +2789,94 @@
               I use a mix of design and development tools to bring ideas to life. Here's what I work with to build websites, create brands, and design graphics every day.
             </p>
             
-            <!-- Software Icons Grid -->
-            <div class="grid grid-cols-3 gap-6 pt-4 md:pt-8 border-t border-[#1B1717]/10">
-              <div class="group flex flex-col items-center gap-3">
-                <div class="w-12 h-12 bg-transparent rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Adobe_Illustrator_CC_icon.svg" class="w-9 h-9 object-contain transition-all" alt="Adobe Illustrator" loading="lazy" decoding="async">
+            <!-- Software Icons Grid (Professional 2-Column Matrix) -->
+            <div class="toolkit-grid">
+              <!-- 1. Illustrator -->
+              <div class="toolkit-card">
+                <div class="toolkit-icon-wrap">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Adobe_Illustrator_CC_icon.svg" alt="Adobe Illustrator" loading="lazy" decoding="async">
                 </div>
-                <span class="text-[8px] tracking-widest uppercase text-[#1B1717]/60 group-hover:text-[#1B1717] transition-colors">Illustrator</span>
+                <div class="toolkit-info">
+                  <span class="toolkit-name">Illustrator</span>
+                  <span class="toolkit-role">Vector Design</span>
+                </div>
               </div>
-              <div class="group flex flex-col items-center gap-3">
-                <div class="w-12 h-12 bg-transparent rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg" class="w-9 h-9 object-contain transition-all" alt="Adobe Photoshop" loading="lazy" decoding="async">
+
+              <!-- 2. Photoshop -->
+              <div class="toolkit-card">
+                <div class="toolkit-icon-wrap">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg" alt="Adobe Photoshop" loading="lazy" decoding="async">
                 </div>
-                <span class="text-[8px] tracking-widest uppercase text-[#1B1717]/60 group-hover:text-[#1B1717] transition-colors">Photoshop</span>
+                <div class="toolkit-info">
+                  <span class="toolkit-name">Photoshop</span>
+                  <span class="toolkit-role">Imagery</span>
+                </div>
               </div>
-              <div class="group flex flex-col items-center gap-3">
-                <div class="w-12 h-12 bg-transparent rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" class="w-9 h-9 object-contain transition-all" alt="Figma" loading="lazy" decoding="async">
+
+              <!-- 3. After Effects -->
+              <div class="toolkit-card">
+                <div class="toolkit-icon-wrap">
+                  <img src="/Images/adobe-after-effects-software-icon_539007-183.avif" alt="Adobe After Effects" loading="lazy" decoding="async" class="rounded">
                 </div>
-                <span class="text-[8px] tracking-widest uppercase text-[#1B1717]/60 group-hover:text-[#1B1717] transition-colors">Figma</span>
+                <div class="toolkit-info">
+                  <span class="toolkit-name">After Effects</span>
+                  <span class="toolkit-role">Motion Design</span>
+                </div>
               </div>
-              <!-- Google Stitch -->
-              <div class="group flex flex-col items-center gap-3">
-                <div class="w-12 h-12 bg-transparent rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110">
-                  <img src="/Images/Google-Stitch-Logo.webp" class="w-9 h-9 object-contain" alt="Google Stitch" loading="lazy" decoding="async">
+
+              <!-- 4. Premiere Pro -->
+              <div class="toolkit-card">
+                <div class="toolkit-icon-wrap">
+                  <img src="/Images/adobe-premier-pro-logo-icon-free-vector.jpg" alt="Adobe Premiere Pro" loading="lazy" decoding="async" class="rounded">
                 </div>
-                <span class="text-[8px] tracking-widest uppercase text-[#1B1717]/60 group-hover:text-[#1B1717] transition-colors">Stitch</span>
+                <div class="toolkit-info">
+                  <span class="toolkit-name">Premiere Pro</span>
+                  <span class="toolkit-role">Video Edit</span>
+                </div>
               </div>
-              <!-- Google Antigravity -->
-              <div class="group flex flex-col items-center gap-3">
-                <div class="w-12 h-12 bg-transparent rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 overflow-hidden">
-                  <img src="/Images/Screenshot 2026-04-20 121058.webp" class="w-9 h-9 object-contain" alt="Google Antigravity" loading="lazy" decoding="async">
+
+              <!-- 5. Figma -->
+              <div class="toolkit-card">
+                <div class="toolkit-icon-wrap">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" alt="Figma" loading="lazy" decoding="async">
                 </div>
-                <span class="text-[8px] tracking-widest uppercase text-[#1B1717]/60 group-hover:text-[#1B1717] transition-colors">Antigravity</span>
+                <div class="toolkit-info">
+                  <span class="toolkit-name">Figma</span>
+                  <span class="toolkit-role">UI / UX</span>
+                </div>
               </div>
-              <!-- Trae -->
-              <div class="group flex flex-col items-center gap-3">
-                <div class="w-12 h-12 bg-transparent rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110">
-                  <img src="/Images/trae-icon-filled-256.webp" class="w-9 h-9 object-contain" alt="Trae IDE" loading="lazy" decoding="async">
+
+              <!-- 6. Stitch -->
+              <div class="toolkit-card">
+                <div class="toolkit-icon-wrap">
+                  <img src="/Images/Google-Stitch-Logo.webp" alt="Google Stitch" loading="lazy" decoding="async">
                 </div>
-                <span class="text-[8px] tracking-widest uppercase text-[#1B1717]/60 group-hover:text-[#1B1717] transition-colors">Trae</span>
+                <div class="toolkit-info">
+                  <span class="toolkit-name">Stitch</span>
+                  <span class="toolkit-role">AI Design</span>
+                </div>
+              </div>
+
+              <!-- 7. Antigravity -->
+              <div class="toolkit-card">
+                <div class="toolkit-icon-wrap">
+                  <img src="/Images/Screenshot 2026-04-20 121058.webp" alt="Google Antigravity" loading="lazy" decoding="async">
+                </div>
+                <div class="toolkit-info">
+                  <span class="toolkit-name">Antigravity</span>
+                  <span class="toolkit-role">Agentic AI</span>
+                </div>
+              </div>
+
+              <!-- 8. Trae -->
+              <div class="toolkit-card">
+                <div class="toolkit-icon-wrap">
+                  <img src="/Images/trae-icon-filled-256.webp" alt="Trae IDE" loading="lazy" decoding="async">
+                </div>
+                <div class="toolkit-info">
+                  <span class="toolkit-name">Trae</span>
+                  <span class="toolkit-role">Web IDE</span>
+                </div>
               </div>
             </div>
           </div>
@@ -2642,11 +3285,16 @@
 
   /* -- Existing (seed) testimonials — written to Firestore once on first load -- */
   const SEED_TESTIMONIALS = [
-    { name: 'Aadil',        role: 'Bassist of The Venom Berries',      rating: 5, comment: 'Very Minimal changes had to be done so all good but See the only thing I would say is that for next poster try and incorporate a little more of the elements from the bands. This is something I want us as a band to do also because we\'ve not being doing that past few gig posters\n\nLike if you see this poster or the last 2-3 ones of ours, if you change the names of the bands - it doesn\'t really make a difference to the poster\n\nSo in the future I want to start incorporating more elements like that.', createdAt: 1 },
-    { name: 'Rahul',        role: 'CEO of Nexzy',                       rating: 5, comment: 'amazing logo design for Nexzy Growth & Tech Solutions, exactly how i imagined, techy modern minimal, plus the website redesign adley\'s UI input really helped us.', createdAt: 2 },
-    { name: 'Pratik',       role: 'CEO of Luke\'s Iced Coffee',          rating: 5, comment: 'the branding and logo design was very well done by adley, it is hard to find someone that really understands what you feel about your brand and can turn theory into practical.', createdAt: 3 },
-    { name: 'Bianca',       role: 'Independent music artist in Mumbai', rating: 5, comment: 'adley worked on my album art, the album was very personal to me and he understood the image that i had in mind perfectly.', createdAt: 4 },
-    { name: 'Tiara Shannon', role: 'Content Creator',                   rating: 5, comment: 'Did a logo for my reel series! Was completely receptive of what I wanted, understood and delivered well. Would highly recommend adley for the creative job you need 😊', createdAt: 5 }
+    { name: 'Rahul', role: 'CEO of Nexzy', rating: 5, comment: 'amazing logo design for Nexzy Growth & Tech Solutions, exactly how i imagined, techy modern minimal, plus the website redesign adley\'s UI input really helped us.', createdAt: 1 },
+    { name: 'Tiara Shannon', role: 'Content Creator', rating: 5, comment: 'Did a logo for my reel series! Was completely receptive of what I wanted, understood and delivered well. Would highly recommend adley for the creative job you need 😊', createdAt: 2 },
+    { name: 'Maahir siddique', role: 'Lead vocals : The Venom berries', rating: 5, comment: 'Adley has completely elevated and revamped our bands image. The designs he presented were absolutely stellar! And they instantly became a fan favourite!', createdAt: 3 },
+    { name: 'Bianca', role: 'Independent music artist in Mumbai', rating: 5, comment: 'adley worked on my album art, the album was very personal to me and he understood the image that i had in mind perfectly.', createdAt: 4 },
+    { name: 'Pratik', role: 'CEO of Luke\'s Iced Coffee', rating: 5, comment: 'the branding and logo design was very well done by adley, it is hard to find someone that really understands what you feel about your brand and can turn theory into practical.', createdAt: 5 },
+    { name: 'Shashank', role: 'Import export', rating: 4, comment: 'Adley restructured my old website and built something extremely visually appealing and interactive, he knows what he’s doing people I’m happy with the results.', createdAt: 6 },
+    { name: 'Anirudh Rao', role: 'The Venom Berries', rating: 5, comment: 'We had Adley design the entire visual identity of The Venom Berries from scratch and our experience has been nothing short of stellar. From his creative ideas to professionalism from start to finish made working with him an absolute breeze and are very happy with the finished product. Would definitely recommend him to anyone looking for a visual designer!', createdAt: 7 },
+    { name: 'Aabhaas Tomar', role: 'Guitarist, Music Producer', rating: 5, comment: 'Adley has super efficiently and creatively designed posters, merch and brand kits of various music bands who I have performed with; Grand Theft Emo, The Venom Berries & more! Absolutely love his creative ideation process and his work ethic!', createdAt: 8 },
+    { name: 'Aadil Jariwala', role: 'Guitarist of The Venom Berries', rating: 5, comment: 'Working with Adley has been a really good experience. He’s really talented at what he does and his work has really helped us as a band bring our vision to life. We are more than happy with all the designs and posters he has crafted for us and we look forward to working together again', createdAt: 9 },
+    { name: 'Abhishek Vira', role: 'Bassist @The Venom Berries', rating: 5, comment: 'Adley absolutely smashed it out of the park with our bands identity and mascot creation. The designs were so fresh and banging, we literally almost sold out the merch with his designs on!', createdAt: 10 }
   ];
 
   /* -- Slider state -- */
@@ -2774,32 +3422,68 @@
           alreadySeeded = sentinelSnap.exists();
         } catch(e) { /* ignore sentinel read errors */ }
 
-        const snapshot = await getDocs(query(col, orderBy('createdAt', 'asc')));
+        // Fetch all documents from Firestore
+        let snapshot = null;
+        try {
+          snapshot = await getDocs(col);
+        } catch(err) {
+          console.warn('[Testimonials] Direct col fetch failed, trying query:', err);
+          snapshot = await getDocs(query(col, orderBy('createdAt', 'asc')));
+        }
 
-        if (snapshot.empty && !alreadySeeded) {
+        if (snapshot && !snapshot.empty) {
+          snapshot.forEach(d => {
+            const data = d.data();
+            if (data && data.name && data.comment) {
+              testimonials.push(data);
+            }
+          });
+        } else if (snapshot && snapshot.empty && !alreadySeeded) {
           /* Seed once, then write the sentinel */
           for (const t of SEED_TESTIMONIALS) {
             await addDoc(col, { ...t, seeded: true });
           }
           try { await setDoc(sentinelRef, { seededAt: Date.now() }); } catch(e) {}
-          const seeded = await getDocs(query(col, orderBy('createdAt', 'asc')));
+          const seeded = await getDocs(col);
           seeded.forEach(d => testimonials.push(d.data()));
-        } else {
-          snapshot.forEach(d => testimonials.push(d.data()));
         }
       } catch(err) {
-        console.error('[Testimonials] Firestore read error:', err);
-        testimonials = SEED_TESTIMONIALS;
+        console.error('[Testimonials] Firestore read error (check Firestore Security Rules):', err);
       }
-    } else {
-      /* Firebase not configured — show seed data statically */
-      testimonials = SEED_TESTIMONIALS;
     }
 
-    /* Deduplicate by name+comment fingerprint — guards against duplicate Firestore writes */
+    // Always merge in locally submitted reviews so no client review is ever lost
+    try {
+      const localSaved = JSON.parse(localStorage.getItem('adesign_testimonials') || '[]');
+      if (Array.isArray(localSaved) && localSaved.length > 0) {
+        testimonials.push(...localSaved);
+      }
+    } catch(e) {}
+
+    // Fall back to seed testimonials if nothing found
+    if (testimonials.length === 0) {
+      testimonials = [...SEED_TESTIMONIALS];
+    } else {
+      // Ensure existing seeds are present if not in Firestore
+      SEED_TESTIMONIALS.forEach(seed => {
+        const exists = testimonials.some(t => t.name === seed.name);
+        if (!exists) {
+          testimonials.unshift(seed);
+        }
+      });
+    }
+
+    // Sort by createdAt safely
+    testimonials.sort((a, b) => {
+      const tA = (a.createdAt && typeof a.createdAt.toMillis === 'function') ? a.createdAt.toMillis() : (Number(a.createdAt) || 0);
+      const tB = (b.createdAt && typeof b.createdAt.toMillis === 'function') ? b.createdAt.toMillis() : (Number(b.createdAt) || 0);
+      return tA - tB;
+    });
+
+    /* Deduplicate by name+comment fingerprint */
     const seen = new Set();
     testimonials = testimonials.filter(t => {
-      const key = (t.name || '') + '||' + (t.comment || '');
+      const key = (t.name || '').trim().toLowerCase() + '||' + (t.comment || '').trim().toLowerCase();
       if (seen.has(key)) return false;
       seen.add(key);
       return true;
@@ -2944,9 +3628,32 @@
         submitLabel.textContent = 'Sending...';
         submitBtn.disabled = true;
 
-        const db = await initFirebase();
         const newReview = { name, role, rating, comment, createdAt: Date.now() };
 
+        // 1. Save to local storage immediately so it persists on this browser
+        try {
+          const localList = JSON.parse(localStorage.getItem('adesign_testimonials') || '[]');
+          localList.push(newReview);
+          localStorage.setItem('adesign_testimonials', JSON.stringify(localList));
+        } catch(e) {
+          console.warn('[Testimonials] Local storage save failed:', e);
+        }
+
+        // 2. Email notification backup via FormSubmit (never lose a client review)
+        fetch("https://formsubmit.co/ajax/addyfit21@gmail.com", {
+          method: "POST",
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            _subject: `New Portfolio Testimonial from ${name}!`,
+            Name: name,
+            Role: role,
+            Rating: `${rating} Stars`,
+            Review: comment
+          })
+        }).catch(err => console.warn('[Testimonials] Email notification failed:', err));
+
+        // 3. Save to Firebase Firestore cloud database
+        const db = await initFirebase();
         if (db) {
           try {
             const { collection, addDoc, serverTimestamp } = db._fns;
@@ -2955,7 +3662,7 @@
               createdAt: serverTimestamp()
             });
           } catch(err) {
-            console.error('[Testimonials] Write error:', err);
+            console.error('[Testimonials] Firestore write error (likely expired security rules in Firebase Console):', err);
           }
         }
 
