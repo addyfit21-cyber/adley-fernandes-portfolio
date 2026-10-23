@@ -83,7 +83,7 @@
       var style = document.createElement('style');
       style.id = 'nav-projects-style';
       style.textContent = 
-        '#nav-actions { mix-blend-mode: difference !important; }' +
+        '#nav-actions, #nav-logo-wrapper { mix-blend-mode: difference !important; }' +
         '#nav-actions a, #nav-actions button { color: #ffffff !important; }' +
         '#nav-projects-menu { mix-blend-mode: normal !important; position: fixed !important; z-index: 140 !important; }' +
         '#nav-projects-menu.is-open { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important; }' +

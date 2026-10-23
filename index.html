@@ -1229,10 +1229,10 @@
 
 <!-- TopNavBar -->
 <nav id="main-nav" class="pointer-events-none">
-    <!-- Top Left: Logo (Left-aligned with Hero Text & CTA Button) -->
-  <div id="nav-logo-wrapper" class="fixed top-0 left-0 z-[120] pointer-events-none">
+    <!-- Top Left: Logo (Left-aligned with Hero Text & CTA Button, Smart Invert) -->
+  <div id="nav-logo-wrapper" class="fixed top-0 left-0 z-[120] pointer-events-none mix-blend-difference">
     <a href="/" class="pointer-events-auto block" id="nav-logo-link">
-      <img src="/Images/Brands/Adesign%20studio/Adesign%20logo%20colour-01.webp" alt="Adesign Studio" class="h-10 md:h-14 w-auto object-contain logo-nav-img" decoding="async" loading="lazy">
+      <img src="/Images/Brands/Artly%20studio/Artly%20logo white.webp" alt="Artly Studios" class="h-10 md:h-14 w-auto object-contain logo-nav-img" decoding="async" loading="lazy">
     </a>
   </div>
 
@@ -3101,7 +3101,7 @@
       </div>
       <div class="lg:col-span-5 relative group">
         <div class="aspect-[4/5] overflow-hidden bg-[#EDEBDD] border border-[#1B1717]/10">
-          <img alt="addesign studio Portrait" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" src="/Images/profile-portrait.webp" loading="lazy" decoding="async">
+          <img alt="Artly Studios Portrait" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" src="/Images/profile-portrait.webp" loading="lazy" decoding="async">
         </div>
         <!-- Ornamental element -->
         <div class="absolute -bottom-6 -right-6 w-32 h-32 border-r border-b border-[#1B1717]/10 pointer-events-none"></div>
@@ -3394,10 +3394,10 @@
         <!-- Left: Studio identity & copyright -->
         <div class="footer-left-identity">
           <a href="/" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: 700; color: #ffffff; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: opacity 0.2s ease;">
-            addesign studio
+            Artly Studios
           </a>
           <p style="font-family: 'Switzer', -apple-system, sans-serif; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255, 255, 255, 0.7); margin: 0; line-height: 1.2;">
-            © 2024 addesign studio. All rights reserved.
+            © 2024 Artly Studios. All rights reserved.
           </p>
         </div>
 
@@ -3472,10 +3472,10 @@
         <!-- Row 3: Studio Identity & Copyright -->
         <div style="display: flex; flex-direction: column; align-items: center; gap: 2px; margin-top: 2px;">
           <a href="/" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 700; color: #ffffff; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none;">
-            addesign studio
+            Artly Studios
           </a>
           <p style="font-family: 'Switzer', -apple-system, sans-serif; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255, 255, 255, 0.7); margin: 0; line-height: 1.3;">
-            © 2024 addesign studio. All rights reserved.
+            © 2024 Artly Studios. All rights reserved.
           </p>
         </div>
       </div>
@@ -3784,7 +3784,7 @@
 
     // Always merge in locally submitted reviews so no client review is ever lost
     try {
-      const localSaved = JSON.parse(localStorage.getItem('adesign_testimonials') || '[]');
+      const localSaved = JSON.parse((localStorage.getItem('artly_testimonials') || localStorage.getItem('adesign_testimonials')) || '[]');
       if (Array.isArray(localSaved) && localSaved.length > 0) {
         testimonials.push(...localSaved);
       }
@@ -3962,9 +3962,9 @@
 
         // 1. Save to local storage immediately so it persists on this browser
         try {
-          const localList = JSON.parse(localStorage.getItem('adesign_testimonials') || '[]');
+          const localList = JSON.parse(localStorage.getItem('artly_testimonials') || localStorage.getItem('adesign_testimonials') || '[]');
           localList.push(newReview);
-          localStorage.setItem('adesign_testimonials', JSON.stringify(localList));
+          localStorage.setItem('artly_testimonials', JSON.stringify(localList));
         } catch(e) {
           console.warn('[Testimonials] Local storage save failed:', e);
         }
