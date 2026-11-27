@@ -1756,10 +1756,6 @@ h1.tracking-tighter, h2.tracking-tighter, h3.tracking-tighter, h4.tracking-tight
   width: 8rem;
 }
 
-.w-4{
-  width: 1rem;
-}
-
 .w-44{
   width: 11rem;
 }
@@ -2088,10 +2084,6 @@ h1.tracking-tighter, h2.tracking-tighter, h3.tracking-tighter, h4.tracking-tight
   gap: 0.25rem;
 }
 
-.gap-1\.5{
-  gap: 0.375rem;
-}
-
 .gap-10{
   gap: 2.5rem;
 }
@@ -2220,10 +2212,6 @@ h1.tracking-tighter, h2.tracking-tighter, h3.tracking-tighter, h4.tracking-tight
 
 .self-end{
   align-self: flex-end;
-}
-
-.self-center{
-  align-self: center;
 }
 
 .justify-self-start{
@@ -3151,10 +3139,6 @@ h1.tracking-tighter, h2.tracking-tighter, h3.tracking-tighter, h4.tracking-tight
   line-height: 0.85;
 }
 
-.leading-\[0\.98\]{
-  line-height: 0.98;
-}
-
 .leading-\[0\.9\]{
   line-height: 0.9;
 }
@@ -3369,18 +3353,6 @@ h1.tracking-tighter, h2.tracking-tighter, h3.tracking-tighter, h4.tracking-tight
 .text-white{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.text-white\/40{
-  color: rgb(255 255 255 / 0.4);
-}
-
-.text-white\/75{
-  color: rgb(255 255 255 / 0.75);
-}
-
-.text-white\/85{
-  color: rgb(255 255 255 / 0.85);
 }
 
 .text-white\/90{
@@ -4288,16 +4260,8 @@ video {
     margin-right: 0.75rem;
   }
 
-  .sm\:h-5{
-    height: 1.25rem;
-  }
-
   .sm\:h-6{
     height: 1.5rem;
-  }
-
-  .sm\:w-5{
-    width: 1.25rem;
   }
 
   .sm\:w-6{
@@ -4314,10 +4278,6 @@ video {
 
   .sm\:gap-2{
     gap: 0.5rem;
-  }
-
-  .sm\:gap-2\.5{
-    gap: 0.625rem;
   }
 
   .sm\:gap-8{
@@ -5028,11 +4988,6 @@ video {
   .md\:text-xl{
     font-size: 1.25rem;
     line-height: 1.75rem;
-  }
-
-  .md\:text-xs{
-    font-size: 0.75rem;
-    line-height: 1rem;
   }
 
   .md\:leading-\[0\.95\]{
